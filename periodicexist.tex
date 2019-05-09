@@ -1,0 +1,1712 @@
+\documentclass[thesis.tex]{subfiles}
+\usepackage{xr} 
+\externaldocument[I:]{aux/periodic}
+
+\begin{document}
+
+% remove this eventually or do conditional
+\chapter{KdV5 with periodic boundary conditions}
+
+\section{Proof of Existence Theorems}
+
+\subsection{Proof of Lemmas}
+
+\newtheorem*{lemma:psiform}{Lemma \ref{I:psiform}}
+\begin{lemma:psiform}
+Let $H$ be the Hamiltonian from Hypothesis \ref{I:Hhyp}. Then $\Psi(x) = \nabla H(Q(x))$.
+\begin{proof}
+Since \eqref{I:genODE} is Hamiltonian, $\langle F(Q(x)), \nabla H(Q(x)) \rangle = 0$ for all $x$. Taking the gradient of this and using known vector calculus identities,
+\begin{align*}
+0 &= \nabla \langle F(Q(x)), \nabla H(Q(x)) \rangle \\
+&= D F(Q(x))^* \nabla H(Q(x)) + D^2 H(Q(x))^* F(Q(x)) \\
+&= D F(Q(x))^* \nabla H(Q(x)) + D^2 H(Q(x)) Q'(x) \\
+&= D F(Q(x))^* \nabla H(Q(x)) + \frac{d}{dx} \nabla H(Q(x))
+\end{align*}
+since the Hessian matrix is self-adjoint. Rearranging this,
+\begin{equation*}
+\frac{d}{dx} \nabla H(Q(x)) = -D F(Q(x))^* \nabla H(Q(x)) 
+\end{equation*}
+thus $\nabla H(Q(x))$ is a solution to the adjoint variational equation \eqref{I:adjvareq1}. Since $\nabla H$ is continuous and $Q(x)$ is bounded (it decays exponentially to 0 at $\pm \infty$), $\nabla H(Q(x))$ is bounded as well. By Hypothesis \ref{I:nondegenhyp}, there is a unique such solution. It follows that $\Psi(x) = \nabla H(Q(x))$.
+\end{proof}
+\end{lemma:psiform}
+
+\subsection{Piecewise Formulation}
+
+Using Hypothesis 
+Next, 
+
+Let $\Phi_\pm(x, y; \beta^\pm)$ be the family of evolution operators for the variational equations
+
+\begin{equation}
+(V^\pm)' = D_U F(Q^\pm(0, \beta^\pm)(x)) V^\pm
+\end{equation}
+
+where these are defined on the appropriate interval. We can decompose these evolution operators via an exponential dichotomy.
+
+\begin{lemma}\label{dichotomy1}
+There exist projections
+
+\begin{align*}
+&P_+^s(y; \beta^+) && y \geq 0 \\
+&P_+^u(y; \beta^+) = I - P_+^s(y; \beta^+) && y \geq 0 \\
+&P_-^u(y; \beta^-) && y \leq 0 \\
+&P_-^s(y; \beta^-) = I - P_-^u(y; \beta^-) && y \leq 0 \\
+\end{align*}
+
+such that the evolution operators $\Phi_\pm(x, y; \beta^\pm)$ can be decomposed as
+
+\begin{align*}
+\Phi^s_\pm(x, y; \beta^\pm) &= \Phi_\pm(x, y; \beta^\pm) P^s_\pm(y; \beta^\pm) \\
+\Phi^u_\pm(x, y; \beta^\pm) &= \Phi_\pm(x, y; \beta^\pm) P^u_\pm(y; \beta^\pm) 
+\end{align*}
+
+where we have the estimates
+
+\begin{align*}
+|\Phi^s_+(x, y, \beta^+)| &\leq C e^{-\alpha(x - y)} && 0 \leq y \leq x \\
+|\Phi^u_+(x, y, \beta^+)| &\leq C e^{-\alpha(y - x)} && 0 \leq x \leq y \\
+|\Phi^u_-(x, y, \beta^-)| &\leq C e^{-\alpha(y - x)} && 0 \geq y \geq x \\
+|\Phi^s_-(x, y, \beta^-)| &\leq C e^{-\alpha(x - y)} && 0 \geq x \geq y \\
+\end{align*}
+
+which also hold for derivatives with respect to the ICs $\beta^\pm$. In addition, the projections satisfy 
+
+\begin{align*}
+\Phi_\pm(x, y; \beta^\pm) P^{s/u}_\pm(y; \beta^\pm) 
+= P^{s/u}_\pm(x; \beta^\pm) \Phi_\pm(x, y; \beta^\pm)
+\end{align*}
+
+i.e. it does not matter if we project or evolve first. Finally, the projections can be chosen such that at $y = 0$ we have, independent of $\beta^+$ and $\beta^-$
+
+\begin{align*}
+\ker P^s_+(0; \beta^+) &= Z \oplus Y^- \\
+\ker P^u_-(0; \beta^-) &= Z \oplus Y^+ \\
+\ran P^u_+(0; \beta^+) &= Z \oplus Y^- \\
+\ran P^s_-(0; \beta^-) &= Z \oplus Y^+
+\end{align*}
+
+\begin{proof}
+Since $D_U F(0)$ is hyperbolic by assumption, this follows from Lemma 5.1 in San97, which follows from Lemma 1.1 in San93.
+\end{proof}
+\end{lemma}
+
+The next lemma is a bound on the difference between the exponential dichotomy projections and the projections onto the stable and unstable eigenspaces.
+
+% lemma : bound on projection difference
+
+\begin{lemma}\label{p1}
+
+Let 
+
+\begin{equation}
+p_1(X; \beta^+, \beta^-) = \sup_{x \geq X} (|P^u_+(x; \beta^+) - P_0^u| + |P^s_-(-x; \beta^-) - P_0^s|)
+\end{equation}
+
+Then we have the $X$-dependent bound
+
+\begin{equation}
+p_1(X; \beta^+, \beta^-) = \mathcal{O}(e^{-\alpha X})
+\end{equation} 
+
+\begin{proof}
+This follows from Lemma 1.1 in San93.
+\end{proof}
+
+\end{lemma}
+
+% rewrite piecewise
+
+Next, we rewrite the problem $U'(x) = F(U)$ in piecewise fashion in such a way as to exploit what we did above. We want to solve piecewise
+
+\begin{align*}
+U_i^\pm(x)' &= (Q^\pm(0, \beta_i^\pm)(x)' + V_i^\pm(x)' = F\left(Q^\pm(0, \beta_i^\pm)(x) + V_i^\pm(x) \right) \\
+\end{align*}
+
+for $i = 0, \dots, n-1$. Using the fact that (by construction) $Q^\pm(0, \beta_i^\pm)(x)$ solves $U'(x) = F(U)$ on the appropriate interval, this becomes
+
+\begin{align*}
+F(Q^\pm(0, \beta_i^\pm)(x)) + V_i^\pm(x)' &= F(Q^\pm(0, \beta_i^\pm)(x) + V_i^\pm(x) )
+\end{align*}
+
+Solving for $(V_i^\pm(x))'$, we have
+
+\begin{align*}
+V_i^\pm(x)' &= F(Q^\pm(0, \beta_i^\pm)(x) + V_i^\pm(x) ) - F(Q^\pm(0, \beta_i^\pm)(x) )
+\end{align*}
+
+We expand in a Taylor series about $F(Q^\pm(0, \beta_i^\pm)(x)$ to get the equivalent formulation
+
+\begin{equation}\label{Vpiecewise}
+(V_i^\pm(x))' = D_U F(Q^\pm(0, \beta_i^\pm)(x)) V_i^\pm(x)  + G_i^\pm(\beta_i^\pm, V_i^\pm)(x)
+\end{equation}
+
+where 
+
+\begin{equation}\label{Gquadratic}
+G_i^\pm(\beta_i^\pm, V_i^\pm)(x) = \mathcal{O}(|V_i^\pm|^2)
+\end{equation}
+
+independent of the parameters $\beta_i^\pm$. The fact that this is bound is independent of the $\beta_i^\pm$ follows from the fact that we have bounds on $Q^\pm(0, \beta_i^\pm)$ which are independent of $\beta_i^\pm$. Derivatives of $G_i^\pm$ with respect to the parameters $\beta_i^\pm$ are the same order in $V_i^\pm$ (CHECK THIS IN San97).\\
+
+At this point, we rewrite the (piecewise) differential equations \eqref{Vpiecewise} in integrated form as fixed point equations. Recall again that the subscripts are mod $n$, so that, for example, $X_0 = X_n$. Thus we have
+
+\begin{align*}
+V_i^+(x) &= \Phi^u_+(x, X_i; \beta_i^+) a_i^+  \\
+&+ \int_{X_i}^x \Phi_+^u(x, y; \beta_i^+) G_i^+(y, V_i^+(y),\beta_i^+)dy \\
+&+ \int_0^x \Phi_+^s(x, y, \beta_i^+) G_i^+(y, V_i^+(y),\beta_i^+)dy \\ 
+V_i^-(x) &= \Phi^s_-(x, -X_{i-1}, \beta_i^-) a_{i-1}^-  \\
+&+ \int_{-X_{i-1}}^x \Phi_-^s(x, y, \beta_i^-) G_i^-(y, V_i^-(y),\beta_i^-)dy \\
+&+ \int_0^x \Phi_-^u(x, y, \beta_i^-) G_i^-(y, V_i^-(y),\beta_i^-)dy \\
+\end{align*}
+
+where for the initial conditions $a_i^\pm$ we have
+
+\begin{align*}
+a_i^+ &\in E_0^u \\
+a_i^- &\in E_0^s \\
+\end{align*}
+
+Note that we do not have initial conditions $b_i^\pm$ at $x = 0$ for the other side of the dichotomy. Since these ICs would live in $Y^\pm$, we have incorporated them into the $\beta_i^\pm$.\\
+
+Next, we define the exponentially weighted norms
+
+\begin{align*}
+||V||_{X, +} = \sup_{x \in [0, X]} e^{\alpha(X - x)}|V(x)| \\
+||V||_{X, -} = \sup_{x \in [-X, 0]} e^{\alpha(X + x)}|V(x)| \\
+\end{align*}
+
+Let $K_{X, +}$ be the spaces of continuous functions on the appropriate intervals equipped with these norms. These are known to be Banach spaces. Let $B_{X, \pm}(\rho)$ be the ball of radius $\rho$ about $0$ in these spaces.\\
+
+\subsubsection{Inversion}
+
+We will solve for the $V_i^\pm$ and the $\beta_i^\pm$ in a series of lemmas.\\
+
+First, we solve for the functions $V_i^\pm(x)$ in terms of the initial conditions $a_i^\pm$. Note that $V_i^+(x)$ only depends on $a_i^+$ and $V_i^-(x)$ only depends on $a_{i-1}^-$
+
+% lemma : solve for V_i^\pm
+
+\begin{lemma}\label{solveforV}
+There exist $\delta, \rho > 0$ such that for $|X_i| > 1/\delta$ and $|\beta_i^\pm| < \delta$, there exist unique solutions
+
+\begin{align*}
+V_i^-(a_{i-1}, \beta_i^-) &\in B_{X_{i-1}, -}(\rho) \\
+V_i^+(a_i, \beta_i^+) &\in B_{X_i, +}(\rho) \\
+\end{align*}
+
+These depend smoothly on the $\beta_i^\pm$, and we have the estimates
+
+\begin{align*}
+||V_i^-||_{X_{i-1}, -} &\leq C |a_{i-1}^-| \\
+||V_i^+||_{X_i, +} &\leq C |a_i^+|
+\end{align*}
+
+The estimates hold as well for derivatives of $V_i^\pm$ with respect to $\beta_i^\pm$.
+
+\begin{proof}
+This should just be Lemma 5.2 in San97. The following is a mostly filled-in version of that proof.\\
+
+We can deal with the $2n$ pieces separately, so let's do the ``positive'' pieces here. The RHS of the fixed point equations defines a smooth mapping on $K_{X_i, +}$ (basically obvious since everything involved is smooth, although we could check this). We need to verify that the RHS maps to $K_{X_i, +}$, so we check the three terms individually. We use our estimates on $\Phi^{s/u}_\pm$ from Lemma \ref{dichotomy1} and $G$ from \eqref{Gquadratic} and the fact that $V_i^+ \in K_{X_i, +}$.\\
+
+For the first term, we have
+
+\begin{align*}
+e^{\alpha(X_i - x)} | \Phi^u_+(x, X_i; \beta_i^+) a_i^+ | 
+&\leq C e^{\alpha(X_i - x)} e^{-\alpha(X_i - x)} |a_i^+| \\
+&\leq C |a_i^+|
+\end{align*}
+
+For the second term,
+
+\begin{align*}
+e^{\alpha(X_i - x)} &\left| \int_{X_i}^x \Phi_+^u(x, y; \beta_i^+) G_i^+(y, V_i^+(y),\beta_i^+)dy  \right| \\
+&\leq C e^{\alpha(X_i - x)} \int_x^{X_i} e^{-\alpha(y - x)}|V_i^+(y)|^2 dy \\
+&\leq C e^{\alpha(X_i - x)} \int_x^{X_i} 
+e^{-\alpha(y - x)}(e^{-\alpha(X_i - y)})^2|e^{\alpha(X_i - y)} V_i^+(y)|^2 dy \\
+&\leq C e^{\alpha(X_i - x)} \int_x^{X_i} 
+e^{-\alpha(y - x)}(e^{-\alpha(X_i - y)})^2 dy \\
+&\leq C \int_0^{X_i} e^{-\alpha (X_i - y)} dy \\
+&\leq C
+\end{align*}
+
+The third term is similar. Thus the RHS of the fixed point equations does indeed map $K_{X_i, +}$ to itself.\\
+
+Now that we know what spaces things live in, define 
+$H: K_{X_i, +} \times E_0^s \rightarrow K_{X_i, +}$ by
+
+\begin{align*}
+H(V_i^+(x), a_i^+, \beta_i^+) &= V_i^+(x) - \Phi^u_+(x, X_i; \beta_i^+) a_i^+  \\
+&- \int_{X_i}^x \Phi_+^u(x, y; \beta_i^+) G_i^+(y, V_i^+(y),\beta_i^+)dy \\
+&- \int_0^x \Phi_+^s(x, y; \beta_i^+) G_i^+(y, V_i^+(y),\beta_i^+)dy 
+\end{align*}
+
+Since $Q(x)$ satisfies the original ODE, we know that $H(0, 0, 0) = 0$. We can check that the Frechet derivative of $H$ with respect to $V_i^+$ at $(V_i^+(x), a_i^+, \beta_i^+) = (0, 0, 0)$ is a Banach space isomorphism on $K_{X_i, +}$. Then using the implicit function theorem, we can solve for $V_i^+(x)$ in terms of $(a_i^+, \beta_i^+)$. This dependence is smooth, since the map $H$ is smooth. $V_i^-(x)$ is similar. \\
+
+The estimate on $V_i^\pm$ comes from the estimate of the first term on the RHS of the fixed point equations, since the other terms (those involving the integrals) are quadratic in $V_i^\pm$. 
+
+\end{proof}
+\end{lemma}
+
+Next, we look at the conditions $U_i^+(X_i) - U_{i+1}^-(-X_i) = 0$.
+
+% Lemma : solve for a_i^\pm
+
+\begin{lemma}\label{solvefora}
+For any $X_i$ and $\beta_i^\pm$ chosen as in the previous lemma, there is a unique pair of initial conditions $(a_i^+, a_i^-) \in E_0^s \times E_0^u$ such that $U_i^+(X_i) - U_{i+1}^-(-X_i) = 0$. $(a_i^+, a_i^-)$ depends smoothly on $(\beta_i^+, \beta_{i+1}^-)$, and we have the following estimate, which is independent of $(\beta_i^+, \beta_{i+1}^-)$.
+
+\begin{equation}
+|a_i^\pm| \leq C e^{-\alpha X_i}
+\end{equation}
+
+which holds for $a_i^\pm$ as well as derivatives with respect to $\beta_i^\pm$.\\
+
+We also have the following expressions for the $a_i^\pm$
+
+\begin{align*}
+a_i^+ &= P^s_0 \left( Q^+(0, \beta_i^+)(X_i) - Q^-(0, \beta_{i+1}^-)(-X_i) \right) 
++ \mathcal{O}( e^{-2 \alpha X_i} )\\
+a_i^- &= P^u_0 \left( Q^+(0, \beta_i^+)(X_i) - Q^-(0, \beta_{i+1}^-)(-X_i) \right) 
++ \mathcal{O}( e^{-2 \alpha X_i} )
+\end{align*}
+
+\begin{proof}
+
+First, plug in the fixed point equations to the expressions for $U_i^+$ and $U_{i+1}^-$ and evaluate them at $\pm X_i$ to get
+\begin{align*}
+U_i^+(X_i) &= Q^+(0, \beta_i^+)(X_i) + P^u_+(X_i; \beta_i^+) a_i^+ \\
+&+ \int_0^{X_i} \Phi_+^s(X_i, y; \beta_i^+) G_i^+(y, V_i^+(y),\beta_i^+)dy \\ 
+U_{i+1}^-(-X_i) &= Q^-(0, \beta_{i+1}^-)(-X_i) + P^s_-(-X_i; \beta_{i+1}^-) a_i^- \\
+&+ \int_0^{-X_i} \Phi_-^u(-X_i, y; \beta_{i+1}^-) G_{i+1}^-(y, V_{i+1}^-(y),\beta_{i+1}^-)dy \\
+\end{align*}
+
+Adding and subtracting $P_0^{s/u}$ and recalling where the $a_i^\pm$ live, this becomes
+
+\begin{align*}
+U_i^+(X_i) &= Q^+(0, \beta_i^+)(X_i) + a_i^+ + (P^u_+(X_i; \beta_i^+) -  P^u_0)a_i^+ \\
+&+ \int_0^{X_i} \Phi_+^s(X_i, y; \beta_i^+) G_i^+(y, V_i^+(y),\beta_i^+)dy \\ 
+U_{i+1}^-(-X_i) &= Q^-(0, \beta_{i+1}^-)(-X_i) + a_i^- + (P^s_-(-X_i; \beta_{i+1}^-) - P^s_0) a_i^- \\ 
+&+ \int_0^{-X_i} \Phi_-^u(-X_i, y; \beta_{i+1}^-) G_{i+1}^-(y, V_{i+1}^-(y),\beta_{i+1}^-)dy \\
+\end{align*}
+
+Subtracting these, we obtain the equation we need to solve
+
+\begin{align*}
+0 &= H(a_i^+, a_i^-, \beta_i^+, \beta_{i+1}^-) \\
+&= a_i^+ - a_i^- + (P^u_+(X_i; \beta_i^+) -  P^u_0)a_i^+ - (P^s_-(-X_i; \beta_{i+1}^-) - P^s_0) a_i^-  \\
+&+ Q^+(0, \beta_i^+)(X_i) - Q^-(0, \beta_{i+1}^-)(-X_i)\\
+&+ \int_0^{X_i} \Phi_+^s(X_i, y; \beta_i^+) G_i^+(y, V_i^+(y),\beta_i^+)dy
+- \int_0^{-X_i} \Phi_-^u(-X_i, y; \beta_{i+1}^-) G_{i+1}^-(y, V_{i+1}^-(y),\beta_{i+1}^-)dy 
+\end{align*}
+
+where $H: E_0^s \times E_0^u \times \R \times \R \rightarrow \R^{2m}$. In the previous lemma, we solved for $V_i^\pm$ in terms of the $a_i^\pm$ and $\beta_i^\pm$, so we plug that in to get
+
+\begin{align*}
+H(a_i^+, &a_i^-, \beta_i^+, \beta_{i+1}^-) \\
+&= a_i^+ - a_i^- + (P^u_+(X_i; \beta_i^+) -  P^u_0)a_i^+ - (P^s_-(-X_i; \beta_{i+1}^-) - P^s_0) a_i^-  \\
+&+ Q^+(0, \beta_i^+)(X_i) - Q^-(0, \beta_{i+1}^-)(-X_i)\\
+&+ \int_0^{X_i} \Phi_+^s(X_i, y; \beta_i^+) G_i^+(y, V_i^+(a_i^+, \beta_i^+)(y),\beta_i^+)dy \\
+&- \int_0^{-X_i} \Phi_-^u(-X_i, y; \beta_{i+1}^-) G_{i+1}^-(y, V_{i+1}^-(a_i^-, \beta_{i+1}^-)(y),\beta_{i+1}^-)dy 
+\end{align*}
+
+Again, note that $H(0, 0, 0, 0) = 0$. We want to solve for $a_i^\pm$ using the implicit function theorem, so we need to look at $D_{a_i^\pm} H(0, 0, 0, 0)$.\\
+
+When we differentiate with respect to $a_i^\pm$ at $a_i^\pm = 0$, we note that the the derivatives of the integral terms in $H$ will be 0 since $G_i^\pm$ is quadratic order in $V_i^\pm$, thus quadratic order in $a_i^\pm$ by the previous lemma. The $Q^\pm$ terms do not involve $a_i^\pm$.\\
+
+Thus, taking the partial derivative with respect to $a_i^\pm = 0$, we get
+
+\[
+\frac{\partial}{\partial a_i^\pm} H(0, 0, 0, 0) = \pm 1 + \mathcal{O} (e^{-\alpha X_i})
+\]
+
+Thus, for sufficiently large $X_i$, $D_{a_i^\pm} H(0, 0, 0, 0)$ is invertible in a neighborhood of $(0, 0, 0, 0)$, so we can use the IFT to solve for $a_i^\pm$ in terms of $\beta_i^\pm$. \\
+
+Now that we have found $a_i^\pm$ which satisfies the $H(a_i^+, a_i^-, \beta_i^+, \beta_{i+1}^-) = 0$, we can get an expression and estimates for the $a_i^\pm$. Recalling the spaces $a_i^\pm$ live in, we apply the projection $P^s_0$ to get
+
+\begin{align*}
+0 &= a_i^+ + P^s_0(P^u_+(X_i; \beta_i^+) -  P^u_0)a_i^+ 
++ P^s_0 \left( Q^+(0, \beta_i^+)(X_i) - Q^-(0, \beta_{i+1}^-)(-X_i) \right)\\
+&+ P^s_0 \left( \int_0^{X_i} \Phi_+^s(X_i, y; \beta_i^+) G_i^+(y, V_i^+(a_i^+, \beta_i^+)(y),\beta_i^+)dy \right) \\
+&- P^s_0 \left( \int_0^{-X_i} \Phi_-^u(-X_i, y; \beta_{i+1}^-) G_{i+1}^-(y, V_{i+1}^-(a_i^-, \beta_{i+1}^-)(y),\beta_{i+1}^-) dy \right)
+\end{align*}
+
+We have estimates for all of these terms. For the first two terms, we have
+
+\begin{align*}
+|P^s_0(P^u_+(X_i; \beta_i^+) -  P^u_0)a_i^+ | &\leq C e^{-\alpha X_i} |a_i^+| \\
+|P^s_0 \left( Q^+(0, \beta_i^+)(X_i) - Q^-(0, \beta_{i+1}^-)(-X_i) \right)| &\leq C e^{-\alpha X_i}
+\end{align*}
+
+using Lemma \ref{p1}. For the integral terms, we have
+
+\begin{align*}
+\left| \int_0^{X_i} \Phi_+^s(X_i, y; \beta_i^+) G_i^+(y, V_i^+(a_i^+, \beta_i^+)(y),\beta_i^+)dy \right| &\leq C \int_0^{X_i}e^{-\alpha(X_i - y)} |V_i^+(y)|^2 dy \\
+&\leq C \int_0^{X_i}e^{-3 \alpha (X_i - y)} |e^{\alpha(X_i - y)} V_i^+(y)|^2 dy \\
+&\leq C \int_0^{X_i}e^{-3 \alpha (X_i - y)} (||V_i^+||_{X_i, +})^2 dy \\
+&\leq C |a_i^+|^2
+\end{align*}
+
+The other integral term is similar. In a hand-wavey fashion, we have something which looks like
+
+\[
+|a_i^+|(1 + \mathcal{O}(e^{-\alpha X_i}) + \mathcal{O}(|a_i^+|)) = 
+\mathcal{O}( e^{-\alpha X_i} )
+\]
+
+which should give us the estimate we want
+
+\begin{align*}
+|a_i^\pm| \leq C e^{-\alpha X_i}
+\end{align*}
+
+To get an actual expression for $a_i^\pm$, we plug in all our estimates to get
+
+\begin{align*}
+a_i^+ = P^s_0 \left( Q^+(0, \beta_i^+)(X_i) - Q^-(0, \beta_{i+1}^-)(-X_i) \right) 
++ \mathcal{O}( e^{-2 \alpha X_i} )
+\end{align*}
+
+Similarly, we have
+
+\begin{align*}
+a_i^- = P^u_0 \left( Q^+(0, \beta_i^+)(X_i) - Q^-(0, \beta_{i+1}^-)(-X_i) \right) 
++ \mathcal{O}( e^{-2 \alpha X_i} )
+\end{align*}
+
+\end{proof}
+\end{lemma}
+
+Finally, we need the pieces to match at $x = 0$. In other words, we need to find $\beta_i^\pm$ such that $U_i^+(0) = U_i^-(0)$, i.e. 
+
+\begin{align*}
+Q^+(0, \beta_i^+) + V_i^+(0) &= Q^-(0, \beta_i^-) + V_i^-(0) && i = 0, \dots, n-1
+\end{align*}
+
+Before we do that, we will need to make a smooth change of coordinates near $Q(0)$. We will do that using a variation of the ``flow-box'' method. What we want to do is straighten out the stable and unstable manifolds near $Q(0)$ so that their non-intersecting directions lie along $Y^+$ and $Y^-$.
+
+% lemma : straighten out manifolds
+
+\begin{lemma}\label{straightenW}
+
+There exists a differentiable map 
+
+\[
+H: \R \times Y^- \times Y^+ \times Z \rightarrow \R^{2m}
+\]
+
+such that $H(0, 0, 0, 0) = Q(0)$, $H$ is invertible in a neighborhood of $Q(0)$, and
+
+\begin{align*}
+H^{-1}(Q^-(0, \beta^-) &= \beta^- \in Y^- \\
+H^{-1}(Q^+(0, \beta^+) &= \beta^+ \in Y^+ \\
+\end{align*}
+
+for sufficiently small $\beta^\pm$.
+
+\begin{proof}
+We know that $Q'(0) = F(Q(0)) \neq 0$, i.e. the center of the pulse is not an equilibrium of the vector field $F$. Recall that $\R^4 = Z \oplus \R Q'(0) \oplus Y^+ \oplus Y^-$.\\
+
+Let $S_y(P)$ be the solution operator for the ODE $U' = F(U)$, i.e. the operator which takes an initial condition $P$ and maps it to the point $H(y)$, where $H$ is the unique solution to $U' = F(U)$ such that $H(0) = P$.\\
+
+Define the map $H: \R \times Y^- \times Y^+ \times Z \rightarrow \R^4$ by 
+
+\begin{equation}
+H(y; \beta^-, \beta^+, \gamma) = S_y(Q(0) + Q^-(0, \beta^-) + Q^-(0, \beta^+) + \gamma \Psi(0))
+\end{equation}
+
+In other words, $H(y; \beta^-, \beta^+, \gamma)$ is a trajectory of $U' = F(U)$ with initial condition $Q(0) + Q^-(\beta^-,0) + Q^-(\beta^+,0) + \gamma \Psi(0)$.\\ 
+
+Near $Q(0)$, i.e. for small $x, \beta^\pm$ the stable and unstable manifolds are given by the curves
+
+\begin{align*}
+W^u &= H(x; \beta^-, 0, 0) \\
+W^s &= H(x; 0, \beta^+, 0) 
+\end{align*}
+
+Their one-dimensional intersection is the homoclinic orbit $Q(x) = H(x; 0, 0, 0)$, whose tangent space is $Q'(x)$.\\
+
+To complete the proof, we need to show that $H$ is invertible in a neighborhood of the origin. To compute the Jacobian of $H$ at the origin, we note the following.
+
+\begin{align*}
+H_y(0, 0, 0, 0) &= F(Q(0)) = Q'(0) \\
+H_{\beta^-}(0, 0, 0, 0) &= (Q^-)_{\beta^-}(0,0) = Y^- \\
+H_{\beta^+}(0, 0, 0, 0) &= (Q^+)_{\beta^+}(0,0) = Y^+ \\
+H_{\gamma}(0, 0, 0, 0) &= Z
+\end{align*}
+
+Since $\R^4 = Z \oplus \R Q'(0) \oplus Y^+ \oplus Y^-$, the four partial derivatives of $H$ at the origin are linearly independent, thus the Jacobian of $H$ at the origin is invertible. Note that $H_y(0, 0, 0, 0) = Q(0)$. By the inverse function theorem, there exists open neighborhoods $N_1$ of 0 and $N_2$ of $Q(0)$ such that $H(N_1) = N_2$ and $H$ is invertible on $N_2$. \\
+
+In particular, we have for sufficiently small $\beta^\pm$
+
+\begin{align*}
+H^{-1}(Q^-(0, \beta^-) &= \beta^- \in Y^- \\
+H^{-1}(Q^+(0, \beta^+) &= \beta^+ \in Y^+ \\
+\end{align*}
+
+\end{proof}
+\end{lemma}
+
+Now we are ready to perform the match at $x = 0$ to solve for $\beta_i^\pm$. Before we do that, we change coordinates according to the prior lemma. In the new coordinates, near $Q(0)$ our ODE becomes
+
+\begin{equation}
+\tilde{U}' = DH(H^{-1}(\tilde{U})) F( H^{-1}(\tilde{U}) )
+\end{equation}
+
+where $H$ is defined in the previous lemma. If we match the $\tilde{U}_i^\pm$ at $x = 0$, then since $H^{-1}$ is a homeomorphism near $Q(0)$, we have also matched the $U_i^\pm$ at $x = 0$. For convenience, we will continue to write the ODE as $U' = F(U)$ after the coordinate change.\\
+
+Note that because of our coordinate change, we have
+
+\begin{align*}
+P_Z(Q^\pm(0, \beta^\pm) &= 0 \\
+P_{\R Q'(0)}(Q^\pm(0, \beta^\pm) &= 0 \\
+P_{Y^\pm}(Q^\pm(\beta^\pm, 0)) &= \beta^\pm
+\end{align*}
+
+We wish to solve $U_i^+(0) - U_i^-(0) = 0$. Since $\R^{2m} = Z \oplus \R Q'(0) \oplus Y^+ \oplus Y^-$, it suffices to project this onto these four subspaces and solve separately on each subspace. Since $V_i^\pm(0) \in Z \oplus Y^\pm$, the projection on $\R Q'(0)$ is automatically 0. Thus we only need to solve the equations
+
+\begin{align*}
+P_{Y^\pm}(U_i^+(0) - U_i^-(0)) &= 0 \\
+P_Z(U_i^+(0) - U_i^-(0)) &= 0 \\
+\end{align*}
+
+We will do each of these in turn. In the next lemma, we solve for $(\beta_i^+, \beta_i^-)$ for $i = 0, \dots, n-1$. We do this for each pair separately.
+
+% lemma : solve for the \beta_i^\pm
+
+\begin{lemma}\label{solveforbeta}
+For $i = 0, \dots, n-1$ ,there exist $(\beta_i^+, \beta_i^-)$ such that $P_{Y^\pm}(U_i^+(0) - U_i^-(0)) = 0$ . We have the estimates
+
+\begin{align}
+| \beta_i^+ | &\leq C e^{-2 \alpha X_{i-1}} \\
+| \beta_i^- | &\leq C e^{-2 \alpha X_i}
+\end{align}
+
+\begin{proof}
+Recall that $U_i^\pm = Q^\pm(0, \beta_i^\pm) + V_i^\pm$. Then since we have applied the change of coordinates above, we have
+
+\begin{align*}
+P_{Y^\pm}(Q^+(0, \beta_i^+) - Q^-(0, \beta_i^-)) &= \beta_i^+ - \beta_i^-
+\end{align*}
+
+Then the equation we want to solve becomes
+
+\begin{equation}
+H(\beta_i^+, \beta_i^-) = \beta_i^+ - \beta_i^- 
++ P_{Y^\pm}(V_i^+(0) - V_i^-(0)) = 0
+\end{equation}
+
+Substituting the fixed point equations evaluated at $x = 0$, we get
+
+\begin{align*}
+H(\beta_i^+, \beta_i^-) &= \beta_i^+ - \beta_i^- \\
+&+ P_{Y^\pm} \Big( \Phi^u_+(0, X_i; \beta_i^+) a_i^+ 
++ \int_{X_i}^0 \Phi_+^u(0, y; \beta_i^+) G_i^+(y, V_i^+(y),\beta_i^+)dy \\
+&- \Phi^s_-(0, -X_{i-1}, \beta_i^-) a_{i-1}^- 
+- \int_{-X_{i-1}}^0 \Phi_-^s(0, y, \beta_i^-) G_i^-(y, V_i^-(y),\beta_i^-) dy \Big) 
+\end{align*}
+
+Next, since $\text{Ran }P_+^u(0; \beta^+) = Z \oplus Y^-$, the terms involving $\Phi^u_+$ can have no component in $Y^+$. Similarly, since $\text{Ran }P_-^s(0; \beta^-) = Z \oplus Y^+$, the terms involving $\Phi^s_-$ can have no component in $Y^-$. Thus we can separate our equation into the individual projections on $Y^-$ and $Y^+$. Redefining $H$ this way gives us
+
+\begin{equation}
+H(\beta_i^+, \beta_i^-) = 
+\begin{pmatrix}
+\beta_i^+ - P_{Y^+}\left(\Phi^s_-(0, -X_{i-1}, \beta_i^-) a_{i-1}^- 
+- \int_{-X_{i-1}}^0 \Phi_-^s(0, y, \beta_i^-) G_i^-(y, V_i^-(y),\beta_i^-) dy\right) \\
+\beta_i^- - P_{Y^-}\left( \Phi^u_+(0, X_i; \beta_i^+) a_i^+ 
++ \int_{X_i}^0 \Phi_+^u(0, y; \beta_i^+) G_i^+(y, V_i^+(y),\beta_i^+)dy \right)
+\end{pmatrix}
+\end{equation}
+
+Note the the $\beta_i^\pm$ ``mix''. What we would like to do now is invert this to solve for the $\beta_i^\pm$. This requires estimating the partial derivatives with respect to $\beta_i^\pm$ of the two terms. Since the estimates for $G$ and $\Phi$ also apply to the derivatives with respect to $\beta_i^\pm$, this is not hard to do.\\
+
+For the $a_i^\pm$ terms we have
+
+\begin{align*}
+\left| \frac{\partial}{\partial \beta_i^+} \Phi^u_+(\beta_i^+, 0, X_i) a_i^+ \right| \leq C e^{-\alpha X_i}|a_i^+|
+& \leq C e^{-2 \alpha X_i}
+\end{align*}
+
+where we used our estimate for $a_i^\pm$ from above. The derivative with respect to $\beta_i^-$ is similar, except it involves $X_{i-1}$. For the integral terms, we have
+
+\begin{align*}
+\left| \frac{\partial}{\partial \beta_i^-} \int_{-X_{i-1}}^0 \Phi_-^s(\beta_i^-, 0, y) G^-(y, V^-(y),\beta^-)dy \right| 
+&\leq C \int_{-X_{i-1}}^0 e^{\alpha y} | V_i^-(y) |^2 dy \\
+&\leq C \int_{-X_{i-1}}^0 e^{\alpha y} | |a_i^-|^2 dy \\
+&\leq C e^{-2 \alpha X_{i-1}}
+\end{align*}
+
+where we used our estimates for $V_i^\pm$ and $a_i^\pm$ from above. The ``positive'' term is similar. \\
+
+Putting all this together, the Jacobian of $H$ is given by
+
+\begin{equation}
+D H(\beta_i^+, \beta_i^-) = 
+\begin{pmatrix}
+1 & \mathcal{O}(e^{-2 \alpha X_{i-1}} ) \\
+\mathcal{O}(e^{-2 \alpha X_i}) &  1 
+\end{pmatrix}
+\end{equation}
+
+which has determinant $1 + \mathcal{O}(e^{-2\alpha (X_i+X_{i-1}})$, thus is invertible for sufficiently large $X_i$. Using the inverse function theorem, we can invert $H$ in a neighborhood of $Q(0)$, which corresponds to $(\beta_i^+, \beta_i^-) = (0, 0)$, i.e. we have 
+
+\[
+(\beta^+, \beta^-) = H^{-1}(0, 0)
+\]
+
+Using the definition of $H$, we have the estimates
+
+\begin{align*}
+| \beta_i^+ | &\leq C e^{-2 \alpha X_{i-1}} \\
+| \beta_i^- | &\leq C e^{-2 \alpha X_i}
+\end{align*}
+
+\end{proof}
+\end{lemma}
+
+\subsubsection{Jump in Direction of Adjoint}
+
+Finally, we need to look at the projection on the adjoint solution $\Psi(0)$. To do this, we will show that this condition is satisfied for certain values of the lengths $X_i$. This makes sense based on what we know about the nonperiodic case.\\
+
+Recall that from our change of coordinates we have
+\begin{align*}
+P_{Z}(Q^+(0, \beta_i^+) - Q^-(0, \beta_i^-)) &= 0
+\end{align*}
+
+Thus the equation we want to solve is
+
+\begin{equation}
+P_{Z^\pm}(V_i^+(0) - V_i^-(0)) = 0
+\end{equation}
+
+which we can write as
+
+\begin{equation}
+\langle \Psi(0), V_i^+(0) - V_i^-(0) \rangle = 0
+\end{equation}
+
+First, we come up with a nice expression for $\langle \Psi(0), V_i^+(0) - V_i^-(0) \rangle$. This agrees with (3.9) on p.2093 of SanStrut, which is good.
+
+% first lemma for jump
+
+\begin{lemma}\label{jumplemma1}
+
+\begin{align*}
+\langle \Psi(0), V_i^+(0) - V_i^-(0) \rangle = 
+\langle \Psi(X_i), Q(-X_i) \rangle - \langle \Psi(-X_{i-1}), Q(X_{i-1}) \rangle + R_i
+\end{align*}
+
+where 
+
+\begin{align*}
+|R_i| \leq C ( e^{-3 \alpha X_i} +  e^{-3 \alpha X_{i-1}}
++ e^{-2 \alpha (X_i + X_{i+1})} + e^{-2 \alpha (X_{i-1} + X_i)})
+\end{align*}
+
+\begin{proof}
+
+Substituting the fixed point equations evaluated at $x = 0$, we have
+
+\begin{align*}
+\langle \Psi(0), V_i^+(0) - V_i^-(0) \rangle &= \langle \Psi(0), \Phi^u_+(0, X_i; \beta_i^+) a_i^+ \rangle
+- \langle \Psi(0), \Phi^s_-(0, -X_{i-1}, \beta_i^-) a_{i-1}^- \rangle \\
+&+ \int_{X_i}^0 \langle \Psi(0), \Phi_+^u(0, y; \beta_i^+) G_i^+(y, V_i^+(y),\beta_i^+) \rangle dy \\
+&- \int_{-X_{i-1}}^0 \langle \Psi(0), \Phi_-^s(0, y, \beta_i^-) G_i^-(y, V_i^-(y),\beta_i^-) \rangle dy
+\end{align*}
+
+Before we continue, we note that for $x \geq 0$
+
+\begin{align*}
+|(\Phi_+^u(0, x; \beta^+) - \Phi_+^u(0, x; 0)| &\leq C |\beta^+| e^{-\alpha x} \\
+|(\Phi_-^s(0, -x; \beta^-) - \Phi_-^s(0, -x; 0)| &\leq C |\beta^-| e^{-\alpha x} \\
+\end{align*}
+
+This follows from Lemma \ref{dichotomy1} together with smooth dependence on initial conditions. Together with the estimate on $\beta_i^\pm$ from Lemma \ref{solveforbeta}, we have for $x \geq 0$
+
+\begin{align*}
+|(\Phi_+^u(0, x; \beta_i^+) - \Phi_+^u(0, x; 0)| &\leq C e^{-\alpha x} (e^{-2 \alpha X_i} + e^{-2 \alpha X_{i-1}})\\
+|(\Phi_-^s(0, -x; \beta_i^-) - \Phi_-^s(0, -x; 0)| &\leq C e^{-\alpha x} (e^{-2 \alpha X_i} + e^{-2 \alpha X_{i-1}}) \\
+\end{align*}
+
+This implies for $x \geq 0$
+
+\begin{align*}
+|Q^+(0, \beta_i^+)(x) - Q(x)| \leq C e^{-\alpha x} (e^{-2 \alpha X_i} + e^{-2 \alpha X_{i-1}}) \\
+|Q^-(0, \beta_i^-)(-x) - Q(-x)| \leq C e^{-\alpha x} (e^{-2 \alpha X_i} + e^{-2 \alpha X_{i-1}}) \\
+\end{align*}
+
+We also have the following estimate from Lemma \ref{p1}.
+
+\begin{align*}
+|P^u_+(X; \beta^+) - P_0^u| &\leq C e^{-\alpha X} \\
+|P^s_-(-X; \beta^-) - P_0^s| &\leq C e^{-\alpha X}
+\end{align*}
+
+For $\langle \Psi(0), \Phi^u_+(0, X_i; \beta_i^+) a_i^+ \rangle $, we substitute for $a_i^+$ from Lemma \ref{solvefora} to get
+
+\begin{align*}
+\langle \Psi(0), &\Phi^u_+(0, X_i; \beta_i^+) a_i^+ \rangle \\
+&= \langle \Psi(0), \Phi_+(0, X_i; \beta_i^+) P^u_+(X_i; \beta_i^+) P^s_0 \left( Q^+(0, \beta_i^+)(X_i) - Q^-(0, \beta_{i+1}^-)(-X_i) \right) 
++ \mathcal{O}( e^{-2 \alpha X_i} ) \rangle \\
+&= \langle \Psi(0), \Phi_+(0, X_i; \beta_i^+) P^u_+(X_i; \beta_i^+) P^s_0 \left( Q^+(0, \beta_i^+)(X_i) - Q^-(0, \beta_{i+1}^-)(-X_i) \right) \rangle  
++ \mathcal{O}( e^{-3 \alpha X_i} ) \\
+&= \langle \Psi(0), \Phi_+(0, X_i; \beta_i^+) P^u_+(X_i; \beta_i^+) P^s_0 Q^+(0, \beta_i^+)(X_i) \rangle \\
+&- \langle \Psi(0), \Phi_+(0, X_i; \beta_i^+) P^u_+(X_i; \beta_i^+) P^s_0 Q^-(0, \beta_{i+1}^-)(-X_i) \rangle
++ \mathcal{O}( e^{-3 \alpha X_i} ) \\
+\end{align*}
+
+For the first term on the RHS, we have
+
+\begin{align*}
+\langle \Psi(0), &\Phi_+(0, X_i; \beta_i^+) P^u_+(X_i; \beta_i^+) P^s_0 Q^+(0, \beta_i^+)(X_i) \rangle \\
+&= \langle \Psi(0), \Phi_+(0, X_i; \beta_i^+) P^u_0 P^s_0 Q^+(0, \beta_i^+)(X_i) \rangle + \mathcal{O}(e^{-3 \alpha X_i}) \\
+&= \langle \Psi(0), \Phi_+(0, X_i; \beta_i^+) P^s_0 P^u_0 Q^+(0, \beta_i^+)(X_i) \rangle + \mathcal{O}(e^{-3 \alpha X_i}) \\
+&= \langle \Psi(0), \Phi_+(0, X_i; \beta_i^+) P^u_0 P^u_+(X_i; \beta_i^+) Q^+(0, \beta_i^+)(X_i) \rangle + \mathcal{O}(e^{-3 \alpha X_i}) \\
+&= \langle \Psi(0), \Phi_+(0, X_i; \beta_i^+) P^u_0 P^u_+(X_i; \beta_i^+) \Phi_+(X_i, 0) Q^+(0, \beta_i^+)\rangle + \mathcal{O}(e^{-3 \alpha X_i}) \\
+&= \langle \Psi(0), \Phi_+(0, X_i; \beta_i^+) P^u_0 \Phi_+(X_i, 0) P^u_+(0; \beta_i^+) Q^+(0, \beta_i^+)\rangle + \mathcal{O}(e^{-3 \alpha X_i}) \\
+&= \mathcal{O}(e^{-3 \alpha X_i})
+\end{align*}
+
+From our change of coordinates, $Q^+(0, \beta_i^+) \in Y^+$, and this is wiped out by $P^u_+(0; \beta_i^+)$, which projects onto the unstable part of the exponential dichotomy on $\R^+$ at $x = 0$. We also used the fact that the spectral projections $P^u_0$ and $P^s_0$ commute. \\
+
+For the second term on the RHS, we have
+
+\begin{align*}
+\langle \Psi(0), &\Phi_+(0, X_i; \beta_i^+) P^u_+(X_i; \beta_i^+) P^s_0 Q^-(0, \beta_{i+1}^-)(-X_i) \rangle \\
+&= \langle \Psi(0), \Phi_+^u(0, X_i; \beta_i^+) P^s_-(-X_i; \beta_{i+1}^-) Q^-(0, \beta_{i+1}^-)(-X_i) \rangle + \mathcal{O}(e^{-3 \alpha X_i}) \\
+&= \langle \Psi(0), \Phi_+^u(0, X_i; \beta_i^+) Q^-(0, \beta_i^-)(-X_i) \rangle + \mathcal{O}(e^{-3 \alpha X_i}) \\
+&= \langle \Psi(0), \Phi(0, X_i) Q^-(0, \beta_{i+1}^-)(-X_i) \rangle + \mathcal{O}(e^{-3 \alpha X_i} + e^{-2 \alpha X_i} (e^{-2 \alpha X_i} + e^{-2 \alpha X_{i+1}})) \\
+&= \langle \Psi(X_i), Q^-(0, \beta_i^-)(-X_i) \rangle + \mathcal{O}(e^{-3 \alpha X_i} + e^{-2 \alpha (X_i + X_{i+1})}) \\
+&= \langle \Psi(X_i), Q(-X_i) \rangle + \mathcal{O}(e^{-3 \alpha X_i} + e^{-2 \alpha (X_i + X_{i+1})}) \\
+\end{align*}
+
+Thus we have
+
+\begin{align*}
+\langle \Psi(0), \Phi^u_+(0, X_i; \beta_i^+) a_i^+ \rangle
+&= \langle \Psi(X_i), Q(-X_i) \rangle + \mathcal{O}(e^{-3 \alpha X_i} + e^{-2 \alpha (X_i + X_{i+1})})
+\end{align*}
+
+Similarly, we have
+
+\begin{align*}
+ \langle \Psi(0), \Phi^s_-(0, -X_{i-1}, \beta_i^-) a_{i-1}^- \rangle 
+&= \langle \Psi(-X_{i-1}), Q(X_{i-1}) \rangle + \mathcal{O}(e^{-3 \alpha X_{i-1}} + e^{-2 \alpha (X_{i-1} + X_i)}) 
+\end{align*}
+
+For the integral terms, we have
+
+\begin{align*}
+\left| \int_{X_i}^0 \langle \Psi(0), \Phi_+^u(0, y; \beta_i^+) G_i^+(y, V_i^+(y),\beta_i^+) \rangle \right| dy &\leq C \int_0^{X_i} e^{-\alpha y} |V_i^+(y)|^2 dy \\
+&\leq C \int_0^{X_i} e^{-\alpha y} e^{-2 \alpha(X_i - y)}|e^{-\alpha (X_i - y)} V_i^+(y)|^2 dy \\
+&\leq C \int_0^{X_i} e^{-\alpha y} e^{-2 \alpha(X_i - y)}(||V_i^+||_{X_i, +})^2 dy \\
+&\leq C e^{-\alpha X_i} \int_0^{X_i} e^{-\alpha (X_i - y)} |a_i^+|^2 dy \\
+&\leq C e^{-3 \alpha X_i}
+\end{align*}
+
+The other integral term is similar, and is of order $e^{-3 \alpha X_{i-1}}$. Thus we have
+
+\begin{align*}
+\langle \Psi(0), V_i^+(0) - V_i^-(0) \rangle = 
+\langle \Psi(X_i), Q(-X_i) \rangle - \langle \Psi(-X_{i-1}), Q(X_{i-1}) \rangle + R_i
+\end{align*}
+
+where 
+
+\begin{align*}
+|R_i| \leq C ( e^{-3 \alpha X_i} +  e^{-3 \alpha X_{i-1}}
++ e^{-2 \alpha (X_i + X_{i+1})} + e^{-2 \alpha (X_{i-1} + X_i)})
+\end{align*}
+
+We could probably simplify this, but it does not end up mattering.
+
+\end{proof}
+\end{lemma}
+
+In the next lemma, we exploit symmetry properties to get an expression for $\langle \Psi(x), Q(-x) \rangle$.
+
+% lemma : symmetry of IP
+
+\begin{lemma}\label{otherIP}
+
+For a reversible system, we have
+
+\begin{equation}
+\langle \Psi(x), Q(-x) \rangle = \langle \Psi(-x), Q(x) \rangle
+\end{equation}
+
+For a Hamiltonian system, for sufficiently large $|x|$ we have
+
+\begin{equation}
+\langle \Psi(x), Q(-x) \rangle = \langle \Psi(-x), Q(x) \rangle
++ \mathcal{O}(e^{-3 \alpha x})
+\end{equation}
+
+\begin{proof}
+The reversibile case follows from Lemma 5.3 in San98. The Hamiltonian case follows from proof of Lemma 3.8 in SanStrut, where we flip the inner product since we are in a real vector space. 
+\end{proof}
+\end{lemma}
+
+In order to have a multipulse solution, all that remains is to satisfy $V_i^+(0) - V_i^-(0) = 0$ along $\Psi(0)$ for all $i$. In the next lemma, we write down the set of equations we need to satisfy for this to be the case.
+
+\begin{lemma}\label{IPsystem}
+A periodic multipulse solution exists if and only if 
+
+\begin{align}\label{jumpIPdiff}
+\langle \Psi(-X_i), Q(X_i) \rangle - \langle \Psi(-X_{i-1}), Q(X_{i-1}) \rangle + R_i &= 0 && i = 0, \dots, n-1
+\end{align}
+
+where 
+
+\begin{align*}
+R_i = \mathcal{O} ( e^{-3 \alpha X_i} +  e^{-3 \alpha X_{i-1}}
++ e^{-2 \alpha (X_i + X_{i+1})} + e^{-2 \alpha (X_{i-1} + X_i)})
+\end{align*}
+
+\begin{proof}
+We derived the equations we need to solve in Lemma \ref{jumplemma1}. Since we are assuming either a Hamiltonian system or reversibility, we use Lemma \ref{otherIP} to swap the signs on the first inner product in Lemma \ref{jumplemma1}. In the case of a Hamiltonian system, the $\mathcal{O}(e^{-3 \alpha X_i})$ term introduced when we change signs is incorporated into the remainder term $R_i$.
+\end{proof}
+\end{lemma}
+
+In the next lemma, we exploit either reversibility or the Hamiltonian structure to simplify the set of equations we need to solve.
+
+\begin{lemma}\label{IPsystemreduced}
+If the system is reversible and we seek symmetric solutions, we only have to solve \eqref{jumpIPdiff} for $i = 0, \dots, \lceil \frac{n}{2} \rceil - 1$. If the system is Hamiltonian, we only have to solve the first $n-1$ equations in \eqref{jumpIPdiff}, i.e. for $i = 0, \dots, n-2$. The final equation is then automatically satisfied.
+
+\begin{proof}
+For a reversible system, if we seek symmetric solutions, we only have to solve for the left half, i.e. for the half-line $(-\infty, 0]$. We can then extend to $[0, \infty)$ by symmetry.\\
+
+If the system is Hamiltonian, a heuristic argument is as follows. The energy $H$ is conserved, thus all solutions must exist within level sets of $H$. Recall that $\Psi(0) = \nabla H(Q(0)) \neq 0$. Thus the energy $H$ must change along any jump in the direction of $\Psi(0)$. In Lemma \ref{solvefora}, we matched the tails of the pieces. Assume we have matched $U_i^-(0) = U_i^+(0)$ for $i = 0, \dots, n-2$. In Lemma \ref{solveforbeta}, we matched the $Y^\pm$ components of $U_{n-1}^-(0) = U_{n-1}^+(0)$. All that remains is to match the $\R \Psi(0)$ component of $U_{n-1}^-(0) = U_{n-1}^+(0)$. But this is automatically 0 since the two pieces involved must have the same energy, and if this were nonzero there would be a jump in the energy at this point.\\
+\end{proof}
+\end{lemma}
+
+\subsubsection{Additional Assumptions}
+
+Up to this point, we have made no additional assumptions on our system. In order to satisfy the equations in Lemma \ref{IPsystem}, we will need to make some assumptions about the eigenvalues of $DF(0)$. This makes sense, since we know we need to have ``twisting manifolds'' to construct a nonperiodic multipulse. Thus we make the following additional hypothesis.
+
+\begin{hypothesis}\label{spechyp}
+The spectrum of $DF(0)$ contain simple eigenvalues $\pm \alpha \pm i \beta$, for $\alpha, \beta > 0$. The real part of any other eigenvalue of $DF(0)$ lies outside $(-\alpha, \alpha)$. Thus the equilibrium at 0 is a hyperbolic equilibrium, with both stable and unstable manifolds having dimension at least 2.
+\end{hypothesis}
+
+With this additional hypothesis, we have an expression for $\langle \Psi(-x), Q(x) \rangle$
+
+% lemma : expression for inner product
+
+\begin{lemma}\label{IPform}
+For $x > 0$ sufficiently large,
+
+\begin{equation}\label{IPalphabeta}
+\langle \Psi(-x), Q(x) \rangle
+= s_0 e^{-2 \alpha x} \sin(2 \beta x + \phi) + \mathcal{O}(e^{-(2 \alpha + \gamma) x})
+\end{equation}
+
+where $0 < \gamma \leq 1$, $s_0 > 0$, and $\phi$ are constants.
+\begin{proof}
+Based on our assumptions in Hypothesis \ref{assumptions}, this follows from Lemma 6.1 in San98. In our case, we do not have a parameter $\mu$, so the $\mu$-dependent terms are constant. If it turns out that $\gamma > 1$, we take $\gamma = 1$.
+\end{proof}
+\end{lemma}
+
+At this point, we will assume that we have a Hamiltonian system. Since we want to capture asymmetric solutions, we will not consider the reversibility case here, since applying the reversibility hypothesis always gives us symmetric solutions.\\
+
+In the next lemma, we make a change of variables which involves a built-in scaling parameter. First, we define the following space.
+
+\begin{equation}\label{setR}
+\mathcal{R} = \left\{ \exp\left(-\frac{\pi \alpha}{\beta}m\right) : m \in \N_0 \right\} \cup \{ 0 \}
+\end{equation}
+
+Since $\mathcal{R}$ is closed and bounded, is is compact, thus complete. For $r \in \mathcal{R}$, let
+
+\begin{equation}\label{Xmscale}
+X_m = -\frac{1}{2\alpha}\log r - \frac{\alpha \phi}{\beta}
+\end{equation}
+
+Choose $X_0, \dots, X_{n-1}$ so that $X_j \geq X_m$ for all $j = 0, \dots, n-1$ and define
+
+\begin{equation}\label{bjscale}
+b_j = e^{-2 \alpha (X_j - X_m)}
+\end{equation}
+
+In terms of $r$ and $b_j$,
+
+\begin{equation}\label{Xjscale}
+X_j = -\frac{1}{2\alpha}\log(b_j r) - \frac{\phi}{2 \beta}
+\end{equation}
+
+In the next lemma, we rewrite the system using this scaling and change of variables. 
+
+% Lemma : system to solve, new version
+
+\begin{lemma}\label{tildeGchangevar}
+Under the above assumptions, a periodic multipulse solution exists if and only if for $i = 0, \dots, n-2$
+
+\begin{equation}\label{tildeGeq}
+\tilde{G}_i(b_1, \dots, b_{n-1}, r) = b_i \sin \left( -\rho \log b_i \right) - b_{i-1} \sin \left( -\rho \log b_{i-1} \right) + \mathcal{O}(r^{\gamma / 2 \alpha}) = 0 \\
+\end{equation}
+
+where $\rho = \beta/\alpha$, $b_i > 0$, and $r \in \mathcal{R}$. The derivative of the remainder term with respect to any $b_i$ is also $\mathcal{O}(r^{\gamma / 2 \alpha})$. 
+
+\begin{proof}
+From \eqref{jumpIPdiff}, \eqref{IPalphabeta}, and Lemma \ref{IPsystemreduced}, a solution exists if and only if
+
+\begin{align}\label{diff1}
+s_0 e^{-2 \alpha X_i} \sin(2 \beta X_i + \phi) - s_0 e^{-2 \alpha X_{i-1}} \sin(2 \beta X_{i-1} + \phi) + \mathcal{O}(e^{-(2 \alpha + \gamma) X_m}) &= 0 && i = 0, \dots, n-2
+\end{align}
+
+where $X_m = \min\{X_i\}$. Substituting \eqref{Xjscale} and \eqref{bjscale} into \eqref{diff1}, we get for $i = 0, \dots, n-1$
+
+\begin{align}\label{diff2}
+s_0 e^{\alpha \phi / \beta } b_i r \sin \left( - \rho \log (b_i r) \right) - s_0 e^{\alpha \phi / \beta } b_{i-1} r \sin \left( -\rho \log (b_{i-1} r) \right) + \mathcal{O}(r^{1 + \gamma / 2 \alpha}) &= 0 \\
+\end{align}
+
+Divide both sides by $r > 0$ and the constant $s_0 e^{\alpha \phi / \beta }$ to get
+
+\begin{align}\label{diff2}
+b_i \sin \left( -\rho \log (b_i r) \right) -  b_{i-1} \sin \left( -\rho \log (b_{i-1} r) \right) + \mathcal{O}(r^{\gamma / 2 \alpha}) &= 0 \\
+\end{align}
+
+Finally, we note that
+
+\begin{align*}
+\sin \left( -\rho \log (b_i r) \right)
+&= \sin \left( -\rho \log b_i - \rho \log r  \right) \\
+&= \sin \left( -\rho \log b_i - \rho \left( -\frac{1}{\rho}2\pi m \right) \right) \\
+&= \sin \left( -\rho \log b_i + 2 m \pi \right) \\
+&= \sin \left( -\rho \log b_i \right) 
+\end{align*}
+
+Making this substitution, we have for $i = 0, \dots, n-2$
+
+\begin{align}\label{diff3}
+b_i \sin \left( -\rho \log b_i \right) - b_{i-1} \sin \left( -\rho \log b_{i-1} \right) + \mathcal{O}(r^{\gamma / 2 \alpha}) &= 0 \\
+\end{align}
+
+Note that $r$ only occurs in the remainder term. 
+
+\end{proof}
+\end{lemma}
+
+We note from the previous lemma we that we have $n-1$ equations but $n+1$ unknowns. Thus we expect to have a 1-parameter family of solutions. Before we find a parameterization, we will first rearrange the system in the previous lemma into a more convenient form. By taking linear combinations of the $\tilde{G}_i$ equations, we can choose one of the $b_j$ and write the other $b_k$, $k \neq j$, in terms of $b_j$ and $r$. In particular, that will give us $n-2$ equations of the same form. Since we are on a periodic domain, it does not matter which of the $b_j$ we choose, so for convenience, we will choose $b_{n-1}$.
+
+% Lemma : get this into diagonal system with parameter
+
+\begin{lemma}\label{diagonalG}
+Under the above assumptions, a periodic multipulse solution exists if and only if for $i = 0, \dots, n-2$
+
+\begin{equation}\label{Geq}
+G_i(b_1, \dots, b_{n-1}, r) = b_i \sin \left( -\rho \log b_i \right) - b_{n-1} \sin \left( -\rho \log b_{n-1} \right) + \mathcal{O}(r^{\gamma / 2 \alpha}) = 0
+\end{equation}
+
+\begin{proof}
+
+Let 
+
+\begin{equation}\label{tildeGdef}
+G_i = \sum_{j = 0}^i \tilde{G}_i
+\end{equation}
+
+After canceling terms, we have the system \eqref{Geq}. Since \eqref{Geq} is a linear combination of \eqref{tildeGdef}, the two systems are equivalent. Note that the system \eqref{tildeGeq} consists of $n-1$ equations of the same form. Since the remainder terms of the $\tilde{G}_i$ are all the same order, the remainder terms of the $G_i$ are all of that order as well.
+
+\end{proof}
+\end{lemma}
+
+Since the equations \eqref{tildeGeq} are of the same form, we will start out by looking at one of them, which is equivalent to looking at the 2-periodic case. From this, we will develop a natural parameterization for periodic multipulse solutions.
+
+\subsubsection{Bifurcation structure for 2-periodic pulse}
+
+In the case of the 2-periodic solution, we only have a single equation to solve, which we will write as
+
+\begin{equation}\label{Geq1}
+G(b_0, b_1, r) = b_0 \sin \left( -\rho \log b_0 \right) - b_1 \sin \left( -\rho \log b_1 \right) + \mathcal{O}(r^{\gamma / 2 \alpha}) = 0
+\end{equation}
+
+Since $r$ only appears in the remainder term, the strategy will be to solve $G(b_0, b_1, 0) = 0$ and then use the IFT to find a nearby solution to $G(b_0, b_1, r) = 0$ for small $r$. For convenience, let
+
+\begin{equation}\label{defF}
+F(b_0, b_1) = G(b_0, b_1, 0) = 
+b_0 \sin \left( -\rho \log b_0 \right) - b_1 \sin \left( -\rho \log b_1 \right)
+\end{equation}
+
+We are interested in the zero set of $F(b_0, b_1)$. We immediately see two types of solutions to $F(b_0,b_1) = 0$. 
+
+\begin{enumerate}
+	\item Diagonal solutions, i.e. $b_0 = b_1$.
+	\item Off-diagonal solutions, i.e. $b_0 \neq b_1$ but $b_j = b_j^0 = \exp(-m_j \pi / \rho )$ for integer $m_j$.
+\end{enumerate}
+
+A Matlab plot of the zero set of $F(b_0, b_1)$ shows suggests that a family of pitchfork bifurcations occurs along the diagonal. 
+
+\begin{figure}[H]
+\label{fig:Fzeronumeric}
+\includegraphics[width=10cm]{periodic/zeroset5}
+\caption{Zero set of $F(a_0, a_1)$ for $\rho = 5$.}
+\end{figure} 
+
+The off-diagonal solutions occur on the arms of the pitchfork. We also note that 
+$F(b_1, b_0) = -F(b_0, b_1)$, i.e. $F$ is antisymmetric with respect to its two arguments. Thus the zero set of $F(a_0, a_1)$ is symmetric with respect to the diagonal.\\
+
+First, we show that pitchfork bifurcations occur on the diagonal.
+
+% lemma: pitchforks
+
+\begin{lemma}\label{pitchforkF}
+A countable family of pitchfork bifurcations in the zero set of $F$ occurs along the diagonal at 
+
+\begin{align*}
+(b_0, b_1) &= (p_k^*, p_k^*) && k \in \Z
+\end{align*}
+
+where 
+
+\begin{equation}
+p^*_k = \exp\left(-\frac{k \pi}{\rho} \right) p^*
+\end{equation}
+
+and 
+
+\begin{equation}
+p^* = \exp \left( -\frac{1}{\rho} \arctan \rho \right)
+\end{equation}
+
+Locally, the arms of the pitchfork bifurcations open upwards along the diagonal.
+
+\begin{proof}
+To show this, we change variables so that the proposed pitchfork occurs along the $x$-axis. We then verify the symmetry and derivative criteria for a pitchfork bifurcation.\\
+
+First, we determine the locations of the pitchfork bifurcations along the diagonal. A necessary condition for these to occur is that the first derivative vanishes. Taking the derivative of $F$ with respect to $b_0$ and evaluating it on the diagonal, we have
+
+\begin{align*}
+F_{b_0}(b_0, b_0) &= 
+\sin \left( -\rho \log b_0 \right)
++ b_0 \cos \left( - \rho \log b_0 \right)- \rho \frac{1}{b_0} \\
+&= \sin \left( - \rho \log b_0 \right) - \rho \cos \left( - \rho \log b_0 \right)
+\end{align*}
+
+This derivative is 0 if and only if
+
+\begin{align*}
+\tan \left( -\rho \log b_0 \right) &=  \rho \\
+-\rho \log b_0 &= \arctan \left( \rho\right) + k \pi && n \in \Z \\ 
+b_0 &= \exp \left( -\frac{1}{\rho} \arctan \rho - \frac{k \pi}{\rho} \right) && k \in \Z \\
+&= \exp \left( -\frac{1}{\rho} \arctan \rho - \frac{k \pi}{\rho} \right) && k \in \Z \\
+&= \exp \left( -\frac{1}{\rho} \arctan \rho \right) \exp \left( - \frac{k \pi}{\rho} \right) && k \in \Z \\
+&= p_k^*
+\end{align*}
+
+Next, we change coordinates so that we can put the equation for $F$ into the normal form of a pitchfork bifurcation. Let 
+
+\begin{align*}
+x &= \frac{1}{2}(a_1 - a_0) \\
+y &= \frac{1}{2}(a_1 + a_0)
+\end{align*}
+
+Inverting this, we have
+
+\begin{align*}
+a_0 &= y - x \\
+a_1 &= y + x
+\end{align*}
+
+Substituting this into $F(b_0, b_1)$ yields
+
+\begin{equation}\label{Fxy}
+F(x, y) = 
+(y - x) \sin \left( -\rho \log(y - x) \right) - (y + x) \sin \left( - \rho \log (y + x) \right)
+\end{equation}
+
+It is easy to see from \eqref{Fxy} that $F(-x, y) = -F(x, y)$, thus we have the required symmetry for a pitchfork bifurcation; $y$ will be the bifurcation parameter. In our new coordinates, the bifurcations should occur at $(x_0, y_0) = \left(0, p^*_k \right)$.\\
+
+To confirm this, we need to evaluate a bunch of derivatives at $(x_0, y_0)$. For the first derivatives, we have
+
+\begin{align*}
+F_x(x, y) &= -\sin \left( - \rho \log(y - x) \right) - 
+\sin \left( - \rho \log(y + x) \right)
++\rho \cos \left( - \rho \log(y - x) \right) + \rho \cos \left( - \rho \log(y + x) \right) \\
+F_y(x, y) &= \sin \left( - \rho \log(y - x) \right) - 
+\sin \left( - \rho \log(y + x) \right)
+-\rho \cos \left( - \rho \log(y - x) \right) + \rho \cos \left( - \rho \log(y + x) \right)
+\end{align*}
+
+Plugging in $(x_0, y_0) = \left(0, p^*_k \right)$ and noting that $\sin(\arctan \rho) = \rho / \sqrt{1 + \rho^2}$ and $\cos(\arctan \rho) = 1 / \sqrt{1 + \rho^2}$, it is easy to see that both $F_x(x_0, y_0) = 0$ and $F_y(x_0, y_0) = 0$. For $F_{xx}$, we have
+
+\begin{align*}
+F_{xx}(x, y) &= 
+-(y-x) \left(-\frac{\rho^2 \sin \left(\rho \log (y-x)\right)}{(y-x)^2}-\frac{\rho
+   \cos \left(\rho \log (y-x) \right)}{(y-x)^2}\right)\\
+   &+(x+y) \left(-\frac{\rho^2
+   \sin \left(\rho \log (x+y)\right)}{(x+y)^2}-\frac{\rho \cos \left( \rho
+   \log (x+y)\right)}{(x+y)^2}\right)\\
+   &-\frac{2 \rho \cos \left(\rho \log
+   (y-x) \right)}{(y-x)}+\frac{2 \rho \cos \left( \rho \log (x+y) \right)}{
+   (x+y)}
+\end{align*}
+
+A tedious calculation, which can be verified by Mathematica, tells us that $F_{xx}(x_0, y_0) = 0$. By symmetry, we also have $F_{yy}(x_0, y_0) = 0$, although that it not strictly necessary for a pitchfork bifurcation. The mixed derivative $f_{xy}$ is
+
+\begin{align*}
+F_{xy}(x, y) &= -\frac{\rho^2 \sin \left(\rho \log (y-x)\right)}{(y-x)}-\frac{\rho^2 \sin
+   \left(\rho \log (x+y)\right)}{(x+y)}+\frac{\rho \cos \left(\rho \log (y-x)\right)}{(y-x)}+\frac{\rho \cos \left( \rho \log (x+y) \right)}{(x+y)}
+\end{align*}
+
+Evaluating this at $(x_0, y_0) = \left(0, p^*_k \right)$ gives us
+
+\begin{align*}
+F_{xy}(0, p^*_k) &= \frac{2 \rho}{p^*_k}\left( -\rho \sin \left(\rho \log p^*_k \right) + \cos \left(\rho \log p^*_k \right) \right)\\
+&= \frac{2 \rho}{p^*_k}\left( -\rho \sin \left(\rho \log p^* + k \pi \right) + \cos \left(\rho \log p^* + k \pi \right) \right) \\
+&= \frac{2 \rho}{p^*_k} (-1)^k \left( \rho \sin \left(\arctan \rho \right) + \cos \left(\arctan \rho \right) \right)\\ 
+&= \frac{2 \rho}{p_n^*} (-1)^k \frac{\rho^2 + 1}{\sqrt{1 + \rho^2}} \\
+&= (-1)^k 2 \rho \sqrt{1 + \rho^2} \: \exp{\left(\frac{1}{\rho} (\arctan \rho - k \pi) \right)}
+\end{align*}
+
+Since $\rho > 0$, this is nonzero. Let $c_1^n = F_{xy}(0, p^*_n)$. \\
+
+Finally, we check the third derivative with respect to $x$. This is another tedious calculation, but after substituting $(x_0, y_0) = \left(0, p^*_k \right)$ we obtain
+
+\begin{align*}
+F_{xxx}(0, p_k^*)
+&= -(-1)^k 2 \rho \sqrt{1 + \rho^2} \: \exp{\left(\frac{2}{\rho} (\arctan \rho - k \pi) \right)}
+\end{align*}
+
+Since $\rho > 0$, this is also nonzero. Let $c_2^k = -F_{xxx}(0, p^*_k)$. \\
+
+We have verified that a pitchfork bifurcation occurs at $(0, p^*_k)$ for $k \in \Z$. Near the bifurcation points $(0, p_k^*)$, we have the following Taylor expansions
+
+\begin{align*}
+F(x, y) &= c_1^k x (y - p_k^*) - \frac{c_2^k}{6} x^3 + \text{h.o.t.} \\
+&= c_1^k x \left( (y - p_k^*) - \frac{c_2^k}{6 c_1^k } x^2 \right) + \text{h.o.t.} \\
+&= c_1^k x \left( (y - p_k^*) - \frac{c_3^k}{6} x^2 \right) + \text{h.o.t.} \\
+\end{align*}
+
+where
+
+\begin{equation*}
+c_3^k = \exp{\left(\frac{1}{\rho} (\arctan \rho - k \pi) \right)} > 0
+\end{equation*}
+
+To leading order, the arms of the pitchforks are upwards-opening parabolas of the form 
+
+\begin{align*}
+y &= p_k^* + \frac{c_3^k}{6} x^2
+\end{align*}
+
+Since the above change of coordinates is linear (a rotation by $\pi/4$), we conclude that pitchfork bifurcations occur in the original coordinate system at $(b_0, b_1) = (p_k^*, p_k^*)$. Furthermore, the arms of the pitchforks are, to leading order, parabolas which open upwards along the diagonal.
+
+\end{proof}
+\end{lemma}
+
+Now that we have shown the pitchfork bifurcations occur, we will find a parameterization for the zero set of $F(b_0, b_1)$. Since the zero set is symmetric across the diagonal we only need to consider the case where $b_0 \geq b_1$.\\
+
+We will parameterize the zero set of $F(b_0, b_1)$ in the following lemma.
+
+% lemma : parameterization of zero set of F
+
+\begin{lemma}\label{thetaparam}
+Choose two length parameters $b_0^0$ and $b_0^1$, which are of the form 
+\begin{equation}\label{bj0form}
+b_j^0 = \exp(-m_j \pi / \rho )
+\end{equation}
+where $m_j$ are nonnegative integers and $b_0^1 \geq b_0^0$ (equivalently, $m_1 \leq m_0)$. Then for phase parameter $\theta \in [-\arctan \rho,\pi - \arctan \rho)$, 
+
+\begin{itemize}
+\item There is a smooth family of solutions $( b_0^*(m_0, \theta), b_1^*(m_1, \theta) )$ to $F(b_0, b_1) = 0$, where $(b_0^*(m_0, 0), b_1^*(m_1, 0)) = (b_0^0, b_1^0)$.\\
+
+\item These smooth families all ``connect up'', i.e.
+\[
+\Big( b_0^*(0, -\arctan \rho), b_1^*(j, -\arctan \rho) \Big) = \Big( b_0^*(0, \pi - \arctan \rho), b_1^*(j+1, \pi - \arctan \rho) \Big)
+\]
+
+\item In addition, for $m_1 = m_2 = m$, 
+\[
+\Big( b_0^*(m, -\arctan \rho), b_1^*(m, -\arctan \rho) \Big) = \Big( b_0^*(m, \pi - \arctan \rho), b_1^*(m+1, \pi - \arctan \rho) \Big) = (p^*_m, p^*_m)
+\] 
+where $(p^*_m, p^*_m)$ is the pitchfork bifurcation point from Lemma \ref{pitchforkF}.
+
+\item Finally, the parameterization is given explicitly by
+\begin{align*}
+b_1^*(m_1, \theta) &= e^{-\frac{1}{\rho}(m_1 \pi - \theta) } \\
+b_0^*(m_0, \theta) &= e^{-\frac{1}{\rho}(m_0 \pi + \theta^*(\theta)) }
+\end{align*}
+where $\theta^*$ depends on $\theta$, $\theta^* \in [-\arctan \rho,\pi - \arctan \rho)$, and we have bound
+\[
+|\theta^*| \leq C e^{ -\frac{\pi}{\rho}(m_1 - m_0)}
+\]
+\end{itemize}
+
+\begin{proof}
+
+First, since we are always taking $b_0^0 \geq b_0^1$, i.e. $m_0 \leq m_1$, it suffices to consider the case where $b_0^0 = 1$, i.e. $m_0 = 0$. To see this, suppose the lemma is true for $b_0^0 = 0$. Then we can find a family of solutions $(b_0^*(0, \theta), b_1^*(m_1 - m_0, \theta)$. It is straightforward to verify that $(e^{-m_0 \pi/\rho} b_0^*(0, \theta), e^{-m_0 \pi/\rho} b_1^*(m_1 - m_0, \theta))$ solves $F(b_0, b_1) = 0$, and 
+
+\begin{align*}
+e^{-m_0 \pi/\rho} b_0^*(0, 0) &= b_0^0 \\
+e^{-m_0 \pi/\rho} b_1^*(m_1 - m_0, 0) &= b_0^1
+\end{align*}
+
+Thus we take $b_0^0 = 1$. For $\theta \in [-\arctan \rho,\pi - \arctan \rho)$, let
+\begin{align*}
+b_1(\theta) &= e^{ -\frac{1}{\rho}(m_1 \pi - \theta) } \\
+\end{align*}
+We want to find an expression for $b_1(\theta)$ that gives us our desired parameterization. Since we are parameterizing two pieces of a pitchfork, we will have different expressions for the cases $b_1^0 = 1$ and $b_1^0 \neq 1$. 
+\begin{enumerate}
+	\item Let $b_1^0 = 1$ as well, so that $b_1(\theta) = e^{ \frac{1}{\rho}\theta }$. Then we can take $b_0(\theta) = e^{ \frac{1}{\rho}\theta }$ as well to get our solution. Thus we have have the parameterization
+	\[
+	( b_0(\theta), b_1(\theta) ) = ( e^{ \frac{1}{\rho}\theta }, e^{ \frac{1}{\rho}\theta })
+	\]
+	which parameterizes the center part of the pitchfork where $b_0 = b_1$. We see easily that $(b_0(0), b_1(0)) = (b_0^0, b_1^0) = (1,1)$. For future use, we note that
+	\[
+	(b_0(-\arctan \rho), b_1(-\arctan \rho)) = (p^*, p^*)
+	\]
+	where $p^*$ is defined in Lemma \ref{pitchforkF}. From that lemma, $(p^*, p^*)$ is the bifurcation point.
+
+	\item Now let $b_1^0 \neq 1$ so that $m_1 > 0$. Let
+	\begin{align*}
+	b_0(\theta^*) &= e^{-\frac{1}{\rho} \theta^* } \\
+	\end{align*}
+	We will solve for $\theta^*$ in terms of $\theta$. We also need to make sure we also have $\theta^* \in [-\arctan \rho,\pi - \arctan \rho)$, otherwise the value of $b_0^0$ will change. Plugging in the expressions for $b_0$ and $b_1$ into $F$, we get
+	\begin{align*}
+	F(b_0, b_1) &= e^{ -\frac{1}{\rho}\theta^* } \sin\left( -\rho \log e^{ -\frac{1}{\rho}\theta^* }\right) - e^{ -\frac{1}{\rho}(m_1 \pi - \theta) }\sin \left( -\rho \log e^{ -\frac{1}{\rho}(m_1 \pi + \theta) } \right) \\
+	&= e^{ -\frac{1}{\rho}\theta^* } \sin\left( \theta^* \right) - e^{ -\frac{1}{\rho} m_1 \pi} e^{ \frac{1}{\rho} \theta } \sin(m_1 \pi - \theta) \\
+	&= e^{ -\frac{1}{\rho}\theta^* } \sin\left( \theta^* \right) - e^{ -\frac{1}{\rho} m_1 \pi } e^{ \frac{1}{\rho} \theta } (-1)^{m_1 + 1} \sin(\theta)
+	\end{align*}
+	Thus we need to solve the following equation for $\theta^*$.
+	\begin{align}\label{thetastareq}
+	e^{ -\frac{1}{\rho}\theta^* } \sin\left( \theta^* \right) &= \left[ e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1 + 1} \right] e^{ \frac{1}{\rho} \theta } \sin(\theta)
+	\end{align}
+	for $\theta \in [-\arctan \rho,\pi - \arctan \rho)$. We proceed in the following steps.
+	\begin{enumerate}
+		\item Let $g(\theta) = e^{ \frac{1}{\rho} \theta } \sin(\theta)$. First, we show that $g(\theta)$ is increasing on $[-\arctan \rho,\pi - \arctan \rho]$. The derivative is 
+		\[
+		g'(\theta) = e^{ \frac{1}{\rho} \theta } \left( \cos(\theta) + \frac{1}{\rho} \sin(\theta)\right)
+		\]
+		At the left endpoint,
+		\begin{align*}
+		g'(-\arctan \rho) &= e^{ -\frac{1}{\rho} \arctan \rho } \left(\cos(-\arctan \rho) + \frac{1}{\rho} \sin(-\arctan \rho)\right) \\
+		&= e^{ -\frac{1}{\rho} \arctan \rho } \left(\cos\frac{1}{\sqrt{1 + \rho^2}} - \frac{1}{\rho} \frac{\rho}{\sqrt{1 + \rho^2}}\right) = 0
+		\end{align*}
+		The only critical point of $g'(\theta)$ on $[-\arctan \rho,\pi - \arctan \rho]$ is a local maximum at $\theta = \arctan \rho < \pi/2$, thus $g'(\theta) > 0$ on $(-\arctan \rho,\pi - \arctan \rho)$ and is zero at the endpoints, from which we conclude that $g(\theta)$ is increasing on $(-\arctan \rho,\pi - \arctan \rho)$.
+		
+		\item From this, we conclude that 
+		\[
+		g(\theta) \in \left[ -\frac{\rho}{\sqrt{1+\rho^2}}e^{-\frac{1}{\rho}\arctan \rho}, \frac{\rho}{\sqrt{1+\rho^2}}e^{\frac{1}{\rho}(\pi - \arctan \rho)}\right] = [-T, e^{\frac{1}{\rho}\pi} T]
+		\]
+		where 
+		\[
+		T = \frac{\rho}{\sqrt{1+\rho^2}}e^{-\frac{1}{\rho}\arctan \rho}
+		\]
+		It follows that for the RHS of \eqref{thetastareq} we have
+
+		\begin{equation}\label{RHSbounds}
+		\left( e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1 + 1} \right) e^{ \frac{1}{\rho} \theta } \sin(\theta) \in
+		\begin{cases}
+		[-e^{-\frac{1}{\rho}m_1 \pi} T, e^{-\frac{1}{\rho}(m_1 - 1) \pi} T] & m_1 \text{ odd}\\
+		[-e^{-\frac{1}{\rho}(m_1 - 1) \pi} T, e^{-\frac{1}{\rho}m_1 \pi} T] & m_1 \text{ even}
+		\end{cases}
+		\end{equation}
+
+		\item Let $h(\theta^*) = e^{ -\frac{1}{\rho}\theta^* }\sin{\theta^*}$ be the LHS of \eqref{thetastareq}. We can similarly show that $h(\theta^*)$ has a local minimum at $\theta^* = \arctan{\rho} - \pi$, a local maximum at $\theta^* = \arctan{\rho}$, and no critical points between these. We also have $h(0) = 0$. We conclude that $h(\theta^*)$ is strictly increasing and thus invertible on $[\arctan{\rho} - \pi, \arctan{\rho}]$. Plugging the endpoints into $h$, $h^{-1}$ is defined and increasing on 
+		\[
+		\left[ -\frac{\rho}{\sqrt{1+\rho^2}}e^{\frac{1}{\rho}\pi}e^{-\frac{1}{\rho}\arctan \rho}, \frac{\rho}{\sqrt{1+\rho^2}}e^{-\frac{1}{\rho}\arctan \rho}\right] = [-e^{\frac{1}{\rho}\pi} T , T]
+		\] 
+		with $h^{-1}(-e^{\frac{1}{\rho}\pi} T) = \arctan{\rho} - \pi$ and $h^{-1}(T) = \arctan \rho$. 
+
+		\item From the previous two parts, we conclude that since $m_1 \geq 1$, we can invert $h$ to solve for $\theta^*$. Thus we have
+
+		\[
+		\theta^* = h^{-1}\left( e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1 + 1}  e^{ \frac{1}{\rho} \theta } \sin(\theta) \right)
+		\]
+		for $\theta \in [-\arctan \rho,\pi - \arctan \rho)$. We can then plug this into the equation for $b_0(\theta^*)$ to solve for $b_0$ in terms of $\theta$.\\
+
+		From this, we have the simple bound $\theta^* \in (-\arctan \rho, \pi - \arctan \rho)$, which at least ensures that varying $\theta$ does not cause the integers $m_i$ to change.
+
+		\item We now have a piecewise parameterization which depends on $b_1^0$. We will now show that the pieces all match up. First, we look at the matching not at the pitchfork bifurcation point. Let $m_1 \geq 1$, $b_1^0 = \exp(-m_1 \pi \ \rho )$ and $\tilde{b}_1^0 = \exp(-(m_1+1) \pi \ \rho )$. Then we have
+
+		\begin{align*}
+		b_1(-\arctan \rho) &= e^{ -\frac{1}{\rho}(m_1 \pi + \arctan \rho) } \\
+		\tilde{b}_1(\pi - \arctan \rho) 
+		&= e^{ -\frac{1}{\rho}((m_1+1) \pi - (\pi - \arctan \rho)) } \\
+		&= e^{ -\frac{1}{\rho}(m_1 \pi + \arctan \rho)) } = b_1(-\arctan \rho)
+		\end{align*}
+
+		These are the same, so the $b_1$ component matches. For the $b_0$ component, we note that we obtain $\theta^*$ and $\tilde{\theta}^*$ by solving
+
+		\begin{align*}
+		\theta^* &= h^{-1} (b_1(-\arctan \rho)) \\
+		\tilde{\theta}^* &= h^{-1} (\tilde{b}_1(\pi - \arctan \rho)) 
+		\end{align*}
+
+		Since the RHS of the two equations is the same, we conclude that $\theta^* = \tilde{\theta}^*$, thus $b_0(-\arctan \rho) = \tilde{b}_0(\pi - \arctan \rho)$, and so the $b_0$ components match.
+
+		\item Next, we show that for $m_1 = 1$, we hit the pitchfork bifurcation point at $\theta = \pi - \arctan \rho$. For the $b_1$ component, 
+		\begin{align*}
+		b_1(\pi -\arctan \rho) &= e^{ -\frac{1}{\rho}(\pi - (\pi - \arctan \rho)) } \\
+		&= e^{ -\frac{1}{\rho} \arctan \rho } = p^*
+		\end{align*}
+
+		For $b_0$, we note that for $\theta = \pi -\arctan \rho$, the RHS of \eqref{thetastareq} is exactly $L$, thus $\theta^* = h^{-1}(L) = \arctan \rho$, and so $b_0(\pi -\arctan \rho) = e^{ -\frac{1}{\rho} \arctan \rho } = p^*$ as well.
+
+		\item Finally, we get some bounds on $\theta^*$. These will be in terms of $m_1$. From \eqref{RHSbounds} we have
+		\[
+		|e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1 + 1}  e^{ \frac{1}{\rho} \theta } \sin(\theta)| \leq C e^{ -\frac{1}{\rho}(m_1 - 1) \pi }
+		\]
+		Since $h(0) = 0$, we have $\theta^* \rightarrow 0$ as $m_1 \rightarrow \infty$. For a decay rate, recall that $h'(\theta^*) = 0$  $\theta^* = \arctan{\rho} - \pi$ and $\theta^* = \arctan{\rho}$, and no critical points between these. We also have $h(0) = 0$. For the derivative $h'(\theta^*$, we have
+		\[
+		h'(\theta^*) = \frac{1}{\rho}e^{\frac{1}{\rho}\theta^*}(\rho \cos \theta^* - \sin \theta^*)
+		\]
+		Since $h'(0) = 1$, we can find an interval $[-R_0,R_0]$ on which $h'(\theta^*) \geq 1/2$. Thus we can find an interval $[-R_1, R_1]$ on which $(h^{-1})'(x) \leq L$ for a constant $L > 0$. For sufficiently large $m_1$, we will always have $\theta^* \in [-R_1, R_1]$, and $h^{-1}$ is Lipschitz with constant $L$ on that interval. Thus we conclude that
+		\begin{align*}
+		|\theta^*| &= | h^{-1}(e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1 + 1}  e^{ \frac{1}{\rho} \theta } \sin(\theta)) | \\
+		&\leq L |e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1 + 1}  e^{ \frac{1}{\rho} \theta } \sin(\theta)| \\
+		&\leq C e^{ -\frac{1}{\rho}(m_1 - 1) \pi } \\
+		&\leq C e^{ -\frac{\pi}{\rho} m_1 }
+		\end{align*}
+
+	\end{enumerate}
+\end{enumerate}
+
+\end{proof}
+\end{lemma}
+
+Now that we have our parameterization, we can use the implicit function theorem to solve $G(b_0, b_1, r) = 0$ near $(b_0^*(m_0, \theta), b_1^*(m_1, \theta))$. If we do that, we will generically lose the pitchfork bifurcation structure of $F(b_0, b_1)$ which we just found. However, in the special case of the 2-periodic pulse, since we only have a single equation $G(b_0, b_1, r) = 0$ to solve, we will show that the pitchfork bifurcation actually persists for small $r$. This is not generically true, and will not hold for the $n-$periodic pulse.\\
+
+To show the pitchfork persists for small $r$, the first thing we will show is that $G$ has the same symmetries as $F$.
+
+% lemma : symmetries of G
+
+\begin{lemma}\label{Gsymm}
+
+For sufficiently small $r$,
+
+\begin{equation}
+G(b_0, b_1, r) = -G(b_1, b_0, r)
+\end{equation}
+
+In particular, for sufficiently small $r$,
+
+\[
+G(b_0, b_0, r) = 0
+\]
+
+\begin{proof}
+Recall that the adjoint jump conditions for a 2-periodic pulse are given by
+\begin{align*}
+G_0(a_0, a_1, r) = a_0 \sin \left( -\rho \log a_0 \right) - a_1 \sin \left( -\rho \log a_1 \right) + \mathcal{O}(r^{\gamma / 2 \alpha}) &= 0 \\
+G_1(a_0, a_1, r) = a_1 \sin \left( -\rho \log a_1 \right) - a_0 \sin \left( -\rho \log a_0 \right) + \mathcal{O}(r^{\gamma / 2 \alpha}) &= 0
+\end{align*}
+
+$G_0 = G$, and since our system is Hamiltonian, the $G_1$ equation is automatically satisfied if the $G_0$ equation is satisfied. Recall that the $G_i$ equations were obtained by a change of varibles from the equations
+
+\begin{align}
+\langle \Psi(0), V_i^+(0) - V_i^-(0) \rangle = 
+\langle \Psi(X_i), Q(-X_i) \rangle - \langle \Psi(-X_{i-1}), Q(X_{i-1}) \rangle + R_i = 0
+\end{align}
+
+for $i = 0, 1$. This was obtained via Lin's method and represents the jumps $\xi_i$ between in the direction of $\Psi(0)$. Changing variables back to the $X_i$, we can write the $G_i$ as
+
+\begin{align}\label{GXi}
+G_i(X_0, X_1) = \langle \Psi(0), V_i^+(0) - V_i^-(0) \rangle = \langle \Psi(0), U_i^+(0) - U_i^-(0) \rangle
+\end{align}
+
+where the second equality holds since
+
+\begin{align*}
+U_i^\pm(x) &= Q^\pm(0, \beta_i^\pm)(x) + V_i^pm(x) 
+\end{align*}
+
+and $Q^\pm(0, \beta_i^\pm)(0)$ has no component in $\Psi(0)$. In particular,
+
+\begin{align*}
+G_0(X_0, X_1) &= \langle \Psi(0), U_0^+(0) - U_0^-(0) \rangle \\
+G_1(X_0, X_1) &= \langle \Psi(0), U_1^+(0) - U_1^-(0) \rangle 
+\end{align*}
+
+First, we show that $G_i(X_0, X_1)$ is a well-defined function of the $X_i$, i.e. it has a unique value. Recall that in the first three steps of Lin's method, we solved, in turn, the equations
+
+\begin{align*}
+(U_i^\pm)' - F(U_i^\pm) &= 0 \\
+U_i^+(X_i) - U_{i+1}^-(-X_i) &= 0 \\
+P_{Y^\pm}(U_i^+(0) - U_i^-(0)) &= 0
+\end{align*}
+
+For sufficiently large $X_i$, each of the three steps yields a unique solution. Thus, for a given ordered pair of lengths $(X_0, X_1)$ which are sufficiently large, there is a unique set of functions $U_i^\pm$ which satisfies the three equations. Thus \eqref{GXi} is well-defined.\\
+
+Suppose for an ordered pair of lengths $(X_0, X_1)$ we have a solution $\{ U_0^-(x), U_0^+(x), U_1^-(x), U_1^+(x) \}$, pieced together from L to R. Then if swap the $X_0$ and $X_1$ to get the ordered pair $(X_1, X_0)$, the three equations are satisfied by the set of functions $\{ U_1^-(x), U_1^+(x), U_0^-(x), U_0^+(x)\}$, pieced together from L to R. From this, we see that
+
+\begin{align*}
+G_0(X_1, X_0) &= \langle \Psi(0), U_1^+(0) - U_1^-(0) \rangle = G_1(X_0, X_1) \\
+G_1(X_1, X_0) &= \langle \Psi(0), U_0^+(0) - U_0^-(0) \rangle = G_0(X_0, X_1)
+\end{align*}
+
+Next, we note that if we replace $x$ with $-x$, then for the same ordered pair $(X_0, X_1)$, the set of functions $\{ U_1^+(-x), U_1^-(-x), U_0^+(-x), U_0^-(-x)\}$, pieced together from L to R, also satisfies the three equations. By uniqueness, this implies that $U_1^+(0) = U_0^-(0)$ and $U_1^-(0) = U_0^+(0)$. Thus we have
+
+\begin{align*}
+G_0(X_0, X_1) &= \langle \Psi(0), U_0^+(0) - U_0^-(0) \rangle \\
+&= \langle \Psi(0), U_1^-(0) - U_1^+(0) \rangle \\
+&= -\langle \Psi(0), U_1^+(0) - U_1^-(0) \rangle \\
+&= -G_1(X_0, X_1) \\
+&= -G_0(X_1, X_0)
+\end{align*}
+
+Similarly, $G_1(X_0, X_1) = -G_1(X_1, X_0)$. Changing variables back to $(a_0, a_1, r)$ yields the result. The condition that the $X_i$ are sufficiently large is equivalent to $r$ being sufficiently small.
+\end{proof}
+\end{lemma}
+
+Next, we show that the pitchfork bifurcation persists for sufficiently small $r$.
+
+% Persistence of pitchfork
+
+\begin{lemma}\label{pitchpersist}
+
+For $k \in \N_0$ there exists $r_0 > 0$ (depending on $k$) and a unique smooth function $p_k: \mathcal{R} \cap [0, r_0] \rightarrow \R$ such that $G(b_0, b_1, r)$ has a nondegenerate pitchfork bifurcation at $(p_k(r),p_k(r)$. Furthermore, 
+
+\begin{equation*}
+p_k(r) \rightarrow p_k^* \text{ as } r \rightarrow 0
+\end{equation*}
+
+\begin{proof}
+We make the following assumption: for all derivatives of $G$ with respect to the $b_i$, the remainder term is $\mathcal{O}(r^{\gamma / 2 \alpha})$. Lemma 6.2 in San98 and Proposition 3.8 in SanStrut have this result up to first derivatives with respect to the $a_i$. I imagine this follows (like everything does) from San93.\\
+
+For simplicity, take $k = 0$, so that we are looking for the persistence of the pitchfork bifurcation at $(p^*, p^*)$. The same argument works for $k > 0$.\\
+
+From Lemma \ref{pitchforkF}, we showed that a pitchfork bifurcation occurs in the zero set of $F(b_0, b_1)$ at $(p^*, p^*)$. First, as in Lemma \ref{pitchfork}, we change coordinates $(b_0, b_1) \mapsto (x, y)$, so that $(0, p^*)$ is a pitchfork bifurcation point of $G(x, y, 0)$. By Lemma \ref{Gsymm}, in this cooordinate system, we have the symmetry $G(-x, y, r) = -G(x, y, r)$ for sufficiently small $r$. This implies that for sufficiently small $r$, $G(0, y, r) = 0$, i.e. the line $x = 0$ consists entirely of equilibria.\\
+
+We now prove the existence of a pitchfork bifurcation along this line. Since a necessary condition for a pitchfork to occur is $G_x(x, y, r) = 0$, we will look at the system
+
+\begin{equation}
+H(x,y,r) = (G(x,y,r), G_x(x,y,r)) = 0
+\end{equation}
+
+The remainder term of $G_x$ and $G_y$ is order $r^{\gamma/2 \alpha}$, so it goes to 0 as $r \rightarrow 0$. Thus $G_x(x,y,0) = F_x(x,y)$ and $G_y(x,y,0) = F_y(x,y)$. In particular, $G_x(0,p^*,0) = G_y(0, p^*, 0) = 0$, so $D_{x,y}G(0,p^*,0)$ is singular. Thus, as expected, we cannot use the IFT.\\
+
+We will instead do a Lyapunov-Schmidt reduction. In Lemma \ref{pitchforkF}, we computed $F_{xy}(0, p^*) = 2 \rho/p^* \sqrt{1 + \rho^2} \neq 0$. Since the remainder term in $G_{xy}$ decays to 0 as $r \rightarrow 0$, $G_{xy}(0, p^*, 0) = F_{xy}(0, p^*) \neq 0$. Thus we can use the IFT to solve $H_2(x,y,r) = G_x(x,y,r)$ for $y$ in terms of $x$ and $r$ near $(x,y,r) = (0, p^*, 0)$. By the IFT, there exists $r_0 > 0$, an open interval $(-a, a)$, and a unique function $y = y^*(x, r)$ with the same smoothness as $G_x$ such that $y^*(0, 0) = p^*$ and $G_x(x, y^*(x, r), r) = 0$ for $x \in (-a, a)$ and $r < r_0$.\\
+
+Next, we plug this into the equation for $G$ to get
+
+\begin{equation}
+G(x, y^*(x, r), r) = 0
+\end{equation}
+
+As noted above, this has a solution for $x = 0$. It remains to check that a pitchfork bifuration occurs at $(0, y^*(0, r), r)$. First, since $G(x, y, r)$ is an odd function in $x$, $G_y(0, y, r) = 0$ and $G_{xx}(0, y, r) = 0$ for all $x, r$. So we get $G_y(0, y^*(0, r), r) = 0$ and $G_{xx}(0, y^*(0, r), r) = 0$ for free.\\
+
+All that remains is to show that $G_{xy}$ and $G_{xxx}$ are nonzero at $(0, y^*(0, r), r)$. Recall that $F_{xy}(0, p^*) \neq 0$. Then since $G_{xy}$ and $y^*$ are smooth, $G_{xy}(0, y^*(0, r), r) \rightarrow 0 \text{ as } r \rightarrow 0$. Thus, for sufficiently small $r$, $G_{xy}(0, y^*(0, r), r) \neq 0$. Similarly, from Lemma \ref{pitchfork}, we know that $F_{xxx}(0, p^*) \neq 0$. By the same argument, we conclude that $G_{xxx}(0, y^*(0, r), r) \neq 0$ for sufficiently small $r$.\\
+
+Changing variables back to $(a_0, a_1)$, at let $p_0(r) = (y^*(0, r), y^*(0, r))$. Thus, for $r < r_0$, there is a pitchfork bifurcation at $(p_0(r), p_0(r))$.
+
+\end{proof}
+\end{lemma}
+
+We can combine the previous two lemmas into the following theorem. Note that we are taking a different interval for the phase parameter $\theta$ so that we can capture the pitchfork bifurcation.
+
+% theorem : bifurcation structure for 2-per pulses.
+
+\begin{theorem}\label{2pulsebifurcation}
+There exists $r_0 > 0$ with the following property. For every $r \in \mathcal{R}$ with $r < r_0$,
+\begin{enumerate}
+	\item For every $\theta \in [0, pi)$, there is a unique 2-periodic solution with equal length parameters $b_0(\theta) = b_1(\theta) = e^{-\theta/\rho}$. These do not depend on $r$.
+
+	\item There is a function $\theta^*: \mathcal{R} \cap [0, r_0] \rightarrow \R$ such that there is a nondegenerate pitchfork bifurcation at $(b_0(\theta^*(r)),b_0(\theta^*(r)) = (e^{-\theta^*(r)/\rho}, e^{-\theta^*(r)/\rho})$. Furthermore, 
+
+	\begin{equation*}
+	\theta^*(r) \rightarrow \arctan \rho \text{ as } r \rightarrow 0
+	\end{equation*}
+\end{enumerate}
+\end{theorem}
+
+We will save the general existence theorem for the multipulse case.
+
+\subsubsection{Multipulses}
+
+Recall that for a multipulse, by Lemma \ref{diagonalG}, we have to satisfy the $n-1$ equations
+
+\begin{equation*}
+G_i(b_0, \dots, b_{n-1}, r) = b_i \sin \left( -\rho \log b_i \right) - b_{n-1} \sin \left( -\rho \log b_{n-1} \right) + \mathcal{O}(r^{\gamma / 2 \alpha}) = 0
+\end{equation*}
+
+for $i = 0, \dots, n-2$. If $r = 0$, the zero set of each of these will look exactly like the one for the 2-periodic solution from the previous section. However, for $r > 0$, the symmetry argument we used above will not hold, so will not be able say anything about the bifurcation structure. We do, however, have the following existence result which holds for all periodic multipulses with $n \geq 2$.
+
+\begin{theorem}[Existence of $n$-periodic solutions]\label{perexist}
+Assume the relevant Hypotheses. Let $Q(x)$ be a transversely constructed, symmetric primary pulse solution to \eqref{genODE}. Choose
+
+\begin{enumerate}[(i)]
+\item An integer $n \geq 2$ 
+\item A sequence of $n$ length parameters $b_0^0, \dots, b_{n-1}^0$, where $b_j^0 = \exp(-m_j \pi / \rho )$ for nonnegative integers $m_j$, at least one of which must be 0. Without loss of generality, take $m_{n-1} \geq m_j$ for $j = 0, \dots, n-2$. 
+\item A phase parameter $\theta \in [-\arctan \rho, \pi - \arctan \rho)$.
+\end{enumerate}
+
+with the restriction that for $j = 0, \dots, n-2$, neither of the following is true.
+
+\begin{enumerate}[(i)]
+\item $m_j = m_{n-1}$ and $\theta = -\arctan \rho$
+\item $m_j = m_{n-1} - 1$ and $\theta = \pi-\arctan \rho$
+\end{enumerate}
+
+Then there exists $r_0 > 0$ such that
+
+\begin{itemize}
+\item For any $r \in \mathcal{R}$ with $r < r_0$, there exists a unique $n$-periodic solution $U(x)$ to \eqref{genODE}.
+
+\item This solution is specified by the $n$ length parameters $b_j(r; m_j, \theta)$, where
+
+\begin{align}
+b_j(r; m_j, \theta) \rightarrow b^*_j(m_j, \theta) \text{ as } r \rightarrow 0
+\end{align}
+
+and
+
+\begin{align}
+b^*_j(m_j, 0) = b_j^0
+\end{align}
+
+\item For all $\theta$ and for $j = 0, \dots, n-2$,
+\begin{align}
+|b^*_j(m_j, \theta) - b_j^0| \leq C e^{ -\frac{\pi}{\rho} (m_{n-1} - m_k) }
+\end{align}
+
+\item The individual pulses are separated by distances $2 X_0, \dots, 2 X_{n-1}$, where the lengths $X_j$ are given by 
+
+\begin{equation}\label{Xj}
+X_j = -\frac{1}{2\alpha}\log(b_j(r; m_j, \theta) r) - \frac{\phi}{2 \beta} 
+\end{equation}
+
+where $\phi$ is a constant.
+
+\item The domain has length $2X$, where $X = X_0 + \dots + X_{n-1}$ and is given by
+
+\begin{align}
+X = \frac{1}{2\alpha} (n |\log r| + |\log b| ) - \frac{n \phi}{2 \beta}
+\end{align}
+
+where 
+\begin{equation}
+b = \prod_{j=0}^{n-1} b_j(r; m_j, \theta)
+\end{equation}
+
+\item $U(x)$ can be written piecewise as
+
+\begin{align}
+U_i^-(x) &= Q^-(x; \beta_i^-) + V_i^-(x) && x \in [X_{i-1}, 0] \\
+U_i^+(x) &= Q^+(x; \beta_i^+) + V_i^+(x) && x \in [0, X_i]
+\end{align}
+
+where the subscripts $i = 0, \dots, n-1$ are taken $\mod n$. The functions $Q^\pm(x; \beta_i^\pm)$ are solutions to \eqref{genODE} with initial conditions $\beta_i^\pm$ in the stable/unstable manifold. For these terms, we have bounds FIX THIS
+
+\begin{align*}
+|Q^-(x; \beta_i^-)| &\leq C e^{-2 \alpha X_i} e^{\alpha x} \\
+|Q^+(x; \beta_i^+)| &\leq C e^{-2 \alpha X_{i-1}} e^{-\alpha x}
+\end{align*} 
+
+The remainder terms $V_i^\pm(x)$ have bounds
+
+\begin{align}
+|V_i^-(x)| &\leq C e^{-\alpha(X_{i-1} + x)}e^{-\alpha X_{i-1}} \\
+|V_i^+(x)| &\leq C e^{-\alpha(X_i - x)}e^{-\alpha X_i} 
+\end{align} 
+
+\end{itemize}
+
+\begin{proof}
+Since we are in a periodic domain, we can WLOG take $b_{n-1}^0 \leq b_j^0$ (equivalently, $m_{n-1} \geq m_j$) for $j = 0, \dots, n-2$. Choose length parameters $b_0^0, \dots, b_{n-1}^0$ and phase parameter $\theta \in [-\arctan \rho, \pi - \arctan \rho)$. By Lemma \ref{thetaparam}, for $j = 0, \dots, n-1$, we have a unique solution $F(b_0^*(m_0, \theta), b_{n-1}^*(m_{n-1}, \theta)) = 0$ (in the $r = 0$ case), where 
+\[
+b_{n-1}^*(m_{n-1}, \theta) = e^{-\frac{1}{\rho}(m_{n-1}\pi - \theta)}
+\]
+
+Let $G: \mathcal{R}^{n-1} \rightarrow \R^{n-1}$ be defined by $G = (G_0, \dots, G_{n-2})^T$, where 
+\begin{equation*}
+G_j(b_0, \dots, b_{n-1}, r) = b_j \sin \left( -\rho \log b_j \right) - b_{n-1}^*(m_{n-1}, \theta) \sin \left( -\rho \log b_{n-1}^*(m_{n-1}, \theta) \right) + \mathcal{O}(r^{\gamma / 2 \alpha}) = 0
+\end{equation*}
+
+Note that $b_{n-1}$ is fixed in these equations, i.e. we always take it to be $b_{n-1}^*(m_{n-1}, \theta)$. By our choice of $b_0^*(m_0, \theta), \dots, b_{n-2}^*(m_{n-2}, \theta)$, $G(b_1^*(m_1, \theta), \dots, b_{n-2}^*(m_{n-2}, \theta), 0) = 0$. Taking the parital derivative of $G_k$ with respect to $b_j$ and noting that $\partial_{b_j} G_k = 0$ for $j \neq k$, we have
+
+\begin{align*}
+\partial_{b_j} G_j &= 
+\sin \left( -\rho \log b_j \right) - \rho b_j \cos \left( -\rho \log b_j \right) \frac{1}{b_j} \\
+&= \sin \left( -\rho \log b_j \right) - \rho \cos \left( -\rho \log b_j \right)
+\end{align*}
+
+Evaluating this at $r = 0$ and $b_j = b_j^*(m_j, \theta)$, we have
+
+\begin{align*}
+\partial_{b_j} G_j
+&= \sin \left( -\rho \log b_j^*(m_j, \theta) \right) - \rho \cos \left( -\rho \log b_j^*(m_j, \theta) \right)
+\end{align*}
+
+In order to use the implicit function theorem, we require that these $n-2$ partial derivatives be nonzero. The only way this can happen is if $b_j^*(m_j, \theta) = p_k^*$, where $p_k^*$ is one of the pitchfork bifurcation points in the zero level set of $F$ in Lemma \ref{pitchforkF}. From Lemma \ref{thetaparam}, this can only occur if either
+
+\begin{enumerate}[(i)]
+\item $m_j = m_{n-1}$ and $\theta = -\arctan \rho$
+\item $m_j = m_{n-1} - 1$ and $\theta = \pi-\arctan \rho$
+\end{enumerate}
+
+As long as we avoid those parameter values, $D_b G(b_0^*(m_0, \theta), \dots, b_{n-2}^*(m_{n-2}, \theta), 0)$ is invertible. Thus, for sufficiently small $r$, we can use the IFT to solve for $(b_0,\dots,b_{n-2}$ in terms of $r$ near $(b_0^*(m_0, \theta), \dots, b_{n-2}^*(m_{n-2}, \theta)$. Specifically, for $j = 0, \dots, n-2$ there exists $r_0 > 0$ and smooth functions $b_j(r; m_j, \theta)$ with $b_j(0; m_j, \theta) = b_j^*(m_j, \theta)$ and for all $r < r_0$, 
+\[
+G(b_0(r; m_0, \theta), \dots, b_{n-2}(r; m_{n-2}, \theta), r) = 0
+\]
+Thus for any given set of parameters (other than the ones we have to avoid), we have found our periodic $n-$pulse.\\
+
+\end{proof}
+\end{theorem}
+
+If one of the length parameters $b_j$ is small (i.e. one of the distances $X_j$ is large, the periodic $n-$pulse ``resembles'' the $n-$pulse on the real line. In that case, we have an existence result which is uniform in $r$ and $\theta$. In this theorem, we will choose the first $n-1$ length parameters and allow the final length parameter to vary.
+
+% uniform existence theorem
+
+\begin{theorem}\label{unifperexist}
+Assume some hypotheses. Let $Q(x)$ be a transversely constructed, symmetric primary pulse solution to the thing we care about. Choose
+
+\begin{enumerate}[(i)]
+\item An integer $n \geq 2$ 
+\item A sequence of $n-1$ length parameters $b_0^0, \dots, b_{n-2}^0$, where $b_j^0 = \exp(-m_j \pi / \rho )$ for nonnegative integers $m_j$, at least one of which must be 0.
+\end{enumerate}
+
+Then there exists $r_1 > 0$ and $M_0 \in \N$ such that for all $r < r_1$, $m_{n-1} \geq M_0$, and $\theta \in [-\arctan \rho, \pi - \arctan \rho)$, there exists a unique $n$-periodic solution $U(x)$ to \eqref{genODE}. For a given choice of $r$ and $m_{n-1}$, this solution is identical to that given by Theorem \ref{perexist}.
+
+\begin{proof}
+For $r = 0$, we have from Lemma \ref{thetaparam},
+
+\begin{align*}
+b_j^*(m_j, \theta) &= e^{-\frac{1}{\rho}(m_j \pi + \theta_j^*(\theta)) }
+\end{align*}
+
+From Lemma \ref{thetaparam}, we have the decay rate for $\theta^*_j$
+\[
+|\theta_j^*(\theta)| \leq C e^{ -\frac{\pi}{\rho}(m_{n-1} - m_j)}
+\]
+
+which is independent of $\theta$. Choose $m_{n-1}$ sufficiently large so that for $j = 0, \dots, n-2$,
+\[
+|\sin \theta_j^*(\theta)| \leq y
+\]
+
+where $y$ will be chosen later. Then
+
+\begin{align*}
+|\sin \left( -\rho \log b_j^*(m_j, \theta) \right)| 
+&= |\sin \left( m_j \pi + \theta_j^*(\theta) \right)| \\
+&= |(-1)^{m_j} \sin \theta_j^*(\theta)| \\
+&\leq y
+\end{align*}
+
+and
+
+\begin{align*}
+\cos \left( -\rho \log b_j^*(m_j, \theta) \right) 
+&= \cos \left( m_j \pi + \theta_j^*(\theta) \right) \\
+&= (-1)^{m_j} \cos \theta_j^*(\theta) \\
+\end{align*}
+
+where $|\cos \theta_j^*(\theta)| \geq \sqrt{1 - y^2}|$. Thus we have for $r = 0$,
+
+\begin{align*}
+| \partial_{b_j} G_j | 
+&= \left| (-1)^{m_j} \sin \theta_j^*(\theta) - \rho (-1)^{m_j} \cos \theta_j^*(\theta) \right| \\
+&= \left| \sin \theta_j^*(\theta) - \rho \cos \theta_j^*(\theta) \right| \\
+&\geq \left| |\sin \theta_j^*(\theta)| - \rho |\cos \theta_j^*(\theta)| \right| \\
+&\geq \rho \left| |\cos \theta_j^*(\theta)| - \rho^{-1} |\sin \theta_j^*(\theta)| \right|
+\end{align*}
+
+For $\rho \geq 1$, choose $y = 1/4$. Then we have
+
+\begin{align*}
+| \partial_{b_j} G_j | 
+&\geq \rho \left( \sqrt{1 - (1/4)^2}  - \rho^{-1}(1/4) \right) \\
+&\geq \rho \left( \sqrt{1 - (1/4)^2}  - \rho^{-1}(1/4) \right) \\
+&\geq \rho \left( 3/4  - (1/4) \rho^{-1} \right) \\
+&\geq \rho/2
+\end{align*}
+
+For $\rho \geq 1$, choose $y = \rho^2 / 4$. Then we have
+
+\begin{align*}
+| \partial_{b_j} G_j | 
+&\geq \rho \left( \sqrt{1 - (\rho^2/4)^2} - \rho/4  \right) \\
+&\geq \rho/2
+\end{align*}
+
+Thus, there exists $M_0 \in \N$ such that for $m_{n-1} \geq M_0$, we have the bound
+
+\begin{align*}
+| \partial_{b_j} G_j | &\geq \rho/2 && j = 0, \dots, n-2
+\end{align*}
+
+which is independent of $\theta$. We are now set up to find the uniform bound. For our choice of length parameters $b_0^0, \dots, b_1^0$, let $M$ be chosen as above. Define the space
+
+\begin{equation}
+\mathcal{B} = \left\{ \exp\left( -\frac{m \pi}{\rho} \right) : m \geq M_0 \right\} \cup {0}
+\end{equation}
+
+which is a complete metric space. Let $I = [-\arctan \rho, \pi - \arctan \rho]$, $b^0 = b_0^0, \dots, b_{n-2}^0$, and $b = (b_0, \dots, b_{n-2}) \subset \R^{n-1}$. Redefine the map $G$ as $G: \mathcal{R}^{n-2} \times \mathcal{B} \times I \times \mathcal{R} \rightarrow \R^{n-1}$ with $G = (G_0, \dots, G_{n-2})^T$, where 
+\begin{align*}
+G_j(b, b_{n-1}, \theta, r) &= b_j e^{-\frac{1}{\rho} \theta_j^*(\theta)} \sin \left( -\rho \log \left( b_j e^{-\frac{1}{\rho} \theta_j^*(\theta)} \right) \right) \\
+&- b_{n-1} e^{-\frac{1}{\rho} \theta} \sin \left( -\rho \log \left( b_{n-1} e^{-\frac{1}{\rho} \theta} \right) \right) + \mathcal{O}(r^{\gamma / 2 \alpha})
+\end{align*}
+
+All we did here was make the parameterization from Lemma \ref{thetaparam} explicit. For all $b_{n-1} \in \mathcal{B}$ and $\theta \in I$,
+
+\begin{itemize}
+\item $G(b^0, b_{n-1}, \theta, 0) = 0$
+\item $||D_b G(b_0, b_{n-1}, \theta, 0)||$ is diagonal with all eigenvalues having magnitude greater than $\rho/2$, thus it is invertible with 
+\begin{equation}\label{DbGinvbound}
+||D_b G(b_0, b_{n-1}, \theta, 0)^{-1}|| \leq \frac{2}{\rho}
+\end{equation}
+\end{itemize}
+
+Thus we can use the uniform contraction mapping principle to solve for $b$ in terms of $r$ for all $b_{n-1} in \mathcal{B}$ and $\theta \in I$. Specifically, define $H: \mathcal{R}^{n-2} \times \mathcal{B} \times I \times \mathcal{R} \rightarrow \R^{n-1}$ by
+
+\begin{equation}\label{defHb}
+H(b, b_{n-1}, \theta, r) = b - [D_b G(b_0, b_{n-1}, \theta, 0)]^{-1} G
+\end{equation}
+
+Note that for fixed $(b_{n-1}, \theta, r)$, $H(b, b_{n-1}, \theta, r) = b$ if and only if $G(b_0, b_{n-1}, \theta, 0) = 0$. Since $G$ is smooth, so is $H$, and 
+
+\begin{equation}\label{DbH}
+D_b H(b, b_{n-1}, \theta, r) = I - [D_b G(b_0, b_{n-1}, \theta, 0)]^{-1} D_b G(b, b_{n-1}, \theta, r)
+\end{equation}
+
+In particular, $D_b H(b, b_{n-1}, \theta, 0) = 0$.\\
+
+We now show that $H$ is a uniform contraction for all $b_{n-1} in \mathcal{B}$ and $\theta \in I$. First, we bound $D_b H(b, b_{n-1}, \theta, r)$. $H$ is smooth in $b$ and $r$, thus $D_b H$ is locally Lipschitz in $b$ and $r$; because we have a uniform bound on $D_b G(b_0, b_{n-1}, \theta, 0)$, the Lipschitz constant will be independent of $b_{n-1}$ and $\theta$.
+
+\begin{align*}
+|| D_b H(b, b_{n-1}, \theta, r)||  &= || I - [D_b G(b_0, b_{n-1}, \theta, 0)]^{-1} D_b G(b, b_{n-1}, \theta, r)||  \\
+&\leq || D_b G(b_0, b_{n-1}, \theta, 0)^{-1}||\:||D_b G(b_0, b_{n-1}, \theta, 0) - D_b G(b, b_{n-1}, \theta, r)|| \\
+&\leq \frac{2}{\rho} C ( |b - b_0| + |r| )
+\end{align*}
+
+Thus we can find $r_1 > 0$ and and open ball $U_0 = B(b_0, \delta)$ such that whenever $r \leq r_1$ and $b \in \overline{U_0}$, 
+
+\[
+|| D_b H(b, b_{n-1}, \theta, r)|| \leq \frac{1}{2}
+\]
+
+Since $G(b^0, b_{n-1}, \theta, 0) = 0$, $G$ is smooth in $r$, and $G(b^0, b_{n-1}, \theta, r) = \mathcal{O}(r^{\gamma / 2 \alpha})$, which does not depend on $b_{n-1}$ or $\theta$, we can, if needed, decrease $r_1$ so that for all $r \leq r_1$,
+
+\[
+||G(b^0, b_{n-1}, \theta, r) || \leq \frac{\rho \delta}{4}
+\]
+
+Using these bounds, we have for all $b \in \overline{U_0}$ and $r \leq r_1$
+
+\begin{align*}
+|H(b, b_{n-1}, \theta, r) - b^0| &\leq |H(b, b_{n-1}, \theta, r) - H(b^0, b_{n-1}, \theta, r)| + |H(b^0, b_{n-1}, \theta, r) - b^0| \\
+&\leq \sup_{b\in \overline{U_0}}||D_b H(b, b_{n-1}, \theta, r)||\:|b - b^0| 
++ || [D_b G(b_0, b_{n-1}, \theta, 0)]^{-1} G(b^0, b_{n-1}, \theta, r) || \\
+&< \frac{1}{2} |b - b^0| + \frac{2}{\rho} ||G(b^0, b_{n-1}, \theta, r) ||  \\
+&\leq \frac{\delta}{2} + \frac{2}{\rho}\frac{\rho \delta}{4} \\
+&\leq \delta
+\end{align*} 
+
+Thus we have shown $H: \overline{U_0} \times \mathcal{B} \times I \times \mathcal{R} \rightarrow \overline{U_0}$, where $\overline{U_0}$ is a closed subset of a complete metric space. To show that $H$ is a uniform contraction, let $b, \tilde{b} \in \overline{U_0}$ and $r \leq r_1$. Then for any $b_{n-1}$ and $\theta$,
+
+\begin{align*}
+|H(b, b_{n-1}, \theta, r) - H(\tilde{b}, b_{n-1}, \theta, r)| 
+&\leq \sup_{b\in \overline{U_0}}||D_b H(b, b_{n-1}, \theta, r)||\:|b - \tilde{b}| \\
+&\leq \frac{1}{2} |b - \tilde{b}|
+\end{align*} 
+
+Thus we can use the uniform contraction mapping principle to conclude that there is a unique smooth function $\tilde{b}: \mathcal{R} \cup [0, r_1] \times \mathcal{B} \times I \rightarrow \overline{U_0}$ which maps $r \in \mathcal{R}$ with $r \leq r_1$ to the unique fixed point $b$ of $H(\cdot, b_{n-1}, \theta, r)$. By uniqueness, $\tilde{b}(0, b_{n-1}, \theta) = b^0$. Thus for $r \leq r_1$, $G(\tilde{b}(r, b_{n-1}, \theta), b_{n-1}, \theta, r) = 0$. \\
+
+Split $\tilde{b}$ up into components and let $b_j(r; m_j, \theta) = \tilde{b}_j(r, b_{n-1}, \theta) \exp( -\frac{1}{\rho} \theta_j^*(\theta) )$. Then $b_j(0; m_j, \theta) = b_j^*(m_j, \theta)$ and 
+\[
+G(b_1(r; m_1, \theta), \dots, b_{n-2}(r; m_{n-2}, \theta), \theta, r ) = 0
+\]
+for all $r \in \mathcal{R}$ with $r < \tilde{r}_1$, $b_{n-1} \in \mathcal{B}$, and $\theta \in I$.
+
+\end{proof}
+\end{theorem}
+
+
+\end{document}

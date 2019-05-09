@@ -1,0 +1,132 @@
+\documentclass[12pt,reqno]{amsbook}
+
+\usepackage[left=1in,right=1in,top=1in,bottom=1.5in]{geometry}%
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage{float}
+\usepackage{subfiles}
+\usepackage{thmtools, thm-restate}
+
+% \usepackage[backend=biber]{biblatex}
+% \addbibresource{thesis.bib}
+
+%    If you are using the author-year citation style:
+%\usepackage{natbib}
+
+% For use when working on individual chapters
+%\includeonly{}
+
+%    As set up here, all theorem-class objects will be numbered with
+%    the same counter, starting with 1 at every new chapter; numbers
+%    will have the form <chapter>.<theorem>.  This may be changed if
+%    the author prefers.
+
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{xca}[theorem]{Exercise}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newtheorem{hypothesis}{Hypothesis}
+
+\numberwithin{section}{chapter}
+\numberwithin{equation}{chapter}
+
+\def\noi{\noindent}
+\def\T{{\mathbb T}}
+\def\R{{\mathbb R}}
+\def\N{{\mathbb N}}
+\def\Z{{\mathbb Z}}
+\def\C{{\mathbb C}}
+\def\Q{\mathbb{Q}}
+
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\ran}{ran}
+\DeclareMathOperator{\dm}{dim}
+
+% \makeindex
+
+\pagestyle{plain}
+\setlength{\footskip}{48pt}
+
+\begin{document}
+
+% \frontmatter
+% \title{}
+
+% %    Remove any unused author tags.
+
+% %    author one information
+% \author{}
+% \address{}
+% \curraddr{}
+% \email{}
+% \thanks{}
+
+% %    author two information
+% \author{}
+% \address{}
+% \curraddr{}
+% \email{}
+% \thanks{}
+
+% %    If any version of the Mathematics Subject Classification other
+% %    than the 2010 edition appears, then you have an old version
+% %    of the AMS-LaTeX collection and need to upgrade.  Download from
+% %    http://www.ams.org/tex/amslatex.html .
+% \subjclass[2010]{Primary }
+
+% \keywords{}
+
+% \date{}
+
+% \maketitle
+
+%    Dedication.  If the dedication is longer than a line or two,
+%    remove the centering instructions and the line break.
+%\cleardoublepage
+%\thispagestyle{empty}
+%    If this book uses the documentclass stml-l or mmono-s, change
+%    13.5pc to 10.5pc.
+%\vspace*{13.5pc}
+%\begin{center}
+%  Dedication text (use \\[2pt] for line break if necessary)
+%\end{center}
+%\cleardoublepage
+
+%    Change page number to 7 if a dedication is present.
+% \setcounter{page}{5}
+
+% \tableofcontents
+
+%    Include unnumbered chapters (preface, acknowledgments, etc.) here.
+% \include{}
+
+\mainmatter
+%    Include main chapters here.
+
+% chapter : KdV5 with periodic BCs
+\subfile{periodic}
+
+% \appendix
+%    Include appendix "chapters" here.
+% \include{}
+
+\backmatter
+%    Bibliographies can be prepared with BibTeX using amsplain,
+%    amsalpha, or (for "historical" overviews) natbib style.
+\bibliographystyle{amsalpha}
+\bibliography{thesis.bib}
+% \printbibliography
+
+%    See note above about multiple indexes.
+% \printindex
+
+\end{document}
