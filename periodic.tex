@@ -63,7 +63,7 @@ where $[\rho(u)](x) = u(-x)$.
 \item $E'(u)$ is translation invariant, i.e. $E'(u) = 0$ implies $E'(\tau_\xi(u)) = 0$ for all $\xi \in \R$, where $[\tau_\xi(u)](x) = u(x - \xi)$.
 \end{enumerate}
 \end{hypothesis}
-Reversibility implies that the linear part of the operator $E'(u)$ only involves even-order derivatives of $u$ with respect to $x$. If $u(x)$ is an even function, the nonlinear part is also an even function in $x$.\\
+Reversibility implies that the linear part of the operator $E'(u)$ only involves even-order derivatives of $u$ with respect to $x$. If $u(x)$ is an even function, the nonlinear part is also an even function in $x$.
 
 Equilibrium solutions which decay to 0 at $\pm \infty$ satisfy the ODE 
 \begin{equation}\label{ODEonR}
@@ -104,7 +104,7 @@ It follows from this hypothesis that $H$ is conserved along solutions $U(x)$ to 
 \begin{hypothesis}\label{hypeqhyp}
 $U = 0$ is a hyperbolic equilibrium of \eqref{genODE}, i.e. $DF(0)$ has no eigenvalues on the imaginary axis. Furthermore, the spectrum of $DF(0)$ contains a quartet of simple eigenvalues $\pm \alpha_0 \pm \beta_0 i$, $\alpha_0, \beta_0 > 0$, and for any other eigenvalue $\nu$ of $DF(0)$, $|\text{Re }\nu| > \alpha_0$.
 \end{hypothesis}
-We remark that since we have a Hamiltonian system, the existence of an eigenvalue $\alpha_0 + \beta_0 i$ of $DF(0)$ implies the existence of the entire quartet $\pm \alpha_0 \pm \beta_0 i$.
+We remark that since we have a Hamiltonian system, the existence of an eigenvalue $\alpha_0 + \beta_0 i$ of $DF(0)$ implies the existence of the entire quartet $\pm \alpha_0 \pm \beta_0 i$. Let $E_0^s$ and $E_0^u$ be the stable and unstable eigenspaces of $DF(0)$. By reversibility, both of these spaces have dimension $m$.
 
 Let $W^s(0)$ and $W^u(0)$ be the stable and unstable manifolds of the equilibrium at 0. By Hypothesis \ref{Hhyp}, $W^s(0), W^u(0) \subset H^{-1}(0)$, where $H^{-1}(0)$ is the 0-level set of the Hamiltonian $H$. By reversibility, $\dim W^s(0) = m$ and $\dim W^u(0) = m$. 
 
@@ -185,10 +185,12 @@ Q^+(x; \beta^-) && x \geq 0
 be the unique solutions to \eqref{genODE} on $\R^\pm$ with initial conditions $Q^\pm(0, \beta^\pm)$ at $x = 0$. Since these initial conditions are on the unstable and stable manifolds (respectively), these solutions decay exponentially (in the appropriate direction) with rate $\alpha$.
 
 Let $n$ be the number of pulses in the periodic solution we would like to construct. Then we will look for a solution $U$ to \eqref{genODE} of the piecewise form
-\begin{align*}
+\begin{equation}\label{Upiecewise}
+\begin{aligned}
 U_i^-(x) &= Q^-(x; \beta_i^-) + V_i^-(x) && x \in [-X_{i-1}, 0] \\
 U_i^+(x) &= Q^+(x; \beta_i^+) + V_i^+(x) && x \in [0, X_i]
-\end{align*}
+\end{aligned}
+\end{equation}
 where $i = 0, \dots, n-1$ and the subscripts $i$ are taken $\mod n$ since we are on a perioidic domain. Essentially, we are writing $U$ in terms of $2n$ parameters $\beta_i^\pm$, representing initial conditions on the undtable and stable manifolds, and the $2n$ remainder functions $V_i^\pm(x)$. Since the initial conditions of $Q^\pm(x; \beta_i^\pm)$ in $\R Q'(0) \oplus Y^\pm$, we can choose $V_i^\pm(x)$ with initial conditions
 \begin{align*}
 V_i^-(0) &\in Z \oplus Y^- \\
@@ -259,13 +261,6 @@ where
 \begin{equation}\
 b = \prod_{j=0}^{n-1} b_j(r; m_j, \theta)
 \end{equation}
-
-\item $U(x)$ can be written piecewise as
-\begin{align}
-U_i^-(x) &= Q^-(x; \beta_i^-) + V_i^-(x) && x \in [X_{i-1}, 0] \\
-U_i^+(x) &= Q^+(x; \beta_i^+) + V_i^+(x) && x \in [0, X_i]
-\end{align}
-where the subscripts $i = 0, \dots, n-1$ are taken $\mod n$. The functions $Q^\pm(x; \beta_i^\pm)$ are solutions to \eqref{genODE} with initial conditions $\beta_i^\pm$ in the stable/unstable manifold, and the functions $V_i^\pm$ are small remainder terms. Bounds are given in Lemma [].
 \end{enumerate}
 \end{theorem}
 

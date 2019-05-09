@@ -9,7 +9,7 @@
 
 \section{Proof of Existence Theorems}
 
-\subsection{Proof of Lemmas}
+\subsection{Proof of Initial Lemmas}
 
 \newtheorem*{lemma:psiform}{Lemma \ref{I:psiform}}
 \begin{lemma:psiform}
@@ -30,54 +30,42 @@ thus $\nabla H(Q(x))$ is a solution to the adjoint variational equation \eqref{I
 \end{proof}
 \end{lemma:psiform}
 
-\subsection{Piecewise Formulation}
+\subsection{Exponential Dichotomy}
 
-Using Hypothesis 
-Next, 
+Let $\Phi_\pm(x, y; \beta^\pm)$ be the family of evolution operators for the ODEs
+\begin{align}\label{qpmODEs}
+(V^\pm)' &= D F(Q^\pm(x, \beta^\pm)(x)) V^\pm && x \in \R^\pm
+\end{align}
+In the next lemma, we decompose these evolution operators via exponential dichotomies on $\R^+$ and $\R^-$.
 
-Let $\Phi_\pm(x, y; \beta^\pm)$ be the family of evolution operators for the variational equations
-
-\begin{equation}
-(V^\pm)' = D_U F(Q^\pm(0, \beta^\pm)(x)) V^\pm
-\end{equation}
-
-where these are defined on the appropriate interval. We can decompose these evolution operators via an exponential dichotomy.
+% lemma : exp dichotomy
 
 \begin{lemma}\label{dichotomy1}
 There exist projections
-
 \begin{align*}
 &P_+^s(y; \beta^+) && y \geq 0 \\
 &P_+^u(y; \beta^+) = I - P_+^s(y; \beta^+) && y \geq 0 \\
 &P_-^u(y; \beta^-) && y \leq 0 \\
 &P_-^s(y; \beta^-) = I - P_-^u(y; \beta^-) && y \leq 0 \\
 \end{align*}
-
 such that the evolution operators $\Phi_\pm(x, y; \beta^\pm)$ can be decomposed as
-
 \begin{align*}
 \Phi^s_\pm(x, y; \beta^\pm) &= \Phi_\pm(x, y; \beta^\pm) P^s_\pm(y; \beta^\pm) \\
 \Phi^u_\pm(x, y; \beta^\pm) &= \Phi_\pm(x, y; \beta^\pm) P^u_\pm(y; \beta^\pm) 
 \end{align*}
-
 where we have the estimates
-
 \begin{align*}
 |\Phi^s_+(x, y, \beta^+)| &\leq C e^{-\alpha(x - y)} && 0 \leq y \leq x \\
 |\Phi^u_+(x, y, \beta^+)| &\leq C e^{-\alpha(y - x)} && 0 \leq x \leq y \\
 |\Phi^u_-(x, y, \beta^-)| &\leq C e^{-\alpha(y - x)} && 0 \geq y \geq x \\
 |\Phi^s_-(x, y, \beta^-)| &\leq C e^{-\alpha(x - y)} && 0 \geq x \geq y \\
 \end{align*}
-
-which also hold for derivatives with respect to the ICs $\beta^\pm$. In addition, the projections satisfy 
-
+which also hold for derivatives with respect to the initial conditions $\beta^\pm$. In addition, the projections satisfy the commuting relations
 \begin{align*}
 \Phi_\pm(x, y; \beta^\pm) P^{s/u}_\pm(y; \beta^\pm) 
 = P^{s/u}_\pm(x; \beta^\pm) \Phi_\pm(x, y; \beta^\pm)
 \end{align*}
-
-i.e. it does not matter if we project or evolve first. Finally, the projections can be chosen such that at $y = 0$ we have, independent of $\beta^+$ and $\beta^-$
-
+Finally, the projections can be chosen such that at $y = 0$ we have, independent of $\beta^+$ and $\beta^-$
 \begin{align*}
 \ker P^s_+(0; \beta^+) &= Z \oplus Y^- \\
 \ker P^u_-(0; \beta^-) &= Z \oplus Y^+ \\
@@ -86,137 +74,96 @@ i.e. it does not matter if we project or evolve first. Finally, the projections 
 \end{align*}
 
 \begin{proof}
-Since $D_U F(0)$ is hyperbolic by assumption, this follows from Lemma 5.1 in San97, which follows from Lemma 1.1 in San93.
+Since $DF(0)$ is hyperbolic by assumption, this follows from Lemma 5.1 in \cite{Sandstede1997}, which follows from Lemma 1.1 in \cite{Sandstede1993}.
 \end{proof}
 \end{lemma}
 
-The next lemma is a bound on the difference between the exponential dichotomy projections and the projections onto the stable and unstable eigenspaces.
+The next lemma provides a bound on the difference between the exponential dichotomy projections and the projections onto the stable and unstable eigenspaces of $DF(0)$.
 
 % lemma : bound on projection difference
-
+CHECK THIS LEMMA
 \begin{lemma}\label{p1}
-
 Let 
-
 \begin{equation}
 p_1(X; \beta^+, \beta^-) = \sup_{x \geq X} (|P^u_+(x; \beta^+) - P_0^u| + |P^s_-(-x; \beta^-) - P_0^s|)
 \end{equation}
-
-Then we have the $X$-dependent bound
-
+where $P_0^s$ and $P_0^u$ are the projections onto the stable and unstable eigenspaces of $DF(0)$. Then we have the bound
 \begin{equation}
 p_1(X; \beta^+, \beta^-) = \mathcal{O}(e^{-\alpha X})
 \end{equation} 
-
 \begin{proof}
 This follows from Lemma 1.1 in San93.
 \end{proof}
-
 \end{lemma}
 
-% rewrite piecewise
+\subsection{Fixed Point Formulation}
 
-Next, we rewrite the problem $U'(x) = F(U)$ in piecewise fashion in such a way as to exploit what we did above. We want to solve piecewise
-
+In this section, we formulate equation \eqref{I:exsystem1} as a fixed point problem. First, we plug in the piecewise ansatz \eqref{I:Upiecewise}into \eqref{I:genODE}. Thus, for $i = 0, \dots, n-1$, 
 \begin{align*}
-U_i^\pm(x)' &= (Q^\pm(0, \beta_i^\pm)(x)' + V_i^\pm(x)' = F\left(Q^\pm(0, \beta_i^\pm)(x) + V_i^\pm(x) \right) \\
+U_i^\pm(x)' &= (Q^\pm(x; \beta_i^\pm))' + V_i^\pm(x)' = F\left(Q^\pm(x; \beta_i^\pm) + V_i^\pm(x) \right) \\
 \end{align*}
-
-for $i = 0, \dots, n-1$. Using the fact that (by construction) $Q^\pm(0, \beta_i^\pm)(x)$ solves $U'(x) = F(U)$ on the appropriate interval, this becomes
-
+Since $Q^\pm(x; \beta_i^\pm)$ solves \eqref{I:genODE} on $\R^\pm$, 
 \begin{align*}
-F(Q^\pm(0, \beta_i^\pm)(x)) + V_i^\pm(x)' &= F(Q^\pm(0, \beta_i^\pm)(x) + V_i^\pm(x) )
+(V_i^\pm(x))' &= F\left(Q^\pm(x; \beta_i^\pm) + V_i^\pm(x) \right) - F(Q^\pm(x; \beta_i^\pm))
 \end{align*}
-
-Solving for $(V_i^\pm(x))'$, we have
-
-\begin{align*}
-V_i^\pm(x)' &= F(Q^\pm(0, \beta_i^\pm)(x) + V_i^\pm(x) ) - F(Q^\pm(0, \beta_i^\pm)(x) )
-\end{align*}
-
-We expand in a Taylor series about $F(Q^\pm(0, \beta_i^\pm)(x)$ to get the equivalent formulation
-
+Expanding the RHS in a Taylor series (using the version for Banach spaces) about $Q^\pm(x; \beta_i^\pm)$, we attain the ODE for $V_i^\pm$.
 \begin{equation}\label{Vpiecewise}
-(V_i^\pm(x))' = D_U F(Q^\pm(0, \beta_i^\pm)(x)) V_i^\pm(x)  + G_i^\pm(\beta_i^\pm, V_i^\pm)(x)
+(V_i^\pm(x))' = DF(Q^\pm(x; \beta_i^\pm)) V_i^\pm(x) + G_i^\pm(x; \beta_i^\pm, V_i^\pm)
 \end{equation}
-
 where 
-
 \begin{equation}\label{Gquadratic}
 G_i^\pm(\beta_i^\pm, V_i^\pm)(x) = \mathcal{O}(|V_i^\pm|^2)
 \end{equation}
+This estimate is independent of the parameters $\beta_i^\pm$ since we can get a uniform bound for $Q^\pm(0, \beta_i^\pm)$ for sufficiently small $\beta_i^\pm$. As in \cite{Sandstede1997}, derivatives of $G_i^\pm$ with respect to the parameters $\beta_i^\pm$ are the same order in $V_i^\pm$.
 
-independent of the parameters $\beta_i^\pm$. The fact that this is bound is independent of the $\beta_i^\pm$ follows from the fact that we have bounds on $Q^\pm(0, \beta_i^\pm)$ which are independent of $\beta_i^\pm$. Derivatives of $G_i^\pm$ with respect to the parameters $\beta_i^\pm$ are the same order in $V_i^\pm$ (CHECK THIS IN San97).\\
-
-At this point, we rewrite the (piecewise) differential equations \eqref{Vpiecewise} in integrated form as fixed point equations. Recall again that the subscripts are mod $n$, so that, for example, $X_0 = X_n$. Thus we have
-
-\begin{align*}
+We now rewrite the piecewise differential equations \eqref{Vpiecewise} in integrated form to attain the fixed point equations.
+\begin{equation}\label{FPequations}
+\begin{aligned}
 V_i^+(x) &= \Phi^u_+(x, X_i; \beta_i^+) a_i^+  \\
-&+ \int_{X_i}^x \Phi_+^u(x, y; \beta_i^+) G_i^+(y, V_i^+(y),\beta_i^+)dy \\
-&+ \int_0^x \Phi_+^s(x, y, \beta_i^+) G_i^+(y, V_i^+(y),\beta_i^+)dy \\ 
-V_i^-(x) &= \Phi^s_-(x, -X_{i-1}, \beta_i^-) a_{i-1}^-  \\
-&+ \int_{-X_{i-1}}^x \Phi_-^s(x, y, \beta_i^-) G_i^-(y, V_i^-(y),\beta_i^-)dy \\
-&+ \int_0^x \Phi_-^u(x, y, \beta_i^-) G_i^-(y, V_i^-(y),\beta_i^-)dy \\
-\end{align*}
+&+ \int_{X_i}^x \Phi_+^u(x, y; \beta_i^+) G_i^+(y; V_i^+(y),\beta_i^+)dy \\
+&+ \int_0^x \Phi_+^s(x, y; \beta_i^+) G_i^+(y; V_i^+(y),\beta_i^+)dy \\ 
+V_i^-(x) &= \Phi^s_-(x, -X_{i-1}; \beta_i^-) a_{i-1}^-  \\
+&+ \int_{-X_{i-1}}^x \Phi_-^s(x, y; \beta_i^-) G_i^-(y; V_i^-(y),\beta_i^-)dy \\
+&+ \int_0^x \Phi_-^u(x, y; \beta_i^-) G_i^-(y; V_i^-(y),\beta_i^-)dy \\
+\end{aligned}
+\end{equation}
+where for the initial conditions $a_i^\pm$ at $-X_{i-1}$ and $X_i^+$, we take $a_i^+ \in E_0^u$ and $a_i^- \in E_0^s$. We do not have initial conditions at $x = 0$ for the other side of the dichotomy since those initial conditions are incorporated into $\beta_i^\pm$.
 
-where for the initial conditions $a_i^\pm$ we have
-
-\begin{align*}
-a_i^+ &\in E_0^u \\
-a_i^- &\in E_0^s \\
-\end{align*}
-
-Note that we do not have initial conditions $b_i^\pm$ at $x = 0$ for the other side of the dichotomy. Since these ICs would live in $Y^\pm$, we have incorporated them into the $\beta_i^\pm$.\\
-
-Next, we define the exponentially weighted norms
-
+Finally, define the exponentially weighted norms
 \begin{align*}
 ||V||_{X, +} = \sup_{x \in [0, X]} e^{\alpha(X - x)}|V(x)| \\
 ||V||_{X, -} = \sup_{x \in [-X, 0]} e^{\alpha(X + x)}|V(x)| \\
 \end{align*}
+Let $K_{X, \pm}$ be the spaces of continuous functions on $[0, X]$ and $[-X, 0]$ equipped with these norms. These are known to be Banach spaces. Let $B_{X, \pm}(\rho)$ be the ball of radius $\rho$ about $0$ in these spaces.
 
-Let $K_{X, +}$ be the spaces of continuous functions on the appropriate intervals equipped with these norms. These are known to be Banach spaces. Let $B_{X, \pm}(\rho)$ be the ball of radius $\rho$ about $0$ in these spaces.\\
+\subsection{Inversion}
 
-\subsubsection{Inversion}
-
-We will solve for the $V_i^\pm$ and the $\beta_i^\pm$ in a series of lemmas.\\
-
-First, we solve for the functions $V_i^\pm(x)$ in terms of the initial conditions $a_i^\pm$. Note that $V_i^+(x)$ only depends on $a_i^+$ and $V_i^-(x)$ only depends on $a_{i-1}^-$
+We will solve for the functions $V_i^\pm$ and initial conditions $\beta_i^\pm$ in a series of lemmas. First, we will solve for the functions $V_i^\pm(x)$ in terms of the initial conditions $a_i^\pm$. Note that $V_i^+(x)$ only depends on $a_i^+$ and $V_i^-(x)$ only depends on $a_{i-1}^-$.
 
 % lemma : solve for V_i^\pm
 
 \begin{lemma}\label{solveforV}
-There exist $\delta, \rho > 0$ such that for $|X_i| > 1/\delta$ and $|\beta_i^\pm| < \delta$, there exist unique solutions
-
+There exist $\delta, \rho > 0$ such that for $|X_i|, |X_{i-1}| > 1/\delta$ and $|a_{i-1}^-|, |a_i^+|, |\beta_i^\pm| < \delta$, there exist unique solutions
 \begin{align*}
-V_i^-(a_{i-1}, \beta_i^-) &\in B_{X_{i-1}, -}(\rho) \\
-V_i^+(a_i, \beta_i^+) &\in B_{X_i, +}(\rho) \\
+V_i^-(a_{i-1}^-, \beta_i^-) &\in B_{X_{i-1}, -}(\rho) \\
+V_i^+(a_i^+, \beta_i^+) &\in B_{X_i, +}(\rho) \\
 \end{align*}
-
-These depend smoothly on the $\beta_i^\pm$, and we have the estimates
-
+$V_i^-(a_{i-1}, \beta_i^-)$ depends smoothly on $(a_{i-1}^-, \beta_i^-)$, and $V_i^+(a_i, \beta_i^+)$ depends smoothly on $(a_i^+, \beta_i^+)$. Finally, we have the estimates
 \begin{align*}
 ||V_i^-||_{X_{i-1}, -} &\leq C |a_{i-1}^-| \\
 ||V_i^+||_{X_i, +} &\leq C |a_i^+|
 \end{align*}
-
-The estimates hold as well for derivatives of $V_i^\pm$ with respect to $\beta_i^\pm$.
-
+for a constant $C$ depending only on $\delta$. Finally, the estimates hold as well for derivatives of $V_i^\pm$ with respect to $\beta_i^\pm$.
 \begin{proof}
-This should just be Lemma 5.2 in San97. The following is a mostly filled-in version of that proof.\\
+The proof follows that of Lemma 5.2 in \cite{Sandstede1997}. Since we can deal with each of the $2n$ pieces separately, we will do only the pieces on $\R^+$ here; the pieces on $\R^-$ are similar.
 
-We can deal with the $2n$ pieces separately, so let's do the ``positive'' pieces here. The RHS of the fixed point equations defines a smooth mapping on $K_{X_i, +}$ (basically obvious since everything involved is smooth, although we could check this). We need to verify that the RHS maps to $K_{X_i, +}$, so we check the three terms individually. We use our estimates on $\Phi^{s/u}_\pm$ from Lemma \ref{dichotomy1} and $G$ from \eqref{Gquadratic} and the fact that $V_i^+ \in K_{X_i, +}$.\\
-
-For the first term, we have
-
+The RHS of the fixed point equation \eqref{FPequations} on $\R^+$ defines a smooth mapping on $K_{X_i, +}$. We need to verify that the RHS maps $K_{X_i, +} \mapsto K_{X_i, +}$. To do this, we obtains bounds on three terms on the RHS individually using the estimates on $\Phi^{s/u}_\pm$ from Lemma \ref{dichotomy1}. For the first term on the RHS,
 \begin{align*}
 e^{\alpha(X_i - x)} | \Phi^u_+(x, X_i; \beta_i^+) a_i^+ | 
 &\leq C e^{\alpha(X_i - x)} e^{-\alpha(X_i - x)} |a_i^+| \\
 &\leq C |a_i^+|
 \end{align*}
-
-For the second term,
-
+For the second term, we also use the estimate on $G$ from \eqref{Gquadratic}, and the fact that $V_i^+ \in K_{X_i, +}$. 
 \begin{align*}
 e^{\alpha(X_i - x)} &\left| \int_{X_i}^x \Phi_+^u(x, y; \beta_i^+) G_i^+(y, V_i^+(y),\beta_i^+)dy  \right| \\
 &\leq C e^{\alpha(X_i - x)} \int_x^{X_i} e^{-\alpha(y - x)}|V_i^+(y)|^2 dy \\
@@ -227,26 +174,21 @@ e^{-\alpha(y - x)}(e^{-\alpha(X_i - y)})^2 dy \\
 &\leq C \int_0^{X_i} e^{-\alpha (X_i - y)} dy \\
 &\leq C
 \end{align*}
+The third term is similar. Thus the RHS of the fixed point equation \eqref{FPequations} on $\R^+$ is a smooth map $K_{X_i, +} \mapsto K_{X_i, +}$. 
 
-The third term is similar. Thus the RHS of the fixed point equations does indeed map $K_{X_i, +}$ to itself.\\
-
-Now that we know what spaces things live in, define 
-$H: K_{X_i, +} \times E_0^s \rightarrow K_{X_i, +}$ by
-
+Define $H: K_{X_i, +} \times E_0^s \rightarrow K_{X_i, +}$ by
 \begin{align*}
 H(V_i^+(x), a_i^+, \beta_i^+) &= V_i^+(x) - \Phi^u_+(x, X_i; \beta_i^+) a_i^+  \\
 &- \int_{X_i}^x \Phi_+^u(x, y; \beta_i^+) G_i^+(y, V_i^+(y),\beta_i^+)dy \\
 &- \int_0^x \Phi_+^s(x, y; \beta_i^+) G_i^+(y, V_i^+(y),\beta_i^+)dy 
 \end{align*}
+which is just the RHS of the fixed point equation \eqref{FPequations} on $\R^+$. Since $Q(x)$ satisfies \eqref{I:genODE}, $H(0, 0, 0) = 0$. Since $G$ is quadratic in $V_i^+(x)$, the Fr\'echet derivative of $H$ with respect to $V_i^+(x)$ at $(V_i^+(x), a_i^+, \beta_i^+) = (0, 0, 0)$ is the identity, thus is a Banach space isomorphism on $K_{X_i, +}$. Using the implicit function theorem, we can solve for $V_i^+(x)$ in terms of $(a_i^+, \beta_i^+)$ for sufficiently small $|a_i^+|, |\beta_i^+|$. Since the map $H$ is smooth, this dependence is smooth.
 
-Since $Q(x)$ satisfies the original ODE, we know that $H(0, 0, 0) = 0$. We can check that the Frechet derivative of $H$ with respect to $V_i^+$ at $(V_i^+(x), a_i^+, \beta_i^+) = (0, 0, 0)$ is a Banach space isomorphism on $K_{X_i, +}$. Then using the implicit function theorem, we can solve for $V_i^+(x)$ in terms of $(a_i^+, \beta_i^+)$. This dependence is smooth, since the map $H$ is smooth. $V_i^-(x)$ is similar. \\
-
-The estimate on $V_i^\pm$ comes from the estimate of the first term on the RHS of the fixed point equations, since the other terms (those involving the integrals) are quadratic in $V_i^\pm$. 
-
+The estimate on $V_i^\pm$ comes from the estimate of the first term on the RHS of the fixed point equations, since the other terms (those involving the integrals) are quadratic in $V_i^\pm(x)$. Since the estimate \eqref{Gquadratic} on $G$ is independent of $\beta_i^\pm$, the estimate on $V_i^\pm$ is also independent of $\beta_i^\pm$. Since the exponential dichotomy estimates from Lemma \ref{dichotomy1} hold for derivatives with respect $\beta_i^\pm$, these estimates also hold for derivatives with respect $\beta_i^\pm$.
 \end{proof}
 \end{lemma}
 
-Next, we look at the conditions $U_i^+(X_i) - U_{i+1}^-(-X_i) = 0$.
+Using the previous lemma, we have solved equation \eqref{I:exsystem1} in our system. Next, we will solve for the initial conditions $a_i^\pm$ by solving equation \eqref{I:exsystem2}, i.e. $U_i^+(X_i) - U_{i+1}^-(-X_i) = 0$.
 
 % Lemma : solve for a_i^\pm
 
@@ -1708,5 +1650,8 @@ for all $r \in \mathcal{R}$ with $r < \tilde{r}_1$, $b_{n-1} \in \mathcal{B}$, a
 \end{proof}
 \end{theorem}
 
+% remove this if part of main document
+\bibliographystyle{amsalpha}
+\bibliography{thesis.bib}
 
 \end{document}
