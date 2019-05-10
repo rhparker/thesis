@@ -74,23 +74,23 @@ Finally, the projections can be chosen such that at $y = 0$ we have, independent
 \end{align*}
 
 \begin{proof}
-Since $DF(0)$ is hyperbolic by assumption, this follows from Lemma 5.1 in \cite{Sandstede1997}, which follows from Lemma 1.1 in \cite{Sandstede1993}.
+Since $DF(0)$ is hyperbolic by Hypothesis \ref{I:hypeqhyp}, this follows from Lemma 5.1 in \cite{Sandstede1997}, which follows from Lemma 1.1 in \cite{Sandstede1993}.
 \end{proof}
 \end{lemma}
 
 The next lemma provides a bound on the difference between the exponential dichotomy projections and the projections onto the stable and unstable eigenspaces of $DF(0)$.
 
 % lemma : bound on projection difference
-CHECK THIS LEMMA
-\begin{lemma}\label{p1}
-Let 
-\begin{equation}
-p_1(X; \beta^+, \beta^-) = \sup_{x \geq X} (|P^u_+(x; \beta^+) - P_0^u| + |P^s_-(-x; \beta^-) - P_0^s|)
+
+\begin{lemma}\label{projdifflemma}
+We have the following estimates
+\begin{equation}\label{projdiffest}
+\begin{aligned}
+\sup_{x \geq X} |P^u_+(x; \beta^+) - P_0^u| &\leq C e^{-\alpha X} \\
+\sup_{x \geq X} |P^s_-(-x; \beta^-) - P_0^s| &\leq C e^{-\alpha X} 
+\end{aligned}
 \end{equation}
-where $P_0^s$ and $P_0^u$ are the projections onto the stable and unstable eigenspaces of $DF(0)$. Then we have the bound
-\begin{equation}
-p_1(X; \beta^+, \beta^-) = \mathcal{O}(e^{-\alpha X})
-\end{equation} 
+where $P_0^s$ and $P_0^u$ are the projections onto the stable and unstable eigenspaces $E_0^s$ and $E_0^u$ of $DF(0)$. The estimates are independent of $\beta_i^\pm$.
 \begin{proof}
 This follows from Lemma 1.1 in San93.
 \end{proof}
@@ -148,12 +148,14 @@ There exist $\delta, \rho > 0$ such that for $|X_i|, |X_{i-1}| > 1/\delta$ and $
 V_i^-(a_{i-1}^-, \beta_i^-) &\in B_{X_{i-1}, -}(\rho) \\
 V_i^+(a_i^+, \beta_i^+) &\in B_{X_i, +}(\rho) \\
 \end{align*}
-$V_i^-(a_{i-1}, \beta_i^-)$ depends smoothly on $(a_{i-1}^-, \beta_i^-)$, and $V_i^+(a_i, \beta_i^+)$ depends smoothly on $(a_i^+, \beta_i^+)$. Finally, we have the estimates
-\begin{align*}
+to the fixed point equations \eqref{FPequations}. $V_i^-(a_{i-1}, \beta_i^-)$ depends smoothly on $(a_{i-1}^-, \beta_i^-)$, and $V_i^+(a_i, \beta_i^+)$ depends smoothly on $(a_i^+, \beta_i^+)$. Finally, we have the estimates
+\begin{equation}\label{Vest}
+\begin{aligned}
 ||V_i^-||_{X_{i-1}, -} &\leq C |a_{i-1}^-| \\
 ||V_i^+||_{X_i, +} &\leq C |a_i^+|
-\end{align*}
-for a constant $C$ depending only on $\delta$. Finally, the estimates hold as well for derivatives of $V_i^\pm$ with respect to $\beta_i^\pm$.
+\end{aligned}
+\end{equation}
+where the constant $C$ depends only on $\delta$. These estimates hold as well for derivatives of $V_i^\pm$ with respect to $\beta_i^\pm$.
 \begin{proof}
 The proof follows that of Lemma 5.2 in \cite{Sandstede1997}. Since we can deal with each of the $2n$ pieces separately, we will do only the pieces on $\R^+$ here; the pieces on $\R^-$ are similar.
 
@@ -193,128 +195,101 @@ Using the previous lemma, we have solved equation \eqref{I:exsystem1} in our sys
 % Lemma : solve for a_i^\pm
 
 \begin{lemma}\label{solvefora}
-For any $X_i$ and $\beta_i^\pm$ chosen as in the previous lemma, there is a unique pair of initial conditions $(a_i^+, a_i^-) \in E_0^s \times E_0^u$ such that $U_i^+(X_i) - U_{i+1}^-(-X_i) = 0$. $(a_i^+, a_i^-)$ depends smoothly on $(\beta_i^+, \beta_{i+1}^-)$, and we have the following estimate, which is independent of $(\beta_i^+, \beta_{i+1}^-)$.
-
-\begin{equation}
+For any $X_i$ and $\beta_i^\pm$ chosen as in Lemma \ref{solveforV}, there is a unique pair of initial conditions $(a_i^+, a_i^-) \in E_0^s \times E_0^u$ such that $U_i^+(X_i) - U_{i+1}^-(-X_i) = 0$. $(a_i^+, a_i^-)$ depends smoothly on $(\beta_i^+, \beta_{i+1}^-)$, and we have the following estimate, which is independent of $(\beta_i^+, \beta_{i+1}^-)$.
+\begin{equation}\label{aest}
 |a_i^\pm| \leq C e^{-\alpha X_i}
 \end{equation}
-
-which holds for $a_i^\pm$ as well as derivatives with respect to $\beta_i^\pm$.\\
-
-We also have the following expressions for the $a_i^\pm$
-
-\begin{align*}
-a_i^+ &= P^s_0 \left( Q^+(0, \beta_i^+)(X_i) - Q^-(0, \beta_{i+1}^-)(-X_i) \right) 
-+ \mathcal{O}( e^{-2 \alpha X_i} )\\
-a_i^- &= P^u_0 \left( Q^+(0, \beta_i^+)(X_i) - Q^-(0, \beta_{i+1}^-)(-X_i) \right) 
-+ \mathcal{O}( e^{-2 \alpha X_i} )
-\end{align*}
+This holds as well for derivatives with respect to $\beta_i^\pm$. We also have the following expressions for $a_i^\pm$.
+\begin{equation}\label{aiformula}
+\begin{aligned}
+a_i^+ &= -P^u_0 \left( Q^+(X_i; \beta_i^+) - Q^-(-X_i; \beta_{i+1}^-) \right) + \mathcal{O}( e^{-2 \alpha X_i} ) \\
+a_i^- &= P^s_0 \left( Q^+(X_i; \beta_i^+) - Q^-(-X_i; \beta_{i+1}^-) \right) + \mathcal{O}\left( e^{-2 \alpha X_i} \right)
+\end{aligned}
+\end{equation}
 
 \begin{proof}
-
-First, plug in the fixed point equations to the expressions for $U_i^+$ and $U_{i+1}^-$ and evaluate them at $\pm X_i$ to get
+First, we plug in the fixed point equations \eqref{FPequations} to the expressions \eqref{I:Upiecewise} for $U_i^+$ and $U_{i+1}^-$ and evaluate them at $\pm X_i$ to get
 \begin{align*}
-U_i^+(X_i) &= Q^+(0, \beta_i^+)(X_i) + P^u_+(X_i; \beta_i^+) a_i^+ \\
+U_i^+(X_i) &= Q^+(X_i; \beta_i^+) + P^u_+(X_i; \beta_i^+) a_i^+ \\
 &+ \int_0^{X_i} \Phi_+^s(X_i, y; \beta_i^+) G_i^+(y, V_i^+(y),\beta_i^+)dy \\ 
-U_{i+1}^-(-X_i) &= Q^-(0, \beta_{i+1}^-)(-X_i) + P^s_-(-X_i; \beta_{i+1}^-) a_i^- \\
+U_{i+1}^-(-X_i) &= Q^-(-X_i; \beta_{i+1}^-) + P^s_-(-X_i; \beta_{i+1}^-) a_i^- \\
 &+ \int_0^{-X_i} \Phi_-^u(-X_i, y; \beta_{i+1}^-) G_{i+1}^-(y, V_{i+1}^-(y),\beta_{i+1}^-)dy \\
 \end{align*}
-
-Adding and subtracting $P_0^{s/u}$ and recalling where the $a_i^\pm$ live, this becomes
-
+Adding and subtracting the projections $P_0^s$ and $P_0^u$ and recalling that $a_i^+ \in \in E_0^u$ and $a_i^- \in E_0^s$, this becomes
 \begin{align*}
-U_i^+(X_i) &= Q^+(0, \beta_i^+)(X_i) + a_i^+ + (P^u_+(X_i; \beta_i^+) -  P^u_0)a_i^+ \\
+U_i^+(X_i) &= Q^+(X_i; \beta_i^+) + a_i^+ + (P^u_+(X_i; \beta_i^+) -  P^u_0)a_i^+ \\
 &+ \int_0^{X_i} \Phi_+^s(X_i, y; \beta_i^+) G_i^+(y, V_i^+(y),\beta_i^+)dy \\ 
-U_{i+1}^-(-X_i) &= Q^-(0, \beta_{i+1}^-)(-X_i) + a_i^- + (P^s_-(-X_i; \beta_{i+1}^-) - P^s_0) a_i^- \\ 
-&+ \int_0^{-X_i} \Phi_-^u(-X_i, y; \beta_{i+1}^-) G_{i+1}^-(y, V_{i+1}^-(y),\beta_{i+1}^-)dy \\
+U_{i+1}^-(-X_i) &= Q^-(-X_i; \beta_{i+1}^-) + a_i^- + (P^s_-(-X_i; \beta_{i+1}^-) - P^s_0) a_i^- \\ 
+&+ \int_0^{-X_i} \Phi_-^u(-X_i, y; \beta_{i+1}^-) G_{i+1}^-(y, V_{i+1}^-(y),\beta_{i+1}^-)dy
 \end{align*}
-
-Subtracting these, we obtain the equation we need to solve
-
+Subtract these to get $H: E_0^s \times E_0^u \times \R \times \R \rightarrow \R^{2m}$, defined by
 \begin{align*}
-0 &= H(a_i^+, a_i^-, \beta_i^+, \beta_{i+1}^-) \\
-&= a_i^+ - a_i^- + (P^u_+(X_i; \beta_i^+) -  P^u_0)a_i^+ - (P^s_-(-X_i; \beta_{i+1}^-) - P^s_0) a_i^-  \\
-&+ Q^+(0, \beta_i^+)(X_i) - Q^-(0, \beta_{i+1}^-)(-X_i)\\
+H(a_i^+, &a_i^-, \beta_i^+, \beta_{i+1}^-) 
+= a_i^+ - a_i^- + (P^u_+(X_i; \beta_i^+) -  P^u_0)a_i^+ - (P^s_-(-X_i; \beta_{i+1}^-) - P^s_0) a_i^-  \\
+&+ Q^+(X_i; \beta_i^+) - Q^-(-X_i; \beta_{i+1}^-)\\
 &+ \int_0^{X_i} \Phi_+^s(X_i, y; \beta_i^+) G_i^+(y, V_i^+(y),\beta_i^+)dy
 - \int_0^{-X_i} \Phi_-^u(-X_i, y; \beta_{i+1}^-) G_{i+1}^-(y, V_{i+1}^-(y),\beta_{i+1}^-)dy 
 \end{align*}
-
-where $H: E_0^s \times E_0^u \times \R \times \R \rightarrow \R^{2m}$. In the previous lemma, we solved for $V_i^\pm$ in terms of the $a_i^\pm$ and $\beta_i^\pm$, so we plug that in to get
-
+We need to solve $H(a_i^+, a_i^-, \beta_i^+, \beta_{i+1}^-) = 0$ for $a_i^\pm$. Plugging in the solution for $V_i^\pm(x)$ from Lemma \ref{solveforV}, this becomes
 \begin{align*}
 H(a_i^+, &a_i^-, \beta_i^+, \beta_{i+1}^-) \\
 &= a_i^+ - a_i^- + (P^u_+(X_i; \beta_i^+) -  P^u_0)a_i^+ - (P^s_-(-X_i; \beta_{i+1}^-) - P^s_0) a_i^-  \\
-&+ Q^+(0, \beta_i^+)(X_i) - Q^-(0, \beta_{i+1}^-)(-X_i)\\
+&+ Q^+(X_i; \beta_i^+) - Q^-(-X_i; \beta_{i+1}^-) \\
 &+ \int_0^{X_i} \Phi_+^s(X_i, y; \beta_i^+) G_i^+(y, V_i^+(a_i^+, \beta_i^+)(y),\beta_i^+)dy \\
 &- \int_0^{-X_i} \Phi_-^u(-X_i, y; \beta_{i+1}^-) G_{i+1}^-(y, V_{i+1}^-(a_i^-, \beta_{i+1}^-)(y),\beta_{i+1}^-)dy 
 \end{align*}
 
-Again, note that $H(0, 0, 0, 0) = 0$. We want to solve for $a_i^\pm$ using the implicit function theorem, so we need to look at $D_{a_i^\pm} H(0, 0, 0, 0)$.\\
-
-When we differentiate with respect to $a_i^\pm$ at $a_i^\pm = 0$, we note that the the derivatives of the integral terms in $H$ will be 0 since $G_i^\pm$ is quadratic order in $V_i^\pm$, thus quadratic order in $a_i^\pm$ by the previous lemma. The $Q^\pm$ terms do not involve $a_i^\pm$.\\
-
-Thus, taking the partial derivative with respect to $a_i^\pm = 0$, we get
-
+Again, since $Q(x)$ satisfies \eqref{I:genODE}, $H(0, 0, 0, 0) = 0$. To  solve for $a_i^\pm$ using the implicit function theorem, we need to evaluate $D_{a_i^\pm} H(0, 0, 0, 0)$. When we take the partial derivatives with respect to $a_i^\pm$ at $a_i^\pm = 0$, the derivatives of the integral terms will be 0 since $G_i^\pm$ is quadratic order in $V_i^\pm$, thus quadratic order in $a_i^\pm$ by Lemma \ref{solveforV}. The $Q^\pm$ terms do not involve $a_i^\pm$. Using the estimate \eqref{projdiffest} from Lemma \ref{projdifflemma}, we have 
 \[
 \frac{\partial}{\partial a_i^\pm} H(0, 0, 0, 0) = \pm 1 + \mathcal{O} (e^{-\alpha X_i})
 \]
+For sufficiently large $X_i$, $D_{a_i^\pm} H(0, 0, 0, 0)$ is invertible in a neighborhood of $(0, 0, 0, 0)$. Thus we can use the IFT to solve for $a_i^\pm$ in terms of $\beta_i^\pm$. 
 
-Thus, for sufficiently large $X_i$, $D_{a_i^\pm} H(0, 0, 0, 0)$ is invertible in a neighborhood of $(0, 0, 0, 0)$, so we can use the IFT to solve for $a_i^\pm$ in terms of $\beta_i^\pm$. \\
-
-Now that we have found $a_i^\pm$ which satisfies the $H(a_i^+, a_i^-, \beta_i^+, \beta_{i+1}^-) = 0$, we can get an expression and estimates for the $a_i^\pm$. Recalling the spaces $a_i^\pm$ live in, we apply the projection $P^s_0$ to get
-
+To obtain an expression and estimates for the $a_i^\pm$, we apply the projections $P^u_0$ and $P^s_0$ in turn to $H(a_i^+, a_i^-, \beta_i^+, \beta_{i+1}^-) = 0$. Using $P^u_0$, we have
+\begin{equation}\label{Ps0aiplus}
+\begin{aligned}
+0 &= a_i^+ + P^u_0(P^u_+(X_i; \beta_i^+) -  P^u_0)a_i^+ 
++ P^u_0 \left( Q^+(X_i; \beta_i^+) - Q^-(-X_i; \beta_{i+1}^-) \right)\\
+&+ P^u_0 \left( \int_0^{X_i} \Phi_+^s(X_i, y; \beta_i^+) G_i^+(y, V_i^+(a_i^+, \beta_i^+)(y),\beta_i^+)dy \right) \\
+&- P^u_0 \left( \int_0^{-X_i} \Phi_-^u(-X_i, y; \beta_{i+1}^-) G_{i+1}^-(y, V_{i+1}^-(a_i^-, \beta_{i+1}^-)(y),\beta_{i+1}^-) dy \right)
+\end{aligned}
+\end{equation}
+We can get estimates for all of these terms. For the first term, we use the estimate \eqref{projdiffest} from Lemma \ref{projdifflemma} to get 
 \begin{align*}
-0 &= a_i^+ + P^s_0(P^u_+(X_i; \beta_i^+) -  P^u_0)a_i^+ 
-+ P^s_0 \left( Q^+(0, \beta_i^+)(X_i) - Q^-(0, \beta_{i+1}^-)(-X_i) \right)\\
-&+ P^s_0 \left( \int_0^{X_i} \Phi_+^s(X_i, y; \beta_i^+) G_i^+(y, V_i^+(a_i^+, \beta_i^+)(y),\beta_i^+)dy \right) \\
-&- P^s_0 \left( \int_0^{-X_i} \Phi_-^u(-X_i, y; \beta_{i+1}^-) G_{i+1}^-(y, V_{i+1}^-(a_i^-, \beta_{i+1}^-)(y),\beta_{i+1}^-) dy \right)
+|P^u_0(P^u_+(X_i; \beta_i^+) -  P^u_0)a_i^+ | &\leq C e^{-\alpha X_i} |a_i^+|
 \end{align*}
-
-We have estimates for all of these terms. For the first two terms, we have
-
+For the second term, we use the decay rates of $Q^\pm$ to get
 \begin{align*}
-|P^s_0(P^u_+(X_i; \beta_i^+) -  P^u_0)a_i^+ | &\leq C e^{-\alpha X_i} |a_i^+| \\
-|P^s_0 \left( Q^+(0, \beta_i^+)(X_i) - Q^-(0, \beta_{i+1}^-)(-X_i) \right)| &\leq C e^{-\alpha X_i}
+|P^u_0 \left( Q^+(X_i; \beta_i^+) - Q^-(-X_i; \beta_{i+1}^-)  \right)| &\leq C e^{-\alpha X_i}
 \end{align*}
-
-using Lemma \ref{p1}. For the integral terms, we have
-
+For the integral terms, we use Lemma \ref{solveforV} to get
 \begin{align*}
 \left| \int_0^{X_i} \Phi_+^s(X_i, y; \beta_i^+) G_i^+(y, V_i^+(a_i^+, \beta_i^+)(y),\beta_i^+)dy \right| &\leq C \int_0^{X_i}e^{-\alpha(X_i - y)} |V_i^+(y)|^2 dy \\
 &\leq C \int_0^{X_i}e^{-3 \alpha (X_i - y)} |e^{\alpha(X_i - y)} V_i^+(y)|^2 dy \\
 &\leq C \int_0^{X_i}e^{-3 \alpha (X_i - y)} (||V_i^+||_{X_i, +})^2 dy \\
 &\leq C |a_i^+|^2
 \end{align*}
-
-The other integral term is similar. In a hand-wavey fashion, we have something which looks like
-
-\[
-|a_i^+|(1 + \mathcal{O}(e^{-\alpha X_i}) + \mathcal{O}(|a_i^+|)) = 
+The other integral term is similar. Substituting these estimates into \eqref{Ps0aiplus}, we get
+\begin{align*}
+|a_i^+|\left(1 + \mathcal{O}(e^{-\alpha X_i} + |a_i^+|) \right) =  
 \mathcal{O}( e^{-\alpha X_i} )
+\end{align*}
+Thus for sufficiently large $X_i$, 
+\[
+|a_i^+| \leq C e^{-\alpha X_i}
 \]
-
-which should give us the estimate we want
-
+Using this bound together with the bounds we already have, equation \eqref{Ps0aiplus} becomes
 \begin{align*}
-|a_i^\pm| \leq C e^{-\alpha X_i}
+a_i^+ &= -P^u_0 \left( Q^+(X_i; \beta_i^+) - Q^-(-X_i; \beta_{i+1}^-) \right) 
++ \mathcal{O}\left( e^{-\alpha X_i} |a_i^+| + |a_i^+|^2 \right) \\
+&= -P^u_0 \left( Q^+(X_i; \beta_i^+) - Q^-(-X_i; \beta_{i+1}^-) \right) 
++ \mathcal{O}\left( e^{-2 \alpha X_i} \right)
 \end{align*}
-
-To get an actual expression for $a_i^\pm$, we plug in all our estimates to get
-
-\begin{align*}
-a_i^+ = P^s_0 \left( Q^+(0, \beta_i^+)(X_i) - Q^-(0, \beta_{i+1}^-)(-X_i) \right) 
-+ \mathcal{O}( e^{-2 \alpha X_i} )
-\end{align*}
-
-Similarly, we have
-
-\begin{align*}
-a_i^- = P^u_0 \left( Q^+(0, \beta_i^+)(X_i) - Q^-(0, \beta_{i+1}^-)(-X_i) \right) 
-+ \mathcal{O}( e^{-2 \alpha X_i} )
-\end{align*}
-
+We obtain the estimate and expression for $a_i^-$ in a similar way by using the projection $P_0^s$.
 \end{proof}
 \end{lemma}
+
+STOPPED HERE
 
 Finally, we need the pieces to match at $x = 0$. In other words, we need to find $\beta_i^\pm$ such that $U_i^+(0) = U_i^-(0)$, i.e. 
 
