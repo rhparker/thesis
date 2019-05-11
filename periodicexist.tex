@@ -474,7 +474,7 @@ V_i^-(-X_i) &= Q^+(X_i; \beta_i^+) + \mathcal{O}(e^{-2 \alpha X_i})
 \end{equation}
 \end{enumerate}
 \begin{proof}
-For the estimates \eqref{Qpmbounds}, we note that at $x = 0$, $Q^+(0; \beta_i^+ - Q(0) = \beta_i^+ - Q(0)$, which is in $W^s(0)$ by our change of coordinates. The bound follows from the estimate \eqref{betaest} in Lemma \ref{solveforbeta} together with the exponential decay rate on the stable manifold. The estimate for $Q^-(0; \beta_i^- - Q(0)$ is similar.
+Since both $Q^-(0; \beta_i^-)$ and $Q(0)$ are in $W^u(0)$, the first estimate in \eqref{Qpmbounds} follows from smooth dependence on initial conditions, the estimate \eqref{betaest} in Lemma \ref{solveforbeta},  and the decay rate on the unstable manifold as $x \rightarrow -\infty$. The estimate for $|Q^+(x; \beta_i^+ - Q(x)|$ is similar.
 
 The estimates \eqref{Vpmbounds} follow from the estimates \eqref{Vest} and \eqref{aest} from Lemmas \ref{solveforV} and \ref{solvefora}, together with the definitions of the exponentially weighted norms \eqref{expwtnorm}.
 
@@ -523,53 +523,36 @@ Similarly,
 \begin{equation*}
 V_i^-(-X_i) = Q^+(X_i; \beta_i^+) + \mathcal{O}(e^{-2 \alpha X_i})
 \end{equation*}
-
 \end{proof}
 \end{lemma}
 
 \subsection{Jump in Direction of Adjoint}
 
-Finally, we need to look at the projection on the adjoint solution $\Psi(0)$. To do this, we will show that this condition is satisfied for certain values of the lengths $X_i$. This makes sense based on what we know about the nonperiodic case.\\
+Finally, we will look at equation \eqref{PZmatch}, which are the jump conditions in the direction of the adjoint solution $\Psi(0)$. 
+\[
+P_Z(V_i^+(0) - V_i^-(0)) = 0
+\]
+We will show that, as in \cite{Sandstede1998} and \cite{SandstedeStrut}, this condition is only satisfied for certain values of the lengths $X_i$. Since $Z = \R \Psi(0)$, we can write \eqref{PZmatch} as
+\begin{align}\label{PZmatch2}
+\langle \Psi(0), V_i^+(0) - V_i^-(0) \rangle &= 0 && i = 0, \dots, n-1
+\end{align}
 
-Recall that from our change of coordinates we have
-\begin{align*}
-P_{Z}(Q^+(0, \beta_i^+) - Q^-(0, \beta_i^-)) &= 0
-\end{align*}
-
-Thus the equation we want to solve is
-
-\begin{equation}
-P_{Z^\pm}(V_i^+(0) - V_i^-(0)) = 0
-\end{equation}
-
-which we can write as
-
-\begin{equation}
-\langle \Psi(0), V_i^+(0) - V_i^-(0) \rangle = 0
-\end{equation}
-
-First, we come up with a nice expression for $\langle \Psi(0), V_i^+(0) - V_i^-(0) \rangle$. This agrees with (3.9) on p.2093 of SanStrut, which is good.
+In the next lemma, we derive an expression for these jump conditions. We note that this result agrees with (3.9) in \cite{SandstedeStrut}.
 
 % first lemma for jump
 
 \begin{lemma}\label{jumplemma1}
-
-\begin{align*}
+The jump conditions are given by
+\begin{align}\label{jumpcond1}
 \langle \Psi(0), V_i^+(0) - V_i^-(0) \rangle = 
 \langle \Psi(X_i), Q(-X_i) \rangle - \langle \Psi(-X_{i-1}), Q(X_{i-1}) \rangle + R_i
-\end{align*}
-
-where 
-
-\begin{align*}
-|R_i| \leq C ( e^{-3 \alpha X_i} +  e^{-3 \alpha X_{i-1}}
-+ e^{-2 \alpha (X_i + X_{i+1})} + e^{-2 \alpha (X_{i-1} + X_i)})
-\end{align*}
-
+\end{align}
+for $i = 0, \dots, n-1$, where the remainder term has bound
+\begin{align}\label{Rbound}
+|R_i| \leq C ( e^{-3 \alpha X_i} +  e^{-3 \alpha X_{i-1}})
+\end{align}
 \begin{proof}
-
-Substituting the fixed point equations evaluated at $x = 0$, we have
-
+Evaluating the fixed point equations \eqref{FPequations} at $x = 0$ and substituting them into \eqref{PZmatch2},
 \begin{align*}
 \langle \Psi(0), V_i^+(0) - V_i^-(0) \rangle &= \langle \Psi(0), \Phi^u_+(0, X_i; \beta_i^+) a_i^+ \rangle
 - \langle \Psi(0), \Phi^s_-(0, -X_{i-1}, \beta_i^-) a_{i-1}^- \rangle \\
@@ -577,88 +560,46 @@ Substituting the fixed point equations evaluated at $x = 0$, we have
 &- \int_{-X_{i-1}}^0 \langle \Psi(0), \Phi_-^s(0, y, \beta_i^-) G_i^-(y, V_i^-(y),\beta_i^-) \rangle dy
 \end{align*}
 
-Before we continue, we note that for $x \geq 0$
+Before we continue, we use Lemma \ref{dichotomy1} together with smooth dependence on initial conditions and the bound \eqref{betaest} from Lemma \ref{solveforbeta} to obtain the estimates
+\begin{equation}\label{phibetaest}
+\begin{aligned}
+|(\Phi_+^u(0, x; \beta_i^+) - \Phi_+^u(0, x; 0)| &\leq C |\beta_i^+| e^{-\alpha x} \leq C e^{-2 \alpha X_{i-1}} e^{-\alpha x} && x \geq 0\\
+|(\Phi_-^s(0, x; \beta_i^-) - \Phi_-^s(0, x; 0)| &\leq C |\beta_i^-| e^{\alpha x}  \leq C e^{-2 \alpha X_i}e^{\alpha x} &&  x \leq 0\\
+\end{aligned}
+\end{equation}
 
-\begin{align*}
-|(\Phi_+^u(0, x; \beta^+) - \Phi_+^u(0, x; 0)| &\leq C |\beta^+| e^{-\alpha x} \\
-|(\Phi_-^s(0, -x; \beta^-) - \Phi_-^s(0, -x; 0)| &\leq C |\beta^-| e^{-\alpha x} \\
-\end{align*}
-
-This follows from Lemma \ref{dichotomy1} together with smooth dependence on initial conditions. Together with the estimate on $\beta_i^\pm$ from Lemma \ref{solveforbeta}, we have for $x \geq 0$
-
-\begin{align*}
-|(\Phi_+^u(0, x; \beta_i^+) - \Phi_+^u(0, x; 0)| &\leq C e^{-\alpha x} (e^{-2 \alpha X_i} + e^{-2 \alpha X_{i-1}})\\
-|(\Phi_-^s(0, -x; \beta_i^-) - \Phi_-^s(0, -x; 0)| &\leq C e^{-\alpha x} (e^{-2 \alpha X_i} + e^{-2 \alpha X_{i-1}}) \\
-\end{align*}
-
-This implies for $x \geq 0$
-
-\begin{align*}
-|Q^+(0, \beta_i^+)(x) - Q(x)| \leq C e^{-\alpha x} (e^{-2 \alpha X_i} + e^{-2 \alpha X_{i-1}}) \\
-|Q^-(0, \beta_i^-)(-x) - Q(-x)| \leq C e^{-\alpha x} (e^{-2 \alpha X_i} + e^{-2 \alpha X_{i-1}}) \\
-\end{align*}
-
-We also have the following estimate from Lemma \ref{p1}.
-
-\begin{align*}
-|P^u_+(X; \beta^+) - P_0^u| &\leq C e^{-\alpha X} \\
-|P^s_-(-X; \beta^-) - P_0^s| &\leq C e^{-\alpha X}
-\end{align*}
-
-For $\langle \Psi(0), \Phi^u_+(0, X_i; \beta_i^+) a_i^+ \rangle $, we substitute for $a_i^+$ from Lemma \ref{solvefora} to get
-
+For $\langle \Psi(0), \Phi^u_+(0, X_i; \beta_i^+) a_i^+ \rangle$, we substitute \eqref{aiformula} from Lemma \ref{solvefora} for $a_i^+$. Using \eqref{phibetaest} and the estimate \eqref{Qpmbounds} from Lemma \ref{solvewithjumps}, this become
 \begin{align*}
 \langle \Psi(0), &\Phi^u_+(0, X_i; \beta_i^+) a_i^+ \rangle \\
-&= \langle \Psi(0), \Phi_+(0, X_i; \beta_i^+) P^u_+(X_i; \beta_i^+) P^s_0 \left( Q^+(0, \beta_i^+)(X_i) - Q^-(0, \beta_{i+1}^-)(-X_i) \right) 
-+ \mathcal{O}( e^{-2 \alpha X_i} ) \rangle \\
-&= \langle \Psi(0), \Phi_+(0, X_i; \beta_i^+) P^u_+(X_i; \beta_i^+) P^s_0 \left( Q^+(0, \beta_i^+)(X_i) - Q^-(0, \beta_{i+1}^-)(-X_i) \right) \rangle  
-+ \mathcal{O}( e^{-3 \alpha X_i} ) \\
-&= \langle \Psi(0), \Phi_+(0, X_i; \beta_i^+) P^u_+(X_i; \beta_i^+) P^s_0 Q^+(0, \beta_i^+)(X_i) \rangle \\
-&- \langle \Psi(0), \Phi_+(0, X_i; \beta_i^+) P^u_+(X_i; \beta_i^+) P^s_0 Q^-(0, \beta_{i+1}^-)(-X_i) \rangle
-+ \mathcal{O}( e^{-3 \alpha X_i} ) \\
+&= -\langle \Psi(0), \Phi^u_+(0, X_i; \beta_i^+)\left( P^u_0 ( Q^+(X_i; \beta_i^+) - Q^-(-X_i; \beta_{i+1}^-)) + \mathcal{O}( e^{-2 \alpha X_i} ) \right) \rangle \\
+&= -\langle \Psi(0), \Phi^u_+(0, X_i; 0) P^u_0 \left( Q^+(X_i; \beta_i^+) - Q^-(-X_i; \beta_{i+1}^-) \right) \rangle + \mathcal{O}( e^{-3 \alpha X_i} + e^{-2\alpha X_{i-1}}e^{-\alpha X_i} )\\
+&= -\langle \Psi(0), \Phi(0, X_i; 0) P^u_+(X_i; 0) P^u_0 \left( Q(X_i) - Q(-X_i) \right) \rangle + \mathcal{O}( e^{-3 \alpha X_i} + e^{-3\alpha X_{i-1}})\\
+&= -\langle \Phi(X_i, 0; 0) \Psi(0), P^u_+(X_i; 0) P^u_0 \left( Q(X_i) - Q(-X_i) \right) \rangle + \mathcal{O}( e^{-3 \alpha X_i} + e^{-3\alpha X_{i-1}})\\
+&= -\langle \Psi(X_i), P^u_+(X_i; 0) P^u_0 \left( Q(X_i) - Q(-X_i) \right) \rangle + \mathcal{O}( e^{-3 \alpha X_i} + e^{-3\alpha X_{i-1}})\\
 \end{align*}
-
-For the first term on the RHS, we have
-
+For $P^u_0 Q(X_i)$ and $P^u_0 Q(-X_i)$, we use the estimates \eqref{projdiffest} from Lemma \ref{projdifflemma} to get
 \begin{align*}
-\langle \Psi(0), &\Phi_+(0, X_i; \beta_i^+) P^u_+(X_i; \beta_i^+) P^s_0 Q^+(0, \beta_i^+)(X_i) \rangle \\
-&= \langle \Psi(0), \Phi_+(0, X_i; \beta_i^+) P^u_0 P^s_0 Q^+(0, \beta_i^+)(X_i) \rangle + \mathcal{O}(e^{-3 \alpha X_i}) \\
-&= \langle \Psi(0), \Phi_+(0, X_i; \beta_i^+) P^s_0 P^u_0 Q^+(0, \beta_i^+)(X_i) \rangle + \mathcal{O}(e^{-3 \alpha X_i}) \\
-&= \langle \Psi(0), \Phi_+(0, X_i; \beta_i^+) P^u_0 P^u_+(X_i; \beta_i^+) Q^+(0, \beta_i^+)(X_i) \rangle + \mathcal{O}(e^{-3 \alpha X_i}) \\
-&= \langle \Psi(0), \Phi_+(0, X_i; \beta_i^+) P^u_0 P^u_+(X_i; \beta_i^+) \Phi_+(X_i, 0) Q^+(0, \beta_i^+)\rangle + \mathcal{O}(e^{-3 \alpha X_i}) \\
-&= \langle \Psi(0), \Phi_+(0, X_i; \beta_i^+) P^u_0 \Phi_+(X_i, 0) P^u_+(0; \beta_i^+) Q^+(0, \beta_i^+)\rangle + \mathcal{O}(e^{-3 \alpha X_i}) \\
-&= \mathcal{O}(e^{-3 \alpha X_i})
+P^u_0 Q(X_i) &= P^u_0 P^s_+(X_i; 0) Q(X_i) \\
+&= P^u_0 P^s_0 Q(X_i) + P^u_0 ( P^s_+(X_i; 0) - P^s_0) Q(X_i) \\
+&= \mathcal{O}(e^{-2\alpha X_i})
 \end{align*}
-
-From our change of coordinates, $Q^+(0, \beta_i^+) \in Y^+$, and this is wiped out by $P^u_+(0; \beta_i^+)$, which projects onto the unstable part of the exponential dichotomy on $\R^+$ at $x = 0$. We also used the fact that the spectral projections $P^u_0$ and $P^s_0$ commute. \\
-
-For the second term on the RHS, we have
-
+and
 \begin{align*}
-\langle \Psi(0), &\Phi_+(0, X_i; \beta_i^+) P^u_+(X_i; \beta_i^+) P^s_0 Q^-(0, \beta_{i+1}^-)(-X_i) \rangle \\
-&= \langle \Psi(0), \Phi_+^u(0, X_i; \beta_i^+) P^s_-(-X_i; \beta_{i+1}^-) Q^-(0, \beta_{i+1}^-)(-X_i) \rangle + \mathcal{O}(e^{-3 \alpha X_i}) \\
-&= \langle \Psi(0), \Phi_+^u(0, X_i; \beta_i^+) Q^-(0, \beta_i^-)(-X_i) \rangle + \mathcal{O}(e^{-3 \alpha X_i}) \\
-&= \langle \Psi(0), \Phi(0, X_i) Q^-(0, \beta_{i+1}^-)(-X_i) \rangle + \mathcal{O}(e^{-3 \alpha X_i} + e^{-2 \alpha X_i} (e^{-2 \alpha X_i} + e^{-2 \alpha X_{i+1}})) \\
-&= \langle \Psi(X_i), Q^-(0, \beta_i^-)(-X_i) \rangle + \mathcal{O}(e^{-3 \alpha X_i} + e^{-2 \alpha (X_i + X_{i+1})}) \\
-&= \langle \Psi(X_i), Q(-X_i) \rangle + \mathcal{O}(e^{-3 \alpha X_i} + e^{-2 \alpha (X_i + X_{i+1})}) \\
+P^u_0 Q(-X_i) &= (P^u_0 - P^u_-(-X_i; 0)) Q(-X_i) + P^u_-(-X_i; 0) Q(-X_i) \\
+&= Q(-X_i) + \mathcal{O}(e^{-2\alpha X_i})
 \end{align*}
-
-Thus we have
-
+Combining all of these, we get
 \begin{align*}
-\langle \Psi(0), \Phi^u_+(0, X_i; \beta_i^+) a_i^+ \rangle
-&= \langle \Psi(X_i), Q(-X_i) \rangle + \mathcal{O}(e^{-3 \alpha X_i} + e^{-2 \alpha (X_i + X_{i+1})})
+\langle \Psi(0), \Phi^u_+(0, X_i; \beta_i^+) a_i^+ \rangle 
+&= \langle \Psi(X_i), Q(-X_i) \rangle + \mathcal{O}( e^{-3 \alpha X_i} + e^{-3\alpha X_{i-1}})\\
 \end{align*}
-
-Similarly, we have
-
+Similarly,
 \begin{align*}
- \langle \Psi(0), \Phi^s_-(0, -X_{i-1}, \beta_i^-) a_{i-1}^- \rangle 
-&= \langle \Psi(-X_{i-1}), Q(X_{i-1}) \rangle + \mathcal{O}(e^{-3 \alpha X_{i-1}} + e^{-2 \alpha (X_{i-1} + X_i)}) 
+\langle \Psi(0), \Phi^s_-(0, -X_{i-1}, \beta_i^-) a_{i-1}^- \rangle &= 
+\langle \Psi(-X_{i-1}), Q(X_{i-1}) \rangle + \mathcal{O}( e^{-3 \alpha X_i} + e^{-3\alpha X_{i-1}})
 \end{align*}
 
 For the integral terms, we have
-
 \begin{align*}
 \left| \int_{X_i}^0 \langle \Psi(0), \Phi_+^u(0, y; \beta_i^+) G_i^+(y, V_i^+(y),\beta_i^+) \rangle \right| dy &\leq C \int_0^{X_i} e^{-\alpha y} |V_i^+(y)|^2 dy \\
 &\leq C \int_0^{X_i} e^{-\alpha y} e^{-2 \alpha(X_i - y)}|e^{-\alpha (X_i - y)} V_i^+(y)|^2 dy \\
@@ -666,25 +607,19 @@ For the integral terms, we have
 &\leq C e^{-\alpha X_i} \int_0^{X_i} e^{-\alpha (X_i - y)} |a_i^+|^2 dy \\
 &\leq C e^{-3 \alpha X_i}
 \end{align*}
-
-The other integral term is similar, and is of order $e^{-3 \alpha X_{i-1}}$. Thus we have
-
+The other integral term is similar, and is order $e^{-3 \alpha X_{i-1}}$. Thus we conclude
 \begin{align*}
 \langle \Psi(0), V_i^+(0) - V_i^-(0) \rangle = 
 \langle \Psi(X_i), Q(-X_i) \rangle - \langle \Psi(-X_{i-1}), Q(X_{i-1}) \rangle + R_i
 \end{align*}
-
 where 
-
 \begin{align*}
-|R_i| \leq C ( e^{-3 \alpha X_i} +  e^{-3 \alpha X_{i-1}}
-+ e^{-2 \alpha (X_i + X_{i+1})} + e^{-2 \alpha (X_{i-1} + X_i)})
+|R_i| &\leq C( e^{-3 \alpha X_i} +  e^{-3 \alpha X_{i-1}})
 \end{align*}
-
-We could probably simplify this, but it does not end up mattering.
-
 \end{proof}
 \end{lemma}
+
+STOPPED HERE
 
 In the next lemma, we exploit symmetry properties to get an expression for $\langle \Psi(x), Q(-x) \rangle$.
 
