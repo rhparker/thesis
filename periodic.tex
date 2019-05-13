@@ -75,12 +75,14 @@ U'(x) = F(U(x))
 \end{equation}
 where $U = (u, \partial_x u, \dots, \partial_x^{2m-1} u) \in \R^{2m}$, $F: \R^{2m} \rightarrow \R^{2m}$ is smooth, and $F(0) = 0$. The reversibility hypothesis implies that
 \begin{equation}\label{genODErev}
-(RU)'(-x) = F(R(U(-x)))
+F(RU) &= -RF(U)
+\end{aligned}
 \end{equation}
 where $R:\R^{2m} \rightarrow \R^{2m}$ is the standard reversor operator defined by
 \begin{equation}\label{reverserR2m}
 R(u_1, u_2, \dots, u_{2m-1}, u_{2m}) = (u_1, -u_2, \dots, u_{2m-1}, -u_{2m})
 \end{equation}
+In particular, if $U(x)$ is a solution to \eqref{genODE}, so is $RU(-x)$.
 
 We begin by looking at the existence problem, i.e. we look for periodic, multi-pulse solutions to \eqref{genODE}.
 
@@ -110,7 +112,7 @@ Let $W^s(0)$ and $W^u(0)$ be the stable and unstable manifolds of the equilibriu
 
 In the next hypothesis, we assume that a symmetric homoclinic orbit solution exists to \eqref{genODE}.
 \begin{hypothesis}\label{Qexistshyp}
-A homoclinic orbit solution $Q(x) \in W^s(0) \cap W^u(0) \subset H^{-1}(0)$ exists to \eqref{genODE}. Furthermore, this solution is symmetric with respect to the reversor operator \eqref{reverserR2m}, i.e. $Q(-x) = R(Q(x))$.
+A homoclinic orbit solution $Q(x) \in W^s(0) \cap W^u(0) \subset H^{-1}(0)$ exists to \eqref{genODE}. Furthermore, this solution is symmetric with respect to the reversor operator \eqref{reverserR2m}, i.e. $Q(-x) = R Q(x)$.
 \end{hypothesis}
  
 Since we obtained \eqref{genODE} by putting \eqref{ODEonR} into a first order system in the standard way, $Q(x) = (q(x), q'(x), \dots, q^{(2m)}(x))^T$, where $q(x)$ is an even function and is an exponentially localized solution to \eqref{ODEonR}. Since $Q(x) \subset W^s(0) \cap W^u(0)$, $Q'(x) \in T_{Q(x)}W^s(0) \cap T_{Q(x)}W^u(0)$. In the next hypothesis, we take this intersection to be one-dimensional, which is a standard nondegeneracy condition.
@@ -122,60 +124,61 @@ T_{Q(0)}W^s(0) \cap T_{Q(0)}W^u(0) = \R Q'(0)
 \end{equation}
 \end{hypothesis}
 
-Let $u^*(x)$ be an exponentially localized solution to \eqref{ODEonR}. The linearization of \eqref{ODEonR} about $u^*(x)$ is the eigenvalue problem
-\begin{equation}\label{ODEeig}
-E''(u^*(x)) v = \lambda v
-\end{equation}
-where $E''(u^*): H^{2m}(\R) \rightarrow H^{2m}(\R)$ is the Hessian of the Hamiltonian and is self-adjoint. Since $E'(u)$ is translation invariant, it follows that $E'(u^*(x)) \partial_x u^*(x) = 0$. We can write the eigenvalue problem \eqref{ODEeig} as the first-order system
-
-\begin{equation}\label{ODEeig2}
-V' = ( DF(u^*)V + \lambda B) V 
-\end{equation}
-where $B$ is the $2m \times 2m$ constant coefficient matrix
-\begin{equation}
-B = \begin{pmatrix}0 & 0 & 0 & 0 & 0 \\0 & 0 & 0 & 0 & 0 \\  & 
-\vdots &  & \vdots & \\0 & 0 & 0 & 0 & 0 \\1 & 0 & 0 & 0 & 0 \end{pmatrix} 
-\end{equation}
-and $DF(u^*)$ is exponentially asymptotic to $DF(0)$, which is given by
-\begin{equation}
-DF(U^*) = \begin{pmatrix}
+The variational and adjoint variational equations associated with \eqref{genODE} are
+\begin{align}
+V' = DF(Q(x)) V \label{vareq1} \\
+W' = -DF(Q(x))^* W \label{adjvareq1}
+\end{align}
+where $DF(Q(x))$ has the form
+\begin{equation}\label{DF}
+DF(Q(x)) = \begin{pmatrix}
 0 & 1 & 0 & \dots & 0 & 0 \\
 0 & 0 & 1 & \dots & 0 & 0 \\
 & &  & \ddots &  & & \\
 0 & 0 & 0 & \dots & 0 & 1 \\
-c_0 & 0 & c_2 &
- \dots & c_{2m-2} & 0
+c_0 + f_0(x) & f_1(x) & c_2 + f_2(x) &
+ \dots & c_{2m-2} + f_{2m-2}(x) & f_{2m-1}(x)
 \end{pmatrix}
 \end{equation}
-The $c_i$ are constants which come from the linear part of $E'(u)$ and do not depend on $u^*$. By Hypothesis \ref{Eprimehyp}, no odd-order derivatives are involved in the linear part of $E'(u)$, thus $c_j = 0$ for $j$ odd. We make one additional assumption on the constant $c_0$, which we will need for the stability problem.
+The $c_i$ are constants which come from the linear part of $E'(u)$ and do not depend on $q(x)$. By Hypothesis \ref{Eprimehyp}, no odd-order derivatives are involved in the linear part of $E'(u)$, thus $c_i = 0$ for $i$ odd. The functions $f_i(x)$ are smooth functions of $q(x)$ and its derivatives, thus they exponentially to 0. In addition, since $q(x)$ is an even function, $f_i(x)$ is an even function for $i$ even and an odd function for $i$ odd. Finally, the variational and adjoint variational equations satisfy the reversibility property 
+\begin{equation}\label{vareqrev}
+\begin{aligned}
+DF(Q(-x))RV &= -R DF(Q(x)) V \\
+DF(Q(-x))^* RW &= -R DF(Q(x))^* W
+\end{aligned}
+\end{equation}
 
+We make one additional assumption on the constant $c_0$, which we will need for the stability problem.
 \begin{hypothesis}\label{c0nonzero}
-For the constant $c_0$ in $DF(U^*)$, $c_0 \neq 0$.
+For the constant $c_0$ in $DF(Q(x))$, $c_0 \neq 0$.
 \end{hypothesis}
 This hypothesis is satisfied, for example, if \eqref{genPDE} is obtained from putting a nonlinear, dispersive PDE such as KdV5 into a moving reference frame with speed $c$.
 
-The variational and adjoint variational equations associated with \eqref{genODE} are
-\begin{align}
-V' = DF(q(x)) V \label{vareq1} \\
-W' = -DF(q(x))^* W \label{adjvareq1}
-\end{align}
-It follows from Hypothesis \ref{nondegenhyp} that $Q'(x)$ is the unique bounded solution to \eqref{vareq1} and that there exists a unique bounded solution $\Psi(x)$ to \eqref{adjvareq1}. Since we have a Hamiltonian system, we know the exact form of $\Psi(x)$, which is given in the following lemma.
+It follows from Hypothesis \ref{nondegenhyp} that $Q'(x)$ is the unique bounded solution to \eqref{vareq1}, and that there exists a unique bounded solution $\Psi(x)$ to \eqref{adjvareq1}. Since we have a Hamiltonian system, we know the exact form of $\Psi(x)$, which is given in the following lemma.
 
 \begin{lemma}\label{psiform}
 Let $H$ be the Hamiltonian from Hypothesis \ref{Hhyp}. Then $\Psi(x) = \nabla H(Q(x))$.
 \end{lemma}
-Since $E''(q)$ is self-adjoint, the $2m$-th component of $\Psi(x)$ is $q'(x)$.
+Since $E''(q)$ is self-adjoint, the $2m$-th component of $\Psi(x)$ is $q'(x)$. The next lemma gives a few important results about the variational and adjoint variational equations.
+
+\begin{lemma}\label{eigadjoint}
+Consider the linear ODE $V' = A(x)V$ and the corresponding adjoint equation $W' = -A(x)^* W$, where $A$ is an $n \times n$ matrix depending on $x$. Then the following are true.
+\begin{enumerate}[(i)]
+\item $\dfrac{d}{dx}\langle V(x), W(x) \rangle = 0$, thus the inner product is constant in $x$.
+\item If $\Phi(y, x)$ is the evolution operator for $V' = A(x)V$, then $\Phi(x, y)^*$ is the evolution operator for the adjoint problem $W' = -W(x)^* W$.
+\end{enumerate}
+\end{lemma}
 
 Next, we decompose the tangent spaces of the stable and unstable manifolds at $Q(0)$. Since the two tangent spaces have a one-dimensional intersection spanned by $Q'(0)$, we can write
 \begin{align*}
 T_{Q(0)}W^u(0) &= \R Q'(0) \oplus Y^- \\
-T_{Q(0)}W^s(0) &= \Rx Q'(0) \oplus Y^+
+T_{Q(0)}W^s(0) &= \R Q'(0) \oplus Y^+
 \end{align*}
 By Hypothesis \ref{nondegenhyp},
 \begin{equation}\label{R2mdecomp}
 \R^{2m} = \R Q'(0) \oplus Y^+ \oplus Y^- \oplus Z
 \end{equation}
-where $Z = \R \Psi(0)$. Furthermore, $Z \perp \R Q'(0) \oplus Y^+ \oplus Y^-$.
+where $Z = \R \Psi(0)$. Furthermore, it follows from Lemma \ref{eigadjoint} that $Z \perp \R Q'(0) \oplus Y^+ \oplus Y^-$.
  
 We now write $W^u(0)$ and $W^s(0)$ as graphs over their tangent spaces near $Q(0)$. Following \cite{Sandstede1997}, we can parameterize the unstable and stable manifolds near $Q(0)$ by the smooth functions $Q^-(\alpha, \beta^-)$ and $Q^+(\alpha, \beta^+)$, where $\alpha \in \R$, $\beta^\pm \in Y^\pm$ and these functions are chosen so that $Q^+(\alpha, 0) - Q^-(\alpha, 0) \in Z$. Note that $Q^+(0, 0) = Q^-(0, 0) = Q(0)$. We will always take $\alpha = 0$. Using this parameterization, let
 \begin{align*}
@@ -343,7 +346,7 @@ W' = -A(Q)^* W \label{adjvareq2}
 
 $Q'(x)$ is an exponentially localized solution to \eqref{vareq2}. Since $q(x)$ is symmetric, the variational equation is reversible.
 
-\begin{equation}\label{vareqrev}
+\begin{equation}\label{vareqrev2}
 (RV)'(-x) = A(Q) RV(-x)
 \end{equation}
 

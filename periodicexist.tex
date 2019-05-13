@@ -30,6 +30,18 @@ thus $\nabla H(Q(x))$ is a solution to the adjoint variational equation \eqref{I
 \end{proof}
 \end{lemma:psiform}
 
+\newtheorem*{lemma:eigadjoint}{Lemma \ref{I:eigadjoint}}
+\begin{lemma:eigadjoint}
+Consider the linear ODE $V' = A(x)V$ and the corresponding adjoint equation $W' = -A(x)^* W$, where $A$ is an $n \times n$ matrix depending on $x$. Then the following are true.
+\begin{enumerate}[(i)]
+\item $\dfrac{d}{dx}\langle V(x), W(x) \rangle = 0$, thus the inner product is constant in $x$.
+\item If $\Phi(y, x)$ is the evolution operator for $V' = A(x)V$, then $\Phi(x, y)^*$ is the evolution operator for the adjoint problem $W' = -W(x)^* W$.
+\end{enumerate}
+\begin{proof}
+For (i), take the derivative of the inner product and use the expressions for $V'$ and $W'$. For (ii), take the derivative of the expression $\Phi(y, x)\Phi(x, y) = I$.
+\end{proof}
+\end{lemma:eigadjoint}
+
 \subsection{Exponential Dichotomy}
 
 Let $\Phi_\pm(x, y; \beta^\pm)$ be the family of evolution operators for the ODEs
@@ -577,6 +589,7 @@ For $\langle \Psi(0), \Phi^u_+(0, X_i; \beta_i^+) a_i^+ \rangle$, we substitute 
 &= -\langle \Phi(X_i, 0; 0) \Psi(0), P^u_+(X_i; 0) P^u_0 \left( Q(X_i) - Q(-X_i) \right) \rangle + \mathcal{O}( e^{-3 \alpha X_i} + e^{-3\alpha X_{i-1}})\\
 &= -\langle \Psi(X_i), P^u_+(X_i; 0) P^u_0 \left( Q(X_i) - Q(-X_i) \right) \rangle + \mathcal{O}( e^{-3 \alpha X_i} + e^{-3\alpha X_{i-1}})\\
 \end{align*}
+where we used Lemma \ref{I:eigadjoint} to move the evolution operator $\Phi(0, X_i; 0)$ across the inner product.
 For $P^u_0 Q(X_i)$ and $P^u_0 Q(-X_i)$, we use the estimates \eqref{projdiffest} from Lemma \ref{projdifflemma} to get
 \begin{align*}
 P^u_0 Q(X_i) &= P^u_0 P^s_+(X_i; 0) Q(X_i) \\
@@ -619,197 +632,161 @@ where
 \end{proof}
 \end{lemma}
 
-STOPPED HERE
+In the next lemma, we exploit reversibility to show that $\langle \Psi(x), Q(-x) \rangle = \langle \Psi(-x), Q(x) \rangle$.
 
-In the next lemma, we exploit symmetry properties to get an expression for $\langle \Psi(x), Q(-x) \rangle$.
-
-% lemma : symmetry of IP
-
-\begin{lemma}\label{otherIP}
-
-For a reversible system, we have
-
-\begin{equation}
+% inner product symmetry
+\begin{lemma}\label{IPsymmlemma}
+We have the following symmetry.
+\begin{equation}\label{IPsymm}
 \langle \Psi(x), Q(-x) \rangle = \langle \Psi(-x), Q(x) \rangle
 \end{equation}
-
-For a Hamiltonian system, for sufficiently large $|x|$ we have
-
-\begin{equation}
-\langle \Psi(x), Q(-x) \rangle = \langle \Psi(-x), Q(x) \rangle
-+ \mathcal{O}(e^{-3 \alpha x})
-\end{equation}
-
 \begin{proof}
-The reversibile case follows from Lemma 5.3 in San98. The Hamiltonian case follows from proof of Lemma 3.8 in SanStrut, where we flip the inner product since we are in a real vector space. 
-\end{proof}
-\end{lemma}
-
-In order to have a multipulse solution, all that remains is to satisfy $V_i^+(0) - V_i^-(0) = 0$ along $\Psi(0)$ for all $i$. In the next lemma, we write down the set of equations we need to satisfy for this to be the case.
-
-\begin{lemma}\label{IPsystem}
-A periodic multipulse solution exists if and only if 
-
-\begin{align}\label{jumpIPdiff}
-\langle \Psi(-X_i), Q(X_i) \rangle - \langle \Psi(-X_{i-1}), Q(X_{i-1}) \rangle + R_i &= 0 && i = 0, \dots, n-1
+Since the primary pulse $Q(x)$ is symmetric with respect to the reversor operator $R$ defined in \eqref{I:reverserR2m}, $Q(-x) = RQ(x)$. Since $\Psi(x)$ satisfies \eqref{I:adjvareq1},
+\begin{align}\label{Psinegx}
+(\Psi(-x))' &= \Psi'(-x) = DF(Q(-x))^* \Psi(-x) \\
 \end{align}
-
-where 
-
+Taking $W = RW$ in \eqref{I:vareqrev}, we have $DF(Q(-x))^* W = -R DF(Q(x))^* R W$. Substituting this into \eqref{Psinegx}, we get
 \begin{align*}
-R_i = \mathcal{O} ( e^{-3 \alpha X_i} +  e^{-3 \alpha X_{i-1}}
-+ e^{-2 \alpha (X_i + X_{i+1})} + e^{-2 \alpha (X_{i-1} + X_i)})
+(\Psi(-x))' &= -R DF(Q(-x))^* R \Psi(-x)
 \end{align*}
+Finally, we operate on both sides by $R$. Noting that $R$ is a constant matrix and $R^2 = I$, 
+\begin{align*}
+(R \Psi(-x))' &= -DF(Q(-x))^* R \Psi(-x)
+\end{align*}
+Thus $R \Psi(-x)$ is a bounded solution to the adjoint variational equation. Since $\Psi(x)$ is the unique such solution, we conclude that $R \Psi(-x) = \Psi(x)$.
 
-\begin{proof}
-We derived the equations we need to solve in Lemma \ref{jumplemma1}. Since we are assuming either a Hamiltonian system or reversibility, we use Lemma \ref{otherIP} to swap the signs on the first inner product in Lemma \ref{jumplemma1}. In the case of a Hamiltonian system, the $\mathcal{O}(e^{-3 \alpha X_i})$ term introduced when we change signs is incorporated into the remainder term $R_i$.
+Substituting these into the inner product $\langle \Psi(x), Q(-x) \rangle$, we get
+\begin{align*}
+\langle \Psi(x), Q(-x) \rangle
+&= \langle R \Psi(-x), R Q(x) \rangle \\
+&= \langle \Psi(-x), R^2 Q(x) \rangle \\
+&= \langle \Psi(-x), Q(x) \rangle
+\end{align*}
+where we used the fact that $R$ is self-adjoint.
 \end{proof}
 \end{lemma}
 
-In the next lemma, we exploit either reversibility or the Hamiltonian structure to simplify the set of equations we need to solve.
+To have a periodic multi-pulse solution, we need to satisfy the $n$ jump conditions in Lemma \ref{jumplemma1}. In the next lemma, we write down the system of equations we need to satisfy. Since we have a Hamiltonian system, it turns out that we only have to solve $n-1$ of the jump conditions; the final jump condition will automatically be satisfied. Since we are on a periodic domain, it does not matter which one we omit. For convenience we will choose to omit the last one.
 
-\begin{lemma}\label{IPsystemreduced}
-If the system is reversible and we seek symmetric solutions, we only have to solve \eqref{jumpIPdiff} for $i = 0, \dots, \lceil \frac{n}{2} \rceil - 1$. If the system is Hamiltonian, we only have to solve the first $n-1$ equations in \eqref{jumpIPdiff}, i.e. for $i = 0, \dots, n-2$. The final equation is then automatically satisfied.
-
+\begin{lemma}\label{jumplemma2}
+A periodic multi-pulse solution exists if and only if for $i = 0, \dots, n-2$,
+\begin{align}\label{jumpcond2}
+\langle \Psi(-X_i), Q(X_i) \rangle - \langle \Psi(-X_{i-1}), Q(X_{i-1}) \rangle + R_i = 0
+\end{align}
+where the remainder term has bound
+\begin{align*}
+|R_i| \leq C ( e^{-3 \alpha X_i} +  e^{-3 \alpha X_{i-1}})
+\end{align*}
 \begin{proof}
-For a reversible system, if we seek symmetric solutions, we only have to solve for the left half, i.e. for the half-line $(-\infty, 0]$. We can then extend to $[0, \infty)$ by symmetry.\\
-
-If the system is Hamiltonian, a heuristic argument is as follows. The energy $H$ is conserved, thus all solutions must exist within level sets of $H$. Recall that $\Psi(0) = \nabla H(Q(0)) \neq 0$. Thus the energy $H$ must change along any jump in the direction of $\Psi(0)$. In Lemma \ref{solvefora}, we matched the tails of the pieces. Assume we have matched $U_i^-(0) = U_i^+(0)$ for $i = 0, \dots, n-2$. In Lemma \ref{solveforbeta}, we matched the $Y^\pm$ components of $U_{n-1}^-(0) = U_{n-1}^+(0)$. All that remains is to match the $\R \Psi(0)$ component of $U_{n-1}^-(0) = U_{n-1}^+(0)$. But this is automatically 0 since the two pieces involved must have the same energy, and if this were nonzero there would be a jump in the energy at this point.\\
+Since \eqref{I:eqODE} is Hamiltonian, the Hamiltonian $H$ is conserved along all trajectories of the system. Thus all solutions must exist within level sets of $H$. By Lemma \ref{I:psiform}, $\Psi(0) = \nabla H(Q(0)) \neq 0$. Thus the energy $H$ must change along any jump in the direction of $\Psi(0)$. From Lemma \ref{solvewithjumps}, we have found a unique piecewise solution $U_i^\pm(x)$, $i = 0, \dots, n-1$, which can only have jumps at $x = 0$ in the direction of $\Psi(0)$. Suppose we have satisfied the first $n-1$ jump conditions. Then we have a solution $U(x)$ which is contained entirely in a level set of $H$. If the final jump condition was not satisfied, $U(x)$ would have a single jump in the direction of $\Psi(0)$, which would necessitate a change in $H$. This, however, cannot happen, since $H$ must be the same at the two ends of the same jump. We conclude that the final jump condition must be automatically satisfied. Equation \eqref{jumpcond2} follows from omitting the final equation in \eqref{jumpcond1} and rewriting the first inner product on the RHS using \eqref{IPsymm} from Lemma \ref{IPsymmlemma}.
 \end{proof}
 \end{lemma}
 
-\subsubsection{Additional Assumptions}
+We remark that if $n = 1$, the single jump condition is automatically satisfied. Thus for sufficiently large $X_0$, we always have $1-$periodic pulses. 
 
-Up to this point, we have made no additional assumptions on our system. In order to satisfy the equations in Lemma \ref{IPsystem}, we will need to make some assumptions about the eigenvalues of $DF(0)$. This makes sense, since we know we need to have ``twisting manifolds'' to construct a nonperiodic multipulse. Thus we make the following additional hypothesis.
+\subsection{Scaling and Change of Varables}
 
-\begin{hypothesis}\label{spechyp}
-The spectrum of $DF(0)$ contain simple eigenvalues $\pm \alpha \pm i \beta$, for $\alpha, \beta > 0$. The real part of any other eigenvalue of $DF(0)$ lies outside $(-\alpha, \alpha)$. Thus the equilibrium at 0 is a hyperbolic equilibrium, with both stable and unstable manifolds having dimension at least 2.
-\end{hypothesis}
-
-With this additional hypothesis, we have an expression for $\langle \Psi(-x), Q(x) \rangle$
+Before we continue, we will introduce a change of variable with a built-in scaling parameter. This folows Section 6 of \cite{Sandstede1998}. First, we have an expression for the inner product in \ref{jumpcond2}.
 
 % lemma : expression for inner product
 
 \begin{lemma}\label{IPform}
 For $x > 0$ sufficiently large,
-
 \begin{equation}\label{IPalphabeta}
 \langle \Psi(-x), Q(x) \rangle
 = s_0 e^{-2 \alpha x} \sin(2 \beta x + \phi) + \mathcal{O}(e^{-(2 \alpha + \gamma) x})
 \end{equation}
-
 where $0 < \gamma \leq 1$, $s_0 > 0$, and $\phi$ are constants.
 \begin{proof}
-Based on our assumptions in Hypothesis \ref{assumptions}, this follows from Lemma 6.1 in San98. In our case, we do not have a parameter $\mu$, so the $\mu$-dependent terms are constant. If it turns out that $\gamma > 1$, we take $\gamma = 1$.
+This is (i) from Lemma 6.1 in \cite{Sandstede1998}. In this case, we do not have a parameter $\mu$, so the $\mu$-dependent terms are constant. If it turns out that $\gamma > 1$, we take $\gamma = 1$.
 \end{proof}
 \end{lemma}
 
-At this point, we will assume that we have a Hamiltonian system. Since we want to capture asymmetric solutions, we will not consider the reversibility case here, since applying the reversibility hypothesis always gives us symmetric solutions.\\
-
-In the next lemma, we make a change of variables which involves a built-in scaling parameter. First, we define the following space.
-
-\begin{equation}\label{setR}
-\mathcal{R} = \left\{ \exp\left(-\frac{\pi \alpha}{\beta}m\right) : m \in \N_0 \right\} \cup \{ 0 \}
-\end{equation}
-
+In the next lemma, we make a change of variables which involves a built-in scaling parameter. First, we define the following two sets
+\begin{align}
+\mathcal{R} &= \left\{ \exp\left(-\frac{m \pi}{\rho}\right) : m \in \N_0 \right\} \cup \{ 0 \}  \\
+\mathcal{B} &= \left\{ \exp\left(-\frac{m \pi}{\rho}\right) : m \in \N_0 \right\} \label{setB}
+\end{align}
 Since $\mathcal{R}$ is closed and bounded, is is compact, thus complete. For $r \in \mathcal{R}$, let
-
-\begin{equation}\label{Xmscale}
-X_m = -\frac{1}{2\alpha}\log r - \frac{\alpha \phi}{\beta}
+\begin{equation}\label{Xstar}
+X^* = -\frac{1}{2\alpha}\log r - \frac{\phi}{2\beta}
 \end{equation}
-
-Choose $X_0, \dots, X_{n-1}$ so that $X_j \geq X_m$ for all $j = 0, \dots, n-1$ and define
-
+so that
+\begin{equation}
+r = e^{-\alpha(2X^* - \phi/\beta)}
+\end{equation}
+Choose the lengths $X_0, \dots, X_{n-1}$ so that $X_j \geq X^*$ for $j = 0, \dots, n-1$. Since Lemma \ref{solvewithjumps} requires $X_j$ to be sufficiently large, this is not a restriction. FOr $j = 0, \dots n-1$, let
 \begin{equation}\label{bjscale}
-b_j = e^{-2 \alpha (X_j - X_m)}
+b_j = e^{-2 \alpha (X_j - X^*)}
 \end{equation}
-
 In terms of $r$ and $b_j$,
-
 \begin{equation}\label{Xjscale}
 X_j = -\frac{1}{2\alpha}\log(b_j r) - \frac{\phi}{2 \beta}
 \end{equation}
 
-In the next lemma, we rewrite the system using this scaling and change of variables. 
+In the next lemma, we rewrite the system \eqref{jumpcond2} using this scaling and change of variables. 
 
 % Lemma : system to solve, new version
 
-\begin{lemma}\label{tildeGchangevar}
-Under the above assumptions, a periodic multipulse solution exists if and only if for $i = 0, \dots, n-2$
-
-\begin{equation}\label{tildeGeq}
+\begin{lemma}\label{jumplemma3}
+A periodic multipulse solution exists if and only if for $i = 0, \dots, n-2$
+\begin{equation}\label{jumpcond3}
 \tilde{G}_i(b_1, \dots, b_{n-1}, r) = b_i \sin \left( -\rho \log b_i \right) - b_{i-1} \sin \left( -\rho \log b_{i-1} \right) + \mathcal{O}(r^{\gamma / 2 \alpha}) = 0 \\
 \end{equation}
-
-where $\rho = \beta/\alpha$, $b_i > 0$, and $r \in \mathcal{R}$. The derivative of the remainder term with respect to any $b_i$ is also $\mathcal{O}(r^{\gamma / 2 \alpha})$. 
-
+where $\rho = \beta/\alpha$, $b_i > 0$, and $r \in \mathcal{R}$. The derivative of the remainder term with respect to $b_i$ is also $\mathcal{O}(r^{\gamma / 2 \alpha})$. 
 \begin{proof}
-From \eqref{jumpIPdiff}, \eqref{IPalphabeta}, and Lemma \ref{IPsystemreduced}, a solution exists if and only if
-
+For $i = 0, \dots, n-2$, substitute \eqref{IPalphabeta} from Lemma \ref{IPform} into \eqref{jumpcond2} from Lemma \ref{jumplemma2} to get
 \begin{align}\label{diff1}
-s_0 e^{-2 \alpha X_i} \sin(2 \beta X_i + \phi) - s_0 e^{-2 \alpha X_{i-1}} \sin(2 \beta X_{i-1} + \phi) + \mathcal{O}(e^{-(2 \alpha + \gamma) X_m}) &= 0 && i = 0, \dots, n-2
+s_0 e^{-2 \alpha X_i} \sin(2 \beta X_i + \phi) - s_0 e^{-2 \alpha X_{i-1}} \sin(2 \beta X_{i-1} + \phi) + \mathcal{O}(e^{-(2 \alpha + \gamma) X_m})
 \end{align}
-
-where $X_m = \min\{X_i\}$. Substituting \eqref{Xjscale} and \eqref{bjscale} into \eqref{diff1}, we get for $i = 0, \dots, n-1$
-
+where $X_m = \min\{X_i\}$. Since $0 < \gamma \leq 1$, the remainder term here include the remainder term $R_i$ from Lemma \ref{jumplemma2}, which is $\mathcal{O}(e^{-3 \alpha X_m})$. Substituting \eqref{Xjscale} and \eqref{bjscale} into \eqref{diff1} and noting that $X^* \leq X_m$, we have
 \begin{align}\label{diff2}
 s_0 e^{\alpha \phi / \beta } b_i r \sin \left( - \rho \log (b_i r) \right) - s_0 e^{\alpha \phi / \beta } b_{i-1} r \sin \left( -\rho \log (b_{i-1} r) \right) + \mathcal{O}(r^{1 + \gamma / 2 \alpha}) &= 0 \\
 \end{align}
-
 Divide both sides by $r > 0$ and the constant $s_0 e^{\alpha \phi / \beta }$ to get
-
-\begin{align}\label{diff2}
+\begin{align}\label{diff3}
 b_i \sin \left( -\rho \log (b_i r) \right) -  b_{i-1} \sin \left( -\rho \log (b_{i-1} r) \right) + \mathcal{O}(r^{\gamma / 2 \alpha}) &= 0 \\
-\end{align}
+\end{align} 
 
-Finally, we note that
-
+To simplify this, we note that since $r \in \mathcal{R}$, $r = \exp(-m \pi / \rho)$ for some nonnegative integer $m$. Thus we have
 \begin{align*}
 \sin \left( -\rho \log (b_i r) \right)
 &= \sin \left( -\rho \log b_i - \rho \log r  \right) \\
-&= \sin \left( -\rho \log b_i - \rho \left( -\frac{1}{\rho}2\pi m \right) \right) \\
-&= \sin \left( -\rho \log b_i + 2 m \pi \right) \\
-&= \sin \left( -\rho \log b_i \right) 
+&= \sin \left( -\rho \log b_i - \rho \left( -\frac{1}{\rho}\pi m \right) \right) \\
+&= \sin \left( -\rho \log b_i + m \pi \right) \\
+&= (-1)^m \sin \left( -\rho \log b_i \right) 
 \end{align*}
-
-Making this substitution, we have for $i = 0, \dots, n-2$
-
-\begin{align}\label{diff3}
+Substituting this into \eqref{diff3} and dividing by $(-1)^m$, 
+\begin{align*}
 b_i \sin \left( -\rho \log b_i \right) - b_{i-1} \sin \left( -\rho \log b_{i-1} \right) + \mathcal{O}(r^{\gamma / 2 \alpha}) &= 0 \\
-\end{align}
-
-Note that $r$ only occurs in the remainder term. 
-
+\end{align*}
+Note that $r$ only occurs in the remainder term. The statement about the derivative of the remainder term comes from the fact that derivatives of the remainder term in \eqref{IPalphabeta} are still $\mathcal{O}(e^{-(2 \alpha + \gamma) x})$.
 \end{proof}
 \end{lemma}
 
-We note from the previous lemma we that we have $n-1$ equations but $n+1$ unknowns. Thus we expect to have a 1-parameter family of solutions. Before we find a parameterization, we will first rearrange the system in the previous lemma into a more convenient form. By taking linear combinations of the $\tilde{G}_i$ equations, we can choose one of the $b_j$ and write the other $b_k$, $k \neq j$, in terms of $b_j$ and $r$. In particular, that will give us $n-2$ equations of the same form. Since we are on a periodic domain, it does not matter which of the $b_j$ we choose, so for convenience, we will choose $b_{n-1}$.
+From Lemma \ref{jumplemma3}, we see that we have $n-1$ equations but $n$ unknowns $b_0, \dots b_{n-1}$. Thus we expect to have a 1-parameter family of solutions. Before we procees, we will rearrange \eqref{jumpcond3} into a more convenient form. By taking linear combinations of the $\tilde{G}_i$ in \eqref{jumpcond3}, we can choose one of the $b_j$ and write all of the other $b_k$ in terms of it. This will give us $n-2$ equations which are all of the same form. Since we are on a periodic domain, it does not matter which of the $b_j$ we choose; for convenience, we will opt to write $b_0, \dots, b_{n-2}$ in terms of $b_{n-1}$.
 
-% Lemma : get this into diagonal system with parameter
+% lemma : diagonal system 
 
 \begin{lemma}\label{diagonalG}
-Under the above assumptions, a periodic multipulse solution exists if and only if for $i = 0, \dots, n-2$
-
+A periodic multipulse solution exists if and only if for $i = 0, \dots, n-2$
 \begin{equation}\label{Geq}
 G_i(b_1, \dots, b_{n-1}, r) = b_i \sin \left( -\rho \log b_i \right) - b_{n-1} \sin \left( -\rho \log b_{n-1} \right) + \mathcal{O}(r^{\gamma / 2 \alpha}) = 0
 \end{equation}
 
 \begin{proof}
-
-Let 
-
-\begin{equation}\label{tildeGdef}
-G_i = \sum_{j = 0}^i \tilde{G}_i
+Let \begin{equation}\label{Gidef}
+G_i(b_1, \dots, b_{n-1}, r) = \sum_{j = 0}^i \tilde{G}_i(b_1, \dots, b_{n-1}, r)
 \end{equation}
-
-After canceling terms, we have the system \eqref{Geq}. Since \eqref{Geq} is a linear combination of \eqref{tildeGdef}, the two systems are equivalent. Note that the system \eqref{tildeGeq} consists of $n-1$ equations of the same form. Since the remainder terms of the $\tilde{G}_i$ are all the same order, the remainder terms of the $G_i$ are all of that order as well.
-
+After canceling terms, we obtain the system \eqref{Geq}. Since \eqref{Geq} is a linear combination of \eqref{jumpcond3}, the two systems are equivalent. Since the remainder terms of the $\tilde{G}_i$ are all the same order, the remainder terms of the $G_i$ are also all of that order.
 \end{proof}
 \end{lemma}
 
-Since the equations \eqref{tildeGeq} are of the same form, we will start out by looking at one of them, which is equivalent to looking at the 2-periodic case. From this, we will develop a natural parameterization for periodic multipulse solutions.
+Since the equations \eqref{Geq} are of the same form, we will first look at the 2-periodic pulse, which only involves one of these equations. From there, we will develop a natural parameterization for periodic multipulse solutions.
 
-\subsubsection{Bifurcation structure for 2-periodic pulse}
+STOPPED HERE
+
+\subsection{Bifurcation structure for 2-periodic pulse}
 
 In the case of the 2-periodic solution, we only have a single equation to solve, which we will write as
 
