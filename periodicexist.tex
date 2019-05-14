@@ -1175,28 +1175,30 @@ For simplicity, take $k = 0$. The same argument works for all other $k$. In Lemm
 \[
 G(-x, y, r) = -G(x, y, r)
 \]
-in this cooordinate system. This implies that $G(0, y, r) = 0$ for all $y$.
+in this cooordinate system. This implies that $G(0, y, r) = 0$ for all $y$. In addition, this is the symmetry we require for a pitchfork bifurcation to occur. We now prove the existence of a pitchfork bifurcation along this line. 
 
-We now prove the existence of a pitchfork bifurcation along this line. Since a necessary condition for a pitchfork to occur is $G_x(x, y, r) = 0$, we will look at the system
+Since a necessary condition for a pitchfork to occur is $G_x(x, y, r) = 0$, we will look at the system
 \begin{equation}
 K(x,y,r) = (G(x,y,r), G_x(x,y,r)) = 0
 \end{equation}
 From Lemma \ref{pitchforkH}, $G_x(0,p_0^*,0) = G_y(0, p_0^*, 0) = 0$, so $D_{x,y}K(0,p_0^*,0)$ is singular. Since we cannot use the IFT at this point, we will instead do a Lyapunov-Schmidt reduction. In Lemma \ref{pitchforkH}, we showed that $G_{xy}(0, p_0^*, 0) = 2 \rho/p^* \sqrt{1 + \rho^2} \neq 0$. Thus we can use the IFT to solve $K_2(x,y,r) = G_x(x,y,r) = 0$ for $y$ in terms of $x$ and $r$ near $(x,y,r) = (0, p_0^*, 0)$. Specifically, there exists $r_0 > 0$, an open interval $(-a, a)$, and a unique smooth function $y = y^*(x, r)$ such that $y^*(0, 0) = p_0^*$ and $G_x(x, y^*(x, r), r) = 0$ for all $x \in (-a, a)$ and $r < r_0$.
 
-STOPPED HERE. NEED TO SHOW SYMMETRY FOR THIS.
-
 Taking $y = y^*(x, r)$ in the equation for $G$, we get
 \begin{equation}
 G(x, y^*(x, r), r) = 0
 \end{equation}
-As noted above, this has a solution whenevef $x = 0$. We will show that a pitchfork bifuration occurs at $(0, y^*(0, r), r)$. First, since $G(x, y, r)$ is an odd function in $x$, $G_y(0, y, r) = 0$ and $G_{xx}(0, y, r) = 0$ for all $x, r$. It follows that $G_y(0, y^*(0, r), r) = 0$ and $G_{xx}(0, y^*(0, r), r) = 0$.\\
+As noted above, this has a solution whenevef $x = 0$. We will show that a pitchfork bifuration occurs at $(0, y^*(0, r), r)$. First, since $G(x, y, r)$ is an odd function in $x$, $G_y(0, y, r) = 0$ and $G_{xx}(0, y, r) = 0$ for all $x, r$. It follows that $G_y(0, y^*(0, r), r) = 0$ and $G_{xx}(0, y^*(0, r), r) = 0$.
 
-All that remains is to show that $G_{xy}$ and $G_{xxx}$ are nonzero at $(0, y^*(0, r), r)$. Recall that $F_{xy}(0, p^*) \neq 0$. Then since $G_{xy}$ and $y^*$ are smooth, $G_{xy}(0, y^*(0, r), r) \rightarrow 0 \text{ as } r \rightarrow 0$. Thus, for sufficiently small $r$, $G_{xy}(0, y^*(0, r), r) \neq 0$. Similarly, from Lemma \ref{pitchfork}, we know that $F_{xxx}(0, p^*) \neq 0$. By the same argument, we conclude that $G_{xxx}(0, y^*(0, r), r) \neq 0$ for sufficiently small $r$.\\
+All that remains is to show that $G_{xy}$ and $G_{xxx}$ are nonzero at $(0, y^*(0, r), r)$. From Lemma \ref{pitchforkH}, $G_{xy}(0, p_0^*, 0) = c_1^0 \neq 0$. Since $G_{xy}$ and $y^*$ are smooth, $G_{xy}(0, y^*(0, r), r) \rightarrow c_1^0 \text{ as } r \rightarrow 0$. Thus, reducing $r_0$ if necessary, $G_{xy}(0, y^*(0, r), r) \neq 0$ for all $r < r_0$. Similarly, from Lemma \ref{pitchforkH}, $G_{xxx}(0, p^*) = c_2^0 \neq 0$. By the same argument, we conclude that $G_{xxx}(0, y^*(0, r), r) \neq 0$ for $r < r_0$.
 
-Changing variables back to $(a_0, a_1)$, at let $p_0(r) = (y^*(0, r), y^*(0, r))$. Thus, for $r < r_0$, there is a pitchfork bifurcation at $(p_0(r), p_0(r))$.
-
+Changing variables back to $(b_0, b_1)$, let $p_0(r) = (y^*(0, r), y^*(0, r))$. Then for $r < r_0$, there is a pitchfork bifurcation at $(p_0(r), p_0(r))$.
 \end{proof}
 \end{lemma}
+
+
+BEFORE WE DO THIS, NEED TO SHOW PERSISTENCE OF REST OF THING.
+ONLY NEED FOR $m_1 = 0$ BRANCH.
+
 
 We can combine the previous two lemmas into the following theorem. Note that we are taking a different interval for the phase parameter $\theta$ so that we can capture the pitchfork bifurcation.
 
