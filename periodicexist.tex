@@ -456,11 +456,13 @@ U_i^+(x) &= Q^+(x; \beta_i^+) + V_i^+(x) && x \in [0, X_i]
 \end{aligned}
 \end{equation*}
 to the system of equations
-\begin{align*}
+\begin{equation}\label{systemwithjumpZ}
+\begin{aligned}
 (U_i^\pm)' - F(U_i^\pm) &= 0 \\
 U_i^+(X_i) - U_{i+1}^-(-X_i) &= 0 \\
 U_i^+(0) - U_i^-(0) &\in Z 
-\end{align*}
+\end{aligned}
+\end{equation}
 In addition, we have the estimates
 \begin{enumerate}[(i)]
 \item 
@@ -733,7 +735,7 @@ A periodic multipulse solution exists if and only if for $i = 0, \dots, n-2$
 \begin{equation}\label{jumpcond3}
 \tilde{G}_i(b_1, \dots, b_{n-1}, r) = b_i \sin \left( -\rho \log b_i \right) - b_{i-1} \sin \left( -\rho \log b_{i-1} \right) + \mathcal{O}(r^{\gamma / 2 \alpha}) = 0 \\
 \end{equation}
-where $\rho = \beta/\alpha$, $b_i > 0$, and $r \in \mathcal{R}$. The derivative of the remainder term with respect to $b_i$ is also $\mathcal{O}(r^{\gamma / 2 \alpha})$. 
+where $\rho = \beta/\alpha$, $b_i > 0$, and $r \in \mathcal{R}$. All derivatives of the remainder term with respect to $b_i$ are also $\mathcal{O}(r^{\gamma / 2 \alpha})$. 
 \begin{proof}
 For $i = 0, \dots, n-2$, substitute \eqref{IPalphabeta} from Lemma \ref{IPform} into \eqref{jumpcond2} from Lemma \ref{jumplemma2} to get
 \begin{align}\label{diff1}
@@ -957,13 +959,20 @@ which is independent of $\theta \in I_\rho$.
 \end{itemize}
 
 \begin{proof}
-Since we are taking $b_0^0 \geq b_0^1$, i.e. $m_0 \leq m_1$, it suffices to consider the case where $b_0^0 = 1$, i.e. $m_0 = 0$. To see this, suppose the lemma is true for $b_0^0 = 1$. Then we can find a family of solutions $(b_0^*(0, \theta), b_1^*(m_1 - m_0, \theta))$ to $H(b_0, b_1) = 0$. It follows that $(e^{-m_0 \pi/\rho} b_0^*(0, \theta), e^{-m_0 \pi/\rho} b_1^*(m_1 - m_0, \theta))$ solves $H(b_0, b_1) = 0$, and 
+Since we are taking $b_0^0 \geq b_0^1$, i.e. $m_0 \leq m_1$, it suffices to consider the case where $b_0^0 = 1$, i.e. $m_0 = 0$. To see this, suppose the lemma is true for $b_0^0 = 1$. Then we can find a family of solutions $(b_0^*(0, \theta), b_1^*(m_1 - m_0, \theta)$ to $H(b_0, b_1) = 0$. Let $\tilde{b}_0 = e^{-m_0 \pi/\rho} b_0^*(0, \theta)$ and $\tilde{b}_1 = e^{-m_0 \pi/\rho} b_1^*(m_1 - m_0, \theta)$. Then since $\sin \left( -\rho \log ( e^{-m_0 \pi/\rho} x )\right) = (-1)^(m_0) \sin(-\rho \log x)$, 
+\begin{align*}
+H(\tilde{b}_0, \tilde{b}_1) 
+&= e^{-m_0 \pi/\rho} (-1)^m \Big( b_0^*(0, \theta) \sin (-\rho \log b_0^*(0, \theta)) - b_1^*(m_1 - m_0, \theta) \sin (-\rho \log b_1^*(m_1 - m_0, \theta))\Big) \\
+&= e^{-m_0 \pi/\rho} (-1)^m H( b_0^*(0, \theta), b_1^*(m_1 - m_0, \theta))
+&= 0
+\end{align*}
+Thus $(\tilde{b}_0, \tilde{b}_1) = (e^{-m_0 \pi/\rho} b_0^*(0, \theta), e^{-m_0 \pi/\rho} b_1^*(m_1 - m_0, \theta))$ solves $H(b_0, b_1) = 0$, and 
 \begin{align*}
 e^{-m_0 \pi/\rho} b_0^*(0, 0) &= b_0^0 \\
 e^{-m_0 \pi/\rho} b_1^*(m_1 - m_0, 0) &= b_0^1
 \end{align*}
 
-Thus make take $b_0^0 = 1$. For $\theta \in I_\rho$, we will use the parameterization
+Thus we may take $b_0^0 = 1$. For $\theta \in I_\rho$, we will use the parameterization
 \begin{equation}\label{thetaparam1}
 \begin{aligned}
 b_1^*(m_1, \theta) &= e^{ -\frac{1}{\rho}(m_1 \pi - \theta) } \\
@@ -1089,130 +1098,98 @@ where $\theta \in I_\rho$. We proceed in the following steps.
 	\end{align*}
 	If $m_0 > 0$, we multiply this bound by $e^{m_0 \pi/\rho}$.
 \end{enumerate}
-
 \end{proof}
 \end{lemma}
 
-Now that we have our parameterization, we can use the implicit function theorem to solve $G(b_0, b_1, r) = 0$ near $(b_0^*(m_0, \theta), b_1^*(m_1, \theta))$. If we do that, we will generically lose the pitchfork bifurcation structure of $F(b_0, b_1)$ which we just found. However, in the special case of the 2-periodic pulse, since we only have a single equation $G(b_0, b_1, r) = 0$ to solve, we will show that the pitchfork bifurcation actually persists for small $r$. This is not generically true, and will not hold for the $n-$periodic pulse.\\
+Now that we have our parameterization, we would like to solve $G(b_0, b_1, r) = 0$ for small $r$ near $(b_0^*(m_0, \theta), b_1^*(m_1, \theta))$. When we perturb $r$ away from 0, we will generically lose the pitchfork bifurcation structure. In addition, we will not be able to use the implicit function theorem at the pitchfork bifurcation point.
 
-To show the pitchfork persists for small $r$, the first thing we will show is that $G$ has the same symmetries as $F$.
+In the special case of the 2-periodic pulse, we will show that the pitchfork bifurcation persists for small $r$. To prove this, the first thing we will show is that $G$ has the same symmetries as $H$.
 
 % lemma : symmetries of G
 
 \begin{lemma}\label{Gsymm}
-
-For sufficiently small $r$,
-
+We have the symmetry relation
 \begin{equation}
 G(b_0, b_1, r) = -G(b_1, b_0, r)
 \end{equation}
-
-In particular, for sufficiently small $r$,
-
+In particular, 
 \[
 G(b_0, b_0, r) = 0
 \]
-
 \begin{proof}
-Recall that the adjoint jump conditions for a 2-periodic pulse are given by
+Recall that in Lemma \ref{solvewithjumps}, we showed that given lengths $X_0$ and $X_1$, there exists a unique piecewise solution $\{ U_0^-(x), U_0^+(x), U_1^-(x), U_1^+(x) \}$ to \eqref{systemwithjumpZ} which generically has two jumps at $x = 0$ in the direction of $\Psi(0)$. A periodic 2-pulse solution exists if and only if these jumps are 0. By uniqueness, these jumps are functions of $X_0$ and $X_1$ and are given by
+\begin{equation}\label{xijumps}
+\begin{aligned}
+\xi_0(X_0, X_1) &= \langle \Psi(0), U_0^+(0) - U_0^-(0) \rangle  \\
+\xi_1(X_0, X_1) &= \langle \Psi(0), U_1^+(0) - U_1^-(0) \rangle 
+\end{aligned}
+\end{equation}
+We showed in Lemma \ref{jumplemma3} that these jumps are given in the scaled variables $b_0$, $b_1$, and $r$ by
+\begin{equation}\label{G0G1}
+\begin{aligned}
+G_0(b_0, b_1, r) = b_0 \sin \left( -\rho \log b_0 \right) - b_1 \sin \left( -\rho \log b_1 \right) + \mathcal{O}(r^{\gamma / 2 \alpha}) \\
+G_1(b_0, b_1, r) = b_1 \sin \left( -\rho \log b_1 \right) - b_0 \sin \left( -\rho \log b_0 \right) + \mathcal{O}(r^{\gamma / 2 \alpha}) 
+\end{aligned}
+\end{equation}
+In particular, since we have a Hamiltonian system, if the $G_0(b_0, b_1, r) = 0$ then we automatically have $G_1(b_0, b_1, r) = 0$. Since these are two sets of equations for the same jumps, we must have 
+\begin{align}\label{xiGequiv}
+\xi_j(X_0, X_1) &= G_j(b_0, b_1, r) && j = 0, 1
+\end{align} 
+
+Suppose for an ordered pair of lengths $(X_0, X_1)$ we have a unique solution $\{ U_0^-(x), U_0^+(x), U_1^-(x), U_1^+(x) \}$ to \eqref{systemwithjumpZ}, pieced together from left to right. If swap $X_0$ and $X_1$ to get the ordered pair $(X_1, X_0)$, we have another solution to \eqref{systemwithjumpZ}; by uniqueness, this solution must be $\{ U_1^-(x), U_1^+(x), U_0^-(x), U_0^+(x)\}$ since we are on a periodic domain. Thus we have for the jumps $\xi_j$,
+\begin{equation}\label{xiswapX}
+\begin{aligned}
+\xi_0(X_1, X_0) &= \langle \Psi(0), U_1^+(0) - U_1^-(0) \rangle = \xi_1(X_0, X_1) \\
+\xi_1(X_1, X_0) &= \langle \Psi(0), U_0^+(0) - U_0^-(0) \rangle = \xi_0(X_0, X_1)
+\end{aligned}
+\end{equation}
+
+If we keep the ordered pair $(X_0, X_1)$ but replace $x$ with $-x$, $\{ U_1^+(-x), U_1^-(-x), U_0^+(-x), U_0^-(-x)\}$, pieced together from L to R, also satisfies the \eqref{systemwithjumpZ}. By uniqueness, we must have $U_1^+(0) = U_0^-(0)$ and $U_1^-(0) = U_0^+(0)$. Thus for the jump $\xi_0$, we have
 \begin{align*}
-G_0(a_0, a_1, r) = a_0 \sin \left( -\rho \log a_0 \right) - a_1 \sin \left( -\rho \log a_1 \right) + \mathcal{O}(r^{\gamma / 2 \alpha}) &= 0 \\
-G_1(a_0, a_1, r) = a_1 \sin \left( -\rho \log a_1 \right) - a_0 \sin \left( -\rho \log a_0 \right) + \mathcal{O}(r^{\gamma / 2 \alpha}) &= 0
-\end{align*}
-
-$G_0 = G$, and since our system is Hamiltonian, the $G_1$ equation is automatically satisfied if the $G_0$ equation is satisfied. Recall that the $G_i$ equations were obtained by a change of varibles from the equations
-
-\begin{align}
-\langle \Psi(0), V_i^+(0) - V_i^-(0) \rangle = 
-\langle \Psi(X_i), Q(-X_i) \rangle - \langle \Psi(-X_{i-1}), Q(X_{i-1}) \rangle + R_i = 0
-\end{align}
-
-for $i = 0, 1$. This was obtained via Lin's method and represents the jumps $\xi_i$ between in the direction of $\Psi(0)$. Changing variables back to the $X_i$, we can write the $G_i$ as
-
-\begin{align}\label{GXi}
-G_i(X_0, X_1) = \langle \Psi(0), V_i^+(0) - V_i^-(0) \rangle = \langle \Psi(0), U_i^+(0) - U_i^-(0) \rangle
-\end{align}
-
-where the second equality holds since
-
-\begin{align*}
-U_i^\pm(x) &= Q^\pm(0, \beta_i^\pm)(x) + V_i^pm(x) 
-\end{align*}
-
-and $Q^\pm(0, \beta_i^\pm)(0)$ has no component in $\Psi(0)$. In particular,
-
-\begin{align*}
-G_0(X_0, X_1) &= \langle \Psi(0), U_0^+(0) - U_0^-(0) \rangle \\
-G_1(X_0, X_1) &= \langle \Psi(0), U_1^+(0) - U_1^-(0) \rangle 
-\end{align*}
-
-First, we show that $G_i(X_0, X_1)$ is a well-defined function of the $X_i$, i.e. it has a unique value. Recall that in the first three steps of Lin's method, we solved, in turn, the equations
-
-\begin{align*}
-(U_i^\pm)' - F(U_i^\pm) &= 0 \\
-U_i^+(X_i) - U_{i+1}^-(-X_i) &= 0 \\
-P_{Y^\pm}(U_i^+(0) - U_i^-(0)) &= 0
-\end{align*}
-
-For sufficiently large $X_i$, each of the three steps yields a unique solution. Thus, for a given ordered pair of lengths $(X_0, X_1)$ which are sufficiently large, there is a unique set of functions $U_i^\pm$ which satisfies the three equations. Thus \eqref{GXi} is well-defined.\\
-
-Suppose for an ordered pair of lengths $(X_0, X_1)$ we have a solution $\{ U_0^-(x), U_0^+(x), U_1^-(x), U_1^+(x) \}$, pieced together from L to R. Then if swap the $X_0$ and $X_1$ to get the ordered pair $(X_1, X_0)$, the three equations are satisfied by the set of functions $\{ U_1^-(x), U_1^+(x), U_0^-(x), U_0^+(x)\}$, pieced together from L to R. From this, we see that
-
-\begin{align*}
-G_0(X_1, X_0) &= \langle \Psi(0), U_1^+(0) - U_1^-(0) \rangle = G_1(X_0, X_1) \\
-G_1(X_1, X_0) &= \langle \Psi(0), U_0^+(0) - U_0^-(0) \rangle = G_0(X_0, X_1)
-\end{align*}
-
-Next, we note that if we replace $x$ with $-x$, then for the same ordered pair $(X_0, X_1)$, the set of functions $\{ U_1^+(-x), U_1^-(-x), U_0^+(-x), U_0^-(-x)\}$, pieced together from L to R, also satisfies the three equations. By uniqueness, this implies that $U_1^+(0) = U_0^-(0)$ and $U_1^-(0) = U_0^+(0)$. Thus we have
-
-\begin{align*}
-G_0(X_0, X_1) &= \langle \Psi(0), U_0^+(0) - U_0^-(0) \rangle \\
+\xi_0(X_0, X_1) &= \langle \Psi(0), U_0^+(0) - U_0^-(0) \rangle \\
 &= \langle \Psi(0), U_1^-(0) - U_1^+(0) \rangle \\
 &= -\langle \Psi(0), U_1^+(0) - U_1^-(0) \rangle \\
-&= -G_1(X_0, X_1) \\
-&= -G_0(X_1, X_0)
+&= -\xi_1(X_0, X_1) \\
+&= -\xi_0(X_1, X_0)
 \end{align*}
-
-Similarly, $G_1(X_0, X_1) = -G_1(X_1, X_0)$. Changing variables back to $(a_0, a_1, r)$ yields the result. The condition that the $X_i$ are sufficiently large is equivalent to $r$ being sufficiently small.
+where for the last equality we used \eqref{xiswapX}. Similarly, $\xi_1(X_0, X_1) = -\xi_0(X_1, X_0)$. Using the relations \eqref{xiGequiv} and noting that swapping $X_0$ and $X_1$ in $\xi_j$ is equivalent to swapping $b_0$ and $b_1$ in $G_j$, we have
+\begin{align*}
+G_0(b_0, b_1, r) &= \xi_0(X_0, X_1) \\
+&= -\xi_0(X_1, X_0) \\
+&= -G_0(b_1, b_0, r)
+\end{align*}
+Since for the 2-periodic pulse we are using the notation $G$ for $G_0$, the result follows.
 \end{proof}
 \end{lemma}
 
 Next, we show that the pitchfork bifurcation persists for sufficiently small $r$.
 
 % Persistence of pitchfork
-
 \begin{lemma}\label{pitchpersist}
-
-For $k \in \N_0$ there exists $r_0 > 0$ (depending on $k$) and a unique smooth function $p_k: \mathcal{R} \cap [0, r_0] \rightarrow \R$ such that $G(b_0, b_1, r)$ has a nondegenerate pitchfork bifurcation at $(p_k(r),p_k(r)$. Furthermore, 
-
+For $k \in \Z$ there exists $r_0 > 0$ (depending on $k$) and a unique smooth function $p_k: \mathcal{R} \cap [0, r_0] \rightarrow \R$ such that $G(b_0, b_1, r)$ has a nondegenerate pitchfork bifurcation at $(p_k(r),p_k(r))$. Furthermore, 
 \begin{equation*}
 p_k(r) \rightarrow p_k^* \text{ as } r \rightarrow 0
 \end{equation*}
-
 \begin{proof}
-We make the following assumption: for all derivatives of $G$ with respect to the $b_i$, the remainder term is $\mathcal{O}(r^{\gamma / 2 \alpha})$. Lemma 6.2 in San98 and Proposition 3.8 in SanStrut have this result up to first derivatives with respect to the $a_i$. I imagine this follows (like everything does) from San93.\\
-
-For simplicity, take $k = 0$, so that we are looking for the persistence of the pitchfork bifurcation at $(p^*, p^*)$. The same argument works for $k > 0$.\\
-
-From Lemma \ref{pitchforkH}, we showed that a pitchfork bifurcation occurs in the zero set of $F(b_0, b_1)$ at $(p^*, p^*)$. First, as in Lemma \ref{pitchforkH}, we change coordinates $(b_0, b_1) \mapsto (x, y)$, so that $(0, p^*)$ is a pitchfork bifurcation point of $G(x, y, 0)$. By Lemma \ref{Gsymm}, in this cooordinate system, we have the symmetry $G(-x, y, r) = -G(x, y, r)$ for sufficiently small $r$. This implies that for sufficiently small $r$, $G(0, y, r) = 0$, i.e. the line $x = 0$ consists entirely of equilibria.\\
+For simplicity, take $k = 0$. The same argument works for all other $k$. In Lemma \ref{pitchforkH}, we showed that a pitchfork bifurcation occurs in the zero set of $F(b_0, b_1)$ at $(p_0^*, p_0^*)$. First, as in Lemma \ref{pitchforkH}, we make the change of coordinates $(b_0, b_1) \mapsto (x, y)$, so that $(0, p^*)$ is a pitchfork bifurcation point of $G(x, y, 0)$. By Lemma \ref{Gsymm} we have the symmetry 
+\[
+G(-x, y, r) = -G(x, y, r)
+\]
+in this cooordinate system. This implies that $G(0, y, r) = 0$ for all $y$.
 
 We now prove the existence of a pitchfork bifurcation along this line. Since a necessary condition for a pitchfork to occur is $G_x(x, y, r) = 0$, we will look at the system
-
 \begin{equation}
-H(x,y,r) = (G(x,y,r), G_x(x,y,r)) = 0
+K(x,y,r) = (G(x,y,r), G_x(x,y,r)) = 0
 \end{equation}
+From Lemma \ref{pitchforkH}, $G_x(0,p_0^*,0) = G_y(0, p_0^*, 0) = 0$, so $D_{x,y}K(0,p_0^*,0)$ is singular. Since we cannot use the IFT at this point, we will instead do a Lyapunov-Schmidt reduction. In Lemma \ref{pitchforkH}, we showed that $G_{xy}(0, p_0^*, 0) = 2 \rho/p^* \sqrt{1 + \rho^2} \neq 0$. Thus we can use the IFT to solve $K_2(x,y,r) = G_x(x,y,r) = 0$ for $y$ in terms of $x$ and $r$ near $(x,y,r) = (0, p_0^*, 0)$. Specifically, there exists $r_0 > 0$, an open interval $(-a, a)$, and a unique smooth function $y = y^*(x, r)$ such that $y^*(0, 0) = p_0^*$ and $G_x(x, y^*(x, r), r) = 0$ for all $x \in (-a, a)$ and $r < r_0$.
 
-The remainder term of $G_x$ and $G_y$ is order $r^{\gamma/2 \alpha}$, so it goes to 0 as $r \rightarrow 0$. Thus $G_x(x,y,0) = F_x(x,y)$ and $G_y(x,y,0) = F_y(x,y)$. In particular, $G_x(0,p^*,0) = G_y(0, p^*, 0) = 0$, so $D_{x,y}G(0,p^*,0)$ is singular. Thus, as expected, we cannot use the IFT.\\
+STOPPED HERE. NEED TO SHOW SYMMETRY FOR THIS.
 
-We will instead do a Lyapunov-Schmidt reduction. In Lemma \ref{pitchforkF}, we computed $F_{xy}(0, p^*) = 2 \rho/p^* \sqrt{1 + \rho^2} \neq 0$. Since the remainder term in $G_{xy}$ decays to 0 as $r \rightarrow 0$, $G_{xy}(0, p^*, 0) = F_{xy}(0, p^*) \neq 0$. Thus we can use the IFT to solve $H_2(x,y,r) = G_x(x,y,r)$ for $y$ in terms of $x$ and $r$ near $(x,y,r) = (0, p^*, 0)$. By the IFT, there exists $r_0 > 0$, an open interval $(-a, a)$, and a unique function $y = y^*(x, r)$ with the same smoothness as $G_x$ such that $y^*(0, 0) = p^*$ and $G_x(x, y^*(x, r), r) = 0$ for $x \in (-a, a)$ and $r < r_0$.\\
-
-Next, we plug this into the equation for $G$ to get
-
+Taking $y = y^*(x, r)$ in the equation for $G$, we get
 \begin{equation}
 G(x, y^*(x, r), r) = 0
 \end{equation}
-
-As noted above, this has a solution for $x = 0$. It remains to check that a pitchfork bifuration occurs at $(0, y^*(0, r), r)$. First, since $G(x, y, r)$ is an odd function in $x$, $G_y(0, y, r) = 0$ and $G_{xx}(0, y, r) = 0$ for all $x, r$. So we get $G_y(0, y^*(0, r), r) = 0$ and $G_{xx}(0, y^*(0, r), r) = 0$ for free.\\
+As noted above, this has a solution whenevef $x = 0$. We will show that a pitchfork bifuration occurs at $(0, y^*(0, r), r)$. First, since $G(x, y, r)$ is an odd function in $x$, $G_y(0, y, r) = 0$ and $G_{xx}(0, y, r) = 0$ for all $x, r$. It follows that $G_y(0, y^*(0, r), r) = 0$ and $G_{xx}(0, y^*(0, r), r) = 0$.\\
 
 All that remains is to show that $G_{xy}$ and $G_{xxx}$ are nonzero at $(0, y^*(0, r), r)$. Recall that $F_{xy}(0, p^*) \neq 0$. Then since $G_{xy}$ and $y^*$ are smooth, $G_{xy}(0, y^*(0, r), r) \rightarrow 0 \text{ as } r \rightarrow 0$. Thus, for sufficiently small $r$, $G_{xy}(0, y^*(0, r), r) \neq 0$. Similarly, from Lemma \ref{pitchfork}, we know that $F_{xxx}(0, p^*) \neq 0$. By the same argument, we conclude that $G_{xxx}(0, y^*(0, r), r) \neq 0$ for sufficiently small $r$.\\
 
