@@ -920,6 +920,7 @@ Since the above change of coordinates a rotation by $\pi/4$, we conclude that pi
 \end{proof}
 \end{lemma}
 
+\subsection{Parameterization of zero set of $H$}
 Now that we have shown the pitchfork bifurcations occur, we will find a parameterization for the zero set of $H(b_0, b_1)$. Since the zero set is symmetric across the diagonal we only need to consider the case where $b_0 \geq b_1$. The parameterization works as follows. Recall that $H(b_0, b_1) = 0$ when $b_0, b_1 \in \mathcal{B}$; this is a discrete grid of points in the zero set of $H(b_0, b_1)$. We will then connect these points using a phase parameter $\theta$. The specific form of the parameterization is given in the following lemma.
 
 % lemma : parameterization of zero set of H
@@ -952,9 +953,9 @@ b_0^*(m_0, \theta) &= e^{-\frac{1}{\rho}(m_0 \pi + \theta_0^*(\theta)) }
 \end{aligned}
 \end{equation}
 where $\theta_0^*$ depends on $\theta$, $\theta_0^*(\theta) \in I_\rho$, and we have bound
-\[
+\begin{equation}\label{thetastarbound}
 |\theta_0^*(\theta)| \leq C e^{ -\frac{\pi}{\rho}(m_1 - m_0)}
-\]
+\end{equation}
 which is independent of $\theta \in I_\rho$.
 \end{itemize}
 
@@ -1101,8 +1102,164 @@ where $\theta \in I_\rho$. We proceed in the following steps.
 \end{proof}
 \end{lemma}
 
+% derivative bounds
+
+\begin{lemma}
+Fix $m_0 \in \Z$. Then for each integer $m_1$ with $m_1 \geq m_0$, let $(b_0^*(m_0, \theta), b_1^*(m_1, \theta))$ be the parameterization of the appropriate piece of the zero set of $H$ according to Lemma \ref{thetaparam}. Then we have the following bounds.
+\begin{enumerate}[(i)] 
+\item There exists an integer $M_0$ such that for all $m_1 \geq M_0$,
+\begin{align}
+| \partial_{b_0} G(b_0^*(m_0, \theta), b_1^*(m_1, \theta), 0) | &\geq \rho/2
+\end{align}
+which is independent of $\theta$.
+
+\end{enumerate}
+\begin{proof}
+From Lemma \ref{thetaparam}, $b_0^*(m_0, \theta)$ is given by
+\begin{align*}
+b_0^*(m_0, \theta) &= e^{-\frac{1}{\rho}(m_0 \pi + \theta_0^*(\theta)) }
+\end{align*}
+where $|\theta_0^*(\theta)| \leq C e^{ -\frac{\pi}{\rho}(m_1 - m_0)}$.
+
+Taking the partial derivative of $G(b_0, b_1, r)$ with respect to $b_0$, we have
+\begin{align*}
+\partial_{b_0} G(b_0, b_1, r) = \sin(-\rho \log b_0) - \rho \cos(-\rho \log b_0) + \mathcal{O}(r^{\gamma/2\alpha})
+\end{align*}
+Evaluating this at $(b_0, b_1, r) = (b_0^*(m_0, \theta), b_1^*(m_1, \theta), 0)$, we have 
+\begin{align*}
+\partial_{b_0} G(b_0^*(m_0, \theta), b_1^*(m_1, \theta), 0) &= \sin\left(-\rho \log e^{-\frac{1}{\rho}(m_0 \pi + \theta_0^*(\theta))} \right) - \rho \cos\left(-\rho \log e^{-\frac{1}{\rho}(m_0 \pi + \theta_0^*(\theta))} \right) \\
+&= \sin\left(m_0 \pi + \theta_0^*(\theta) \right) - \rho \cos\left(m_0 \pi + \theta_0^*(\theta) \right) \\
+&= (-1)^{m_0} \left( \sin \theta_0^*(\theta) - \rho \cos \theta_0^*(\theta) \right)
+\end{align*}
+Taking absolute values,
+\begin{align*}
+| \partial_{b_0} G(b_0^*(m_0, \theta), b_1^*(m_1, \theta), 0) | 
+&= \left| \sin \theta_0^*(\theta) - \rho \cos \theta_0^*(\theta) \right| \\
+&= \left| \sin \theta_0^*(\theta) - \rho \cos \theta_0^*(\theta) \right| \\
+&\geq \left| |\sin \theta_0^*(\theta)| - \rho |\cos \theta_0^*(\theta)| \right| \\
+&\geq \rho \left| |\cos \theta_j^*(\theta)| - \rho^{-1} |\sin \theta_j^*(\theta)| \right|
+\end{align*}
+
+For part (i), using the bound \eqref{thetastarbound}, we can find an integer $M_0$ such that if $m_1 \geq M_0$,
+\[
+|\sin \theta_0^*(\theta)| \leq K(\rho)
+\]
+where
+\begin{align*}
+K(\rho) &= \begin{cases}
+ 1/4 & \rho \geq 1 \\
+\rho^2 / 4 & \rho < 1
+\end{cases}
+\end{align*}
+Since $|\sin \theta_0^*(\theta)| \leq K(\rho) \leq 1/4$, it follows that $|\cos \theta_j^*(\theta)| \geq \sqrt{1 - K^2}|$. For $\rho \geq 1$,
+\begin{align*}
+| \partial_{b_0} G(b_0^*(m_0, \theta), b_1^*(m_1, \theta), 0) | 
+&\geq \rho \left( \sqrt{1 - K^2}  - \rho^{-1}K \right) \\
+&\geq \rho \left( \sqrt{1 - (1/4)^2}  - \rho^{-1}(1/4) \right) \\
+&\geq \rho \left( \sqrt{1 - (1/4)^2}  - \rho^{-1}(1/4) \right) \\
+&\geq \rho \left( 3/4  - (1/4) \rho^{-1} \right) \\
+&\geq \rho/2
+\end{align*}
+For $\rho \geq 1$,
+\begin{align*}
+| \partial_{b_0} G(b_0^*(m_0, \theta), b_1^*(m_1, \theta), 0) | 
+&\geq \rho \left( \sqrt{1 - K^2}  - \rho^{-1}K \right) \\
+&\geq \rho \left( \sqrt{1 - (\rho^2/4)^2} - \rho/4  \right) \\
+&\geq \rho/2
+\end{align*}
+Thus for $m_1 \geq M_0$, 
+\begin{align*}
+| \partial_{b_0} G(b_0^*(m_0, \theta), b_1^*(m_1, \theta), 0) | &\geq \rho/2
+\end{align*}
+which is independent of $\theta$.
+\end{proof}
+\end{lemma}
+
+
+
+
+\begin{lemma}
+\begin{proof}
+For $r = 0$, using the parameterization from Lemma \ref{thetaparamlemma}, the upper arm of the pitchfork which branches from $(p_0^*, p_0^*)$ is parameterized by the $M$ pieces
+\begin{align}\label{Mpieceparam}
+(b_0^*(0, \theta), b_1^*(m, \theta)) && m = 1, 2, \dots, M
+\end{align}
+where $\theta \in I_\rho$. From Lemma \ref{thetaparamlemma}, these pieces connect up at their endpoints, thus we can parameterize this portion of the upper arm by the smooth function $(\tilde{b}^*_0(\tilde{\theta}), \tilde{b}^*_1(\tilde{\theta})): [0, M \pi] \rightarrow \R^2$, where 
+\begin{align*}
+\tilde{b}_1^*(\tilde{\theta}) &= e^{-\frac{1}{\rho}(\arctan \rho +\tilde{\theta})} \\
+\tilde{b}_0^*(\tilde{\theta}) &= e^{-\frac{1}{\rho}(\arctan \rho + \theta^*(\tilde{\theta}))}
+\end{align*}
+and $(\tilde{b}^*_0(0), \tilde{b}^*_1(0)) = (p_0^*, p_0^*)$.
+
+Substitute $\tilde{b}_1^*(\tilde{\theta})$ for $b_1$ in $G(b_0, b_1)$ to get
+\begin{align*}
+G(b_0, \tilde{b}_1^*(\tilde{\theta}), r) 
+&= b_0 \sin(-\rho \log b_0) - e^{-\frac{1}{\rho}(\arctan \rho + \tilde{\theta})} \sin\left(-\rho \log \left( e^{-\frac{1}{\rho}(\arctan \rho + \tilde{\theta})}\right)\right) + \mathcal{O}(r^{\gamma/2\alpha}) \\
+&= b_0 \sin(-\rho \log b_0) - e^{-\frac{1}{\rho}\arctan \rho}e^{-\frac{1}{\rho}\tilde{\theta}} \sin\left(\arctan \rho + \tilde{\theta} \right) + \mathcal{O}(r^{\gamma/2\alpha}) \\
+&= b_0 \sin(-\rho \log b_0) - p_0^* e^{-\frac{1}{\rho}\tilde{\theta}} \sin\left(\arctan \rho + \tilde{\theta} \right) + \mathcal{O}(r^{\gamma/2\alpha}) 
+\end{align*}
+Define $\tilde{G}: \R \times [0, M \pi] \times \mathcal{R} \rightarrow \R$ by 
+$\tilde{G}(b_0, \tilde{\theta}, r) = G(b_0, \tilde{b}_1^*(\tilde{\theta}), r)$, i.e.
+\begin{equation}\label{tildeGdef}
+\tilde{G}(b_0, \tilde{\theta}, r) = b_0 \sin(-\rho \log b_0) - p_0^* e^{-\frac{1}{\rho}\tilde{\theta}} \sin\left(\arctan \rho + \tilde{\theta} \right) + \mathcal{O}(r^{\gamma/2\alpha}) 
+\end{equation}
+We note that for all $\tilde{\theta} = [0, M \pi]$,
+\[
+\tilde{G}(b_0^*(0, \tilde{\theta}), \tilde{\theta}, 0) = 0
+\]
+
+Recall that at $\tilde{\theta} = 0$ corresponds to the pitchfork bifurcation point, so, $\partial b_0 \tilde{G}(b_0^*(0, \tilde{\theta}), \tilde{\theta}, 0) = 0$. Let $\delta > 0$. We will obtain a lower bound for the derivative $D_{b_0} \tilde{G}(b_0^*(0, \tilde{\theta}), \tilde{\theta}, 0)$ for $\tilde{\theta} \in [\delta, M \pi]$. 
+
+To do this, we will use the piecewise parameterization in \eqref{Mpieceparam}.
+Recall from the parameterization in Lemma \ref{thetaparamlemma} that $b_0^*(0, \theta) = e^{-\frac{1}{\rho}\theta_0^*(\theta)}$, where we found $\theta_0^*$ by solving
+\begin{equation*}
+\theta^* = g^{-1}\left( e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1}  e^{ \frac{1}{\rho} \theta } \sin \theta \right)
+\end{equation*}
+From \eqref{RHSbounds}, we have 
+\begin{align*}
+|e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1}  e^{ \frac{1}{\rho} \theta } \sin \theta| \leq e^{ -\frac{1}{\rho} \pi } T && m_1 \geq 2, \theta \in I_\rho
+\end{align*}
+where $T$ is defined in \eqref{defT} in Lemma \ref{thetaparamlemma}. 
+For $m = 1$, $\tilde{\theta} \in [\delta, M \pi]$ is equivalent to $\theta \in [-\theta_\rho^-, \theta_\rho^+ - \delta$. Recalling from Lemma \ref{thetaparamlemma} that $g(\theta) = e^{ \frac{1}{\rho} \theta } \sin \theta$ is increasing, we have
+\begin{align*}
+-e^{ -\frac{1}{\rho} \pi } e^{ \frac{1}{\rho} \theta } \sin \theta &\geq 
+ -e^{ -\frac{1}{\rho} \pi } e^{ \frac{1}{\rho}(\pi - \arctan \rho - \delta) } \sin(\pi - \arctan \rho - \delta) \\
+&= -e^{-\frac{1}{\rho}\delta} e^{-\frac{1}{\rho}\arctan\rho}\sin(\arctan \rho - \delta) \\
+&\geq -e^{-\frac{1}{\rho}\delta} e^{-\frac{1}{\rho}\arctan\rho}\sin(\arctan \rho)
+\end{align*}
+since $0 < \arctan \rho < \pi/2$. Evaluating $\sin(\arctan\rho)$ and simplifying, this becomes
+\begin{align*}
+-e^{ -\frac{1}{\rho} \pi } e^{ \frac{1}{\rho} \theta } \sin \theta 
+&\geq -e^{-\frac{1}{\rho}\delta} e^{-\frac{1}{\rho}\arctan\rho}\frac{\rho}{\sqrt{1 + \rho^2}} \\
+&= -e^{-\frac{1}{\rho}\delta} T
+\end{align*}
+Thus we have for $m = 1$, $\theta \in [-\theta_\rho^-, \theta_\rho^+ - \delta$,
+\begin{align*}
+-e^{ -\frac{1}{\rho} \pi } e^{ \frac{1}{\rho} \theta } \sin \theta
+\in [-e^{-\frac{1}{\rho}\delta} T, e^{ -\frac{1}{\rho} \pi } T]
+\end{align*}
+Since $g^{-1}$ is strictly increasing with $g^{-1}(-T) = \theta_\rho^+$ and $g^{-1}(e^{\frac{1}{\rho}\pi}T) = \theta_\rho^+$, we conclude that there exists $\epsilon > 0$ (depending on $\delta$) such that for all $m_1 \geq 1$, 
+\[
+\theta^*(\theta) \in [\theta_\rho^- + \epsilon, \theta_\rho^+ - \epsilon]
+\]
+
+Differentiating $G$ with respect to $b_0$, we obtain
+\begin{align*}
+\partial_{b_0} G(b_0, b_1, r) = \sin(-\rho \log b_0) - \rho \cos(-\rho \log b_0) + \mathcal{O}(r^{\gamma/2\alpha})
+\end{align*}
+Taking $r = 0$ and $b_0 = e^{-\frac{1}{\rho}\theta_0^*(\theta)}$, this becomes
+\begin{align*}
+\partial_{b_0} G(b_0, b_1, 0) = \sin(\theta_0^*(\theta)) - \rho \cos(\theta_0^*(\theta)) 
+\end{align*}
+
+\end{proof}
+\end{lemma}
+
+
+
 Now that we have our parameterization, we would like to solve $G(b_0, b_1, r) = 0$ for small $r$ near $(b_0^*(m_0, \theta), b_1^*(m_1, \theta))$. When we perturb $r$ away from 0, we will generically lose the pitchfork bifurcation structure. In addition, we will not be able to use the implicit function theorem at the pitchfork bifurcation point.
 
+\subsection{Persistence of Pitchfork}
 In the special case of the 2-periodic pulse, we will show that the pitchfork bifurcation persists for small $r$. To prove this, the first thing we will show is that $G$ has the same symmetries as $H$.
 
 % lemma : symmetries of G
@@ -1195,9 +1352,106 @@ Changing variables back to $(b_0, b_1)$, let $p_0(r) = (y^*(0, r), y^*(0, r))$. 
 \end{proof}
 \end{lemma}
 
+We have shown for sufficiently small $r$, $G(b_0, b_0, r) = 0$, so the zero set of $G$ still contains the diagonal. We have also shown that the pitchfork bifurcations persist along the diagonal. Finally, we will show that the rest of the structure of the zero set of $G(b_0, b_1, r)$ persists for small $r$. We only have to do this for the branches of the pitchfork at $(p_0(r), p_0(r))$.
 
-BEFORE WE DO THIS, NEED TO SHOW PERSISTENCE OF REST OF THING.
-ONLY NEED FOR $m_1 = 0$ BRANCH.
+\begin{lemma}
+\begin{proof}
+Choose $m_0 = 0$ and any $M \in \N$. For $r = 0$, using the parameterization from Lemma \ref{thetaparamlemma}, the upper arm of the pitchfork which branches from $(p_0^*, p_0^*)$ is parameterized by the $M$ pieces
+\begin{align}\label{Mpieceparam}
+(b_0^*(0, \theta), b_1^*(m, \theta)) && m = 1, 2, \dots, M
+\end{align}
+where $\theta \in I_\rho$. From Lemma \ref{thetaparamlemma}, these pieces connect up at their endpoints, thus we can parameterize this portion of the upper arm by the smooth function $(\tilde{b}^*_0(\tilde{\theta}), \tilde{b}^*_1(\tilde{\theta})): [0, M \pi] \rightarrow \R^2$, where 
+\begin{align*}
+\tilde{b}_1^*(\tilde{\theta}) &= e^{-\frac{1}{\rho}(\arctan \rho +\tilde{\theta})} \\
+\tilde{b}_0^*(\tilde{\theta}) &= e^{-\frac{1}{\rho}(\arctan \rho + \theta^*(\tilde{\theta}))}
+\end{align*}
+and $(\tilde{b}^*_0(0), \tilde{b}^*_1(0)) = (p_0^*, p_0^*)$.
+
+Substitute $\tilde{b}_1^*(\tilde{\theta})$ for $b_1$ in $G(b_0, b_1)$ to get
+\begin{align*}
+G(b_0, \tilde{b}_1^*(\tilde{\theta}), r) 
+&= b_0 \sin(-\rho \log b_0) - e^{-\frac{1}{\rho}(\arctan \rho + \tilde{\theta})} \sin\left(-\rho \log \left( e^{-\frac{1}{\rho}(\arctan \rho + \tilde{\theta})}\right)\right) + \mathcal{O}(r^{\gamma/2\alpha}) \\
+&= b_0 \sin(-\rho \log b_0) - e^{-\frac{1}{\rho}\arctan \rho}e^{-\frac{1}{\rho}\tilde{\theta}} \sin\left(\arctan \rho + \tilde{\theta} \right) + \mathcal{O}(r^{\gamma/2\alpha}) \\
+&= b_0 \sin(-\rho \log b_0) - p_0^* e^{-\frac{1}{\rho}\tilde{\theta}} \sin\left(\arctan \rho + \tilde{\theta} \right) + \mathcal{O}(r^{\gamma/2\alpha}) 
+\end{align*}
+Define $\tilde{G}: \R \times [0, M \pi] \times \mathcal{R} \rightarrow \R$ by 
+$\tilde{G}(b_0, \tilde{\theta}, r) = G(b_0, \tilde{b}_1^*(\tilde{\theta}), r)$, i.e.
+\begin{equation}\label{tildeGdef}
+\tilde{G}(b_0, \tilde{\theta}, r) = b_0 \sin(-\rho \log b_0) - p_0^* e^{-\frac{1}{\rho}\tilde{\theta}} \sin\left(\arctan \rho + \tilde{\theta} \right) + \mathcal{O}(r^{\gamma/2\alpha}) 
+\end{equation}
+We note that for all $\tilde{\theta} = [0, M \pi]$,
+\[
+\tilde{G}(b_0^*(0, \tilde{\theta}), \tilde{\theta}, 0) = 0
+\]
+
+Recall that at $\tilde{\theta} = 0$ corresponds to the pitchfork bifurcation point, so, $\partial b_0 \tilde{G}(b_0^*(0, \tilde{\theta}), \tilde{\theta}, 0) = 0$. Let $\delta > 0$. We will obtain a lower bound for the derivative $D_{b_0} \tilde{G}(b_0^*(0, \tilde{\theta}), \tilde{\theta}, 0)$ for $\tilde{\theta} \in [\delta, M \pi]$. 
+
+To do this, we will use the piecewise parameterization in \eqref{Mpieceparam}.
+Recall from the parameterization in Lemma \ref{thetaparamlemma} that $b_0^*(0, \theta) = e^{-\frac{1}{\rho}\theta_0^*(\theta)}$, where we found $\theta_0^*$ by solving
+\begin{equation*}
+\theta^* = g^{-1}\left( e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1}  e^{ \frac{1}{\rho} \theta } \sin \theta \right)
+\end{equation*}
+From \eqref{RHSbounds}, we have 
+\begin{align*}
+|e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1}  e^{ \frac{1}{\rho} \theta } \sin \theta| \leq e^{ -\frac{1}{\rho} \pi } T && m_1 \geq 2, \theta \in I_\rho
+\end{align*}
+where $T$ is defined in \eqref{defT} in Lemma \ref{thetaparamlemma}. 
+For $m = 1$, $\tilde{\theta} \in [\delta, M \pi]$ is equivalent to $\theta \in [-\theta_\rho^-, \theta_\rho^+ - \delta$. Recalling from Lemma \ref{thetaparamlemma} that $g(\theta) = e^{ \frac{1}{\rho} \theta } \sin \theta$ is increasing, we have
+\begin{align*}
+-e^{ -\frac{1}{\rho} \pi } e^{ \frac{1}{\rho} \theta } \sin \theta &\geq 
+ -e^{ -\frac{1}{\rho} \pi } e^{ \frac{1}{\rho}(\pi - \arctan \rho - \delta) } \sin(\pi - \arctan \rho - \delta) \\
+&= -e^{-\frac{1}{\rho}\delta} e^{-\frac{1}{\rho}\arctan\rho}\sin(\arctan \rho - \delta) \\
+&\geq -e^{-\frac{1}{\rho}\delta} e^{-\frac{1}{\rho}\arctan\rho}\sin(\arctan \rho)
+\end{align*}
+since $0 < \arctan \rho < \pi/2$. Evaluating $\sin(\arctan\rho)$ and simplifying, this becomes
+\begin{align*}
+-e^{ -\frac{1}{\rho} \pi } e^{ \frac{1}{\rho} \theta } \sin \theta 
+&\geq -e^{-\frac{1}{\rho}\delta} e^{-\frac{1}{\rho}\arctan\rho}\frac{\rho}{\sqrt{1 + \rho^2}} \\
+&= -e^{-\frac{1}{\rho}\delta} T
+\end{align*}
+Thus we have for $m = 1$, $\theta \in [-\theta_\rho^-, \theta_\rho^+ - \delta$,
+\begin{align*}
+-e^{ -\frac{1}{\rho} \pi } e^{ \frac{1}{\rho} \theta } \sin \theta
+\in [-e^{-\frac{1}{\rho}\delta} T, e^{ -\frac{1}{\rho} \pi } T]
+\end{align*}
+Since $g^{-1}$ is strictly increasing with $g^{-1}(-T) = \theta_\rho^+$ and $g^{-1}(e^{\frac{1}{\rho}\pi}T) = \theta_\rho^+$, we conclude that there exists $\epsilon > 0$ (depending on $\delta$) such that for all $m_1 \geq 1$, 
+\[
+\theta^*(\theta) \in [\theta_\rho^- + \epsilon, \theta_\rho^+ - \epsilon]
+\]
+
+Differentiating $G$ with respect to $b_0$, we obtain
+\begin{align*}
+\partial_{b_0} G(b_0, b_1, r) = \sin(-\rho \log b_0) - \rho \cos(-\rho \log b_0) + \mathcal{O}(r^{\gamma/2\alpha})
+\end{align*}
+Taking $r = 0$ and $b_0 = e^{-\frac{1}{\rho}\theta_0^*(\theta)}$, this becomes
+\begin{align*}
+\partial_{b_0} G(b_0, b_1, 0) = \sin(\theta_0^*(\theta)) - \rho \cos(\theta_0^*(\theta)) 
+\end{align*}
+
+
+Differentiating $\tilde{G}$ with respect to $b_0$, we obtain
+\begin{align*}
+\partial_{b_0} \tilde{G}(b_0, \tilde{\theta}, r) = \sin(-\rho \log b_0) - \rho \cos(-\rho \log b_0) + \mathcal{O}(r^{\gamma/2\alpha})
+\end{align*}
+Taking $r = 0$ and $b_0 = \tilde{b}_0^*(\tilde{\theta}) = e^{-\frac{1}{\rho}(\arctan \rho + \theta^*(\tilde{\theta}))}$, this becomes
+\begin{align*}
+\partial_{b_0} \tilde{G}(b_0, \tilde{\theta}, r) &= \sin\left(-\rho \log e^{-\frac{1}{\rho}(\arctan \rho + \theta^*(\tilde{\theta}))}\right) - \rho \cos\left(-\rho \log e^{-\frac{1}{\rho}(\arctan \rho + \theta^*(\tilde{\theta}))}\right) \\
+&= \sin\left(\arctan \rho + \theta^*(\tilde{\theta})\right) - \rho \cos\left(\arctan \rho + \theta^*(\tilde{\theta}) \right) \\
+&= \sin(\arctan \rho)\cos(\theta^*(\tilde{\theta})) + \cos(\arctan \rho)\sin(\theta^*(\tilde{\theta}))\\
+&- \rho( \cos(\arctan \rho)\cos(\theta^*(\tilde{\theta})) - \sin(\arctan \rho)\sin(\theta^*(\tilde{\theta})) ) \\
+&= (\sin(\arctan \rho) - \rho \cos(\arctan \rho))\cos(\theta^*(\tilde{\theta})) + (\cos(\arctan \rho) + \rho \sin(\arctan \rho))\sin(\theta^*(\tilde{\theta})) \\
+&= \sqrt{1 + \rho^2} \sin(\theta^*(\tilde{\theta})) 
+\end{align*}
+
+
+
+Define the map $K: \R \times [0, M \pi] \times \mathcal{R} \rightarrow \R$ by
+\begin{equation}\label{defK}
+K(b_0, \theta, r) = b_0 - [D_{b_0}(b_0^*(0, \theta), \theta, 0)]^{-1}G(b_0, \theta, r)
+\end{equation}
+
+\end{proof}
+\end{lemma} 
 
 
 We can combine the previous two lemmas into the following theorem. Note that we are taking a different interval for the phase parameter $\theta$ so that we can capture the pitchfork bifurcation.
@@ -1458,7 +1712,7 @@ All we did here was make the parameterization from Lemma \ref{thetaparam} explic
 Thus we can use the uniform contraction mapping principle to solve for $b$ in terms of $r$ for all $b_{n-1} in \mathcal{B}$ and $\theta \in I$. Specifically, define $H: \mathcal{R}^{n-2} \times \mathcal{B} \times I \times \mathcal{R} \rightarrow \R^{n-1}$ by
 
 \begin{equation}\label{defHb}
-H(b, b_{n-1}, \theta, r) = b - [D_b G(b_0, b_{n-1}, \theta, 0)]^{-1} G
+H(b, b_{n-1}, \theta, r) = b - [D_b G(b_0, b_{n-1}, \theta, 0)]^{-1} G(b, b_{n-1}, \theta, r)
 \end{equation}
 
 Note that for fixed $(b_{n-1}, \theta, r)$, $H(b, b_{n-1}, \theta, r) = b$ if and only if $G(b_0, b_{n-1}, \theta, 0) = 0$. Since $G$ is smooth, so is $H$, and 
