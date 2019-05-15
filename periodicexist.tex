@@ -1220,7 +1220,7 @@ b_{n-1}^*(m_{n-1}, \theta) = e^{-\frac{1}{\rho}(m_{n-1}\pi - \theta)}
 
 Next, we plug \eqref{bstarlast} into \eqref{Geq2}. Define $G: \R^{n-1} \times \mathcal{R} \rightarrow \R^{n-1}$ by $G = (G_0, \dots, G_{n-2})^T$, where 
 \begin{equation*}
-G_j(b_0, \dots, b_{n-2}, r) = b_j \sin \left( -\rho \log b_j \right) - b_{n-1}^*(m_{n-1}, \theta) \sin \left( -\rho \log b_{n-1}^*(m_{n-1}, \theta) \right) + \mathcal{O}(r^{\gamma / 2 \alpha}) = 0
+G_j(b_0, \dots, b_{n-2}, r) = b_j \sin \left( -\rho \log b_j \right) - b_{n-1}^*(m_{n-1}, \theta) \sin \left( -\rho \log b_{n-1}^*(m_{n-1}, \theta) \right) + \mathcal{O}(r^{\gamma / 2 \alpha})
 \end{equation*}
 
 Note that $b_{n-1} = b_{n-1}^*(m_{n-1}, \theta)$ is fixed in these equations. Since for $i = 0, \dots, n-2$, $H(b_i^*(m_0, \theta), b_{n-1}^*(m_{n-1}, \theta)) = 0$, 
@@ -1259,52 +1259,66 @@ Uniqueness comes from the fact that the solution families $(b_i^*(m_0, \theta), 
 
 \section{Proof of Theorem \ref{I:unifperexist}}
 
-We parameterize the zero set of $H$ as in Lemma \ref{thetaparamlemma}, but this time we take $m_{n-1}$ to be an additional parameter. Fix nonnegative integers $m_0, \dots, m_{n-2}$, with the restriction that at least one of them must be 0. Then for each $m_{n-1} \geq \max\{ m_0, \dots, m_{n-2} \}$, let
+We parameterize the zero set of $H$ as in Lemma \ref{thetaparamlemma}, but this time we take $m_{n-1}$ to be an additional parameter. Fix nonnegative integers $m_0, \dots, m_{n-2}$, with the restriction that at least one of them must be 0, and define $b_j^0 \in \mathcal{B}$ by
+\[
+b_j^0 = e^{-\frac{1}{\rho}m_j \pi}
+\]
+Let $b^0 = (b_0^0, \dots b_{n-2}^0) \in \R^{n-1}$.
+
+
+For each $m_{n-1} \geq \max\{ m_0, \dots, m_{n-2} \}$, let
 \begin{align}
 (b_j^*(m_0, \theta; m_{n-1}), b_{n-1}^*(m_{n-1}, \theta)) && j = 0, \dots m_{n-2}
 \end{align}
-be the family of solutions to $H(b_j, b_{n-1}) = 0$, where $\theta \in [-\arctan \rho, \pi - \arctan \rho)$. $b_{n-1}^*(m_{n-1}, \theta)$ is given by
-\begin{equation}\label{bstarlast1}
-b_{n-1}^*(m_{n-1}, \theta) = e^{-\frac{1}{\rho}(m_{n-1}\pi - \theta)}
-= b_{n-1}^0 e^{\frac{1}{\rho} \theta}
+be the family of solutions to $H(b_j, b_{n-1}) = 0$, where $\theta \in [-\arctan \rho, \pi - \arctan \rho)$. From Lemma \ref{thetaparamlemma}, these are given by
+\begin{equation}\label{bstarm}
+\begin{aligned}
+b_j^*(m_j, \theta; m_{n-1}) &= e^{-\frac{1}{\rho}(m_j \pi - \theta_j^*(\theta; m_{n-1}))} && j = 0, \dots, n-2 \\
+b_{n-1}^*(m_{n-1}, \theta) &= e^{-\frac{1}{\rho}(m_{n-1}\pi - \theta)}
+\end{aligned}
 \end{equation}
 
-Using Lemma \ref{Hderivbounds}, choose $M_0 \N$ such that for $j = 0, \dots, n-2$, $m_{n-1} \geq M_0$ and $\theta \in I_\rho$,
+For $j = 0, \dots, n-2$,
+\begin{align*}
+| e^{-\frac{1}{\rho}(m_j \pi - \theta_j^*(\theta; m_{n-1}))} - b_j^0 |
+&= e^{-\frac{1}{\rho}m_j \pi}| 1 - e^{\frac{1}{\rho} \theta_j^*(\theta; m_{n-1})}| 
+\end{align*}
+Using \eqref{thetastarbound} from Lemma \ref{thetaparamlemma}, $\theta_j^*(\theta; m_{n-1}) \rightarrow 0$ as $m_{n-1} \rightarrow \infty$. Let 
+
+Using Lemma \ref{Hderivbounds}, choose $M_1 \geq M_0$ such that for $j = 0, \dots, n-2$, $m_{n-1} \geq M_0$ and $\theta \in I_\rho$,
 \begin{align}\label{derivbound1}
 | H_{b_j}(b_j^*(m_j, \theta; m_{n-1}), b_{n-1}^*(m_{n-1}, \theta)) | &\geq \rho/2
 \end{align}
-Define the space
-\begin{equation}
-\mathcal{B}_0 = \left\{ \exp\left( -\frac{m \pi}{\rho} \right) : m \geq M_0 \right\}
-\end{equation}
-Let $I = [-\arctan \rho, \pi - \arctan \rho)$. As in the proof of Theorem \ref{I:perexist}, we plug \eqref{bstarlast1} into \eqref{Geq}, but this time we take $b_{n-1}^0$ and $\theta$ explicitly as parameters. 
 
-Define the map $G: \mathcal{R}^{n-2} \times \mathcal{B}_0 \times I \times \mathcal{R} \rightarrow \R^{n-1}$ with $G = (G_0, \dots, G_{n-2})^T$, where 
-\begin{align*}
-G_j(b; &b_{n-1}, \theta, r) = b_j e^{-\frac{1}{\rho} \theta_j^*(\theta)} \sin \left( -\rho \log \left( b_j e^{-\frac{1}{\rho} \theta_j^*(\theta)} \right) \right) \\
-&- b_{n-1}^0 e^{-\frac{1}{\rho} \theta} \sin \left( -\rho \log \left( b_{n-1}^0 e^{-\frac{1}{\rho} \theta} \right) \right) + \mathcal{O}(r^{\gamma / 2 \alpha})
-\end{align*}
-where $b = (b_0, \dots, b_{n-2}) \in \R^{n-1}$. Let
+Define the set
+\begin{equation}
+\mathcal{N} = \{ m \in \Z : m \geq M_1 \}
+\end{equation}
+and let $I = [-\arctan \rho, \pi - \arctan \rho)$. As in the proof of Theorem \ref{I:perexist}, we plug \eqref{bstarlast1} into \eqref{Geq}. This time, however, we leave $m_{n-1}$ and $\theta$ as parameters. Define the map $G: \mathcal{R}^{n-1} \times \mathcal{N} \times I \times \mathcal{R} \rightarrow \R^{n-1}$ by $G = (G_0, \dots, G_{n-2})^T$, where 
+\begin{equation*}
+G_j(b, m_{n-1}, \theta, r) = b_j \sin \left( -\rho \log b_j \right) - b_{n-1}^*(m_{n-1}, \theta) \sin \left( -\rho \log b_{n-1}^*(m_{n-1}, \theta) \right) + \mathcal{O}(r^{\gamma / 2 \alpha})
+\end{equation*}
+where $b = (b_0, \dots, b_{n-2})$. Let
 \begin{equation}\label{defbstar}
 b^*(\theta, m_{n-1}) = 
 ( b_0^*(m_0, \theta; m_{n-1}), \dots, b_{n-2}^*(m_{n-2}, \theta; m_{n-1})
 \end{equation}
-Then for all $b_{n-1}^0 \in \mathcal{B}$ and $\theta \in I$,
+Then for all $m_{n-1} \geq M_1$ and $\theta \in I_\rho$, 
 \begin{itemize}
-\item $G(b^*(\theta, m_{n-1}); b_{n-1}^0, \theta, 0) = 0$
-\item The Jacobian matrix $D_b G(b^*(\theta, m_{n-1}); b_{n-1}^0, \theta, 0)$ is diagonal with all eigenvalues having magnitude greater than $\rho/2$. Thus it is invertible with bound 
+\item $G(b^*(\theta, m_{n-1}), m_{n-1}, \theta, 0) = 0$
+\item The Jacobian matrix $D_b G(b^*(\theta, m_{n-1}), m_{n-1}, \theta, 0)$ is diagonal with all eigenvalues having magnitude greater than $\rho/2$. Thus it is invertible with bound 
 \begin{equation}\label{DbGinvbound}
-||D_b G(b^*(\theta, m_{n-1}); b_{n-1}^0, \theta, 0)^{-1}|| \leq \frac{2}{\rho}
+||D_b G(b^*(\theta, m_{n-1}), m_{n-1}, \theta, 0)^{-1}|| \leq \frac{2}{\rho}
 \end{equation}
 \end{itemize}
 
-We can use the uniform contraction mapping principle to solve for $b$ in terms of $r$ near $b^*(\theta, m_{n-1})$ for all $b_{n-1}^0 in \mathcal{B}$ and $\theta \in I$. Specifically, define $K: \mathcal{R}^{n-2} \times \mathcal{B}_0 \times I \times \mathcal{R} \rightarrow \R^{n-1}$ by
+We can use the uniform contraction mapping principle to solve for $b$ in terms of $r$. Specifically, define the map $K: \mathcal{R}^{n-1} \times \mathcal{N} \times I \times \mathcal{R} \rightarrow \R^{n-1}$ by
 \begin{equation}\label{defKb}
-K(b; b_{n-1}^0, \theta, r) = b - [D_b G(b^*(\theta, m_{n-1}); b_{n-1}^0, \theta, 0)]^{-1} G(b, b_{n-1}, \theta, r)
+K(b, m_{n-1}, \theta, r) = b - [D_b G(b^*(\theta, m_{n-1}), m_{n-1}, \theta, 0)]^{-1} G(b, m_{n-1}, \theta, r)
 \end{equation}
-For fixed $(b_{n-1}^0, \theta, r)$, $K(b; b_{n-1}^0, \theta, r) = b$ if and only if $G(b_0; b_{n-1}^0, \theta, 0) = 0$. Since $G$ is smooth, so is $K$, and 
+$K(b, m_{n-1}, \theta, r) = b$ if and only if $G(b, m_{n-1}, \theta, r) = 0$. Since $G$ is smooth, so is $K$, and 
 \begin{equation}\label{DbK}
-D_b K(b; b_{n-1}, \theta, r) = I - [D_b G(b^*(\theta, m_{n-1}); b_{n-1}, \theta, 0)]^{-1} D_b G(b; b_{n-1}, \theta, r)
+D_b K(b, m_{n-1}, \theta, r) = I - [D_b G(b^*(\theta, m_{n-1}), m_{n-1}, \theta, 0)]^{-1} D_b G(b, m_{n-1}, \theta, r)
 \end{equation}
 In particular, $D_b K(b^*(\theta, m_{n-1}), b_{n-1}, \theta, 0) = 0$.
 
@@ -1331,13 +1345,16 @@ Since $G(b^0, b_{n-1}, \theta, 0) = 0$, $G$ is smooth in $r$, and $G(b^0, b_{n-1
 Using these bounds, we have for all $b \in \overline{U_0}$ and $r \leq r_1$
 
 \begin{align*}
-|K(b, b_{n-1}, \theta, r) - b^0| &\leq |H(b, b_{n-1}, \theta, r) - H(b^0, b_{n-1}, \theta, r)| + |H(b^0, b_{n-1}, \theta, r) - b^0| \\
-&\leq \sup_{b\in \overline{U_0}}||D_b H(b, b_{n-1}, \theta, r)||\:|b - b^0| 
+|K(b, &m_{n-1}, \theta, r) - b^0| \leq |K(b, m_{n-1}, \theta, r) - K(b^0, m_{n-1}, \theta, r)| + |K(b^0, m_{n-1}, \theta, r) - b^0| \\ 
+&= |K(b, m_{n-1}, \theta, r) - K(b^0, m_{n-1}, \theta, r)| + |b^0 - [D_b G(b^*(\theta, m_{n-1}), m_{n-1}, \theta, 0)]^{-1} G(b^0, m_{n-1}, \theta, r) - b^0| \\
+&\leq \sup_{b\in \overline{U_0}}||D_b K(b, m_{n-1}, \theta, r)||\:|b - b^0| 
 + || [D_b G(b_0, b_{n-1}, \theta, 0)]^{-1} G(b^0, b_{n-1}, \theta, r) || \\
 &< \frac{1}{2} |b - b^0| + \frac{2}{\rho} ||G(b^0, b_{n-1}, \theta, r) ||  \\
 &\leq \frac{\delta}{2} + \frac{2}{\rho}\frac{\rho \delta}{4} \\
 &\leq \delta
 \end{align*} 
+
+
 
 Thus we have shown $H: \overline{U_0} \times \mathcal{B} \times I \times \mathcal{R} \rightarrow \overline{U_0}$, where $\overline{U_0}$ is a closed subset of a complete metric space. To show that $H$ is a uniform contraction, let $b, \tilde{b} \in \overline{U_0}$ and $r \leq r_1$. Then for any $b_{n-1}$ and $\theta$,
 
