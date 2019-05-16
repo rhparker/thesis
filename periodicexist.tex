@@ -1109,18 +1109,14 @@ In the final lemma of this section, we obtain bounds on the partial derivative $
 
 % derivative bounds
 
-\begin{lemma}\label{Hderivbounds}
-Fix $m_0 \in \Z$. For each integer $m_1$ with $m_1 \geq m_0$, let $(b_0^*(m_0, \theta), b_1^*(m_1, \theta))$ be the parameterization of the appropriate piece of the zero set of $H$ according to Lemma \ref{thetaparam}. Then we have the following bounds on $H_{b_0}(b_0, b_1)$.
-\begin{enumerate}[(i)] 
-\item There exists an integer $M_0$ such that for all $m_1 \geq M_0$ and all $\theta \in I_\rho$,
-\begin{align}\label{derivbound1}
-| H_{b_0}(b_0^*(m_0, \theta), b_1^*(m_1, \theta)) | &\geq \rho/2
-\end{align}
-\item Choose any $\delta > 0$. Then there exists $\eta > 0$ depending on $\delta$ such that for $(m_1, \theta)$ with either $m_1 \geq 2$ and $\theta \in I_\rho$ or $m_1 = 1$ and $\theta \in [\theta_\rho^-, \theta_\rho^+ - \delta]$,
-\begin{align}\label{derivbound2}
+\begin{lemma}\label{Hderivboundslemma}
+Fix $m_0 \in \Z$. For each integer $m_1$ with $m_1 \geq m_0$, let $(b_0^*(m_0, \theta), b_1^*(m_1, \theta))$ be the parameterization of the appropriate piece of the zero set of $H$ according to Lemma \ref{thetaparam}. 
+
+Then for any $\delta > 0$, there exists $\eta > 0$ depending on $\delta$ such that for $(m_1, \theta)$ with either $m_1 \geq 2$ and $\theta \in I_\rho$ or $m_1 = 1$ and $\theta \in [\theta_\rho^-, \theta_\rho^+ - \delta]$,
+\begin{align}\label{Hderivbound}
 | H_{b_0}(b_0^*(m_0, \theta), b_1^*(m_1, \theta)) | &\geq \eta
 \end{align}
-\end{enumerate}
+
 \begin{proof}
 From Lemma \ref{thetaparam}, $b_0^*(m_0, \theta)$ is given by
 \begin{align}\label{b0starexp}
@@ -1140,14 +1136,7 @@ H_{b_0}(b_0^*(m_0, \theta), b_1^*(m_1, \theta)) &= \sin\left(-\rho \log e^{-\fra
 &= (-1)^{m_0+1} \left( \sin \theta_0^*(\theta) + \rho \cos \theta_0^*(\theta) \right)
 \end{align*}
 
-For part (i), let $S(\theta) = \sin(\theta) + \rho \cos(\theta)$ for $\theta \in I_\rho$. At the endpoints of $I_\rho$, $S(\theta_\rho^-) = 0$ and $S(\theta_\rho^+) = 0$, which are the only zeros of $S(\theta)$ on $I_\rho$. Since $S(0) = \rho > 0$, it follows that $S$ is positive in the interior of $I_\rho$. Since $S$ is smooth and $S(0) = \rho$, we can find a interval $[-R,R]$ such that $S(\theta) \geq \rho/2$ for $\theta \in [-R,R]$. Since $|\theta_0^*(\theta)| \leq C e^{ -\frac{\pi}{\rho}(m_1 - m_0)}$, we can find $M_0 \in \N$ such that for $m_1 \geq M_0$ and $\theta \in I_\rho$, $|\theta_0^*(\theta)| \leq R$. Thus for $m_1 \geq M_0$ and $\theta \in I_\rho$,
-\begin{align*}
-|H_{b_0}(b_0^*(m_0, \theta), b_1^*(m_1, \theta))| 
-&= S(\theta_0^*(\theta)) \\
-&\geq \rho/2
-\end{align*}
-
-For part (ii), recall from the proof of Lemma \ref{thetaparamlemma} that we found $\theta_0^*$ by solving
+Recall from the proof of Lemma \ref{thetaparamlemma} that we found $\theta_0^*$ by solving
 \begin{equation*}
 \theta_0^* = g^{-1}\left( e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1} g(\theta) \right)
 \end{equation*}
