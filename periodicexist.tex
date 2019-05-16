@@ -1265,7 +1265,6 @@ b_j^0 = e^{-\frac{1}{\rho}m_j \pi}
 \]
 Let $b^0 = (b_0^0, \dots b_{n-2}^0) \in \R^{n-1}$.
 
-
 For each $m_{n-1} \geq \max\{ m_0, \dots, m_{n-2} \}$, let
 \begin{align}
 (b_j^*(m_0, \theta; m_{n-1}), b_{n-1}^*(m_{n-1}, \theta)) && j = 0, \dots m_{n-2}
@@ -1277,108 +1276,98 @@ b_j^*(m_j, \theta; m_{n-1}) &= e^{-\frac{1}{\rho}(m_j \pi - \theta_j^*(\theta; m
 b_{n-1}^*(m_{n-1}, \theta) &= e^{-\frac{1}{\rho}(m_{n-1}\pi - \theta)}
 \end{aligned}
 \end{equation}
-
-For $j = 0, \dots, n-2$,
-\begin{align*}
-| e^{-\frac{1}{\rho}(m_j \pi - \theta_j^*(\theta; m_{n-1}))} - b_j^0 |
-&= e^{-\frac{1}{\rho}m_j \pi}| 1 - e^{\frac{1}{\rho} \theta_j^*(\theta; m_{n-1})}| 
-\end{align*}
-Using \eqref{thetastarbound} from Lemma \ref{thetaparamlemma}, $\theta_j^*(\theta; m_{n-1}) \rightarrow 0$ as $m_{n-1} \rightarrow \infty$. Let 
-
-Using Lemma \ref{Hderivbounds}, choose $M_1 \geq M_0$ such that for $j = 0, \dots, n-2$, $m_{n-1} \geq M_0$ and $\theta \in I_\rho$,
-\begin{align}\label{derivbound1}
-| H_{b_j}(b_j^*(m_j, \theta; m_{n-1}), b_{n-1}^*(m_{n-1}, \theta)) | &\geq \rho/2
-\end{align}
-
-Define the set
-\begin{equation}
-\mathcal{N} = \{ m \in \Z : m \geq M_1 \}
-\end{equation}
-and let $I = [-\arctan \rho, \pi - \arctan \rho)$. As in the proof of Theorem \ref{I:perexist}, we plug \eqref{bstarlast1} into \eqref{Geq}. This time, however, we leave $m_{n-1}$ and $\theta$ as parameters. Define the map $G: \mathcal{R}^{n-1} \times \mathcal{N} \times I \times \mathcal{R} \rightarrow \R^{n-1}$ by $G = (G_0, \dots, G_{n-2})^T$, where 
-\begin{equation*}
-G_j(b, m_{n-1}, \theta, r) = b_j \sin \left( -\rho \log b_j \right) - b_{n-1}^*(m_{n-1}, \theta) \sin \left( -\rho \log b_{n-1}^*(m_{n-1}, \theta) \right) + \mathcal{O}(r^{\gamma / 2 \alpha})
-\end{equation*}
-where $b = (b_0, \dots, b_{n-2})$. Let
+Finally, let
 \begin{equation}\label{defbstar}
 b^*(\theta, m_{n-1}) = 
-( b_0^*(m_0, \theta; m_{n-1}), \dots, b_{n-2}^*(m_{n-2}, \theta; m_{n-1})
+\left( b_0^*(m_0, \theta; m_{n-1}), \dots, b_{n-2}^*(m_{n-2}, \theta; m_{n-1}) \right)
 \end{equation}
-Then for all $m_{n-1} \geq M_1$ and $\theta \in I_\rho$, 
-\begin{itemize}
-\item $G(b^*(\theta, m_{n-1}), m_{n-1}, \theta, 0) = 0$
-\item The Jacobian matrix $D_b G(b^*(\theta, m_{n-1}), m_{n-1}, \theta, 0)$ is diagonal with all eigenvalues having magnitude greater than $\rho/2$. Thus it is invertible with bound 
-\begin{equation}\label{DbGinvbound}
-||D_b G(b^*(\theta, m_{n-1}), m_{n-1}, \theta, 0)^{-1}|| \leq \frac{2}{\rho}
-\end{equation}
-\end{itemize}
 
-We can use the uniform contraction mapping principle to solve for $b$ in terms of $r$. Specifically, define the map $K: \mathcal{R}^{n-1} \times \mathcal{N} \times I \times \mathcal{R} \rightarrow \R^{n-1}$ by
-\begin{equation}\label{defKb}
-K(b, m_{n-1}, \theta, r) = b - [D_b G(b^*(\theta, m_{n-1}), m_{n-1}, \theta, 0)]^{-1} G(b, m_{n-1}, \theta, r)
+As in the proof of Theorem \ref{I:perexist}, we plug $b_{n-1}^*(m_{n-1}, \theta)$ into \eqref{Geq}. This time, however, we leave $m_{n-1}$ and $\theta$ as parameters. Define the map $G: \mathcal{R}^{n-1} \times \Z \times I_\rho \times \mathcal{R} \rightarrow \R^{n-1}$ by $G = (G_0, \dots, G_{n-2})^T$, where 
+\begin{equation}\label{Gdef2}
+G_j(b, m_{n-1}, \theta, r) = b_j \sin \left( -\rho \log b_j \right) - b_{n-1}^*(m_{n-1}, \theta) \sin \left( -\rho \log b_{n-1}^*(m_{n-1}, \theta) \right) + \mathcal{O}(r^{\gamma / 2 \alpha})
 \end{equation}
-$K(b, m_{n-1}, \theta, r) = b$ if and only if $G(b, m_{n-1}, \theta, r) = 0$. Since $G$ is smooth, so is $K$, and 
-\begin{equation}\label{DbK}
-D_b K(b, m_{n-1}, \theta, r) = I - [D_b G(b^*(\theta, m_{n-1}), m_{n-1}, \theta, 0)]^{-1} D_b G(b, m_{n-1}, \theta, r)
-\end{equation}
-In particular, $D_b K(b^*(\theta, m_{n-1}), b_{n-1}, \theta, 0) = 0$.
+where $b = (b_0, \dots, b_{n-2})$. Then for all $m_{n-1}$ and $\theta \in I_\rho$, $G(b^*(\theta, m_{n-1}), m_{n-1}, \theta, 0) = 0$.
 
-We will show that $K$ is a uniform contraction for all $b_{n-1}^0 in \mathcal{B}$ and $\theta \in I$. First, we bound $D_b K(b; b_{n-1}, \theta, r)$. $K$ is smooth in $b$ and $r$, thus $D_b K$ is locally Lipschitz in $b$ and $r$; because we have a uniform bound on $D_b G(b^*(\theta, m_{n-1}); b_{n-1}^0, \theta, 0)$, the Lipschitz constant will be independent of $b_{n-1}$ and $\theta$.
+Next, we evaluate the Jacobian matrix $D_b G(b^0, m_{n-1}, \theta, 0)$. As in the proof of the previous theorem, $G_{b_j} G_k(b, m_{n-1}, \theta, 0) = 0$ for $j \neq k$. For $j = k$,
 \begin{align*}
-|| D_b K(b; &b_{n-1}^0, \theta, r)|| = || I - [D_b G(b^*(\theta, m_{n-1}); b_{n-1}^0, \theta, 0)]^{-1} D_b G(b; b_{n-1}^0, \theta, r)|| \\
-&= || [D_b G(b^*(\theta, m_{n-1}); b_{n-1}^0, \theta, 0)]^{-1}( D_b G(b^*(\theta, m_{n-1}); b_{n-1}, \theta, 0) - D_b G(b; b_{n-1}^0, \theta, r))||  \\
-&\leq || D_b G(b_0, b_{n-1}, \theta, 0)^{-1}||\:|| D_b G(b^*(\theta, m_{n-1}); b_{n-1}^0, \theta, 0) - D_b G(b; b_{n-1}^0, \theta, r)|| \\
-&\leq \frac{2}{\rho} C \left( |b - b^*(\theta, m_{n-1})| + |r| \right)
+\partial_{b_j} G_j(b, m_{n-1}, \theta, 0) &= \sin \left( -\rho \log b_j \right) - \rho \cos \left( -\rho \log b_j \right) 
 \end{align*}
-
-Thus we can find $r_1 > 0$ and and open ball $U_0 = B(b_0, \delta)$ such that whenever $r \leq r_1$ and $b \in \overline{U_0}$, 
-
-\[
-|| D_b H(b, b_{n-1}, \theta, r)|| \leq \frac{1}{2}
-\]
-
-Since $G(b^0, b_{n-1}, \theta, 0) = 0$, $G$ is smooth in $r$, and $G(b^0, b_{n-1}, \theta, r) = \mathcal{O}(r^{\gamma / 2 \alpha})$, which does not depend on $b_{n-1}$ or $\theta$, we can, if needed, decrease $r_1$ so that for all $r \leq r_1$,
-
-\[
-||G(b^0, b_{n-1}, \theta, r) || \leq \frac{\rho \delta}{4}
-\]
-
-Using these bounds, we have for all $b \in \overline{U_0}$ and $r \leq r_1$
-
+which involves neither $m_{n-1}$ nor $\theta$. Evaluating this at $b^0$,
 \begin{align*}
-|K(b, &m_{n-1}, \theta, r) - b^0| \leq |K(b, m_{n-1}, \theta, r) - K(b^0, m_{n-1}, \theta, r)| + |K(b^0, m_{n-1}, \theta, r) - b^0| \\ 
-&= |K(b, m_{n-1}, \theta, r) - K(b^0, m_{n-1}, \theta, r)| + |b^0 - [D_b G(b^*(\theta, m_{n-1}), m_{n-1}, \theta, 0)]^{-1} G(b^0, m_{n-1}, \theta, r) - b^0| \\
-&\leq \sup_{b\in \overline{U_0}}||D_b K(b, m_{n-1}, \theta, r)||\:|b - b^0| 
-+ || [D_b G(b_0, b_{n-1}, \theta, 0)]^{-1} G(b^0, b_{n-1}, \theta, r) || \\
-&< \frac{1}{2} |b - b^0| + \frac{2}{\rho} ||G(b^0, b_{n-1}, \theta, r) ||  \\
-&\leq \frac{\delta}{2} + \frac{2}{\rho}\frac{\rho \delta}{4} \\
+\partial_{b_j} G_j(b^0, m_{n-1}, \theta, 0) &= \sin \left( -\rho \log b_j^0 \right) - \rho \cos \left( -\rho \log b_j^0 \right) \\
+&= \sin \left( m_j \pi \right) - \rho \cos \left(m_j \pi \right) \\
+&= (-1)^{m_j + 1} \rho
+\end{align*}
+Thus $D_b G(b^0, m_{n-1}, \theta, 0)$ is diagonal with entries $\{ (-1)^{m_0 + 1} \rho, \dots, (-1)^{m_{n-2} + 1} \rho \}$. This implies that $D_b G(b^0, m_{n-1}, \theta, 0)$ is invertible, and has bound
+\begin{equation}\label{DbG0invbound}
+||D_b G(b^0, m_{n-1}, \theta, 0)^{-1}|| \leq \frac{1}{\rho}
+\end{equation}
+
+We can use the uniform contraction mapping principle to solve for $b$ in terms of $r$ near $b^*(\theta, m_{n-1})$. Specifically, define the map $K: \mathcal{R}^{n-1} \times \Z \times I_\rho \times \mathcal{R} \rightarrow \R^{n-1}$ by
+\begin{equation}\label{defKb}
+K(b, m_{n-1}, \theta, r) = b - [D_b G(b^0, m_{n-1}, \theta, 0)]^{-1} G(b, m_{n-1}, \theta, r)
+\end{equation}
+$K(b, m_{n-1}, \theta, r) = b$ if and only if $G(b, m_{n-1}, \theta, r) = 0$. Specifically, $K(b^*(\theta, m_{n-1}), m_{n-1}, \theta, 0) = b^*(\theta, m_{n-1})$. Since $G$ is smooth, so is $K$, and 
+\begin{equation}\label{DbK}
+D_b K(b, m_{n-1}, \theta, r) = I - [D_b G(b^0, m_{n-1}, \theta, 0)]^{-1} D_b G(b, m_{n-1}, \theta, r)
+\end{equation}
+In particular, $D_b K(b^0, b_{n-1}, \theta, 0) = 0$.
+
+First, we obtain a bound for $D_b K(b, m_{n-1}, \theta, r)$ in a neigborhood of $b^0$. Let $U_0(\delta)$ be the open ball of radius $\delta$ about $b^0$ in $\R^{n-1}$. Since $K$ is smooth in $b$ and $r$, we can find $r_1 > 0$ and $\delta > 0$ such that for all $r < r_1$ and $b \in \overline{ U_0(\delta) }$,  
+\begin{align}\label{DbKbound}
+|| D_b K(b, m_{n-1}, \theta, r)|| \leq \frac{1}{2}
+\end{align}
+Since $D_b K(b, m_{n-1}, \theta, r)$ does not involve $m_{n-1}$ and $\theta$, this bound is independent of these parameters.
+
+Next, we obtain a bound for $G(b^0, b_{n-1}, \theta, r)$. Taking $b = b^0$ in \eqref{Geq2},
+\begin{align*}
+G_j(b^0, m_{n-1}, \theta, r) &= e^{-\frac{1}{\rho}m_j \pi} \sin \left( -\rho \log e^{-\frac{1}{\rho}m_j \pi} \right) - e^{-\frac{1}{\rho}(m_{n-1}\pi - \theta)} \sin \left( -\rho \log e^{-\frac{1}{\rho}(m_{n-1}\pi - \theta)} \right) + \mathcal{O}(r^{\gamma / 2 \alpha}) \\
+&= e^{-\frac{1}{\rho}m_j \pi} \sin \left( m_j \pi \right) - e^{-\frac{1}{\rho} m_{n-1}\pi } e^{\frac{1}{\rho}\theta } \sin \left(m_{n-1} \pi - \theta \right) + \mathcal{O}(r^{\gamma / 2 \alpha}) \\
+&= -e^{-\frac{1}{\rho} m_{n-1}\pi } e^{\frac{1}{\rho}\theta } \sin \left(m_{n-1} \pi - \theta \right) + \mathcal{O}(r^{\gamma / 2 \alpha}) \\
+&= e^{-\frac{1}{\rho} m_{n-1}\pi } (-1)^{m_{n-1}} e^{\frac{1}{\rho}\theta } \sin \theta + \mathcal{O}(r^{\gamma / 2 \alpha}) \\
+\end{align*}
+Since this decays exponentially in $m_{n-1}$, we can find $M_0 \in \N$ and $r_2 \leq r_1$ such that for all $r \leq r_2$ and $m_{n-1} \geq M_0$,
+\begin{align}\label{G0bound}
+|G(b^0, m_{n-1}, \theta, r)| \leq \frac{\delta \rho}{2}
+\end{align}
+
+Finally, using the parameterization \eqref{bstarm}, for $j = 0, \dots, n-2$,
+\begin{align*}
+| b_j^*(m_j, \theta; m_{n-1}) - b_j^0| &=
+| e^{-\frac{1}{\rho}(m_j \pi - \theta_j^*(\theta; m_{n-1}))} - b_j^0 | \\
+&= e^{-\frac{1}{\rho}m_j \pi}| 1 - e^{\frac{1}{\rho} \theta_j^*(\theta; m_{n-1})}| 
+\end{align*}
+Using \eqref{thetastarbound} from Lemma \ref{thetaparamlemma}, $\theta_j^*(\theta; m_{n-1}) \rightarrow 0$ as $m_{n-1} \rightarrow \infty$. Thus we can find $M_1 \in \N$ such that for all $m_{n-1} \geq M_1$ and $\theta \in I_\rho$, $|b^*(\theta, m_{n-1}) - b^0| \leq \delta$.
+
+Using the bounds \eqref{DbKbound} and \eqref{G0bound}, for all $b \in \overline{U_0(\delta)}$ and $r \leq r_2$
+\begin{align*}
+|K(b, &m_{n-1}, \theta, r) - b^0| \\
+&\leq |K(b, m_{n-1}, \theta, r) - K(b^0, m_{n-1}, \theta, r)| + |K(b^0, m_{n-1}, \theta, r) - b^0| \\ 
+&\leq \sup_{b\in \overline{U_0(\delta)}}||D_b K(b, m_{n-1}, \theta, r)||\:|b - b^0| 
++ || [D_b G(b^0, m_{n-1}, \theta, 0)]^{-1} G(b^0, m_{n-1}, \theta, r) || \\
+&< \frac{1}{2} |b - b^0| + \frac{1}{\rho} ||G(b^0, b_{n-1}, \theta, r) ||  \\
+&\leq \frac{\delta}{2} + \frac{1}{\rho}\frac{\delta \rho}{2} \\
 &\leq \delta
 \end{align*} 
 
-
-
-Thus we have shown $H: \overline{U_0} \times \mathcal{B} \times I \times \mathcal{R} \rightarrow \overline{U_0}$, where $\overline{U_0}$ is a closed subset of a complete metric space. To show that $H$ is a uniform contraction, let $b, \tilde{b} \in \overline{U_0}$ and $r \leq r_1$. Then for any $b_{n-1}$ and $\theta$,
-
+Let $\mathcal{N} = \{ m \in \N : m \geq M_1 \}$. Thus we have shown $K: \overline{U_0(\delta)} \times \mathcal{N} \times I_\rho \times \mathcal{R} \rightarrow \overline{U_0(\delta)}$, where $\overline{U_0(\delta)}$ is a closed subset of a complete metric space. To show that $K$ is a uniform contraction, let $b, \tilde{b} \in \overline{U_0(\delta)}$ and $r \leq r_2$. Then for any $m_{n-1} \in \mathcal{N}$ and $\theta \in I_\rho$,
 \begin{align*}
-|H(b, b_{n-1}, \theta, r) - H(\tilde{b}, b_{n-1}, \theta, r)| 
+|H(b, m_{n-1}, \theta, r) - H(\tilde{b}, m_{n-1}, \theta, r)| 
 &\leq \sup_{b\in \overline{U_0}}||D_b H(b, b_{n-1}, \theta, r)||\:|b - \tilde{b}| \\
 &\leq \frac{1}{2} |b - \tilde{b}|
 \end{align*} 
 
-Thus we can use the uniform contraction mapping principle to conclude that there is a unique smooth function $\tilde{b}: \mathcal{R} \cup [0, r_1] \times \mathcal{B} \times I \rightarrow \overline{U_0}$ which maps $r \in \mathcal{R}$ with $r \leq r_1$ to the unique fixed point $b$ of $H(\cdot, b_{n-1}, \theta, r)$. By uniqueness, $\tilde{b}(0, b_{n-1}, \theta) = b^0$. Thus for $r \leq r_1$, $G(\tilde{b}(r, b_{n-1}, \theta), b_{n-1}, \theta, r) = 0$. \\
-
-Split $\tilde{b}$ up into components and let $b_j(r; m_j, \theta) = \tilde{b}_j(r, b_{n-1}, \theta) \exp( -\frac{1}{\rho} \theta_j^*(\theta) )$. Then $b_j(0; m_j, \theta) = b_j^*(m_j, \theta)$ and 
+Thus we can use the uniform contraction mapping principle to conclude that there is a unique smooth function $\tilde{b}: \mathcal{R} \cup [0, r_2] \times \mathcal{N} \times I_\rho \rightarrow \overline{U_0(\delta)}$ which maps $r \in \mathcal{R}$ with $r \leq r_2$ to the unique fixed point $b$ of $K(\cdot, m_{n-1}, \theta, r)$. By uniqueness, $\tilde{b}(0, m_{n-1}, \theta) = b^*(\theta, m_{n-1})$. Thus for $r \leq r_2$, $m_{n-1} \in \mathcal{N}$, and $\theta \in I_\rho$,
 \[
-G(b_1(r; m_1, \theta), \dots, b_{n-2}(r; m_{n-2}, \theta), \theta, r ) = 0
+G(\tilde{b}(r, b_{n-1}, \theta), b_{n-1}, \theta, r) = 0
 \]
-for all $r \in \mathcal{R}$ with $r < \tilde{r}_1$, $b_{n-1} \in \mathcal{B}$, and $\theta \in I$.
 
+\subsection{2-periodic pulse}
+In the special case of the 2-periodic pulse, we will be able to provide the complete bifurcation structure for sufficiently small $r$.
 
-2-PULSE STUFF HERE
+DEFINE G
 
-
-
-\subsection{Persistence of Pitchfork}
-In the special case of the 2-periodic pulse, we will show that the pitchfork bifurcation persists for small $r$. To prove this, the first thing we will show is that $G$ has the same symmetries as $H$.
+First, we will show that the pitchfork bifurcation persists for small $r$. In the first lemma, we show that $G$ has the same symmetries as $H$.
 
 % lemma : symmetries of G
 
