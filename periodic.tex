@@ -1,6 +1,4 @@
 \documentclass[thesis.tex]{subfiles}
-\usepackage{xr} 
-\externaldocument[ex:]{aux/periodicexist}
 
 \begin{document}
 
@@ -239,7 +237,7 @@ with the restriction that for $j = 0, \dots, n-2$, neither of the following is t
 Then there exists $r_0 > 0$ such that
 \begin{enumerate}[(i)]
 
-\item For any $r \in \mathcal{R}$ with $r < r_0$, there exists a unique $n$-periodic solution $U(x)$ to \eqref{genODE}. Bounds for the piecewise formulation \eqref{Upiecewise} are given in Lemma \ref{ex:solvewithjumps}.
+\item For any $r \in \mathcal{R}$ with $r < r_0$, there exists a unique $n$-periodic solution $U(x)$ to \eqref{genODE}. Bounds for the piecewise formulation \eqref{Upiecewise} are given in Lemma \ref{Pex:solvewithjumps}.
 
 \item This solution is specified by the $n$ length parameters $b_j(r; m_j, \theta)$, where
 \begin{align}
@@ -249,7 +247,7 @@ and
 \begin{align}
 b^*_j(m_j, 0) = b_j^0
 \end{align}
-Details on this parameterization are given in Lemma \ref{ex:thetaparamlemma}
+Details on this parameterization are given in Lemma \ref{Pex:thetaparamlemma}
 
 \item The individual pulses in $U(x)$ are separated by distances $2 X_0, \dots, 2 X_{n-1}$, where 
 \begin{equation}\label{Xj}
@@ -282,14 +280,29 @@ Then there exists $r_2 > 0$ and $b^* \in \mathcal{B}$ such that for any $r < r_0
 In the final existence theorem, we show that for the $2-$periodic solutions, there is a pitchfork bifurcation in which solutions with unequal pulse distances bifurcate off of solutions with equal pulse distances. Note that while the phase parameter $\theta$ in this case is the same, it will take a different set of values to allow us to pass through the bifurcation point.
 
 \begin{theorem}\label{2pulsebifurcation}
-Assume Hypotheses \ref{Eprimehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and \ref{nondegenhyp}. Let $Q(x)$ be a transversely constructed, symmetric primary pulse solution to \eqref{genODE}. There exists $r_0 > 0$ such that for every $r \in \mathcal{R}$ with $r < r_0$,
+Assume Hypotheses \ref{Eprimehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and \ref{nondegenhyp}. Let $Q(x)$ be a transversely constructed, symmetric primary pulse solution to \eqref{genODE}. For every $M \in \N$ there exists $r_0 > 0$ and  such that for every $r \in \mathcal{R}$ with $r < r_0$, the following is true.
 \begin{enumerate}[(i)]
-	\item For every $\theta \in [0, \pi)$, there is a unique 2-periodic solution with equal length parameters $b_0(\theta) = b_1(\theta) = e^{-\theta/\rho}$. These do not depend on $r$.
-
-	\item There is a function $\theta^*: \mathcal{R} \cap [0, r_0) \rightarrow \R$ such that there is a nondegenerate pitchfork bifurcation at $(b_0(\theta^*(r)), b_0(\theta^*(r)) = (e^{-\theta^*(r)/\rho}, e^{-\theta^*(r)/\rho})$. Furthermore, 
-	\begin{equation*}
-	\theta^*(r) \rightarrow \arctan \rho \text{ as } r \rightarrow 0
-	\end{equation*}
+	\item For every $\theta \in [0, \pi)$, there is a unique 2-periodic solution with equal length parameters 
+	\[
+	b_0(\theta) = b_1(\theta) = e^{-\frac{1}{\rho}\theta}
+	\]
+	\item For every $s \in [0, M]$, there is a unique 2-periodic solution with unequal length parameters
+	\[
+	(\tilde{b}_0, \tilde{b}_1) = (\tilde{b}_0(s, r), \tilde{b}_1(s, r))
+	\]
+	where
+	\[
+	\tilde{b}_1(s, 0) = e^{-\frac{1}{\rho}(\arctan \rho + s)}
+	\]
+	and
+	\[
+	\tilde{b}_0(s, 0) \rightarrow 1 \text{ as } s \rightarrow \infty
+	\]
+	\item These two branches meet at a pitchfork bifurcation at $(p_0(r), p_0(r))$, where $p_0(r) = e^{-\frac{1}{\rho}\theta_p(r)}$ and $\theta_p(r)(r) \rightarrow \arctan \rho$ as $r \rightarrow 0$. In terms of the two parameterizations,
+	\[
+	(\tilde{b}_0(0, r), \tilde{b}_1(0, r)) = (b_0(p_0(r)), b_1(p_0(r)) 
+	= (p_0(r), p_0(r))
+	\]
 \end{enumerate}
 \end{theorem}
 
