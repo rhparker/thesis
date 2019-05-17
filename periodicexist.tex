@@ -1,4 +1,6 @@
 \documentclass[thesis.tex]{subfiles}
+\usepackage{xr} 
+\externaldocument[Pi:]{aux/periodic}
 
 \begin{document}
 
@@ -731,7 +733,7 @@ In the next lemma, we rewrite the system \eqref{jumpcond2} using this scaling an
 \begin{lemma}\label{jumplemma3}
 A periodic multipulse solution exists if and only if for $i = 0, \dots, n-2$
 \begin{equation}\label{jumpcond3}
-\tilde{G}_i(b_0, \dots, b_{n-2}, r) = b_i \sin \left( -\rho \log b_i \right) - b_{i-1} \sin \left( -\rho \log b_{i-1} \right) + \mathcal{O}(r^{\gamma / 2 \alpha}) = 0 \\
+\tilde{G}_i(b_0, \dots, b_{n-1}, r) = b_i \sin \left( -\rho \log b_i \right) - b_{i-1} \sin \left( -\rho \log b_{i-1} \right) + \mathcal{O}(r^{\gamma / 2 \alpha}) = 0 \\
 \end{equation}
 where $\rho = \beta/\alpha$, $b_i > 0$, and $r \in \mathcal{R}$. All derivatives of the remainder term with respect to $b_i$ are also $\mathcal{O}(r^{\gamma / 2 \alpha})$. 
 \begin{proof}
@@ -816,14 +818,14 @@ p^* = \exp \left( -\frac{1}{\rho} \arctan \rho \right)
 \end{equation}
 Locally, the arms of the pitchfork bifurcations open upwards along the diagonal.
 \begin{proof}
-First, we determine the locations of the pitchfork bifurcations along the diagonal. A necessary condition for these to occur is that the first derivative vanishes. The partial derivative of $H$ with respect to $b_0$ along the diagonal is
+First, we determine the locations of the pitchfork bifurcations along the diagonal. A necessary condition for these to occur is that the first derivative vanishes. The partial derivative of $H$ with respect to $b_0$ is
 \begin{align*}
-H_{b_0}(b_0, b_0) &= 
+H_{b_0}(b_0, b_1) &= 
 \sin \left( -\rho \log b_0 \right)
 + b_0 \cos \left( - \rho \log b_0 \right)- \rho \frac{1}{b_0} \\
 &= \sin \left( - \rho \log b_0 \right) - \rho \cos \left( - \rho \log b_0 \right)
 \end{align*}
-which is is 0 if and only if
+Note that this does not depend on $b_1$. $H_{b_0}(b_0, b_1) = 0$ if and only if
 \begin{align*}
 \tan \left( -\rho \log b_0 \right) &=  \rho \\
 -\rho \log b_0 &= \arctan \left( \rho\right) + k \pi && k \in \Z \\ 
@@ -913,30 +915,26 @@ Since the above change of coordinates a rotation by $\pi/4$, we conclude that pi
 \end{proof}
 \end{lemma}
 
-Now that we have located these pitchfork bifurcations, we will find a natural parameterization for the zero set of $H(b_0, b_1)$. Since the zero set is symmetric across the diagonal we only need to consider the case where $b_0 \geq b_1$. The parameterization works as follows. Recall that $H(b_0, b_1) = 0$ when $b_0, b_1 \in \mathcal{B}$; this is a discrete grid of points in the zero set of $H(b_0, b_1)$. We will then connect these points with continuous curves parameterized by a phase parameter $\theta$. The specific form of the parameterization is given in the following lemma.
+Now that we have located these pitchfork bifurcations, we will find a natural parameterization for the zero set of $H(b_0, b_1)$. Since the zero set is symmetric across the diagonal we only need to consider the case where $b_0 \geq b_1$. The parameterization works as follows. Recall that $H(b_0, b_1) = 0$ when $b_0, b_1 \in \mathcal{B}$; this is a discrete grid of points in the zero set of $H(b_0, b_1)$. We will then join these points with continuous curves parameterized by a phase parameter $\theta$. The specific form of the parameterization is given in the following lemma.
 
 % lemma : parameterization of zero set of H
 
 \begin{lemma}\label{thetaparamlemma}
-Choose two nonnegative integers $m_0$ and $m_1$, and without loss of generality, take $m_0 \leq m_1$. 
+Choose two baseline length parameters $b_0^0$ and $b_1^0$, where, $b_j^0 = \exp\left(-\frac{m_j \pi}{\rho}\right) \in \mathcal{B}$. Without loss of generality, take $b_0^0 \geq b_1^0$. (Alternatively, choose nonnegative integers $m_0$ and $m_1$, with $m_0 \leq m_1$). 
 
-For every such choice, there is a smooth family of solutions $( b_0^*(m_0, \theta), b_1^*(m_1, \theta) )$ to $H(b_0, b_1) = 0$ parameterized by a phase parameter $\theta \in I_\rho$, where
+For every such choice, there is a smooth family of solutions $( b_0^*(m_0, \theta), b_1^*(m_1, \theta) )$ to $H(b_0, b_1) = 0$ parameterized by a phase parameter $\theta \in I_\rho$, with
 \begin{equation}\label{Irho}
 I_\rho = [\theta_\rho^-, \theta_\rho^+] = [-\arctan \rho,\pi - \arctan \rho] 
 \end{equation}
-Furthermore, $(b_0^*(m_0, 0), b_1^*(m_1, 0)) = (b_0^0, b_1^0)$, where $b_0^0, b_0^1 \in \mathcal{B}$ are the baseline length parameters 
-\begin{align}\label{bj0form}
-b_j^0 &= \exp(-m_j \pi / \rho ) && j = 0, 1
-\end{align}
-In addition, we have the following properties.
+and $(b_0^*(m_0, 0), b_1^*(m_1, 0)) = (b_0^0, b_1^0)$. In addition, we have the following properties.
 
 \begin{enumerate}[(i)]
-\item These smooth families are disjoint except at their endpoints, where they connect as follows
+\item These families are disjoint except at their endpoints, where they connect as follows
 \begin{align*}
 \Big( b_0^*(m_0, \theta_\rho^-), b_1^*(m_1, \theta_\rho^-) \Big) &= \Big( b_0^*(m_0, \theta_\rho^+), b_1^*(m_1+1, \theta_\rho^+) \Big) \\
 \Big( b_0^*(m, \theta_\rho^-), b_1^*(m, \theta_\rho^-) \Big) &= \Big( b_0^*(m+1, \theta_\rho^-), b_1^*(m+1, \theta_\rho^-) \Big) = \Big( b_0^*(m, \theta_\rho^+), b_1^*(m+1, \theta_\rho^+) \Big) = (p^*_m, p^*_m)
 \end{align*}
-where $(p^*_m, p^*_m)$ is the pitchfork bifurcation point from Lemma \ref{pitchforkH} and $m_1 \geq m_0$.
+where $(p^*_m, p^*_m)$ is the pitchfork bifurcation point from Lemma \ref{pitchforkH}.
 
 \item The parameterization is given explicitly by
 \begin{equation}\label{thetaparam}
@@ -945,7 +943,7 @@ b_1^*(m_1, \theta) &= e^{-\frac{1}{\rho}(m_1 \pi - \theta) } \\
 b_0^*(m_0, \theta) &= e^{-\frac{1}{\rho}(m_0 \pi - \theta_0^*(\theta)) }
 \end{aligned}
 \end{equation}
-where $\theta_0^*$ depends on $\theta$, $\theta_0^*(\theta) \in I_\rho$, and we have bound
+where $\theta_0^*(\theta) \in I_\rho$, and we have bound
 \begin{equation}\label{thetastarbound}
 |\theta_0^*(\theta)| \leq C e^{ -\frac{\pi}{\rho}(m_1 - m_0)}
 \end{equation}
@@ -953,17 +951,24 @@ which is independent of $\theta$.
 \end{enumerate}
 
 \begin{proof}
-Since we are taking $b_0^0 \geq b_0^1$, i.e. $m_0 \leq m_1$, it suffices to consider the case where $b_0^0 = 1$, i.e. $m_0 = 0$. To see this, suppose the lemma is true for $b_0^0 = 1$. Then we can find a family of solutions $(b_0^*(0, \theta), b_1^*(m_1 - m_0, \theta)$ to $H(b_0, b_1) = 0$. Let $\tilde{b}_0 = e^{-m_0 \pi/\rho} b_0^*(0, \theta)$ and $\tilde{b}_1 = e^{-m_0 \pi/\rho} b_1^*(m_1 - m_0, \theta)$. Then since $\sin \left( -\rho \log ( e^{-m_0 \pi/\rho} x )\right) = (-1)^(m_0) \sin(-\rho \log x)$, 
+First, we note that it suffices to consider the case where $b_0^0 = 1$, i.e. $m_0 = 0$. To see this, suppose the lemma is true for $b_0^0 = 1$. Then we can find a family of solutions $(b_0^*(0, \theta), b_1^*(m_1 - m_0, \theta))$ with $H(b_0, b_1) = 0$, where $m_1 - m_0 \geq 0$. Let 
+\begin{equation}\label{btilde01}
+\begin{aligned}
+\tilde{b}_0(\theta) &= e^{-\frac{m_0 \pi}{\rho}} b_0^*(0, \theta) \\
+\tilde{b}_1(\theta) &= e^{\frac{-m_0 \pi}{\rho}} b_1^*(m_1 - m_0, \theta).
+\end{aligned} 
+\end{equation}
+Then since $\sin \left( -\rho \log ( e^{-m_0 \pi/\rho} x )\right) = (-1)^{m_0} \sin(-\rho \log x)$, 
 \begin{align*}
-H(\tilde{b}_0, \tilde{b}_1) 
+H(\tilde{b}_0(\theta), \tilde{b}_1(\theta)) 
 &= e^{-m_0 \pi/\rho} (-1)^m \Big( b_0^*(0, \theta) \sin (-\rho \log b_0^*(0, \theta)) - b_1^*(m_1 - m_0, \theta) \sin (-\rho \log b_1^*(m_1 - m_0, \theta))\Big) \\
 &= e^{-m_0 \pi/\rho} (-1)^m H( b_0^*(0, \theta), b_1^*(m_1 - m_0, \theta)) \\
 &= 0
 \end{align*}
-Thus $(\tilde{b}_0, \tilde{b}_1) = (e^{-m_0 \pi/\rho} b_0^*(0, \theta), e^{-m_0 \pi/\rho} b_1^*(m_1 - m_0, \theta))$ solves $H(b_0, b_1) = 0$, and 
+Thus $H(b_0, b_1) = 0$ for $(b_0, b_1) = (\tilde{b}_0(\theta), \tilde{b}_1(\theta))$, and 
 \begin{align*}
-e^{-m_0 \pi/\rho} b_0^*(0, 0) &= b_0^0 \\
-e^{-m_0 \pi/\rho} b_1^*(m_1 - m_0, 0) &= b_0^1
+\tilde{b}_0(\theta) &= e^{-m_0 \pi/\rho} b_0^*(0, 0) = b_0^0 \\
+\tilde{b}_1(\theta) &= e^{-m_0 \pi/\rho} b_1^*(m_1 - m_0, 0) = b_0^1
 \end{align*}
 
 We may therefore take $b_0^0 = 1$. For $\theta \in I_\rho$, we will use the parameterization
@@ -973,19 +978,19 @@ b_1^*(m_1, \theta) &= e^{ -\frac{1}{\rho}(m_1 \pi - \theta) } \\
 b_0^*(0, \theta) &= e^{ \frac{1}{\rho} \theta_0^*(\theta) } \\
 \end{aligned}
 \end{equation}
-where the function $\theta_0^*(\theta)$ will be determined below. From this parameterization, it follows that $b_1^*(m_1, 0) = b_1^0$. Since we need to parameterize two pieces of a pitchfork, we will consider the cases $b_1^0 = 1$ and $b_1^0 > 1$ separately.
+where the function $\theta_0^*(\theta)$ will be determined below. It follows from this parameterization that $b_1^*(m_1, 0) = b_1^0$. Since we need to parameterize two pieces of a pitchfork, we will consider the cases $b_1^0 = 1$ and $b_1^0 > 1$ separately.
 
-First, let $b_1^0 = 1$, so that $b_1^*(0, \theta) = e^{ \frac{1}{\rho}\theta}$. Then we can obtain a solution to $H(b_0, b_1) = 0$ by taking $\theta_0^*(\theta) = \theta$, so that $b_0^*(0, \theta) = e^{ \frac{1}{\rho}\theta}$. Thus we have the solution
+First, let $b_1^0 = 1$, so that $b_1^*(0, \theta) = e^{ \frac{1}{\rho}\theta}$. Then we can obtain a solution to $H(b_0, b_1) = 0$ by taking $\theta_0^*(\theta) = \theta$, so that $b_0^*(0, \theta) = e^{ \frac{1}{\rho}\theta}$, i.e. 
 \[
 ( b_0^*(0, \theta), b_1^*(0, \theta) ) = ( e^{ \frac{1}{\rho}\theta }, e^{ \frac{1}{\rho}\theta })
 \]
-to $H(b_0, b_1) = 0)$. This parameterizes the center part of the pitchfork where $b_0 = b_1$, and $(b_0(0), b_1(0)) = (b_0^0, b_1^0) = (1,1)$. We also note that
-\[
+where $b_0 = b_1$, and $(b_0(0), b_1(0)) = (b_0^0, b_1^0) = (1,1)$. This parameterizes the center part of the pitchfork. We also note that
+\begin{equation}\label{centerpitchforkparam}
 \Big(b_0(0, \theta_\rho^-), b_1(0, \theta_\rho^-)\Big) = (p_0^*, p_0^*)
-\]
+\end{equation}
 where $p_0^*$ is the pitchfork bifurcation point defined in Lemma \ref{pitchforkH}.
 
-Next, consider the case $b_1^0 \neq 1$ so that $m_1 > 0$. Plugging the expressions \eqref{thetaparam1} for $b_1^*(m_1, \theta)$ and $b_0^*(0, \theta)$ into $H$ to get
+Next, consider the case $b_1^0 \neq 1$ so that $m_1 > 0$. Plugging the expressions \eqref{thetaparam1} for $b_1^*(m_1, \theta)$ and $b_0^*(0, \theta)$ into $H$, we get
 \begin{align*}
 H(b_0, b_1) &= e^{ \frac{1}{\rho}\theta^* } \sin\left( -\rho \log e^{ \frac{1}{\rho}\theta^* }\right) - e^{ -\frac{1}{\rho}(m_1 \pi + \theta) }\sin \left( -\rho \log e^{ -\frac{1}{\rho}(m_1 \pi + \theta) } \right) \\
 &= e^{ \frac{1}{\rho}\theta^* } \sin\left( -\theta^* \right) - e^{ -\frac{1}{\rho} m_1 \pi} e^{ \frac{1}{\rho} \theta } \sin(m_1 \pi - \theta) \\
@@ -1000,7 +1005,7 @@ where $\theta \in I_\rho$. We proceed in the following steps.
 \begin{enumerate}
 	\item Let $g(\theta) = e^{ \frac{1}{\rho} \theta } \sin(\theta)$. Then we can rewrite equation \eqref{thetastareq} as
 	\begin{align}\label{thetastareq2}
-	g(\theta^*) &= e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1} g(\theta^*)
+	g(\theta^*) &= e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1} g(\theta)
 	\end{align}
 	First, we show that $g(\theta)$ is increasing on $I_\rho$. The derivative of $g$ is 
 	\begin{equation}\label{gprime}
@@ -1015,7 +1020,7 @@ where $\theta \in I_\rho$. We proceed in the following steps.
 	Similarly, at the right endpoint of $I_\rho$, $g'(\theta_\rho^+) = 0$.
 	The only critical point of $g'(\theta)$ on $I_\rho$ is a local maximum at $\theta = \arctan \rho$. Since $g'(\theta) > 0$ on the interior of $I_\rho$ and is zero at the endpoints, it follows that $g(\theta)$ is strictly increasing on $I_\rho$.
 	
-	\item It follows that the range of $g$ on $I_\rho$ is determined by the values of $g$ at the endpoints on $I_\rho$. For $\theta \in I_\rho$,
+	\item It follows that the range of $g$ on $I_\rho$ is determined by the values of $g$ at the endpoints on $I_\rho$, thus for $\theta \in I_\rho$,
 	\begin{equation}\label{grange}
 	g(\theta) \in \left[ -\frac{\rho}{\sqrt{1+\rho^2}}e^{-\frac{1}{\rho}\arctan \rho}, \frac{\rho}{\sqrt{1+\rho^2}}e^{\frac{1}{\rho}(\pi - \arctan \rho)}\right] = [-T, e^{\frac{1}{\rho}\pi} T]
 	\end{equation}
@@ -1025,7 +1030,7 @@ where $\theta \in I_\rho$. We proceed in the following steps.
 	\end{equation}
 	Since $g$ is strictly increasing on $I_\rho$, $g$ is invertible on $[-T, e^{\frac{1}{\rho}\pi} T]$ and $g^{-1}: [-T, e^{\frac{1}{\rho}\pi} T] \rightarrow I_\rho$ is strictly increasing, with $g^{-1}(-T) = \theta_\rho^-$ and $g^{-1}(e^{\frac{1}{\rho}\pi} T) = \theta_\rho^+$.
 
-	\item It follows from \eqref{grange} that the RHS of \eqref{thetastareq} has bounds
+	\item It follows from \eqref{grange} that the RHS of \eqref{thetastareq2} has bounds
 	\begin{equation}\label{RHSbounds}
 	e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1} g(\theta) \in
 	\begin{cases}
@@ -1037,13 +1042,15 @@ where $\theta \in I_\rho$. We proceed in the following steps.
 	\begin{equation*}
 	e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1} g(\theta) \in [-T, e^{\frac{1}{\rho}\pi} T]
 	\end{equation*}
-	i.e. the RHS of \eqref{thetastareq} lies is contained in the domain of $g^{-1}$. Thus for $\theta \in I_\rho$, we can solve for $\theta^*$ in terms of $\theta$, i.e. 
+	Thus for $\theta \in I_\rho$, the RHS of \eqref{thetastareq2} is contained in the domain of $g^{-1}$, and so we solve for $\theta^*$ to get
 	\begin{equation}\label{solvethetastar}
 	\theta^* = g^{-1}\left( e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1}  e^{ \frac{1}{\rho} \theta } \sin \theta \right)
 	\end{equation}
-	It follows that $\theta^*(\theta) \in I_\theta$, which ensures that varying $\theta$ does not cause the integer $m_0$ to change.
+	It follows that $\theta^*(\theta) \in I_\rho$, which ensures that we cannot overlap the region parameterized by a different $b_0^0$ by varying $\theta$.
 
-	\item For each $m_1$, we have a smooth parameterization in $\theta$. We will now show that the pieces all match up. First, we consider the case where $m_1 \geq 1$, so that we avoid the pitchfork bifurcation point $p_0^*$. Let $(b^*_0(0, \theta), b^*_1(m_1, \theta))$ and $(\tilde{b}^*_0(0, \theta), \tilde{b}^*_1(m_1 + 1, \theta))$paramaterize adjacent pieces. For the second component, we have
+	\item For each $m_1$, equations \eqref{thetaparam1} and \eqref{solvethetastar} give us a smooth parameterization in $\theta$. We will now show that the pieces  match up. 
+
+	First, we consider the case where $m_1 \geq 1$, so that we avoid the pitchfork bifurcation point $p_0^*$. Let $(b^*_0(0, \theta), b^*_1(m_1, \theta))$ and $(\tilde{b}^*_0(0, \theta), \tilde{b}^*_1(m_1 + 1, \theta))$ parameterize adjacent pieces. For the second component,
 	\begin{align*}
 	b_1^*(m_1, \theta_\rho^-) &= e^{ -\frac{1}{\rho}(m_1 \pi + \arctan \rho) }
 	\end{align*}
@@ -1053,33 +1060,34 @@ where $\theta \in I_\rho$. We proceed in the following steps.
 	&= e^{ -\frac{1}{\rho}((m_1+1) \pi - (\pi - \arctan \rho)) } \\
 	&= e^{ -\frac{1}{\rho}(m_1 \pi + \arctan \rho) }
 	\end{align*}
-	Since these are the same, the second component matches. For the first component, let $b_0^*(0, \theta) = e^{ \frac{1}{\rho} \theta_0^*(\theta) }$ and $\tilde{b}_0^*(0, \theta) = e^{ \frac{1}{\rho} \tilde{\theta}_0^*(\theta) }$. From \eqref{solvethetastar}, $\theta^*$ and $\tilde{\theta}^*$ are given by
+	Thus the second components match. For the first component, let $b_0^*(0, \theta) = e^{ \frac{1}{\rho} \theta_0^*(\theta) }$ and $\tilde{b}_0^*(0, \theta) = e^{ \frac{1}{\rho} \tilde{\theta}_0^*(\theta) }$. From \eqref{solvethetastar}, $\theta_0^*$ and $\tilde{\theta}_0^*$ are given by
 	\begin{align*}
-	\theta^* &= g^{-1}\left( e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1}  e^{ -\frac{1}{\rho} \arctan \rho } \sin(-\arctan \rho) \right)
+	\theta_0^* &= g^{-1}\left( e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1}  e^{ -\frac{1}{\rho} \arctan \rho } \sin(-\arctan \rho) \right)
 	\end{align*}
 	and
 	\begin{align*}
-	\tilde{\theta}^* &= g^{-1}\left( e^{ -\frac{1}{\rho} (m_1+1) \pi } (-1)^{m_1+1}  e^{ \frac{1}{\rho} (\pi - \arctan \rho) } \sin(\pi - \arctan \rho) \right) \\
+	\tilde{\theta}_0^* &= g^{-1}\left( e^{ -\frac{1}{\rho} (m_1+1) \pi } (-1)^{m_1+1}  e^{ \frac{1}{\rho} (\pi - \arctan \rho) } \sin(\pi - \arctan \rho) \right) \\
 	&= g^{-1}\left( e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1+1} e^{-\frac{1}{\rho} \arctan \rho } (-1) \sin(- \arctan \rho) \right) \\
 	&= g^{-1}\left( e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1} e^{-\frac{1}{\rho} \arctan \rho } \sin(-\arctan \rho) \right)
 	\end{align*}
-	Since the RHS of the two equations is the same, we conclude that $\theta^* = \tilde{\theta}^*$, which implies that $b_0^*(0, \theta_\rho^-) = \tilde{b}_0^*(\theta_\rho^+)$.
+	Since the RHS of the two equations is the same, $\theta_0^* = \tilde{\theta}_0^*$, thus the first components match as well.
 
-	\item Next, we show that for $m_1 = 1$, we hit the pitchfork bifurcation point $p_0^*$ at $\theta = \theta_\rho^+$. For the second component, 
+	\item We showed in \eqref{centerpitchforkparam} that for $m_1 = 0$, we hit the pitchfork bifurcation point at $\theta = \theta_\rho^-$. Next, we show that for $m_1 = 1$, we hit the pitchfork bifurcation point $p_0^*$ at $\theta = \theta_\rho^+$. 
+	For the second component, 
 	\begin{align*}
 	b_1^*(1, \theta_\rho^+) &= e^{-\frac{1}{\rho}(\pi - (\pi - \arctan \rho)) } \\
 	&= e^{ -\frac{1}{\rho} \arctan \rho } \\
 	&= p_0^*
 	\end{align*}
-	For the first component, we note that for $\theta = \theta_\rho^+ = \pi -\arctan \rho$, the RHS of \eqref{thetastareq} is $-T$, thus $\theta^* = g^{-1}(-T) = -\arctan \rho$, and so 
+	For the first component, for $\theta = \theta_\rho^+ = \pi -\arctan \rho$, the RHS of \eqref{thetastareq} is $-T$, thus $\theta_0^* = g^{-1}(-T) = -\arctan \rho$, and so 
 	\[
-	b_0^*(1, \theta_\rho^+) = e^{ -\frac{1}{\rho} \arctan \rho } = p_0^*
+	b_0^*(1, \theta_\rho^+) = e^{ \frac{1}{\rho} \theta_0^*(\theta_\rho^+)} = e^{ -\frac{1}{\rho} \arctan \rho } = p_0^*
 	\]
 	Thus $(b_0^*(0, \theta_\rho^+), b_1^*(1, \theta_\rho^+)) = (p_0^*,p_0^*).$
 
-	\item Finally, we will obtain a bound for $\theta^*$. This will be in terms of $m_1$. From \eqref{RHSbounds} we have
+	\item Finally, we will obtain a bound for $\theta_0^*(\theta)$. This will be in terms of $m_1$. From \eqref{RHSbounds},
 	\begin{equation}\label{easyRHSbound}
-	|e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1 + 1}  e^{ \frac{1}{\rho} \theta } \sin(\theta)| \leq C e^{ -\frac{1}{\rho}(m_1 - 1) \pi }
+	|e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1 + 1} g(\theta)| \leq C e^{ -\frac{1}{\rho}(m_1 - 1) \pi }
 	\end{equation}
 	Since $g(0) = 0$ and $g^{-1}$ is smooth, $\theta^* \rightarrow 0$ as $m_1 \rightarrow \infty$. From \eqref{gprime}, we have $g'(0) = 1$. To get a decay rate, we first note that
 	\begin{align*}
@@ -1088,12 +1096,12 @@ where $\theta \in I_\rho$. We proceed in the following steps.
 	&= 1
 	\end{align*}
 	Since $g^{-1}$ is smooth, we can find a neighborhood $[-R, R]$ of 0 contained in the domain of $g^{-1}$ such that $|(g^{-1})'(\theta)| \leq 2$ on $[-R, R]$. Using \eqref{easyRHSbound}, we can find an integer $M_1$ such that for $m_1 \geq M_1$ and $\theta \in I_\rho$,
-	\begin{equation}\label{easyRHSbound}
-	|e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1 + 1}  e^{ \frac{1}{\rho} \theta } \sin(\theta)| \leq R
+	\begin{equation}\label{easyRHSbound2}
+	|e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1 + 1} g(\theta)| \leq R
 	\end{equation}
-	Thus by the mean value theorem and \eqref{easyRHSbound}, for $m_1 \geq M_1$ and $\theta \in I_\rho$,
+	Thus, by the mean value theorem and \eqref{easyRHSbound2}, for $m_1 \geq M_1$ and $\theta \in I_\rho$,
 	\begin{align*}
-	|\theta^*| &= | g^{-1}(e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1 + 1}  e^{ \frac{1}{\rho} \theta } \sin(\theta)) | \\
+	|\theta_0^*(\theta)| &= | g^{-1}(e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1 + 1} g(\theta) | \\
 	&\leq 2 |e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1 + 1}  e^{ \frac{1}{\rho} \theta } \sin(\theta)| \\
 	&\leq C e^{ -\frac{1}{\rho}(m_1 - 1) \pi } \\
 	&\leq C e^{ -\frac{\pi}{\rho} m_1 }
@@ -1103,20 +1111,20 @@ where $\theta \in I_\rho$. We proceed in the following steps.
 \end{proof}
 \end{lemma}
 
-In the final lemma of this section, we obtain bounds on the partial derivative $\partial_{b_0} H(b_0, b_1)$ on the zero set of $H$, where we parameterize this zero set according to Lemma \ref{thetaparamlemma}.
+In the final lemma of this section, we obtain bounds on the partial derivative $H_{b_0} (b_0, b_1)$ on the zero set of $H$, where we parameterize this zero set according to Lemma \ref{thetaparamlemma}.
 
 % derivative bounds
 
 \begin{lemma}\label{Hderivboundslemma}
-Fix $m_0 \in \Z$. For each integer $m_1$ with $m_1 \geq m_0$, let $(b_0^*(m_0, \theta), b_1^*(m_1, \theta))$ be the parameterization of the appropriate piece of the zero set of $H$ according to Lemma \ref{thetaparam}. 
+Fix $m_0 \in \N_0$. For each integer $m_1$ with $m_1 \geq m_0$, let $(b_0^*(m_0, \theta), b_1^*(m_1, \theta))$ be the parameterization of the appropriate piece of the zero set of $H$ according to Lemma \ref{thetaparam}. 
 
-Then for any $\delta > 0$, there exists $\eta > 0$ depending on $\delta$ such that for $(m_1, \theta)$ with either $m_1 \geq 2$ and $\theta \in I_\rho$ or $m_1 = 1$ and $\theta \in [\theta_\rho^-, \theta_\rho^+ - \delta]$,
+Then for any $\delta > 0$, there exists $\eta > 0$ depending on $\delta$ such that if either $m_1 \geq 2$ and $\theta \in I_\rho$ or $m_1 = 1$ and $\theta \in [\theta_\rho^-, \theta_\rho^+ - \delta]$,
 \begin{align}\label{Hderivbound}
 | H_{b_0}(b_0^*(m_0, \theta), b_1^*(m_1, \theta)) | &\geq \eta
 \end{align}
 
 \begin{proof}
-From Lemma \ref{thetaparam}, $b_0^*(m_0, \theta)$ is given by
+From Lemma \ref{thetaparamlemma}, $b_0^*(m_0, \theta)$ is given by
 \begin{align}\label{b0starexp}
 b_0^*(m_0, \theta) &= e^{-\frac{1}{\rho}(m_0 \pi - \theta_0^*(\theta)) }
 \end{align}
@@ -1126,7 +1134,7 @@ The partial derivative of $H(b_0, b_1)$ with respect to $b_0$ is
 \begin{align}\label{Hb0}
 H_{b_0} (b_0, b_1) = \sin(-\rho \log b_0) - \rho \cos(-\rho \log b_0)
 \end{align}
-Evaluating this at $(b_0, b_1) = (b_0^*(m_0, \theta), b_1^*(m_1, \theta))$, we have 
+Evaluating this at $(b_0, b_1) = (b_0^*(m_0, \theta), b_1^*(m_1, \theta))$, 
 \begin{align*}
 H_{b_0}(b_0^*(m_0, \theta), b_1^*(m_1, \theta)) &= \sin\left(-\rho \log e^{-\frac{1}{\rho}(m_0 \pi - \theta_0^*(\theta))} \right) - \rho \cos\left(-\rho \log e^{-\frac{1}{\rho}(m_0 \pi - \theta_0^*(\theta))} \right) \\
 &= \sin\left(m_0 \pi - \theta_0^*(\theta) \right) - \rho \cos\left(m_0 \pi - \theta_0^*(\theta) \right) \\
@@ -1138,16 +1146,16 @@ Recall from the proof of Lemma \ref{thetaparamlemma} that we found $\theta_0^*$ 
 \begin{equation*}
 \theta_0^* = g^{-1}\left( e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1} g(\theta) \right)
 \end{equation*}
-where $g(\theta) = e^{ \frac{1}{\rho} \theta } \sin \theta$. From \eqref{RHSbounds}, for $m_1 \geq 2$ and $\theta \in I_\rho$, we have 
+where $g(\theta) = e^{ \frac{1}{\rho} \theta } \sin \theta$. For $m_1 \geq 2$ and $\theta \in I_\rho$, we have from \eqref{RHSbounds},
 \begin{align}\label{RHSboundgeq2}
-|e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1} g(\theta)| \leq e^{ -\frac{1}{\rho} \pi } T
+e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1} g(\theta) \in [-e^{ -\frac{1}{\rho} \pi } T, e^{ -\frac{1}{\rho} \pi } T]
 \end{align}
 where
-\begin{equation*}\label{defT}
+\begin{equation*}
 T = \frac{\rho}{\sqrt{1+\rho^2}}e^{-\frac{1}{\rho}\arctan \rho}
 \end{equation*}
 
-For the $m = 1$, we would like to exclude a small neighborhood of the pitchfork bifurcation point. Choose any $\delta > 0$, and consider only $\theta \in I_\rho(\delta) = [-\theta_\rho^-, \theta_\rho^+ - \delta]$. From Lemma \ref{thetaparamlemma}, we know that $g(\theta)$ is increasing, thus we have
+For $m = 1$, we would like to exclude a small neighborhood of the pitchfork bifurcation point. For any $\delta > 0$, let $I_\rho(\delta) = [-\theta_\rho^-, \theta_\rho^+ - \delta]$. From Lemma \ref{thetaparamlemma}, $g(\theta)$ is strictly increasing on $I_\rho$, thus for $\theta \in I_\rho(\delta)$,
 \begin{align*}
 -e^{ -\frac{1}{\rho} \pi } g(\theta) &\geq 
  -e^{ -\frac{1}{\rho} \pi } e^{ \frac{1}{\rho}(\pi - \arctan \rho - \delta) } \sin(\pi - \arctan \rho - \delta) \\
@@ -1166,15 +1174,15 @@ Thus for $m = 1$ and $\theta \in I_\rho(\delta)$, we have
 -e^{ -\frac{1}{\rho} \pi } g(\theta)
 \in [-e^{-\frac{1}{\rho}\delta} T, e^{ -\frac{1}{\rho} \pi } T]
 \end{align*}
-Since the interval in \eqref{RHSboundgeq2} is contained in this interval, we conclude that for all $(m_1, \theta)$ with either $m_1 \geq 2$ and $\theta \in I_\rho$ or $m_1 = 1$ and $\theta \in I_\rho(\delta)$,
+Since the interval in \eqref{RHSboundgeq2} is contained in this interval, we conclude that if either $m_1 \geq 2$ and $\theta \in I_\rho$ or $m_1 = 1$ and $\theta \in I_\rho(\delta)$,
 \begin{align}\label{RHSbound2}
 e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1} g(\theta) \in [-e^{-\frac{1}{\rho}\delta} T, e^{ -\frac{1}{\rho} \pi } T]
 \end{align}
-$g^{-1}$ is strictly increasing, and at the endpoints of its domain, $g^{-1}(-T) = \theta_\rho^+$ and $g^{-1}(e^{\frac{1}{\rho}\pi}T) = \theta_\rho^+$. From \eqref{RHSbound2} we know that $e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1} g(\theta)$ lies strictly inside these endpoints, thus we conclude that there exists $\epsilon > 0$ (depending on $\delta$) such that for all $(m_1, \theta)$ we are considering,
+From Lemma \ref{thetaparamlemma}, $g^{-1}$ is strictly increasing on $[-T,e^{\frac{1}{\rho}\pi}T]$, and at the endpoints of its domain, $g^{-1}(-T) = \theta_\rho^+$ and $g^{-1}(e^{\frac{1}{\rho}\pi}T) = \theta_\rho^+$. Since $e^{-\frac{1}{\rho} m_1 \pi } (-1)^{m_1} g(\theta)$ lies strictly inside these endpoints, we conclude that there exists $\epsilon > 0$ (depending on $\delta$) such that 
 \begin{equation}\label{thetastarboundeps}
 \theta_0^*(\theta) \in [\theta_\rho^- + \epsilon, \theta_\rho^+ - \epsilon]
 \end{equation}
-Using this bound with the expression \eqref{b0starexp} for $b_0^*(m_0, \theta)$, for all $(m_1, \theta)$ we are considering,
+Using this bound together with \eqref{b0starexp},
 \begin{align*}
 b_0^*(m_0, \theta) 
 &\in \left[e^{-\frac{1}{\rho}(m_0 \pi - (\theta_\rho^- + \epsilon)) }, e^{-\frac{1}{\rho}(m_0 \pi - (\theta_\rho^+ - \epsilon)) }\right] \\
@@ -1183,66 +1191,72 @@ b_0^*(m_0, \theta)
 &= \left[ e^{\frac{1}{\rho}\epsilon} p_{m_0}^*, e^{-\frac{1}{\rho} \epsilon} p_{m_0 + 1}^* \right]
 \end{align*}
 
-From the proof of Lemma \ref{pitchforkH}, $H_{b_0}(b_0, b_1)$ is smooth and is 0 if and only if $b_0 = p_k^*$. Since the closed interval $\left[ e^{\frac{1}{\rho}\epsilon} p_{m_0}^*, e^{-\frac{1}{\rho} \epsilon} p_{m_0 + 1}^* \right]$ lies strictly inside the interval $[p_{m_0}^*, p_{m_0+1}^*]$, there exists $\eta > 0$ (which depends on $\epsilon$, thus on $\delta$) such that for all $(m_1, \theta)$ that we are considering, 
+From the proof of Lemma \ref{pitchforkH}, $H_{b_0}(b_0, b_1)$ is smooth and is 0 if and only if $b_0 = p_k^*$ for some $k \in \Z$. Since the closed interval $\left[ e^{\frac{1}{\rho}\epsilon} p_{m_0}^*, e^{-\frac{1}{\rho} \epsilon} p_{m_0 + 1}^* \right]$ lies strictly inside the interval $[p_{m_0}^*, p_{m_0+1}^*]$, there exists $\eta > 0$ (which depends on $\epsilon$, thus on $\delta$) such that if either $m_1 \geq 2$ and $\theta \in I_\rho$ or $m_1 = 1$ and $\theta \in I_\rho(\delta)$
 \[
 |H_{b_0} (b_0^*(m_0, \theta), b_1^*(m_1, \theta))| \geq \eta
 \]
 \end{proof}
 \end{lemma}
 
-Now that we have our parameterization, we would like to use it to solve \eqref{Geq} for small $r$. When we perturb $r$ away from 0, we will generically lose the pitchfork bifurcation structure. In addition, since this relies on the implicit function theorem, we will not be able to do this at the pitchfork bifurcation points. In a later section, we will show that for the the 2-periodic pulse, the entire bifurcation structure of $H$ persists for small $r$.
+Now that we have our parameterization for $r = 0$, we would like to use it to solve \eqref{Geq} for small $r$. When we perturb $r$ away from 0, we will generically lose the pitchfork bifurcation structure. In addition, since this relies on the implicit function theorem, we will not be able to perturb $r$ at the pitchfork bifurcation points. In the next two sections, we prove the existence theorems for periodic multi-pulses. After that, we will show that in the special case of the 2-periodic pulse, the entire bifurcation structure of $H$ persists for small $r$.
 
 \subsection{Proof of Theorem \ref{Pi:perexist}}
 
-Recall that by Lemma \ref{diagonalG}, a periodic $n-$pulse exists if and only if the $n-1$ jump conditions
+By Lemma \ref{diagonalG}, a periodic $n-$pulse exists if and only if the $n-1$ jump conditions
 \begin{align}\label{Geq2}
-G_i(b_0, \dots, b_{n-1}, r) = b_i \sin \left( -\rho \log b_i \right) - b_{n-1} \sin \left( -\rho \log b_{n-1} \right) + \mathcal{O}(r^{\gamma / 2 \alpha}) &= 0 && i = 0, \dots, n-2
+G_j(b_0, \dots, b_{n-1}, r) = b_j \sin \left( -\rho \log b_j \right) - b_{n-1} \sin \left( -\rho \log b_{n-1} \right) + \mathcal{O}(r^{\gamma / 2 \alpha}) &= 0 && i = 0, \dots, n-2
 \end{align}
-are satisfied. For $r = 0$, $G_i(b_0, \dots, b_{n-1}, 0) = H(b_i, b_{n-1})$. We parameterized the zero set of $H$ in Lemma \ref{thetaparamlemma}. 
+are satisfied. For $r = 0$, $G_j(b_0, \dots, b_{n-1}, 0) = H(b_j, b_{n-1})$, and we can parameterize the zero set of $H$ using Lemma \ref{thetaparamlemma}. 
 
-Since we are on a periodic domain, we can without loss of generality choose $m_{n-1} \geq m_i$ for $i = 0, \dots, n-2$. Using Lemma \ref{thetaparamlemma}, for $i = 0, \dots, n-2$, let $(b_i^*(m_0, \theta), b_{n-1}^*(m_{n-1}, \theta))$ be the family of solutions to $H(b_i, b_{n-1}) = 0$, where $\theta \in [-\arctan \rho, \pi - \arctan \rho)$. $b_{n-1}^*(m_{n-1}, \theta)$ is given by
+Since we are on a periodic domain, we can without loss of generality choose $b_{n-1}^0 \leq b_j^0$ (equivalently $m_{n-1} \geq m_j$) for $j = 0, \dots, n-2$. Using Lemma \ref{thetaparamlemma}, 
+\begin{align*}
+(b_j^*(m_0, \theta), b_{n-1}^*(m_{n-1}, \theta)) && j = 0, \dots, n-2
+\end{align*}
+be the families of solutions to $H(b_i, b_{n-1}) = 0$ with $b_j^*(m_j, 0) = b_j^0$, where $\theta \in [-\arctan \rho, \pi - \arctan \rho)$. Since for all of these families, $b_{n-1}^*(m_{n-1}, \theta)$ is given by
 \begin{equation}\label{bstarlast}
 b_{n-1}^*(m_{n-1}, \theta) = e^{-\frac{1}{\rho}(m_{n-1}\pi - \theta)}
 \end{equation}
+these are well-defined. 
 
-Next, we plug \eqref{bstarlast} into \eqref{Geq2}. Define $G: \R^{n-1} \times \mathcal{R} \rightarrow \R^{n-1}$ by $G = (G_0, \dots, G_{n-2})^T$, where 
+Taking $b_{n-1} = b_{n-1}^*(m_{n-1}, \theta)$ in \eqref{Geq2}, define $G: \R^{n-1} \times \mathcal{R} \rightarrow \R^{n-1}$ by $G = (G_0, \dots, G_{n-2})^T$, where 
 \begin{equation*}
-G_j(b_0, \dots, b_{n-2}, r) = b_j \sin \left( -\rho \log b_j \right) - b_{n-1}^*(m_{n-1}, \theta) \sin \left( -\rho \log b_{n-1}^*(m_{n-1}, \theta) \right) + \mathcal{O}(r^{\gamma / 2 \alpha})
+G_j(b, r) = b_j \sin \left( -\rho \log b_j \right) - b_{n-1}^*(m_{n-1}, \theta) \sin \left( -\rho \log b_{n-1}^*(m_{n-1}, \theta) \right) + \mathcal{O}(r^{\gamma / 2 \alpha})
 \end{equation*}
-
-Note that $b_{n-1} = b_{n-1}^*(m_{n-1}, \theta)$ is fixed in these equations. Since for $i = 0, \dots, n-2$, $H(b_i^*(m_0, \theta), b_{n-1}^*(m_{n-1}, \theta)) = 0$, 
+where $b = (b_0, \dots, b_{n-1})$. Note that $b_{n-1} = b_{n-1}^*(m_{n-1}, \theta)$ is fixed in these equations and that $G(b^*, 0) = 0$,
+where
 \[
-G(b_1^*(m_1, \theta), \dots, b_{n-2}^*(m_{n-2}, \theta), 0) = 0
+b^*(\theta) = \left( b_1^*(m_1, \theta), \dots, b_{n-2}^*(m_{n-2}, \theta) \right)
 \]
-Next, we evaluate the partial derivatives of $G_k$ with respect to $b_j$. For $j \neq k$, $\partial_{b_j} G_k(b_0, \dots, b_{n-2}, r) = \mathcal{O}(r^{\gamma/2\alpha})$, where the order of the remainder term comes from Lemma \ref{jumplemma3}. For $j = k$, 
+
+Next, we evaluate the partial derivatives of $G_k$ with respect to $b_j$. For $j \neq k$, 
+\[
+\partial_{b_j} G_k(b, r) = \mathcal{O}(r^{\gamma/2\alpha})
+\]
+where the order of the remainder term comes from Lemma \ref{jumplemma3}. For $j = k$, 
 \begin{align*}
-\partial_{b_j} G_j(b_0, \dots, b_{n-2}, r) &= 
+\partial_{b_j} G_j(b, r) &= 
 \sin \left( -\rho \log b_j \right) - \rho b_j \cos \left( -\rho \log b_j \right) \frac{1}{b_j} + \mathcal{O}(r^{\gamma/2\alpha}) \\
 &= \sin \left( -\rho \log b_j \right) - \rho \cos \left( -\rho \log b_j \right) + \mathcal{O}(r^{\gamma/2\alpha}) 
 \end{align*}
-where the order of the remainder term again comes from Lemma \eqref{jumplemma3}. Evaluating these at $r = 0$ and $b_j = b_j^*(m_j, \theta)$, the Jacobain matrix is diagonal, with the diagonal entries given by 
+where the order of the remainder term again comes from Lemma \eqref{jumplemma3}. Evaluating these at $r = 0$ and $b = b^*(\theta)$, the Jacobian matrix $D_b G(b^*(\theta),0)$ is diagonal, with the diagonal entries given by 
 \begin{align*}
-\partial_{b_j} G_j(b_0^*(m_0, \theta), \dots, b_{n-2}^*(m_{n-2}, \theta), 0)
+\partial_{b_j} G_j(b^*(\theta), 0)
 &= \sin \left( -\rho \log b_j^*(m_j, \theta) \right) - \rho \cos \left( -\rho \log b_j^*(m_j, \theta) \right)
 \end{align*}
 
-We can use the implicit function theorem as long these $n-2$ partial derivatives are nonzero. From Lemma \ref{pitchforkH}, these are 0 if and only if $b_j^*(m_j, \theta) = p_k^*$, where $p_k^*$ is one of the pitchfork bifurcation points in the zero set of $H$. From Lemma \ref{thetaparam}, this can only occur if for some $j$ either of the following is true.
+We can use the implicit function theorem as long these partial derivatives are nonzero. From Lemma \ref{pitchforkH}, $\partial_{b_j} G_j(b, 0) = 0$ if and only if $b_j = p_k^*$, where $p_k^*$ is one of the pitchfork bifurcation points in the zero set of $H$. From Lemma \ref{thetaparamlemma}, this can only occur if for some $j$ either of the following is true.
 \begin{itemize}
 \item $m_j = m_{n-1}$ and $\theta = -\arctan \rho$
 \item $m_j = m_{n-1} - 1$ and $\theta = \pi-\arctan \rho$
 \end{itemize}
 
-As long as we avoid these parameter values, $D_b G(b_0^*(m_0, \theta), \dots, b_{n-2}^*(m_{n-2}, \theta), 0)$ is invertible, where $b = (b_0, \dots, b_{n-1}$. Thus, for sufficiently small $r$, we can use the IFT to solve for $(b_0,\dots,b_{n-2})$ in terms of $r$ near $(b_0^*(m_0, \theta), \dots, b_{n-2}^*(m_{n-2}, \theta)$. Specifically, there exists $r_0 > 0$ and smooth functions $b_j(r; m_j, \theta)$, $j = 0, \dots, n-2$ such that
+As long as we avoid these parameter values, $D_b G(b^*(\theta), 0)$ is invertible. Thus, for sufficiently small $r$, we can use the IFT to solve for $b$ in terms of $r$ near $b^*(\theta)$. Specifically, there exists $r_0 > 0$ and a smooth function $b: \mathcal{R} \cap [0, r_0] \rightarrow \R^{n-1}$ such that $b(0) = b^*(\theta)$ and $G(b(r),r) = 0$. Writing $b$ in terms of its component functions as
 \[
-b_j(0; m_j, \theta) = b_j^*(m_j, \theta)
+b(r) = \left( b_0(r; m_0, \theta), \dots, b_{n-2}(r; m_{n-2}, \theta) \right)
 \]
-and for all $r < r_0$, 
-\[
-G(b_0(r; m_0, \theta), \dots, b_{n-2}(r; m_{n-2}, \theta), r) = 0
-\]
-Since we have satisfied the $n-1$ jump conditions, we have constructed a periodic $n-$pulse solution. 
+we have $b_j(0; m_j, \theta) = b_j^*(m_j, \theta)$. Since we have satisfied the $n-1$ jump conditions, we have successfully constructed a periodic $n-$pulse solution. 
 
-Uniqueness comes from the fact that the solution families $(b_i^*(m_0, \theta), b_{n-1}^*(m_{n-1}, \theta))$ from Lemma \eqref{thetaparamlemma} only overlap at the endpoints, and we are avoiding that overlap by taking $\theta$ in the half-open interval $[-\arctan \rho, \pi - \arctan \rho)$. 
+Uniqueness comes from the fact that the solution families $(b_j^*(m_0, \theta), b_{n-1}^*(m_{n-1}, \theta))$ from Lemma \eqref{thetaparamlemma} only overlap at the endpoints. We are avoiding that overlap by taking $\theta$ in the half-open interval $[-\arctan \rho, \pi - \arctan \rho)$. 
 
 \subsection{Proof of Theorem \ref{Pi:unifperexist}}
 
