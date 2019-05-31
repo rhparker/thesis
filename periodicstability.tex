@@ -1,0 +1,3504 @@
+\documentclass[thesis.tex]{subfiles}
+
+\begin{document}
+
+% remove this eventually or do conditional
+\chapter{KdV5 with periodic boundary conditions}
+
+\section{Proof of Stability Theorems}
+
+\subsection{Gap and Conjugation Lemmas}
+
+We first state and prove a gap and conjugation lemmas. This follows almost exactly from \cite{Zumbrun2009}, except we allow the parameter vector $\Lambda$ to live in a Banach space rather than in a subset of $\C^m$. The notation in the two lemmas is the same as in \cite{Zumbrun2009}. 
+
+First, we state and prove the gap lemma. The motivation behind the gap lemma is as follows. Consider the ODE $W'(x) = A(x)W(x)$, where $A(x)$ is a matrix which is exponentially asymptotic to a constant coefficient matrix $A_\infty$. Let $V_0$ be an eigenvector of $A_\infty$ with eigenvalue $\lambda$. CONTINUE ONCE WE HAVE CODDINGTON AND LEVINSON.
+
+% Gap lemma
+\begin{lemma}[Gap Lemma]\label{gaplemma}
+Let $W \in \C^N$, and consider the family of ODEs on $\R$
+\begin{equation}\label{LambdaEVP}
+W(x)' = A(x; \Lambda) W
+\end{equation}
+where $\Lambda \in \Omega$ is a parameter vector and $\Omega$ is a Banach space. Assume that
+\begin{enumerate}
+	\item The map $\Lambda \mapsto A(\cdot; \Lambda)$ is analytic in $\Lambda$.
+	\item $A(x; \Lambda) \rightarrow A_\pm(\lambda)$ (independent of $\Lambda$) as $x \rightarrow \pm \infty$, and there exists $\delta > 0$ such that for $|\Lambda| < \delta$ we have the uniform exponential decay estimates 
+	\begin{align}\label{ALambdadecay}
+	\left| \frac{\partial^k}{\partial x^k} A(x; \Lambda) - A_\pm(\Lambda) \right| 
+	&\leq C e^{-\theta |x|} && 0 \leq k \leq K
+	\end{align}
+	where $\alpha > 0$, $C > 0$, and $K$ is a nonnegative integer.
+\end{enumerate}
+Suppose $V^-(\Lambda)$ is an eigenvector of $A_-(\Lambda)$ with corresponding eigenvalue $\mu(\Lambda)$, both analytic in $\Lambda$. Then there exists a unique solution of \ref{LambdaEVP} of the form 
+\begin{equation}
+W(x; \Lambda) = V(x; \Lambda) e^{\mu(\Lambda)x}
+\end{equation}
+where $V$ is $C^1$ in $x$ and analytic in $\Lambda$ for $|\Lambda| < \delta$, and for any fixed $\tilde{\theta} < \theta$
+\begin{align}
+V(x; \Lambda) = V^-(\Lambda) + \mathcal{O}(e^{-\tilde{\theta}|x|}|V^-(\Lambda)|) && x \in \R^-
+\end{align}
+A similar result holds for $A_+(\lambda)$ on $\R^+$.
+
+\begin{proof}
+This proof follows \cite{Zumbrun2009}, with the main difference being that the parameter vector $\Lambda$ is in a general Banach space instead of a subset of $C^p$. Let $W(x; \Lambda) = V(x; \Lambda) e^{\mu(\Lambda) x}$. Substituting this into \eqref{LambdaEVP} and simplifying, we obtain the equivalent ODE
+\begin{equation}\label{VEVP}
+V(x; \Lambda)' = (A_-(\Lambda) - \mu(\Lambda)I)V(x; \Lambda) + \Theta(x; \Lambda) V(x; \Lambda)
+\end{equation}
+where $\Theta(x; \Lambda) = (A(x; \Lambda) - A_-(\Lambda)) = \mathcal{O}(e^{-\theta|x|})$ by \eqref{ALambdadecay}. Choose any $\tilde{\theta} < \theta_1 < \theta$ such that for $|\Lambda| < \delta$, the real part of the spectrum of $A_-(\Lambda)$ lies either to the left or to the right of the vertical line $\text{Re}(\nu) = \text{Re}(\mu(\Lambda) + \theta_1$ in the complex plane. Since the eigenvalues of $A_(\Lambda)$ are analytic in $\Lambda$, this is possible.
+
+For $|\Lambda| < \delta$, define the spectral projections $P(\Lambda)$ and $Q(\Lambda)$, where $P(\Lambda)$ projects onto the direct sum of all eigenspaces of $A_-(\Lambda)$ corresponding to eigenvalues $\nu$ with $\text{Re}(\nu) < \text{Re}(\mu(\Lambda) + \theta_1$, and $Q(\Lambda)$ projects onto the direct sum of all eigenspaces of $A_-(\Lambda)$ corresponding to eigenvalues $\nu$ with $\text{Re}(\nu) > \text{Re}(\mu(\Lambda) + \theta_1$. $P(\Lambda)$ and $Q(\Lambda)$ are analytic in $\Lambda$ for $|\Lambda| < \delta$, and from the definition of $\theta_1$, we have the estimates
+\begin{align*}
+\left|e^{(A_-(\Lambda) - \mu(\Lambda)I)x}P \right| &\leq C e^{\theta_1 x} && x \geq 0 \\
+\left|e^{(A_-(\Lambda) - \mu(\Lambda)I)x}Q \right| &\leq C e^{\theta_1 x} && x \leq 0
+\end{align*}
+Note that $P(\Lambda) + Q(\Lambda) = I$. Define the map $T$ on $L^\infty(-\infty, -M]$ by
+\begin{align*}
+TV(x; \Lambda) &= V^-(\Lambda) 
++ \int_{-\infty}^x e^{(A_-(\Lambda) - \mu(\Lambda)I)(x-y)}P\Theta(y; \Lambda) V(y; \Lambda) dy \\
+&- \int_x^{-M} e^{(A_-(\Lambda) - \mu(\Lambda)I)(x-y)}Q\Theta(y; \Lambda) V(y; \Lambda) dy
+\end{align*}
+Taking the absolute value of both sides, for $x \leq 0$
+\begin{align*}
+|TV(x; \Lambda)| &\leq |V^-(\Lambda)| + C ||V(x; \Lambda)||_{L^\infty(-\infty, -M]}
+\left( \int_{-\infty}^x e^{\theta_1 (x - y)} e^{\theta y} dy + \int_x^{-M} e^{\theta_1 (x - y)} e^{\theta y} dy \right) \\
+&\leq |V^-(\Lambda)| + C ||V(x; \Lambda)||_{L^\infty(-\infty, -M]} e^{\theta_1 x} \int_{-\infty}^M e^{(\theta - \theta_1) y} dy \\
+&= \leq |V^-(\Lambda)| + C ||V(x; \Lambda)||_{L^\infty(-\infty, -M]} e^{\theta_1 x} \frac{e^{-(\theta - \theta_1)M}}{\theta - \theta_1}\\
+&\leq |V^-(\Lambda)| + C ||V(x; \Lambda)||_{L^\infty(-\infty, -M]} e^{\theta_1 x} e^{-(\theta - \theta_1)M} \\
+&\leq |V^-(\Lambda)| + C ||V(x; \Lambda)||_{L^\infty(-\infty, -M]} e^{-(\theta - \theta_1)M} \\
+& < \infty
+\end{align*}
+Since the RHS is independent of $x$, we have $T: L^\infty(-\infty, -M] \rightarrow L^\infty(-\infty, -M]$. 
+
+Next, we show $T$ is a contraction.
+\begin{align*}
+|TV_1(x; \Lambda) - TV_2(x; \Lambda)| &\leq C ||V_1(x; \Lambda) - V_2(x; \Lambda)||_{L^\infty(-\infty, -M]} e^{\theta_1 x} \frac{e^{-(\theta - \theta_1)M}}{\theta - \theta_1}\\
+\end{align*}
+Since $e^{-(\theta - \theta_1)M} \rightarrow 0$ as $m \rightarrow \infty$, for sufficiently large $M$ we have 
+\begin{align*}
+|TV_1(x; \Lambda) - TV_2(x; \Lambda)|_{L^\infty(-\infty, -M]} &\leq \frac{1}{2} ||V_1(x; \Lambda) - V_2(x; \Lambda)||_{L^\infty(-\infty, -M]} 
+\end{align*}
+Thus the map $T$ is a contraction. Since $L^\infty(-\infty, -M]$ is a Banach space, by the Banach fixed point theorem, the map $T$ has a unique fixed point $V = TV$, i.e. we have a function $V \in L^\infty(-\infty, -M]$ such that 
+\begin{align*}
+V(x; \lambda) &= V^-(\Lambda) 
++ \int_{-\infty}^x e^{(A_-(\Lambda) - \mu(\Lambda)I)x}P\Theta(y; \Lambda) V(y; \Lambda) dy 
+- \int_x^{-M} e^{(A_-(\Lambda) - \mu(\Lambda)I)x}Q\Theta(y; \Lambda) V(y; \Lambda) dy
+\end{align*}
+
+Differentiating this with respect to $x$, we obtain
+\begin{align*}
+V'(x; \Lambda) &= P\Theta(x; \Lambda) V(x; \Lambda) +
+(A_-(\Lambda) - \mu(\Lambda)I) \int_{-\infty}^x e^{(A_-(\Lambda) - \mu(\Lambda)I)(x-y)}P\Theta(y; \Lambda) V(y; \Lambda) dy \\
+&-(-Q\Theta(x; \Lambda) V(x; \Lambda))
+-(A_-(\Lambda) - \mu(\Lambda)I) \int_x^{-M} e^{(A_-(\Lambda) - \mu(\Lambda)I)(x-y)}Q\Theta(y; \Lambda) V(y; \Lambda) dy \\
+&= P\Theta(x; \Lambda) V(x; \Lambda) + Q\Theta(y; \Lambda) V(x; \Lambda) + (A_-(\Lambda) - \mu(\Lambda)I)(T V(x; \lambda) - V^-(\Lambda) ) \\
+&= (P + Q)\Theta(x; \Lambda) V(x; \Lambda) + (A_-(\Lambda) - \mu(\Lambda)I)(V(x; \lambda) - V^-(\Lambda) ) \\
+&= (A_-(\Lambda) - \mu(\Lambda)I)V(x; \lambda) + \Theta(x; \Lambda) V(x; \Lambda) - (A_-(\Lambda) - \mu(\Lambda)I)V^-(\Lambda) \\
+&= (A_-(\Lambda) - \mu(\Lambda)I)V(x; \lambda) + \Theta(x; \Lambda) V(x; \Lambda)
+\end{align*}
+where we used the fact that $TV = V$ and $(A_-(\Lambda) - \mu(\Lambda)I)V^-(\Lambda) = 0$. Thus $V(x; \Lambda$ solves \eqref{VEVP}. Since $TV = V$, we let $V_1 = V$ and $V_2 = 0$ in the above to get the estimate
+\begin{align*}
+|V(x; \Lambda) - V^-(\Lambda)| &= |T(V(x; \Lambda)) - T(0)| \\
+&\leq C ||V(x; \Lambda) - 0||_{L^\infty(-\infty, -M]} e^{\theta_1 x} \\
+\end{align*}
+
+Similarly, for sufficiently large $M$, we have
+\begin{align*}
+|V(x; \Lambda)| - |V^-(\Lambda)| &\leq | |V(x; \Lambda)| - |V^-(\Lambda)| | \\
+&\leq |V(x; \Lambda) - V^-(\Lambda)| \\
+&= |T(V(x; \Lambda)) - T(0)| \\
+&\leq \frac{1}{2} ||V(x; \Lambda)||_{L^\infty(-\infty, -M]}
+\end{align*}
+thus it follows that
+\begin{align*}
+||V(x; \Lambda)||_{L^\infty(-\infty, -M]} \leq 2 |V^-(\Lambda)|
+\end{align*}
+
+Combining these, we have
+\begin{align*}
+|V(x; \Lambda) - V^-(\Lambda)| &\leq C e^{\tilde{\theta} x}|V^-(\Lambda)| \\
+\end{align*}
+from which we get
+\begin{align*}
+|V(x; \Lambda) = V^-(\Lambda) + \mathcal{O}( e^{\tilde{\theta} x}|V^-(\Lambda)| )\\
+\end{align*}
+
+Although $V(x; \Lambda)$ is only defined for $x \leq -M$, we extend $V(x; \Lambda)$ to all of $R^-$ using the evolution operator for the system.
+\end{proof}
+\end{lemma}
+
+As a corollary to this, we state and prove the Conjugation Lemma, which allows us to make a smooth change of coordinates to convert the linear ODE $Z'(x) = A^\pm(x) Z(x)$ into a constant coefficient system.
+
+% Conjugation lemma
+\begin{lemma}[Conjugation Lemma]
+Let $W \in \C^N$, and consider the family of ODEs on $\R$
+\begin{equation}\label{EVPconj}
+W(x)' = A(x; \Lambda) W(x) + F(x) 
+\end{equation}
+where $\Lambda \in \Omega$ is a parameter vector and $\Omega$ is a Banach space. Take the same assumptions as in the Gap Lemma, i.e. 
+\begin{enumerate}
+	\item The map $\Lambda \mapsto A(\cdot; \Lambda)$ is analytic in $\Lambda$.
+	\item $A(x; \Lambda) \rightarrow A_\pm(\lambda)$ (independent of $\Lambda$) as $x \rightarrow \pm \infty$, and there exists $\delta > 0$ such that for $|\Lambda| < \delta$ we have the uniform exponential decay estimates 
+	\begin{align}
+	\left| \frac{\partial^k}{\partial x^k} A(x; \Lambda) - A_\pm(\Lambda) \right| 
+	&\leq C e^{-\theta |x|} && 0 \leq k \leq K
+	\end{align}
+	where $\alpha > 0$, $C > 0$, and $K$ is a nonnegative integer.
+\end{enumerate}
+Then in a neighborhood of any $\Lambda_0 \in \Omega$ there exist invertible linear transformations
+\begin{align*}
+P_+(x, \Lambda) &= I + \Theta_+(x, \Lambda) \\
+P_-(x, \Lambda) &= I + \Theta_-(x, \Lambda) 
+\end{align*}
+defined on $\R^+$ and $\R^-$, respectively, such that
+\begin{enumerate}[(i)]
+\item The change of coordinates $W = P_\pm Z$ reduces \eqref{EVPconj} to the equations on $\R^\pm$
+\begin{align}\label{conjZ}
+Z'(x) = A^\pm(\Lambda) Z(x) + P_\pm(x, \Lambda)^{-1} F(x)
+\end{align}
+
+\item For any fixed $0 < \tilde{\theta} < \theta$, $0 \leq k \leq K+1$, and $j \geq 0$ we have the decay rates
+\begin{align*}
+\left| \partial_\Lambda^j \partial_x^k \Theta_\pm \right| \leq C(j, k)e^{-\tilde{\theta}|x|}
+\end{align*}
+\end{enumerate}
+\begin{proof}
+We will prove this for the case where $F(x) = 0$. The form of the conjugated system easily follows for general $F$. We will also only consider the case on $\R^-$. The other case is similar. 
+
+Let $W = P_-(x, \Lambda) Z$, where we will determine $P_-(x, \Lambda)$ later. Suppose that \eqref{conjZ} holds. Substituting \eqref{conjZ} into \eqref{EVPconj}, we get
+\begin{align*}
+[P_-(x, \Lambda) Z(x)]' &= A(x; \Lambda)(P_-(x, \Lambda) Z(x)) \\
+P_-'(x, \Lambda) Z(x) + P_-(x, \Lambda) Z'(x)
+&= A(x; \Lambda)P_-(x, \Lambda) Z(x) \\
+P_-'(x, \Lambda) Z(x) + P_-(x, \Lambda) A_- Z(x)
+&= A(x; \Lambda)P_-(x, \Lambda) Z(x)
+\end{align*}
+Rearranging this, we obtain
+\begin{equation}
+P_-'(x, \Lambda) Z(x)
+= [A(x; \Lambda)P_-(x, \Lambda) - P_-(x, \Lambda) A_-]Z(x)
+\end{equation}
+
+Suppose now that
+\[
+P_-'(x, \Lambda) = A(x; \Lambda)P_-(x, \Lambda) - P_-(x, \Lambda) A_-
+\]
+Upon making the substitution $W = P_-(x, \Lambda) Z$, \eqref{EVPconj} reduces to
+\begin{align*}
+[P_-(x, \Lambda) Z(x)]' &= A(x; \Lambda)(P_-(x, \Lambda) Z(x)) \\
+P_-'(x, \Lambda) Z(x) + P_-(x, \Lambda) Z'(x)
+&= A(x; \Lambda)P_-(x, \Lambda) Z(x) \\
+(A(x; \Lambda)P_-(x, \Lambda) - P_-(x, \Lambda) A_-)Z(x) + P_-(x, \Lambda) Z'(x)
+&= A(x; \Lambda)P_-(x, \Lambda) Z(x) \\
+A(x; \Lambda)P_-(x, \Lambda)Z(x) - P_-(x, \Lambda) A_- Z(x) + P_-(x, \Lambda) Z'(x)
+&= A(x; \Lambda)P_-(x, \Lambda) Z(x) \\
+P_-(x, \Lambda) Z'(x) &= P_-(x, \Lambda) A_- Z(x) \\
+Z'(x) &= A_- Z(x)
+\end{align*}
+where the last line follows if $P_-(x, \Lambda)$ is invertible. Thus we only need to verify that this is the case. In other words, we need to find $P_-(x, \Lambda)$ such that
+\[
+P_-'(x, \Lambda) = A(x; \Lambda)P_-(x, \Lambda) - P_-(x, \Lambda) A_-
+\]
+We note that the this equation has the form 
+\begin{equation}\label{solvePminus}
+P_-'(x, \Lambda) = \mathcal{A}(x; \Lambda) P_-(x, \Lambda)
+\end{equation}
+where $\mathcal{A}(x; \Lambda)$ is the linear operator
+\[
+\mathcal{A}(x; \Lambda) P = A(x; \Lambda) P - P A_-
+\]
+By our assumptions on $A(x; \Lambda)$, $\mathcal{A} \rightarrow \mathcal{A}_-$ as $x \rightarrow -\infty$, where the limiting linear operator $\mathcal{A}_-$ is defined by
+\[
+\mathcal{A}_- P = A_- P - P A_-
+\]
+The limiting operator has analytic eigenvalue/eigenvector pair $0, I$ for all $\Lambda$, thus by the Gap Lemma, there exists a solution of \eqref{solvePminus} of the form 
+\begin{equation*}
+P_-(x, \Lambda) = I + \mathcal{O}(e^{-\tilde{\theta}|x|})
+\end{equation*}
+In other words, 
+\begin{equation*}
+P_-(x, \Lambda) = I + \Theta_-(x, \Lambda)
+\end{equation*}
+where 
+\begin{equation}\label{Thetabound}
+|\Theta_-(x, \Lambda)| \leq C e^{-\tilde{\theta}|x|}
+\end{equation}
+The $x$-derivative bound follow from the derivative bounds in the Gap Lemma, and the $\Lambda$-derivative bounds follow from standard analytic function theory.
+
+Finally, we need to show that $P_-(x, \Lambda)$ is invertible for all $x \in \R^-$. Using \eqref{Thetabound}, we can find $M$ sufficiently large and negative such that for all $x \leq M$,
+\[
+|\Theta_-(x, \Lambda)| < 1/2
+\]
+It follows that $P_-(x, \Lambda)$ is invertible for $X \leq M$. To extend invertibility to all $x \in \R^-$, suppose that $P_-(x, \Lambda)^{-1}$ exists for all $x \in R^-$. Then, differentiating $P_-(x, \Lambda)^{-1} P_-(x, \Lambda) = I$ and solving for $[P_-(x, \Lambda)^{-1}]'$ (as in the proof of the inverse function theorem), we have (suppressing the dependence on $\Lambda$ for convenience)
+\begin{align*}
+(P_-^{-1})'(x) &= -P_-^{-1}(x)P_-'(x)P_-^{-1}(x) \\
+&= -P_-^{-1}(x)( A(x)P_-(x) - P_-(x) A_-)P_-^{-1}(x) \\
+&= A_- P_-^{-1}(x) - A(x) P_-^{-1}(x)
+\end{align*}
+We have a solution to this ODE for $x \leq M$, and by variation of constants, this ODE has a unique solution for all $x \in \R^-$. Thus $P_-(x, \Lambda)^{-1}$ is obtained for all $x \in \R^-$ by evolving this ODE forward from an initial condition at some $x \leq M$. In this manner, we have shown that $P_-(x, \Lambda)^{-1}$ exists for all $x \in \R^-$.
+\end{proof}
+\end{lemma}
+
+\subsection{Proof of Initial Lemmas}
+
+We now present the proofs of the lemmas in section [NUM].
+
+% eigenvalues of A0 lemma
+\newtheorem*{lemma:eigA0lemma}{Lemma \ref{Pi:eigA0lemma}}
+\begin{lemma:eigA0lemma}
+$A(0)$ has a simple eigenvalue at 0 and a quartet of eigenvalues at $\pm \alpha_0 \pm \beta_0 i\}$. For any other eigenvalue $\nu$ of $A(0)$, $|\text{Re }\nu| > \alpha_0$. 
+\begin{proof}
+The characteristic polynomial of $A(0)$ is 
+\begin{equation}\label{charpolyA0}
+p_2(\nu) = -\nu^{2m+1} + c_{2m-2} \nu^{2m-1} + \dots + c_2 \nu^3 - c_0 \nu = \nu p_1(\nu)
+\end{equation}
+where $p_1(\nu)$ is the characteristic polynomial of $DF(0)$ from the previous section. Thus $A(0)$ has the same eigenvalues as $DF(0)$ as well as an additional eigenvalue at 0.
+\end{proof}
+\end{lemma:eigA0lemma}
+
+% nondegeneracy lemma
+\newtheorem*{lemma:nondegenlemma}{Lemma \ref{Pi:nondegenlemma}}
+\begin{lemma:nondegenlemma}
+We have the nondegeneracy condition
+
+\begin{equation}\label{nondegen2}
+T_{Q(0)}W^s(0) \cap T_{Q(0)}W^u(0) = \R Q'(0)
+\end{equation}
+
+\begin{proof}
+Since $Q(x)$ is a homoclinic orbit in the intersection of $W^u(0)$ and $W^s(0)$, $\R Q'(0) \subset T_{Q(0)}W^s(0) \cap T_{Q(0)}W^u(0)$. If the intersection were more than one-dimensional, there would exist another exponentially localized solution $V(x) = (v_1, \dots, v_{2m}, v_{2m+1})^T$ to \eqref{Pi:vareq2}. It follows that $\tilde{V}(x) = (v_1, \dots, v_{2m})^T$ would be an exponentially localized solution to \eqref{Pi:vareq1}, which contradicts Hypothesis \ref{Pi:nondegenhyp}.
+\end{proof}
+\end{lemma:nondegenlemma}
+
+% solutions to variational and adjoint variational equation
+\newtheorem*{lemma:varadjsolutions}{Lemma \ref{Pi:varadjsolutions}}
+\begin{lemma:varadjsolutions}
+We have the following solutions to the variational equation \eqref{Pi:vareq2} and adjoint variational equation \eqref{Pi:adjvareq2}.
+
+\begin{enumerate}[(i)]
+
+\item There exists exactly two linearly independent, bounded solutions $\Psi(x)$ and $\Psi^c(x)$ to \eqref{Pi:adjvareq2}. $\Psi(x)$ is exponentially localized, i.e. $e^{\alpha |x|}\Psi(x)$ is bounded. For $\Psi^c(x)$,
+	\begin{equation}
+	\Psi^c(x) \rightarrow W_0 \text{ as }|x| \rightarrow \infty
+	\end{equation}
+For $\Psi(x)$, we have $\Psi(-x) = R \Psi(x)$, where $R$ is the standard reversor operator. In addition, $\Psi(0), \Psi^c(0) \perp \R Q'(0) \oplus Y^+ \oplus Y^-$.
+
+\item There exists a bounded solution $V^c(x)$ of \eqref{Pi:vareq2} such that 
+\begin{equation}
+V^c(x) \rightarrow V_0 \text{ as }|x| \rightarrow \infty
+\end{equation}
+Furthermore $V^c$ is symmetric with respect to the reversor $R$, i.e. $V^c(-x) = R V^c(x)$.
+\end{enumerate}
+
+\begin{proof}
+\begin{enumerate}
+\item The adjoint variational equation \eqref{Pi:adjvareq2} is the following equation written as a first order system
+\begin{equation}\label{adj2}
+[\partial_x E''(q) ]^* v(x) = -E''(q) \partial_x v(x) = 0,
+\end{equation}
+which has exponentially decaying solution $q(x)$. Thus we have an exponentially localized solution $\Psi(x)$ to \eqref{Pi:adjvareq2} which has $q(x)$ as its $(m+1)$-th component. Since $q(x)$ is an even function, the functions $f_j(x)$ from \eqref{Pi:DefA} are even for $j$ even and odd for $j$ odd. Thus, from the form of $A(Q)$, $\Psi(-x) = R \Psi(x)$, where $R$ is the standard reversor operator.
+
+\item Equation \eqref{Pi:adj2} also has the constant solution 1 as a solution. Thus \eqref{Pi:adjvareq2} has a solution $\Psi^c(x)$ which has $1$ as its $(m+1)$-th component. This solution has the form
+\[
+\Psi^c(x) = \begin{pmatrix}
+-c_0 + g_1(x) \\ g_2(x) \\
+-c_2 + g_3(x) \\ g_4(x) \\
+\vdots \\
+-c_{2m-2} + g_{2m-1}(x) \\ g_{2m}(x) \\ 1
+\end{pmatrix}
+\]
+where the functions $g_j(x)$ are linear combinations of the functions $f_j(x)$ from \eqref{Pi:DefA} and their derivatives and are thus exponentially localized. It follows that $\Psi^c(x) \rightarrow W_0$ as $|x| \rightarrow \infty$, where $W_0$ is given by \eqref{Pi:W0}.
+
+\item For any solutions $V(x)$ and $W(x)$ to the variational equation \eqref{Pi:vareq2} and the adjoint variational equation \eqref{Pi:adjvareq2}, $\langle V(x), W(x) \rangle$ is constant in $x$. Since solutions $V(x)$ to \eqref{Pi:vareq2} with initial conditions in $\R Q'(0) \oplus Y^+ \oplus Y^-$ decay exponentially to 0 at the appropriate end, any bounded solution to \eqref{Pi:adjvareq2} must be perpendicular to $\R Q'(0) \oplus Y^+ \oplus Y^-$ at $x = 0$, thus this holds for $\Psi(0)$ and $\Psi^c(0)$. Since $\R Q'(0) \oplus Y^+ \oplus Y^-$ is a $(2m-1)-$dimensional subspace of $\R^{2m+1}$ and we have found two linearly independent, bounded solutions of \eqref{Pi:adjvareq2}, there can be no others.
+
+\item Recall that $\dim W^{s/u}(0) = m$ and $\dim W^c(0) = 1$, thus $\dim W^{cs}(0) = m + 1$, and $\dim W^{cu}(0) = m + 1$. $\Psi(0) \perp T_{Q(0)}W^{cs}(0) + T_{Q(0)}W^{cu}(0)$, so $\dim T_{Q(0)}W^{cs}(0) + T_{Q(0)}W^{cu}(0) \leq 2m$. This implies, by a dimension-counting argument, that $\dim T_{Q(0)}W^{cs}(0) \cap T_{Q(0)}W^{cu}(0) = 2$. Since $\dim T_{Q(0)}W^s(0) \cap T_{Q(0)}W^s(0) = 1$ by Lemma \ref{Pi:nondegenlemma}, we conclude that there exists $Y_0 \in T_{Q(0)}W^{cs}(0) \cap T_{Q(0)}W^{cu}(0)$ which is linearly independent from $Q'(0)$, and $Y^0 \notin T_{Q(0)}W^s(0) \cap T_{Q(0)}W^s(0)$. We can then decompose the tangent space at $Q(0)$ as 
+\[
+\R^{2m + 1} = \R Q'(0) \oplus Y^0 \oplus Y^+ \oplus Y^-
+\]
+
+\item Using the Gap Lemma, we can find solutions $V^\pm(x)$ to the variational equation \eqref{Pi:vareq2} on $\R^\pm$ such that
+\begin{equation}\label{Vplusminus}
+V^\pm(x) = V_0 + \mathcal{O}(e^{-(\alpha - \epsilon)|x|}|V_0|)
+\end{equation}
+for some $\epsilon > 0$, so $V^\pm(x) \rightarrow V_0$ as $x \rightarrow \pm \infty$. These will not be unique, since, for example, we can add any component in $Y^+ \oplus \R Q'(0)$ to $V^+(0)$ and keep the same decay property. Since $V^\pm(x)$ remains bounded but does not decay to 0, $V^\pm(0)$ must have a component in $Y^0$ and cannot have a component in $Y^-$. If $V^+(0)$ has any component in $Y^+ \oplus \R Q'(0)$, we can subtract it out and keep the decay property in \eqref{Vplusminus}. Thus we can take $V^+(0) \in Y^0$. Similarly, we can take $V^0(0) \in Y^0$. Since both initial conditions are in $Y^0$, $V^\pm(x)$ remain bounded for all $x$.
+
+\item By reversibility, $RV^+(-x)$ is also a solution to the variational equation on $R^-$, with 
+\begin{align*}
+R V^+(-x) &= R V_0 + \mathcal{O}(e^{-(\alpha - \epsilon)|x|}|V_0|) \\
+&= V_0 + \mathcal{O}(e^{-(\alpha - \epsilon)|x|}|V_0|)
+\end{align*}
+where $R V_0 = V_0$ since all components of $V_0$ are 0 except for the first. Reversing time swaps $Y^+$ and $Y^-$, while leaving $\R Q'(0)$ and $Y^0$ intact. Thus 
+$RV^+(0) \in Y_0$, and so both $V^+(0)$ and $RV^+(0)$ are in the one-dimensional space $Y^0$; since the odd numbered components of $V^+(0)$ and $RV^+(0)$ are the equal and $Y^0$ is one-dimensional, it follows that $V^+(0) = RV^+(0)$.
+
+Since we have the same initial condition at $x = 0$ for $V^+(x)$ and $RV^+(-x)$, this implies that $V^+(-x) = RV^+(x)$. Let $V^c(x) = V^+(x)$. Then $V^c(x)$ is a bounded solution to the variational equation with is symmetric with respect to the reversor $R$, i.e. $V^c(-x) = RV^c(x)$. Furthermore, $V^c(x) \rightarrow V_0$ as $x \rightarrow \pm \infty$.
+\end{enumerate}
+\end{proof}
+\end{lemma:varadjsolutions}
+
+\subsection{Piecewise Formulation}
+
+We are finally ready to prove the main stability results. Let $q_{np}(x)$ be a $n-$periodic pulse solution to \eqref{genODE} constructed according to Theorem \ref{perexist}, and let $Q_{np}(x) = (q_{np}(x), \partial_x q_{np}(x), \dots, \partial_x^{2m} q_{np}(x) )$. From Theorem \ref{perexist}, we can write $Q_{np}(x)$ piecewise as
+\begin{equation}\label{Qnppiece}
+\begin{aligned}
+Q_i^-(x) &= Q^-(x; \beta_i^-) + \tilde{Q}_i^-(x) && x \in [-X_{i-1}, 0] \\
+Q_i^+(x) &= Q^+(x; \beta_i^+) + \tilde{Q}_i^+(x) && x \in [0, X_i]
+\end{aligned}
+\end{equation}
+Let $X_m = \min\{X_0, \dots, X_{n-1}\}$. Using the same intervals, we can write $T_np(x)$ piecewise as $T_i^\pm(x)$. 
+
+Recall that we are looking for solutions to the PDE eigenvalue problem
+\begin{equation}\label{PDEeig4}
+V'(x) = A(Q_{np}(x))V(x) + \lambda B V(x)
+\end{equation}
+and that we have
+\begin{equation}\label{Arelations}
+\begin{aligned}
+(Q_{np}')' &= A(Q_{np}(x)) Q_{np}' \\
+(T_{np}) &= A(Q_{np}(x)) T_{np} + B Q_{np}' 
+\end{aligned}
+\end{equation}
+
+To exploit these relations, we take the following piecewise ansatz for the eigenfunction $V(x)$
+\begin{equation}\label{Vpiecewise}
+\begin{aligned}
+V_i^-(x) &= d_i ((Q_i^-)'(x) + \lambda T_i^-(x)) + W_i^-(x) && x \in [-X_{i-1}, 0] \\
+V_i^+(x) &= d_i ((Q_i^+)'(x) + \lambda T_i^+(x)) + W_i^+(x) && x \in [0, X_i] \\
+\end{aligned}
+\end{equation}
+where $d_i \in \C$ are arbitrary constants. Substituting this ansatz into \eqref{PDEeig4},
+\begin{align*}
+d_i [(Q_i^\pm)']'(x) &+ \lambda d_i (T_i^\pm)'(x) + (W_i^\pm)'(x) \\
+&= d_i A(Q_i^\pm(x)) (Q_i^\pm)'(x) + \lambda d_i A(Q_i^\pm(x)) T_i^\pm(x) + A(Q_i^\pm(x)) W_i^\pm(x) \\
+&+ \lambda d_i B (Q_i^\pm)'(x) + d_i \lambda^2 B T_i^\pm(x) + \lambda B W_i^\pm(x)
+\end{align*}
+Using \eqref{Arelations}, this simplifies to
+\begin{align*}
+(W_i^\pm)'(x) &= A(Q_i^\pm(x)) W_i^\pm(x) + \lambda B W_i^\pm(x) + d_i \lambda^2 B T_i^\pm(x) 
+\end{align*}
+Let $A_i^\pm(x; \lambda) = A(Q_i^\pm(x)) + \lambda B$ and let
+\begin{align*}
+\tilde{H}_i^\pm(x) &= B T_i^\pm(x) \\ 
+H(x) &= B T(x)
+\end{align*}
+Then this becomes 
+\begin{align*}
+(W_i^\pm)'(x) &= A_i^\pm(x; \lambda) W_i^\pm(x) + d_i \lambda^2 \tilde{H}_i^\pm(x)
+\end{align*}
+
+In order to have a solution to \eqref{PDEeig4}, the eigenfunction $V(x)$ must be continuous. In other words, the $2n$ jumps between the pieces must be 0. Thus we need to solve the system of equations
+\begin{align*}
+(W_i^\pm)'(x) &= A_i^\pm(x; \lambda) W_i^\pm(x) + d_i \lambda^2 \tilde{H}_i^\pm(x) \\
+W_i^+(X_i) - W_{i+1}^-(-X_i) &= D_i d && i = 0, \dots, n-1 \\
+W_i^-(0) &= W_i^+(0) && i = 0, \dots, n-1  \\
+\end{align*}
+where
+\begin{align}\label{defDid}
+D_i d &= d_{i+1}[(Q_{i+1}^-)'(-X_i) + \lambda T_{i+1}^-(-X_i)]
+- d_i [ (Q_i^+)'(X_i) + \lambda T_i^+(X_i) ] \\
+\end{align}
+
+It will turn out that we cannot find a unique solution to this sytem for all $\lambda$. Thus, we will instead consider the system
+\begin{equation}\label{eigsystem}
+\begin{aligned}
+(W_i^\pm)'(x) &= A_i^\pm(x; \lambda) W_i^\pm(x) + d_i \lambda^2 \tilde{H}_i^\pm(x) \\
+W_i^+(X_i) - W_{i+1}^-(-X_i) &= D_i d && i = 0, \dots, n-1 \\
+W_i^\pm(0) &\in \R \Psi(0) \oplus \R \Psi^c(0) \oplus Y^+ \oplus Y^- && i = 0, \dots, n-1  \\
+W_i^+(0) - W_i^-(0) &\in \R \Psi(0) \oplus \R \Psi^c(0) && i = 0, \dots, n-1 
+\end{aligned}
+\end{equation}
+
+A solution to \eqref{eigsystem} gives us an eigenfunction corresponding to eigenvalue $\lambda$ if and only if the $n$ jumps at $x = 0$ in the direction of $\Psi(0) \oplus \R \Psi^c(0)$ are 0, i.e. if and only if the $2n$ jump conditions are satisfied, i.e. 
+\begin{align*}
+\xi_i &= \langle \Psi(0), W_i^+(0) - W_i^-(0) \rangle = 0 \label{jumpxi} \\
+\xi_-^c &= \langle \Psi^c(0), W_i^+(0) - W_i^-(0) \rangle = 0 \label{jumpxic}
+\end{align*}
+for $i = 0, \dots, n-1$.
+
+From the existence problem we have the following estimates, which we collect in the following lemma. REVISIT THIS.
+
+\begin{lemma}\label{stabestimates}
+Let $\Delta H_i^\pm(x) = \tilde{H}_i^\pm(x) - H(x)$. Then we have the following estimates
+\begin{enumerate}[(i)]
+\item $|H(x)|, |\tilde{H}_i^\pm(x)| \leq C e^{-\alpha_0 |x|}$
+\item $||\Delta H_i^\pm|| = \leq C(e^{-\alpha_0 X_i} + e^{-\alpha_0 X_{i-1}} )$ 
+\item $|\Delta H_i^-(x)| \leq C e^{-\alpha_0 X_{i-1}} e^{-\alpha_0(X_{i-1} + x) }$
+\item $|\Delta H_i^+(x)| \leq C e^{-\alpha_0 X_i} e^{-\alpha_0(X_i - x) }$
+\item $D_i d = ( Q'(X_i) + Q'(-X_i))(d_{i+1} - d_i ) + \mathcal{O} \left( e^{-\alpha_0 X_i} \left( |\lambda| +  e^{-\alpha_0 X_m}  \right) |d| \right)$
+\end{enumerate}
+\begin{proof}
+For (i), $H$ and $\tilde{H}_i^\pm$ are exponentially localized, and have the same decay rate as $Q$. Estimate (ii), (iii), and (iv) come from \eqref{Qpmbounds} and \eqref{Vpmbounds} in Lemma \ref{solvewithjumps}. For estimate (v), using the definition of $D_i d$ and estimate (i), we have
+\begin{align}\label{Did2}
+D_i d &= d_{i+1}(Q_{i+1}^-)'(-X_i) - d_i (Q_i^+)'(X_i) + \mathcal{O}(|\lambda| e^{-\alpha_0 X_i}) 
+\end{align}
+From \eqref{VQpm} in Lemma \ref{solvewithjumps} and \eqref{Vpiecewise}(with $\tilde{Q}$ in place of $V$), we have
+\begin{align*}
+Q_{i+1}^-(-X_i) &= Q^-(-X_i; \beta_{i+1}^-) + \tilde{Q}_{i+1}^-(-X_i) \\
+&= Q^-(-X_i; \beta_{i+1}^-) + Q^+(X_i; \beta_i^+) + \mathcal{O}(e^{-2 \alpha X_i}) \\
+&= Q(-X_i) + Q(X_i) 
++ \mathcal{O}(e^{-\alpha_0 X_i}(e^{-\alpha_0 X_{i-1}}+e^{-\alpha_0 X_i}+e^{-\alpha_0 X_{i+1}}))
+\end{align*}
+Since the bounds \ref{solvewithjumps} also apply to derivatives with respect to $x$, we have
+\begin{align*}
+(Q_{i+1}^-)'(-X_i) &= Q'(-X_i) + Q'(X_i) + \mathcal{O}(e^{-\alpha_0 X_i}e^{-\alpha_0 X_m})
+\end{align*}
+Similarly,
+\begin{align*}
+(Q_i^+)'(X_i)' &= Q'(-X_i) + Q'(X_i) + \mathcal{O}(e^{-\alpha_0 X_i}e^{-\alpha_0 X_m})
+\end{align*}
+Substituting these into \eqref{Did2} gives us the estimate (v).
+\end{proof}
+\end{lemma}
+
+\subsection{Conjugation}
+
+To simplify the system, we would like to apply a change of coordinates so that the linear operator $A_i^\pm(x; \lambda)$ is transformed into a constant coefficient matrix. To do this we will use the Conjugation Lemma. For all $\lambda$, $A^\pm(x; \lambda)$ decays exponentially to the constant-coefficient matrix $A(\lambda)$. Specifically, 
+\[
+|A^\pm(x; \lambda) - A(\lambda)| \leq C e^{\alpha_0 |x|}
+\]
+where
+\begin{equation}\label{Alambda}
+A(\lambda) = \begin{pmatrix}
+0 & 1 & \dots & 0 & 0 \\
+0 & 0 & \dots & 0 & 0 \\
+& & \ddots  \\
+0 & 0 & \dots & 0 & 1 \\
+\lambda & c_0 & \dots & c_{2m-2} & 0
+\end{pmatrix}
+\end{equation}
+
+Before we continue, we define the following constants, which we will use throughout.
+\begin{enumerate}
+	\item Choose $\eta > 0$ sufficiently small so that $\alpha_0 - 4 \eta > 0$. Let
+	\begin{align*}
+	\alpha &= \alpha_0 - \eta \\
+	\tilde{\alpha} &= \alpha - 3 \eta
+	\end{align*}
+
+	\item Choose $\delta < \delta_0$ sufficiently small so that for all $|\lambda| < \delta$
+	\begin{enumerate}
+		\item $|\nu(\lambda)| < \eta$, where $\nu(\lambda)$ is the small eigenvalue of $A(\lambda)$ defined in Lemma \ref{nulambdalemma}.
+		\item The real part of any other eigenvalue of $A(\lambda)$ lies outside the interval $[-\alpha, \alpha]$. This is possible since the eigenvalues of $A(\lambda)$ are smooth functions of $\lambda$.
+	\end{enumerate}
+	We can always choose a smaller $\delta$ later if needed.
+
+	\item Choose $X_m$ sufficiently large so that
+	\begin{equation}
+	e^{-\tilde{\alpha} X_m} < \delta
+	\end{equation}
+	where $X_m = \min\{X_0, \dots, X_{n-1}\}$.
+\end{enumerate}
+
+We can now use the conjugation lemma. We will apply it separately to each linear operator $A_i^\pm(x; \lambda)$. Define the Banach spaces
+\begin{align*}
+\Omega^- &= \C \times C([-X_{i-1}, 0], \R^{2m+1}) \\
+\Omega^+ &= \C \times C([0, X_i], \R^{2m+1})
+\end{align*}
+$A_i^\pm(x; \lambda)$ is analytic in $\Lambda = (\lambda, Q_i^\pm(x))$. Using the conjugation lemma, let $P_i^\pm(x; \lambda, Q_i^\pm(x) )$ be the conjugation operator for $A_i^\pm(x; \lambda)$. For convenience, define 
+\begin{equation}\label{defPipm}
+P_i^\pm(x; \lambda) = P^\pm(x; \lambda, Q_i^\pm(x) )
+\end{equation}
+In addition, let $P^\pm(x; \lambda)$ be the conjugation operators on $\R^\pm$ for $\Lambda = (\lambda(x))$.
+By the conjugation lemma, we can write these projections as
+\begin{align*}
+P_i^\pm(x; \lambda) &= I + \Theta_i^\pm(x; \lambda)  \\
+P^\pm(x; \lambda) &= I + \Theta^\pm(x; \lambda)
+\end{align*}
+where we have the decay rates
+\begin{align*}
+|\Theta_i^\pm(x; \lambda)| &\leq C e^{-\alpha |x|} \\
+|\Theta^\pm(x; \lambda)| &\leq C e^{-\alpha |x|}
+\end{align*}
+where $\alpha = \alpha_0 - \eta$. These decay rates also apply to derivatives with respect to $x$ and $\Lambda$.
+
+We will want to be able to write $P_i^\pm(x; \lambda)$ as a small perturbation of $P^\pm(x; 0)$. We will only need this estimate at $x = 0$, since for large $x$, these projections are approximatly the identity. To that end, we expand $P_i^\pm(x; \lambda)$ in a Taylor series about $(0, Q_i^\pm(x))$ to get
+\begin{align*}
+P_i^\pm(x; \lambda) = P^\pm(x; 0) + C_1 \lambda 
++ C_2( Q_i^\pm(x) - Q(x) ) + \mathcal{O}(|\lambda|^2 + ||Q_i^\pm - Q||^2 )
+\end{align*}
+Using Lemma \ref{solvewithjumps}, 
+\begin{equation*}
+|Q_i^\pm(0) - Q(0)| \leq C e^{-2 \alpha X_m}
+\end{equation*}
+Thus we have the estimate
+\begin{equation}\label{PTaylor}
+P_i^\pm(0; \lambda) = P^\pm(0; 0) + \mathcal{O}(|\lambda| + e^{-2 \alpha X_m})
+\end{equation}
+
+Using the projections $P_i^\pm(x; \lambda)$ from the conjugation lemma, we make the substitution $W_i^\pm = P_i^\pm(x; \lambda) Z_i^\pm$ in \eqref{eigsystem} to obtain the system
+\begin{subequations}
+\begin{align}
+(Z_i^\pm(x))' &= A(\lambda) Z_i^\pm(x) + \lambda^2 d_i P_i^\pm(x; \lambda)^{-1} \tilde{H}_i^\pm(x) \label{systemZ} \\
+P_i^+(X_i; \lambda) Z_i^+(X_i) &- P_{i+1}^-(-X_i; \lambda) Z_{i+1}^-(-X_i; \lambda) = D_i d \label{systemmiddle} \\
+P_i^\pm(0; \lambda) Z_i^\pm(0) &\in Y^+ \oplus Y^- \oplus \C \Psi(0) \oplus \C \Psi^c(0) \label{systemcenter1} \\
+P_i^+(0; \lambda) Z_i^+(0) - P_i^-(0; \lambda) Z_i^-(0) &\in \C \Psi(0) \oplus \C \Psi^c(0) \label{systemcenter2}
+\end{align}
+\end{subequations}
+and the jump conditions become
+\begin{equation}\label{jumpcondZ}
+\begin{aligned}
+\langle \Psi(0), P_i^+(0; \lambda) Z_i^+(0) - P_i^-(0; \lambda) Z_i^-(0) \rangle &= 0 \\
+\langle \Psi^c(0), P_i^+(0; \lambda) Z_i^+(0) - P_i^-(0; \lambda) Z_i^-(0) \rangle &= 0
+\end{aligned}
+\end{equation}
+
+\subsection{Evolution}
+
+Since $A(\lambda)$ does not depend on $x$, we know exactly how solutions of the constant coefficient ODE $V' = A(\lambda)V$ will behave. Let $E^{u/s/c}(0)$ be the stable/unstable/center eigenspaces of $A(0)$. $E^s(0)$ and $E^u(0)$ are $m-$dimensional, and $E^c(0)$ is 1-dimensional. For $|\lambda| < \delta$, let $E^{u/s/c}(\lambda)$ be the corresponding eigenspaces of $A(\lambda)$. In particular, we note that $E^c(\lambda) = \text{span}\{ \nu(\lambda) \}$, where $\nu(\lambda)$ is the small eigenvalue of $A(\lambda)$ defined in Lemma \ref{nulambdalemma}. Although $E^c(\lambda)$ may not be a true center eigenspace, we retain this notation for convenience. 
+
+Let $\Phi(x, y; \lambda) = e^{A(\lambda)(x-y)}$ be the evolution of the constant-coefficient ODE
+\[
+Z' = A(\lambda) Z
+\]
+and let $\Phi^{u/s/c}(x, y; \lambda) = \Phi(x, y; \lambda)P^{u/s/c}_0(\lambda)$ be the evolutions on the respective eigenspaces. For these evolutions, for $|\lambda| < \delta$ we have bounds
+\begin{equation}\label{Zevolbounds}
+\begin{aligned}
+|\Phi^s(x, y; \lambda)| &\leq C e^{-\alpha(x - y)} \\
+|\Phi^u(x, y; \lambda)| &\leq C e^{-\alpha(y - x)} \\
+|\Phi^c(x, y; \lambda)| &\leq C e^{\eta|x - y|} 
+\end{aligned}
+\end{equation}
+
+Since $E^c(\lambda)$ is one-dimensional, we have a formula for $\Phi^c(x, y; \lambda)$.
+\begin{align*}
+\Phi^c(x, y; \lambda) v &= e^{\nu(\lambda)(x - y)} v && v \in E^c(\lambda)
+\end{align*}
+
+Finally, we will look at the variational and adjoint variational e
+equations for the linearization about the primary pulse $Q(x)$. Recall that these are given by 
+\begin{align*}
+V_i'(x) &= A(Q(x); 0) V_i(x) \\
+W_i'(x) &= -A(Q(x); 0)^* W_i(x)
+\end{align*}
+Let $\Theta(y, x)$ be the evolution operator for the variational equation. Then $\Theta(x, y)^*$ is the evolution operator for the adjoint variational equation. Recall that $P^\pm(x; 0)$ conjugates $A(Q(x); 0)$. From the conjugation lemma, we have the following relationship between $\Theta(y, x)$ and $\Phi(y, x; 0)$.
+\begin{align*}
+\Theta(y, x) &= P^+(y; 0) \Phi(y, x; 0) P^+(x; 0)^{-1} && x, y \geq 0 \\
+\Theta(y, x) &= P^-(y; 0) \Phi(y, x; 0) P^-(x; 0)^{-1} && x, y \leq 0
+\end{align*}
+
+\subsection{Inversion}
+
+Define the spaces
+\begin{align*}
+V_a &= \bigoplus_{i=0}^{n-1} E^u(\lambda) \oplus E^s(\lambda) \\
+V_b &= \bigoplus_{i=0}^{n-1} E^u(0) \oplus E^s(0) \\
+V_c^- &= \bigoplus_{i=0}^{n-1} E^c(\lambda) \\
+V_c^+ &= \bigoplus_{i=0}^{n-1} E^c(\lambda) \\
+V_c &= V_c^- \oplus V_c^+ \\
+V_\lambda &= B_\delta(0) \subset \C
+\end{align*}
+where the subscripts are all taken $\mod n$, since we are on a periodic domain. We use the $\lambda-$dependent eigenspaces for $a_i^\pm$ and $c_i^\pm$, since we will be evolving them under the $\lambda-$dependent evolution $\Phi(y, x; \lambda)$.
+
+All the product spaces are endowed with the maximum norm, e.g. for $V_c$, 
+\[
+|c| = \max(|c_0^-|, \dots, |c_{n-1}^-|, |c_0^+|, \dots, |c_{n-1}^+|)
+\]
+In addition, we take the following notational convention. If we eliminate a subscript or superscript, we are taking the maximum over the eliminated subscript or superscript. For example,
+\begin{enumerate}
+	\item $|c_i| = \max(|c_i^+|, |c_i^-|)$ 
+	\item $|c^+| = \max(|c_0^+|, \dots, |c_{n-1}^+|)$
+\end{enumerate}
+
+As in \cite{Sandstede1998}, we will solve the eigenvalue problem in a series of inversion steps. First, we look at equation \eqref{systemZ}
+\[
+(Z_i^\pm(x))' = A(\lambda) Z_i^\pm(x) + \lambda^2 d_i P_i^\pm(x; \lambda)^{-1} \tilde{H}_i^\pm(x) 
+\]
+Using the variation of constants formula and the eigenprojections for $A(\lambda)$, we can write \eqref{systemZ} as the set of fixed point equations
+\begin{equation}\label{Zfpeq}
+\begin{aligned}
+Z_i^-(x) &= \Phi^s(x, -X_{i-1}; \lambda) a_{i-1}^- + \Phi^u(x, 0; \lambda) b_i^- + \Phi^c(x, -X_{i-1}; \lambda) c_{i-1}^- \\
+&+ \lambda^2 d_i \int_0^x \Phi^u(x, y; \lambda) P_i^-(y; \lambda)^{-1} \tilde{H}_i^-(y)] dy \\
+&+ \lambda^2 d_i \int_{-X_{i-1}}^x \Phi^s(x, y; \lambda) P_i^-(y; \lambda)^{-1} \tilde{H}_i^-(y) dy \\
+&+ \lambda^2 d_i \int_{-X_{i-1}}^x \Phi^c(x, y; \lambda) P_i^-(y; \lambda)^{-1} \tilde{H}_i^-(y) dy  \\ 
+Z_i^+(x) &= \Phi^u(x, X_i; \lambda) a_i^+ + \Phi^s(x, 0; \lambda) b_i^+ + \Phi^c(x, X_i; \lambda) c_i^+ \\
+&+ \lambda^2 d_i \int_0^x \Phi^s(x, y; \lambda) P_i^+(y; \lambda)^{-1} \tilde{H}_i^+(y) dy \\
+&+ \lambda^2 d_i \int_{X_i}^x \Phi^u(x, y; \lambda) P_i^+(y; \lambda)^{-1} \tilde{H}_i^+(y) dy \\
+&+ \lambda^2 d_i \int_{X_i}^x \Phi^c(x, y; \lambda) P_i^+(y; \lambda)^{-1} \tilde{H}_i^+(y) dy \\
+\end{aligned}
+\end{equation}
+where $i = 0, \dots, n-1$. Because of the conjugation, $Z_i^\pm$ is only on the LHS of the fixed point equations \eqref{Zfpeq}, thus these formulas for $Z_i^\pm$ solve \eqref{systemZ}.
+
+In the next lemma, we solve equation \eqref{systemmiddle}, which are the matching conditions at $\pm X_i$.
+\begin{align*}
+P_i^+(X_i; \lambda) Z_i^+(X_i) - P_{i+1}^-(-X_i; \lambda) Z_{i+1}^-(-X_i) &= D_i d && i = 0, \dots, n-1
+\end{align*}
+
+% first inversion lemma : match at \pm X_i
+\begin{lemma}\label{Zinv1}
+There exists an operator
+\begin{align*}
+A_1: V_\lambda \times V_b \times V_c^- \times V_d \rightarrow V_a \times V_c^+\\
+\end{align*}
+such that $(a, c^+) = A_1(\lambda)(b, c^-,d)$ solves \eqref{systemmiddle} for any $(b, c^-,d)$ and $\lambda$. This operator is analytic in $\lambda$ and linear in $(b,c^-,d)$. Piecewise bounds for $A_1$ are given by
+\begin{align}\label{A1bound}
+|A_1&(\lambda)_i(b, c^-, d)|
+\leq C \Big( e^{-\alpha X_i} \left( |b_i^+| + |b_{i+1}^-|) + |c_i^-| + e^{-\alpha X_i} |\lambda^2||d| + |D_i||d| \right)
+\end{align} 
+In addition, we can write $a_i^\pm$ and $c_i^+$ as 
+\begin{align*}
+a_i^+ &= P_i^+(X_i; \lambda) P_0^u(\lambda) D_i d + A_2(\lambda)_i^+(b, c^-, d) \\
+a_i^- &= -P_i^-(-X_i; \lambda) P_0^s(\lambda) D_i d + A_2(\lambda)_i^-(b, c^-, d) \\
+c_i^+ &= c_i^- + P_0^c(\lambda) D_i d + A_2(\lambda)_i^c(b, c^-, d) )
+\end{align*}
+where $A_2$ is analytic in $\lambda$, linear in $(b, c^-, d)$, and has piecewise bounds
+\begin{align*}
+|A_2&(\lambda)_i(b, c^-, d)|
+\leq C e^{-\alpha X_i} \left( |b_i^+| + |b_{i+1}^-| + |c_i^-| + |\lambda|^2|d| + |D_i||d| \right)
+\end{align*}
+Finally, we have the estimate
+\begin{equation}\label{P0cDid}
+|P_0^c(\lambda) D_i d| \leq C e^{-\alpha_0 X_i}(|\lambda| + e^{-\alpha_0 X_i})|d|
+\end{equation}
+
+\begin{proof}
+At $\pm X_i$, the fixed point equations \eqref{Zfpeq }become
+\begin{align*}
+Z_{i+1}^-(-X_i) &= a_i^- + \Phi^u(-X_i, 0; \lambda) b_{i+1}^- + c_i^- 
++ \lambda^2 d_{i+1} \int_0^{-X_i} \Phi^u(-X_i, y; \lambda) P_{i+1}^-(y; \lambda)^{-1} \tilde{H}_i^-(y) dy \\
+Z_i^+(X_i) &= a_i^+ + \Phi^s(X_i, 0; \lambda) b_i^+ + c_i^+ 
++ \lambda^2 d_i \int_0^{X_i} \Phi^s(X_i, y; \lambda) P_i^+(y; \lambda)^{-1} \tilde{H}_i^+(y) dy
+\end{align*}
+To obtain these, we used the fact that, for example, $a_i^- \in E^s(\lambda)$ and $\Phi^s(-X_{i-1}, -X_{i-1}; \lambda)$ is the identity on $E^s(\lambda)$. From the conjugation lemma, we have the estimate
+\begin{equation}\label{conjest}
+P_i^\pm(\pm X_i; \lambda) = I + \mathcal{O}(e^{-\alpha X_i})
+\end{equation}
+which we will use on the $a_i^\pm$ and $c_i^\pm$ terms to obtain the equation
+\begin{align}\label{Dideq1}
+D_i d &= a_i^+ - a_i^- + c_i^+ - c_i^- + L_3(\lambda)_i(a, b, c^+, c^-, d)
+\end{align}
+
+For a bound on $L_3$, we obtain bounds on the individual terms. As usual, we will in general only look at one of the two pieces.
+
+\begin{enumerate}
+
+\item For the $a_i^\pm$ and $c_i^\pm$ terms, we have a term of order $\mathcal{O}(e^{-\alpha X_i}(|a_i| + |c_i^+| + |c_i^-|)$, which comes from the estimate \eqref{conjest} for the conjugation operators $P_i^\pm(\pm X_i; \lambda)$.
+
+\item For the terms involving $b$, we have
+
+\[
+| P_i^-(-X_i; \lambda) \Phi^u(-X_i, 0; \lambda) b_{i+1}^-| \leq C e^{-\alpha X_i} |b_{i+1}
+^-|
+\]
+
+\item For the integral terms, we have
+
+\begin{align*}
+&\left|
+P^+(X_i; \beta_i^+, \lambda) \int_0^{X_i} \Phi^s(X_i, y; \lambda) P^+(X_i; \beta_i^+, \lambda)^{-1} \tilde{H}_i^+(y) dy \right| \\
+&\leq C \int_0^{X_i} e^{-\alpha(X_i - y)}e^{-\alpha_0 y} dy \\
+&\leq C e^{-\alpha X_i} \int_0^{X_i} e^{-(\alpha_0 - \alpha)y} dy \\
+&= C e^{-\alpha X_i} \int_0^{X_i} e^{-\eta y} dy \\ 
+&= C e^{-\alpha X_i}
+\end{align*}
+
+\end{enumerate}
+
+Putting these all together, we have the following bound for $L_3$.
+
+\begin{equation}\label{L3bound}
+|L_3(\lambda)_i(a, b, c^+, c^-, d)| \leq C e^{-\alpha X_i} \left( |a_i| + |b_i^+| + |b_{i+1}^-| + |c_i^+| + |c_i^-| + |\lambda^2| |d| \right)
+\end{equation}
+
+Since $e^{-\alpha X_m} < \delta$, this becomes
+
+\begin{align*}
+|L_3(\lambda)_i(a, b, c^+, c^-, d)| \leq C \delta ( |a_i| + |c_i^+| ) + C e^{-\alpha X_i} \left( |b_i^+| + |b_{i+1}^-| + |c_i^-| + |\lambda^2| |d| \right)
+\end{align*}
+
+Let 
+
+\[
+J_1: \bigoplus_{j=1}^n (E^s(\lambda) \times E^u(
+\lambda) \times E^c(\lambda) ) \rightarrow \bigoplus_{j=1}^n \rightarrow \C^{2m+1}
+\]
+
+be defined by $(J_1)_i(a_i^+, a_i^-, c_i^+) = (a_i^+ - a_i^-, c_i^+)$. The map $J_i$ is a linear isomorphism since $E^s(\lambda) \oplus E^u(\lambda) \oplus E^c(\lambda) = \C^{2m + 1}$. Consider the map
+
+\[
+S_1(a, c^+) = J_1 (a, c^+) + L_3(\lambda)(a, 0, c^+, 0, 0) = J_1( I + J_1^{-1} L_3(\lambda)(a, 0, c^+, 0, 0))
+\]
+
+For sufficiently small $\delta$, we will have the operator norm $||J_1^{-1} L_3(\lambda)(a, 0, c^+, 0, 0)|| < 1$, thus the operator $S_1(a, c^+)$ is invertible. We can solve for $(a, c^+)$ to get
+
+\[
+(a, c^+) = A_1(\lambda)(b, c^-, d) = S_i^{-1}(-D d + L_3(\lambda)(0, b, 0, c^-, d)
+\]
+
+Using the bound on $L_3$ and noting which pieces are involved, $A_1$ will have piecewise bounds
+
+\begin{align*}
+|A_1&(\lambda)_i(b, c^-, d)|
+\leq C \Big( e^{-\alpha X_i} (|b_i^+| + |b_{i+1}^-|) + |c_i^-| + e^{-\alpha X_i} |\lambda^2||d| + |D_i||d| \Big)
+\end{align*} 
+
+Next, we hit \eqref{Dideq1} with the projections $P_0^{s/u/c}(\lambda)$ on the eigenspaces $E^{s/u/c}(\lambda)$ to obtain the expressions
+
+\begin{align*}
+a_i^+ &= P_0^u(\lambda) D_i d + A_2(\lambda)_i^+(b, c^-, d) \\
+a_i^- &= -P_0^s(\lambda) D_i d + A_2(\lambda)_i^-(b, c^-, d) \\
+c_i^+ &= c_i^- + P_0^c(\lambda) D_i d + A_2(\lambda)_i^c(b, c^-, d) )
+\end{align*}
+
+The bound on the remainder term $A_2(\lambda)_i(b, c^-, d)$ is found by substituting the bound for $A_1$ into the bound for $L_3$ and simplifying. 
+
+\begin{align*}
+|A_2&(\lambda)_i(b, c^-, d)|
+\leq C e^{-\alpha X_i} \left( |b_i^+| + |b_{i+1}^-| + |c_i^-| + |\lambda|^2|d| + |D_i||d| \right)
+\end{align*} 
+
+Anticipating what we will need at the end, we will derive slightly different expressions for $a_i^+$ and $a_i^-$. Using the conjugation operator $P_i^+(X_i; \lambda)$, we write $a_i^+$ as
+
+\begin{align*}
+a_i^+ = P_i^+(X_i; \lambda)a_i^+ + (I - P_i^+(X_i; \lambda))a_i^+ &= P_0^u(\lambda) D_i d + A_2(\lambda)_i^+(b, c^-, d)
+\end{align*}
+
+Rearranging this, we obtain
+
+\begin{align*}
+P_i^+(X_i; \lambda) a_i^+ &= P_0^u(\lambda) D_i d + A_2(\lambda)_i^+(b, c^-, d) - (I - P_i^+(X_i; \lambda))a_i^+ \\
+&= P_0^u(\lambda) D_i d + A_2(\lambda)_i^+(b, c^-, d) + \mathcal{O}\Big( e^{-\alpha X_i} ( e^{-\alpha X_i} (|b_i^+| + |b_{i+1}^-|) + |c_i^-| + e^{-\alpha X_i} |\lambda^2||d| + |D_i||d| )\Big)
+\end{align*}
+
+where we used the bound $A_1$ and the estimate \eqref{conjest}. The last term on the RHS is the same (or higher) order as $A_2$, so we incorporate that into the bound on $A_2(\lambda)_i^+(b, c^-, d)$ to get
+
+\begin{align*}
+P_i^+(X_i; \lambda)a_i^+ &= P_0^u(\lambda) D_i d + A_2(\lambda)_i^+(b, c^-, d)
+\end{align*}
+
+Finally, we operate on both sides on the left by $P_i^+(X_i; \lambda)^{-1}$ to solve for $a_i^+$. Since $P_i^+(X_i; \lambda)^{-1}$ a bounded operator, we will also incorporate this into $A_2(\lambda)_i^+(b, c^-, d)$. In doing so, the bound will be unchanged. Thus we have
+
+\begin{align*}
+a_i^+ &= P^+(X_i; \beta_i^+, \lambda) P_0^u(\lambda) D_i d + A_2(\lambda)_i^+(b, c^-, d)
+\end{align*}
+
+We do the same thing for $a_i^-$, which gives us
+
+\begin{align*}
+a_i^- &= -P_i^-(-X_i; \lambda) P_0^s(\lambda) D_i d + A_2(\lambda)_i^-(b, c^-, d)
+\end{align*}
+
+Finally, we would like to obtain an estimate for $P_0^c(\lambda) D_i d$. Recall that
+
+\[
+D_i d = ( Q'(X_i) + Q'(-X_i))(d_{i+1} - d_i ) + \mathcal{O} \left( e^{-\alpha_0 X_i} \left( |\lambda| +  e^{-\alpha_0 X_i}  \right) |d| \right) 
+\]
+
+Looking at the lower order terms,
+
+\begin{align*}
+P_0^c(\lambda)&( Q'(X_i) + Q'(-X_i)) 
+= P_0^c(0)( Q'(X_i) + Q'(-X_i)) + \mathcal{O}(|\lambda|e^{-\alpha_0 X_i}) \\
+&= \mathcal{O}(e^{-\alpha_0 X_i}(|\lambda| + e^{-\alpha_0 X_i}))
+\end{align*}
+
+Thus we have
+
+\[
+|P_0^c(\lambda) D_i d| \leq C e^{-\alpha_0 X_i}(|\lambda| + e^{-\alpha_0 X_i})|d|
+\]
+
+\end{proof}
+\end{lemma}
+
+\subsubsection{Conditions at 0}
+
+In the second inversion lemma, we solve the conditions at $x = 0$
+
+\begin{align*}
+P_i^\pm(0; \lambda) Z_i^\pm(0) &\in \oplus Y^+ \oplus Y^- \oplus \C \Psi(0) \oplus \C \Psi^c(0) \\
+P_i^+(0; \lambda) Z_i^+(0) - P_i^-(0; \lambda) Z_i^-(0) &\in \C \Psi(0) \oplus \C \Psi^c(0)
+\end{align*}
+
+Recall that we have
+
+\begin{equation}\label{DSdecomp}
+\C^{2m+1} = \C Q'(0) \oplus Y^+ \oplus Y^- \oplus \C \Psi(0) \oplus \C \Psi^c(0)
+\end{equation}
+
+This condition is equivalent to the three projections
+
+\begin{align*}
+P(\C Q'(0) ) P_i^-(0; \lambda) Z_i^-(0) &= 0 \\
+P(\C Q'(0) ) P_i^+(0; \lambda) Z_i^+(0) &= 0 \\
+P(Y_i^+ \oplus Y_i^-) ( P_i^+(0; \lambda) Z_i^+(0) - P_i^-(0; \lambda) Z_i^-(0) ) &= 0
+\end{align*}
+
+where the kernel of each projection is the remaining spaces in the direct sum decomposition \eqref{DSdecomp}. We don't need to include $\C Q'(0)$ in the third equation since we eliminated any component in it in the first two equations.
+
+% second inversion lemma
+
+\begin{lemma}\label{inv2}
+There exist operators
+
+\begin{align*}
+B_1: &V_\lambda \times V_c^- \times V_d \rightarrow V_b \\
+A_3: &V_\lambda \times V_c^- \times V_d \rightarrow V_a 
+\end{align*}
+
+such that $( (a, c^+) , b ) = ( A_3(\lambda)(c^-,d), B_1(\lambda)(c^-, d) )$ solves \eqref{systemmiddle}, \eqref{systemcenter1}, and \eqref{systemcenter2} for any $(c^-, d)$. These operators are analytic in $\lambda$ and linear in $(c^-,d)$. Piecewise bounds for $B_1$ and $A_3$ are given by
+
+\begin{align}
+|B_1&(\lambda)_i(\tilde{c}, d)| \leq C \Big( (|\lambda| + e^{-\alpha X_m})(|\tilde{c}_{i-1}^+| + |\tilde{c}_i^-|)+ (|\lambda| + e^{-\alpha X_m})^2 |d| \Big) \\
+|A_3&(\lambda)_i(c^-, d)|
+\leq C \Big(  
+e^{-\alpha X_i} (|\lambda| + e^{-\alpha X_m})(|\tilde{c}_{i-1}^+| + |\tilde{c}_{i+1}^-|) +|c_i^-| + e^{-\alpha X_i} |\lambda^2||d| + |D_i||d| \Big)
+\end{align} 
+
+where
+
+\begin{equation}\label{tildec}
+\tilde{c}_i^\pm = e^{\pm \nu(\lambda) X_i} c_i^-
+\end{equation}
+
+In addition, we can write
+
+\begin{align*}
+a_i^+ &= P_i^+(X_i; \lambda) P_0^u(\lambda) D_i d + A_4(\lambda)_i^+(b, c^-, d) \\
+a_i^- &= -P_i^-(-X_i; \lambda) P_0^s(\lambda) D_i d + A_4(\lambda)_i^-(b, c^-, d) \\
+c_i^+ &= c_i^- + P_0^c(\lambda) D_i d + A_4(\lambda)_i^c(b, c^-, d) )
+\end{align*}
+
+where $A_4(\lambda)(c^-, d)$ is analytic in $\lambda$, linear in $(c^-, d)$, and has piecewise bounds
+
+\begin{align}
+|A_4&(\lambda)_i(c^-, d)|
+\leq C \Big( 
+e^{-\alpha X_i} (|\lambda| + e^{-\alpha X_m})(|\tilde{c}_{i-1}^+| + |\tilde{c}_{i+1}^-|) + e^{-\alpha X_i} |c_i^-| + e^{-\alpha X_m}(|\lambda|^2 + |D|)|d| \Big)
+\end{align}
+
+Finally, we have the following expression for $e^{-\nu(\lambda)X_i} c_i^+$.
+
+\begin{align}\label{tildecminus}
+e^{-\nu(\lambda)X_i} c_i^+
+&= e^{-\nu(\lambda)X_i} c_i^- + \mathcal{O}\Big( e^{-(\alpha - \eta)X_i} (|\lambda| + e^{-\alpha X_m})( |\tilde{c}_{i-1}^+| + |\tilde{c}_{i+1}^-|) 
++ (|\lambda|+ e^{-\alpha X_i}) |\tilde{c}_i^-| + ( |\lambda| + e^{-\alpha X_m} )^2 |d| \Big)
+\end{align}
+
+\begin{proof}
+
+Recall that at $Q(0)$, the tangent spaces to the stable and unstable manifold are given by
+
+\begin{align*}
+T_{Q(0)} W^u(0) &= \R Q'(0) \oplus Y^- \\
+T_{Q(0)} W^s(0) &= \R Q'(0) \oplus Y^+
+\end{align*}
+
+Thus we have
+
+\begin{align*}
+P^-(0)^{-1} Q'(0) &= V^- \in E^u(0) \\
+P^+(0)^{-1} Q'(0) &= V^+ \in E^s(0)
+\end{align*}
+
+Let
+
+\begin{align*}
+E^u(0) &= \C V^- \oplus E^- \\
+E^s(0) &= \C V^+ \oplus E^+ \\
+\end{align*}
+
+Then we have
+
+\begin{align*}
+P^-(0)^{-1} Y^- = E^- \\
+P^+(0)^{-1} Y^+ = E^+ \\
+\end{align*}
+
+We decompose $b_i^\pm$ uniquely as $b_i^\pm = x_i^\pm + y_i^\pm$, where $x_i^\pm \in \C V^\pm$ and $y_i^\pm \in E^\pm$.\\
+
+At $x = 0$, the fixed point equations become
+
+\begin{align*}
+Z_i^-(0) &= \Phi^s(0, -X_{i-1}; \lambda) a_{i-1}^- + \Phi^u(0, 0; \lambda) b_i^- + \Phi^c(0, -X_{i-1}; \lambda) c_{i-1}^- \\
+&+ \lambda^2 d_i \int_{-X_{i-1}}^0 \Phi^s(0, y; \lambda) P_i^-(y; \lambda)^{-1} \tilde{H}_i^-(y) dy \\
+&+ \lambda^2 d_i \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_i^-(y; \lambda)^{-1} \tilde{H}_i^-(y) dy  \\ 
+Z_i^+(0) &= \Phi^u(0, X_i; \lambda) a_i^+ + \Phi^s(0, 0; \lambda) b_i^+ + \Phi^c(0, X_i; \lambda) c_i^+ \\
+&+ \lambda^2 d_i \int_{X_i}^0 \Phi^u(0, y; \lambda) P_i^+(y; \lambda)^{-1} \tilde{H}_i^+(y) dy \\
+&+ \lambda^2 d_i \int_{X_i}^0 \Phi^c(0, y; \lambda) P_i^+(y; \lambda)^{-1} \tilde{H}_i^+(y) dy \\
+\end{align*}
+
+Noting that $\Phi^u(0, 0; \lambda) = P_0^u(\lambda)$, doing a little manipulation on the $b_i$ terms, and using the known form of the evolution $\Phi^c$ on $E^c(\lambda)$, this becomes
+
+\begin{align*}
+Z_i^-(0) &= \Phi^s(0, -X_{i-1}; \lambda) a_{i-1}^- + x_i^- + y_i^- + (P_0^u(\lambda) - P_0^u(0))b_i^- + e^{\nu(\lambda) X_{i-1}} c_{i-1}^- \\
+&+ \lambda^2 d_i \int_{-X_{i-1}}^0 \Phi^s(0, y; \lambda) P_i^-(y; \lambda)^{-1} \tilde{H}_i^-(y) dy \\
+&+ \lambda^2 d_i \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_i^-(y; \lambda)^{-1} \tilde{H}_i^-(y) dy  \\ 
+Z_i^+(0) &= \Phi^u(0, X_i; \lambda) a_i^+ + x_i^+ + y_i^+ + (P_0^s(\lambda) - P_0^s(0)) b_i^+ + e^{-\nu(\lambda)X_i} c_i^+ \\
+&+ \lambda^2 d_i \int_{X_i}^0 \Phi^u(0, y; \lambda) P_i^+(y; \lambda)^{-1} \tilde{H}_i^+(y) dy \\
+&+ \lambda^2 d_i \int_{X_i}^0 \Phi^c(0, y; \lambda) P_i^+(y; \lambda)^{-1} \tilde{H}_i^+(y) dy \\
+\end{align*}
+
+Since $c_i^\pm$ are in the eigenspaces $E^c(\lambda)$, we do some further manipulation to separate out a component in $E^c(0)$.
+
+\begin{align*}
+Z_i^-(0) &= \Phi^s(0, -X_{i-1}; \lambda) a_{i-1}^- + x_i^- + y_i^- + (P_0^u(\lambda) - P_0^u(0))b_i^- \\
+&+ P_0^c(0) e^{\nu(\lambda) X_{i-1}} c_{i-1}^- + (P_0^c(\lambda) - P_0^c(0)) e^{\nu(\lambda) X_{i-1}} c_{i-1}^- \\
+&+ \lambda^2 d_i \int_{-X_{i-1}}^0 \Phi^s(0, y; \lambda) P_i^-(y; \lambda)^{-1} \tilde{H}_i^-(y) dy \\
+&+ \lambda^2 d_i \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_i^-(y; \lambda)^{-1} \tilde{H}_i^-(y) dy  \\ 
+Z_i^+(0) &= \Phi^u(0, X_i; \lambda) a_i^+ + x_i^+ + y_i^+ + (P_0^s(\lambda) - P_0^s(0)) b_i^+ \\
+&+ P_0^c(0) e^{-\nu(\lambda)X_i} c_i^+ + (P_0^c(\lambda) - P_0^c(0)) e^{-\nu(\lambda)X_i} \\
+&+ \lambda^2 d_i \int_{X_i}^0 \Phi^u(0, y; \lambda) P_i^+(y; \lambda)^{-1} \tilde{H}_i^+(y) dy \\
+&+ \lambda^2 d_i \int_{X_i}^0 \Phi^c(0, y; \lambda) P_i^+(y; \lambda)^{-1} \tilde{H}_i^+(y) dy \\
+\end{align*}
+
+Finally, we operate on these by $P_i^\pm(0; \lambda)$. For the $c_i^-$ and $b$ terms, we write these as
+
+\[
+P_i^\pm(0; \lambda) = P^\pm(0) + (P_i^\pm(0; \lambda) - P^\pm(0))
+\]
+
+We finally wind up with the equations
+
+\begin{align*}
+P_i^-(0; \lambda) Z_i^-(0) &= P^-(0)( x_i^- + y_i^- + P_0^c(0) e^{\nu(\lambda) X_{i-1}} c_{i-1}^- ) \\
+&+ P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) a_{i-1}^- + (P_i^-(0; \lambda) - P^-(0))b_i^- + P_i^-(0; \lambda)(P_0^u(\lambda) - P_0^u(0))b_i^- \\
+&+ (P_i^-(0; \lambda) - P^-(0)) P_0^c(0) e^{\nu(\lambda) X_{i-1}} c_{i-1}^- + P_i^-(0; \lambda) (P_0^c(\lambda) - P_0^c(0)) e^{\nu(\lambda) X_{i-1}} c_{i-1}^- \\
+&+ \lambda^2 d_i P_i^-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^s(0, y; \lambda) P_i^-(y; \lambda)^{-1} \tilde{H}_i^-(y) dy \\
+&+ \lambda^2 d_i P_i^-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_i^-(y; \lambda)^{-1} \tilde{H}_i^-(y) dy  \\ 
+P_i^+(0; \lambda) Z_i^+(0) &=  P^+(0)( x_i^+ + y_i^+ + P_0^c(0) e^{-\nu(\lambda)X_i} c_i^+ )\\
+&+ P_i^+(0; \lambda) \Phi^u(0, X_i; \lambda) a_i^+ + (P_i^+(0; \lambda) - P^+(0)) b_i^+ + P_i^+(0; \lambda) (P_0^s(\lambda) - P_0^s(0)) b_i^+ \\
+&+ (P_i^+(0; \lambda) - P^+(0))P_0^c(0) e^{-\nu(\lambda)X_i} c_i^+ + P_i^+(0; \lambda) (P_0^c(\lambda) - P_0^c(0)) e^{-\nu(\lambda)X_i} c_i^+\\
+&+ \lambda^2 d_i P_i^+(0; \lambda) \int_{X_i}^0 \Phi^u(0, y; \lambda) P_i^+(y; \lambda)^{-1} \tilde{H}_i^+(y) dy \\
+&+ \lambda^2 d_i P_i^+(0; \lambda) \int_{X_i}^0 \Phi^c(0, y; \lambda) P_i^+(y; \lambda)^{-1} \tilde{H}_i^+(y) dy \\
+\end{align*}
+
+With this setup, the projections on $Q'(0)$ and $Y^+ \oplus Y^-$ will either eliminate or act as the identity on the terms in the first lines of $P_i^-(0; \lambda) Z_i^-(0)$ and $P_i^+(0; \lambda) Z_i^+(0)$. Thus, applying the appropriate projections, we obtain an expression of the form
+
+\begin{equation}\label{projxy}
+\begin{pmatrix}x_i^- \\ x_i^+ \\ 
+y_i^+ - y_i^- \end{pmatrix} + L_4(\lambda)_i(b, c^-, d) = 0
+\end{equation}
+
+To get a bound on $L_4$, we need to bound the individual terms from the fixed point equations above. Where appropriate, we only look at one of each term, i.e. only look at the ``positive'' piece or the ``negative'' piece. For convenience, we define
+
+\[
+\tilde{c}_i^\pm = e^{\pm \nu(\lambda) X_i} c_i^-
+\]
+
+\begin{enumerate}
+
+\item For the $a_i$ terms, we substitute $a_i^+ = P_0^u(\lambda) D_i d + A_2(\lambda)_i^+(b, c^-, d)$ and $a_{i-1}^- = -P_0^s(\lambda) D_{i-1} d + A_2(\lambda)_{i-1}^-(b, c^-, d)$ and use the bounds for $A_2$.
+
+\begin{align*}
+|P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) a_{i-1}^-| 
+&\leq C \left( e^{-2 \alpha X_{i-1}} (|b_{i-1}^+| + |b_i^-| + |c_{i-1}^-| + |\lambda^2||d|) + e^{- \alpha X_{i-1}} |D_{i-1}||d| \right)\\
+|P_i^+(0; \lambda) \Phi^u(0, X_i; \lambda) a_i^+| 
+&\leq C \left( e^{-2 \alpha X_i} (|b_i^+| + |b_{i+1}^-| + |c_i^-| + |\lambda|^2|d|) + e^{-\alpha X_i}|D_i||d| \right)
+\end{align*}
+
+\item For the $b_i$ terms, we have
+
+\begin{align*}
+|(P_i^-(0; \lambda) &- P^-(0))b_i^- + P_i^-(0; \lambda)(P_0^u(\lambda) - P_0^u(0))b_i^-| \\
+&\leq C ( e^{-\alpha X_m} + |\lambda|)|b_i^-|
+\end{align*}
+
+\item For the $c_i^-$ terms, we have
+
+\begin{align*}
+|(P_i^-(0; \lambda) &- P^-(0)) P_0^c(0) e^{\nu(\lambda) X_{i-1}} c_{i-1}^- + P_i^-(0; \lambda) (P_0^c(\lambda) - P_0^c(0)) e^{\nu(\lambda) X_{i-1}} c_{i-1}^- | \\
+&\leq C (e^{-\alpha X_m} + |\lambda|)|\tilde{c}_{i-1}^+|
+\end{align*}
+
+\item For the $c_i^+$ terms, we have
+
+\begin{align*}
+|(P_i^+(0; \lambda) &- P^+(0))P_0^c(0) e^{-\nu(\lambda)X_i} c_i^+ + P_i^+(0; \lambda) (P_0^c(\lambda) - P_0^c(0)) e^{-\nu(\lambda)X_i} c_i^+| \\
+&\leq C (e^{-\alpha X_m} + |\lambda|)|e^{-\nu(\lambda)X_i} c_i^+|
+\end{align*}
+
+To put this in terms of $c_i^-$, we use the expression
+
+\[
+c_i^+ = c_i^- + P_0^c(\lambda) D_i d + A_2(\lambda)_i^c(b, c^-, d) )
+\]
+
+from Lemma \ref{inv1}, together with the bound for $A_2$, to get
+
+\begin{align*}
+e^{-\nu(\lambda)X_i} c_i^+ &= e^{-\nu(\lambda)X_i} c_i^- 
++ e^{-\nu(\lambda)X_i} P_0^c(\lambda) D_i d + e^{-\nu(\lambda)X_i} A_2(\lambda)_i^c(b, d)\\
+&= e^{-\nu(\lambda)X_i} c_i^- + \mathcal{O}\Big( e^{-(\alpha_0 - \eta) X_i} ( |\lambda| + e^{-\alpha_0 X_i} ) |d| \\
+&+ e^{-(\alpha - \eta) X_i} (|b_i^+| + |b_{i+1}^-|) + e^{-\alpha X_i} |e^{-\nu(\lambda)X_i} c_i^-| + e^{-(\alpha - \eta) X_i}(|\lambda|^2|d| + |D_i||d| ) \Big)
+\end{align*}
+
+Since $D_i = \mathcal{O}(e^{-\alpha_0 X_i}$, $e^{-(\alpha - \eta) X_i} D_i = \mathcal{O}(e^{-2 \alpha X_i}$, this simplifies to
+
+\begin{align}\label{tildecminus2}
+e^{-\nu(\lambda)X_i} c_i^+
+&= e^{-\nu(\lambda)X_i} c_i^- + \mathcal{O}\Big( 
+e^{-(\alpha - \eta) X_i} (|b_i^+| + |b_{i+1}^-|) + e^{-\alpha X_i} |\tilde{c}_i^-|) 
++ ( |\lambda| + e^{-\alpha X_i} )^2 |d| \Big)
+\end{align}
+
+which gives us the overall estimate
+
+\begin{align*}
+&|(P_i^+(0; \lambda) - P^+(0))P_0^c(0) e^{-\nu(\lambda)X_i} c_i^+ + P_i^+(0; \lambda) (P_0^c(\lambda) - P_0^c(0)) e^{-\nu(\lambda)X_i} c_i^+| \\
+&\leq C (e^{-\alpha X_m} + |\lambda|) \Big( e^{-\nu(\lambda)X_i} c_i^-  
++ e^{-(\alpha - \eta) X_i} (|b_i^+| + |b_{i+1}^-|) + e^{-\alpha X_i} |\tilde{c}_i^-| 
++ ( |\lambda| + e^{-\alpha X_i} )^2 |d| \Big) \\
+&\leq C (e^{-\alpha X_m} + |\lambda|) \Big( |\tilde{c}_i^-|  
++ e^{-(\alpha - \eta) X_i} (|b_i^+| + |b_{i+1}^-|) 
++ ( |\lambda| + e^{-\alpha X_i} )^2 |d| \Big)
+\end{align*}
+
+\item The bound on the integral terms is determined by the integrals involving the center subspace, since there is potential growth in that subspace.
+
+\begin{align*}
+\left| \lambda^2 d_i P_i^-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_i^-(y; \lambda)^{-1} \tilde{H}_i^-(y) dy \right| &\leq C |\lambda|^2 |d| \int_{-X_{i-1}}^0 e^{-\eta y} e^{\alpha_0 y} dy \\
+&\leq C |\lambda|^2 |d|
+\end{align*}
+
+\end{enumerate}
+
+Putting all these together, we obtain the bound for $L_4(\lambda)_i(b, c, d)$.
+
+\begin{align*}
+L_4(\lambda)_i(b, c, d) &\leq 
+C\Big( (|\lambda| + e^{-\alpha X_m})|b| 
++ (|\lambda| + e^{-\alpha X_m})(|\tilde{c}_{i-1}^+| + |\tilde{c}_i^-|) + e^{-2\alpha X_{i-1}} |c_{i-1}^-| + e^{-2\alpha X_i} |c_i^-| \\
+&+ (|\lambda| + e^{-\alpha X_m})^2 |d| \Big) 
+\end{align*}
+
+Subsuming the higher order terms $e^{-2\alpha X_{i-1}} |c_{i-1}^-|$ and $e^{-2\alpha X_i} |c_i^-|$ into the lower order terms, this simplifies to
+
+\begin{align*}
+L_4(\lambda)_i(b, c, d) &\leq 
+C\Big( (|\lambda| + e^{-\alpha X_m})|b|  
++ (|\lambda| + e^{-\alpha X_m})(|\tilde{c}_{i-1}^+| + |\tilde{c}_i^-|) + (|\lambda| + e^{-\alpha X_m})^2 |d|  \Big) 
+\end{align*}
+
+Since $|\lambda|, e^{-\alpha X_m} < \delta$, we have
+
+\begin{align*}
+L_4(\lambda)_i(b, c, d) &\leq C \delta |b| 
++ C \Big( (|\lambda| + e^{-\alpha X_m})(|\tilde{c}_{i-1}^+| + |\tilde{c}_i^-|)+ (|\lambda| + e^{-\alpha X_m})^2 |d| \Big) 
+\end{align*}
+
+which uniform in $|b|$. Define the map
+
+\[
+J_2: \left( \bigoplus_{j=1}^n \C V^+ \oplus \C V^- \right) \oplus
+\left( \bigoplus_{j=1}^n E^+ \oplus E^- \right) 
+\rightarrow \bigoplus_{j=1}^n \C V^+ \oplus \C V^- \oplus (E^+ \oplus E^-)
+\]
+
+by 
+
+\[
+J_2( (x_i^+, x_i^-),(y_i^+, y_i^-))_i = ( x_i^+, x_i^-, y_i^+ - y_i^- )
+\]
+
+Since $\C^{2m} = E^s(0) \oplus E^u(0) = \C V^+ \oplus \C V^- \oplus (E^+ \oplus E^-)$, $J_2$ is an isomorphism. Using this as the fact that $b_i = (x_i^- + y_i^-, x_i^+ + y_i^+)$, we can write \eqref{projxy} as
+
+\begin{equation}\label{projxy2}
+J_2( (x_i^+, x_i^-),(y_i^+, y_i^-))_i 
++ L_4(\lambda)_i(b_i, 0, 0) + L_4(\lambda)_i(0, c^-, d) = 0
+\end{equation}
+
+Consider the map
+
+\begin{align*}
+S_2(b)_i &= J_2( (x_i^+, x_i^-),(y_i^+, y_i^-))_i 
++ L_4(\lambda)_i(b_i, 0, 0) 
+\end{align*}
+
+Substituting this in \eqref{projxy2}, we have
+
+\begin{align*}
+S_2(b) &= -L_4(\lambda)(0, c^-, d)
+\end{align*}
+
+For sufficiently small $\delta$, the operator $S_2(b)$ is invertible. Thus we can solve for $b$ to get
+
+\begin{align}
+b = B_1(\lambda)(c^-,d) 
+= -S_2^{-1} L_4(\lambda)(0, c^-, d)
+\end{align}
+
+The bound on $B_1$ is given by the bound on $L_4$, where we note which piece is involved.
+
+\begin{align*}
+|B_1(\lambda)_i(c_i^-, d)| &\leq C \Big( (|\lambda| + e^{-\alpha X_m})(|\tilde{c}_{i-1}^+| + |\tilde{c}_i^-|)+ (|\lambda| + e^{-\alpha X_m})^2 |d| \Big)
+\end{align*}
+
+We can plug this into the bound for $A_1$ to get $A_3$ with bound
+
+\begin{align*}
+|A_3&(\lambda)_i(c^-, d)|
+\leq C \Big(  
+e^{-\alpha X_i} (|\lambda| + e^{-\alpha X_m})(|\tilde{c}_{i-1}^+| + |\tilde{c}_{i+1}^-|) +|c_i^-| + e^{-\alpha X_i} |\lambda^2||d| + |D_i||d| \Big)
+\end{align*} 
+
+We can also plug this into the bound for $A_2$ to get $A_4$ with bound
+
+\begin{align*}
+|A_4&(\lambda)_i(c^-, d)|
+\leq C \Big( 
+e^{-\alpha X_i} (|\lambda| + e^{-\alpha X_m})(|\tilde{c}_{i-1}^+| + |\tilde{c}_{i+1}^-|) + e^{-\alpha X_i} |c_i^-| + e^{-\alpha X_m}(|\lambda|^2 + |D|)|d| \Big)
+\end{align*} 
+
+Finally, we plug $B_1$ into \eqref{tildecminus2} to obtain an expression for $e^{-\nu(\lambda)X_i} c_i^+$.
+
+\begin{align}\label{tildecminus2}
+e^{-\nu(\lambda)X_i} c_i^+
+&= e^{-\nu(\lambda)X_i} c_i^- + \mathcal{O}\Big( 
+e^{-(\alpha - \eta) X_i} (|b_i^+| + |b_{i+1}^-|) + e^{-\alpha X_i} |\tilde{c}_i^-|) 
++ ( |\lambda| + e^{-\alpha X_i} )^2 |d| \Big)
+\end{align}
+
+
+\begin{align*}
+e^{-\nu(\lambda)X_i} c_i^+
+&= e^{-\nu(\lambda)X_i} c_i^- + \mathcal{O}\Big( e^{-(\alpha - \eta)X_i} (|\lambda| + e^{-\alpha X_m})( |\tilde{c}_{i-1}^+| + |\tilde{c}_{i+1}^-| + |\tilde{c}_i^+| + |\tilde{c}_i^-|) \\
+&+ e^{-\alpha X_i} |\tilde{c}_i^-| + ( |\lambda| + e^{-\alpha X_m} )^2 |d| \Big) \\
+&= e^{-\nu(\lambda)X_i} c_i^- + \mathcal{O}\Big( e^{-(\alpha - \eta)X_i} (|\lambda| + e^{-\alpha X_m})( |\tilde{c}_{i-1}^+| + |\tilde{c}_{i+1}^-|) + e^{-(\alpha - 3 \eta)X_i} (|\lambda| + e^{-\alpha X_m}) |\tilde{c}_i^-| \\
+&+ e^{-\alpha X_i} |\tilde{c}_i^-| + ( |\lambda| + e^{-\alpha X_m} )^2 |d| \Big) \\
+&= e^{-\nu(\lambda)X_i} c_i^- + \mathcal{O}\Big( e^{-(\alpha - \eta)X_i} (|\lambda| + e^{-\alpha X_m})( |\tilde{c}_{i-1}^+| + |\tilde{c}_{i+1}^-|) 
++ (|\lambda|+ e^{-\alpha X_i}) |\tilde{c}_i^-| + ( |\lambda| + e^{-\alpha X_m} )^2 |d| \Big)
+\end{align*}
+
+\end{proof}
+\end{lemma}
+
+Up to this point, we have solved uniquely for everything except for the $c_i^-$ and $d$. To do that, we will compute the jump conditions in the direction of $\Psi(0)$ and $\Psi^c(0)$.
+
+\subsection{Jump Conditions}
+
+\subsubsection{Center Adjoint Jump}
+
+First, we compute the jump in the direction of $\Psi^c(0)$. Before we do that, we prove the following lemma regarding inner products with $\Psi^c(0)$ and $\Psi(0)$.
+
+% lemma : inner products with Psi and Psi^c
+
+\begin{lemma}\label{PsiIP}
+We have the following expressions involving the inner product with $\Psi^c(0)$.
+\begin{enumerate}[(i)]
+	\item $\langle \Phi^c(0), P^\pm(0) V \rangle = V$ for all $V \in E^c(0)$.
+	\item $\langle \Phi(0), P^\pm(0) V \rangle = 0$ for all $V \in E^c(0)$.
+	\item $\langle \Phi^c(0), P^-(0) V \rangle = 0$ and $\langle \Phi(0), P^-(0) V \rangle = 0$ for all $V \in E^u(0)$.
+	\item $\langle \Phi^c(0), P^+(0) V \rangle = 0$ and $\langle \Phi(0), P^+(0) V \rangle = 0$ for all $V \in E^s(0)$.
+\end{enumerate}
+\begin{proof}
+For (i), recall that $E^c(0) = \text{span }\{ V_0 \}$, where $V_0$ is the eigenvector of $A(0)$ corresponding to the eigenvalue 0. Furthermore, the constant function $Z(x) = V_0$ solves $Z' = A(0) Z$ with initial condition $V_0$. Let $W^-(x) = P^-(x) Z(x) = P^-(x) V_0$. By the Conjugation Lemma, we can write
+\[
+W^-(x) = V_0 + \mathcal{O}({e^{-\tilde{\alpha}|x|}})
+\]
+Since the inner product $\langle \Phi^c(x), W^-(x) \rangle$ is constant in $x$, sending $x \rightarrow -\infty$, we conclude by the continuity of the inner product that
+\[
+\langle \Phi^c(0), W^-(0) \rangle = \langle W_0, V_0 \rangle = 1 
+\]
+Thus we conclude that $\langle \Phi^c(0), P^-(0) V \rangle = V$ for all $V \in E^c(0)$. Similarly, the same holds for $\langle \Phi^c(0), P^+(0) V \rangle$.\\
+
+For (ii), we use the same argument as in (i), except we look at the inner product $\langle \Phi(x), W^-(x) \rangle$. Since this is constant in $x$, we send $x \rightarrow \infty$. This time, $W^-(x)$ remains bounded, but $\Phi(x)$ decays to 0, thus by the continuity of the inner product, we conclude that $\langle \Phi(0), W^-(0) \rangle = 0$, from which (ii) follows.\\
+
+For (iii) and (iv), we note that $P^-(0)E^u = \C Q'(0) \oplus Y^-$ and $P^+(0)E^u = \C Q'(0) \oplus Y^+$. The result follows since $\Psi^c(0), \Psi(0) \perp \C Q'(0) \oplus Y^+ \oplus Y^-$.
+\end{proof}
+\end{lemma}
+
+% jump lemma : center adjoint
+
+\begin{lemma}\label{jumpcenteradj}
+
+The jumps in the direction of $\Psi^c(0)$ are given by
+
+\begin{align}\label{xic}
+\xi^c_i = e^{-\nu(\lambda) X_i} c_i^- - e^{\nu(\lambda) X_{i-1}} c_{i-1}^- - \lambda^2 d_i M^c + R^c(\lambda)_i(c^-, d)
+\end{align}
+
+where $M^c$ is the center Melnikov integral
+
+\begin{equation}\label{Mc}
+M^c =  \int_{-\infty}^\infty \langle \Psi^c(y), H(y) \rangle dy 
+\end{equation}
+
+and the remainder term $R^c_i(c^-, d)$ is analytic in $\lambda$, linear in $(c^-, d)$, and has bound
+
+\begin{align}\label{Rc}
+R^c&(c^-, d)_i \leq C \Big(
+(|\lambda| + e^{-\alpha X_m})(|\tilde{c}_{i-1}^+| + |\tilde{c}_{i}^-|) + e^{-(\alpha - \eta) X_m } (|\lambda| + e^{-\alpha X_m})(  |\tilde{c}_{i-2}^+| + |\tilde{c}_{i+1}^-|)  \\
+&+ (|\lambda| + e^{-\alpha X_m})^2 |d|
+\Big) \nonumber
+\end{align}
+
+The jump conditions can be written as the matrix equation
+
+\begin{equation}\label{matrixjumpc}
+(K(\lambda) + C_1 K(\lambda) + K_1(\lambda)) c + D_1 d = 0
+\end{equation}
+
+where
+
+\begin{align*}
+K(\lambda) =  
+\begin{pmatrix}
+e^{-\nu(\lambda)X_1} & & & & & -e^{\nu(\lambda)X_0} \\
+-e^{\nu(\lambda)X_1} & e^{-\nu(\lambda)X_2} \\
+& -e^{\nu(\lambda)X_2} & e^{-\nu(\lambda)X_3} \\
+\vdots & & \vdots & &&  \vdots \\
+& & & & -e^{\nu(\lambda)X_{n-1}} & e^{-\nu(\lambda)X_0} 
+\end{pmatrix}
+\end{align*}
+
+and we have uniform bounds
+
+\begin{align*}
+C_1 &= \mathcal{O}(e^{-(\alpha - \eta) X_m}(|\lambda| + e^{-\alpha X_m})) \\
+D_1 &= \mathcal{O}((|\lambda| + e^{-\alpha X_m})^2)
+\end{align*}
+
+$K_1(\lambda)$ is a small perturbation of $K(\lambda)$ by $\mathcal{O}(|\lambda| + e^{-\alpha X_m})$. The specific forms of $K_1(\lambda)$ and $C_1$ are given in the proof.
+
+\begin{proof}
+
+Recall from the previous section that $P_i^\pm(0; \lambda) Z_i^\pm(0)$ are given by
+
+\begin{align*}
+P_i^-(0; \lambda) Z_i^-(0) &= P^-(0)( b_i^- + P_0^c(0) e^{\nu(\lambda) X_{i-1}} c_{i-1}^- ) \\
+&+ P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) a_{i-1}^- + (P_i^-(0; \lambda) - P^-(0))b_i^- + P_i^-(0; \lambda)(P_0^u(\lambda) - P_0^u(0))b_i^- \\
+&+ (P_i^-(0; \lambda) - P^-(0)) P_0^c(0) e^{\nu(\lambda) X_{i-1}} c_{i-1}^- + P_i^-(0; \lambda) (P_0^c(\lambda) - P_0^c(0)) e^{\nu(\lambda) X_{i-1}} c_{i-1}^- \\
+&+ \lambda^2 d_i P_i^-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^s(0, y; \lambda) P_i^-(y; \lambda)^{-1} \tilde{H}_i^-(y) dy \\
+&+ \lambda^2 d_i P_i^-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_i^-(y; \lambda)^{-1} \tilde{H}_i^-(y) dy  \\ 
+P_i^+(0; \lambda) Z_i^+(0) &=  P^+(0)( b_i^+ + P_0^c(0) e^{-\nu(\lambda)X_i} c_i^+ )\\
+&+ P_i^+(0; \lambda) \Phi^u(0, X_i; \lambda) a_i^+ + (P_i^+(0; \lambda) - P^+(0)) b_i^+ + P_i^+(0; \lambda) (P_0^s(\lambda) - P_0^s(0)) b_i^+ \\
+&+ (P_i^+(0; \lambda) - P^+(0))P_0^c(0) e^{-\nu(\lambda)X_i} c_i^+ + P_i^+(0; \lambda) (P_0^c(\lambda) - P_0^c(0)) e^{-\nu(\lambda)X_i} c_i^+\\
+&+ \lambda^2 d_i P_i^+(0; \lambda) \int_{X_i}^0 \Phi^u(0, y; \lambda) P_i^+(y; \lambda)^{-1} \tilde{H}_i^+(y) dy \\
+&+ \lambda^2 d_i P_i^+(0; \lambda) \int_{X_i}^0 \Phi^c(0, y; \lambda) P_i^+(y; \lambda)^{-1} \tilde{H}_i^+(y) dy
+\end{align*}
+
+We will compute the leading order terms first.
+
+\begin{enumerate}
+\item For the leading order terms involving $c$, using Lemma \ref{PsiIP}, we have
+
+\begin{align*}
+\langle \Psi^c(0), &P^-(0) P_0^c(0) e^{\nu(\lambda) X_{i-1}} c_{i-1}^- - P^+(0) P_0^c(0) e^{-\nu(\lambda)X_i} c_i^+) = e^{\nu(\lambda) X_{i-1}} c_{i-1}^- - e^{-\nu(\lambda)X_i} c_i^+ 
+\end{align*}
+
+For the higher order terms involving $c$, from the previous section we have
+\begin{align*}
+|(P_i^-(0; \lambda) &- P^-(0)) P_0^c(0) e^{\nu(\lambda) X_{i-1}} c_{i-1}^- + P_i^-(0; \lambda) (P_0^c(\lambda) - P_0^c(0)) e^{\nu(\lambda) X_{i-1}} c_{i-1}^-| \\
+&\leq C (|\lambda| + e^{-\alpha X_m}) |e^{\nu(\lambda) X_{i-1}} c_{i-1}^-|\\
+&= C (|\lambda| + e^{-\alpha X_m}) |\tilde{c}_{i-1}^+|
+\end{align*}
+
+and
+
+\begin{align*}
+|(P_i^+(0; \lambda) &- P^+(0))P_0^c(0) e^{-\nu(\lambda)X_i} c_i^+ + P_i^+(0; \lambda) (P_0^c(\lambda) - P_0^c(0)) e^{-\nu(\lambda)X_i} c_i^+| \\
+&\leq C (|\lambda| + e^{-\alpha X_m}) |e^{-\nu(\lambda)X_i} c_i^+| \\
+\end{align*}
+
+We need to write $e^{-\nu(\lambda)X_i} c_i^+$ in terms of $e^{-\nu(\lambda)X_i} c_i^-$. Using \eqref{tildecminus} from Lemma \ref{inv2}, we have
+
+\begin{align*}
+e^{-\nu(\lambda)X_i} c_i^+
+&= e^{-\nu(\lambda)X_i} c_i^- + \mathcal{O}\Big( e^{-(\alpha - \eta)X_i} (|\lambda| + e^{-\alpha X_m})( |\tilde{c}_{i-1}^+| + |\tilde{c}_{i+1}^-|) 
++ (|\lambda|+ e^{-\alpha X_i}) |\tilde{c}_i^-| + ( |\lambda| + e^{-\alpha X_m} )^2 |d| \Big)
+\end{align*}
+
+For the higher order term involving $c_i^+$, we multiply this by $(|\lambda| + e^{-\alpha X_m})$, which does not introduce any new terms. Combining all of these, the terms involving $c_i$ are given by
+
+\begin{align*}
+e^{\nu(\lambda) X_{i-1} } &c_{i-1}^- - e^{-\nu(\lambda)X_i} c_i^- + \mathcal{O}\Big(
+e^{-(\alpha - \eta)X_i} (|\lambda| + e^{-\alpha X_m})( |\tilde{c}_{i-1}^+| + |\tilde{c}_{i+1}^-|) \\
+&+ (|\lambda| + e^{-\alpha X_m})(|\tilde{c}_i^-| + |\tilde{c}_{i-1}^+|)
++ ( |\lambda| + e^{-\alpha X_m} )^2 |d|\Big)
+\end{align*}
+
+Which simplifies to
+
+\begin{align*}
+e^{\nu(\lambda) X_{i-1} } &c_{i-1}^- - e^{-\nu(\lambda)X_m} c_i^- + \mathcal{O}\Big(
+e^{-(\alpha - \eta)X_i} (|\lambda| + e^{-\alpha X_m}) |\tilde{c}_{i+1}^-| \\
+&+ (|\lambda| + e^{-\alpha X_m})( |\tilde{c}_i^-| + |\tilde{c}_{i-1}^+|)
++ ( |\lambda| + e^{-\alpha X_m} )^2 |d|\Big)
+\end{align*}
+
+\item The integral term involving the center subspace will give us the center Melnikov integral
+
+\begin{align*}
+&\langle \Psi^c(0), P_i^-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_i^-(y; \lambda) \tilde{H}_i^-(y) dy \rangle \\
+&= \langle \Psi^c(0), \int_{-X_{i-1}}^0 P_i^-(0; \lambda) \Phi^c(0, y; \lambda) P_i^-(y; \lambda)^{-1} \tilde{H}_i^-(y) dy \rangle \\
+&= \langle \Psi^c(0), \int_{-X_{i-1}}^0 P^-(0) \Phi^c(0, y; 0) P^-(y)^{-1} \tilde{H}_i^-(y) dy \rangle + \mathcal{O}(|\lambda| + e^{-\alpha X_m}) \\
+&= \int_{-X_{i-1}}^0 \langle \Psi^c(0), \Theta^c(0, y) \tilde{H}_i^-(y) \rangle dy + \mathcal{O}(|\lambda| + e^{-\alpha X_m}) \\
+&= \int_{-X_{i-1}}^0 \langle \Theta^c(y, 0)^* \Psi^c(0), H(y) \rangle dy + \int_{-X_{i-1}}^0 \langle \Psi^c(0), \Theta^c(0, y) \Delta H_i^-(y) \rangle dy + \mathcal{O}(|\lambda| + e^{-\alpha X_m}) \\
+&= \int_{-\infty}^0 \langle \Psi^c(y), H(y) \rangle dy + \int_{-X_{i-1}}^0 \langle \Psi^c(0), \Theta^c(0, y) \Delta H_i^-(y) \rangle dy + \mathcal{O}(e^{-\alpha X_m} + |\lambda|) \\
+\end{align*}
+
+For the integral involving $\Delta H_i^-(y)$,
+
+\begin{align*}
+\left| \int_{-X_{i-1}}^0 \langle \Psi^c(0), \Theta^c(0, y) \Delta H_i^-(y) \rangle dy \right| &\leq C \int_{-X_{i-1}}^0 e^{-\eta y} e^{-\alpha_0 X_{i-1}} e^{-\alpha_0(X_{i-1} + y)} dy \\
+&\leq C e^{-\alpha X_{i-1}} \int_{-X_{i-1}}^0 e^{-\alpha(X_{i-1} + y)} dy \\
+&\leq C e^{-\alpha X_{i-1}}
+\end{align*}
+
+Thus we have
+
+\begin{align*}
+&\langle \Psi^c(0), P^-(0; \beta_i^\pm, \lambda) \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P^-(y; \beta_i^\pm, \lambda) \tilde{H}_i^-(y) dy \rangle \\
+&= \int_{-\infty}^0 \langle \Psi^c(y), H(y) \rangle dy + \mathcal{O}(e^{-\alpha X_m} + |\lambda|) 
+\end{align*}
+
+The ``positive'' integral is similar, and gives us the other half of the center Melnikov integral.
+
+\end{enumerate}
+
+The remaining terms are higher order. We will evaluate them in turn.
+
+\begin{enumerate}
+
+\item For the term involving $a$, we plug in $A_4$.
+
+\begin{align*}
+P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) a_{i-1}^- &= 
+P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) P_0^s(\lambda) D_i d +
+P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) A_4(\lambda)_{i-1}^-(c^-, d) \\
+&= P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) A_4(\lambda)_{i-1}^-(c^-, d) + \mathcal{O}( e^{-\alpha X_m} |D|)
+\end{align*}
+
+Combining this with the bound for $A_4$, we have
+
+\begin{align*}
+|P_i^-(0; \lambda) &\Phi^s(0, -X_{i-1}; \lambda) a_{i-1}^-| \\
+&\leq C \Big( 
+e^{-2 \alpha X_{i-1}} (|\lambda| + e^{-\alpha X_m})(|\tilde{c}_{i-2}^+| + |\tilde{c}_i^-|) + e^{-(2\alpha - \eta) X_{i-1}} |\tilde{c}_{i-1}^-| + e^{-2 \alpha X_m} |\lambda|^2|d| + e^{-\alpha X_m}|D||d| \Big)
+\end{align*}
+
+Similarly, we have
+
+\begin{align*}
+|P_i^+(0; \lambda) &\Phi^u(0, X_i; \lambda) a_i^+| \\
+&\leq C\Big( 
+e^{-2 \alpha X_i} (|\lambda| + e^{-\alpha X_m})(|\tilde{c}_{i-1}^+| + |\tilde{c}_{i+1}^-|) + e^{-(2\alpha - \eta) X_i} |\tilde{c}_i^+| + e^{-2 \alpha X_m} |\lambda|^2|d| + e^{-\alpha X_m}|D||d| \Big)
+\end{align*}
+
+\item For the terms involving $b$, note that by Lemma \ref{PsiIP}, the terms $P^-(0) b_i^-$ and $P^+(0)b_i^+$ are eliminated outright when we take the inner product with $\Psi^c(0)$. For the other terms, we use the estimate for $B_1$ from Lemma \ref{inv2}.
+
+\begin{align*}
+&|(P_i^-(0; \lambda) - P^-(0))b_i^- + P_i^-(0; \lambda)(P_0^u(\lambda) - P_0^u(0))b_i^-| \\
+&\leq C(|\lambda| + e^{-\alpha X_m}) |B_1(c^-, d)| \\
+&\leq C(|\lambda| + e^{-\alpha X_m}) \Big( (|\lambda| + e^{-\alpha X_m})(|\tilde{c}_{i-1}^+| + |\tilde{c}_i^-|)+ (|\lambda| + e^{-\alpha X_m})^2 |d| \Big)
+\end{align*}
+
+\item For the non-center integral terms, we have the bound
+
+\begin{align*}
+&\left| P_i^-(0; \lambda) 
+\int_{-X_{i-1}}^0 \Phi^s(0, y; \lambda) \lambda^2 d_i P^-(y; \beta_i^-, \lambda)^{-1} \tilde{H}_i^-(y) dy \right| \\
+&\leq C |\lambda|^2 |d_i| \int_{-X_{i-1}}^0 e^{\alpha_0 y} e^{\alpha_0 y} dy \\
+&\leq C |\lambda|^2 |d|
+\end{align*}
+
+\end{enumerate}
+
+Putting all of this together, we obtain the center jump expressions
+
+\begin{align*}
+\xi^c_i = e^{-\nu(\lambda) X_i} c_i^- - e^{\nu(\lambda) X_{i-1}} c_{i-1}^- - \lambda^2 d_i M^c + R^c(\lambda)_i(c^-, d)
+\end{align*}
+
+where $M^c$ is the center Melnikov integral
+
+\[
+M^c = \int_{-\infty}^\infty \langle \Psi^c(y), H(y) \rangle dy 
+\]
+
+The remainder term $R^c_i(c^-, d)$ has bound
+
+\begin{align*}
+R^c&(c^-, d)_i \leq C \Big(
+(|\lambda| + e^{-\alpha X_m})(|\tilde{c}_{i-1}^+| + |\tilde{c}_{i}^-|) + e^{-(\alpha - \eta) X_m } (|\lambda| + e^{-\alpha X_m})(  |\tilde{c}_{i-2}^+| + |\tilde{c}_{i+1}^-|)  \\
+&+ (|\lambda| + e^{-\alpha X_m})^2 |d|
+\Big)
+\end{align*}
+
+where we used the estimate $|D| = \mathcal{O}(e^{-\alpha_0 X_m})$. We would like to write this in matrix form in a convenient way. First, let
+
+\begin{align*}
+K(\lambda) =  
+\begin{pmatrix}
+e^{-\nu(\lambda)X_1} & & & & & -e^{\nu(\lambda)X_0} \\
+-e^{\nu(\lambda)X_1} & e^{-\nu(\lambda)X_2} \\
+& -e^{\nu(\lambda)X_2} & e^{-\nu(\lambda)X_3} \\
+\vdots & & \vdots & &&  \vdots \\
+& & & & -e^{\nu(\lambda)X_{n-1}} & e^{-\nu(\lambda)X_0} 
+\end{pmatrix}
+\end{align*}
+
+The terms in the center jump expression involving $c$ are a perturbation of $K(\lambda)c$, where $c = (c_1, \dots, c_{n-1}, c_0)^T$. Of course, we need to be more precise with this.\\
+
+Let $T_i(\lambda)(c^-)$ be the terms involving $\tilde{c}$ in $R^c(\lambda)_i(c^-, d)$. We can write these as
+
+\[
+T_i(\lambda) = \gamma_{i,i-1} \tilde{c}_{i-1}^+ + \gamma_{i,i} \tilde{c}_{i}^- + \gamma_{i,i-2} \tilde{c}_{i-2}^+ + \gamma_{i,i+1} \tilde{c}_{i+1}^-
+\] 
+
+where
+
+\begin{align*}
+\gamma_{i,i-1}, \gamma_{i,i} &= \mathcal{O}(|\lambda| + e^{-\alpha X_m}) \\
+\gamma_{i,i-2} &= \mathcal{O}(e^{-(\alpha - \eta) X_{i-1}}(|\lambda| + e^{-\alpha X_m})) \\
+\gamma_{i,i+1} &= \mathcal{O}(e^{-(\alpha - \eta) X_i}(|\lambda| + e^{-\alpha X_m}))
+\end{align*}
+
+Anticipating what we want to do, we add and subtract $\tilde{c}_i^+$ and $\tilde{c}_{i-1}^-$.
+
+\begin{align*}
+T_i(\lambda) &= \gamma_{i,i-1} \tilde{c}_{i-1}^+ + \gamma_{i,i} \tilde{c}_{i}^- + \gamma_{i,i-2} ( \tilde{c}_{i-2}^+ - \tilde{c}_{i-1}^-) + \gamma_{i,i-2} \tilde{c}_{i-1}^- \\
+& + \gamma_{i,i+1} (\tilde{c}_{i+1}^- - \tilde{c}_i^+) + \gamma_{i,i+1} \tilde{c}_i^+
+\end{align*}
+
+Next, we note that
+
+\begin{align*}
+\gamma_{i,i-2} \tilde{c}_{i-1}^- &= \mathcal{O}(e^{-(\alpha - \eta) X_{i-1}}(|\lambda| + e^{-\alpha X_m})|e^{-\nu(\lambda)}c_{i-1}^-|) \\
+&= \mathcal{O}(e^{-(\alpha - 3 \eta) X_{i-1}}(|\lambda| + e^{-\alpha X_m})|e^{\nu(\lambda)}c_{i-1}^-|) \\
+&= \mathcal{O}(e^{-(\alpha - 3 \eta) X_{i-1}}(|\lambda| + e^{-\alpha X_m})|\tilde{c}_{i-1}^+|) \\
+\end{align*}
+
+Similarly,
+
+\begin{align*}
+\gamma_{i,i+1} \tilde{c}_i^+ &= \mathcal{O}(e^{-(\alpha - 3 \eta) X_i}(|\lambda| + e^{-\alpha X_m})|\tilde{c}_i^-|)
+\end{align*}
+
+Both of these coefficients are higher order than $\gamma_{i,i-1}$ and $\gamma_{i,i}$. Substituting these into $T_i(\lambda)$, collecting terms, and keeping the notation $\gamma_{i,j}$ for the resulting coefficients, we have
+
+\begin{align*}
+T_i(\lambda) &= \gamma_{i,i-1} \tilde{c}_{i-1}^+ + \gamma_{i,i} \tilde{c}_{i}^- + \gamma_{i,i-2} ( \tilde{c}_{i-2}^+ - \tilde{c}_{i-1}^-) + \gamma_{i,i+1} (\tilde{c}_{i+1}^- - \tilde{c}_i^+)
+\end{align*}
+
+where we have the same bounds on the coefficients $b_{i,j}$. We have what we need to write the center jump expressions in matrix form.
+
+\[
+(K(\lambda) + C_1 K(\lambda) + K_1(\lambda)) c + D_1 d = 0
+\]
+
+where $K_1(\lambda)$ is the following ``$\gamma-$perturbation'' of $K(\lambda)$ 
+
+\begin{align*}
+K_1(\lambda) =  
+\begin{pmatrix}
+e^{-\nu(\lambda)X_1} \gamma_{1,1} & & & & & e^{\nu(\lambda)X_0}\gamma_{1,0} \\
+e^{\nu(\lambda)X_1}\gamma_{2,1} & e^{-\nu(\lambda)X_2}\gamma_{2,2} \\
+& e^{\nu(\lambda)X_2}\gamma_{3,2} & e^{-\nu(\lambda)X_3}\gamma_{3,3} \\
+\vdots & & \vdots & &&  \vdots \\
+& & & & e^{\nu(\lambda)X_{n-1}}\gamma_{0,n-1} & e^{-\nu(\lambda)X_0}\gamma_{0,0} 
+\end{pmatrix}
+\end{align*}
+
+with 
+
+\[
+\gamma_{i,i-1}, \gamma_{i,i} = \mathcal{O}(|\lambda| + e^{-(\alpha - 2 \eta) X_m})
+\] 
+
+$C_1$ is the periodic, banded matrix
+
+\begin{align*}
+C_1 &= \begin{pmatrix}
+0 & \gamma_{1,2} & 0 & 0 & \dots & 0 & -\gamma_{n-1,0} & 0 \\
+0 & 0 & \gamma_{2,3} & 0 & \dots & 0 & 0 & -\gamma_{2,1} \\
+-\gamma_{3,1} & 0 & 0 & \gamma_{3,4} & \dots & 0 & 0 & 0 \\
+&  & & \ddots  \\
+0 & 0 & 0 & 0 & \dots & 0 & 0 & \gamma_{n-1,0} \\
+\gamma_{0,1} & 0 & 0 & 0 & \dots & -\gamma_{0, n-2} & 0 & 0 
+\end{pmatrix}
+\end{align*}
+
+and $D_1$ is the matrix we get from combining the terms involving $d$ in $R^c(\lambda)_i(c^-, d)$ with $\lambda^2 d_i M^c$, which is the same order. For $C_1$ and $D_1$, we have uniform bounds
+
+\begin{align*}
+C_1 &= \mathcal{O}(e^{-(\alpha - \eta) X_m}(|\lambda| + e^{-\alpha X_m})) \\
+D_1 &= \mathcal{O}((|\lambda| + e^{-\alpha X_m})^2)
+\end{align*}
+
+\end{proof}
+\end{lemma}
+
+\subsubsection{Decaying adjoint jump}
+
+Finally, we compute the jump in the direction of $\Psi(0)$.
+
+\begin{lemma}\label{jumpadj}
+
+The jumps in the direction of $\Psi(0)$ are given by
+
+\begin{align}\label{xi}
+\xi_i = \langle \Psi(X_i), Q'(-X_i) \rangle (d_{i+1} - d_i)
++ \langle \Psi(-X_i), Q'(X_i) \rangle (d_i - d_{i-1})
+- \lambda_2 d_i M + R_i(\lambda)(c^-, d)
+\end{align}
+
+where $M$ is the higher order Melnikov integral
+
+\begin{equation}\label{M}
+M = \int_{-\infty}^\infty \langle \Psi(y), H(y) \rangle dy 
+\end{equation}
+
+and the remainder term $R(\lambda)(c^-, d)$ is analytic in $\lambda$, linear in $(c^-, d)$, and has bound
+
+\begin{align}\label{R}
+|R(\lambda)_i&(c_i^-, d)| \leq C \Big( (|\lambda| + e^{-\alpha X_m})(|\tilde{c}_{i-1}^+| + |\tilde{c}_{i}^-|) + e^{-(\alpha - \eta) X_m}(|\lambda| + e^{-\alpha X_m})^2(|\tilde{c}_{i-2}^+| + |\tilde{c}_{i+1}^-|) \\
+&+ (|\lambda| + e^{-\alpha X_m})^3 |d| \Big) \nonumber
+\end{align}
+
+We can write these conditions in matrix form as
+
+\begin{equation}
+C_2 K(\lambda) + K_2(\lambda) + (A - \lambda^2 M I + D_2)d = 0
+\end{equation}
+
+where the matrix $K(\lambda)$ is defined in Lemma \ref{jumpcenteradj} and the matrix $A$ is given by
+
+\begin{align*}
+A &= \begin{pmatrix}
+-a_0 + \tilde{a}_1 & a_0 - \tilde{a}_1 \\
+-\tilde{a}_0 + a_1 & \tilde{a}_0 - a_1
+\end{pmatrix} && n = 2 \\
+A &= \begin{pmatrix}
+\tilde{a}_{n-1} - a_0 & a_0 & & & \dots & -\tilde{a}_{n-1}\\
+-\tilde{a}_0 & \tilde{a}_0 - a_1 &  a_1 \\
+& -\tilde{a}_1 & \tilde{a}_1 - a_2 &  a_2 \\
+& & \vdots & & \vdots \\
+a_{n-1} & & & & -\tilde{a}_{n-2} & \tilde{a}_{n-2} - a_{n-1} \\
+\end{pmatrix} && n > 2
+\end{align*}
+
+with
+
+\begin{align*}
+a_i &= \langle \Psi(X_i), Q'(-X_i) \rangle \\
+\tilde{a}_i &= \langle \Psi(-X_i), Q'(X_i) \rangle
+\end{align*}
+
+and the remainder matrices have uniform bounds
+
+\begin{align*}
+C_2 &= \mathcal{O}(e^{-(\alpha - \eta) X_m}(|\lambda| + e^{-\alpha X_m})^2) \\
+D_2 &= \mathcal{O}((|\lambda| + e^{-\alpha X_m})^3)
+\end{align*}
+
+$K_2(\lambda)$ is a small perturbation of $K(\lambda)$. The specific forms of $K_2(\lambda)$ and $C_2$ are given in the proof.
+
+\begin{proof}
+
+Recall that the terms $P_i^\pm(0; \lambda) Z_i^\pm(0)$ are given by
+
+\begin{align*}
+P_i^-(0; \lambda) Z_i^-(0) &= P^-(0)( b_i^- + P_0^c(0) e^{\nu(\lambda) X_{i-1}} c_{i-1}^- ) \\
+&+ P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) a_{i-1}^- + (P_i^-(0; \lambda) - P^-(0))b_i^- + P_i^-(0; \lambda)(P_0^u(\lambda) - P_0^u(0))b_i^- \\
+&+ (P_i^-(0; \lambda) - P^-(0)) P_0^c(0) e^{\nu(\lambda) X_{i-1}} c_{i-1}^- + P_i^-(0; \lambda) (P_0^c(\lambda) - P_0^c(0)) e^{\nu(\lambda) X_{i-1}} c_{i-1}^- \\
+&+ \lambda^2 d_i P_i^-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^s(0, y; \lambda) P_i^-(y; \lambda)^{-1} \tilde{H}_i^-(y) dy \\
+&+ \lambda^2 d_i P_i^-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_i^-(y; \lambda)^{-1} \tilde{H}_i^-(y) dy  \\ 
+P_i^+(0; \lambda) Z_i^+(0) &=  P^+(0)( b_i^+ + P_0^c(0) e^{-\nu(\lambda)X_i} c_i^+ )\\
+&+ P_i^+(0; \lambda) \Phi^u(0, X_i; \lambda) a_i^+ + (P_i^+(0; \lambda) - P^+(0)) b_i^+ + P_i^+(0; \lambda) (P_0^s(\lambda) - P_0^s(0)) b_i^+ \\
+&+ (P_i^+(0; \lambda) - P^+(0))P_0^c(0) e^{-\nu(\lambda)X_i} c_i^+ + P_i^+(0; \lambda) (P_0^c(\lambda) - P_0^c(0)) e^{-\nu(\lambda)X_i} c_i^+\\
+&+ \lambda^2 d_i P_i^+(0; \lambda) \int_{X_i}^0 \Phi^u(0, y; \lambda) P_i^+(y; \lambda)^{-1} \tilde{H}_i^+(y) dy \\
+&+ \lambda^2 d_i P_i^+(0; \lambda) \int_{X_i}^0 \Phi^c(0, y; \lambda) P_i^+(y; \lambda)^{-1} \tilde{H}_i^+(y) dy
+\end{align*}
+
+As with the first jump, we will start out by computing the significant terms.
+
+\begin{enumerate}
+\item The non-center integral will give us the higher order Melnikov integral. For the ``minus'' piece, we have
+
+\begin{align*}
+&\langle \Psi(0), P_i^-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^s(0, y; \lambda) P_i^-(y; \lambda)^{-1} \tilde{H}_i^-(y) dy \rangle \\
+&= \int_{-X_{i-1}}^0 \langle \Psi(0), P_i^-(0; \lambda), \Phi^s(0, y; \lambda) P_i^-(y; \lambda)^{-1} \tilde{H}(y) \rangle dy \\
+&= \int_{-X_{i-1}}^0 \langle \Psi(0), P_i^-(0; \lambda), \Phi^s(0, y; \lambda) P_i^-(y; \lambda)^{-1} H(y) \rangle dy + \mathcal{O}({e^{-\alpha X_m}})\\
+&= \int_{-X_{i-1}}^0 \langle \Psi(0), \Theta(0, y) H(y) \rangle dy + \mathcal{O}(|\lambda| + {e^{-\alpha X_m}})\\
+&= \int_{-X_{i-1}}^0 \langle \Theta(y, 0)^* \Psi_i(0), H(y) \rangle dy + \mathcal{O}(|\lambda| + {e^{-\alpha X_m}})\\
+&= \int_{-X_{i-1}}^0 \langle \Psi(y), H(y) \rangle dy + \mathcal{O}(|\lambda| + {e^{-\alpha X_m}})\\
+&= \int_{-\infty}^0 \langle \Psi(y), H(y) \rangle dy + \mathcal{O}(|\lambda| + {e^{-\alpha X_m}})
+\end{align*}
+
+The ``positive'' piece is similar, and gives us the other half of the Melnikov integral.
+
+\item For the terms involving $a_i$, we plug in $A_4$.
+
+\begin{align*}
+\langle &\Psi(0), P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) a_{i-1}^- \rangle \\
+&= \langle \Psi_i(0), P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) (- P_i^-(-X_{i-1}; \lambda)^{-1} P_0^s(\lambda) D_{i-1} d + A_4(\lambda)_{i-1}^-(c^-, d)) \rangle \\
+&= -\langle \Psi(0), \Theta^s(0, -X_{i-1}) P_0^s(0) D_{i-1} d \rangle + \mathcal{O}( |\lambda|e^{-2 \alpha X_m} + e^{-\alpha X_{i-1}} |A_4(\lambda)_{i-1}^-(c^-, d)|)\\
+&= -\langle \Theta^s(-X_{i-1}, 0)^* \Psi_i(0), P_0^s(0) D_{i-1} d \rangle + \mathcal{O}( |\lambda|e^{-2 \alpha X_m} + e^{-\alpha X_{i-1}} |A_4(\lambda)_{i-1}^-(c^-, d)|)\\
+&= -\langle \Psi(-X_{i-1}), P_0^s(0) D_{i-1} d \rangle + \mathcal{O}\Big(  
+e^{-2\alpha X_{i-1}} (|\lambda| + e^{-\alpha X_m})(|\tilde{c}_{i-2}^+| + |\tilde{c}_i^-|) + e^{-2\alpha X_{i-1}} |c_{i-1}^-| \\
+&+ e^{-2 \alpha X_m}(|\lambda|^2 + |D|)|d| \Big) \\
+&= -\langle \Psi(-X_{i-1}), P_0^s(0) D_{i-1} d \rangle 
++ \mathcal{O}\Big(  
+e^{-2\alpha X_m} (|\lambda| + e^{-\alpha X_m})(|\tilde{c}_{i-2}^+| + |\tilde{c}_i^-|) + e^{-(2\alpha-\eta) X_m} |\tilde{c}_{i-1}^+| \\
+&+ e^{-2 \alpha X_m}(|\lambda|^2 + |D|)|d| \Big) \\
+\end{align*}
+
+Similarly, for the $a_i^+$ term, we have
+
+\begin{align*}
+\langle &\Psi(0), P_i^+(0; \lambda) \Phi^u(0, X_i; \lambda) a_i^+ \rangle \\
+&= \langle \Psi(X_i), P_0^u(0) D_i d \rangle + \mathcal{O}\Big( e^{-2 \alpha X_m} (|\lambda| + e^{-\alpha X_m})(|\tilde{c}_{i-1}^+| + |\tilde{c}_{i+1}^-|) \\
+&+ e^{-(2 \alpha - \eta) X_m} |\tilde{c}_i^-| + e^{-2 \alpha X_m}(|\lambda|^2 + |D|)|d| \Big)
+\end{align*}
+
+\end{enumerate}
+
+The remaining terms will be higher order. Doing these in turn, we have
+
+\begin{enumerate}
+\item For the terms involving $b$, we first note that by Lemma \ref{PsiIP}, the terms $P^-(0) b_i^-$ and $P^+(0)b_i^+$ will vanish when we take the inner product with $\Psi(0)$. For the remaining terms, we substitute the estimate for $B_1$ from Lemma \ref{inv2}.
+
+\begin{align*}
+&|\langle \Psi(0), (P_i^-(0; \lambda) - P^-(0))b_i^- + P_i^-(0; \lambda)(P_0^u(\lambda) - P_0^u(0))b_i^-| \\
+&\leq C (|\lambda| + e^{-\alpha X_m})\Big( 
+(|\lambda| + e^{-\alpha X_m})( |\tilde{c}_{i-1}^+| + |\tilde{c}_i^-|)+ (|\lambda| + e^{-\alpha X_m})^2|d| \Big)
+\end{align*}
+
+\item For the terms involving $c$, we first note that by Lemma \ref{PsiIP}, the terms $P_0^c(0) e^{\nu(\lambda) X_{i-1}} c_{i-1}^-$ and $P_0^c(0) e^{-\nu(\lambda)X_i} c_i^+$ will be eliminated by taking the inner product with $\Psi(0)$. For the remaining term involving $c_{i-1}^-$, we have
+
+\begin{align*}
+|(P_i^-(0; \lambda) - P^-(0)) P_0^c(0) e^{\nu(\lambda) X_{i-1}} c_{i-1}^- + P_i^-(0; \lambda) (P_0^c(\lambda) - P_0^c(0)) e^{\nu(\lambda) X_{i-1}} c_{i-1}^-| \leq C (|\lambda| + e^{-\alpha X_m})|\tilde{c}_{i-1}^+|
+\end{align*}
+
+For the term involving $c_i^+$, we also have to use our expression from Lemma \ref{inv2} to convert $e^{-\nu(\lambda)X_i} c_i^+$ to $e^{-\nu(\lambda)X_i} c_i^-$.
+
+\begin{align*}
+&|(P_i^+(0; \lambda) - P^+(0))P_0^c(0) e^{-\nu(\lambda)X_i} c_i^+ + P_i^+(0; \lambda) (P_0^c(\lambda) - P_0^c(0)) e^{-\nu(\lambda)X_i} c_i^+| \\
+&\leq C(|\lambda| + e^{-\alpha X_m})\Big( |\tilde{c}_i^-| + e^{-(\alpha - \eta)X_i} (|\lambda| + e^{-\alpha X_m})( |\tilde{c}_{i-1}^+| + |\tilde{c}_{i+1}^-|) 
++ e^{-\alpha X_i}|\tilde{c}_i^-| + (|\lambda| + e^{-\alpha X_m} )^2 |d| \Big) \\
+&\leq C(|\lambda| + e^{-\alpha X_m})\Big( |\tilde{c}_i^-| + e^{-(\alpha - \eta)X_m} (|\lambda| + e^{-\alpha X_m})( |\tilde{c}_{i-1}^+| + |\tilde{c}_{i+1}^-|) +  ( |\lambda| + e^{-\alpha X_m} )^2 |d| \Big) 
+\end{align*}
+
+\item For the center integral term, we have
+
+\begin{align*}
+&\langle \Psi(0), P_i^-(0; \lambda)
+\int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_i^-(y; \lambda)^{-1} \tilde{H}_i^-(y) dy \rangle \\
+&= \int_{-X_{i-1}}^0 \langle \Psi(0), P_i^-(0; \lambda) \Phi^c(0, y; \lambda) P_i^-(y; \lambda)^{-1} \tilde{H}_i^-(y) \rangle dy \\
+&= \int_{-X_{i-1}}^0 \langle \Psi(0), P^-(0) \Phi^c(0, y; 0) P^-(y)^{-1} \tilde{H}_i^-(y) \rangle dy + \mathcal{O}(|\lambda| + e^{-\alpha X_m}) \\
+&= \mathcal{O}(|\lambda| + e^{-\alpha X_m})
+\end{align*}
+
+where the integral vanishes by Lemma \ref{PsiIP} since $\Phi^c(0, y; 0) P^-(y)^{-1} \tilde{H}_i^-(y) \in E^c(0)$.
+
+\end{enumerate}
+
+Putting this all together, we have the jump expressions
+
+\begin{align*}
+\xi_i = \langle \Psi(X_i), P_0^u(0) D_i d \rangle
++ \langle \Psi(-X_{i-1}), P_0^s(0) D_{i-1} d \rangle 
+- \lambda_2 d_i M + R_i(\lambda)(c, \tilde{c}, d)
+\end{align*}
+
+where $M$ is the higher order Melnikov integral
+
+\[
+M = \int_{-\infty}^\infty \langle \Psi(y), H(y) \rangle dy 
+\]
+
+and the remainder term has piecewise bound
+
+\begin{align*}
+|R(\lambda)_i&(c_i^-, d)| \leq C \Big( (|\lambda| + e^{-\alpha X_m})(|\tilde{c}_{i-1}^+| + |\tilde{c}_{i}^-|) + e^{-(\alpha - \eta) X_m}(|\lambda| + e^{-\alpha X_m})^2(|\tilde{c}_{i-2}^+| + |\tilde{c}_{i+1}^-|) \\
+&+ (|\lambda| + e^{-\alpha X_m})^3 |d| \Big)
+\end{align*}
+
+Before we write this in matrix form, we substitute for $D_i d$. Recalling the expression for $D_i$, we have
+
+\begin{align*}
+\langle \Psi(X_i), P_0^u(0) D_i d \rangle
+&= \langle \Psi(X_i), P_0^u(0) (Q'(X_i) + Q'(-X_i)) \rangle (d_{i+1} - d_i)
++\mathcal{O}(e^{-2 \alpha X_i}(|\lambda| + e^{-\alpha X_i})) \\
+&= \langle \Psi(X_i), Q'(X_i) + Q'(-X_i) \rangle (d_{i+1} - d_i)
++\mathcal{O}(e^{-2 \alpha X_i}(|\lambda| + e^{-\alpha X_i})) \\
+&= \langle \Psi(X_i), Q'(-X_i) \rangle (d_{i+1} - d_i)
++\mathcal{O}(e^{-2 \alpha X_i}(|\lambda| + e^{-\alpha X_i})) 
+\end{align*}
+
+since $\langle \Psi(X_i), Q'(X_i) \rangle = 0$. Similarly, 
+
+\begin{align*}
+\langle \Psi(-X_i), P_0^s(0) D_i d \rangle
+&= \langle \Psi(-X_i), Q'(X_i) \rangle (d_i - d_{i-1})
++\mathcal{O}(e^{-2 \alpha X_i}(|\lambda| + e^{-\alpha X_i})) 
+\end{align*}
+
+Since these remainder terms are already included in our remainder term, we obtain the final jump expressions
+
+\begin{align*}
+\xi_i = \langle \Psi(X_i), Q'(-X_i) \rangle (d_{i+1} - d_i)
++ \langle \Psi(-X_i), Q'(X_i) \rangle (d_i - d_{i-1})
+- \lambda_2 d_i M + R_i(\lambda)(c^-, d)
+\end{align*}
+
+where $R_i(\lambda)(c^-, d)$ has the same remainder bound as above. As in Lemma \ref{jumpcenteradj}, we will write these jump expressions in matrix form. The remainder terms involving the $\tilde{c}$ work out exactly the same as in Lemma \ref{jumpcenteradj}, except the remainder coefficients are different and we do not have the $\tilde{c}$ terms by themselves. Thus, in matrix form, we have
+
+\[
+C_2 K(\lambda) + K_2(\lambda) + (A - \lambda^2 M I + D_2)d = 0
+\]
+
+where the matrix $A$ is given by
+
+\begin{align*}
+A &= \begin{pmatrix}
+-a_0 + \tilde{a}_1 & a_0 - \tilde{a}_1 \\
+-\tilde{a}_0 + a_1 & \tilde{a}_0 - a_1
+\end{pmatrix} && n = 2 \\
+A &= \begin{pmatrix}
+\tilde{a}_{n-1} - a_0 & a_0 & & & \dots & -\tilde{a}_{n-1}\\
+-\tilde{a}_0 & \tilde{a}_0 - a_1 &  a_1 \\
+& -\tilde{a}_1 & \tilde{a}_1 - a_2 &  a_2 \\
+& & \vdots & & \vdots \\
+a_{n-1} & & & & -\tilde{a}_{n-2} & \tilde{a}_{n-2} - a_{n-1} \\
+\end{pmatrix} && n > 2
+\end{align*}
+
+where
+
+\begin{align*}
+a_i &= \langle \Psi(X_i), Q'(-X_i) \rangle \\
+\tilde{a}_i &= \langle \Psi(-X_i), Q'(X_i) \rangle
+\end{align*}
+
+$M$ is the higher order Melnikov integral
+
+\[
+M = \int_{-\infty}^\infty \langle \Psi(y), H(y) \rangle dy
+\]
+
+$K_2(\lambda)$ is the following ``$\tilde{\gamma}-$perturbation'' of $K(\lambda)$ 
+
+\begin{align*}
+K_1(\lambda) =  
+\begin{pmatrix}
+e^{-\nu(\lambda)X_1} \tilde{\gamma}_{1,1} & & & & & e^{\nu(\lambda)X_0}\tilde{\gamma}_{1,0} \\
+e^{\nu(\lambda)X_1}\tilde{\gamma}_{2,1} & e^{-\nu(\lambda)X_2}\tilde{\gamma}_{2,2} \\
+& e^{\nu(\lambda)X_2}\tilde{\gamma}_{3,2} & e^{-\nu(\lambda)X_3}\tilde{\gamma}_{3,3} \\
+\vdots & & \vdots & &&  \vdots \\
+& & & & e^{\nu(\lambda)X_{n-1}}\tilde{\gamma}_{0,n-1} & e^{-\nu(\lambda)X_0}\tilde{\gamma}_{0,0} 
+\end{pmatrix}
+\end{align*}
+
+where 
+
+\begin{align*}
+\tilde{\gamma}_{i,i-1}, \tilde{\gamma}_{i,i} &= \mathcal{O}(|\lambda| + e^{-\alpha X_m}) \\
+\end{align*}
+
+$C_2$ is the periodic, banded matrix
+
+\begin{align*}
+C_2 &= \begin{pmatrix}
+0 & \tilde{\gamma}_{1,2} & 0 & 0 & \dots & 0 & -\tilde{\gamma}_{n-1,0} & 0 \\
+0 & 0 & \gamma_{2,3} & 0 & \dots & 0 & 0 & -\tilde{\gamma}_{2,1} \\
+-\tilde{\gamma}_{3,1} & 0 & 0 & \tilde{\gamma}_{3,4} & \dots & 0 & 0 & 0 \\
+&  & & \ddots  \\
+0 & 0 & 0 & 0 & \dots & 0 & 0 & \tilde{\gamma}_{n-1,0} \\
+\tilde{\gamma}_{0,1} & 0 & 0 & 0 & \dots & -\tilde{\gamma}_{0, n-2} & 0 & 0 
+\end{pmatrix}
+\end{align*}
+
+where
+
+\begin{align*}
+\tilde{\gamma}_{i,i-2}, \tilde{\gamma}_{i,i+1} &= \mathcal{O}(e^{-(\alpha - \eta) X_m}(|\lambda| + e^{-\alpha X_m})^2) 
+\end{align*}
+
+For the matrices $C_2$ and $D_2$, we have uniform bounds
+
+\begin{align*}
+C_2 &= \mathcal{O}(e^{-(\alpha - \eta) X_m}(|\lambda| + e^{-\alpha X_m})^2) \\
+D_2 &= \mathcal{O}((|\lambda| + e^{-\alpha X_m})^3)
+\end{align*}
+
+\end{proof}
+\end{lemma}
+
+\subsubsection{Main Theorem}
+
+We will now combine two jump expressions from Lemma \ref{jumpcenteradj} and Lemma \ref{jumpadj} into a single theorem.
+
+% theorem : block diagonal matrix expression
+
+We can finally state the main theorem of this section.
+
+\begin{theorem}\label{blockmatrixtheorem}
+There exists a $\delta > 0$ with the following property. Let $q_{np}(x)$ be a periodic $n-$pulse solution constructed with lengths $X_0, \dots, X_{n-1}$, where $X_m = \min\{ X_0, \dots X_{n-1}\}$ and $e^{-\alpha X_m} < \delta$. Then there exists a bounded, nonzero solution $V$ of \eqref{PDEeig} for $|\lambda| < \delta$ if and only if there is a nontrivial soluton to
+
+\begin{equation}\label{blockeq}
+\begin{pmatrix}
+K(\lambda) + C_1 K(\lambda) + K_1(\lambda) & D_1 \\
+C_2 K(\lambda) + K_2(\lambda) & A - \lambda^2 MI + D_2
+\end{pmatrix}
+\begin{pmatrix}c \\ d \end{pmatrix} 
+= 0
+\end{equation}
+
+where 
+
+\begin{enumerate}
+
+\item The matrix $K(\lambda)$ is given by
+
+\begin{equation}
+K(\lambda) = 
+\begin{pmatrix}
+e^{-\nu(\lambda)X_1} & & & & & -e^{\nu(\lambda)X_0} \\
+-e^{\nu(\lambda)X_1} & e^{-\nu(\lambda)X_2} \\
+& -e^{\nu(\lambda)X_2} & e^{-\nu(\lambda)X_3} \\
+\vdots & & \vdots & &&  \vdots \\
+& & & & -e^{\nu(\lambda)X_{n-1}} & e^{-\nu(\lambda)X_0} 
+\end{pmatrix}
+\end{equation}
+
+where $\nu(\lambda)$ is the small eigenvalue of the asympotic matrix $A(\lambda)$.
+
+\item The matrix $A$ is given by
+
+\begin{align*}
+A &= \begin{pmatrix}
+-a_0 -a_1 & a_0 + a_1 \\
+a_0 + a_1 & -a_0 - a_1
+\end{pmatrix} && n = 2 \\
+A &= \begin{pmatrix}
+-a_{n-1} - a_0 & a_0 & & & \dots & a_{n-1}\\
+a_0 & -a_0 - a_1 &  a_1 \\
+& a_1 & -a_1 - a_2 &  a_2 \\
+& & \vdots & & \vdots \\
+a_{n-1} & & & & a_{n-2} & -a_{n-2} - a_{n-1} \\
+\end{pmatrix} && n > 2
+\end{align*}
+
+where
+
+\begin{align*}
+a_i &= \langle \Psi(X_i), Q'(-X_i) \rangle \\
+\end{align*}
+
+\item $K_1(\lambda)$ and $K_2(\lambda)$ are small perturbations of $K(\lambda)$, where the nonzero terms of $K(\lambda)$ are perturbed by $\mathcal{O}(|\lambda| + e^{-\alpha X_m})$.
+
+\item The remainder terms are analytic in $\lambda$ and have uniform bounds
+
+\begin{align*}
+C_1 &= \mathcal{O}\left(e^{-(\alpha - \eta) X_m}(|\lambda| + e^{-\alpha X_m}) \right) \\
+D_1 &= \mathcal{O}\left((|\lambda| + e^{-\alpha X_m})^2 \right) \\
+C_2 &= \mathcal{O}\left(e^{-(\alpha - \eta) X_m}(|\lambda| + e^{-\alpha X_m})^2 \right) \\
+D_2 &= \mathcal{O}\left((|\lambda| + e^{-\alpha X_m})^3 \right)
+\end{align*}
+
+where $X_m = \min \{X_0, \dots, X_{n-1}\}$
+
+\item $M$ is the Melnikov integral
+
+\begin{align*}
+M &= \int_{-\infty}^\infty \langle \Psi(y), H(y) \rangle dy \\
+\end{align*}
+
+\end{enumerate}
+
+\begin{proof}
+The block matrix \eqref{blockeq} combines the jump conditions from Lemma \ref{jumpcenteradj} and Lemma \ref{jumpadj}. Because of reversibility, 
+\[
+\langle \Psi(-X_i), Q'(X_i) \rangle = -\langle \Psi(X_i), Q'(-X_i) \rangle
+\]
+thus $\tilde{a}_i = -a_i$ in the matrix $A$ in Lemma \ref{jumpadj}.
+\end{proof}
+\end{theorem}
+
+\subsection{Solving for the Eigenvalues}
+
+We will now find the eigenvalues $\lambda$ for $|\lambda| < \delta$, where $\delta$ is given in Theorem \ref{blockmatrixtheorem}. Before we can do that, we need to make a few additional hypotheses regarding the terms in that theorem.\\
+
+First, we look at the matrix $A$. $A$ is a real symmetric matrix, so its eigenvalues are all real. Since all the rows sum to 1, $(1, 1, \dots, 1)^T$ is an eigenvector with eigenvalue 0. We make the following additional assumption.\\
+
+\begin{hypothesis}\label{Adistincteigs}
+The eigenvalues of $A$ are given by $(0, \mu_1, \dots, \mu_{n-1})$, all of which are distinct.
+\end{hypothesis}
+
+We might be able to use discrete Sturm-Liouville theory to relax this assumption.\\
+
+Since the ``leading order'' terms in the block matrix equation \ref{blockeq} are $K(\lambda)$ and $A - \lambda^2 M I$, we expect to find eigenvalues near the points where these two matrices are singular. The interaction eigenvalues should occur near the $2n$ points where $A - \lambda^2 M I$ is singular, and the ``essential spectrum'' eigenvalues should occur near where $K(\lambda)$ is singular. The only thing we need to ensure is that these singular points do not get too close. We have observed Krein bubbles numerically when this takes place, so this must factor into our analysis.
+
+\begin{hypothesis}\label{epsilonballs}
+The nonzero points where $A - \lambda^2 MI$ is singular are at least $\epsilon/X$ away from the points where $K(\lambda)$ are singular, where $\epsilon$ will be determined later.
+\end{hypothesis}
+
+We will now state and prove the main theorem for this section.
+
+\begin{theorem}\label{locateeigtheorem}
+Let $\delta > 0$ be defined as in Theorem \ref{blockmatrixtheorem} and let $q_{np}(x)$ be a periodic $n-$pulse solution constructed as described above. Assume Hypothesis \ref{Adistincteigs}. Assume Hypothesis \ref{epsilonballs} with
+\[
+\epsilon = \frac{1}{4}r^{1/4}
+\]
+so that he singular points of $K(\lambda)$ and the nonzero singular points of $A - \lambda^2 M I$ are separated by at least
+\[
+\frac{\epsilon}{X} = \frac{1}{n |\log r| + C_b} r^{1/4}
+\]
+where $C_b$ is a constant which depends only on the $b_j^*(m_j, \theta) $, which are fixed. \\
+
+Then the following are true.
+
+\begin{enumerate}[(i)]
+
+\item There is an eigenvalue at 0 with algebraic multiplicity 3. The eigenfunctions are the kernel eigenfunction $\partial_x q_{np}(x)$ from translation invariance, its generalized kernel eigenfunction $t_{np}(x)$, and a third kernel eigenfunction $v(x)$ which is bounded but does not decay exponentially.
+
+\item There exists $r_1 \leq r_0$ such that for $r \leq r_1$, there are $n - 1$ pairs of interaction eigenvalues given by $\lambda = \pm \lambda^{\text{int}}_j(r)$, $j = 1, \dots, n-1$, where
+
+\begin{align*}
+\lambda &= \pm \lambda^{\text{int}}_j(r) && j = 0, \dots, n-2
+\end{align*}
+
+where
+
+\begin{align*}
+\lambda^{\text{int}}_j(r) = r^{1/2} \sqrt{\tilde{\mu}_j / M} + \mathcal{O}(r^{5/8})
+\end{align*}
+
+These interaction eigenvalues pairs are either real or purely imaginary, and the remainder term cannot move them off of the real or imaginary axis.\\
+
+In addition, there exists a natural number $m_0$ with the following property. If  for some $j$, $m_j - m_k \geq m_0$ for $k \neq j$, then there exists $\tilde{r}_1 \leq r_1$ such that for all $r < \tilde{r}_1$, 
+
+\begin{itemize}
+\item For $M > 0$ ($M < 0$), there are $n_{\text{even}}$ purely imaginary (real) pairs of interaction eigenvalues.
+\item For $M > 0$ ($M < 0$), there are $n_{\text{odd}}$ real (purely imaginary) pairs of interaction eigenvalues.
+\end{itemize}
+
+where $n_{\text{even}}$ is the number of even $m_k$ (excluding $m_j$) and $n_{\text{odd}}$ is the number of odd $m_k$ (excluding $m_j$).
+
+\item There exists $r_2 \leq r_1$ such that for $r \in \mathcal{R}$ with $r < r_2$, the following is true. For all positive integers $k$ with $k \pi / X < \delta$, there is a pair of purely imaginary ``essential spectrum'' eigenvalues which are given by $\lambda = \pm \lambda^{ess}(X,k; r)$, where
+
+\begin{equation}\label{lambdaess}
+\lambda^{ess}(X, k; r) = c_0 \frac{k \pi i }{X} \left( 1 + \mathcal{O}\left( \frac{1}{X} \right)\right) + \mathcal{O}\left( \frac{r^{1/2}}{X} \right)
+\end{equation}
+
+The remainder terms cannot move this off of the imaginary axis.
+
+\item For a radius $\tilde{\delta}$ which may be slightly smaller than $\delta$, There are $2n + 2 k_M + 1$ eigenvalues inside the circle $|\lambda| = \tilde{\delta}$, where $k_M$ is the largest positive integer $k$ such that $|\lambda^K(k,X) < \tilde{\delta}$. Thus there are no eigenvalues inside the circle $|\lambda| = \tilde{\delta}$ other than the ones described above.
+\end{enumerate}
+
+\end{theorem}
+
+We prove the theorem below in a series of lemmas. 
+
+Before we continue, we will use the same scaling and parameterization as in the existence problem. We do this in the next section.
+
+\subsubsection{Rescaling}
+
+Define the space
+
+\begin{equation}\label{setR}
+\mathcal{R} = \left\{ \exp\left(-\frac{m \pi}{\rho}\right) : m \in \N_0 \right\} \cup \{ 0 \}
+\end{equation}
+
+which is a complete metric space. In the existence problem, we constructed the periodic $n-$pulse as follows. 
+
+\begin{enumerate}
+	\item Choose an integer $n \geq 2$ (the number of pulses) 
+	\item Choose a sequence of nonnegative integers $m_0, \dots, m_{n-1}$ with the restriction that at least one of them must be 0. Use the $m_j$ to define the length parameters $b_j^0 = \exp(-m_j \pi / \eta )$.
+	\item Choose a phase parameter $\theta \in [-\arctan \rho, \pi - \arctan \rho)$, where $\rho = \beta / \alpha$.
+	\i 
+	\item Then there exists $r_0 > 0$ such that 
+		\begin{itemize}
+		\item For every length parameter $r \in \mathcal{R}$ with $r < r_0$, there is a unique periodic $n-$pulse solution $q_{np}(x)$ which is given by the $n$ length parameters $b_j(r; m_j, \theta)$, where
+		\begin{align*}
+		b_j(r; m_j, \theta) \rightarrow b^*_j(m_j, \theta) \text{ as }
+		r \rightarrow 0
+		\end{align*}
+		\item For the $b^*_j(m_j, \theta)$, we have
+		\[
+		b^*_j(m_j, 0) = b_j^0 = \exp(-m_j \pi / \rho )
+		\]
+		\item If for some index $j$, $m_j \geq m_k$ for all other $k$, then for all $\theta$ and for $k \neq j$
+		\[
+		|b^*_j(m_j, \theta) - b_j^0| \leq C e^{ -\frac{\pi}{\rho} (m_j - m_k) }
+		\]
+		\end{itemize}
+\end{enumerate} 
+
+Since for now we are working with a solution $q_{np}$ which has already been constructed, we will for ease of notation suppress the dependence of $b_j$ on the $r$, $m_j$, and $\theta$. From the existence problem, we have
+
+\begin{align}
+r &= e^{-\alpha(2 X_m + \phi/\beta)} \\
+b_j &= e^{-2 \alpha(X_j - X_m)} && j = 0, \dots, n-1
+\end{align}
+
+where $\phi$ is a constant needed so that in fact we have $r \in \mathcal{R}$.
+Solving for $X_m$ and the $X_j$ in terms of $r$ and the $b_j$, we have
+
+\begin{align*}
+X_m &= -\frac{1}{2\alpha}\log r - \alpha \frac{\phi}{\beta} \\
+X_j &= -\frac{1}{2\alpha}\log(b_j r) - \frac{\phi}{2 \beta} 
+\end{align*}
+
+In the next lemma, we substitute these into the terms in the block matrix equation from Theorem \ref{blockmatrixtheorem}.
+
+% block matrix reparameterization
+
+\begin{lemma}\label{reparam}
+Using the scaling and parameterization above, the block matrix equation from Theorem \ref{blockmatrixtheorem} takes the form
+
+\begin{equation}\label{blockeq}
+\begin{pmatrix}
+K(\lambda) + C_1 K(\lambda) + K_1(\lambda) & D_1 \\
+C_2 K(\lambda) + K_2(\lambda) & r \tilde{A} - \lambda^2 MI + D_2
+\end{pmatrix}
+\begin{pmatrix}c \\ d \end{pmatrix} 
+= 0
+\end{equation}
+
+$\tilde{A}$ is the same matrix as $A$ with the entries $a_j$ replaced by $\tilde{a}_j$, and 
+
+\begin{align}\label{tildea}
+\tilde{a}_j 
+&= s_0 e^{\alpha \phi/\beta} \left( \beta b_j \cos\left( -\rho \log b_j \right) - \alpha b_j \sin \left( -\rho \log b_j  \right) \right) + \mathcal{O}(r^{\gamma/2\alpha})
+\end{align}
+
+The eigenvalues of $\tilde{A}$ are given by $(0, \tilde{\mu}_1, \dots, \tilde{\mu}_{n-1})$, $r \tilde{\mu}_j = \mu_j$.\\
+
+The remainder terms have bounds
+
+\begin{align*}
+C_1 &= \mathcal{O}\left(r^{\tilde{\gamma}/2}(|\lambda| + r^{1/2})\right) \\
+D_1 &= \mathcal{O}\left((|\lambda| + r^{1/2})^2\right) \\
+C_2 &= \mathcal{O}\left(r^{\tilde{\gamma}/2}(|\lambda| + r^{1/2})^2\right) \\
+D_2 &= \mathcal{O}\left((|\lambda| + r^{1/2})^3\right)
+\end{align*}
+
+where $0 < \tilde{\gamma} < 1$. The matrices $K_1(\lambda)$ and $K_2(\lambda)$ are perturbations of the nonzero entries of $K(\lambda)$ by $\mathcal{O}(|\lambda| + r^{1/2})$.\\
+
+Finally the domain half-length $X$ is given by
+
+\begin{align}\label{Xscaled}
+X &= \frac{1}{2\alpha} (n |\log r| + |\log b| ) - \frac{n \phi}{2 \beta}
+\end{align}
+
+where 
+\begin{equation}\label{defb}
+b = \prod_{j=0}^{n-1} b_j
+\end{equation}
+
+\begin{proof}
+In terms of $r$, we have
+
+\begin{align*}
+e^{-\alpha X_m} &= C r^{1/2} \\
+e^{-(\alpha - \eta) X_m} &= C r^{\tilde{\gamma}/2}
+\end{align*}
+where $3/4 < \tilde{\gamma} < 1$. Thus the remainder terms in Theorem \ref{blockmatrixtheorem} have the bounds given above. In addition, $K_1(\lambda)$ and $K_2(\lambda)$ are perturbations of the nonzero entries of $K(\lambda)$ by $\mathcal{O}(|\lambda| + r^{1/2})$.\\
+
+To use this scaling for the matrix $A$, we have from Lemma 6.1 in San98,
+
+\begin{align}
+\langle \Psi(-x), Q'(x) \rangle
+&= s_0 e^{-2 \alpha x}\left( \beta \cos(2 \beta x + \phi) - \alpha \sin(2 \beta x + \phi)\right) + \mathcal{O}(e^{-(2 \alpha + \gamma) x}) \label{IPpsiQprime}
+\end{align}
+
+where $s_0 > 0$. Thus for the coefficients $a_j$ of $A$, we have
+
+\begin{align*}
+a_j &= \langle \Psi(-X_j), Q'(X_j) \rangle \\
+&= s_0 e^{-2 \alpha X_j}\left( \beta \cos(2 \beta X_j + \phi) - \alpha \sin(2 \beta X_j + \phi)\right) + \mathcal{O}(e^{-(2 \alpha + \gamma) X_j}) \\
+&= s_0 e^{-2 \alpha X_m} e^{-2 \alpha (X_j - X_m)} \left( \beta \cos(2 \beta X_j + \phi) - \alpha \sin(2 \beta X_j + \phi)\right) + \mathcal{O}(e^{-(2 \alpha + \gamma) X_m} e^{-(2 \alpha + \gamma) (X_j - X_m) }) \\
+&= s_0 e^{\alpha \phi/\beta} r b_j \left( \beta \cos\left( -\frac{\beta}{\alpha} \log(b_j r) \right) - \alpha \sin \left( -\frac{\beta}{\alpha} \log(b_j r) \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha} b_j^{1 + \gamma/2\alpha}) \\
+&= s_0 e^{\alpha \phi/\beta} r \left( \beta b_j \cos\left( -\rho \log(b_j r) \right) - \alpha b_j \sin \left( -\rho \log(b_j r) \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha})
+\end{align*}
+
+since $b_j \in (0, 1]$. Since $r \in \mathcal{R}$, thus the $r$ inside the log disappears, leaving us with
+
+\begin{align*}
+a_j = \langle \Psi(-X_j), Q'(X_j) \rangle 
+&= s_0 e^{\alpha \phi/\beta} r \left( \beta b_j \cos\left( -\rho \log b_j \right) - \alpha b_j \sin \left( -\rho \log b_j  \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha})
+\end{align*}
+
+Next, we scale $r$ out of this. Let $a_j = r \tilde{a}_j$. Then we have
+
+\begin{align*}
+\tilde{a}_j 
+&= s_0 e^{\alpha \phi/\beta} \left( \beta b_j \cos\left( -\rho \log b_j \right) - \alpha b_j \sin \left( -\rho \log b_j  \right) \right) + \mathcal{O}(r^{\gamma/2\alpha})
+\end{align*}
+
+Thus $A = r \tilde{A}$, where $\tilde{A}$ is the same matrix as $A$ with $a_j$ replaced with $\tilde{a}_j$. We note that $\tilde{A}$ and $A$ have the same symmetry properties, thus the eigenvalues of $\tilde{A}$ are real (they are found by scaling $r$ out of the eigenvalues of $A$), and $(1,1,\dots,1)^T$ is an eigenvector of $\tilde{A}$ with eigenvalue 0. \\
+
+Finally, the domain length $X$ is given by
+
+\begin{align*}
+X &= \sum_{j=0}^{n-1} X_j \\
+&= -\sum_{j=0}^{n-1} \frac{1}{2\alpha}\log(b_j r) - \frac{n \phi}{2 \beta}\\
+&= -\frac{1}{2\alpha} \log\left( r^n \prod_{j=0}^{n-1} b_j \right) - \frac{n \phi}{2 \beta} \\
+&= \frac{1}{2\alpha} (n |\log r| + |\log b| ) - \frac{n \phi}{2 \beta}
+\end{align*}
+
+where 
+\[
+b = \prod_{j=0}^{n-1} b_j
+\]
+
+We can further simplify this by writing
+
+\begin{align*}
+X &= C n |\log r| + C_b
+\end{align*}
+
+where $C_b$ is a constant depending only on $b$.
+
+\end{proof}
+\end{lemma}
+
+To find the interaction eigenvalues, we will we need to better characterize $K(\lambda)$, which we do in the next series of lemmas.
+
+% \subsubsection{Characterization of \texorpdfstring{$K(\lambda)$}{K} }
+\subsection{Characterization of K }
+
+First, we prove the following general result about the determinant of a periodic, bi-diagonal matrix.
+
+% bidiagonal determinant
+
+\begin{lemma}\label{bidiag}
+Let $A$ be the periodic bi-diagonal matrix
+\begin{equation}
+A = \begin{pmatrix}
+a_1 & & & & & & b_n \\
+b_1 & a_2 \\
+& b_2 & a_3 \\
+\vdots & & & \vdots & &&  \vdots \\
+& & & & b_{n-2} & a_{n-1} \\
+& & & & & b_{n-1} & a_n
+\end{pmatrix}
+\end{equation}
+
+Then 
+
+\begin{equation}
+\det{A} = \prod_{k = 1}^n a_k + (-1)^n \prod_{k = 1}^{n-1} b_k
+\end{equation}
+
+\begin{proof}
+Expanding by minors using the last column, we have
+\begin{align*}
+\det A &= a_n \det
+\begin{pmatrix}
+a_1 \\
+b_1 & a_2 \\
+& b_2 & a_3 \\
+\vdots & & & & \vdots \\
+& & & & b_{n-2} & a_{n-1}
+\end{pmatrix}
++ (-1)^{n-1} \det
+\begin{pmatrix}
+b_1 & a_2 \\
+& b_2 & a_3 \\
+\vdots & & & & \vdots \\
+& & & & & b_{n-2} & a_{n-1} \\
+& & & & & & b_{n-1}
+\end{pmatrix} \\
+&= \prod_{k = 1}^n a_k + (-1)^{n-1} \prod_{k = 1}^n b_k
+\end{align*}
+since both of the matrices on the RHS are triangular.
+\end{proof}
+\end{lemma}
+
+As a corollary, we can compute the determinant of $K(\lambda)$.
+
+% determinant of K(\lambda)
+
+\begin{corollary}\label{detKcorr}
+For the matrix $K(\lambda)$ defined in Theorem \ref{blockmatrixtheorem}, we have 
+\begin{equation}\label{detK}
+\det K = e^{-\nu(\lambda)X} - e^{\nu(\lambda)X} = -2 \sinh (\nu(\lambda) X)
+\end{equation}
+where $X = X_0 + X_1 + \dots + X_{n-1}$ is half the length of the periodic domain. $\det K(\lambda) = 0$ if and only if $\nu(\lambda) = i n \pi/X$ for $n \in Z$. 
+\begin{proof}
+Since $K(\lambda)$ is a periodic, bi-diagonal matrix, by Lemma \ref{bidiag} we have
+\begin{align*}
+\det K(\lambda) &= \prod_{k = 0}^{n-1} e^{-\nu(\lambda)X_k} + (-1)^{n-1} \prod_{k = 1}^n (-e^{\nu(\lambda)X_k}) \\
+&= e^{-\nu(\lambda)(X_0 + X_1 + \dots X_{n-1})} + (-1)^{n-1} (-1)^n e^{\nu(\lambda)(X_0 + X_1 + \dots X_{n-1})} \\
+&= e^{-\nu(\lambda)X} - e^{\nu(\lambda)X} \\
+&= -2 \sinh (\nu(\lambda)X)
+\end{align*}
+It follows that $\det K(\lambda) = 0$ if and only if $\nu(\lambda) = i n \pi/X$ for $n \in Z$.
+\end{proof}
+\end{corollary}
+
+We know from Lemma \ref{detK} that $K(\lambda)$ is singular if and only if $\nu(\lambda) = i n \pi/X$ for $n \in Z$. In the next lemma, we determine values of $\lambda$ for which $K(\lambda)$ is singular. 
+
+% lambda for which K(lambda) is singular
+
+\begin{lemma}\label{Ksingularlemma}
+For sufficiently small $n/X$, $K(\lambda)$ is singular at $\lambda = \pm \lambda^K(X,n)$, where
+
+\begin{equation}\label{lambdaK}
+\lambda^K(X,n)
+= -c_0 \frac{n \pi i }{X} + \mathcal{O}\left( \frac{n}{X} \right)^3
+\end{equation} 
+
+$\lambda^K(X,n)$ is purely imaginary, $\lambda^K(X, 0) = 0$, and $\lambda^K(X, -n) = -\lambda^K(X, n)$.
+
+\begin{proof}
+To find the values of $\lambda$ where $K(\lambda)$ is singular, we need to solve $\nu(\lambda) = n \pi i/X$ for sufficiently small $n \in \Z$. We know $\nu(0) = 0$, so we only need to do this for nonzero $n$. \\
+
+Let $G(\lambda, r) = \nu(\lambda) - r$. Then $G(0, 0) = 0$ and $D_\lambda G(0, 0) = \nu'(0) = -1/c_0$, which is nonzero by Hypothesis \ref{c0nonzero}. Using the IFT, we can solve for $\lambda$ in terms of $r$ for $r$ near 0. In other words, there exists a function $\lambda(r)$ such that $\lambda(0) = 0$ and $G(\lambda(r), r) = 0$ for sufficiently small $r$. Thus, for sufficiently small $r$, $\nu(\lambda(r)) = r$. By Lemma \ref{nulambdalemma}, $\nu(-\lambda(r)) = -\nu(\lambda(r)) = -r$, thus by uniqueness of the IFT solution, $\lambda(-r) = -\lambda(r)$, i.e. $\lambda(r)$ is an odd function. We also have from the IFT 
+
+\begin{align*}
+\lambda'(r) &= -\frac{1}{\partial_\lambda G(\lambda(r), r) } \partial_r G(\lambda(r), r) \\
+&= \frac{1}{\partial_\lambda \nu(\lambda) } 
+\end{align*}
+
+which, at $\lambda = 0$, is $\lambda'(r) = -c_0$. Expanding $\lambda(r)$ in a Taylor series about $r = 0$ and using the fact that $\lambda(r)$ is an odd function, we have
+
+\begin{align*}
+\lambda(r) &= \lambda(0) + \lambda'(0) r + \mathcal{O}(|r|^2) \\
+&= -c_0 r + \mathcal{O}(|r|^3)
+\end{align*}
+
+For $n/X$ sufficiently small, take $r = n \pi i / X$. Let 
+
+\[
+\lambda^K(X, n) = \lambda\left( \frac{n \pi i}{X} \right)
+\]
+
+Then $\nu(\lambda^K(X, n)) = n \pi i / X$, which implies $\det K(\lambda^K(X, n)) = 0$. We have the expansion
+
+\begin{align*}
+\lambda^K(X,n)
+&= -c_0 \frac{n \pi i }{X} + \mathcal{O}(n/X)^3 \\
+\end{align*} 
+
+Since $\lambda(r)$ is an odd function, $\lambda^K(X,-n) = -\lambda^K(X,n)$. Finally, since for $\lambda$ pure imaginary, $\nu(\lambda)$ is also pure imaginary, $\lambda(X,n)$ is pure imaginary.
+\end{proof}
+\end{lemma}
+
+We will now look in more detail at $K(\lambda)$ and its inverse. First, we note the following estimate for the operator norm of $K(\lambda)$.
+
+\begin{equation}\label{Klambdanorm}
+||K(\lambda)|| \leq n ||K(\lambda)||_{\text{max}} = C e^{|\text{Re }\nu(\lambda)|X_{n-1}}
+\end{equation}
+
+In the next lemma, we derive an expression for the inverse of $K(\lambda)$ (when it is invertible).
+
+% lemma : inverse of K(lambda)
+
+\begin{lemma}\label{Kinvlemma}
+
+When $\det K(\lambda) \neq 0$,
+
+\begin{equation}\label{Klambdainv}
+K(\lambda)^{-1} = \frac{1}{\det K(\lambda)} \tilde{K}(\lambda)
+\end{equation}
+
+where
+\begin{align}\label{tildeK}
+\tilde{K}&(\lambda) = \\
+&\begin{pmatrix}
+e^{-\nu(\lambda)(X_2+\dots+X_{n-1}+X_0)} & e^{-\nu(\lambda)(-X_2-\dots-X_{n-1}-X_0)} &
+e^{-\nu(\lambda)(X_2-\dots-X_{n-1}-X_0)} & \dots & e^{-\nu(\lambda)(X_2+\dots+X_{n-1}-X_0)}  \\ 
+e^{-\nu(\lambda)(X_3+\dots+X_0-X_1)} & e^{-\nu(\lambda)(X_3+\dots+X_0+X_1)} &
+e^{-\nu(\lambda)(-X_3-\dots-X_0-X_1)} & \dots & e^{-\nu(\lambda)(X_3+\dots-X_0-X_1)}  \\ 
+& \ddots & \ddots \\
+e^{-\nu(\lambda)(-X_1-X_2 -\dots-X_{n-1})} & e^{-\nu(\lambda)(X_1-X_2 -\dots-X_{n-1})} &
+e^{-\nu(\lambda)(X_1+X_2 -\dots-X_{n-1})} & \dots & e^{-\nu(\lambda)(X_1+X_2+\dots+X_{n-1})}  \nonumber 
+\end{pmatrix}
+\end{align}
+
+and we have the bound
+
+\begin{equation}\label{Klambdainvnorm}
+||K(\lambda)^{-1}|| \leq C \frac{e^{|\text{Re }\nu(\lambda)|X }}{| \det K(\lambda) |}
+\end{equation}
+
+\begin{proof}
+This can be verified directly. Note that each row is essentially a cyclic permutation of the previous row. Everything is shifted one place to the right, but a different index omitted in each row; row $k$ omits index $k$, which is taken $\mod n$. For row $j$, by matrix multiplication we can verify that
+\begin{align*}
+[K(\lambda)\tilde{K}(\lambda)]_{jj} &= e^{-\nu(\lambda)(X_0 + \dots + X_{n-1})} - e^{\nu(\lambda)(X_0 + \dots + X_{n-1})} = \det K(\lambda) \\
+[K(\lambda)\tilde{K}(\lambda)]_{jk} &= 0 && j \neq k
+\end{align*}
+where $\det(K(\lambda))$ is given in Corollary \ref{detKcorr}. The same holds for the product $\tilde{K}(\lambda)K(\lambda)$.
+\end{proof}
+\end{lemma}
+
+Before we continue, we recall that we need to make sure the roots of $\det A - \lambda^2 M I$ and $\det K(\lambda)$ do not get too close. We do that in the next lemma.
+
+% epsilon balls lemma
+
+\begin{lemma}\label{epsilonballslemma}
+For sufficiently large $r$, the nonzero roots of $\det A - \lambda^2 M I$ and the nonzero roots of $K(\lambda)$ within $\delta$ of the origin are separated by at least $\epsilon/X$, where
+\begin{equation}\label{epsilonchoice}
+\epsilon = \frac{r^{1/4}}{4}
+\end{equation}
+\begin{proof}
+The nonzero roots of $\det A - \lambda^2 M I$ are of the form $\pm r^{1/2} \sqrt{\tilde{\mu}_j/M}$, where $\tilde{\mu}_j$ is one of the nonzero eigenvalues of $\tilde{A}$. These roots come in pairs which are symmetric about the origin. Although we only have to consider the case when these roots are purely imaginary, we do not know in advance which ones these will be, so we consider the worst case scenario where all the roots are purely imaginary. Let $a = \max_j\{| \sqrt{\tilde{\mu}_j/M}|\}$. We will show that for sufficiently small $r$, 
+\[
+|\lambda^K(X,1)| - a r^{1/2} > \frac{\epsilon}{X}
+\]
+Since $X > 0$, this is equivalent to
+\[
+(|\lambda^K(X,1)| - a r^{1/2})X  > \epsilon
+\]
+
+This implies that any purely imaginary interaction eigenvalues will be located between 0 and the first ``essential spectrum'' eigenvalue. Recall that 
+\[
+\lambda^K(X,1)
+= -c_0 \frac{\pi i }{X} + \mathcal{O}(1/X)^3 
+\]
+Then we have
+\begin{align*}
+(|\lambda^K(X,1)| - a r^{1/2})X &= \left( |c_0| \frac{\pi}{X} + \mathcal{O}(1/X)^3 - a r^{1/2} \right)X \\
+&= c_0 \pi + \mathcal{O}(1/X)^2 - a r^{1/2} X \\
+&= |c_0| \pi \left(1 + \mathcal{O}(1/X)^2 - a_1 r^{1/2} X\right)  \\
+\end{align*}
+
+where $a_1 = a / |c_0| \pi$. From Lemma \ref{reparam}, $X$ is given in terms of $r$ by
+\[
+X = n |\log r| + C_b
+\]
+where $C_b$ is a constant which depends only on the length parameters $b^*_j(m_j, \theta)$ used in the construction of the periodic $n-$pulse and not on the scaling parameter $r$. Substituting this in, we have
+\begin{align*}
+(|\lambda^K(X,1)| - a r^{1/2})X 
+&= |c_0| \pi \left(1 - a_1 r^{1/2}(n |\log r| + C_b) + \mathcal{O}\left( \frac{1}{n |\log r| + C_b} \right) \right)  \\
+\end{align*}
+as $r \rightarrow 0$, the quantity in parentheses on the RHS approaches 1 and $\epsilon \rightarrow 0$. Thus there exists $r_\epsilon > 0$ such that for $r \in \mathcal{R}$ with $r < r_\epsilon$, $|\lambda^K(X,1)| - a r^{1/2} > \frac{\epsilon}{X} > \epsilon/X$. The result then follows.
+\end{proof}
+\end{lemma}
+
+Next, we obtain a bound for $\det K(\lambda)$. 
+
+% bounds for Det K
+
+\begin{lemma}\label{detKlemma}
+We have the following lower bounds for $\det K(\lambda)$.
+\begin{enumerate}[(i)]
+\item If $|\text{Re }\nu(\lambda)| \geq 1/X$, 
+\begin{equation}\label{detKbound1}
+|\det K(\lambda)| \geq \sqrt{2} e^{|\text{Re }\nu(\lambda)X|}
+\end{equation}
+\item Let $0 < \epsilon < 1/2$. If $|\lambda| \geq C r^{1/2}$ and $\text{Im }\lambda$ is at least $\epsilon/X$ away from all of points $\lambda^K(X,k)$ with $|\lambda^K(X,k)| < \delta$ and $k \neq 0$, then
+\begin{equation}\label{detKbound2}
+|\det K(\lambda)|\geq C \min\{ \epsilon, r^{1/2} X \}
+\end{equation}
+\end{enumerate}
+
+\begin{proof}
+First, we take the case (i) where $|\text{Re }\nu(\lambda)| \geq 1/X$. For convenience, let $\nu(\lambda)X = a + bi$, so $|a| \geq 1$. Expanding $|\sinh(a + b i)|^2$ gives us
+
+\begin{align*}
+|\sinh(a + b i)|^2 
+&= |\sinh a \cosh b i + \cosh a \sin b i|^2 \\
+&= |\sinh a \cos b + i \cosh a \sin b |^2 \\
+&= \sinh^2 a \cos^2 b + \cosh^2 a \sin^2 b \\
+&= \sinh^2 a \cos^2 b + \sinh^2 a \sin^2 b 
++ \cosh^2 a \sin^2 b - \sinh^2 a \sin^2 b \\
+&= \sinh^2 a (\cos^2 b + \sin^2 b) 
++ \sin^2 b( \cosh^2 a - \sinh^2 a) \\
+&= \sinh^2 a + \sin^2 b
+\end{align*}
+
+In this case,
+
+\begin{align*}
+|\sinh(\nu(\lambda) X)|^2 &= |\sinh(a + b i)|^2 \\
+&\geq \sinh^2 a \\
+&= \frac{1}{4}\left( e^{2a} + e^{-2a} - 2 \right) \\
+&\geq \frac{1}{4}\left( e^{2|a|} - 2 \right)
+\end{align*}
+
+For $|a| \geq 1$, we have
+
+\begin{align*}
+e^{2|a|} - 2 - \frac{e^{2|a|}}{2} 
+&= \frac{e^{2|a|}}{2} - 2 \\
+&= \frac{e^2}{2} - 2 > 0
+\end{align*}
+
+Thus $e^{2|a|} - 2 \geq \frac{e^{2|a|}}{2}$ and we conclude
+
+\begin{align*}
+|\sinh(\nu(\lambda) X)|^2 \geq \frac{e^{2|a|}}{2} \\
+|\sinh(\nu(\lambda) X)| \geq \frac{e^{|a|}}{\sqrt{2}}
+\end{align*}
+
+from which it follows that for $|\text{Re } \nu(\lambda)| \geq 1/X$
+
+\begin{align*}
+|\det K(\lambda)| &= 2 |\sinh(\nu(\lambda) X)|
+\geq \sqrt{2} e^{|\text{Re }\nu(\lambda)X|}
+\end{align*}
+
+Next, we consider the case (ii). Let $0 < \epsilon < 1/2$, and assume that $\text{Im }\lambda$ is at least $\epsilon/X$ away from all of points $\lambda^K(X,k)$ with $|\lambda^K(X,k)| < \delta$ and $k \neq 0$. There are two cases to consider. First, suppose $|\lambda| \leq 1/2 \lambda^K(X,1)$. Note that the $\epsilon$ criterion is automatically satisfied. Expanding $\sinh( \nu(\lambda) X)$ in a Taylor series about $\lambda = 0$, and recalling that $\nu(0) = 0$, we get
+
+\begin{align*}
+\sinh(\nu(\lambda + \xi) X) &= -\frac{1}{c_0}X\xi + \mathcal{O}((X \xi)^3)
+\end{align*}
+
+Since $|\lambda| \geq C r^{1/2}$, we have $C_1 r^{1/2} < \xi < |c_0| \pi C_2/X$, thus for this case,
+
+\begin{align*}
+|\det K(\lambda)| &= 2 |\sinh(\nu(\lambda) X)| \\
+& \geq C r^{1/2}X
+\end{align*}
+
+For the second case suppose $|\lambda| \leq 1/2 \lambda^K(X,1)$. Since the points $\lambda^K(X,k)$ are spaced apart on the imaginary axis by approximtely $k \pi/X$, if we take $0 < \epsilon < 1/2$, there is enough room between the points for us to work. We want this bound to hold for when $|\text{Re } \nu(\lambda)| < 1/X$. Once again, let $\nu(\lambda) X = a + b i$. Then, using the same expansion for $|\sinh(a + b i)|^2$ as above, we have
+
+\begin{align*}
+|\sinh(\nu(\lambda) X)|^2 
+&= \sinh^2 a + \sin^2 b \\
+&\geq \sin^2 b \\
+&= \sin^2 (\text{Im }\nu(\lambda)X)
+\end{align*}
+
+from which it follows that
+
+\begin{align*}
+|\det K(\lambda)| = 2 |\sinh(\nu(\lambda) X)| \geq 2|\sin(\text{Im }\nu(\lambda)X)|
+\end{align*}
+
+As long as $\text{Im }\nu(\lambda)X)$ is at least $C \epsilon/X$ away from all $n \pi$, it follows that $|\det K(\lambda)| \geq C \epsilon$. We need this in terms of $\lambda$, which should not be difficult since $\nu(\lambda)$ and $\lambda$ are the same order.\\
+
+For $n/X$ suffienctly small, $\lambda^K(X, n)$ is defined by Lemma \ref{Ksingularlemma}. Since $\nu(\lambda)$ is smooth in $\lambda$, from Lemma \ref{nulambdalemma} we have the Taylor series expansion for $\nu'(\lambda)$
+\[
+\nu'(\lambda) = -\frac{1}{c_0} + \mathcal{O}(|\lambda|^2)
+\]
+
+Expand $\nu(\lambda)$ in a Taylor series about $\lambda^K(X, n)$ to get
+
+\begin{align*}
+\nu\left( \lambda^K(X, n) + \xi \right) &= \nu( \lambda(X, n) ) + \nu'(\lambda(X, n)\xi
++ \mathcal{O}(\xi^2) \\
+&= \frac{n \pi i}{X} + \left( -\frac{1}{c_0} + \mathcal{O}(|\lambda(X, n)|^2) \right) \xi
++ \mathcal{O}(\xi^2) \\
+&= \frac{n \pi i}{X} -\frac{1}{c_0}\xi \left( 1 + \mathcal{O} \left(\frac{n}{X}\right)^2 \right) + \mathcal{O}(\xi^2)
+\end{align*}
+
+If we take $\text{Im } \xi \geq \epsilon/X$ (and small enough so that we don't get within $\epsilon/X$ of a different $\lambda^K(X, n)$, then
+
+\begin{align*}
+|\text{Im } \nu\left( \lambda^K(X, n) + \xi \right)X - n \pi| \geq C \epsilon
+\end{align*}
+
+Thus if the $\epsilon$ condition holds,
+
+\[
+|\det K(\lambda)| \geq C \min\{ X r^{1/2}, \epsilon \}
+\]
+
+\end{proof}
+\end{lemma}
+
+In the final lemma of this section, we obtain bounds on $K(\lambda)^{-1}$ as well as the products $K_1(\lambda)K(\lambda)^{-1}$ and $K_2(\lambda)K(\lambda)^{-1}$. For this, we choose $\epsilon$ as in Lemma \ref{epsilonballslemma}.
+
+% lemma : bounds on K
+
+\begin{lemma}\label{Kinvboundslemma}
+Choose $\lambda \in \C$ such that
+\begin{itemize}
+	\item $|\lambda| \geq C r^{1/2}$
+	\item $\text{Im }\lambda$ is at least $\epsilon/X$ away from all of the points $\lambda^K(X,k)$ with $k$ nonzero and $|\lambda^K(X,k)| \leq \delta$, where
+	\[
+	\epsilon = \frac{r^{1/4}}{4}
+	\]
+\end{itemize}
+Then we have the following bounds.
+\begin{enumerate}[(i)]
+\item 
+\begin{equation}\label{Kinvbound}
+||K(\lambda)^{-1}|| \leq C \max \left\{ r^{-1/4}, \frac{r^{-1/2}}{X} \right\} \\
+\end{equation}
+\item 
+\begin{align}
+||K_1(\lambda)K(\lambda)^{-1}|| &\leq C (|\lambda| + r^{1/2}) \max \left\{ r^{-1/4}, \frac{r^{-1/2}}{X} \right\} \label{K1Kinvbound} \\
+||K_2(\lambda)K(\lambda)^{-1}|| &\leq C (|\lambda| + r^{1/2}) \max \left\{ r^{-1/4}, \frac{r^{-1/2}}{X} \right\} \label{K2Kinvbound}
+\end{align}
+\end{enumerate}
+
+\begin{proof}
+For the bound on $|K(\lambda)^{-1}|$, if $\text{Re }\nu(\lambda)|X \geq 1/X$, we have from Lemma \ref{detKlemma}
+
+\begin{align*}
+||K(\lambda)^{-1}|| &\leq C \frac{e^{|\text{Re }\nu(\lambda)|X }}{| \det K(\lambda) |} \leq C \frac{e^{|\text{Re }\nu(\lambda)|X }}{e^{|\text{Re }\nu(\lambda)X|}} = C 
+\end{align*}
+
+If $\text{Re }\nu(\lambda)|X \leq 1/X$, then for our choices of $\lambda$ and $\epsilon$, we have from Lemma \ref{detKlemma}
+
+\begin{align*}
+||K(\lambda)^{-1}|| &\leq C \frac{e^{|\text{Re }\nu(\lambda)|X }}{| \det K(\lambda) |} \\
+& \leq C \frac{1}{\min \{\epsilon, X r^{1/2} \}} \\
+& \leq C \max \left\{ r^{-1/4}, \frac{r^{1/2}}{X} \right\}
+\end{align*}
+
+This gives us the overall bound
+
+\begin{align*}
+||K(\lambda)^{-1}|| &\leq C \max \left\{ r^{-1/4}, \frac{r^{-1/2}}{X} \right\}
+\end{align*}
+
+For $K_1(\lambda)K(\lambda)^{-1}$, using the equation for $K(\lambda)^{-1}$ from Lemma \ref{Kinvlemma} and the form of $K_1(\lambda)$ from the proof of Lemma \ref{jumpcenteradj},
+
+\begin{align*}
+||K_1(\lambda)K(\lambda)^{-1}|| &\leq 
+C \frac{e^{|\text{Re }\nu(\lambda)|X}}{|\det K(\lambda)|} \max {|\gamma|_{ij}} \\
+&\leq C \max \left\{ r^{-1/4}, \frac{r^{-1/2}}{X} \right\} \max {|\gamma|_{ij}}
+\end{align*}
+
+where we used the bound from the first part of this lemma; the $\gamma_{ij}$ are the coefficients of $K_1(\lambda)$ from the proof of Lemma \ref{jumpcenteradj}. Since $\gamma_{ij} = \mathcal{O}(|\lambda| + r^{\tilde{\gamma}/2})$, we conclude
+
+\begin{align*}
+||K_1(\lambda)K(\lambda)^{-1}|| &\leq C (|\lambda| + r^{\tilde{\gamma}/2}) \max \left\{ r^{-1/4}, \frac{r^{-1/2}}{X} \right\}
+\end{align*}
+
+Since $K_2(\lambda)$ is a similar perturbation of $K(\lambda)$, we have a similar bound for $||K_2(\lambda)K(\lambda)^{-1}||$.
+\end{proof}
+\end{lemma}
+
+We are finally ready to find the interaction eigenvalues, which come from the second line of the block matrix equation and are close to the points where $A - \lambda^2 M I$ is singular.
+
+\subsubsection{Interaction Eigenvalues}
+
+To find the interaction eigenvalues, we solve the first line of the block matrix equation \eqref{blockeq} for $c$ and plug it into the second line of the block matrix. Before we do that, we note that we expect the interaction eigenvalues to occur near where $A - \lambda^2 M I$ is singular. From Lemma \ref{reparam}, $A = r \tilde{A}$. Thus it makes sense to take the scaling for $\lambda$
+
+\[
+\lambda = r^{1/2}\tilde{\lambda}
+\]
+
+In particular, this means for the interaction eigenvalues that $\lambda = \mathcal{O}(r^{1/2})$, thus we are justified taking $|\lambda| \geq C r^{1/2}$ in the previous section. In the following lemma, we produce an equation we can solve to find the interaction eigenvalues.
+
+% equation for d
+
+\begin{lemma}\label{deqlemma}
+For sufficiently small $r$, the interaction eigenvalues are given by $\lambda = r^{1/2} \tilde{\lambda}$, where the $\tilde{\lambda}$ are the values for which
+
+\begin{equation}\label{eqford}
+(\tilde{A} - \tilde{\lambda}^2 MI + \tilde{D}_3)d = 0
+\end{equation}
+
+has a nontrivial solution. The remainder term $\tilde{D}_3$ has bound
+
+\begin{equation}\label{tildeD3bound}
+||\tilde{D}_3|| \leq C r^{1/2}
+\end{equation}
+
+\begin{proof}
+First, we solve the top line of the block matrix equation \eqref{blockeq} for $c$. For $\lambda \neq \lambda^K(X, n)$, $K(\lambda)$ is invertible, and we can write the top line of \eqref{blockeq} as
+
+\begin{align*}
+(I + C_1 + K_1(\lambda)K(\lambda)^{-1}) K(\lambda) c = -D_1 d
+\end{align*}
+
+Using $\lambda = \mathcal{O}(r^{1/2})$ and the bound from Lemma \ref{Kinvboundslemma}
+
+\begin{align*}
+||K_1(\lambda)K(\lambda)^{-1}|| &\leq C (|\lambda| + r^{1/2})\max \left\{ r^{-1/4}, \frac{r^{-1/2}}{X} \right\} \\
+&\leq C \max \left\{ r^{1/4}, \frac{1}{X} \right\} \\
+&\leq C \max \left\{ r^{1/4}, \frac{1}{n |\log r| + C_b } \right\}
+\end{align*}
+
+where we use the expression for $X$ from Lemma \ref{reparam}. Combining this with the bound for $C_1$ (which is stronger, so is subsumed by the bound on $||K_1(\lambda)K(\lambda)^{-1}||$), we have the bound
+
+\[
+||C_1 + K_1(\lambda)K(\lambda)^{-1}|| \leq C \max \left\{ r^{1/4}, \frac{1}{n |\log r| + C_b } \right\}
+\]
+
+For sufficiently small $r$, $I + C_1 + K_1(\lambda)K(\lambda)^{-1}$ is invertible. Let $C_3 = (I + C_1 + K_1(\lambda)K(\lambda)^{-1})^{-1}$. Then we can solve for $c$ to get
+
+\[
+c = -K(\lambda)^{-1} C_3 D_1 d
+\]
+
+Plugging this into the second line of \eqref{blockeq}, we get the folowing equation for $d$.
+
+\begin{align*}
+(C_2 K(\lambda) + K_2(\lambda))c + (r\tilde{A} - r \tilde{\lambda}^2 MI + D_2)d &= 0 \\
+(r\tilde{A} - r \tilde{\lambda}^2 MI + D_2)d - (C_2 K(\lambda) + K_2(\lambda))K(\lambda)^{-1} C_3 D_1 &= 0 \\
+(r\tilde{A} - r \tilde{\lambda}^2 MI + D_2)d - (C_2 + K_2(\lambda)K(\lambda)^{-1}) C_3 D_1 &= 0 \\
+\end{align*}
+
+Let 
+
+\[
+D_3 = D_2 - C_2 C_3 D_1 - K_2(\lambda) K(\lambda)^{-1} C_3 D_1
+\]
+
+be the remainder term, so that the equation for $d$ becomes
+
+\[
+(r\tilde{A} - r \tilde{\lambda}^2 MI + D_3)d = 0
+\]
+
+Using bounds from Lemma \ref{reparam} and Lemma \ref{Kinvboundslemma}, we have the following bound for $D_3$
+
+\begin{align*}
+||D_3|| &\leq C \left( (|\lambda| + r^{1/2})^3 + r^{\tilde{\gamma}/2}(|\lambda| + r^{1/2})^4 + (|\lambda| + r^{1/2})^3 \right) \\
+&\leq C r^{3/2}
+\end{align*}
+
+since we are taking $\lambda = \mathcal{O}(r^{1/2})$. Dividing by $r$, we get the equation 
+
+\[
+(\tilde{A} - \tilde{\lambda}^2 MI + \tilde{D}_3)d = 0
+\]
+
+where 
+\[
+||\tilde{D}_3|| \leq C r^{1/2}
+\]
+
+\end{proof}
+\end{lemma}
+
+Because of our scaling, the scaling parameter $r$ only occurs in the remainder term. If we use Hypothesis \ref{Adistincteigs}, we can go ahead and solve for the interaction eigenvalues.
+
+% solve for int eigs
+
+\begin{lemma}\label{inteigslemma}
+Assume Hypothesis \ref{Adistincteigs}, and let $0, \tilde{\mu}_1, \dots, \tilde{\mu}_{n-1}$ be the eigenvalues of $\tilde{A}$. Then there exists $r_1 < r_0$ such that for $r \in \mathcal{R}$ with $r < r_1$, we have $2n - 2$ pairs of interaction eigenvalues
+
+\begin{align*}
+\lambda &= \pm \lambda^{\text{int}}_j(r) && j = 0, \dots, n-2
+\end{align*}
+
+where
+
+\begin{align*}
+\lambda^{\text{int}}_j(r) = r^{1/2} \sqrt{\tilde{\mu}_j / M} + \mathcal{O}(r^{3/4})
+\end{align*}
+
+These interaction eigenvalue pairs are either real or purely imaginary, and the remainder term cannot move them off of the real or imaginary axis.
+
+\begin{proof}
+Let $0, \mu_1, \dots, \mu_{n-1}$ be the eigenvalues of $A$, which we are assuming are distinct. Then since $A = r \tilde{A}$, the eigenvalues of $\tilde{A}$ are $0, \tilde{\mu}_1, \dots, \tilde{\mu}_{n-1}$, which are also distinct, and $\mu_j = r \tilde{\mu}_j$.\\
+
+Equation \eqref{eqford} has a nontrivial solution if and only if
+
+\[
+\tilde{E}(\tilde{\lambda}, r) = \det
+\left( \tilde{A} - \tilde{\lambda}^2 MI + \mathcal{O}(r^{1/2}) \right) = 0
+\]
+
+When $r = 0$, $\tilde{E}(\tilde{\lambda}, 0) = \det(\tilde{A} - \tilde{\lambda}^2 MI)$, which is found by taking $\mu = \tilde{\lambda}^2 M$ in the characteristic polynomial of $\tilde{A}$.
+
+\begin{equation}\label{tildeE1}
+\tilde{E}(\tilde{\lambda}, 0) = \tilde{\lambda}^2
+\left( \tilde{\lambda} - \sqrt{\tilde{\mu}_1 / M} \right)
+\left( \tilde{\lambda} + \sqrt{\tilde{\mu}_1 / M} \right) \dots
+\left( \tilde{\lambda} - \sqrt{\tilde{\mu}_{n-1} / M} \right)
+\left( \tilde{\lambda} + \sqrt{\tilde{\mu}_{n-1} / M} \right)
+\end{equation}
+
+For $j = 1, \dots, n-1$, $\tilde{E}(\pm \sqrt{\tilde{\mu}_j / M}, 0) = 0$. Since the eigenvalues of $A_0$ are distinct, $\partial_{\tilde{\lambda}} \tilde{E}(\pm \sqrt{\tilde{\mu}_j / M}, 0) \neq 0$. Thus there exists $r_1 < r_0$ so that for $r \leq r_1$, we can use the IFT to solve for $\tilde{\lambda}$ in terms of $r$ near the $2n-2$ roots $\pm \sqrt{\tilde{\mu}_j / M}$ of \eqref{tildeE1}. In other words, for $r \leq r_1$, there are unique smooth functions $\tilde{\lambda}_j^\pm(r)$ such that $\tilde{\lambda}_j^\pm(0) = \pm \sqrt{\tilde{\mu}_j / M}$ and $\tilde{E}(\tilde{\lambda}_j^\pm(r); r) = 0$. We should also have
+
+\[
+\tilde{\lambda}_j^\pm(r) = \pm \sqrt{\tilde{\mu}_j/ M} + \mathcal{O}(r^{1/4})
+\]
+
+Undoing the scaling, let
+
+\[
+\lambda_j^\pm(r) = r^{1/2} \tilde{\lambda}_j^\pm(r)
+\]
+
+These are the interaction eigenvalues we seek. By Hamiltonian symmetry, eigenvalues must come in quartets $\pm a \pm b i$. Since we assumed that the eigenvalues $\tilde{\mu}$ of $\tilde{A}$ are distinct, the only way we can satisfy Hamiltonian symmetry is if $\lambda_j^+(r) = \lambda_j^-(r)$, in which case the pairs must be real or purely imaginary. Thus the interaction eigenvalues are given by $\lambda = \pm \lambda^{\text{int}}_j(r)$, where
+
+\begin{align*}
+\lambda^{\text{int}}_j(r) = r^{1/2} \sqrt{\tilde{\mu}_j / M} + \mathcal{O}(r^{3/4})
+\end{align*}
+
+The remainder term cannot move these off of the real or imaginary axis.
+\end{proof}
+\end{lemma}
+
+\subsubsection{Interaction Eigenvalues in Specific Cases}
+
+At this point, unless we actually know the eigenvalues of $A$, we can conclude nothing about stability. We should be able compute the eigenvalues of $A$ in terms of the $a_j$ for $n = 2$ and $n = 3$. \\
+
+Recall that the $\tilde{a}_j$ are given by
+
+\begin{align*}
+\tilde{a}_j(r)
+&= s_0 e^{\alpha \phi/\beta} \left( \beta b_j(r; m_j; \theta) \cos\left( -\rho \log b_j(r; m_j; \theta) \right) - \alpha b_j(r; m_j; \theta) \sin \left( -\rho \log b_j(r; m_j; \theta)  \right) \right) + \mathcal{O}(r^{\gamma/2\alpha})
+\end{align*}
+
+For $n = 2$, the eigenvalues of $\tilde{A}$ are $\{0, \tilde{a} \}$, where
+\begin{align*}
+\tilde{a} = \tilde{a}_0 + \tilde{a}_1
+\end{align*}
+
+It is worth considering a few special cases. For all of these, we take $r$ sufficiently small.\\
+
+Let $m_0 = m_1 = 0$ (one of them must be 0). Then by the 2-pulse bifurcation theorem, for sufficiently small $r$ we have symmetric solutions for equal length parameters $b_0(\theta) = b_1(\theta) = e^{-\theta/\rho}$, where these do not depend on $r$. Then we have
+
+\begin{align*}
+\tilde{a}_j(r)
+&= s_0 e^{\alpha \phi/\beta} e^{-\theta/\rho} \left( \beta \cos \theta - \alpha \sin \theta \right) + \mathcal{O}(r^{\gamma/2\alpha}) \\
+&= \frac{s_0 e^{\alpha \phi/\beta} }{\alpha}  e^{-\theta/\rho} \left( \rho \cos \theta - \sin \theta \right) + \mathcal{O}(r^{\gamma/2\alpha})
+\end{align*}
+
+At $r = 0$, $\tilde{a}(0) = 0$ at the pitchfork bifurcation point $p^*$. For small $r$, we should have $\tilde{a}_j(r) = 0$ at the pitchfork bifurcation point $p_0(r)$. Essentially, this involves this expression and the derivative of $G$ with respect to $b_0$ in the existence problem to be the same, which I think is true.\\
+
+This gives us a pair of interaction eigenvalues at
+
+\[
+\lambda^{\text{int}} = \pm C r^{1/2} e^{-\theta/2\rho} \sqrt{ \frac{1}{M} \left( \rho \cos \theta - \sin \theta \right) } + \mathcal{O}(r^{\gamma/4\alpha})
+\]
+
+Maybe we can show they are actually 0. In any case, the eigenvalues switch from a real pair to a purely imaginary pair as we cross through the bifurcation point. Numerics confim this.\\
+
+For $n > 3$, we will need to take one of the length parameters $m_j$ large compared to the others to that we are ``close to'' the situation on the real line. In that case, the parity of the other $m_k$ determines the eigenvalue pattern.
+
+% lemma
+
+\begin{lemma}\label{inteigsparity}
+As in the uniform existence theorem, choose an integer $n \geq 2$ and a sequence of $n-1$ length parameters $b_0^0, \dots, b_{n-2}^0$, where $b_j^0 = \exp(-m_j \pi / \rho )$ for nonnegative integers $m_j$, at least one of which must be 0.\\
+
+Then there exists $r_0 > 0$ and $M_1 \in \N$ such that for all $r < r_0$, $m_{n-1} \geq M$, and $\theta \in [-\arctan \rho, \pi - \arctan \rho)$, 
+
+\begin{itemize}
+\item For $M > 0$ ($M < 0$), there are $n_{\text{even}}$ purely imaginary (real) pairs of interaction eigenvalues.
+\item For $M > 0$ ($M < 0$), there are $n_{\text{odd}}$ real (purely imaginary) pairs of interaction eigenvalues.
+\end{itemize}
+
+where $n_{\text{even}}$ is the number of even $m_0, \dots, m_{n-2}$ and $n_{\text{odd}}$ is the number of odd $m_0, \dots, m_{n-2}$.
+
+\begin{proof}
+Since we are on a periodic domain, we can always ``circulate'' the parameters, thus we will take $m_{n-1}$ to be large (i.e. $\tilde{a}_{n-1}$ small). Let $\tilde{A}_0$ be the tri-diagonal, symmetric matrix 
+
+\begin{align*}
+\tilde{A}_0 &= \begin{pmatrix}
+-\tilde{a}_0 & \tilde{a}_0 \\
+\tilde{a}_0 & -\tilde{a}_0 - \tilde{a}_1 &  \tilde{a}_1 \\
+& \tilde{a}_1 & -\tilde{a}_1 - \tilde{a}_2 &  \tilde{a}_2 \\
+& & \ddots & & \ddots \\
+& & & & & \tilde{a}_{n-2} & -\tilde{a}_{n-2} \\
+\end{pmatrix}
+\end{align*}
+
+which is nothing more than the matrix $\tilde{A}$ with $\tilde{a}_{n-1} = 0$. The matrix $\tilde{A}_0$ is symmetric, so its eigenvalues are real, and $(1, 1, \dots, 1)^T$ is an eigenvector of $\tilde{A}_0$ with eigenvalue 0. Let $0, \mu^0_1, \dots, \mu^0_{n-1}$ be the eigenvalues of $\tilde{A}_0$. Let $n_+$ be the number of positive $\tilde{a}_j$ and $n_i = n - n_+ - 1$ be the number of negative $\tilde{a}_j$. By Lemma 5.4 of San98 (and noting that $\tilde{A}_0$ is the matrix $-A_0$ in that lemma),
+
+\begin{enumerate}[(i)]
+\item $\tilde{A}_0$ has a simple eigenvalue at 0
+\item $\tilde{A}_0$ has $n_+$ negative eigenvalues (counting multiplicity)
+\item $\tilde{A}_0$ has $n_-$ positive eigenvalues (counting multiplicity)
+\end{enumerate}
+
+Since characteristic polynomials are smooth functions of matrix entries, the eigenvalues of a matrix are also smooth functions of the matrix entries. In particular, the eigenvalues of $\tilde{A}$ depend continuously on $\tilde{a}_{n-1}$, and as $\tilde{a}_{n-1}$ approaches 0, the eigenvalues of $\tilde{A}$ approach those of $\tilde{A}_0$. In particular, as $\tilde{a}_{n-1}$ is increased from 0, the eigenvalues of $\tilde{A}$ can only change sign by crossing through 0. Thus we choose $m_{n-1}$ sufficiently large (i.e. $\tilde{a}_{n-1}$ sufficiently small) so that
+
+\begin{enumerate}[(i)]
+	\item The eigenvalues of $\tilde{A}$ have the same sign as those of $\tilde{A}_0$.
+	\item For $j = 0, \dots, n-2$ and for all $\theta$,
+	\[
+	b^*_j(m_j, \theta) = e^{ -\frac{1}{\rho} ( m_j \pi + \theta^*_j ) }
+	\]
+	where $|\theta^*_j| \leq \pi/3$. This implies that $\cos \theta^*_j \geq 1/2$. (This uses Lemma \ref{reparam}; the idea here is that we do not want the result to depend on the phase parameter $\theta$).
+\end{enumerate}
+
+We can now determine the signs of the $\tilde{a}_j$, $j = 0, \dots, n-2$. For $r = 0$,
+
+\begin{align}\label{tildeaj1}
+\tilde{a}_j(0)
+&= s_0 e^{\alpha \phi/\beta} \left( \beta b^*_j(m_j, \theta) \cos\left( -\rho \log b^*_j(m_j, \theta) \right) - \alpha b^*_j(m_j, \theta) \sin \left(  -\rho \log b^*_j(m_j, \theta) \right) \right) 
+\end{align}
+
+In the existence problem, we solved
+
+\[
+b^*_j(m_j, \theta) \sin \left( -\rho \log b^*_j(m_j, \theta) \right) = b^*_{n-1}(m_{n-1}, \theta) \sin \left( -\rho \log b^*_{n-1}(m_{n-1}, \theta) \right)
+\]
+
+Substituting this into equation \eqref{tildeaj1}, we get
+
+\begin{align}\label{tildeaj2}
+\tilde{a}_j(0) 
+&= s_0 e^{\alpha \phi/\beta} \left( \beta b^*_j(m_j, \theta) \cos\left( -\rho \log b^*_j(m_j, \theta) \right) - \alpha b^*_{n-1}(m_{n-1}, \theta) \sin \left(  -\rho \log b^*_{n-1}(m_{n-1}, \theta) \right) \right) 
+\end{align}
+
+From the existence problem, we have an expression for $b^*_{n-1}(m_{n-1}, \theta)$.
+
+\[
+b^*_{n-1}(m_{n-1}, \theta) = e^{ -\frac{1}{\rho}(m_{n-1} \pi - \theta) } =
+e^{ -\frac{1}{\rho}m_{n-1} \pi} e^{ \frac{1}{\rho}\theta }
+\]
+
+Substituting this into equation \eqref{tildeaj2} gives us
+
+\begin{align*}
+\tilde{a}_j(0) 
+&= s_0 e^{\alpha \phi/\beta} \left( e^{ -\frac{1}{\rho} m_j \pi } e^{ -\frac{1}{\rho} m_j \theta^*_j } \cos\left( m_j \pi + \theta^*_j \right) - \alpha e^{ -\frac{1}{\rho} m_{n-1} \pi } e^{\frac{1}{\rho} m_j \theta } \sin \left( m_{n-1} \pi + \theta \right) \right) \\
+&= s_0 e^{\alpha \phi/\beta} e^{ -\frac{1}{\rho} m_j \pi } \left(  e^{ -\frac{1}{\rho} m_j \theta^*_j } (-1)^{m_j} \cos(\theta^*_j) - \alpha e^{ -\frac{1}{\rho} (m_{n-1} - m_j) \pi } e^{\frac{1}{\rho} m_j \theta } (-1)^{m_{n-1}}\sin(\theta ) \right)  
+\end{align*}
+
+The second term on the RHS decays exponentially as $m_{n-1}$ increases. Since $\cos(\theta^*_j) \geq 1/2$, for $m_{n-1}$ sufficiently large, the sign of $\tilde{a}_j(0)$ is completely determined by the term $(-1)^{m_j}$ and we have
+
+\begin{align*}
+\tilde{a}_j(0) &> 0 && \text{if } m_j \text{ is even} \\
+\tilde{a}_j(0) &< 0 && \text{if } m_j \text{ is odd}
+\end{align*}
+
+This is independent of $\theta$. For sufficiently small $r$, the signs of the $\tilde{a}_j(r)$ will be unchanged since they are smooth in $r$.\\
+
+We conclude that there exists a natural number $m_0$ such that if for some $j$, $m_j - m_k \geq m_0$ for $k \neq j$, then there exists $\tilde{r}_1 \leq r_1$ such that for all $r < \tilde{r}_1$, 
+
+\begin{itemize}
+\item For $M > 0$ ($M < 0$), there are $n_{\text{even}}$ purely imaginary (real) pairs of interaction eigenvalues.
+\item For $M > 0$ ($M < 0$), there are $n_{\text{odd}}$ real (purely imaginary) pairs of interaction eigenvalues.
+\end{itemize}
+
+where $n_{\text{even}}$ is the number of even $m_k$ (excluding $m_j$) and $n_{\text{odd}}$ is the number of odd $m_k$ (excluding $m_j$).
+
+\end{proof}
+\end{lemma}
+
+We can now find the ``essential spectrum'' eigenvalues, which we expect to occur near the points where $K(\lambda)$ is singular. We have already determined where those points are. In order to do this, we will need to invert $A - \lambda^2 MI$ away from its singular points. We do this in the next section.
+
+% \subsubsection{Characterization of \texorpdfstring{$A - \lambda^2 MI$}{Matrix A} }
+\subsection{Characterization of Matrix A }
+
+In order proceed, we need to bound $(A - \lambda^2 MI)^{-1}$. As with the interaction eigenvalues, we will assume Hypothesis \ref{epsilonballs} and only consider $\lambda$ which are $\epsilon/X$ away from the points where $(A - \lambda^2 MI)$ is singular. Since we expect that the first nonzero interaction eigenvalues will occur at approximately $\lambda = \pm c_0 \pi i / X$, we only consider $\lambda$ with $|\lambda| \geq C/X$.\\
+
+We first bound the determinant of $(A - \lambda^2 MI)$. 
+
+% lemma : bound on det (A - \lambda^2 MI)
+
+\begin{lemma}\label{detAboundlemma}
+We have the following lower bounds for $\det(A - \lambda^2 M I)$.
+\begin{enumerate}[(i)]
+\item If $|\lambda| \geq C/X$ and $\lambda$ is at least $\epsilon/X$ away from the nonzero points where $(A - \lambda^2 MI)$ is singular, then
+
+\begin{equation}\label{detAbound1}
+|\det(A - \lambda^2 M I)|
+\geq C \frac{1}{X^2} \left( \frac{\epsilon}{X} \right)^{n-1} \left( |\lambda|^2 + r \right)^{(n-1)/2}
+\end{equation}
+
+\item If $|\lambda| \geq 2 r^{1/2} \tilde{\mu}_M$, where $\tilde{\mu}_M = \max\{\tilde{\mu}_1, \dots, \tilde{\mu}_{n-1} \}$, then
+
+\begin{equation}\label{detAbound2}
+|\det(A - \lambda^2 M I)|
+\geq C |\lambda|^{n+1} \left( |\lambda|^2 + r \right)^{(n-1)/2}
+\end{equation}
+
+\end{enumerate}
+
+\begin{proof}
+$\det(A - \lambda^2 MI)$ is the characteristic polynomial of $A$ with $t = \lambda^2 / M$. Since the eigenvalues of $A$ are $\{0, \mu_1, \dots, \mu_{n-1}\} = \{0, r \tilde{\mu}_1, \dots, r\tilde{\mu}_{n-1}\}$, the roots of $\det(A - \lambda^2 MI)$ are $0, \pm r^{1/2} \sqrt{\tilde{\mu}_1/M}, \dots, \pm r^{1/2} \sqrt{\tilde{\mu}_{n-1}/M}$. The root at 0 has algebraic multiplicty 2. Thus we can write
+
+\begin{align*}
+\det(A &- \lambda^2 M I) 
+= C \lambda^2 (\lambda - r^{1/2} \sqrt{\tilde{\mu}/M} )(\lambda + r^{1/2} \sqrt{\tilde{\mu}_1/M} )
+\dots(\lambda - r^{1/2} \sqrt{\tilde{\mu}_{n-1}/M})(\lambda + r^{1/2} \sqrt{\tilde{\mu}_{n-1}/M} )
+\end{align*}
+
+For the first bound, suppose $|\lambda| \geq C/X$ (for $C$ close to 1) and $\lambda$ is at least a distance $\epsilon/X$ from all of the nonzero roots of $\det(A - \lambda^2 MI)$. (This is the same assumption we had in the interaction eigenvalues section). For the $\lambda^2$ term, we have lower bound $|\lambda| \geq C/X$. Since the pairs $\pm \mu_j$ are symmetric across the origin, we have the lower bound for each pair
+
+\begin{align*}
+(\lambda - r^{1/2} \sqrt{\tilde{\mu}/M} )(\lambda + r^{1/2} \sqrt{\tilde{\mu}_1/M} )
+&\geq \frac{\epsilon}{X} \sqrt{ |\lambda|^2 + |r^{1/2} \sqrt{\tilde{\mu}_1/M}|^2 } \\
+&\geq C \frac{\epsilon}{X} \sqrt{ |\lambda|^2 + r } \\
+\end{align*}
+
+Combining these, we have the bound
+
+\[
+|\det(A - \lambda^2 M I)|
+\geq C \frac{1}{X^2} \left( \frac{\epsilon}{X} \right)^{n-1} \left( |\lambda|^2 + r \right)^{(n-1)/2}
+\]
+
+For the second bound, suppose $|\lambda| \geq 2 r^{1/2} \tilde{\mu}_M$. For the pairs $\pm \mu_j$ we have the lower bound
+
+\begin{align*}
+(\lambda - r^{1/2} \sqrt{\tilde{\mu}/M} )(\lambda + r^{1/2} \sqrt{\tilde{\mu}_1/M} )
+&\geq \frac{|\lambda|}{2} \sqrt{ |\lambda|^2 + |r^{1/2} \sqrt{\tilde{\mu}_1/M}|^2 } \\
+&\geq C |\lambda| \sqrt{ |\lambda|^2 + r } \\
+\end{align*}
+
+Combining these, we have the bound
+
+\[
+|\det(A - \lambda^2 M I)|
+\geq C |\lambda|^{n+1} \left( |\lambda|^2 + r \right)^{(n-1)/2}
+\]
+
+\end{proof}
+\end{lemma}
+
+In the next lemma, we obtain a bound on $(A - \lambda^2 M I)^{-1}$.
+
+% bound on (A - \lambda^2 M I)^{-1}
+
+\begin{lemma}\label{Ainvboundlemma}
+Choose $\lambda \in \C$ such that
+\begin{itemize}
+	\item $|\lambda| \geq C/X$
+	\item $\text{Im }\lambda$ is at least $\epsilon/X$ away from all of the nonzero points where $(A - \lambda^2 MI)$ is singular, where
+	\[
+	\epsilon = \frac{r^{1/4}}{4}
+	\]
+\end{itemize}
+
+Then we have the following bounds for $(A - \lambda^2 M I)^{-1}$.
+\begin{enumerate}[(i)]
+\item If $|\lambda| \leq 2 r^{1/2} \tilde{\mu}_M$, where $\tilde{\mu}_M = \max\{\tilde{\mu}_1, \dots, \tilde{\mu}_{n-1}\}$, then
+
+\begin{align}\label{Ainvbound1}
+||(A - \lambda^2 M I)^{-1}|| &\leq C X ^{n+1} r^{(n-1)/4}
+\end{align}
+
+\item If $|\lambda| \geq 2 r^{1/2} \tilde{\mu}_M$, then
+
+\begin{equation}\label{Ainvbound2}
+||(A - \lambda^2 M I)^{-1}|| \leq \frac{C}{|\lambda|^2}
+\end{equation}
+
+\end{enumerate}
+\begin{proof}
+The inverse $(A - \lambda^2 M I)^{-1}$ is given by the formula
+
+\[
+(A - \lambda^2 M I)^{-1} = \frac{1}{\det(A - \lambda^2 M I)}\text{Adj}(A - \lambda^2 M I)
+\]
+
+where $\text{Adj}(A - \lambda^2 M I)$ is the adjugate matrix (transpose of the cofactor matrix) corresponding to $A - \lambda^2 M I$. Since $A$ is $n \times n$, each entry in $\text{Adj}(A - \lambda^2 M I)$ involves sums of products of $n-1$ of the entries of $A - \lambda^2 M I$, each of which is $\mathcal{O}(r + |\lambda|^2)$. \\
+
+For the first case, using the lower bound \eqref{detAbound1} on $\det(A - \lambda^2 M I)$ from Lemma \ref{detAboundlemma}, 
+
+\begin{align*}
+||(A - \lambda^2 M I)^{-1}|| &\leq C X^2 \left(\frac{X}{\epsilon}\right)^{n-1} 
+\frac{\left( |\lambda|^2 + r \right)^{n-1}}{\left( |\lambda|^2 + r \right)^{(n-1)/2}} \\
+&= C X^2 X^{n - 1} r^{-(n-1)/4}\left( |\lambda|^2 + r \right)^{(n-1)/2} \\
+&\leq C X ^{n+1} r^{(n-1)/4}
+\end{align*}
+
+since $|\lambda| \leq C r^{1/2}$.\\
+
+For the second case, $|\lambda| \geq C r^{1/2}$, and we use the lower bound \eqref{detAbound2} on $\det(A - \lambda^2 M I)$ from Lemma \ref{detAboundlemma} to get
+
+\begin{align*}
+||(A - \lambda^2 M I)^{-1}|| &\leq C \frac{1}{|\lambda|^{n+1}} 
+\frac{\left( |\lambda|^2 + r \right)^{n-1}}{\left( |\lambda|^2 + r \right)^{(n-1)/2}} \\
+&= C \frac{1}{|\lambda|^{n+1}} \left( |\lambda|^2 + r \right)^{(n-1)/2} \\
+&\leq C \frac{1}{|\lambda|^{n+1}} |\lambda|^{n-1} \\
+&=\frac{C}{|\lambda|^2}
+\end{align*}
+
+\end{proof}
+\end{lemma}
+
+\subsubsection{Find the Essential Spectrum Eigenvalues}
+
+To find the ``essential spectrum'' eigenvalues, we solve the second line of of the block matrix equation \eqref{blockeq} for $d$ and plug it into the first line.
+
+% lemma : equation for c
+
+\begin{lemma}\label{ceqlemma}
+For sufficiently small $r$, the `essential spectrum' eigenvalues are the values of $\lambda$ for which 
+
+\begin{align}\label{eqforc}
+(K(\lambda) + C_4 K_3(\lambda)c &= 0
+\end{align}
+
+has a nontrivial solution, where $K_3(\lambda)$ has the same form as $K_1(\lambda)$, and
+
+\begin{align*}
+||C_4|| &\leq C
+\end{align*}
+
+$K_1(\lambda)$ and $K_2(\lambda)$ are defined in Theorem \ref{blockeq} and their bounds are given in Lemma \ref{reparam}.
+
+\begin{proof}
+As long as $\lambda$ is not one of the $2n - 1$ points $\{0, \pm \sqrt{\mu_1/M}, \dots, \pm \sqrt{\mu_{n-1}/M}$ where $A - \lambda^2 MI$ is singular, we can invert $A - \lambda^2 MI$ and write the bottom line of \eqref{blockeq} as 
+
+\begin{align}\label{blockeqbottom}
+(C_2 K(\lambda) + K_2(\lambda))c 
++ (A - \lambda^2 MI)(I + (A - \lambda^2 MI)^{-1} D_2))d = 0
+\end{align}
+
+To continue, we need to bound $(A - \lambda^2 MI)^{-1} D_2$. We need to do this for the two cases in Lemma \ref{Ainvboundlemma}. For $|\lambda| \geq 2 r^{1/2} \tilde{\mu}_M$, we have
+
+\begin{align*}
+|| (A - \lambda^2 MI)^{-1} D_2 || &\leq \frac{C}{|\lambda|^2} (|\lambda| + r^{1/2})^3 \\ 
+&\leq C |\lambda|
+\end{align*}
+
+Since $|\lambda| < \delta$, for sufficiently small $\delta$ this will be less than 1. Otherwise, for $|\lambda| \leq 2 r^{1/2} \tilde{\mu}_M$ (and $|\lambda| > C/X$),
+
+\begin{align*}
+|| (A - \lambda^2 MI)^{-1} D_2 || &\leq C X^{n+1}\left( |\lambda|^2 + r \right)^{(n-1)/4} (|\lambda| + r^{1/2})^3 \\
+&\leq C X^{n+1} r^{(n-1)/4} r^{3/2} \\ 
+&= C X^{n+1} r^{(n+1)/4} r \\
+&= C r (r^{1/4} X)^{n+1}
+\end{align*}
+
+Using the expression for $X$ from Lemma \ref{reparam}, 
+
+\begin{align*}
+|| (A - \lambda^2 MI)^{-1} D_2 ||
+&\leq C r \left( r^{1/4} (n |\log r| + C_b )\right)^{n+1}
+\end{align*}
+
+Since $r^{1/4} |\log r| \rightarrow 0$ as $r \rightarrow 0$, we can find $r_2 \leq r_1$ such that for $r \in \mathcal{R}$ with $\leq r_2$, $|| (A - \lambda^2 MI)^{-1} D_2 || < 1$. Thus $(I + (A - \lambda^2 MI)^{-1} D_2)$ is invertible. Let $D_3 = (I + (A - \lambda^2 MI)^{-1} D_2)^{-1}$. Then we can solve \eqref{blockeqbottom} for $d$ to get
+
+\begin{align*}
+d &= -(A - \lambda^2 MI)^{-1} D_3 (C_2 K(\lambda) + K_2(\lambda))c
+\end{align*}
+
+Plug this in for $c$ in the first block matrix equation to get
+
+\begin{align*}
+(K(\lambda) + C_1 K(\lambda) + K_1(\lambda))c + D_1 d &= 0 \\
+(K(\lambda) + C_1 K(\lambda) + K_1(\lambda))c - D_1 (A - \lambda^2 MI)^{-1} D_3 (C_2 K(\lambda) + K_2(\lambda))c &= 0 \\
+(K(\lambda) + C_1 K(\lambda) + K_1(\lambda) - D_1 (A - \lambda^2 MI)^{-1} D_3 C_2 K(\lambda) - D_1 (A - \lambda^2 MI)^{-1} D_3 K_2(\lambda))c &= 0 \\
+(I + C_1 - D_1 (A - \lambda^2 MI)^{-1} D_3 C_2) K(\lambda)c + (K_1(\lambda) - D_1 (A - \lambda^2 MI)^{-1} D_3 K_2(\lambda))c &= 0
+\end{align*}
+
+The term $D_1 (A - \lambda^2 MI)^{-1}$ shows up twice. To get a bound on it, we do the same thing we did above and consider two cases. For $|\lambda| \geq 2 r^{1/2} \tilde{\mu}_M$,
+
+\begin{align*}
+|| D_1 (A - \lambda^2 MI)^{-1} || &\leq \frac{C}{|\lambda|^2} (|\lambda| + r^{1/2})^2 \\ 
+&\leq C
+\end{align*}
+
+For $|\lambda| \leq 2 r^{1/2} \tilde{\mu}_M$, we will have the same thing as above except with $r^{1/2}$ out front instead of $r$.
+
+\begin{align*}
+|| D_1 (A - \lambda^2 MI)^{-1} || &\leq C r^{1/2} \left( r^{1/4} (n |\log r| + C_b )\right)^{n+1}
+\end{align*}
+
+If necessary, decrease $r_2$ so that $X r^{(2 \tilde{\gamma} - 1)/4} \leq 1$ so that for $r < r_2$ we will always have $|| D_1 (A - \lambda^2 MI)^{-1} || \leq C$.\\
+
+We can now bound $C_1 - D_1 (A - \lambda^2 MI)^{-1} D_3 C_2$ to get
+
+\begin{align*}
+|| C_1 - D_1 (A - \lambda^2 MI)^{-1} D_3 C_2 || &\leq C \left( r^{\tilde{\gamma}/2} (|\lambda| + r^{1/2}) + r^{\tilde{\gamma}/2} (|\lambda| + r^{1/2})^2 \right) \\
+&\leq C r^{\tilde{\gamma}/2} (|\lambda| + r^{1/2}) 
+\end{align*}
+
+Since $|\lambda| < \delta$, for sufficiently small $\delta$ and $r < r_2$ (decreasing $r_2$ if necessary), $|| C_1 - D_1 (A - \lambda^2 MI)^{-1} D_3 C_2 || < 1$, thus $I + C_1 - D_1 (A - \lambda^2 MI)^{-1} D_3 C_2$ is invertible. Let $C_4 = (I + C_1 - D_1 (A - \lambda^2 MI)^{-1} D_3 C_2)^{-1}$. Then our equation becomes
+
+\begin{align*}
+K(\lambda)c + C_4(K_1(\lambda) - D_1 (A - \lambda^2 MI)^{-1} D_3 K_2(\lambda))c &= 0
+\end{align*}
+
+Let $D_4 = -C_4 D_1 (A - \lambda^2 MI)^{-1} D_3$. This has bound
+
+\begin{align*}
+||D_4|| &\leq C (|\lambda| + r^{1/2})^3
+\end{align*}
+
+Substituting this in, our equation becomes
+
+\begin{align*}
+(K(\lambda) + C_4 K_1(\lambda) + D_4 K_2(\lambda))c &= 0
+\end{align*}
+
+Finally, we note that since $K_1(\lambda)$ and $K_2(\lambda)$ have the same form, we can write this as
+
+\begin{align*}
+(K(\lambda) + C_4 K_3(\lambda))c &= 0
+\end{align*}
+
+where $K_3(\lambda)$ has the same form as $K_1(\lambda)$.
+
+\end{proof}
+\end{lemma}
+
+In the next lemma, we find the ``essential spectrum'' eigenvalues.
+
+\begin{lemma}\label{essspeclemma}
+There exists $r_2 \leq r_1$ such that for $r \in \mathcal{R}$ with $r < r_2$, the following is true. For all positive integers $k$ with $|\lambda^K(X,k)| < \delta$, there is a pair of purely imaginary ``essential spectrum'' eigenvalues which are given by $\lambda = \pm \lambda^{ess}(X,k; r)$, where
+
+\begin{equation}\label{lambdaess}
+\lambda^{ess}(X, k; r) = c_0 \frac{k \pi i }{X} \left( 1 + \mathcal{O}\left( \frac{1}{X} \right)\right) + \mathcal{O}\left( \frac{r^{1/2}}{X} \right)
+\end{equation}
+
+The remainder terms cannot move this off of the imaginary axis.
+
+\begin{proof}
+From the previous lemma, we have a nontrivial solution to \eqref{eqford} if and only if 
+
+\begin{align*}
+E(\lambda) = \det (K(\lambda) + C_4 K_3(\lambda)) = 0
+\end{align*}
+
+Since we know the form of $K_3(\lambda)$, we have the following expression for $C_4 K_3(\lambda)$
+
+\[
+C_4 K_3(\lambda) = 
+\begin{pmatrix}
+c_{1,1}^- e^{-\nu(\lambda)X_1} - c_{1,1}^+ e^{\nu(\lambda)X_1} 
+& \dots & 
+c_{1, n-1}^- e^{-\nu(\lambda)X_{n-1}} - c_{1,n-1}^+ e^{\nu(\lambda)X_{n-1}} &
+c_{1,0}^- e^{-\nu(\lambda)X_0} - c_{1,0}^+ e^{\nu(\lambda)X_0}  \\
+\vdots & & \vdots & \\
+c_{n,1}^- e^{-\nu(\lambda)X_1} - c_{n,1}^+ e^{\nu(\lambda)X_1}
+& \dots & 
+c_{1, n-1}^- e^{-\nu(\lambda)X_{n-1}} - c_{1,n-1}^+ e^{\nu(\lambda)X_{n-1}} &
+c_{n,0}^- e^{-\nu(\lambda)X_0} - c_{n,0}^+ e^{\nu(\lambda)X_0} 
+\end{pmatrix}
+\]
+
+where $|c_{i,j}| \leq C(|\lambda| + r^{1/2})$. To solve $E(\lambda) = 0$, we use the definition of the determinant of an $n \times n$ matrix $A$
+
+\begin{align*}
+\det A = \sum_{\sigma \in S_n} \left( \text{sgn}(\sigma) \prod_{i=1}^n a_{i, \sigma(i)} \right)
+\end{align*}
+
+where $S_n$ is the symmetric group on $n$ elements. Using this on $K(\lambda) + C_4 K_3(\lambda)$ and simplifying, we get
+
+\begin{align*}
+E(\lambda)
+&= -2 \sinh(\nu(\lambda)X) + \sum_{\tau \in T_n}
+c_\tau \prod_{j = 0}^{n-1} e^{\tau(j) \nu(\lambda)X_j}
+\end{align*}
+
+where $T_n = \{ (\pm 1, \pm 1, \dots, \pm 1 \}$ and $c_\tau = \mathcal{O}(|\lambda| + r^{1/2})$. From Lemma \ref{detKlemma}, we know that $\det K(\lambda^K(X,k)) = 0$. Let
+
+\[
+\lambda = \lambda^K(X,k) + \frac{\tilde{\lambda}}{X}
+\]
+
+where $k \in \Z$ with $|\lambda^K(X,k)|  < \delta$. From the proof of Lemma \ref{detKlemma}, 
+
+\begin{align*}
+\nu\left( \lambda^K(X, k) + \frac{\tilde{\lambda}}{X} \right) 
+&= \frac{k \pi i}{X} -\frac{1}{c_0}\frac{\tilde{\lambda}}{X} \left( 1 + \mathcal{O} \left(\frac{k}{X}\right)^2 \right) + \mathcal{O}\left( \frac{\tilde{\lambda}}{X}\right)^2 \\
+&= \frac{k \pi i}{X} + C_k \frac{\tilde{\lambda}}{X} + \mathcal{O}\left( \frac{\tilde{\lambda}}{X}\right)^2 
+\end{align*}
+
+where $C_k = \mathcal{O}(1)$. Substituting this into $\sinh(\nu(\lambda)X)$, we have for the leading order term of $E(\lambda)$
+
+\begin{align*}
+\sinh\left(\nu\left(\lambda^K(X, k) + \frac{\tilde{\lambda}}{X}\right)X\right)
+&= \sinh\left(\left(\frac{k \pi i}{X} + C_k \frac{\tilde{\lambda}}{X} + \mathcal{O}\left( \frac{\tilde{\lambda}}{X}\right)^2 \right) X\right) \\
+&= \sinh\left( k \pi i + C_k \tilde{\lambda} + \mathcal{O}\left( \frac{\tilde{\lambda}^2}{X}\right) \right) \\
+&= (-1)^k \left( C_k \tilde{\lambda} + \mathcal{O}\left( \frac{\tilde{\lambda}^2}{X}\right) \right) + \mathcal{O}\left( \tilde{\lambda} + \frac{\tilde{\lambda}^2}{X} \right)^3 \\
+&= (-1)^k C_k \tilde{\lambda} + \mathcal{O}\left( \frac{\tilde{\lambda}^2}{X} + \tilde{\lambda}^3 \right)
+\end{align*}
+
+For the remainder terms of $E(\lambda)$,
+
+\begin{align*}
+c_\tau \prod_{j = 0}^{n-1} &\exp\left( {\tau(j) \nu(\lambda)X_j} \right)
+= c_\tau \prod_{j = 0}^{n-1} 
+\exp\left( \tau_j \left( \frac{k \pi i}{X} + C_k \frac{\tilde{\lambda}}{X} + \mathcal{O}\left( \frac{\tilde{\lambda}}{X}\right)^2 \right) X_j\right) \\
+&= c_\tau \exp\left( \left( \sum_{j=0}^{n-1} \frac{\tau_j X_j}{X} \right)
+\left( k \pi i + C_k \tilde{\lambda} + \mathcal{O}\left( \frac{\tilde{\lambda}^2}{X} \right) \right) \right) \\
+&= c_\tau \exp\left( r_\tau
+\left( k \pi i + C_k \tilde{\lambda} + \mathcal{O}\left( \frac{\tilde{\lambda}^2}{X} \right) \right) \right) \\ 
+&= c_\tau e^{i k \pi r_\tau} \exp \left( r_\tau C_k \tilde{\lambda} + \mathcal{O}\left( \frac{\tilde{\lambda}^2}{X} \right) \right)
+\end{align*}
+
+where $r_\tau = \left( \sum_{j=0}^{n-1} \frac{\tau_j X_j}{X} \right)$ and $|r_\tau| \leq 1$ for all $\tau \in T_n$. Let $\tilde{c}_\tau = c_\tau e^{i k \pi r_\tau} = \mathcal{O}(|\lambda| + r^{1/2})$. Expanding in a Taylor series, we have
+
+\begin{align*}
+c_\tau \prod_{j = 0}^{n-1} \exp\left( {\tau(j) \nu(\lambda)X_j} \right)
+&= \tilde{c}_\tau \left( 1 + r_\tau C_k \tilde{\lambda} + \mathcal{O}\left(\tilde{\lambda}^2 \right) \right) 
+\end{align*}
+
+Since we have a finite sum of terms of this form, this becomes
+
+\begin{align*}
+\sum_{\tau \in T_n} c_\tau \prod_{j = 0}^{n-1} \exp\left( {\tau(j) \nu(\lambda)X_j} \right)
+&= \mathcal{O}\left( (|\lambda| + r^{1/2}) \left( 1 + r_\tau C_k \tilde{\lambda} + \mathcal{O}\left(\tilde{\lambda}^2 \right) \right)\right) \\
+&= \mathcal{O} \left( \frac{k \pi}{X} + \frac{\tilde{\lambda}}{X} + r^{1/2} \right)
+\end{align*}
+
+Combining everything, we get an expression for $E(\lambda)$ entirely in terms of $\tilde{\lambda}$.
+
+\begin{align*}
+E(\tilde{\lambda})
+&= (-1)^k C_k \tilde{\lambda} + \mathcal{O}\left( \frac{\tilde{\lambda}^2}{X} + \tilde{\lambda}^3 \right) + \mathcal{O} \left( \frac{k \pi}{X} + \frac{\tilde{\lambda}}{X} + r^{1/2} \right) \\
+&= (-1)^k C_k \tilde{\lambda} + \mathcal{O}\left( \frac{\tilde{\lambda}}{X} + \tilde{\lambda}^3 \right) + \mathcal{O} \left( \frac{k \pi}{X} + r^{1/2} \right) \\
+&= (-1)^k C_k \tilde{\lambda} + \mathcal{O}\left( \frac{\tilde{\lambda}}{n|\log r| + C_b} + \tilde{\lambda}^3 \right) + \mathcal{O} \left( \frac{k \pi}{X} + r^{1/2} \right)
+\end{align*}
+
+where we used our expression for $X$ from Lemma \ref{reparam}. Note that the last term on the RHS does not involve $\tilde{\lambda}$. To solve $E(\tilde{\lambda}) = 0$, let
+\[
+F(\tilde{\lambda}) = (-1)^k C_k \tilde{\lambda} + \mathcal{O}\left( \frac{\tilde{\lambda}}{n|\log r| + C_b} + \tilde{\lambda}^3 \right)
+\]
+Note that $F(0) = 0$ and for sufficiently small $r$, 
+\[
+\frac{\partial}{\partial\tilde{\lambda}}F(\tilde{\lambda})\big|_{\tilde{\lambda = 0}}
+= (-1)^k C_k + \mathcal{O}\left( \frac{1}{n|\log r| + C_b} \right) \neq 0
+\]
+since $C_k = \mathcal{O}(1)$. Thus by the inverse function theorem, $F$ is invertible in a neighborhood of 0. Recall that  $|\frac{k \pi}{X}| < \delta$. Thus, decreasing $r_2$ and $\delta$ if needed, we can solve uniquely for $\tilde{\lambda}$, i.e. 
+\[
+\tilde{\lambda} = F^{-1}\left( \mathcal{O} \left( \frac{k \pi}{X} + r^{1/2} \right)\right)
+\]
+In particular,
+
+\[
+\tilde{\lambda} = \mathcal{O}\left( \frac{k \pi}{X} + r^{1/2} \right)
+\]
+
+Thus we have eigenvalues at
+
+\begin{align*}
+\lambda &= \lambda^K(X,k) + \frac{\tilde{\lambda}}{X} \\
+&= \lambda^K(X,k) + \mathcal{O}\left( \frac{1}{X} \left( \frac{k \pi}{X} + r^{1/2} \right) \right)\\
+&= -c_0 \frac{k \pi i }{X} \left( 1 + \mathcal{O}\left( \frac{1}{X} \right)\right) + \mathcal{O}\left( \frac{r^{1/2}}{X} \right)
+\end{align*}
+
+By Hamiltonian symmetry, as in the case with the interaction eigenvalues, these must be purely imaginary since they cannot come in quartets. Thus, the ``essential spectrum'' eigenvalues are given by $\lambda = \pm \lambda^{ess}(X, k; r)$, where $k$is a positive integer with $k \pi/X < \delta$.
+
+\[
+\lambda^{ess}(X, k; r) = c_0 \frac{k \pi i }{X} \left( 1 + \mathcal{O}\left( \frac{1}{X} \right)\right) + \mathcal{O}\left( \frac{r^{1/2}}{X} \right)
+\]
+
+The remainder terms cannot move these off of the imaginary axis.
+
+\end{proof}
+\end{lemma}
+
+\subsubsection{Count the Eigenvalues}
+
+Finally, we will count the eigenvalues with $|\lambda| < \delta$ to conclude that we have accounted for all the small eigenvalues.  
+
+\begin{lemma}\label{eigcount}
+There are $2n + 2 k_M + 1$ eigenvalues inside the circle $|\lambda| = \delta$, where $k_M$ is the largest positive integer $k$ such that $|\lambda^K(k,X) < \delta$. A complete account of the eigenvalues inside $|\lambda| = \delta$ is as follows.
+\begin{enumerate}
+	\item At $\lambda = 0$, there is an eigenvalue with algebraic multiplicity 3. The eigenfunctions are the kernel eigenfunction $\partial_x q_{np}(x)$ from translation invariance, its generalized kernel eigenfunction $\partial_c q_{np}(x)$, and a third kernel eigenfunction $v(x)$ which is bounded but does not decay exponentially.
+	\item There are $2n - 2$ interaction eigenvalues, which come in pairs.
+	\item There $2 K_M$ ``essential spectrum'' eigenvalues, which come in pairs.
+\end{enumerate}
+There are no other eigenvalues inside $|\lambda| = \delta$ besides these.
+
+\begin{proof}
+Let $E(\lambda)$ be the determinant of the block matrix equation \ref{blockeq}.
+
+\begin{equation}
+E(\lambda) = \det 
+\begin{pmatrix}
+K(\lambda) + C_1 K(\lambda) + K_1(\lambda) & D_1 \\
+C_2 K(\lambda) + K_2(\lambda) & A - \lambda^2 MI + D_2
+\end{pmatrix}
+\end{equation}
+
+Use the radius $\delta$ from Theorem \ref{blockmatrixtheorem}. If necessary, decrease $\delta$ a little so that the circle of radius $\delta$ about the origin in the complex plane cuts exactly half way between consecutive points $\lambda^K(X, k)$.\\
+
+Take $\lambda$ with $|\lambda| = \delta$, i.e. $\lambda$ is on the $\delta-$circle. For all $k$ such that $|\lambda^K(X, k)| \leq \delta$, we have
+
+\[
+| \lambda - \lambda^K(X, k)|  \geq C \frac{1}{3X}
+\]
+
+Using \ref{Kinvboundslemma}, this implies
+
+\[
+||K(\lambda)^{-1}|| \leq 3 C \\
+\]
+
+Next, since eigenvalues of $A$ are $\mathcal{O}(r^{1/2})$, we can find $r_3 \leq r_2$ such that for all $r < r_3$, $2 r^{1/2} \tilde{\mu}_M \leq \delta$, where $\tilde{\mu}_M = \max\{\tilde{\mu}_1, \dots, \tilde{\mu}_{n-1} \}$. Thus for $|\lambda| = \delta$, using Lemma \ref{Ainvboundlemma} we have the following bound for $A - \lambda^2 M I$
+
+\begin{equation*}
+||(A - \lambda^2 M I)^{-1}|| \leq \frac{C}{\delta^2}
+\end{equation*}
+
+For $|\lambda| = \delta$, $K(\lambda)$ is invertible. Write $E(\lambda)$ as
+
+\begin{equation}
+E(\lambda) = \det 
+\begin{pmatrix}
+(I + C_1 + K_1(\lambda)K(\lambda)^{-1})K(\lambda) & D_1 \\
+C_2 K(\lambda) + K_2(\lambda) & A - \lambda^2 MI + D_2
+\end{pmatrix}
+\end{equation}
+
+From the proof of Lemma \ref{deqlemma}, $I + C_1 + K_1(\lambda)K(\lambda)^{-1}$ is invertible. As in that lemma, let $C_3 = (I + C_1 + K_1(\lambda)K(\lambda)^{-1})$. Thus finding the zeros of $E(\lambda)$ is equivalent to finding the zeros of
+
+\begin{equation}
+\tilde{E}(\lambda) = \det 
+\begin{pmatrix}
+K(\lambda) & C_3 D_1 \\
+C_2 K(\lambda) + K_2(\lambda) & A - \lambda^2 MI + D_2
+\end{pmatrix}
+\end{equation}
+
+Using a standard determinant identity, since $K(\lambda)$ and $A - \lambda^2 M I$ are invertible, this becomes
+
+\begin{align*}
+\tilde{E}(\lambda) &= \det(K(\lambda))
+\det ( A - \lambda^2 MI + D_2 - (C_2 K(\lambda) + K_2(\lambda))K(\lambda)^{-1}C_3 D_1 ) \\
+&= \det(K(\lambda))\det(A - \lambda^2 MI)
+\det ( I + (A - \lambda^2 MI)^{-1}(D_2 - (C_2 + K_2(\lambda)K(\lambda)^{-1})C_3 D_1 ) \\
+&= \det(K(\lambda))\det(A - \lambda^2 MI)\det(I + R(\lambda))
+\end{align*}
+
+where
+
+\[
+R(\lambda) = 
+(A - \lambda^2 MI)^{-1}(D_2 - (C_2 + K_2(\lambda)K(\lambda)^{-1})C_3 D_1)
+\]
+
+Using the bounds from above together with the bounds from Lemma \ref{reparam} and recalling that $r^{1/2} < |\lambda| = \delta$, we have
+
+\begin{align*}
+||R(\lambda)|| \leq C \frac{1}{\delta^2}
+( |\delta|^3 + (r^{\tilde{\gamma}/2}\delta + \delta)\delta^2) = C \delta
+\end{align*}
+
+Thus we can write $R(\lambda) = \delta \tilde{R}(\lambda)$, where $\tilde{R}(\lambda) = \mathcal{O}(1)$. From a standard expansion of the determinant, 
+
+\begin{align*}
+\det(I + R(\lambda)) &= 1 + \delta \text{Tr}(\tilde{R}(\lambda)) + \mathcal{O}(\delta^2) \\
+&= 1 + \mathcal{O}(\delta)
+\end{align*}
+
+Thus, for sufficiently small $\delta$, $\det(I + R(\lambda)) = 1 + \tilde{\delta}$, where $\tilde{\delta} < 1$. This gives us 
+
+\begin{equation}
+\tilde{E}(\lambda) = \det(K(\lambda))\det(A - \lambda^2 MI) + \tilde{\delta} \det(K(\lambda))\det(A - \lambda^2 MI)
+\end{equation}
+
+Since $\tilde{\delta} < 1$ and we are taking $\lambda = \delta$, by Rouche's Theorem, $\tilde{E}(\lambda)$ and $\det(K(\lambda))\det(A - \lambda^2 MI)$ have the same number of zeros (counting multiplicty) inside the circle $|\lambda| = \delta$. By our choice of $\delta$, 
+
+\begin{enumerate}[(i)]
+\item $\det(A - \lambda^2 MI)$ has exactly $2n$ zeros inside the circle $|\lambda| = \delta$, which are given by $\{ 0, \pm r^{1/2} \tilde{\mu}_1, \dots, \pm r^{1/2} \tilde{\mu}_{n-1} \}$, where 0 has algebraic multiplicty 2.
+
+\item Let $k_M$ be the largest positive integer $k$ such that $\lambda^K(k,X) < \delta$. Then $\det(K(\lambda))$ has exactly $2 K_M + 1$ zeros inside the circle $|\lambda| = \delta$, which are given by $\{0, \pm \lambda^K(1,X), \dots, \lambda^K(k_M,X)$, where 0 has algebraic multiplicity 1.
+\end{enumerate}
+
+Thus there are $2n + 2 k_M + 1$ eigenvalues inside the circle $|\lambda| = \delta$. These are as as follows.
+\begin{enumerate}
+	\item At $\lambda = 0$, we have an eigenvalue with algebraic multiplicity 3. The eigenfunctions are the kernel eigenfunction $\partial_x q_{np}(x)$ from translation invariance, its generalized kernel eigenfunction $\partial_c q_{np}(x)$, and a third kernel eigenfunction $v(x)$ which is bounded but does not decay exponentially.
+	\item $2n - 2$ interaction eigenvalues, which come in pairs.
+	\item $2 K_M$ ``essential spectrum'' eigenvalues, which come in pairs.
+\end{enumerate}
+
+There are no other eigenvalues which have not been accounted for.
+\end{proof}
+\end{lemma}
+
+We will
+
+\subsubsection{Count the Eigenvalues near 0}
+
+We will also count the eigenvalues in a small ball around 0.  
+
+\begin{lemma}\label{eigcount2}
+Let 
+\begin{equation}
+\xi = \min\left\{ \frac{\pi}{2X}, \frac{\tilde{\mu}_m r^{1/2}}{2} \right\} = 
+\min\left\{ \frac{\pi}{2 C( n |\log X| + C_b)}, \frac{\tilde{\mu}_m r^{1/2}}{2} \right\} 
+\end{equation}
+where $\tilde{\mu}_m = \min \{ |\sqrt{\tilde{\mu}_1/M}|, \dots, |\sqrt{\tilde{\mu}_{n-1}/M}| \}$ and the $\tilde{\mu}_j$ are the nonzero eigenvalues of $A$. Then for sufficiently small $r$, there are exactly 3 eigenvalues inside the circle of radius $\xi$ in the complex plane.
+
+\begin{proof}
+Let $E(\lambda)$ be the determinant of the block matrix equation \ref{blockeq}. Let $\tilde{\mu}_m = \min \{ |\sqrt{\tilde{\mu}_1/M}|, \dots, |\sqrt{\tilde{\mu}_{n-1}/M}| \}$,where the $\tilde{\mu}_j$ are nonzero eigenvalues of $A$. Choose the following radius
+
+\[
+\xi = \min\left\{ \frac{\pi}{2X}, \frac{\tilde{\mu}_m r^{1/2}}{2} \right\}
+\]
+
+For $|\lambda| = \xi$, $K(\lambda)$ is invertible. As in the previous lemma, write $E(\lambda)$ as
+
+\begin{equation*}
+E(\lambda) = \det 
+\begin{pmatrix}
+(I + C_1 + K_1(\lambda)K(\lambda)^{-1})K(\lambda) & D_1 \\
+C_2 K(\lambda) + K_2(\lambda) & A - \lambda^2 MI + D_2
+\end{pmatrix}
+\end{equation*}
+
+To bound $K_1(\lambda)K(\lambda)^{-1}$, we use Lemma \ref{Kinvboundslemma}. By our choice of $\xi$, the $\epsilon$ criterion in that lemma is automatically satisfied. Replacing the condition that $|\lambda| \geq C r^{1/2}$ with $|\lambda| = \delta$, we have the bound
+\begin{align*}
+||K_1(\lambda)K(\lambda)^{-1}|| &\leq C( \xi + r^{1/2})\max\left\{ r^{-1/4}, \frac{1}{\xi X} \right\} \\
+&\leq C r^{1/2} \max\left\{ r^{-1/4}, \frac{1}{\xi X} \right\} \\
+&\leq C r^{1/2} \max\left\{ r^{-1/4}, 1, \frac{r^{-1/2}}{X} \right\} \\
+&\leq C \max\left\{ r^{1/4}, \frac{1}{X} \right\} \\
+&\leq C \max\left\{ r^{1/4}, \frac{1}{n|\log r| + C_b } \right\} \\
+\end{align*}
+
+where we used the expression for $X$ from Lemma \ref{reparam}. Since the bound for $C_1$ is stronger than this, for sufficiently small $r$, $I + C_1 + K_1(\lambda)K(\lambda)^{-1}$ is invertible. Let $C_3 = (I + C_1 + K_1(\lambda)K(\lambda)^{-1})$. Thus finding zeros of $E(\lambda)$ is equivalent to finding the zeros of
+
+\begin{equation}
+\tilde{E}(\lambda) = \det 
+\begin{pmatrix}
+K(\lambda) & C_3 D_1 \\
+C_2 K(\lambda) + K_2(\lambda) & A - \lambda^2 MI + D_2
+\end{pmatrix}
+\end{equation}
+
+As in the previous lemma, since $K(\lambda)$ and $A - \lambda^2 M I$ are invertible for $|\lambda| = \xi$, we use a standard determinant identity to write this as
+
+\begin{align*}
+\tilde{E}(\lambda)
+&= \det(K(\lambda))\det(A - \lambda^2 MI)\det(I + R(\lambda))
+\end{align*}
+
+where
+
+\[
+R(\lambda) = 
+(A - \lambda^2 MI)^{-1}(D_2 - (C_2 + K_2(\lambda)K(\lambda)^{-1})C_3 D_1)
+\]
+
+First, we bound $(D_2 - (C_2 + K_2(\lambda)K(\lambda)^{-1})C_3 D_1)$. Since $K_2(\lambda)$ is of the same form as $K_1(\lambda)$, we can use the bound for $K_1(\lambda)K(\lambda)^{-1}$ here.
+
+\begin{align*}
+||(D_2 &- (C_2 + K_2(\lambda)K(\lambda)^{-1})C_3 D_1)|| \\
+&\leq C \left( (\xi + r^{1/2})^3 + (\xi + r^{1/2})^2 \left( r^{\tilde{\gamma}/2}(\xi + r^{1/2})^2 + \max\left\{ r^{1/4}, \frac{1}{n|\log r| + C_b } \right\} \right) \right) \\
+&\leq C \left( r^{3/2} + r \left( r^{1 + \tilde{\gamma}/2} + \max\left\{ r^{1/4}, \frac{1}{n|\log r| + C_b } \right\} \right) \right) \\
+&\leq C r \max\left\{ r^{1/4}, \frac{1}{n|\log r| + C_b } \right\} 
+\end{align*}
+
+For a bound on $(A - \lambda^2 MI)^{-1}$, we use Lemma \ref{Ainvboundlemma}. The bound depends on $\xi$. If $\xi = \frac{\pi}{2X}$, we can go ahead and use the bound \eqref{Ainvbound1} from Lemma \ref{Ainvboundlemma}.
+
+\[
+||(A - \lambda^2 MI)^{-1}|| \leq C X^{n+1} r^{(n-1)/4}
+\]
+
+If $\xi = \frac{\tilde{\mu}_m r^{1/2}}{2}$, then we need to compute a new bound. For $\det(A - \lambda^2 MI)$, we can adapt Lemma \ref{detAboundlemma} to get
+
+\[
+|\det(A - \lambda^2 MI)| \leq C \xi^2 (\xi + r^{1/2})^{n-1} r^{(n-1)/2}
+\]
+
+Then we can follow the proof of Lemma \ref{Ainvboundlemma} to get
+
+\begin{align*}
+||(A - \lambda^2 MI)^{-1}|| &\leq C \frac{(r + \xi^2)^{n-1}}{\xi^2 (\xi + r^{1/2})^{n-1} r^{(n-1)/2}} \\
+&= C \frac{r^{n-1}}{r \: r^{(n-1)/2} r^{(n-1)/2}} \\
+&= \frac{C}{r} 
+\end{align*}
+
+Combining all of these, we can get a bound on $R(\lambda)$. If $\xi = \frac{\pi}{2X}$, then
+
+\begin{align*}
+||R(\lambda)|| &\leq C X^{n+1} r^{(n-1)/4} r \max\left\{ r^{1/4}, \frac{1}{n|\log r| + C_b } \right\} \\
+&\leq C r^{1/2} (r^{1/4} X)^{n+1} \max\left\{ r^{1/4}, \frac{1}{n|\log r| + C_b } \right\} \\
+&\leq C r^{1/2} \left(r^{1/4}(n|\log r| + C_b)\right)^{n+1} \max\left\{ r^{1/4}, \frac{1}{n|\log r| + C_b } \right\}
+\end{align*}
+
+This can be made arbitrarily small. If $\xi = \frac{\tilde{\mu}_m r^{1/2}}{2}$, then 
+
+\begin{align*}
+||R(\lambda)|| &\leq \frac{C}{r} r \max\left\{ r^{1/4}, \frac{1}{n|\log r| + C_b} \right\} \\
+&= C \max\left\{ r^{1/4}, \frac{1}{n|\log r| + C_b} \right\} 
+\end{align*}
+
+This can also be made arbitrarily small. Choose $r_3$ sufficiently small so that for $r < r_3$, $||R(\lambda)|| < 1/4n$. Then we have
+
+\[
+R(\lambda) = \frac{1}{3n}\tilde{R}(\lambda)
+\] 
+
+with $||\tilde{R}(\lambda)|| \leq 1$. From a standard expansion of the determinant, 
+
+\begin{align*}
+\det(I + R(\lambda)) &= 1 + \frac{1}{3n} \text{Tr}(\tilde{R}(\lambda)) + \mathcal{O}\left(\frac{1}{9n^2} \right) \\
+&= 1 + p
+\end{align*}
+
+where $0 < p < 1$. Thus we have
+
+\begin{align*}
+\tilde{E}(\lambda) &= \det(K(\lambda))\det(A - \lambda^2 MI)\det(I + R(\lambda)) \\
+&= \det(K(\lambda))\det(A - \lambda^2 MI)(1 + p) \\
+&= \det(K(\lambda))\det(A - \lambda^2 MI) + p \det(K(\lambda))\det(A - \lambda^2 MI)
+\end{align*}
+
+Since $p < 1$, by Rouche's Theorem, $\tilde{E}(\lambda)$ and $\det(K(\lambda))\det(A - \lambda^2 MI)$ have the same number of zeros (counting multiplicty) inside the circle $|\lambda| = \xi$. By our choice of $\xi$, $\det(K(\lambda))\det(A - \lambda^2 MI)$ has exactly 3 zeros inside $|\lambda| = \xi$, all of which occur at $\lambda = 0$. We conclude that $\tilde{E}(\lambda)$ (and thus $E(\lambda)$) has exactly 3 zeros inside $|\lambda| = \xi$.\\
+
+\end{proof}
+\end{lemma}
+
+% remove this if part of main document
+\bibliographystyle{amsalpha}
+\bibliography{thesis.bib}
+
+\end{document}
