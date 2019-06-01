@@ -407,10 +407,10 @@ W_i^+(0) - W_i^-(0) &\in \R \Psi(0) \oplus \R \Psi^c(0) && i = 0, \dots, n-1
 \end{equation}
 
 A solution to \eqref{eigsystem} gives us an eigenfunction corresponding to eigenvalue $\lambda$ if and only if the $n$ jumps at $x = 0$ in the direction of $\Psi(0) \oplus \R \Psi^c(0)$ are 0, i.e. if and only if the $2n$ jump conditions are satisfied, i.e. 
-\begin{align*}
+\begin{align}
 \xi_i &= \langle \Psi(0), W_i^+(0) - W_i^-(0) \rangle = 0 \label{jumpxi} \\
 \xi_-^c &= \langle \Psi^c(0), W_i^+(0) - W_i^-(0) \rangle = 0 \label{jumpxic}
-\end{align*}
+\end{align}
 for $i = 0, \dots, n-1$.
 
 From the existence problem we have the following estimates, which we collect in the following lemma. REVISIT THIS.
@@ -478,13 +478,14 @@ Before we continue, we define the following constants, which we will use through
 		\item $|\nu(\lambda)| < \eta$, where $\nu(\lambda)$ is the small eigenvalue of $A(\lambda)$ defined in Lemma \ref{nulambdalemma}.
 		\item The real part of any other eigenvalue of $A(\lambda)$ lies outside the interval $[-\alpha, \alpha]$. This is possible since the eigenvalues of $A(\lambda)$ are smooth functions of $\lambda$.
 	\end{enumerate}
-	We can always choose a smaller $\delta$ later if needed.
 
 	\item Choose $X_m$ sufficiently large so that
 	\begin{equation}
 	e^{-\tilde{\alpha} X_m} < \delta
 	\end{equation}
 	where $X_m = \min\{X_0, \dots, X_{n-1}\}$.
+
+	We can always choose a smaller $\delta$ later if needed.
 \end{enumerate}
 
 We can now use the conjugation lemma. We will apply it separately to each linear operator $A_i^\pm(x; \lambda)$. Define the Banach spaces
@@ -496,22 +497,25 @@ $A_i^\pm(x; \lambda)$ is analytic in $\Lambda = (\lambda, Q_i^\pm(x))$. Using th
 \begin{equation}\label{defPipm}
 P_i^\pm(x; \lambda) = P^\pm(x; \lambda, Q_i^\pm(x) )
 \end{equation}
-In addition, let $P^\pm(x; \lambda)$ be the conjugation operators on $\R^\pm$ for $\Lambda = (\lambda(x))$.
-By the conjugation lemma, we can write these projections as
-\begin{align*}
+In addition, let $P^\pm(x)$ be the conjugation operators on $\R^\pm$ for $\Lambda = (0, Q(x))$. By the conjugation lemma, we can write these projections as
+\begin{equation}\label{projTheta}
+\begin{aligned}
 P_i^\pm(x; \lambda) &= I + \Theta_i^\pm(x; \lambda)  \\
-P^\pm(x; \lambda) &= I + \Theta^\pm(x; \lambda)
-\end{align*}
+P^\pm(x) &= I + \Theta^\pm(x; 0)
+\end{aligned}
+\end{equation}
 where we have the decay rates
-\begin{align*}
+\begin{equation}\label{Thetadecay}
+\begin{aligned}
 |\Theta_i^\pm(x; \lambda)| &\leq C e^{-\alpha |x|} \\
 |\Theta^\pm(x; \lambda)| &\leq C e^{-\alpha |x|}
-\end{align*}
+\end{aligned}
+\end{equation}
 where $\alpha = \alpha_0 - \eta$. These decay rates also apply to derivatives with respect to $x$ and $\Lambda$.
 
-We will want to be able to write $P_i^\pm(x; \lambda)$ as a small perturbation of $P^\pm(x; 0)$. We will only need this estimate at $x = 0$, since for large $x$, these projections are approximatly the identity. To that end, we expand $P_i^\pm(x; \lambda)$ in a Taylor series about $(0, Q_i^\pm(x))$ to get
+We will want to be able to write $P_i^\pm(x; \lambda)$ as a small perturbation of $P^\pm(x)$. We will only need this estimate at $x = 0$, since for large $x$, these projections are approximatly the identity. To that end, we expand $P_i^\pm(x; \lambda)$ in a Taylor series about $(0, Q_i^\pm(x))$ to get
 \begin{align*}
-P_i^\pm(x; \lambda) = P^\pm(x; 0) + C_1 \lambda 
+P_i^\pm(x; \lambda) = P^\pm(x) + C_1 \lambda 
 + C_2( Q_i^\pm(x) - Q(x) ) + \mathcal{O}(|\lambda|^2 + ||Q_i^\pm - Q||^2 )
 \end{align*}
 Using Lemma \ref{solvewithjumps}, 
@@ -520,7 +524,7 @@ Using Lemma \ref{solvewithjumps},
 \end{equation*}
 Thus we have the estimate
 \begin{equation}\label{PTaylor}
-P_i^\pm(0; \lambda) = P^\pm(0; 0) + \mathcal{O}(|\lambda| + e^{-2 \alpha X_m})
+P_i^\pm(0; \lambda) = P^\pm(0) + \mathcal{O}(|\lambda| + e^{-2 \alpha X_m})
 \end{equation}
 
 Using the projections $P_i^\pm(x; \lambda)$ from the conjugation lemma, we make the substitution $W_i^\pm = P_i^\pm(x; \lambda) Z_i^\pm$ in \eqref{eigsystem} to obtain the system
@@ -540,7 +544,7 @@ and the jump conditions become
 \end{aligned}
 \end{equation}
 
-\subsection{Evolution}
+\subsection{Evolution operator}
 
 Since $A(\lambda)$ does not depend on $x$, we know exactly how solutions of the constant coefficient ODE $V' = A(\lambda)V$ will behave. Let $E^{u/s/c}(0)$ be the stable/unstable/center eigenspaces of $A(0)$. $E^s(0)$ and $E^u(0)$ are $m-$dimensional, and $E^c(0)$ is 1-dimensional. For $|\lambda| < \delta$, let $E^{u/s/c}(\lambda)$ be the corresponding eigenspaces of $A(\lambda)$. In particular, we note that $E^c(\lambda) = \text{span}\{ \nu(\lambda) \}$, where $\nu(\lambda)$ is the small eigenvalue of $A(\lambda)$ defined in Lemma \ref{nulambdalemma}. Although $E^c(\lambda)$ may not be a true center eigenspace, we retain this notation for convenience. 
 
@@ -568,10 +572,13 @@ equations for the linearization about the primary pulse $Q(x)$. Recall that thes
 V_i'(x) &= A(Q(x); 0) V_i(x) \\
 W_i'(x) &= -A(Q(x); 0)^* W_i(x)
 \end{align*}
-Let $\Theta(y, x)$ be the evolution operator for the variational equation. Then $\Theta(x, y)^*$ is the evolution operator for the adjoint variational equation. Recall that $P^\pm(x; 0)$ conjugates $A(Q(x); 0)$. From the conjugation lemma, we have the following relationship between $\Theta(y, x)$ and $\Phi(y, x; 0)$.
+
+WE MAY WANT TO RENAME THIS THETA
+
+Let $\Theta(y, x)$ be the evolution operator for the variational equation. Then $\Theta(x, y)^*$ is the evolution operator for the adjoint variational equation. Recall that $P^\pm(x)$ conjugates $A(Q(x); 0)$. From the conjugation lemma, we have the following relationship between $\Theta(y, x)$ and $\Phi(y, x; 0)$.
 \begin{align*}
-\Theta(y, x) &= P^+(y; 0) \Phi(y, x; 0) P^+(x; 0)^{-1} && x, y \geq 0 \\
-\Theta(y, x) &= P^-(y; 0) \Phi(y, x; 0) P^-(x; 0)^{-1} && x, y \leq 0
+\Theta(y, x) &= P^+(y) \Phi(y, x; 0) P^+(x)^{-1} && x, y \geq 0 \\
+\Theta(y, x) &= P^-(y) \Phi(y, x; 0) P^-(x)^{-1} && x, y \leq 0
 \end{align*}
 
 \subsection{Inversion}
@@ -645,41 +652,51 @@ where $A_2$ is analytic in $\lambda$, linear in $(b, c^-, d)$, and has piecewise
 \end{align*}
 Finally, we have the estimate
 \begin{equation}\label{P0cDid}
-|P_0^c(\lambda) D_i d| \leq C e^{-\alpha_0 X_i}(|\lambda| + e^{-\alpha_0 X_i})|d|
+|P_0^c(\lambda) D_i d| \leq C e^{-\alpha_0 X_i}(|\lambda| + e^{-\alpha_0 X_m})|d|
 \end{equation}
 
 \begin{proof}
-At $\pm X_i$, the fixed point equations \eqref{Zfpeq }become
+At $\pm X_i$, the fixed point equations \eqref{Zfpeq} become
 \begin{align*}
 Z_{i+1}^-(-X_i) &= a_i^- + \Phi^u(-X_i, 0; \lambda) b_{i+1}^- + c_i^- 
 + \lambda^2 d_{i+1} \int_0^{-X_i} \Phi^u(-X_i, y; \lambda) P_{i+1}^-(y; \lambda)^{-1} \tilde{H}_i^-(y) dy \\
 Z_i^+(X_i) &= a_i^+ + \Phi^s(X_i, 0; \lambda) b_i^+ + c_i^+ 
 + \lambda^2 d_i \int_0^{X_i} \Phi^s(X_i, y; \lambda) P_i^+(y; \lambda)^{-1} \tilde{H}_i^+(y) dy
 \end{align*}
-To obtain these, we used the fact that, for example, $a_i^- \in E^s(\lambda)$ and $\Phi^s(-X_{i-1}, -X_{i-1}; \lambda)$ is the identity on $E^s(\lambda)$. From the conjugation lemma, we have the estimate
-\begin{equation}\label{conjest}
-P_i^\pm(\pm X_i; \lambda) = I + \mathcal{O}(e^{-\alpha X_i})
-\end{equation}
-which we will use on the $a_i^\pm$ and $c_i^\pm$ terms to obtain the equation
+To obtain these, we used the fact that, for example, $a_i^- \in E^s(\lambda)$ and $\Phi^s(-X_{i-1}, -X_{i-1}; \lambda)$ is the identity on $E^s(\lambda)$. Applying the appropriate projections, subtracting, and using equation \eqref{projTheta}, we obtain the equation 
+\begin{align*}
+D_i d &= (I + \Theta_i^+(X_i; \lambda))a_i^+ + (I + \Theta_i^+(X_i; \lambda))c_i^+ + P_i^+(X_i; \lambda)\Phi^s(X_i, 0; \lambda) b_i^+ \\
+&+ \lambda^2 d_i P_i^+(X_i; \lambda) \int_0^{X_i} \Phi^s(X_i, y; \lambda) P_i^+(y; \lambda)^{-1} \tilde{H}_i^+(y) dy \\
+&- (I + \Theta_{i+1}^-(-X_i; \lambda))a_i^- - (I + \Theta_{i+1}^-(-X_i; \lambda))c_i^- - P_{i+1}^-(-X_i; \lambda)\Phi^u(-X_i, 0; \lambda) b_{i+1}^- \\ 
+&- \lambda^2 d_{i+1} P_{i+1}^-(-X_i; \lambda) \int_0^{-X_i} \Phi^u(-X_i, y; \lambda) P_{i+1}^-(y; \lambda)^{-1} \tilde{H}_i^-(y) dy \\
+\end{align*}
+which is of the form
 \begin{align}\label{Dideq1}
 D_i d &= a_i^+ - a_i^- + c_i^+ - c_i^- + L_3(\lambda)_i(a, b, c^+, c^-, d)
 \end{align}
-
-For a bound on $L_3$, we obtain bounds on the individual terms. As usual, we will in general only look at one of the two pieces.
-
+where
+\begin{align*}
+L_3(\lambda)_i(a, b, c^+, c^-, d) &= \Theta_i^+(X_i; \lambda))a_i^+ + \Theta_i^+(X_i; \lambda))c_i^+ + P_i^+(X_i; \lambda)\Phi^s(X_i, 0; \lambda) b_i^+ \\
+&+ \lambda^2 d_i P_i^+(X_i; \lambda) \int_0^{X_i} \Phi^s(X_i, y; \lambda) P_i^+(y; \lambda)^{-1} \tilde{H}_i^+(y) dy \\
+&- \Theta_{i+1}^-(-X_i; \lambda))a_i^- - \Theta_{i+1}^-(-X_i; \lambda))c_i^- - P_{i+1}^-(-X_i; \lambda)\Phi^u(-X_i, 0; \lambda) b_{i+1}^- \\ &- \lambda^2 d_{i+1} P_{i+1}^-(-X_i; \lambda) \int_0^{-X_i} \Phi^u(-X_i, y; \lambda) P_{i+1}^-(y; \lambda)^{-1} \tilde{H}_i^-(y) dy \\
+\end{align*}
+To get a bound on $L_3$, we will bound the individual terms. 
 \begin{enumerate}
+\item For the terms involving $a_i^\pm$ and $c_i^\pm$, we use \eqref{Thetadecay} to get
+\[
+|\Theta_i^+(X_i; \lambda))a_i^+ + \Theta_i^+(X_i; \lambda))c_i^+| 
+\leq C(|a_i^+| + |c_i^+|)
+\]
+The ``minus'' terms are similar
 
-\item For the $a_i^\pm$ and $c_i^\pm$ terms, we have a term of order $\mathcal{O}(e^{-\alpha X_i}(|a_i| + |c_i^+| + |c_i^-|)$, which comes from the estimate \eqref{conjest} for the conjugation operators $P_i^\pm(\pm X_i; \lambda)$.
-
-\item For the terms involving $b$, we have
-
+\item For the terms involving $b$, we use \eqref{Zevolbounds} to get
 \[
 | P_i^-(-X_i; \lambda) \Phi^u(-X_i, 0; \lambda) b_{i+1}^-| \leq C e^{-\alpha X_i} |b_{i+1}
 ^-|
 \]
+The ``minus'' terms are similar
 
-\item For the integral terms, we have
-
+\item For the integral terms, we use \eqref{Zevolbounds} and the estimates from Lemma \ref{stabestimates} to get
 \begin{align*}
 &\left|
 P^+(X_i; \beta_i^+, \lambda) \int_0^{X_i} \Phi^s(X_i, y; \lambda) P^+(X_i; \beta_i^+, \lambda)^{-1} \tilde{H}_i^+(y) dy \right| \\
@@ -690,144 +707,109 @@ P^+(X_i; \beta_i^+, \lambda) \int_0^{X_i} \Phi^s(X_i, y; \lambda) P^+(X_i; \beta
 \end{align*}
 
 \end{enumerate}
-
 Putting these all together, we have the following bound for $L_3$.
-
 \begin{equation}\label{L3bound}
 |L_3(\lambda)_i(a, b, c^+, c^-, d)| \leq C e^{-\alpha X_i} \left( |a_i| + |b_i^+| + |b_{i+1}^-| + |c_i^+| + |c_i^-| + |\lambda^2| |d| \right)
 \end{equation}
-
 Since $e^{-\alpha X_m} < \delta$, this becomes
-
 \begin{align*}
 |L_3(\lambda)_i(a, b, c^+, c^-, d)| \leq C \delta ( |a_i| + |c_i^+| ) + C e^{-\alpha X_i} \left( |b_i^+| + |b_{i+1}^-| + |c_i^-| + |\lambda^2| |d| \right)
 \end{align*}
-
 Let 
-
 \[
 J_1: \bigoplus_{j=1}^n (E^s(\lambda) \times E^u(
 \lambda) \times E^c(\lambda) ) \rightarrow \bigoplus_{j=1}^n \rightarrow \C^{2m+1}
 \]
-
 be defined by $(J_1)_i(a_i^+, a_i^-, c_i^+) = (a_i^+ - a_i^-, c_i^+)$. The map $J_i$ is a linear isomorphism since $E^s(\lambda) \oplus E^u(\lambda) \oplus E^c(\lambda) = \C^{2m + 1}$. Consider the map
-
 \[
 S_1(a, c^+) = J_1 (a, c^+) + L_3(\lambda)(a, 0, c^+, 0, 0) = J_1( I + J_1^{-1} L_3(\lambda)(a, 0, c^+, 0, 0))
 \]
-
-For sufficiently small $\delta$, we will have the operator norm $||J_1^{-1} L_3(\lambda)(a, 0, c^+, 0, 0)|| < 1$, thus the operator $S_1(a, c^+)$ is invertible. We can solve for $(a, c^+)$ to get
-
+For sufficiently small $\delta$, $||J_1^{-1} L_3(\lambda)(a, 0, c^+, 0, 0)|| < 1$, thus the operator $S_1(a, c^+)$ is invertible. We can then solve for $(a, c^+)$ to get
 \[
 (a, c^+) = A_1(\lambda)(b, c^-, d) = S_i^{-1}(-D d + L_3(\lambda)(0, b, 0, c^-, d)
 \]
-
 Using the bound on $L_3$ and noting which pieces are involved, $A_1$ will have piecewise bounds
-
 \begin{align*}
 |A_1&(\lambda)_i(b, c^-, d)|
 \leq C \Big( e^{-\alpha X_i} (|b_i^+| + |b_{i+1}^-|) + |c_i^-| + e^{-\alpha X_i} |\lambda^2||d| + |D_i||d| \Big)
 \end{align*} 
 
-Next, we hit \eqref{Dideq1} with the projections $P_0^{s/u/c}(\lambda)$ on the eigenspaces $E^{s/u/c}(\lambda)$ to obtain the expressions
-
+Next, we apply the projections $P_0^{s/u/c}(\lambda)$ on the eigenspaces $E^{s/u/c}(\lambda)$ to \eqref{Dideq1} to obtain the expressions
 \begin{align*}
 a_i^+ &= P_0^u(\lambda) D_i d + A_2(\lambda)_i^+(b, c^-, d) \\
 a_i^- &= -P_0^s(\lambda) D_i d + A_2(\lambda)_i^-(b, c^-, d) \\
 c_i^+ &= c_i^- + P_0^c(\lambda) D_i d + A_2(\lambda)_i^c(b, c^-, d) )
 \end{align*}
-
 The bound on the remainder term $A_2(\lambda)_i(b, c^-, d)$ is found by substituting the bound for $A_1$ into the bound for $L_3$ and simplifying. 
-
 \begin{align*}
 |A_2&(\lambda)_i(b, c^-, d)|
 \leq C e^{-\alpha X_i} \left( |b_i^+| + |b_{i+1}^-| + |c_i^-| + |\lambda|^2|d| + |D_i||d| \right)
 \end{align*} 
-
-Anticipating what we will need at the end, we will derive slightly different expressions for $a_i^+$ and $a_i^-$. Using the conjugation operator $P_i^+(X_i; \lambda)$, we write $a_i^+$ as
-
+Anticipating what we will need at the end, we will derive expressions for $a_i^+$ and $a_i^-$ which involve the conjugation projections. Using the conjugation operator $P_i^+(X_i; \lambda)$, we write $a_i^+$ as
 \begin{align*}
-a_i^+ = P_i^+(X_i; \lambda)a_i^+ + (I - P_i^+(X_i; \lambda))a_i^+ &= P_0^u(\lambda) D_i d + A_2(\lambda)_i^+(b, c^-, d)
+a_i^+ 
+&= P_i^+(X_i; \lambda)a_i^+ + (I - P_i^+(X_i; \lambda))a_i^+ \\
+&= P_i^+(X_i; \lambda)a_i^+ - \Theta_i^+(X_i; \lambda))a_i^+
 \end{align*}
-
-Rearranging this, we obtain
-
+Rearranging this and substituting the expression above for $a_i^+$, we get
 \begin{align*}
-P_i^+(X_i; \lambda) a_i^+ &= P_0^u(\lambda) D_i d + A_2(\lambda)_i^+(b, c^-, d) - (I - P_i^+(X_i; \lambda))a_i^+ \\
+P_i^+(X_i; &\lambda) a_i^+ = P_0^u(\lambda) D_i d + A_2(\lambda)_i^+(b, c^-, d) + \Theta_i^+(X_i; \lambda))a_i^+ \\
 &= P_0^u(\lambda) D_i d + A_2(\lambda)_i^+(b, c^-, d) + \mathcal{O}\Big( e^{-\alpha X_i} ( e^{-\alpha X_i} (|b_i^+| + |b_{i+1}^-|) + |c_i^-| + e^{-\alpha X_i} |\lambda^2||d| + |D_i||d| )\Big)
 \end{align*}
-
-where we used the bound $A_1$ and the estimate \eqref{conjest}. The last term on the RHS is the same (or higher) order as $A_2$, so we incorporate that into the bound on $A_2(\lambda)_i^+(b, c^-, d)$ to get
-
+where we used the bound $A_1$ and the estimate \eqref{Thetadecay}. The last term on the RHS is the same (or higher) order as $A_2$, so we incorporate that into the bound on $A_2(\lambda)_i^+(b, c^-, d)$ to get
 \begin{align*}
 P_i^+(X_i; \lambda)a_i^+ &= P_0^u(\lambda) D_i d + A_2(\lambda)_i^+(b, c^-, d)
 \end{align*}
-
-Finally, we operate on both sides on the left by $P_i^+(X_i; \lambda)^{-1}$ to solve for $a_i^+$. Since $P_i^+(X_i; \lambda)^{-1}$ a bounded operator, we will also incorporate this into $A_2(\lambda)_i^+(b, c^-, d)$. In doing so, the bound will be unchanged. Thus we have
-
+Finally, apply the operator $P_i^+(X_i; \lambda)^{-1}$ on the left on both sides to solve for $a_i^+$. Since $P_i^+(X_i; \lambda)^{-1}$ a bounded operator, we will also incorporate this into $A_2(\lambda)_i^+(b, c^-, d)$, which will leave the bound unchanged. Thus we have
 \begin{align*}
 a_i^+ &= P^+(X_i; \beta_i^+, \lambda) P_0^u(\lambda) D_i d + A_2(\lambda)_i^+(b, c^-, d)
 \end{align*}
-
 We do the same thing for $a_i^-$, which gives us
-
 \begin{align*}
 a_i^- &= -P_i^-(-X_i; \lambda) P_0^s(\lambda) D_i d + A_2(\lambda)_i^-(b, c^-, d)
 \end{align*}
 
-Finally, we would like to obtain an estimate for $P_0^c(\lambda) D_i d$. Recall that
-
-\[
-D_i d = ( Q'(X_i) + Q'(-X_i))(d_{i+1} - d_i ) + \mathcal{O} \left( e^{-\alpha_0 X_i} \left( |\lambda| +  e^{-\alpha_0 X_i}  \right) |d| \right) 
-\]
-
-Looking at the lower order terms,
-
+Finally, we would like to obtain an estimate for $P_0^c(\lambda) D_i d$. Recall from Lemma \ref{stabestimates} that
+\begin{equation}\label{Did3}
+D_i d = ( Q'(X_i) + Q'(-X_i))(d_{i+1} - d_i ) + \mathcal{O} \left( e^{-\alpha_0 X_i} \left( |\lambda| +  e^{-\alpha_0 X_m}  \right) |d| \right) 
+\end{equation}
+Using the fact that the eigenprojection $P_0^c(\lambda)$ is a smooth function of $\lambda$, we have for $P_0^c(Q'(X_i) + Q'(-X_i))$,
 \begin{align*}
-P_0^c(\lambda)&( Q'(X_i) + Q'(-X_i)) 
-= P_0^c(0)( Q'(X_i) + Q'(-X_i)) + \mathcal{O}(|\lambda|e^{-\alpha_0 X_i}) \\
-&= \mathcal{O}(e^{-\alpha_0 X_i}(|\lambda| + e^{-\alpha_0 X_i}))
+P_0^c(\lambda)(Q'(X_i) + Q'(-X_i))
+&= P_0^c(0)(Q'(X_i) + Q'(-X_i)) + \mathcal{O}(|\lambda|e^{-\alpha_0 X_i}) \\
+&= \mathcal{O}(e^{-\alpha_0 X_i}(|\lambda| + e^{-\alpha_0 X_i})) \\
 \end{align*}
-
-Thus we have
-
+since $Q'(-X_i)$ decays exponentially towards $E^u$ and $Q'(X_i)$ decays exponentially towards $E^s$. Combining this with the bound on the higher order terms of \eqref{Did3}, we obtain the bound
 \[
-|P_0^c(\lambda) D_i d| \leq C e^{-\alpha_0 X_i}(|\lambda| + e^{-\alpha_0 X_i})|d|
+|P_0^c(\lambda) D_i d| \leq C e^{-\alpha_0 X_i}(|\lambda| + e^{-\alpha_0 X_m})|d|
 \]
-
 \end{proof}
 \end{lemma}
 
-\subsubsection{Conditions at 0}
-
-In the second inversion lemma, we solve the conditions at $x = 0$
-
-\begin{align*}
+In the next lemma, we solve for the conditions at $x = 0$.
+\begin{equation}\label{centercond}
+\begin{aligned}
 P_i^\pm(0; \lambda) Z_i^\pm(0) &\in \oplus Y^+ \oplus Y^- \oplus \C \Psi(0) \oplus \C \Psi^c(0) \\
 P_i^+(0; \lambda) Z_i^+(0) - P_i^-(0; \lambda) Z_i^-(0) &\in \C \Psi(0) \oplus \C \Psi^c(0)
-\end{align*}
-
-Recall that we have
-
+\end{aligned}
+\end{equation}
+Recall that we have the decomposition
 \begin{equation}\label{DSdecomp}
 \C^{2m+1} = \C Q'(0) \oplus Y^+ \oplus Y^- \oplus \C \Psi(0) \oplus \C \Psi^c(0)
 \end{equation}
-
-This condition is equivalent to the three projections
-
-\begin{align*}
+Thus \eqref{centercond} is equivalent to the three projections
+\begin{equation}\label{centercond2}
+\begin{aligned}
 P(\C Q'(0) ) P_i^-(0; \lambda) Z_i^-(0) &= 0 \\
 P(\C Q'(0) ) P_i^+(0; \lambda) Z_i^+(0) &= 0 \\
 P(Y_i^+ \oplus Y_i^-) ( P_i^+(0; \lambda) Z_i^+(0) - P_i^-(0; \lambda) Z_i^-(0) ) &= 0
-\end{align*}
-
-where the kernel of each projection is the remaining spaces in the direct sum decomposition \eqref{DSdecomp}. We don't need to include $\C Q'(0)$ in the third equation since we eliminated any component in it in the first two equations.
+\end{aligned}
+\end{equation}
+where the kernel of each projection is the remaining spaces in the direct sum decomposition \eqref{DSdecomp}. We do not need to include $\C Q'(0)$ in the third equation of \eqref{centercond2} since we eliminated any component in $\C Q'(0)$ in the first two equations.
 
 % second inversion lemma
-
 \begin{lemma}\label{inv2}
 There exist operators
-
 \begin{align*}
 B_1: &V_\lambda \times V_c^- \times V_d \rightarrow V_b \\
 A_3: &V_\lambda \times V_c^- \times V_d \rightarrow V_a 
