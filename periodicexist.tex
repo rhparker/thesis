@@ -2,13 +2,13 @@
 
 \begin{document}
 
-% remove this eventually or do conditional
-\chapter{KdV5 with periodic boundary conditions}
+\iffulldocument\else
+	\chapter{KdV5 with periodic boundary conditions}
+\fi
 
 \section{Proof of Existence Theorems}
 
 \subsection{Proof Lemma \ref{psiform}}
-
 Since \eqref{genODE} is Hamiltonian, $\langle F(Q(x)), \nabla H(Q(x)) \rangle = 0$ for all $x$. Taking the gradient of this and using known vector calculus identities,
 \begin{align*}
 0 &= \nabla \langle F(Q(x)), \nabla H(Q(x)) \rangle \\
@@ -59,6 +59,99 @@ Taking the transpose of both sides, we get
 \frac{d}{dy}\Phi(x, y)^* &= -A(y)^* \Phi(x, y)^*  
 \end{align*}
 from which (iii) follows.
+
+\subsection{Characterization of solutions to adjoint linear ODEs}
+In this section, we prove a lemma relating solutions of the adjoint of an $n$-th order linear ODE to solutions of the adjoint problem when written as a first order system.
+
+\begin{lemma}\label{adjointlemma}
+Consider the $n$-th order linear ODE 
+\begin{equation}\label{linODE}
+\partial_x^n u(x) + \sum_{k=0}^{n-1}g_k(x) \partial_x^k u(x) = 0
+\end{equation}
+which we can write as a first order system in the standard way as
+\begin{equation}\label{linODEsys}
+U'(x) = A(x)U(x)
+\end{equation}
+where
+\begin{equation}\label{Axform}
+A(x) = \begin{pmatrix}
+0 & 1 & 0 & \dots & 0 & 0 \\
+0 & 0 & 1 & \dots & 0 & 0 \\
+& &  & \ddots &  & & \\
+0 & 0 & 0 & \dots & 0 & 1 \\
+-g_0(x) & -g_1(x) & -g_2(x) &
+ \dots & -g_{n-2}(x) & -g_{n-1}(x)
+\end{pmatrix}
+\end{equation}
+Then if $W(x) = (w_1(x), \dots, w_n(x))$ solves the adjoint system
+\begin{equation}\label{adjODEsys}
+W'(x) = -[A(x)]^* W(x),
+\end{equation}
+$w_n(x)$ solves the adjoint linear ODE
+\begin{equation}\label{adjODE}
+(-1)^n \partial_x^n w(x) + \sum_{k=0}^{n-1} (-1)^k \partial_x^k( g_k(x) w(x)) = 0
+\end{equation}
+and the remaining entries of $W(x)$ are given by
+\begin{align}\label{adjWform}
+w_r(x) &= (-1)^{n-r} \partial_x^{n-r}w_n(x) + \sum_{k=r}^{n-1} (-1)^{k-r} \partial_x^{k-r}(g_k(x) w_n(x)) && r = 1, \dots n-1
+\end{align}
+\begin{proof}
+The adjoint system is given by
+\begin{equation*}
+\begin{pmatrix}
+w_1'(x) \\ w_2'(x) \\ w_3'(x) \\ \vdots \\ w_n'(x)
+\end{pmatrix} = \begin{pmatrix}
+0 &  0 & 0  & \dots & 0 & g_0(x) \\
+0 & -1 & 0  & \dots & 0 & g_1(x) \\
+0 &  0 & -1 & \dots & 0 & g_2(x) \\
+& &  & \ddots &  & & \\
+0 & 0 & 0 & \dots  & -1 & g_{n-1}(x) \\
+\end{pmatrix}
+\begin{pmatrix}
+w_1(x) \\ w_2(x) \\ w_3(x) \\ \vdots \\ w_n(x)
+\end{pmatrix}
+\end{equation*}
+which gives us the system of $n$ equation 
+\begin{align*}
+w_1'(x) &= g_0(x) w_n(x) \\
+w_2'(x) &= -w_1(x) + g_1(x) w_n(x) \\
+\vdots \\
+w_{n-1}'(x) &= -w_{n-2}(x) + g_{n-2}(x) w_n(x) \\
+w_n'(x) &= -w_{n-1}(x) + g_{n-1}(x) w_n(x) \\
+\end{align*}
+Suppressing the dependence on $x$ for convenience of notation, we rearrange this to get
+\begin{align*}
+0 &= -w_1' + g_0 w_n \\
+w_1 &= -w_2' + g_1 w_n \\
+w_2 &= -w_3' + g_2 w_n \\
+\vdots \\
+w_{n-2} &= -w_{n-1}' + g_{n-2} w_n \\
+w_{n-1} &= -w_n' + g_{n-1} w_n \\
+\end{align*}
+Differentiate the $w_{n-1}$ equation to get $w_{n-1}' = -\partial_x^2 w_n + \partial_x(g_{n-1}w_n)$ and substitite it into the $w_{n-2}$ equation to get
+\begin{align*}
+w_{n-2} &= \partial_x^2 w_n - \partial_x(g_{n-1} w_n) + g_{n-2} w_n
+\end{align*}
+Differentiate this and substitute it into the $w_{n-3}$ equation to get
+\[
+w_{n-3} = -\partial_x^3 w_n + \partial_x^2(g_{n-1} w_n) - \partial_x(g_{n-2} w_n) + g_{n-3} w_n
+\]
+Continuing this process, we have the general expression for $w_r$
+\begin{align*}
+w_r &= (-1)^{n-r} \partial_x^{n-r}w_n + \sum_{k=r}^{n-1} (-1)^{k-r} \partial_x^{k-r}(g_k w_n) && r = 1, \dots n-1
+\end{align*}
+When we reach the $w_1$ (after $n-1$ iterations), we have
+\[
+w_1 = (-1)^{n-1} \partial_x^{n-1} w_n + \sum_{k=1}^{n-1} (-1)^{k-1} \partial_x^{k-1}(g_k w_n)
+\]
+Differentiate this once more, and substitute it into the first equation $0 = -w_1' + g_0 w_n$ to get 
+\begin{align*}
+0 &= (-1)^{n} \partial_x^{n} w_n + \sum_{k=1}^{n-1} (-1)^{k} \partial_x^{k}(g_k w_n) + g_0 w_n \\
+&= (-1)^{n} \partial_x^{n} w_n + \sum_{k=0}^{n-1} (-1)^{k} \partial_x^{k}(g_k w_n)
+\end{align*}
+which is identical to adjoint linear ODE \eqref{adjODE}. Thus $w_n$ is a solution to \eqref{adjODE}.
+\end{proof}
+\end{lemma}
 
 \subsection{Exponential Dichotomy}
 
@@ -123,7 +216,7 @@ We have the following estimates
 \end{equation}
 where $P_0^s$ and $P_0^u$ are the projections onto the stable and unstable eigenspaces $E_0^s$ and $E_0^u$ of $DF(0)$. The estimates are independent of $\beta_i^\pm$.
 \begin{proof}
-This follows from Lemma 1.1 and Lemma 2.1 in San93.
+This follows from Lemma 1.1 and Lemma 2.1 in \cite{Sandstede1993}.
 \end{proof}
 \end{lemma}
 
@@ -660,21 +753,23 @@ We have the following symmetry.
 \langle \Psi(x), Q(-x) \rangle = \langle \Psi(-x), Q(x) \rangle
 \end{equation}
 \begin{proof}
-Since the primary pulse $Q(x)$ is symmetric with respect to the reversor operator $R$ defined in \eqref{reverserR2m}, $Q(-x) = RQ(x)$. Since $\Psi(x)$ satisfies \eqref{adjvareq1},
-\begin{align}\label{Psinegx}
-(\Psi(-x))' &= \Psi'(-x) = DF(Q(-x))^* \Psi(-x) \\
-\end{align}
-Taking $W = RW$ in \eqref{vareqrev}, we have $DF(Q(-x))^* W = -R DF(Q(x))^* R W$. Substituting this into \eqref{Psinegx}, we get
-\begin{align*}
-(\Psi(-x))' &= -R DF(Q(-x))^* R \Psi(-x)
-\end{align*}
-Finally, we operate on both sides by $R$. Noting that $R$ is a constant matrix and $R^2 = I$, 
-\begin{align*}
-(R \Psi(-x))' &= -DF(Q(-x))^* R \Psi(-x)
-\end{align*}
-Thus $R \Psi(-x)$ is a bounded solution to the adjoint variational equation. Since $\Psi(x)$ is the unique such solution, we conclude that $R \Psi(-x) = \Psi(x)$.
+Since the primary pulse $Q(x)$ is symmetric with respect to the reversor operator $R$ defined in \eqref{reverserR2m}, $Q(-x) = RQ(x)$. For $\Psi(x)$, recall that the variational equation is \eqref{vareq1} comes from writing the linear ODE 
+\begin{equation}\label{HessianODE}
+E''(q(x))v = 0
+\end{equation}
+as a first order system in the standard way. Thus the adjoint variational equation also corresponds to \eqref{HessianODE} since the Hessian of the energy $E''(q(x))$ is self-adjoint. Since $q'(x)$ is the unique solution bounded to \eqref{HessianODE} by Hypothesis \ref{nondegenhyp}, the last component of $\Psi(x)$ is $q'(x)$ by Lemma \ref{adjointlemma}. Using \eqref{adjWform} from Lemma \ref{adjointlemma}, we can write $\Psi(x)$ as
+\begin{equation}\label{Psiform1}
+\Psi(x) = \begin{pmatrix}
+-q^{(2m)}(x) + \sum_{k=1}^{n-1} (-1)^{k-1} \partial_x^{k-1}(g_k(x) q'(x)) \\
+\vdots \\
+q^{(3)}(x) + \partial_x(g_{2m-1}(x)q'(x)) + g_{2m-2}(x)q'(x)\\
+-q''(x) + g_{2m-1}(x)q'(x) \\
+q'(x)
+\end{pmatrix}
+\end{equation}
+where $g_k(x) = c_k + f_k(x)$ for $k$ even, and $g_k(x) = f_k(x)$ for $k$ odd. By reversibility, $f_k(x)$ is an even function for $k$ even and an odd function for $k$ odd, thus $g_k(x)$ is an even function for $k$ even and an odd function for $k$ odd. Since $q'(x)$ is an odd function, the odd numbered rows of \eqref{Psiform1} are even functions and the even numbered rows of \eqref{Psiform1} are odd functions. We conclude that $\Psi(-x) = R\Psi(x)$.
 
-Substituting these into the inner product $\langle \Psi(x), Q(-x) \rangle$, we get
+Evaluating the inner product $\langle \Psi(x), Q(-x) \rangle$, we get
 \begin{align*}
 \langle \Psi(x), Q(-x) \rangle
 &= \langle R \Psi(-x), R Q(x) \rangle \\
@@ -1644,8 +1739,9 @@ Since the two parameterizations overlap on an interval, we conclude that for $r 
 
 Diagonal solutions exist by Lemma \ref{Gsymm}, and these are parameterized as in Lemma \ref{thetaparamlemma}. The upper arm of the pitchfork is parameterized as in Lemma \ref{pitchpersist}, and we can choose as large an $M$ as we like. The upper arm meets the diagonal at the pitchfork bifurcation point, which is given by $(p_0(r), p_0(r))$. Finally, uniqueness follows from the fact that our choice of $\theta$ has restricted ourselves to a single pitchfork in the zero set of $H$. Other pitchforks are accessed by choosing a different value for $r$.
 
-% % remove this if part of main document
-% \bibliographystyle{amsalpha}
-% \bibliography{thesis.bib}
+\iffulldocument\else
+	\bibliographystyle{amsalpha}
+	\bibliography{thesis.bib}
+\fi
 
 \end{document}

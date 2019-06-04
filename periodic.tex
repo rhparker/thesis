@@ -145,13 +145,7 @@ c_0 + f_0(x) & f_1(x) & c_2 + f_2(x) &
  \dots & c_{2m-2} + f_{2m-2}(x) & f_{2m-1}(x)
 \end{pmatrix}
 \end{equation}
-The constants $c_i$ come from the linear part of $E'(u)$ and do not depend on $Q(x)$. By Hypothesis \ref{Eprimehyp}, no odd-order derivatives are involved in the linear part of $E'(u)$, and so $c_i = 0$ for $i$ odd. The functions $f_i(x)$ are smooth functions of $q(x)$ and its derivatives, thus they exponentially to 0. In addition, since $q(x)$ is an even function, $f_i(x)$ is an even function for $i$ even and an odd function for $i$ odd. Finally, the variational and adjoint variational equations satisfy the reversibility property 
-\begin{equation}\label{vareqrev}
-\begin{aligned}
-DF(Q(-x))RV &= -R DF(Q(x)) V \\
-DF(Q(-x))^* RW &= -R DF(Q(x))^* W
-\end{aligned}
-\end{equation}
+The variational equation \eqref{vareq1} comes from writing the linear ODE $E''(q(x))v(x) = 0$ as a first order system in the standard way, where $E''(q(x))$ is the Hessian of the energy. The constants $c_i$ come from the linear part of $E'(u)$ and do not depend on $Q(x)$. By reversibility, no odd-order derivatives are involved in the linear part of $E'(u)$, and so $c_i = 0$ for $i$ odd. In addition, since $q(x)$ is an even function, $f_i(x)$ is an even function for $i$ even and an odd function for $i$ odd. Finally, since the functions $f_i(x)$ are smooth functions of $q(x)$ and its derivatives, they decay exponentially to 0 since $q(x)$ is exponentially localized.
 
 We make one additional assumption on the constant $c_0$, which we will need for the stability problem.
 \begin{hypothesis}\label{c0nonzero}
@@ -165,13 +159,13 @@ It follows from Hypothesis \ref{nondegenhyp} that $Q'(x)$ is the unique bounded 
 Let $H$ be the Hamiltonian from Hypothesis \ref{Hhyp}. Then $\Psi(x) = \nabla H(Q(x))$.
 \end{lemma}
 
-The next lemma gives a few important results about the variational and adjoint variational equations.
+The next lemma gives a few important results about variational and adjoint variational equations.
 
 \begin{lemma}\label{eigadjoint}
 Consider the linear ODE $V' = A(x)V$ and the corresponding adjoint equation $W' = -A(x)^* W$, where $A$ is an $n \times n$ matrix depending on $x$. Then the following are true.
 \begin{enumerate}[(i)]
 \item $\dfrac{d}{dx}\langle V(x), W(x) \rangle = 0$, thus the inner product is constant in $x$.
-\item If $W(x)$ is bounded and $V(x) \rightarrow 0$ as $x \rightarrow \infty$ or $V(x) \rightarrow 0$, then $\langle V(x), W(x) \rangle = 0$ for all $x \in \R$. The same holds if we reverse the roles of $W$ and $V$.
+\item If $W(x)$ is bounded and $V(x) \rightarrow 0$ as $x \rightarrow \infty$ or $V(x) \rightarrow -\infty$, then $\langle V(x), W(x) \rangle = 0$ for all $x \in \R$. The same holds if we reverse the roles of $W$ and $V$.
 \item If $\Phi(y, x)$ is the evolution operator for $V'(x) = A(x)V(x)$, then $\Phi(x, y)^*$ is the evolution operator for the adjoint problem $W'(y) = -A(y)^* W(y)$.
 \end{enumerate}
 \end{lemma}
@@ -599,14 +593,6 @@ Assume Hypotheses \ref{Eprimehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp},
 \lambda^{\text{int}}_j(r) = r^{1/2} \sqrt{\tilde{\mu}_j / M} + \mathcal{O}(r^{3/4})
 \end{align*}
 These interaction eigenvalue pairs are either real or purely imaginary, and the remainder term cannot move them off of the real or imaginary axis.
-% In addition, there exists a natural number $m_0$ with the following property. If for some $j$, $m_j - m_k \geq m_0$ for $k \neq j$, then there exists $\tilde{r}_1 \leq r_1$ such that for all $r < \tilde{r}_1$, 
-
-% \begin{itemize}
-% \item For $M > 0$ ($M < 0$), there are $n_{\text{even}}$ purely imaginary (real) pairs of interaction eigenvalues.
-% \item For $M > 0$ ($M < 0$), there are $n_{\text{odd}}$ real (purely imaginary) pairs of interaction eigenvalues.
-% \end{itemize}
-
-% where $n_{\text{even}}$ is the number of even $m_k$ (excluding $m_j$) and $n_{\text{odd}}$ is the number of odd $m_k$ (excluding $m_j$).
 
 \item There exists $r_2 \leq r_1$ such that for every $r \leq r_2$ for which the $\epsilon-$ball condition is satisfied, there are pairs of purely imaginary ``essential spectrum'' eigenvalues given by $\lambda = \pm \lambda^{ess}(X,k; r)$ for every positive integer $k$ with $\frac{c_0 \pi k}{X} < \delta$ (approximately $k < \delta n |\log r|$), where
 \begin{equation}\label{lambdaess}
@@ -619,17 +605,32 @@ In terms of $r$ and the $b_j$, these are located at approximately
 The remainder terms cannot move these off of the imaginary axis.
 
 \item For sufficiently small $r$, we have the following two eigenvalue counts.
-
 \begin{itemize}
-	\item There exists a small radius $\xi$ (which excludes the interaction eigenvalues and ``essential spectrum'' eigenvalues) such that there are exactly 3 eigenvalues inside the circle of radius $\xi$ in the complex plane.
+	\item There exists a small radius $\xi$ (which excludes the interaction eigenvalues and ``essential spectrum'' eigenvalues) such that there are exactly 3 eigenvalues inside the circle of radius $\xi$ in the complex plane. These must be the three eigenvalues from part (i).
 
-	\item There are exactly $2n + 2 k_M + 1$ eigenvalues inside the circle of radius $\tilde{\delta}$ (which may be slightly smaller than $\delta$) in the complex plane, where $k_M$ is the largest positive integer $k$ such that $\lambda^K(k,X) < \tilde{\delta}$. Thus, if the $\epsilon-$ball condition is satisfied, there are no eigenvalues inside the circle of radius $\tilde{\delta}$ other than the ones described above.
+	\item There are exactly $2n + 2 k_M + 1$ eigenvalues inside the circle of radius $\tilde{\delta}$ (which may be slightly smaller than $\delta$) in the complex plane, where $k_M$ is the largest positive integer $k$ such that $\lambda^K(k,X) < \tilde{\delta}$. Thus, if the $\epsilon-$ball condition is satisfied, there are no eigenvalues inside the circle of radius $\tilde{\delta}$ other than the ones already accounted for.
 \end{itemize}
 \end{enumerate}
-
 \end{theorem}
 
-It is worth considering a few specific cases. For the symmetric 2-pulse (i.e. $b_0 = b_1$), the interaction eigenvalues are approximately
+If we can take one of the baseline length parameters $b_j^0$ to be small compared to the others, we are ``close to'' the situation on the real line. Since we are on a periodic domain, we can without loss of generality take $b_{n-1}^0$ to be small. Recall that the other baseline length parameters are given by
+\begin{align*}
+b_j^0 &= e^{-\frac{1}{\rho}m_j \pi} && j = 0, \dots, n-2
+\end{align*}
+for nonnegative integers $m_j$. In this case, the parity of the  integers $m_k$ determines the eigenvalue pattern.
+
+\begin{theorem}\label{inteigsparity}
+Assume Hypotheses \ref{Eprimehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, \ref{nondegenhyp}, \ref{c0nonzero}, \ref{Melnikov2hyp}, and \ref{Adistincteigs}. Let $r_1$ and $b^*$ be as in Theorem \ref{unifperexist}. Choose an integer $n \geq 2$ and a sequence of $n-1$ baseline length parameters $b_0^0, \dots, b_{n-2}^0$, where $b_j^0 = \exp\left(-\frac{m_j \pi}{\rho}\right) \in \mathcal{B}$. 
+
+Then there exists $\tilde{r_1} \leq r_1$ and $\tilde{b}^* \in \mathcal{B}$ with $\tilde{b}^* \leq b^*$ such that for any $r \leq \tilde{r}_1$, $b_{n-1}^0 \in \mathcal{B}$ with $b_{n-1}^0 \leq \tilde{b}^*$, and $\theta \in [-\arctan \rho, \pi - \arctan \rho)$, we have the following result.
+\begin{itemize}
+\item For $M > 0$ ($M < 0$), there are $n_{\text{even}}$ purely imaginary (real) pairs of interaction eigenvalues.
+\item For $M > 0$ ($M < 0$), there are $n_{\text{odd}}$ real (purely imaginary) pairs of interaction eigenvalues.
+\end{itemize}
+where $n_{\text{even}}$ is the number of even $m_0, \dots, m_{n-2}$ and $n_{\text{odd}}$ is the number of odd $m_0, \dots, m_{n-2}$.
+\end{theorem}
+
+Finally, we consider the case of the 2-periodic pulse. For the symmetric 2-periodic pulse (i.e. $b_0 = b_1$), the interaction eigenvalues are approximately
 
 \[
 \lambda^{\text{int}} = \pm C r^{1/2} e^{-\theta/2\rho} \sqrt{ \frac{1}{M} \left( \rho \cos \theta - \sin \theta \right) }
@@ -637,8 +638,9 @@ It is worth considering a few specific cases. For the symmetric 2-pulse (i.e. $b
 
 which is 0 at $\theta = \arctan \rho$. At a point near there, there is a bifurcation in which a pair of real eigenvalues collides at 0 and then becomes a pair of purely imaginary eigenvalues. We can probably use a symmetry argument or something like that to show that this occurs for small $r$ at the actual pitchfork bifurcation point $\theta^*(r)$, where $\theta^*(0) = \arctan \rho$. This has been verified numerically.
 
-% remove this if part of main document
-% \bibliographystyle{amsalpha}
-% \bibliography{thesis.bib}
+\iffulldocument\else
+	\bibliographystyle{amsalpha}
+	\bibliography{thesis.bib}
+\fi
 
 \end{document}

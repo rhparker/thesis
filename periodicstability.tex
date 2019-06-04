@@ -2,8 +2,11 @@
 
 \begin{document}
 
-% remove this eventually or do conditional
-\chapter{KdV5 with periodic boundary conditions}
+\iffulldocument\else
+	\chapter{KdV5 with periodic boundary conditions}
+\fi
+
+\section{Proof of Stability Theorems}
 
 \subsection{Gap and Conjugation Lemmas}
 
@@ -246,100 +249,6 @@ where $p_1(\nu)$ is the characteristic polynomial of $DF(0)$ from the previous s
 % nondegeneracy lemma
 \subsection{Proof of Lemma \ref{nondegenlemma}}
 Since $Q(x)$ is a homoclinic orbit in the intersection of $W^u(0)$ and $W^s(0)$, $\R Q'(0) \subset T_{Q(0)}W^s(0) \cap T_{Q(0)}W^u(0)$. If the intersection were more than one-dimensional, there would exist another exponentially localized solution $V(x) = (v_1, \dots, v_{2m}, v_{2m+1})^T$ to \eqref{vareq2}. It follows that $\tilde{V}(x) = (v_1, \dots, v_{2m})^T$ would be an exponentially localized solution to \eqref{vareq1}, which contradicts Hypothesis \ref{nondegenhyp}.
-
-\subsection{Characterization of solutions to adjoint linear ODEs}
-
-In this section, we prove a lemma relating solutions of the adjoint of an $n$-th order linear ODE to solutions of the adjoint problem when written as a first order system.
-
-\begin{lemma}\label{adjointlemma}
-Consider the $n$-th order linear ODE 
-\begin{equation}\label{linODE}
-\partial_x^n u(x) + \sum_{k=0}^{n-1}g_k(x) \partial_x^k u(x) = 0
-\end{equation}
-which we can write as a first order system in the standard way as
-\begin{equation}\label{linODEsys}
-U'(x) = A(x)U(x)
-\end{equation}
-where
-\begin{equation}\label{Axform}
-A(x) = \begin{pmatrix}
-0 & 1 & 0 & \dots & 0 & 0 \\
-0 & 0 & 1 & \dots & 0 & 0 \\
-& &  & \ddots &  & & \\
-0 & 0 & 0 & \dots & 0 & 1 \\
--g_0(x) & -g_1(x) & -g_2(x) &
- \dots & -g_{n-2}(x) & -g_{n-1}(x)
-\end{pmatrix}
-\end{equation}
-Then if $W(x) = (w_1(x), \dots, w_n(x))$ solves the adjoint system
-\begin{equation}\label{adjODEsys}
-W'(x) = -[A(x)]^* W(x),
-\end{equation}
-$w_n(x)$ solves the adjoint linear ODE
-\begin{equation}\label{adjODE}
-(-1)^n \partial_x^n w(x) + \sum_{k=0}^{n-1} (-1)^k \partial_x^k( g_k(x) w(x)) = 0
-\end{equation}
-and the remaining entries of $W(x)$ are given by
-\begin{align}\label{adjWform}
-w_r(x) &= (-1)^{n-r} \partial_x^{n-r}w_n(x) + \sum_{k=r}^{n-1} (-1)^{k-r} \partial_x^{k-r}(g_k(x) w_n(x)) && r = 1, \dots n-1
-\end{align}
-\begin{proof}
-The adjoint system is given by
-\begin{equation*}
-\begin{pmatrix}
-w_1'(x) \\ w_2'(x) \\ w_3'(x) \\ \vdots \\ w_n'(x)
-\end{pmatrix} = \begin{pmatrix}
-0 &  0 & 0  & \dots & 0 & g_0(x) \\
-0 & -1 & 0  & \dots & 0 & g_1(x) \\
-0 &  0 & -1 & \dots & 0 & g_2(x) \\
-& &  & \ddots &  & & \\
-0 & 0 & 0 & \dots  & -1 & g_{n-1}(x) \\
-\end{pmatrix}
-\begin{pmatrix}
-w_1(x) \\ w_2(x) \\ w_3(x) \\ \vdots \\ w_n(x)
-\end{pmatrix}
-\end{equation*}
-which gives us the system of $n$ equation 
-\begin{align*}
-w_1'(x) &= g_0(x) w_n(x) \\
-w_2'(x) &= -w_1(x) + g_1(x) w_n(x) \\
-\vdots \\
-w_{n-1}'(x) &= -w_{n-2}(x) + g_{n-2}(x) w_n(x) \\
-w_n'(x) &= -w_{n-1}(x) + g_{n-1}(x) w_n(x) \\
-\end{align*}
-Suppressing the dependence on $x$ for convenience of notation, we rearrange this to get
-\begin{align*}
-0 &= -w_1' + g_0 w_n \\
-w_1 &= -w_2' + g_1 w_n \\
-w_2 &= -w_3' + g_2 w_n \\
-\vdots \\
-w_{n-2} &= -w_{n-1}' + g_{n-2} w_n \\
-w_{n-1} &= -w_n' + g_{n-1} w_n \\
-\end{align*}
-Differentiate the $w_{n-1}$ equation to get $w_{n-1}' = -\partial_x^2 w_n + \partial_x(g_{n-1}w_n)$ and substitite it into the $w_{n-2}$ equation to get
-\begin{align*}
-w_{n-2} &= \partial_x^2 w_n - \partial_x(g_{n-1} w_n) + g_{n-2} w_n
-\end{align*}
-Differentiate this and substitute it into the $w_{n-3}$ equation to get
-\[
-w_{n-3} = -\partial_x^3 w_n + \partial_x^2(g_{n-1} w_n) - \partial_x(g_{n-2} w_n) + g_{n-3} w_n
-\]
-Continuing this process, we have the general expression for $w_r$
-\begin{align*}
-w_r &= (-1)^{n-r} \partial_x^{n-r}w_n + \sum_{k=r}^{n-1} (-1)^{k-r} \partial_x^{k-r}(g_k w_n) && r = 1, \dots n-1
-\end{align*}
-When we reach the $w_1$ (after $n-1$ iterations), we have
-\[
-w_1 = (-1)^{n-1} \partial_x^{n-1} w_n + \sum_{k=1}^{n-1} (-1)^{k-1} \partial_x^{k-1}(g_k w_n)
-\]
-Differentiate this once more, and substitute it into the first equation $0 = -w_1' + g_0 w_n$ to get 
-\begin{align*}
-0 &= (-1)^{n} \partial_x^{n} w_n + \sum_{k=1}^{n-1} (-1)^{k} \partial_x^{k}(g_k w_n) + g_0 w_n \\
-&= (-1)^{n} \partial_x^{n} w_n + \sum_{k=0}^{n-1} (-1)^{k} \partial_x^{k}(g_k w_n)
-\end{align*}
-which is identical to adjoint linear ODE \eqref{adjODE}. Thus $w_n$ is a solution to \eqref{adjODE}.
-\end{proof}
-\end{lemma}
 
 % solutions to variational and adjoint variational equation
 \subsection{Proof of Lemma \ref{varadjsolutions}}
@@ -1652,11 +1561,11 @@ By reversibility, $Q(-x) = R Q(x)$ implies $Q'(-x) = -R Q'(x)$. From Lemma \ref{
 \end{align*}
 Thus $\tilde{a}_i = -a_i$ in the matrix $A$ in Lemma \ref{jumpadj}, which gives us the matrix $A$ in Theorem \ref{blockmatrixtheorem} 
 
-\section{Proof of Theorem \ref{locateeigtheorem}}
+\section{Proof of eigenvalue location theorems}
 
 In Theorem \ref{locateeigtheorem}, we solve the block matrix equation from Theorem \ref{blockmatrixtheorem} to locate the PDE eigenvalues $\lambda$ for $|\lambda| < \delta$, where $\delta$ is given in Theorem \ref{blockmatrixtheorem}. We prove the theorem below in a series of lemmas. 
 
-\subsubsection{Rescaling}
+\subsection{Rescaling}
 
 First, we adopt the same scaling and parameterization as in the existence problem. Recall from Theorem \ref{perexist} that a periodic $n-$pulse $Q_np(x)$ is specified by a scaling parameter $r \in \mathcal{R}$ and $n$ length parameters $b_j$, which depend on $r$ as well as a phase parameter $\theta$ and a baseline length parameter $b_j^0$.
 
@@ -1915,15 +1824,10 @@ where $\det(K(\lambda))$ is given in Corollary \ref{detKcorr}. The same holds fo
 \end{proof}
 \end{lemma}
 
-Before we continue, we recall that we need to make sure the roots of $\det A - \lambda^2 M I$ and $\det K(\lambda)$ do not get too close. To ensure that, we will from now on assume that the $\epsilon-$ball condition holds, which is given in Definition \ref{epsilonballs}. Note that the factor of $1/4$ in the $\epsilon-$ball condition ensures that the $\epsilon-$balls do not overlap.
+Before we continue, we recall that we need to make sure the roots of $\det A - \lambda^2 M I$ and $\det K(\lambda)$ do not get too close. To ensure that, we will from now on assume that the $\epsilon-$ball condition holds, which is given in Definition \ref{epsilonballs}. Note that the factor of $1/4$ in the $\epsilon-$ball condition ensures that the $\epsilon-$balls do not overlap. Lemma \ref{epsilonballlemma} which guarantees that the $\epsilon-$ball condition is always satisfied for sufficiently small $r$. We prove that lemma in the next section
 
-Next, we prove Lemma \ref{epsilonballlemma}, which guarantees that the $\epsilon-$ball condition is always satisfied for sufficiently small $r$.
+\subsection{Proof of Lemma \ref{epsilonballlemma}}
 
-% epsilon balls lemma, with proof
-\newtheorem*{lemma:epsilonballlemma}{Lemma \ref{epsilonballlemma}}
-\begin{lemma:epsilonballlemma}
-Choose baseline length parameters $b_0^0, \dots, b_{n-1}^0$ and phase parameter $\theta$. Then there exists $r(b, \theta) \leq r_0$ such that for $r \leq r(b, \theta)$, the $\epsilon-$ball condition is always satisfied.
-\begin{proof}
 The nonzero roots of $\det A - \lambda^2 M I$ are of the form $\pm r^{1/2} \sqrt{\tilde{\mu}_j/M}$, where $\tilde{\mu}_j$ is one of the nonzero eigenvalues of $\tilde{A}$. These roots come in pairs which are symmetric about the origin. Although we only have to consider the case when these roots are purely imaginary, we do not know in advance which ones these will be, so we consider the worst case scenario where all the roots are purely imaginary. Let $a = \max_j\{| \sqrt{\tilde{\mu}_j/M}|\}$. We will show that for sufficiently small $r$, 
 \[
 |\lambda^K(X,1)| - a r^{1/2} > \frac{\epsilon}{X}
@@ -1955,10 +1859,10 @@ Substituting this in, we have
 where $C$ is a positive constant. As $r \rightarrow 0$, $b_j \rightarrow b_j^0$, which are constants. Thus as $r \rightarrow 0$, the quantity in parentheses on the RHS approaches 1. 
 
 Thus there exists $r(b^0) > 0$ such that for $r \in \mathcal{R}$ with $r \leq r(b^0)$, $(|\lambda^K(X,1)| - a r^{1/2})X > r^{1/4}$. Since $\epsilon = r^{1/4}/X$, the result follows upon multiplication by $X$.
-\end{proof}
-\end{lemma:epsilonballlemma}
 
-Next, we obtain lower bounds for $\det K(\lambda)$. 
+\subsection{Bounds on \texorpdfstring{$K(\lambda)^{-1}$}{inverse of K} }
+
+In this section, we obtain a bound for $K(\lambda)^{-1}$. This bound hold as long as we are sufficiently far from the points where $K(\lambda)$ is singular, which we guarantee by taking the $\epsilon-$ball condition. First, we obtain lower bounds for $\det K(\lambda)$. 
 
 % bounds for Det K
 \begin{lemma}\label{detKlemma}
@@ -2228,110 +2132,7 @@ By Hamiltonian symmetry, the remainder term cannot move these off of the real or
 \end{proof}
 \end{lemma}
 
-\subsection{Interaction Eigenvalues: Specific Cases}
-
-At this point, unless we know the eigenvalues of $A$, we cannot find the interaction eigenvalues. There are specific cases, however, in which we can compute the eigenvalues of $\tilde{A}$ in terms of the terms $\tilde{a}_j$.
-
-Recall that the $\tilde{a}_j$ are given by
-\begin{align*}
-\tilde{a}_j(r)
-&= s_0 e^{\alpha \phi/\beta} \left( \beta b_j(r; m_j; \theta) \cos\left( -\rho \log b_j(r; m_j; \theta) \right) - \alpha b_j(r; m_j; \theta) \sin \left( -\rho \log b_j(r; m_j; \theta)  \right) \right) + \mathcal{O}(r^{\gamma/2\alpha})
-\end{align*}
-
-First, we consider the case when $n = 2$. In that case, the eigenvalues of $\tilde{A}$ are $\{0, \tilde{a} \}$, where
-\begin{align*}
-\tilde{a} = \tilde{a}_0 + \tilde{a}_1
-\end{align*}
-For a symmetric 2-periodic pulse, $m_0 = m_1 = 0$ (recall that one of them must be 0). Then by Theorem \ref{2pulsebifurcation}, for sufficiently small $r$ we have symmetric solutions with equal length parameters $b_0(\theta) = b_1(\theta) = e^{-\theta/\rho}$. These length parameters do not depend on $r$. Thus we have
-\begin{align*}
-\tilde{a}_0(r) = \tilde{a}_1(r)  
-&= s_0 e^{\alpha \phi/\beta} e^{-\theta/\rho} \left( \beta \cos \theta - \alpha \sin \theta \right) + \mathcal{O}(r^{\gamma/2\alpha}) \\
-&= \frac{s_0 e^{\alpha \phi/\beta} }{\alpha}  e^{-\theta/\rho} \left( \rho \cos \theta - \sin \theta \right) + \mathcal{O}(r^{\gamma/2\alpha})
-\end{align*}
-
-For $r = 0$, $\tilde{a}(0) = 0$ at the pitchfork bifurcation point $\theta = p^*(0)$. For small $r$, we should be able to argue that $\tilde{a}_j(r) = 0$ at the pitchfork bifurcation point $p_0(r)$. Thus there is a pitchfork bifurcation in the integration eigenvalues at $\theta = p_0(r)$, in which the interaction eigenvalues collide at the origin and switch from a real pair to a purely imaginary pair or vice versa. 
-
-For $n \geq 3$, we can take one of the baseline length parameters $m_j$ to be large compared to the others so that we are ``close to'' the situation on the real line. In that case, the parity of the other integers $m_k$ determines the eigenvalue pattern.
-
-% lemma : parity of eigenvalues determines eigenvalue pattern
-\begin{lemma}\label{inteigsparity}
-As in Theorem \ref{unifperexist}, choose an integer $n \geq 2$ and a sequence of $n-1$ baseline length parameters $b_0^0, \dots, b_{n-2}^0$, where $b_j^0 = \exp\left(-\frac{m_j \pi}{\rho}\right) \in \mathcal{B}$. 
-
-Then there exists $\tilde{r_1} \leq r_1$ and $\tilde{b}^* \in \mathcal{B}$ such that for any $r \leq \tilde{r}_1$, $b_{n-1}^0 \in \mathcal{B}$ with $b_{n-1}^0 \leq b^*$, and $\theta \in [-\arctan \rho, \pi - \arctan \rho)$, we have the following result.
-\begin{itemize}
-\item For $M > 0$ ($M < 0$), there are $n_{\text{even}}$ purely imaginary (real) pairs of interaction eigenvalues.
-\item For $M > 0$ ($M < 0$), there are $n_{\text{odd}}$ real (purely imaginary) pairs of interaction eigenvalues.
-\end{itemize}
-where $n_{\text{even}}$ is the number of even $m_0, \dots, m_{n-2}$ and $n_{\text{odd}}$ is the number of odd $m_0, \dots, m_{n-2}$.
-
-\begin{proof}
-Let $r_1$ and $b^*$ be as in Theorem \ref{unifperexist}. Let $\tilde{A}_0$ be the tri-diagonal, symmetric matrix 
-\begin{align*}
-\tilde{A}_0 &= \begin{pmatrix}
--\tilde{a}_0 & \tilde{a}_0 \\
-\tilde{a}_0 & -\tilde{a}_0 - \tilde{a}_1 &  \tilde{a}_1 \\
-& \tilde{a}_1 & -\tilde{a}_1 - \tilde{a}_2 &  \tilde{a}_2 \\
-& & \ddots & & \ddots \\
-& & & & & \tilde{a}_{n-2} & -\tilde{a}_{n-2} \\
-\end{pmatrix}
-\end{align*}
-which is obtained from the matrix $\tilde{A}$ by taking $\tilde{a}_{n-1} = 0$. The matrix $\tilde{A}_0$ is symmetric, so its eigenvalues are real, and $(1, 1, \dots, 1)^T$ is an eigenvector of $\tilde{A}_0$ with eigenvalue 0. Let $0, \mu^0_1, \dots, \mu^0_{n-1}$ be the eigenvalues of $\tilde{A}_0$. Let $n_+$ be the number of positive $\tilde{a}_j$ and $n_i = n - n_+ - 1$ be the number of negative $\tilde{a}_j$. By Lemma 5.4 of \cite{Sandstede1998} (noting that $\tilde{A}_0$ is the matrix $-A_0$ in that lemma),
-\begin{enumerate}[(i)]
-\item $\tilde{A}_0$ has $n_+$ negative eigenvalues (counting multiplicity)
-\item $\tilde{A}_0$ has $n_-$ positive eigenvalues (counting multiplicity)
-\end{enumerate}
-
-For $\tilde{a}_{n-1}$ small, $\tilde{A}$ is a small perturbation of $\tilde{A}_0$. Since characteristic polynomials are smooth functions of matrix entries, the eigenvalues of a matrix are also smooth functions of the matrix entries. In particular, the eigenvalues of $\tilde{A}$ depend smoothly on $\tilde{a}_{n-1}$, and as $\tilde{a}_{n-1}$ approaches 0, the eigenvalues of $\tilde{A}$ approach those of $\tilde{A}_0$. In particular, as $\tilde{a}_{n-1}$ is increased from 0, the eigenvalues of $\tilde{A}$ can only change sign by crossing through 0. Thus for sufficiently small $\tilde{a}_{n-1}$, the signs of the eigenvalues of $\tilde{A}$ are determined by the signs of the $n-1$ matrix elements $\tilde{a}_0, \dots, \tilde{a}_{n-2}$. We will now obtain this result in terms of the baseline length parameters used to contruct the periodic $n-$pulse.
-
-From the proof of Lemma \eqref{reparam}, $\tilde{a}_j$ is given by
-\begin{align}\label{tildeaj2}
-\tilde{a}_j
-&= s_0 e^{\alpha \phi/\beta} \left( \beta b_j(r; m_j, \theta) \cos\left( -\rho \log b_j(r; m_j, \theta) \right) - \alpha b_j(r; m_j, \theta) \sin \left( -\rho \log b_j(r; m_j, \theta) \right) \right)
-\end{align}
-As $r \rightarrow 0$, $b_j(r; m_j, \theta) \rightarrow b_j^*(m_j, \theta)$ by Theorem \ref{perexist}. As $m_{n-1} \rightarrow \infty$, $b_j^*(m_j, \theta) \rightarrow b_j^0$ by Lemma \ref{thetaparamlemma}. Finally, since $b_{n-1}^0 = \exp\left(-\frac{m_{n-1} \pi}{\rho}\right)$, $b_{n-1}(r; m_{n-1}, \theta) \rightarrow 0$ (and so $\tilde{a}_{n-1} \rightarrow 0$) as $(r, m_{n-1}) \rightarrow (0, \infty)$. Thus we can find a positive integer $M_1$ and $\tilde{r}_1 \leq r_1$ such that for all $m_{n-1} \geq M_1$ and $r \leq \tilde{r}_1$, 
-\begin{enumerate}[(i)]
-	\item $\tilde{a}_{n-1}$ is sufficiently small so that the eigenvalues of $\tilde{A}$ have the same sign as those of $\tilde{A}_0$.
-	\item For $j = 0, \dots, n-2$ and for all $\theta \in [-\arctan \rho, \pi - \arctan \rho)$,
-	\begin{equation}\label{bjunif}
-	b_j(r; m_j, \theta) = b_j^0 e^{ -\frac{1}{\rho} \theta^*_j(r, m_{n-1}) } = e^{ -\frac{1}{\rho}(m_j \pi + \theta^*_j(r, m_{n-1})) } 
-	\end{equation}
-	where $|\theta^*_j(r, m_{n-1})| < \arctan \rho$.
-\end{enumerate}
-
-We can now determine the signs of the $\tilde{a}_j$ for $j = 0, \dots, n-2$. Since
-\begin{align*}
-\cos\left( -\rho \log b_j(r; m_j, \theta) \right) 
-&= \cos\left( -\rho \log e^{ -\frac{1}{\rho}(m_j \pi + \theta^*_j(r, m_{n-1})) } \right) \\
-&= \cos\left( m_j \pi + \theta^*_j(r, m_{n-1})\right) \\
-&= (-1)^{m_j} \cos \theta^*_j(r, m_{n-1})
-\end{align*}
-and
-\begin{align*}
-\sin\left( -\rho \log b_j(r; m_j, \theta) \right) 
-&= \sin\left( m_j \pi + \theta^*_j(r, m_{n-1})\right) \\
-&= (-1)^{m_j} \sin \theta^*_j(r, m_{n-1})
-\end{align*}
-upon substituting \eqref{bjunif} into equation \eqref{tildeaj2} we obtain
-\begin{align*}
-\tilde{a}_j 
-&= (-1)^{m_j} s_0 e^{\alpha \phi/\beta} b_j^0 e^{ -\frac{1}{\rho} \theta^*_j(r, m_{n-1}) } \left( \beta \cos\theta^*_j(r, m_{n-1}) - \alpha \sin \theta^*_j(r, m_{n-1}) \right) \\
-&= (-1)^{m_j} \left[ s_0 \alpha e^{\alpha \phi/\beta} b_j^0 e^{ -\frac{1}{\rho} \theta^*_j(r, m_{n-1}) } \cos\theta^*_j(r, m_{n-1}) \right] \left( \rho - \tan \theta^*_j(r, m_{n-1}) \right)
-\end{align*}
-The term in brackets is always positive since $|\theta^*_j(r, m_{n-1})| < \arctan \rho$. Thus the sign of $\tilde{a}_j(0)$ is completely determined by the term $(-1)^{m_j}$, and we have
-\begin{align*}
-\tilde{a}_j(0) &> 0 && \text{if } m_j \text{ is even} \\
-\tilde{a}_j(0) &< 0 && \text{if } m_j \text{ is odd}
-\end{align*}
-From this, it follows that 
-\begin{enumerate}[(i)]
-\item $\tilde{A}_0$ has $n_{\text{even}}$ negative eigenvalues (counting multiplicity)
-\item $\tilde{A}_0$ has $n_{\text{odd}}$ positive eigenvalues (counting multiplicity)
-\end{enumerate}
-The result follows from equation \eqref{inteigsformula} from Lemma \ref{inteigslemma}.
-\end{proof}
-\end{lemma}
-
-\subsubsection{Characterization of \texorpdfstring{$A - \lambda^2 MI$}{Matrix A} }
+\subsection{Characterization of \texorpdfstring{$A - \lambda^2 MI$}{Matrix A} }
 
 We can now find the ``essential spectrum'' eigenvalues, which we expect to occur near the points where $K(\lambda)$ is singular. In order to do this, we will need to invert $A - \lambda^2 MI$ away from the points where it is singular.
 
@@ -2663,7 +2464,7 @@ where $k$ is a positive integer with $k \pi/X < \delta$. The remainder terms can
 \end{proof}
 \end{lemma}
 
-\subsubsection{Eigenvalue count}
+\subsection{Eigenvalue counts}
 
 Finally, we will perform two counts of the small eigenvalues so that we can conclude that we have accounted for everything. First, we will count the eigenvalues with $|\lambda| < \delta$.
 
@@ -2853,15 +2654,109 @@ Since $|p| < 1$, by Rouch\'e's Theorem, $E(\lambda)$ and $\det(K(\lambda))\det(A
 \end{proof}
 \end{lemma}
 
-Using Lemmas \ref{eigcount} and \ref{eigcount2}, a complete account of the eigenvalues inside $|\lambda| = \delta$ is as follows.
+\subsection{Proof of Theorem \ref{locateeigtheorem}}
+
+For part (i), it follows from \eqref{Arelations} that $Q_{np}'(x)$ is an eigenfunction with eigenvalue 0 and $T_{np}(x)$ is a generalized eigenfunction with eigenvalue 0 corresponding to $Q_{np}'(x)$. By Hypothesis \ref{Melnikov2hyp}, this Jordan chain cannot continue. By Lemma \ref{varadjsolutions}, there is another eigenfunction $V^c(x)$ with eigenvalue 0; this eigenfunction is bounded but does not decay to 0. Although Lemma \ref{varadjsolutions} states this for $A(Q(x))$, i.e. the linearization about the primary pulse, the same argument holds for $A(Q_{np}(x))$, since it only depends on the rest state.
+
+Part (ii) follows from Lemma \eqref{inteigslemma} and part (iii) follows from Lemma \ref{essspeclemma}. Part (iv) follows from Lemmas \ref{eigcount} and \ref{eigcount2}. Using these lemmas, a complete account of the eigenvalues inside $|\lambda| = \delta$ is as follows.
 \begin{enumerate}
-	\item At $\lambda = 0$, there is an eigenvalue with algebraic multiplicity 3. The eigenfunctions are the kernel eigenfunction $\partial_x Q_{np}(x)$ from translation invariance, its generalized kernel eigenfunction $T_{np}(x)$, and a third kernel eigenfunction $V^c(x)$ which is bounded but does not decay exponentially.
-	\item There are $2n - 2$ interaction eigenvalues, which come in pairs.
-	\item There $2 k_M$ purely imaginary ``essential spectrum'' eigenvalues, which come in pairs.
+	\item At $\lambda = 0$, there is an eigenvalue with algebraic multiplicity 3. The eigenfunctions are those from part (i).
+	\item There are $2n - 2$ interaction eigenvalues, which come in pairs $\pm \lambda$. Each pair is real or purely imaginary.
+	\item There $2 k_M$ purely imaginary ``essential spectrum'' eigenvalues, which also come in pairs.
 \end{enumerate}
 
-% % remove this if part of main document
-% \bibliographystyle{amsalpha}
-% \bibliography{thesis.bib}
+\subsection{Proof of Theorem \ref{inteigsparity}}
+
+Let $r_1$ and $b^*$ be as in Theorem \ref{unifperexist}. Let $\tilde{A}_0$ be the tri-diagonal, symmetric matrix 
+\begin{align*}
+\tilde{A}_0 &= \begin{pmatrix}
+-\tilde{a}_0 & \tilde{a}_0 \\
+\tilde{a}_0 & -\tilde{a}_0 - \tilde{a}_1 &  \tilde{a}_1 \\
+& \tilde{a}_1 & -\tilde{a}_1 - \tilde{a}_2 &  \tilde{a}_2 \\
+& & \ddots & & \ddots \\
+& & & & & \tilde{a}_{n-2} & -\tilde{a}_{n-2} \\
+\end{pmatrix}
+\end{align*}
+which is obtained from the matrix $\tilde{A}$ by taking $\tilde{a}_{n-1} = 0$. The matrix $\tilde{A}_0$ is symmetric, so its eigenvalues are real, and $(1, 1, \dots, 1)^T$ is an eigenvector of $\tilde{A}_0$ with eigenvalue 0. Let $0, \mu^0_1, \dots, \mu^0_{n-1}$ be the eigenvalues of $\tilde{A}_0$. Let $n_+$ be the number of positive $\tilde{a}_j$ and $n_i = n - n_+ - 1$ be the number of negative $\tilde{a}_j$. By Lemma 5.4 of \cite{Sandstede1998} (noting that $\tilde{A}_0$ is the matrix $-A_0$ in that lemma),
+\begin{enumerate}[(i)]
+\item $\tilde{A}_0$ has $n_+$ negative eigenvalues (counting multiplicity)
+\item $\tilde{A}_0$ has $n_-$ positive eigenvalues (counting multiplicity)
+\end{enumerate}
+
+For $\tilde{a}_{n-1}$ small, $\tilde{A}$ is a small perturbation of $\tilde{A}_0$. Since characteristic polynomials are smooth functions of matrix entries, the eigenvalues of a matrix are also smooth functions of the matrix entries. In particular, the eigenvalues of $\tilde{A}$ depend smoothly on $\tilde{a}_{n-1}$, and as $\tilde{a}_{n-1}$ approaches 0, the eigenvalues of $\tilde{A}$ approach those of $\tilde{A}_0$. In particular, as $\tilde{a}_{n-1}$ is increased from 0, the eigenvalues of $\tilde{A}$ can only change sign by crossing through 0. Thus for sufficiently small $\tilde{a}_{n-1}$, the signs of the eigenvalues of $\tilde{A}$ are determined by the signs of the $n-1$ matrix elements $\tilde{a}_0, \dots, \tilde{a}_{n-2}$. We will now obtain this result in terms of the baseline length parameters used to contruct the periodic $n-$pulse.
+
+From the proof of Lemma \eqref{reparam}, $\tilde{a}_j$ is given by
+\begin{align}\label{tildeaj2}
+\tilde{a}_j
+&= s_0 e^{\alpha \phi/\beta} \left( \beta b_j(r; m_j, \theta) \cos\left( -\rho \log b_j(r; m_j, \theta) \right) - \alpha b_j(r; m_j, \theta) \sin \left( -\rho \log b_j(r; m_j, \theta) \right) \right)
+\end{align}
+As $r \rightarrow 0$, $b_j(r; m_j, \theta) \rightarrow b_j^*(m_j, \theta)$ by Theorem \ref{perexist}. As $m_{n-1} \rightarrow \infty$, $b_j^*(m_j, \theta) \rightarrow b_j^0$ by Lemma \ref{thetaparamlemma}. Finally, since $b_{n-1}^0 = \exp\left(-\frac{m_{n-1} \pi}{\rho}\right)$, $b_{n-1}(r; m_{n-1}, \theta) \rightarrow 0$ (and so $\tilde{a}_{n-1} \rightarrow 0$) as $(r, m_{n-1}) \rightarrow (0, \infty)$. Thus we can find a positive integer $M_1$ and $\tilde{r}_1 \leq r_1$ such that for all $m_{n-1} \geq M_1$ and $r \leq \tilde{r}_1$, 
+\begin{enumerate}[(i)]
+	\item $\tilde{a}_{n-1}$ is sufficiently small so that the eigenvalues of $\tilde{A}$ have the same sign as those of $\tilde{A}_0$.
+	\item For $j = 0, \dots, n-2$ and for all $\theta \in [-\arctan \rho, \pi - \arctan \rho)$,
+	\begin{equation}\label{bjunif}
+	b_j(r; m_j, \theta) = b_j^0 e^{ -\frac{1}{\rho} \theta^*_j(r, m_{n-1}) } = e^{ -\frac{1}{\rho}(m_j \pi + \theta^*_j(r, m_{n-1})) } 
+	\end{equation}
+	where $|\theta^*_j(r, m_{n-1})| < \arctan \rho$.
+\end{enumerate}
+
+We can now determine the signs of the $\tilde{a}_j$ for $j = 0, \dots, n-2$. Since
+\begin{align*}
+\cos\left( -\rho \log b_j(r; m_j, \theta) \right) 
+&= \cos\left( -\rho \log e^{ -\frac{1}{\rho}(m_j \pi + \theta^*_j(r, m_{n-1})) } \right) \\
+&= \cos\left( m_j \pi + \theta^*_j(r, m_{n-1})\right) \\
+&= (-1)^{m_j} \cos \theta^*_j(r, m_{n-1})
+\end{align*}
+and
+\begin{align*}
+\sin\left( -\rho \log b_j(r; m_j, \theta) \right) 
+&= \sin\left( m_j \pi + \theta^*_j(r, m_{n-1})\right) \\
+&= (-1)^{m_j} \sin \theta^*_j(r, m_{n-1})
+\end{align*}
+upon substituting \eqref{bjunif} into equation \eqref{tildeaj2} we obtain
+\begin{align*}
+\tilde{a}_j 
+&= (-1)^{m_j} s_0 e^{\alpha \phi/\beta} b_j^0 e^{ -\frac{1}{\rho} \theta^*_j(r, m_{n-1}) } \left( \beta \cos\theta^*_j(r, m_{n-1}) - \alpha \sin \theta^*_j(r, m_{n-1}) \right) \\
+&= (-1)^{m_j} \left[ s_0 \alpha e^{\alpha \phi/\beta} b_j^0 e^{ -\frac{1}{\rho} \theta^*_j(r, m_{n-1}) } \cos\theta^*_j(r, m_{n-1}) \right] \left( \rho - \tan \theta^*_j(r, m_{n-1}) \right)
+\end{align*}
+The term in brackets is always positive since $|\theta^*_j(r, m_{n-1})| < \arctan \rho$. Thus the sign of $\tilde{a}_j(0)$ is completely determined by the term $(-1)^{m_j}$, and we have
+\begin{align*}
+\tilde{a}_j(0) &> 0 && \text{if } m_j \text{ is even} \\
+\tilde{a}_j(0) &< 0 && \text{if } m_j \text{ is odd}
+\end{align*}
+From this, it follows that 
+\begin{enumerate}[(i)]
+\item $\tilde{A}_0$ has $n_{\text{even}}$ negative eigenvalues (counting multiplicity)
+\item $\tilde{A}_0$ has $n_{\text{odd}}$ positive eigenvalues (counting multiplicity)
+\end{enumerate}
+The result follows from equation \eqref{inteigsformula} from Lemma \ref{inteigslemma}. The condition that $m_{n-1} \geq M_1$ is equivalent to $b_{n-1}^0 \leq \tilde{b}^*$ for some $\tilde{b}^* \leq b^*$.
+
+\subsection{Interaction Eigenvalues: Specific Cases}
+
+There are specific cases, however, in which we can compute the eigenvalues of $\tilde{A}$ in terms of the terms $\tilde{a}_j$.
+
+Recall that the $\tilde{a}_j$ are given by
+\begin{align*}
+\tilde{a}_j(r)
+&= s_0 e^{\alpha \phi/\beta} \left( \beta b_j(r; m_j; \theta) \cos\left( -\rho \log b_j(r; m_j; \theta) \right) - \alpha b_j(r; m_j; \theta) \sin \left( -\rho \log b_j(r; m_j; \theta)  \right) \right) + \mathcal{O}(r^{\gamma/2\alpha})
+\end{align*}
+
+First, we consider the case when $n = 2$. In that case, the eigenvalues of $\tilde{A}$ are $\{0, \tilde{a} \}$, where
+\begin{align*}
+\tilde{a} = \tilde{a}_0 + \tilde{a}_1
+\end{align*}
+For a symmetric 2-periodic pulse, $m_0 = m_1 = 0$ (recall that one of them must be 0). Then by Theorem \ref{2pulsebifurcation}, for sufficiently small $r$ we have symmetric solutions with equal length parameters $b_0(\theta) = b_1(\theta) = e^{-\theta/\rho}$. These length parameters do not depend on $r$. Thus we have
+\begin{align*}
+\tilde{a}_0(r) = \tilde{a}_1(r)  
+&= s_0 e^{\alpha \phi/\beta} e^{-\theta/\rho} \left( \beta \cos \theta - \alpha \sin \theta \right) + \mathcal{O}(r^{\gamma/2\alpha}) \\
+&= \frac{s_0 e^{\alpha \phi/\beta} }{\alpha}  e^{-\theta/\rho} \left( \rho \cos \theta - \sin \theta \right) + \mathcal{O}(r^{\gamma/2\alpha})
+\end{align*}
+
+For $r = 0$, $\tilde{a}(0) = 0$ at the pitchfork bifurcation point $\theta = p^*(0)$. For small $r$, we should be able to argue that $\tilde{a}_j(r) = 0$ at the pitchfork bifurcation point $p_0(r)$. Thus there is a pitchfork bifurcation in the integration eigenvalues at $\theta = p_0(r)$, in which the interaction eigenvalues collide at the origin and switch from a real pair to a purely imaginary pair or vice versa. 
+
+\iffulldocument\else
+	\bibliographystyle{amsalpha}
+	\bibliography{thesis.bib}
+\fi
 
 \end{document}
