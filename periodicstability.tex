@@ -5,8 +5,6 @@
 % remove this eventually or do conditional
 \chapter{KdV5 with periodic boundary conditions}
 
-\section{Proof of Stability Theorems}
-
 \subsection{Gap and Conjugation Lemmas}
 
 We first state and prove a gap and conjugation lemmas. This follows almost exactly from \cite{Zumbrun2009}, except we allow the parameter vector $\Lambda$ to live in a Banach space rather than in a subset of $\C^m$. The notation in the two lemmas is the same as in \cite{Zumbrun2009}. 
@@ -238,101 +236,167 @@ We have a solution to this ODE for $x \leq M$, and by variation of constants, th
 \end{proof}
 \end{lemma}
 
-\subsection{Proof of Initial Lemmas}
-
-We now present the proofs of the lemmas in section [NUM].
-
-% eigenvalues of A0 lemma
-\newtheorem*{lemma:eigA0lemma}{Lemma \ref{Pi:eigA0lemma}}
-\begin{lemma:eigA0lemma}
-$A(0)$ has a simple eigenvalue at 0 and a quartet of eigenvalues at $\pm \alpha_0 \pm \beta_0 i\}$. For any other eigenvalue $\nu$ of $A(0)$, $|\text{Re }\nu| > \alpha_0$. 
-\begin{proof}
+\subsection{Proof of Lemma \ref{eigA0lemma}}
 The characteristic polynomial of $A(0)$ is 
 \begin{equation}\label{charpolyA0}
 p_2(\nu) = -\nu^{2m+1} + c_{2m-2} \nu^{2m-1} + \dots + c_2 \nu^3 - c_0 \nu = \nu p_1(\nu)
 \end{equation}
 where $p_1(\nu)$ is the characteristic polynomial of $DF(0)$ from the previous section. Thus $A(0)$ has the same eigenvalues as $DF(0)$ as well as an additional eigenvalue at 0.
-\end{proof}
-\end{lemma:eigA0lemma}
 
 % nondegeneracy lemma
-\newtheorem*{lemma:nondegenlemma}{Lemma \ref{Pi:nondegenlemma}}
-\begin{lemma:nondegenlemma}
-We have the nondegeneracy condition
+\subsection{Proof of Lemma \ref{nondegenlemma}}
+Since $Q(x)$ is a homoclinic orbit in the intersection of $W^u(0)$ and $W^s(0)$, $\R Q'(0) \subset T_{Q(0)}W^s(0) \cap T_{Q(0)}W^u(0)$. If the intersection were more than one-dimensional, there would exist another exponentially localized solution $V(x) = (v_1, \dots, v_{2m}, v_{2m+1})^T$ to \eqref{vareq2}. It follows that $\tilde{V}(x) = (v_1, \dots, v_{2m})^T$ would be an exponentially localized solution to \eqref{vareq1}, which contradicts Hypothesis \ref{nondegenhyp}.
 
-\begin{equation}\label{nondegen2}
-T_{Q(0)}W^s(0) \cap T_{Q(0)}W^u(0) = \R Q'(0)
+\subsection{Characterization of solutions to adjoint linear ODEs}
+
+In this section, we prove a lemma relating solutions of the adjoint of an $n$-th order linear ODE to solutions of the adjoint problem when written as a first order system.
+
+\begin{lemma}\label{adjointlemma}
+Consider the $n$-th order linear ODE 
+\begin{equation}\label{linODE}
+\partial_x^n u(x) + \sum_{k=0}^{n-1}g_k(x) \partial_x^k u(x) = 0
 \end{equation}
-
+which we can write as a first order system in the standard way as
+\begin{equation}\label{linODEsys}
+U'(x) = A(x)U(x)
+\end{equation}
+where
+\begin{equation}\label{Axform}
+A(x) = \begin{pmatrix}
+0 & 1 & 0 & \dots & 0 & 0 \\
+0 & 0 & 1 & \dots & 0 & 0 \\
+& &  & \ddots &  & & \\
+0 & 0 & 0 & \dots & 0 & 1 \\
+-g_0(x) & -g_1(x) & -g_2(x) &
+ \dots & -g_{n-2}(x) & -g_{n-1}(x)
+\end{pmatrix}
+\end{equation}
+Then if $W(x) = (w_1(x), \dots, w_n(x))$ solves the adjoint system
+\begin{equation}\label{adjODEsys}
+W'(x) = -[A(x)]^* W(x),
+\end{equation}
+$w_n(x)$ solves the adjoint linear ODE
+\begin{equation}\label{adjODE}
+(-1)^n \partial_x^n w(x) + \sum_{k=0}^{n-1} (-1)^k \partial_x^k( g_k(x) w(x)) = 0
+\end{equation}
+and the remaining entries of $W(x)$ are given by
+\begin{align}\label{adjWform}
+w_r(x) &= (-1)^{n-r} \partial_x^{n-r}w_n(x) + \sum_{k=r}^{n-1} (-1)^{k-r} \partial_x^{k-r}(g_k(x) w_n(x)) && r = 1, \dots n-1
+\end{align}
 \begin{proof}
-Since $Q(x)$ is a homoclinic orbit in the intersection of $W^u(0)$ and $W^s(0)$, $\R Q'(0) \subset T_{Q(0)}W^s(0) \cap T_{Q(0)}W^u(0)$. If the intersection were more than one-dimensional, there would exist another exponentially localized solution $V(x) = (v_1, \dots, v_{2m}, v_{2m+1})^T$ to \eqref{Pi:vareq2}. It follows that $\tilde{V}(x) = (v_1, \dots, v_{2m})^T$ would be an exponentially localized solution to \eqref{Pi:vareq1}, which contradicts Hypothesis \ref{Pi:nondegenhyp}.
+The adjoint system is given by
+\begin{equation*}
+\begin{pmatrix}
+w_1'(x) \\ w_2'(x) \\ w_3'(x) \\ \vdots \\ w_n'(x)
+\end{pmatrix} = \begin{pmatrix}
+0 &  0 & 0  & \dots & 0 & g_0(x) \\
+0 & -1 & 0  & \dots & 0 & g_1(x) \\
+0 &  0 & -1 & \dots & 0 & g_2(x) \\
+& &  & \ddots &  & & \\
+0 & 0 & 0 & \dots  & -1 & g_{n-1}(x) \\
+\end{pmatrix}
+\begin{pmatrix}
+w_1(x) \\ w_2(x) \\ w_3(x) \\ \vdots \\ w_n(x)
+\end{pmatrix}
+\end{equation*}
+which gives us the system of $n$ equation 
+\begin{align*}
+w_1'(x) &= g_0(x) w_n(x) \\
+w_2'(x) &= -w_1(x) + g_1(x) w_n(x) \\
+\vdots \\
+w_{n-1}'(x) &= -w_{n-2}(x) + g_{n-2}(x) w_n(x) \\
+w_n'(x) &= -w_{n-1}(x) + g_{n-1}(x) w_n(x) \\
+\end{align*}
+Suppressing the dependence on $x$ for convenience of notation, we rearrange this to get
+\begin{align*}
+0 &= -w_1' + g_0 w_n \\
+w_1 &= -w_2' + g_1 w_n \\
+w_2 &= -w_3' + g_2 w_n \\
+\vdots \\
+w_{n-2} &= -w_{n-1}' + g_{n-2} w_n \\
+w_{n-1} &= -w_n' + g_{n-1} w_n \\
+\end{align*}
+Differentiate the $w_{n-1}$ equation to get $w_{n-1}' = -\partial_x^2 w_n + \partial_x(g_{n-1}w_n)$ and substitite it into the $w_{n-2}$ equation to get
+\begin{align*}
+w_{n-2} &= \partial_x^2 w_n - \partial_x(g_{n-1} w_n) + g_{n-2} w_n
+\end{align*}
+Differentiate this and substitute it into the $w_{n-3}$ equation to get
+\[
+w_{n-3} = -\partial_x^3 w_n + \partial_x^2(g_{n-1} w_n) - \partial_x(g_{n-2} w_n) + g_{n-3} w_n
+\]
+Continuing this process, we have the general expression for $w_r$
+\begin{align*}
+w_r &= (-1)^{n-r} \partial_x^{n-r}w_n + \sum_{k=r}^{n-1} (-1)^{k-r} \partial_x^{k-r}(g_k w_n) && r = 1, \dots n-1
+\end{align*}
+When we reach the $w_1$ (after $n-1$ iterations), we have
+\[
+w_1 = (-1)^{n-1} \partial_x^{n-1} w_n + \sum_{k=1}^{n-1} (-1)^{k-1} \partial_x^{k-1}(g_k w_n)
+\]
+Differentiate this once more, and substitute it into the first equation $0 = -w_1' + g_0 w_n$ to get 
+\begin{align*}
+0 &= (-1)^{n} \partial_x^{n} w_n + \sum_{k=1}^{n-1} (-1)^{k} \partial_x^{k}(g_k w_n) + g_0 w_n \\
+&= (-1)^{n} \partial_x^{n} w_n + \sum_{k=0}^{n-1} (-1)^{k} \partial_x^{k}(g_k w_n)
+\end{align*}
+which is identical to adjoint linear ODE \eqref{adjODE}. Thus $w_n$ is a solution to \eqref{adjODE}.
 \end{proof}
-\end{lemma:nondegenlemma}
+\end{lemma}
 
 % solutions to variational and adjoint variational equation
-\newtheorem*{lemma:varadjsolutions}{Lemma \ref{Pi:varadjsolutions}}
-\begin{lemma:varadjsolutions}
-We have the following solutions to the variational equation \eqref{Pi:vareq2} and adjoint variational equation \eqref{Pi:adjvareq2}.
-
-\begin{enumerate}[(i)]
-
-\item There exists exactly two linearly independent, bounded solutions $\Psi(x)$ and $\Psi^c(x)$ to \eqref{Pi:adjvareq2}. $\Psi(x)$ is exponentially localized, i.e. $e^{\alpha |x|}\Psi(x)$ is bounded. For $\Psi^c(x)$,
-	\begin{equation}
-	\Psi^c(x) \rightarrow W_0 \text{ as }|x| \rightarrow \infty
-	\end{equation}
-For $\Psi(x)$, we have $\Psi(-x) = R \Psi(x)$, where $R$ is the standard reversor operator. In addition, $\Psi(0), \Psi^c(0) \perp \R Q'(0) \oplus Y^+ \oplus Y^-$.
-
-\item There exists a bounded solution $V^c(x)$ of \eqref{Pi:vareq2} such that 
-\begin{equation}
-V^c(x) \rightarrow V_0 \text{ as }|x| \rightarrow \infty
-\end{equation}
-Furthermore $V^c$ is symmetric with respect to the reversor $R$, i.e. $V^c(-x) = R V^c(x)$.
-\end{enumerate}
-
-\begin{proof}
-\begin{enumerate}
-\item The adjoint variational equation \eqref{Pi:adjvareq2} is the following equation written as a first order system
+\subsection{Proof of Lemma \ref{varadjsolutions}}
+For part (i), the adjoint variational equation \eqref{adjvareq2} is the following equation written as a first order system
 \begin{equation}\label{adj2}
-[\partial_x E''(q) ]^* v(x) = -E''(q) \partial_x v(x) = 0,
+[\partial_x E''(q(x)) ]^* v(x) = -E''(q(x)) \partial_x v(x) = 0,
 \end{equation}
-which has exponentially decaying solution $q(x)$. Thus we have an exponentially localized solution $\Psi(x)$ to \eqref{Pi:adjvareq2} which has $q(x)$ as its $(m+1)$-th component. Since $q(x)$ is an even function, the functions $f_j(x)$ from \eqref{Pi:DefA} are even for $j$ even and odd for $j$ odd. Thus, from the form of $A(Q)$, $\Psi(-x) = R \Psi(x)$, where $R$ is the standard reversor operator.
+where $E''(q(x))$ is the Hessian of the energy. 
 
-\item Equation \eqref{Pi:adj2} also has the constant solution 1 as a solution. Thus \eqref{Pi:adjvareq2} has a solution $\Psi^c(x)$ which has $1$ as its $(m+1)$-th component. This solution has the form
+To find $\Psi(x)$, equation \ref{adj2} has an exponentially decaying solution $q(x)$. Using Lemma \ref{adjointlemma}, \eqref{adjvareq2} has a solution $\Psi(x) = (\psi_1(x), \dots, \psi_{2m+1}(x))$ with $\psi_{2m+1}(x) = q(x)$. Comparing \eqref{Axform} from Lemma \ref{adjointlemma} to \eqref{DefA}, the functions $g_k(x)$ in \eqref{Axform} are even functions for $k$ odd and odd functions for $k$ even. Using \eqref{adjWform} from Lemma \ref{adjointlemma}, for the components of $\Psi(x)$ we have $\psi_k(x)$ is even for $k$ odd and odd for $k$ even, thus $\Psi(-x) = R \Psi(x)$, where $R$ is the standard reversor operator. Finally, since the functions $f_k(x)$ in \eqref{DefA} are exponentially localized, $\Psi(x)$ is exponentially localized as well.
+
+To find $\Psi^c(x)$, equation \eqref{adj2} also has the constant solution 1 as a solution. Thus \eqref{adjvareq2} has a solution $\Psi^c(x) = (\psi^c_1(x), \dots, \psi^c_{2m+1}(x))$ with $\psi_{2m+1}(x) = 1$. Comparing \eqref{Axform} from Lemma \ref{adjointlemma} to \eqref{DefA} and using \eqref{adjWform} from Lemma \ref{adjointlemma}, we have
 \[
-\Psi^c(x) = \begin{pmatrix}
--c_0 + g_1(x) \\ g_2(x) \\
--c_2 + g_3(x) \\ g_4(x) \\
+\Psi^c(x) 
+= \begin{pmatrix}
+\sum_{k=1}^{n-1} (-1)^{k-1} \partial_x^{k-1} g_k  \\
+\sum_{k=2}^{n-1} (-1)^{k-2} \partial_x^{k-2} g_k  \\
+\sum_{k=3}^{n-1} (-1)^{k-3} \partial_x^{k-3} g_k  \\ 
 \vdots \\
--c_{2m-2} + g_{2m-1}(x) \\ g_{2m}(x) \\ 1
+g_{2m}(x) -\partial_x g_{2m+1}(x) \\
+g_{2m+1}(x) \\
+1
 \end{pmatrix}
 \]
-where the functions $g_j(x)$ are linear combinations of the functions $f_j(x)$ from \eqref{Pi:DefA} and their derivatives and are thus exponentially localized. It follows that $\Psi^c(x) \rightarrow W_0$ as $|x| \rightarrow \infty$, where $W_0$ is given by \eqref{Pi:W0}.
-
-\item For any solutions $V(x)$ and $W(x)$ to the variational equation \eqref{Pi:vareq2} and the adjoint variational equation \eqref{Pi:adjvareq2}, $\langle V(x), W(x) \rangle$ is constant in $x$. Since solutions $V(x)$ to \eqref{Pi:vareq2} with initial conditions in $\R Q'(0) \oplus Y^+ \oplus Y^-$ decay exponentially to 0 at the appropriate end, any bounded solution to \eqref{Pi:adjvareq2} must be perpendicular to $\R Q'(0) \oplus Y^+ \oplus Y^-$ at $x = 0$, thus this holds for $\Psi(0)$ and $\Psi^c(0)$. Since $\R Q'(0) \oplus Y^+ \oplus Y^-$ is a $(2m-1)-$dimensional subspace of $\R^{2m+1}$ and we have found two linearly independent, bounded solutions of \eqref{Pi:adjvareq2}, there can be no others.
-
-\item Recall that $\dim W^{s/u}(0) = m$ and $\dim W^c(0) = 1$, thus $\dim W^{cs}(0) = m + 1$, and $\dim W^{cu}(0) = m + 1$. $\Psi(0) \perp T_{Q(0)}W^{cs}(0) + T_{Q(0)}W^{cu}(0)$, so $\dim T_{Q(0)}W^{cs}(0) + T_{Q(0)}W^{cu}(0) \leq 2m$. This implies, by a dimension-counting argument, that $\dim T_{Q(0)}W^{cs}(0) \cap T_{Q(0)}W^{cu}(0) = 2$. Since $\dim T_{Q(0)}W^s(0) \cap T_{Q(0)}W^s(0) = 1$ by Lemma \ref{Pi:nondegenlemma}, we conclude that there exists $Y_0 \in T_{Q(0)}W^{cs}(0) \cap T_{Q(0)}W^{cu}(0)$ which is linearly independent from $Q'(0)$, and $Y^0 \notin T_{Q(0)}W^s(0) \cap T_{Q(0)}W^s(0)$. We can then decompose the tangent space at $Q(0)$ as 
+where $g_k(x) = -c_{k-1} - f_{k-1}(x) - f_k'(x)$ for $k$ odd and $g_k(x) = -f_{k-1}(x) - f_k'(x)$ for $k$ even, except for $k = 2m$, for which we have $g_{2m}(x) = -f_{2m-1}(x)$. Extracting the first term of each sum, this becomes
 \[
-\R^{2m + 1} = \R Q'(0) \oplus Y^0 \oplus Y^+ \oplus Y^-
+\Psi^c(x) 
+= \begin{pmatrix}
+-c_0 - f_0(x) - f_1'(x) + \sum_{k=2}^{n-1} (-1)^{k-1} \partial_x^{k-1} g_k  \\
+- f_1(x) - f_2'(x) + \sum_{k=3}^{n-1} (-1)^{k-2} \partial_x^{k-2} g_k  \\
+-c_2 - f_2(x) - f_3'(x) + \sum_{k=4}^{n-1} (-1)^{k-3} \partial_x^{k-3} g_k  \\ 
+\vdots \\
+-c_{2m-2} - f_{2m-2}(x) - f_{2m}'(x) -\partial_x g_{2m+1}(x) \\
+-f_{2m-1}(x) \\
+1
+\end{pmatrix}
 \]
+Since all the terms involving $g_k(x)$ are differentiated at least once, the constants $c_k$ only appear out front where they are explicitly shown. Thus every other term in $\Psi^c(x)$ decays exponentially to 0 as $|x| \rightarrow \infty$. It follows that $\Psi^c(x)$ is bounded, and $\Psi^c(x) \rightarrow (-c_0, 0, -c_2, \dots, -c_{2m-2}, 0, 1)^T = W_0$ as $|x| \rightarrow \infty$.
 
-\item Using the Gap Lemma, we can find solutions $V^\pm(x)$ to the variational equation \eqref{Pi:vareq2} on $\R^\pm$ such that
+To show that there are no other linearly independent, bounded solutions to \eqref{adjvareq2}, it follows from Lemma \ref{adjointlemma} that any bounded solution to \eqref{adjvareq2} must be perpendicular to $\R Q'(0) \oplus Y^+ \oplus Y^-$ at $x = 0$. In particular, this this holds for $\Psi(0)$ and $\Psi^c(0)$. Since $S_1 = \R Q'(0) \oplus Y^+ \oplus Y^-$ is a $(2m-1)-$dimensional subspace of $\R^{2m+1}$ and $S_2 = \Psi(0) \oplus \Psi^c(0)$ is a $2-$dimensional subspace of $\R^{2m+1}$ which is perpendicular to $S_1$, we conclude that there can be no other bounded, linearly independent solutions to \eqref{adjvareq2}.
+
+For part (ii), we employ the following dimension counting argument. Recall that $\dim W^{s/u}(0) = m$ and $\dim W^c(0) = 1$, thus $\dim W^{cs}(0) = m + 1$, and $\dim W^{cu}(0) = m + 1$. $\Psi(0) \perp T_{Q(0)}W^{cs}(0) + T_{Q(0)}W^{cu}(0)$, so $\dim T_{Q(0)}W^{cs}(0) + T_{Q(0)}W^{cu}(0) \leq 2m$. By counting dimensions, this implies that $\dim T_{Q(0)}W^{cs}(0) \cap T_{Q(0)}W^{cu}(0) = 2$. Since $\dim T_{Q(0)}W^s(0) \cap T_{Q(0)}W^s(0) = 1$ by Lemma \ref{nondegenlemma}, we conclude that there exists $Y_0 \in T_{Q(0)}W^{cs}(0) \cap T_{Q(0)}W^{cu}(0)$ which is linearly independent from $Q'(0)$, and $Y^0 \notin T_{Q(0)}W^s(0) \cap T_{Q(0)}W^s(0)$.
+
+Using the Gap Lemma, we can find solutions $V^\pm(x)$ to the variational equation \eqref{vareq2} on $\R^\pm$ such that
 \begin{equation}\label{Vplusminus}
 V^\pm(x) = V_0 + \mathcal{O}(e^{-(\alpha - \epsilon)|x|}|V_0|)
 \end{equation}
 for some $\epsilon > 0$, so $V^\pm(x) \rightarrow V_0$ as $x \rightarrow \pm \infty$. These will not be unique, since, for example, we can add any component in $Y^+ \oplus \R Q'(0)$ to $V^+(0)$ and keep the same decay property. Since $V^\pm(x)$ remains bounded but does not decay to 0, $V^\pm(0)$ must have a component in $Y^0$ and cannot have a component in $Y^-$. If $V^+(0)$ has any component in $Y^+ \oplus \R Q'(0)$, we can subtract it out and keep the decay property in \eqref{Vplusminus}. Thus we can take $V^+(0) \in Y^0$. Similarly, we can take $V^0(0) \in Y^0$. Since both initial conditions are in $Y^0$, $V^\pm(x)$ remain bounded for all $x$.
 
-\item By reversibility, $RV^+(-x)$ is also a solution to the variational equation on $R^-$, with 
+By reversibility, $RV^+(-x)$ is also a solution to the variational equation on $R^-$, with 
 \begin{align*}
 R V^+(-x) &= R V_0 + \mathcal{O}(e^{-(\alpha - \epsilon)|x|}|V_0|) \\
 &= V_0 + \mathcal{O}(e^{-(\alpha - \epsilon)|x|}|V_0|)
 \end{align*}
-where $R V_0 = V_0$ since all components of $V_0$ are 0 except for the first. Reversing time swaps $Y^+$ and $Y^-$, while leaving $\R Q'(0)$ and $Y^0$ intact. Thus 
-$RV^+(0) \in Y_0$, and so both $V^+(0)$ and $RV^+(0)$ are in the one-dimensional space $Y^0$; since the odd numbered components of $V^+(0)$ and $RV^+(0)$ are the equal and $Y^0$ is one-dimensional, it follows that $V^+(0) = RV^+(0)$.
+where $R V_0 = V_0$ since all components of $V_0$ are 0 except for the first. Reversing time swaps $Y^+$ and $Y^-$, while leaving $\R Q'(0)$ and $Y^0$ intact. Thus $RV^+(0) \in Y_0$, and so both $V^+(0)$ and $RV^+(0)$ are in the one-dimensional space $Y^0$; since the odd numbered components of $V^+(0)$ and $RV^+(0)$ are the equal and $Y^0$ is one-dimensional, it follows that $V^+(0) = RV^+(0)$.
 
 Since we have the same initial condition at $x = 0$ for $V^+(x)$ and $RV^+(-x)$, this implies that $V^+(-x) = RV^+(x)$. Let $V^c(x) = V^+(x)$. Then $V^c(x)$ is a bounded solution to the variational equation with is symmetric with respect to the reversor $R$, i.e. $V^c(-x) = RV^c(x)$. Furthermore, $V^c(x) \rightarrow V_0$ as $x \rightarrow \pm \infty$.
-\end{enumerate}
-\end{proof}
-\end{lemma:varadjsolutions}
 
 \subsection{Piecewise Formulation}
 

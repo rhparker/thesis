@@ -1,8 +1,5 @@
 \documentclass[thesis.tex]{subfiles}
 
-% \usepackage{xr} 
-% \externaldocument[Pi:]{aux/periodic}
-
 \begin{document}
 
 % remove this eventually or do conditional
@@ -10,13 +7,9 @@
 
 \section{Proof of Existence Theorems}
 
-\subsection{Proof of Initial Lemmas}
+\subsection{Proof Lemma \ref{psiform}}
 
-\newtheorem*{lemma:psiform}{Lemma \ref{Pi:psiform}}
-\begin{lemma:psiform}
-Let $H$ be the Hamiltonian from Hypothesis \ref{Pi:Hhyp}. Then $\Psi(x) = \nabla H(Q(x))$.
-\begin{proof}
-Since \eqref{Pi:genODE} is Hamiltonian, $\langle F(Q(x)), \nabla H(Q(x)) \rangle = 0$ for all $x$. Taking the gradient of this and using known vector calculus identities,
+Since \eqref{genODE} is Hamiltonian, $\langle F(Q(x)), \nabla H(Q(x)) \rangle = 0$ for all $x$. Taking the gradient of this and using known vector calculus identities,
 \begin{align*}
 0 &= \nabla \langle F(Q(x)), \nabla H(Q(x)) \rangle \\
 &= D F(Q(x))^* \nabla H(Q(x)) + D^2 H(Q(x))^* F(Q(x)) \\
@@ -27,21 +20,45 @@ since the Hessian matrix is self-adjoint. Rearranging this,
 \begin{equation*}
 \frac{d}{dx} \nabla H(Q(x)) = -D F(Q(x))^* \nabla H(Q(x)) 
 \end{equation*}
-thus $\nabla H(Q(x))$ is a solution to the adjoint variational equation \eqref{Pi:adjvareq1}. Since $\nabla H$ is continuous and $Q(x)$ is bounded (it decays exponentially to 0 at $\pm \infty$), $\nabla H(Q(x))$ is bounded as well. By Hypothesis \ref{Pi:nondegenhyp}, there is a unique such solution. It follows that $\Psi(x) = \nabla H(Q(x))$.
-\end{proof}
-\end{lemma:psiform}
+thus $\nabla H(Q(x))$ is a solution to the adjoint variational equation \eqref{adjvareq1}. Since $\nabla H$ is continuous and $Q(x)$ is bounded (it decays exponentially to 0 at $\pm \infty$), $\nabla H(Q(x))$ is bounded as well. By Hypothesis \ref{nondegenhyp}, there is a unique such solution. It follows that $\Psi(x) = \nabla H(Q(x))$.
 
-\newtheorem*{lemma:eigadjoint}{Lemma \ref{Pi:eigadjoint}}
-\begin{lemma:eigadjoint}
-Consider the linear ODE $V' = A(x)V$ and the corresponding adjoint equation $W' = -A(x)^* W$, where $A$ is an $n \times n$ matrix depending on $x$. Then the following are true.
-\begin{enumerate}[(i)]
-\item $\dfrac{d}{dx}\langle V(x), W(x) \rangle = 0$, thus the inner product is constant in $x$.
-\item If $\Phi(y, x)$ is the evolution operator for $V' = A(x)V$, then $\Phi(x, y)^*$ is the evolution operator for the adjoint problem $W' = -W(x)^* W$.
-\end{enumerate}
-\begin{proof}
-For (i), take the derivative of the inner product and use the expressions for $V'$ and $W'$. For (ii), take the derivative of the expression $\Phi(y, x)\Phi(x, y) = I$.
-\end{proof}
-\end{lemma:eigadjoint}
+\subsection{Proof of Lemma \ref{eigadjoint}}
+For part (i), 
+\begin{align*}
+\dfrac{d}{dx}\langle V(x), W(x) \rangle &= 
+\langle V'(x), W(x) \rangle + \langle V(x), W'(x) \rangle \\
+&= \langle A(x)V(x), W(x) \rangle + \langle V(x), -A(x)^* W(x) \rangle \\
+&= \langle A(x)V(x), W(x) \rangle - \langle A(x)V(x), W(x) \rangle \\
+&= 0
+\end{align*}
+
+For part (ii), let $|W(x)| \leq K$ and $V(x) \rightarrow 0$ as $x \rightarrow \infty$, By (i), $\langle V(x), W(x) \rangle = c$, where $c$ is a constant. Taking $x \rightarrow \infty$ and using the Cauchy-Schwartz inequality and the continuity of the norm,
+\begin{align*}
+|c| &= \left| \lim_{x\rightarrow \infty} \langle V(x), W(x) \rangle \right| \\
+&= \lim_{x\rightarrow \infty} \left| \langle V(x), W(x) \rangle \right| \\
+&\leq \lim_{x\rightarrow \infty} |V(x)||W(x)| \\
+&\leq K \lim_{x\rightarrow \infty} |V(x)| \\
+&= 0
+\end{align*}
+
+For part (iii), take the derivative of the expression $\Phi(y, x)\Phi(x, y) = I$ with respect to $y$ to get
+\begin{align*}
+0 &= \left(\frac{d}{dy}\Phi(y, x)\right) \Phi(x, y) +
+\Phi(y, x)\left(\frac{d}{dy}\Phi(x, y)\right) \\
+&= A(y)\Phi(y, x) \Phi(x, y) +
+\Phi(y, x)\left(\frac{d}{dy}\Phi(x, y)\right) \\
+&= A(y) + \Phi(y, x)\left(\frac{d}{dy}\Phi(x, y)\right) 
+\end{align*}
+Rearrange this to get
+\begin{align*}
+\Phi(y, x)\left(\frac{d}{dy}\Phi(x, y)\right) &= -A(y) \\
+\frac{d}{dy}\Phi(x, y) &= -\Phi(x, y) A(y) 
+\end{align*}
+Taking the transpose of both sides, we get
+\begin{align*}
+\frac{d}{dy}\Phi(x, y)^* &= -A(y)^* \Phi(x, y)^*  
+\end{align*}
+from which (iii) follows.
 
 \subsection{Exponential Dichotomy}
 
@@ -52,7 +69,6 @@ Let $\Phi_\pm(x, y; \beta^\pm)$ be the family of evolution operators for the ODE
 In the next lemma, we decompose these evolution operators via exponential dichotomies on $\R^+$ and $\R^-$.
 
 % lemma : exp dichotomy
-
 \begin{lemma}\label{dichotomy1}
 There exist projections
 \begin{align*}
@@ -87,7 +103,7 @@ Finally, the projections can be chosen such that at $y = 0$ we have, independent
 \end{align*}
 
 \begin{proof}
-Since $DF(0)$ is hyperbolic by Hypothesis \ref{Pi:hypeqhyp}, this follows from Lemma 5.1 in \cite{Sandstede1997}, which follows from Lemma 1.1 in \cite{Sandstede1993}.
+Since $DF(0)$ is hyperbolic by Hypothesis \ref{hypeqhyp}, this follows from Lemma 5.1 in \cite{Sandstede1997}, which follows from Lemma 1.1 in \cite{Sandstede1993}.
 \end{proof}
 \end{lemma}
 
@@ -113,11 +129,11 @@ This follows from Lemma 1.1 and Lemma 2.1 in San93.
 
 \subsection{Fixed Point Formulation}
 
-In this section, we formulate equation \eqref{Pi:exsystem1} as a fixed point problem. First, we plug in the piecewise ansatz \eqref{Pi:Upiecewise}into \eqref{Pi:genODE}. Thus, for $i = 0, \dots, n-1$, 
+In this section, we formulate equation \eqref{exsystem1} as a fixed point problem. First, we plug in the piecewise ansatz \eqref{Upiecewise}into \eqref{genODE}. Thus, for $i = 0, \dots, n-1$, 
 \begin{align*}
 U_i^\pm(x)' &= (Q^\pm(x; \beta_i^\pm))' + V_i^\pm(x)' = F\left(Q^\pm(x; \beta_i^\pm) + V_i^\pm(x) \right) \\
 \end{align*}
-Since $Q^\pm(x; \beta_i^\pm)$ solves \eqref{Pi:genODE} on $\R^\pm$, 
+Since $Q^\pm(x; \beta_i^\pm)$ solves \eqref{genODE} on $\R^\pm$, 
 \begin{align*}
 (V_i^\pm(x))' &= F\left(Q^\pm(x; \beta_i^\pm) + V_i^\pm(x) \right) - F(Q^\pm(x; \beta_i^\pm))
 \end{align*}
@@ -201,13 +217,13 @@ H(V_i^+(x), a_i^+, \beta_i^+) &= V_i^+(x) - \Phi^u_+(x, X_i; \beta_i^+) a_i^+  \
 &- \int_{X_i}^x \Phi_+^u(x, y; \beta_i^+) G_i^+(y, V_i^+(y),\beta_i^+)dy \\
 &- \int_0^x \Phi_+^s(x, y; \beta_i^+) G_i^+(y, V_i^+(y),\beta_i^+)dy 
 \end{align*}
-which is just the RHS of the fixed point equation \eqref{FPequations} on $\R^+$. Since $Q(x)$ satisfies \eqref{Pi:genODE}, $H(0, 0, 0) = 0$. Since $G$ is quadratic in $V_i^+(x)$, the Fr\'echet derivative of $H$ with respect to $V_i^+(x)$ at $(V_i^+(x), a_i^+, \beta_i^+) = (0, 0, 0)$ is the identity, thus is a Banach space isomorphism on $K_{X_i, +}$. Using the implicit function theorem, we can solve for $V_i^+(x)$ in terms of $(a_i^+, \beta_i^+)$ for sufficiently small $|a_i^+|, |\beta_i^+|$. Since the map $H$ is smooth, this dependence is smooth.
+which is just the RHS of the fixed point equation \eqref{FPequations} on $\R^+$. Since $Q(x)$ satisfies \eqref{genODE}, $H(0, 0, 0) = 0$. Since $G$ is quadratic in $V_i^+(x)$, the Fr\'echet derivative of $H$ with respect to $V_i^+(x)$ at $(V_i^+(x), a_i^+, \beta_i^+) = (0, 0, 0)$ is the identity, thus is a Banach space isomorphism on $K_{X_i, +}$. Using the implicit function theorem, we can solve for $V_i^+(x)$ in terms of $(a_i^+, \beta_i^+)$ for sufficiently small $|a_i^+|, |\beta_i^+|$. Since the map $H$ is smooth, this dependence is smooth.
 
 The estimate on $V_i^\pm$ comes from the estimate of the first term on the RHS of the fixed point equations, since the other terms (those involving the integrals) are quadratic in $V_i^\pm(x)$. Since the estimate \eqref{Gquadratic} on $G$ is independent of $\beta_i^\pm$, the estimate on {}$V_i^\pm$ is also independent of $\beta_i^\pm$. Since the exponential dichotomy estimates from Lemma \ref{dichotomy1} hold for derivatives with respect $\beta_i^\pm$, these estimates also hold for derivatives with respect $\beta_i^\pm$.
 \end{proof}
 \end{lemma}
 
-Using the previous lemma, we have solved equation \eqref{Pi:exsystem1} in our system. Next, we satisfy equation \eqref{Pi:exsystem2}, i.e. $U_i^+(X_i) - U_{i+1}^-(-X_i) = 0$, to match the pieces \eqref{Pi:Upiecewise} at the endpoints $\pm X_i$. This will solve for the initial conditions $a_i^\pm$.
+Using the previous lemma, we have solved equation \eqref{exsystem1} in our system. Next, we satisfy equation \eqref{exsystem2}, i.e. $U_i^+(X_i) - U_{i+1}^-(-X_i) = 0$, to match the pieces \eqref{Upiecewise} at the endpoints $\pm X_i$. This will solve for the initial conditions $a_i^\pm$.
 
 % Lemma : solve for a_i^\pm
 
@@ -225,7 +241,7 @@ a_i^- &= P^s_0 \left( Q^+(X_i; \beta_i^+) - Q^-(-X_i; \beta_{i+1}^-) \right) + \
 \end{equation}
 
 \begin{proof}
-First, we plug in the fixed point equations \eqref{FPequations} to the expressions \eqref{Pi:Upiecewise} for $U_i^+$ and $U_{i+1}^-$ and evaluate them at $\pm X_i$ to get
+First, we plug in the fixed point equations \eqref{FPequations} to the expressions \eqref{Upiecewise} for $U_i^+$ and $U_{i+1}^-$ and evaluate them at $\pm X_i$ to get
 \begin{align*}
 U_i^+(X_i) &= Q^+(X_i; \beta_i^+) + P^u_+(X_i; \beta_i^+) a_i^+ \\
 &+ \int_0^{X_i} \Phi_+^s(X_i, y; \beta_i^+) G_i^+(y, V_i^+(y),\beta_i^+)dy \\ 
@@ -256,7 +272,7 @@ H(a_i^+, &a_i^-, \beta_i^+, \beta_{i+1}^-) \\
 &- \int_0^{-X_i} \Phi_-^u(-X_i, y; \beta_{i+1}^-) G_{i+1}^-(y, V_{i+1}^-(a_i^-, \beta_{i+1}^-)(y),\beta_{i+1}^-)dy 
 \end{align*}
 
-Again, since $Q(x)$ satisfies \eqref{Pi:genODE}, $H(0, 0, 0, 0) = 0$. To  solve for $a_i^\pm$ using the implicit function theorem, we need to evaluate $D_{a_i^\pm} H(0, 0, 0, 0)$. When we take the partial derivatives with respect to $a_i^\pm$ at $a_i^\pm = 0$, the derivatives of the integral terms will be 0 since $G_i^\pm$ is quadratic order in $V_i^\pm$, thus quadratic order in $a_i^\pm$ by Lemma \ref{solveforV}. The $Q^\pm$ terms do not involve $a_i^\pm$. Using the estimate \eqref{projdiffest} from Lemma \ref{projdifflemma}, we have 
+Again, since $Q(x)$ satisfies \eqref{genODE}, $H(0, 0, 0, 0) = 0$. To  solve for $a_i^\pm$ using the implicit function theorem, we need to evaluate $D_{a_i^\pm} H(0, 0, 0, 0)$. When we take the partial derivatives with respect to $a_i^\pm$ at $a_i^\pm = 0$, the derivatives of the integral terms will be 0 since $G_i^\pm$ is quadratic order in $V_i^\pm$, thus quadratic order in $a_i^\pm$ by Lemma \ref{solveforV}. The $Q^\pm$ terms do not involve $a_i^\pm$. Using the estimate \eqref{projdiffest} from Lemma \ref{projdifflemma}, we have 
 \[
 \frac{\partial}{\partial a_i^\pm} H(0, 0, 0, 0) = \pm 1 + \mathcal{O} (e^{-\alpha X_i})
 \]
@@ -306,7 +322,7 @@ We obtain the estimate and expression for $a_i^-$ in a similar way by using the 
 \end{proof}
 \end{lemma}
 
-Finally, we need to satisfy equation \eqref{Pi:exsystem3}, i.e. $U_i^+(0) = U_i^-(0)$, which will match the pieces \eqref{Pi:Upiecewise} at $x = 0$. In other words, we need to solve
+Finally, we need to satisfy equation \eqref{exsystem3}, i.e. $U_i^+(0) = U_i^-(0)$, which will match the pieces \eqref{Upiecewise} at $x = 0$. In other words, we need to solve
 \begin{align}\label{Umatchat0}
 V_i^+(0) - V_i^-(0) + Q^+(0; \beta_i^+) - Q^-(0; \beta_i^-) &= 0  && i = 0, \dots, n-1
 \end{align}
@@ -322,11 +338,11 @@ S^{-1}(Q^+(0; \beta^+)) &= \beta^+ \in Y^+ \\
 \end{align*}
 for sufficiently small $\beta^\pm$.
 \begin{proof}
-$Q'(0) = F(Q(0)) \neq 0$, i.e. the center of the primary pulse is not an equilibrium of the vector field $F$. Recall that $\R^{2m} = \R Q'(0) \oplus Y^+ \oplus Y^- \oplus Z$. Let $\Theta_x(P)$ be the solution operator for \eqref{Pi:genODE}, i.e. the operator which takes an initial condition $P$ and maps it to the point $U(x)$, where $U$ is the unique solution to \eqref{Pi:genODE} with $U(0) = P$. Define the map $S: \R \times Y^- \times Y^+ \times Z \rightarrow \R^{2m}$ by 
+$Q'(0) = F(Q(0)) \neq 0$, i.e. the center of the primary pulse is not an equilibrium of the vector field $F$. Recall that $\R^{2m} = \R Q'(0) \oplus Y^+ \oplus Y^- \oplus Z$. Let $\Theta_x(P)$ be the solution operator for \eqref{genODE}, i.e. the operator which takes an initial condition $P$ and maps it to the point $U(x)$, where $U$ is the unique solution to \eqref{genODE} with $U(0) = P$. Define the map $S: \R \times Y^- \times Y^+ \times Z \rightarrow \R^{2m}$ by 
 \begin{equation}\label{flowboxdefS}
 S(x; \beta^-, \beta^+, \gamma) = \Theta_x\left(Q(0) + Q^-(0; \beta^-) + Q^-(0; \beta^+) + \gamma \Psi(0)\right)
 \end{equation}
-In other words, $S(y; \beta^-, \beta^+, \gamma)$ is a trajectory of \eqref{Pi:genODE} with initial condition $Q(0) + Q^-(0; \beta^-) + Q^-(0; \beta^+,0) + \gamma \Psi(0)$. For small $x, \beta^\pm$ the stable and unstable manifolds are the surfaces
+In other words, $S(y; \beta^-, \beta^+, \gamma)$ is a trajectory of \eqref{genODE} with initial condition $Q(0) + Q^-(0; \beta^-) + Q^-(0; \beta^+,0) + \gamma \Psi(0)$. For small $x, \beta^\pm$ the stable and unstable manifolds are the surfaces
 \begin{align*}
 W^u &= S(x; \beta^-, 0, 0) \\
 W^s &= S(x; 0, \beta^+, 0) 
@@ -348,7 +364,7 @@ S^{-1}(Q^+(0; \beta^+) &= \beta^+ \in Y^+ \\
 \end{proof}
 \end{lemma}
 
-Before we solve the matching conditions \eqref{Umatchat0} at $x = 0$, we change coordinates near $Q(0)$ according to Lemma \ref{straightenW}. In the ``straightened out'' coordinates, \eqref{Pi:genODE} becomes
+Before we solve the matching conditions \eqref{Umatchat0} at $x = 0$, we change coordinates near $Q(0)$ according to Lemma \ref{straightenW}. In the ``straightened out'' coordinates, \eqref{genODE} becomes
 \begin{equation}\label{straightenedODE}
 \tilde{U}' = DS(S^{-1}(\tilde{U})) F( S^{-1}(\tilde{U}) )
 \end{equation}
@@ -367,7 +383,7 @@ where $Y^\pm = Y^+ \oplus Y^-$. Since $V_i^\pm(0) \in Z \oplus Y^\pm$, the proje
 P_{Y^\pm}(U_i^+(0) - U_i^-(0)) &= 0 \\
 P_Z(U_i^+(0) - U_i^-(0)) &= 0
 \end{align*}
-Substituting \eqref{Pi:Upiecewise} for $U_i^\pm$ and using \eqref{projQpm}, these equations become
+Substituting \eqref{Upiecewise} for $U_i^\pm$ and using \eqref{projQpm}, these equations become
 \begin{align}
 P_{Y^\pm}(V_i^+(0) - V_i^-(0)) + (\beta_i^+ - \beta_i^-) &= 0 \label{PYmatch} \\
 P_Z(V_i^+(0) - V_i^-(0)) &= 0 \label{PZmatch}
@@ -444,7 +460,7 @@ Using \eqref{defHPY} and the estimates from Lemmas \ref{dichotomy1}, \ref{solvef
 \end{proof}
 \end{lemma}
 
-We summarize what we have obtained so far in the following lemma. Briefly, we have found a unique solution to \eqref{Pi:exsystem1} and \eqref{Pi:exsystem2} such that \eqref{Pi:exsystem3} is satisfied except for jumps in the direction of $\Psi(0)$.
+We summarize what we have obtained so far in the following lemma. Briefly, we have found a unique solution to \eqref{exsystem1} and \eqref{exsystem2} such that \eqref{exsystem3} is satisfied except for jumps in the direction of $\Psi(0)$.
 
 % bounds in this lemma
 
@@ -592,7 +608,7 @@ For $\langle \Psi(0), \Phi^u_+(0, X_i; \beta_i^+) a_i^+ \rangle$, we substitute 
 &= -\langle \Phi(X_i, 0; 0) \Psi(0), P^u_+(X_i; 0) P^u_0 \left( Q(X_i) - Q(-X_i) \right) \rangle + \mathcal{O}( e^{-3 \alpha X_i} + e^{-3\alpha X_{i-1}})\\
 &= -\langle \Psi(X_i), P^u_+(X_i; 0) P^u_0 \left( Q(X_i) - Q(-X_i) \right) \rangle + \mathcal{O}( e^{-3 \alpha X_i} + e^{-3\alpha X_{i-1}})\\
 \end{align*}
-where we used Lemma \ref{Pi:eigadjoint} to move the evolution operator $\Phi(0, X_i; 0)$ across the inner product.
+where we used Lemma \ref{eigadjoint} to move the evolution operator $\Phi(0, X_i; 0)$ across the inner product.
 For $P^u_0 Q(X_i)$ and $P^u_0 Q(-X_i)$, we use the estimates \eqref{projdiffest} from Lemma \ref{projdifflemma} to get
 \begin{align*}
 P^u_0 Q(X_i) &= P^u_0 P^s_+(X_i; 0) Q(X_i) \\
@@ -644,11 +660,11 @@ We have the following symmetry.
 \langle \Psi(x), Q(-x) \rangle = \langle \Psi(-x), Q(x) \rangle
 \end{equation}
 \begin{proof}
-Since the primary pulse $Q(x)$ is symmetric with respect to the reversor operator $R$ defined in \eqref{Pi:reverserR2m}, $Q(-x) = RQ(x)$. Since $\Psi(x)$ satisfies \eqref{Pi:adjvareq1},
+Since the primary pulse $Q(x)$ is symmetric with respect to the reversor operator $R$ defined in \eqref{reverserR2m}, $Q(-x) = RQ(x)$. Since $\Psi(x)$ satisfies \eqref{adjvareq1},
 \begin{align}\label{Psinegx}
 (\Psi(-x))' &= \Psi'(-x) = DF(Q(-x))^* \Psi(-x) \\
 \end{align}
-Taking $W = RW$ in \eqref{Pi:vareqrev}, we have $DF(Q(-x))^* W = -R DF(Q(x))^* R W$. Substituting this into \eqref{Psinegx}, we get
+Taking $W = RW$ in \eqref{vareqrev}, we have $DF(Q(-x))^* W = -R DF(Q(x))^* R W$. Substituting this into \eqref{Psinegx}, we get
 \begin{align*}
 (\Psi(-x))' &= -R DF(Q(-x))^* R \Psi(-x)
 \end{align*}
@@ -681,7 +697,7 @@ where the remainder term has bound
 |R_i| \leq C ( e^{-3 \alpha X_i} +  e^{-3 \alpha X_{i-1}})
 \end{align*}
 \begin{proof}
-Since \eqref{Pi:eqODE} is Hamiltonian, the Hamiltonian $H$ is conserved along all trajectories of the system. Thus all solutions must exist within level sets of $H$. By Lemma \ref{Pi:psiform}, $\Psi(0) = \nabla H(Q(0)) \neq 0$. Thus the energy $H$ must change along any jump in the direction of $\Psi(0)$. From Lemma \ref{solvewithjumps}, we have found a unique piecewise solution $U_i^\pm(x)$, $i = 0, \dots, n-1$, which can only have jumps at $x = 0$ in the direction of $\Psi(0)$. Suppose we have satisfied the first $n-1$ jump conditions. Then we have a solution $U(x)$ which is contained entirely in a level set of $H$. If the final jump condition was not satisfied, $U(x)$ would have a single jump in the direction of $\Psi(0)$, which would necessitate a change in $H$. This, however, cannot happen, since $H$ must be the same at the two ends of the same jump. We conclude that the final jump condition must be automatically satisfied. Equation \eqref{jumpcond2} follows from omitting the final equation in \eqref{jumpcond1} and rewriting the first inner product on the RHS using \eqref{IPsymm} from Lemma \ref{IPsymmlemma}.
+Since \eqref{eqODE} is Hamiltonian, the Hamiltonian $H$ is conserved along all trajectories of the system. Thus all solutions must exist within level sets of $H$. By Lemma \ref{psiform}, $\Psi(0) = \nabla H(Q(0)) \neq 0$. Thus the energy $H$ must change along any jump in the direction of $\Psi(0)$. From Lemma \ref{solvewithjumps}, we have found a unique piecewise solution $U_i^\pm(x)$, $i = 0, \dots, n-1$, which can only have jumps at $x = 0$ in the direction of $\Psi(0)$. Suppose we have satisfied the first $n-1$ jump conditions. Then we have a solution $U(x)$ which is contained entirely in a level set of $H$. If the final jump condition was not satisfied, $U(x)$ would have a single jump in the direction of $\Psi(0)$, which would necessitate a change in $H$. This, however, cannot happen, since $H$ must be the same at the two ends of the same jump. We conclude that the final jump condition must be automatically satisfied. Equation \eqref{jumpcond2} follows from omitting the final equation in \eqref{jumpcond1} and rewriting the first inner product on the RHS using \eqref{IPsymm} from Lemma \ref{IPsymmlemma}.
 \end{proof}
 \end{lemma}
 
@@ -1201,7 +1217,7 @@ From the proof of Lemma \ref{pitchforkH}, $H_{b_0}(b_0, b_1)$ is smooth and is 0
 
 Now that we have our parameterization for $r = 0$, we would like to use it to solve \eqref{Geq} for small $r$. When we perturb $r$ away from 0, we will generically lose the pitchfork bifurcation structure. In addition, since this relies on the implicit function theorem, we will not be able to perturb $r$ at the pitchfork bifurcation points. In the next two sections, we prove the existence theorems for periodic multi-pulses. After that, we will show that in the special case of the 2-periodic pulse, the entire bifurcation structure of $H$ persists for small $r$.
 
-\subsection{Proof of Theorem \ref{Pi:perexist}}
+\subsection{Proof of Theorem \ref{perexist}}
 
 By Lemma \ref{diagonalG}, a periodic $n-$pulse exists if and only if the $n-1$ jump conditions
 \begin{align}\label{Geq2}
@@ -1259,7 +1275,7 @@ we have $b_j(0; m_j, \theta) = b_j^*(m_j, \theta)$. Since we have satisfied the 
 
 Uniqueness comes from the fact that the solution families $(b_j^*(m_0, \theta), b_{n-1}^*(m_{n-1}, \theta))$ from Lemma \eqref{thetaparamlemma} only overlap at the endpoints. We are avoiding that overlap by taking $\theta$ in the half-open interval $[-\arctan \rho, \pi - \arctan \rho)$. 
 
-\subsection{Proof of Theorem \ref{Pi:unifperexist}}
+\subsection{Proof of Theorem \ref{unifperexist}}
 
 We parameterize the zero set of $H$ as in Lemma \ref{thetaparamlemma}, but this time we take $m_{n-1}$ to be an additional parameter. Fix baseline length parameters $\{ b_0^0, \dots, b_{n-2}^0 \}$, where $b_j^0 = \exp(-\frac{1}{\rho}m_j \pi) \in \mathcal{B}$, with the restriction that at least one of them must be 1. Let $b^0 = (b_0^0, \dots b_{n-2}^0)$.
 
@@ -1280,7 +1296,7 @@ b^*(\theta, m_{n-1}) =
 \left( b_0^*(m_0, \theta; m_{n-1}), \dots, b_{n-2}^*(m_{n-2}, \theta; m_{n-1}) \right)
 \end{equation}
 
-As in the proof of Theorem \ref{Pi:perexist}, we plug $b_{n-1}^*(m_{n-1}, \theta)$ into \eqref{Geq}. This time, however, we leave $m_{n-1}$ and $\theta$ as parameters. Define the map $G: \R^{n-1} \times \N \cap [m, \infty) \times I_\rho \times \mathcal{R} \rightarrow \R^{n-1}$ by $G = (G_0, \dots, G_{n-2})^T$, where 
+As in the proof of Theorem \ref{perexist}, we plug $b_{n-1}^*(m_{n-1}, \theta)$ into \eqref{Geq}. This time, however, we leave $m_{n-1}$ and $\theta$ as parameters. Define the map $G: \R^{n-1} \times \N \cap [m, \infty) \times I_\rho \times \mathcal{R} \rightarrow \R^{n-1}$ by $G = (G_0, \dots, G_{n-2})^T$, where 
 \begin{equation}\label{Gdef2}
 G_j(b, m_{n-1}, \theta, r) = b_j \sin \left( -\rho \log b_j \right) - b_{n-1}^*(m_{n-1}, \theta) \sin \left( -\rho \log b_{n-1}^*(m_{n-1}, \theta) \right) + \mathcal{O}(r^{\gamma / 2 \alpha})
 \end{equation}
@@ -1359,7 +1375,7 @@ Thus we can use the uniform contraction mapping principle to conclude that there
 \[
 G(b(r, b_{n-1}, \theta), b_{n-1}, \theta, r) = 0
 \]
-By uniqueness, all solutions obtained this way must be identical to the solutions obtained using Theorem \ref{Pi:perexist} using the corresponding set of parameters.
+By uniqueness, all solutions obtained this way must be identical to the solutions obtained using Theorem \ref{perexist} using the corresponding set of parameters.
 
 \subsection{2-periodic pulse}
 In the special case of the 2-periodic pulse, we will be able to provide the complete bifurcation structure for sufficiently small $r$. For the 2-periodic pulse, by Lemma \ref{jumplemma3}, we only have one equation to solve
@@ -1624,7 +1640,7 @@ Since the two parameterizations overlap on an interval, we conclude that for $r 
 \end{proof}
 \end{lemma}
 
-\subsection{Proof of Theorem \ref{Pi:2pulsebifurcation}}
+\subsection{Proof of Theorem \ref{2pulsebifurcation}}
 
 Diagonal solutions exist by Lemma \ref{Gsymm}, and these are parameterized as in Lemma \ref{thetaparamlemma}. The upper arm of the pitchfork is parameterized as in Lemma \ref{pitchpersist}, and we can choose as large an $M$ as we like. The upper arm meets the diagonal at the pitchfork bifurcation point, which is given by $(p_0(r), p_0(r))$. Finally, uniqueness follows from the fact that our choice of $\theta$ has restricted ourselves to a single pitchfork in the zero set of $H$. Other pitchforks are accessed by choosing a different value for $r$.
 
