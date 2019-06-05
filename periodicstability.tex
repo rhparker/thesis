@@ -1585,7 +1585,7 @@ C_2 K(\lambda) + K_2(\lambda) & r \tilde{A} - \lambda^2 MI + D_2
 $\tilde{A}$ has the same form as the matrix $A$ from Theorem \ref{blockmatrixtheorem}, except the entries $a_j$ replaced by $\tilde{a}_j$, where
 \begin{align}\label{tildea}
 \tilde{a}_j 
-&= s_0 e^{\alpha \phi/\beta} \left( \beta b_j \cos\left( -\rho \log b_j \right) - \alpha b_j \sin \left( -\rho \log b_j  \right) \right) + \mathcal{O}(r^{\gamma/2\alpha})
+&= (-1)^{-\rho \log r / \pi} s_0 e^{\alpha \phi/\beta} \left( \beta b_j \cos\left( -\rho \log b_j \right) - \alpha b_j \sin \left( -\rho \log b_j  \right) \right) + \mathcal{O}(r^{\gamma/2\alpha})
 \end{align}
 The eigenvalues of $A$ are given by $\{0, \tilde{\mu_1}, \dots, \tilde{\mu}_{n-1} \}$, where $r \tilde{\mu}_j = \mu_j$ and $\mu_j$ is an eigenvalue of $A$.
 
@@ -1600,11 +1600,8 @@ where $0 < \tilde{\gamma} < 1$. The matrices $K_1(\lambda)$ and $K_2(\lambda)$ a
 
 Finally the domain half-length $X$ is given by
 \begin{align}\label{Xscaled}
-X &= \frac{1}{2\alpha} (n |\log r| + |\log b| ) - \frac{n \phi}{2 \beta}
+X &= \frac{1}{2\alpha} (n |\log r| + |\log (b_0\cdots b_{n-1})| ) - \frac{n \phi}{2 \beta}
 \end{align}
-where 
-\begin{equation}\label{defb}
-b = \prod_{j=0}^{n-1} b_j
 \end{equation}
 
 \begin{proof}
@@ -1636,15 +1633,20 @@ a_j &= \langle \Psi(-X_j), Q'(X_j) \rangle \\
 &= s_0 e^{\alpha \phi/\beta} r b_j \left( \beta \cos\left( -\frac{\beta}{\alpha} \log(b_j r) \right) - \alpha \sin \left( -\frac{\beta}{\alpha} \log(b_j r) \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha} b_j^{1 + \gamma/2\alpha}) \\
 &= s_0 e^{\alpha \phi/\beta} r b_j \left( \beta \cos\left( -\rho \log(b_j r) \right) - \alpha \sin \left( -\rho \log(b_j r) \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha})
 \end{align*}
-since $b_j \in (0, 1]$. Since $r \in \mathcal{R}$, the $r$ inside the log disappears, leaving us with
+since $b_j \in (0, 1]$. Since $r \in \mathcal{R}$, $r = \exp\left(-\frac{m \pi}{\rho}\right)$ for some nonnegative integer $m$, this becomes 
 \begin{align*}
-a_j = \langle \Psi(-X_j), Q'(X_j) \rangle 
-&= s_0 e^{\alpha \phi/\beta} r b_j \left( \beta \cos\left( -\rho \log b_j \right) - \alpha \sin \left( -\rho \log b_j \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha})
+a_j &= s_0 e^{\alpha \phi/\beta} r b_j \left( \beta \cos\left( m \pi -\rho \log b_j \right) - \alpha \sin \left( m \pi -\rho \log b_j \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha}) \\
+&= (-1)^m s_0 e^{\alpha \phi/\beta} r b_j \left( \beta \cos\left(-\rho \log b_j \right) - \alpha \sin \left(-\rho \log b_j \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha})
 \end{align*}
 To scale $r$ out of this, let $a_j = r \tilde{a}_j$, where
 \begin{align*}
 \tilde{a}_j 
-&= s_0 e^{\alpha \phi/\beta} \left( \beta b_j \cos\left( -\rho \log b_j \right) - \alpha b_j \sin \left( -\rho \log b_j  \right) \right) + \mathcal{O}(r^{\gamma/2\alpha})
+&= (-1)^m s_0 e^{\alpha \phi/\beta} \left( \beta b_j \cos\left( -\rho \log b_j \right) - \alpha b_j \sin \left( -\rho \log b_j  \right) \right) + \mathcal{O}(r^{\gamma/2\alpha})
+\end{align*}
+Finally, we solve for $m$ in terms of $r$ to get $(-1)^{-\rho \log r / \pi}$. Substituting this in, we obtain
+\begin{align*}
+\tilde{a}_j 
+&= (-1)^{-\rho \log r / \pi} s_0 e^{\alpha \phi/\beta} \left( \beta b_j \cos\left( -\rho \log b_j \right) - \alpha b_j \sin \left( -\rho \log b_j  \right) \right) + \mathcal{O}(r^{\gamma/2\alpha})
 \end{align*}
 Thus we have $A = r \tilde{A}$, where $\tilde{A}$ is the same matrix as $A$ with $a_j$ replaced with $\tilde{a}_j$. The matrices $\tilde{A}$ and $A$ are both symmetric, thus the eigenvalues of $\tilde{A}$ are real, and $(1,1,\dots,1)^T$ is an eigenvector of $\tilde{A}$ with eigenvalue 0. Furthermore, $\tilde{\mu}$ is an eigenvalue of $\tilde{A}$ if and only if $\mu = r \tilde{\mu}$ is an eigenvalue of $A$.
 
@@ -1660,18 +1662,8 @@ Finally, the domain half-length $X$ is given by
 X &= \sum_{j=0}^{n-1} X_j \\
 &= -\sum_{j=0}^{n-1} \frac{1}{2\alpha}\log(b_j r) - \frac{n \phi}{2 \beta}\\
 &= -\frac{1}{2\alpha} \log\left( r^n \prod_{j=0}^{n-1} b_j \right) - \frac{n \phi}{2 \beta} \\
-&= \frac{1}{2\alpha} (n |\log r| + |\log b| ) - \frac{n \phi}{2 \beta}
+&= \frac{1}{2\alpha} (n |\log r| + |\log (b_0\cdots b_{n-1})| ) - \frac{n \phi}{2 \beta}
 \end{align*}
-where 
-\[
-b = \prod_{j=0}^{n-1} b_j
-\]
-
-We can further simplify this by writing
-\begin{align*}
-X &= C n |\log r| + C_b
-\end{align*}
-where $C_b$ is a constant depending only on $b$.
 \end{proof}
 \end{lemma}
 
@@ -2683,12 +2675,12 @@ which is obtained from the matrix $\tilde{A}$ by taking $\tilde{a}_{n-1} = 0$. T
 \item $\tilde{A}_0$ has $n_-$ positive eigenvalues (counting multiplicity)
 \end{enumerate}
 
-For $\tilde{a}_{n-1}$ small, $\tilde{A}$ is a small perturbation of $\tilde{A}_0$. Since characteristic polynomials are smooth functions of matrix entries, the eigenvalues of a matrix are also smooth functions of the matrix entries. In particular, the eigenvalues of $\tilde{A}$ depend smoothly on $\tilde{a}_{n-1}$, and as $\tilde{a}_{n-1}$ approaches 0, the eigenvalues of $\tilde{A}$ approach those of $\tilde{A}_0$. In particular, as $\tilde{a}_{n-1}$ is increased from 0, the eigenvalues of $\tilde{A}$ can only change sign by crossing through 0. Thus for sufficiently small $\tilde{a}_{n-1}$, the signs of the eigenvalues of $\tilde{A}$ are determined by the signs of the $n-1$ matrix elements $\tilde{a}_0, \dots, \tilde{a}_{n-2}$. We will now obtain this result in terms of the baseline length parameters used to contruct the periodic $n-$pulse.
+For $\tilde{a}_{n-1}$ small, $\tilde{A}$ is a small perturbation of $\tilde{A}_0$. Since characteristic polynomials are smooth functions of matrix entries, the eigenvalues of a matrix are also smooth functions of the matrix entries. In particular, the eigenvalues of $\tilde{A}$ depend smoothly on $\tilde{a}_{n-1}$, and as $\tilde{a}_{n-1}$ approaches 0, the eigenvalues of $\tilde{A}$ approach those of $\tilde{A}_0$. In particular, as $\tilde{a}_{n-1}$ is increased from 0, the eigenvalues of $\tilde{A}$ can only change sign by crossing through 0. Thus for sufficiently small $\tilde{a}_{n-1}$, the signs of the eigenvalues of $\tilde{A}$ are determined by the signs of the $n-1$ matrix elements $\tilde{a}_0, \dots, \tilde{a}_{n-2}$. We will now obtain this result in terms of $r$ and the baseline length parameters used to contruct the periodic $n-$pulse.
 
 From the proof of Lemma \eqref{reparam}, $\tilde{a}_j$ is given by
 \begin{align}\label{tildeaj2}
 \tilde{a}_j
-&= s_0 e^{\alpha \phi/\beta} \left( \beta b_j(r; m_j, \theta) \cos\left( -\rho \log b_j(r; m_j, \theta) \right) - \alpha b_j(r; m_j, \theta) \sin \left( -\rho \log b_j(r; m_j, \theta) \right) \right)
+&= (-1)^{-\rho \log r / \pi} s_0 e^{\alpha \phi/\beta} \left( \beta b_j(r; m_j, \theta) \cos\left( -\rho \log b_j(r; m_j, \theta) \right) - \alpha b_j(r; m_j, \theta) \sin \left( -\rho \log b_j(r; m_j, \theta) \right) \right)
 \end{align}
 As $r \rightarrow 0$, $b_j(r; m_j, \theta) \rightarrow b_j^*(m_j, \theta)$ by Theorem \ref{perexist}. As $m_{n-1} \rightarrow \infty$, $b_j^*(m_j, \theta) \rightarrow b_j^0$ by Lemma \ref{thetaparamlemma}. Finally, since $b_{n-1}^0 = \exp\left(-\frac{m_{n-1} \pi}{\rho}\right)$, $b_{n-1}(r; m_{n-1}, \theta) \rightarrow 0$ (and so $\tilde{a}_{n-1} \rightarrow 0$) as $(r, m_{n-1}) \rightarrow (0, \infty)$. Thus we can find a positive integer $M_1$ and $\tilde{r}_1 \leq r_1$ such that for all $m_{n-1} \geq M_1$ and $r \leq \tilde{r}_1$, 
 \begin{enumerate}[(i)]
@@ -2716,20 +2708,20 @@ and
 upon substituting \eqref{bjunif} into equation \eqref{tildeaj2} we obtain
 \begin{align*}
 \tilde{a}_j 
-&= (-1)^{m_j} s_0 e^{\alpha \phi/\beta} b_j^0 e^{ -\frac{1}{\rho} \theta^*_j(r, m_{n-1}) } \left( \beta \cos\theta^*_j(r, m_{n-1}) - \alpha \sin \theta^*_j(r, m_{n-1}) \right) \\
-&= (-1)^{m_j} \left[ s_0 \alpha e^{\alpha \phi/\beta} b_j^0 e^{ -\frac{1}{\rho} \theta^*_j(r, m_{n-1}) } \cos\theta^*_j(r, m_{n-1}) \right] \left( \rho - \tan \theta^*_j(r, m_{n-1}) \right)
+&= (-1)^{-\rho \log r / \pi} (-1)^{m_j} s_0 e^{\alpha \phi/\beta} b_j^0 e^{ -\frac{1}{\rho} \theta^*_j(r, m_{n-1}) } \left( \beta \cos\theta^*_j(r, m_{n-1}) - \alpha \sin \theta^*_j(r, m_{n-1}) \right) \\
+&= (-1)^{m + m_j} \left[ s_0 \alpha e^{\alpha \phi/\beta} b_j^0 e^{ -\frac{1}{\rho} \theta^*_j(r, m_{n-1}) } \cos\theta^*_j(r, m_{n-1}) \right] \left( \rho - \tan \theta^*_j(r, m_{n-1}) \right)
 \end{align*}
-The term in brackets is always positive since $|\theta^*_j(r, m_{n-1})| < \arctan \rho$. Thus the sign of $\tilde{a}_j(0)$ is completely determined by the term $(-1)^{m_j}$, and we have
+where we have let $r \in \mathcal{R}$ as $r = e^{-\frac{1}{\rho}m \pi}$ for some nonnegative integer $m$. The term in brackets is always positive since $|\theta^*_j(r, m_{n-1})| < \arctan \rho$. Thus the sign of $\tilde{a}_j(0)$ is completely determined by the term $(-1)^{m + m_j}$, and we have
 \begin{align*}
-\tilde{a}_j(0) &> 0 && \text{if } m_j \text{ is even} \\
-\tilde{a}_j(0) &< 0 && \text{if } m_j \text{ is odd}
+\tilde{a}_j(0) &> 0 && \text{if } m + m_j \text{ is even} \\
+\tilde{a}_j(0) &< 0 && \text{if } m + m_j \text{ is odd}
 \end{align*}
-From this, it follows that 
+From this, it follows that if $m$ is even,
 \begin{enumerate}[(i)]
 \item $\tilde{A}_0$ has $n_{\text{even}}$ negative eigenvalues (counting multiplicity)
 \item $\tilde{A}_0$ has $n_{\text{odd}}$ positive eigenvalues (counting multiplicity)
 \end{enumerate}
-The result follows from equation \eqref{inteigsformula} from Lemma \ref{inteigslemma}. The condition that $m_{n-1} \geq M_1$ is equivalent to $b_{n-1}^0 \leq \tilde{b}^*$ for some $\tilde{b}^* \leq b^*$.
+This is reversed if $m$ is odd. The result follows from equation \eqref{inteigsformula} from Lemma \ref{inteigslemma}, where we note the dependence on the sign of $M$. The condition that $m_{n-1} \geq M_1$ is equivalent to $b_{n-1}^0 \leq \tilde{b}^*$ for some $\tilde{b}^* \leq b^*$.
 
 \subsection{Interaction Eigenvalues: Specific Cases}
 
