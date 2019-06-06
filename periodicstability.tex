@@ -1602,7 +1602,6 @@ Finally the domain half-length $X$ is given by
 \begin{align}\label{Xscaled}
 X &= \frac{1}{2\alpha} (n |\log r| + |\log (b_0\cdots b_{n-1})| ) - \frac{n \phi}{2 \beta}
 \end{align}
-\end{equation}
 
 \begin{proof}
 From the discussion following Lemma \ref{IPform}, 
@@ -2725,12 +2724,12 @@ This is reversed if $m$ is odd. The result follows from equation \eqref{inteigsf
 
 \subsection{Interaction Eigenvalues: Specific Cases}
 
-There are specific cases, however, in which we can compute the eigenvalues of $\tilde{A}$ in terms of the terms $\tilde{a}_j$.
+There are specific cases in which we can compute the eigenvalues of $\tilde{A}$ in terms of the $\tilde{a}_j$.
 
 Recall that the $\tilde{a}_j$ are given by
 \begin{align*}
 \tilde{a}_j(r)
-&= s_0 e^{\alpha \phi/\beta} \left( \beta b_j(r; m_j; \theta) \cos\left( -\rho \log b_j(r; m_j; \theta) \right) - \alpha b_j(r; m_j; \theta) \sin \left( -\rho \log b_j(r; m_j; \theta)  \right) \right) + \mathcal{O}(r^{\gamma/2\alpha})
+&= (-1)^{-\rho \log r / \pi} s_0 e^{\alpha \phi/\beta} \left( \beta b_j(r; m_j; \theta) \cos\left( -\rho \log b_j(r; m_j; \theta) \right) - \alpha b_j(r; m_j; \theta) \sin \left( -\rho \log b_j(r; m_j; \theta)  \right) \right) + \mathcal{O}(r^{\gamma/2\alpha})
 \end{align*}
 
 First, we consider the case when $n = 2$. In that case, the eigenvalues of $\tilde{A}$ are $\{0, \tilde{a} \}$, where
@@ -2740,11 +2739,17 @@ First, we consider the case when $n = 2$. In that case, the eigenvalues of $\til
 For a symmetric 2-periodic pulse, $m_0 = m_1 = 0$ (recall that one of them must be 0). Then by Theorem \ref{2pulsebifurcation}, for sufficiently small $r$ we have symmetric solutions with equal length parameters $b_0(\theta) = b_1(\theta) = e^{-\theta/\rho}$. These length parameters do not depend on $r$. Thus we have
 \begin{align*}
 \tilde{a}_0(r) = \tilde{a}_1(r)  
-&= s_0 e^{\alpha \phi/\beta} e^{-\theta/\rho} \left( \beta \cos \theta - \alpha \sin \theta \right) + \mathcal{O}(r^{\gamma/2\alpha}) \\
-&= \frac{s_0 e^{\alpha \phi/\beta} }{\alpha}  e^{-\theta/\rho} \left( \rho \cos \theta - \sin \theta \right) + \mathcal{O}(r^{\gamma/2\alpha})
+&= (-1)^{-\rho \log r / \pi} s_0 e^{\alpha \phi/\beta} e^{-\theta/\rho} \left( \beta \cos \theta - \alpha \sin \theta \right) + \mathcal{O}(r^{\gamma/2\alpha}) \\
+&= (-1)^{-\rho \log r / \pi}  \frac{s_0 e^{\alpha \phi/\beta} }{\alpha}  e^{-\theta/\rho} \left( \rho \cos \theta - \sin \theta \right) + \mathcal{O}(r^{\gamma/2\alpha})
 \end{align*}
 
-For $r = 0$, $\tilde{a}(0) = 0$ at the pitchfork bifurcation point $\theta = p^*(0)$. For small $r$, we should be able to argue that $\tilde{a}_j(r) = 0$ at the pitchfork bifurcation point $p_0(r)$. Thus there is a pitchfork bifurcation in the integration eigenvalues at $\theta = p_0(r)$, in which the interaction eigenvalues collide at the origin and switch from a real pair to a purely imaginary pair or vice versa. 
+For $r = 0$, $\tilde{a}(0) = 0$ at the pitchfork bifurcation point $\theta = p^*(0)$. 
+
+
+
+
+
+For small $r$, we should be able to argue that $\tilde{a}_j(r) = 0$ at the pitchfork bifurcation point $p_0(r)$. Thus there is a pitchfork bifurcation in the integration eigenvalues at $\theta = p_0(r)$, in which the interaction eigenvalues collide at the origin and switch from a real pair to a purely imaginary pair or vice versa. 
 
 \iffulldocument\else
 	\bibliographystyle{amsalpha}

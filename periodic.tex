@@ -8,7 +8,7 @@
 
 The 5th order KdV equation (KdV5), when written in a moving frame with speed $c$, is
 \begin{equation}\label{KdV5}
-u_t = \partial_x(u_{xxxx} - u_{xx} - u^2 + c) 
+u_t = \partial_x(u_{xxxx} - u_{xx} - u^2 + cu) 
 \end{equation}
 We can write this as $u_t = \partial_x E'(u)$, where $E(u)$ is the energy
 \begin{equation}\label{energy}
@@ -28,7 +28,15 @@ which is obtained from \eqref{eqODE} by integrating once; we can take the consta
 \begin{equation}\label{Hamiltonian}
 H(u, u', u'', u''') = u'u''' - \frac{1}{2}(u'^2) - \frac{1}{2}(u'')^2 + \frac{c}{2}u^2 - \frac{1}{3}u^3 
 \end{equation}
-The Hamiltonian $H$ is conserved (in $x$).
+The Hamiltonian $H$ is conserved (in $x$). We can write this in standard form by taking
+\[
+Q = (q_1, q_2, p_1, p_2) = (u, u', -u''' + u', u'')
+\]
+in which case we have $Q' = J \nabla \tilde{H} Q$, where
+\begin{equation}
+H(q_1, q_2, p_1, p_2) = \frac{1}{3}q_1^3 - \frac{1}{2}c q_1^2 + p_1 q_1 - \frac{1}{2}q_2^2 + \frac{1}{2}p_2^2
+\end{equation}
+and $J$ is standard $4 \timed 4$ symplectic matrix.
 
 The linearization of the 4th order ODE \eqref{eqODE4} about a solution $u^*(x)$ of \eqref{eqODE4} is the self-adjoint linear operator
 \begin{equation}\label{defA0}
@@ -40,7 +48,7 @@ The eigenvalues of the linearization about the rest state $u^* = 0$ are the solu
 \end{align}
 Since two eigenvalues have positive real part and two have negative real part, the equilibrium at 0 is hyperbolic with a two-dimensional stable manifold and a two-dimensional unstable manifold. For $0 < c < 1/4$, all four eigenvalues are real. A bifurcation takes place at $c = 1/4$, and for $c > 1/4$, there is a quartet of eigenvalues of the form $\pm \alpha_0 \pm \beta_0 i$, where $\alpha_0, \beta_0 > 0$.
 
-For $c > 0$, a symmetric homoclinic orbit solution $q(x)$ exists to \eqref{eqODE4} \cite{Pelinovsky2007}[Theorem 2.1]. For $c > 1/4$. the existence of multi-pulse homoclinic orbits follows from \cite{SandstedeStrut}. We are interested in periodic, multi-pulse solutions.
+For $c > 0$, a symmetric homoclinic orbit solution $q(x)$ exists to \eqref{eqODE4} \cite[Theorem 2.1]{Pelinovsky2007}. For $c > 1/4$. the existence of multi-pulse homoclinic orbits follows from \cite{SandstedeStrut}. We are interested in periodic, multi-pulse solutions.
 
 \section{General Setup}
 
@@ -310,11 +318,15 @@ Assume Hypotheses \ref{Eprimehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp},
 
 \section{Stability}
 
-In the previous section, we have proven existence of periodic multi-pulse solutions to \eqref{genODE}, which yield equilibrium solutions to \eqref{genPDE}. We will now look at their spectral stability. This involves finding the eigenvalues of \eqref{genPDE}. Let $u^*(x)$ be any exponentially localized equilibrium solution to \eqref{genPDE}. Substituting the standard linearization ansatz $u(x, t) = u^*(x) + \epsilon e^{\lambda t}v(x)$ into \eqref{genPDE} and keeping terms up to order $\epsilon$, we obtain the PDE eigenvalue problem
+In the previous section, we have proven existence of periodic multi-pulse solutions to \eqref{genODE}, which yield equilibrium solutions to \eqref{genPDE}. We will now look at their spectral stability. This involves finding the eigenvalues of \eqref{genPDE}. Let $u^*(x)$ be any exponentially localized equilibrium solution to \eqref{genPDE}. Substituting the standard linearization ansatz 
+\[
+u(x, t) = u^*(x) + \epsilon e^{\lambda t}v(x)
+\]
+into \eqref{genPDE} and keeping terms up to order $\epsilon$, we obtain the PDE eigenvalue problem
 \begin{equation}\label{PDEeig}
 \partial_x E''(u^*(x)) v = \lambda v
 \end{equation}
-where $E''(u^*(x))$ is the Hessian of the energy and is self-adjoint. From the previous section, $[\partial_x E''(u^*(x))] \partial_x u^*(x) = 0$. Let $U^*(x) = (u^*(x), \partial_x u^*(x), \dots, \partial_x^{2m}u^*(x))$. Then we can write \eqref{PDEeig} as the first order system in the standard way as
+where $E''(u^*(x))$ is the Hessian of the energy, which is self-adjoint. From the previous section, $[\partial_x E''(u^*(x))] \partial_x u^*(x) = 0$. Let $U^*(x) = (u^*(x), \partial_x u^*(x), \dots, \partial_x^{2m}u^*(x))$. Then we can write \eqref{PDEeig} as the first order system in the standard way as
 \begin{equation}\label{PDEeig2}
 V'(x) = A(U^*(x))V(x) + \lambda B V(x)
 \end{equation}
@@ -326,7 +338,7 @@ B = \begin{pmatrix}0 & 0 & 0 & 0 & 0 \\0 & 0 & 0 & 0 & 0 \\  &
 Since $u^*(x)$ is exponentially localized, $A(U^*(x))$ is exponentially asymptotic to the constant coeffient matrix $A(0)$. The following lemma describes the eigenvalues of $A(0)$.
 
 \begin{lemma}\label{eigA0lemma}
-$A(0)$ has a simple eigenvalue at 0 and a quartet of eigenvalues at $\pm \alpha_0 \pm \beta_0 i\}$. For any other eigenvalue $\nu$ of $A(0)$, $|\text{Re }\nu| > \alpha_0$. 
+$A(0)$ has a simple eigenvalue at 0 and a quartet of eigenvalues at $\pm \alpha_0 \pm \beta_0 i$. For any other eigenvalue $\nu$ of $A(0)$, $|\text{Re }\nu| > \alpha_0$. 
 \end{lemma}
 
 Since $A(0)$ is not hyperbolic, the results of \cite{Sandstede1998} do not apply. Let $W^s(0)$, $W^u(0)$, and $W^c(0)$ be the stable, unstable, and center manifolds of the equilibrium at 0. By reversibility from Hypothesis \ref{Eprimehyp}, $\dim W^s(0) = m$ and $\dim W^u(0) = m$. The center manifold $W^c(0)$ is one-dimensional.
@@ -365,7 +377,7 @@ Using the nondegeneracy condition \eqref{nondegen2}, we can decompose the tangen
 T_{Q(0)}W^s(0) &= \R Q'(0) \oplus Y^+ \\
 T_{Q(0)}W^u(0) &= \R Q'(0) \oplus Y^- \\
 \end{align*}
-Since $\dim \R Q'(0) \oplus Y^+ \oplus Y^- = 2m-1$, we are missing two directions to span $\R^{2m+1}$. To find these, let $V_0$ and $W_0$ be  eigenvectors of $A(0)$ and $-A^*(0)$ corresponding to the eigenvalue 0. From \eqref{DefA}, we can see that we can choose
+Since $\dim \R Q'(0) \oplus Y^+ \oplus Y^- = 2m-1$, we are missing two directions to span $\R^{2m+1}$. To find these, let $V_0$ and $W_0$ be  eigenvectors of $A(0)$ and $-A^*(0)$ corresponding to the eigenvalue 0. From \eqref{DefA}, we can choose
 \begin{align}
 V_0 &= (-1/c_0, 0, 0, \dots, 0)^T \label{V0} \\
 W_0 &= (-c_0, 0, -c_2, 0, -c_4, 0, \dots, 0, -c_{2m-2}, 0, 1)^T \label{W0}
@@ -375,7 +387,7 @@ where we have scaled $V_0$ so that $\langle V_0, W_0 \rangle = 1$. We have the f
 \begin{lemma}\label{varadjsolutions}
 We have the following solutions to the variational equation \eqref{vareq2} and adjoint variational equation \eqref{adjvareq2}.
 \begin{enumerate}[(i)]
-\item There exists exactly two linearly independent, bounded solutions $\Psi(x)$ and $\Psi^c(x)$ to \eqref{adjvareq2}. $\Psi(x)$ is exponentially localized, i.e. $e^{\alpha |x|}\Psi(x)$ is bounded. In addition, $\Psi(x)$ is symmetric with respect to the standard reversor operator $R$, i.e. $\Psi(-x) = R \Psi(x)$. For $\Psi^c(x)$,
+\item There exists exactly two linearly independent, bounded solutions $\Psi(x)$ and $\Psi^c(x)$ to \eqref{adjvareq2}. $\Psi(x)$ is exponentially localized, i.e. $e^{\alpha |x|}\Psi(x)$ is bounded, and the last component of $\Psi(x)$ is $q(x)$. In addition, $\Psi(x)$ is symmetric with respect to the standard reversor operator $R$, i.e. $\Psi(-x) = R \Psi(x)$. The last component of $\Psi^c(x)$ is $1$, and
 	\begin{equation}
 	\Psi^c(x) \rightarrow W_0 \text{ as }|x| \rightarrow \infty
 	\end{equation}
@@ -399,12 +411,7 @@ Finally, we will look at the Melnikov integrals relevant to the problem. The low
 M_1 = \int_{-\infty}^\infty \langle \Psi(x), B Q'(x) \rangle =
 \int_{-\infty}^\infty q(x) \: \partial_x q(x) = 0
 \end{equation}
-since $q(x)$ is an even function and the last component of $\Psi(x)$ is $q(x)$. Recall that 
-\[
-\ker [\partial_x E''(q)]^* = \ker(-E''(q) \partial_x) = 
-\text{span}\{ q, 1 \}
-\]
-Since $\langle \partial_x q, q \rangle = 0$ (from above) and $\langle \partial_x q, 1 \rangle = 0$ (since $q$ is an even function), $q \perp \ker [\partial_x E''(q)]^*$. Thus, by the Fredholm alternative, there exists a function $t(x) \in H^{2m}(\R)$ such that $[ \partial_x E''(q) ]t(x) = \partial_x q(x)$. Let $T(x) = (t(x), \partial_x t(x), \dots, \partial_x^{2m}(x))^T$. Then $T(x)$ solves the equation
+since $q(x)$ is an even function and the last component of $\Psi(x)$ is $q(x)$ by Lemma \ref{varadjsolutions}. Since $\ker [\partial_x E''(q)]^* = \ker(-E''(q) \partial_x)$, $\{ q, 1 \} \subset \ker [\partial_x E''(q)]^*$. By Lemma \ref{varadjsolutions}(i), $\ker [\partial_x E''(q)]^* = \text{span}\{ q, 1 \}$ and $q \perp \ker [\partial_x E''(q)]^*$ since both $\langle \partial_x q, q \rangle = 0$ and $\langle \partial_x q, 1 \rangle = 0$. Thus, by the Fredholm alternative, there exists a function $t(x) \in H^{2m}(\R)$ such that $[ \partial_x E''(q) ]t(x) = \partial_x q(x)$. Let $T(x) = (t(x), \partial_x t(x), \dots, \partial_x^{2m}(x))^T$. Then $T(x)$ solves the equation
 \begin{equation}\label{eqforT}
 T'(x) = A(Q(x))T(x) + B Q'(x)
 \end{equation}
@@ -418,18 +425,18 @@ M_2 = \int_{-\infty}^\infty \langle \Psi(x), B T(x) \rangle dx =
 \end{equation}
 \end{hypothesis}
 
-Let $q_{np}(x)$ be a periodic $n-$pulse solution constructed according to Theorem \ref{perexist}. By a similar analysis, we have
+Let $q_{np}(x)$ be a periodic $n-$pulse solution constructed according to Theorem \ref{perexist}. By a similar analysis, $\partial_x E''(q_{np}) (\partial_x q_{np}(x)) = 0$, thus there exists a function $t_{np}(x) \in H^{2m}(\R)$ such that 
 \begin{align*}
-\partial_x E''(q_{np}) (\partial_x q_{np}(x)) &= 0 \\
 \partial_x E''(q_{np}) t_{np}(x) &= q_{np}(x) \\
 \end{align*}
-We are interested in the eigenvalues of \eqref{PDEeig} for equilibrium solution $u^*(x) = q_{np}(x)$. To do this, we use Lin's method to construct an eigenfunction $V(x)$ as a perturbation of a piecewise linear combination of $Q'(x)$ and $T(x)$. For $X_m = \min\{X_0, \dots, X_{n-1} \}$ sufficiently large and $\lambda$ sufficiently small, Lin's method constructs an unique function function $V(x)$ which solves \eqref{PDEeig2}. This function is continuous except for $n$ jumps, so it is only an eigenfunction if all of these jumps are 0. Lin's method gives a formula for those jump conditions; finding the eigenvalues $\lambda$ amounts to solving the $n$ jump conditions.
 
-In order to set up the problem, we rewrite the PDE eigenvalue problem \eqref{PDEeig2} as
+We are interested in the eigenvalues of \eqref{PDEeig} for the equilibrium solution $q_{np}(x)$. To do this, we use Lin's method to construct an eigenfunction $V(x)$ as a perturbation of a piecewise linear combination of $Q'(x)$ and $T(x)$. For $X_m = \min\{X_0, \dots, X_{n-1} \}$ sufficiently large and $\lambda$ sufficiently small, Lin's method constructs an unique function $V(x)$ which solves \eqref{PDEeig2}. This function is continuous except for $n$ jumps, so it is only an eigenfunction if all of these jumps are 0. Lin's method gives a formula for those jump conditions; finding the eigenvalues $\lambda$ amounts to solving the $n$ jump conditions.
+
+We rewrite the PDE eigenvalue problem \eqref{PDEeig2} as
 \begin{equation}\label{PDEeig3}
 V' = A(U^*(x); \lambda)V 
 \end{equation} 
-where $A(U^*(x); \lambda) = A(U^*) + \lambda B$. For $\lambda = 0$, the asymptotic matrix $A(0; 0)$ has a simple eigenvalue at 0. In the next lemma, we show that for small $\lambda$, $A(0; \lambda)$ has a small eigenvalue $\nu(\lambda)$ near 0.
+where $A(U^*(x); \lambda) = A(U^*) + \lambda B$. For $\lambda = 0$, the asymptotic matrix $A(0; 0)$ has a simple eigenvalue at 0. The next lemma states that for small $\lambda$, $A(0; \lambda)$ has a small eigenvalue $\nu(\lambda)$ near 0.
 
 % nu(lambda) lemma
 \begin{lemma}\label{nulambdalemma}
@@ -444,11 +451,11 @@ Furthermore, if we assume reversibility in Hypothesis \ref{Eprimehyp},
 \end{enumerate}
 \end{lemma}
 
-The following theorem gives us a condition for $\lambda$ to be an eigenvalue of \eqref{PDEeig3}.
+We can now state the main theorem of the section, which gives us a condition for $\lambda$ to be an eigenvalue of \eqref{PDEeig3}. This theorem is analagous to \cite[Theorem 2]{Sandstede1998}, with the matrix $A$ replaced by a block matrix equation.
 
 % block matrix theorem
 \begin{theorem}\label{blockmatrixtheorem}
-Assume Hypotheses \ref{Eprimehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, \ref{nondegenhyp}, and \ref{c0nonzero}. Let $q_{np}(x)$ be a periodic $n-$pulse solution constructed according to Theorem \ref{perexist} with scaling parameter $r$. Then there exists $\delta \leq \delta_0$ with the following property: there exists a bounded, nonzero solution $V$ of \eqref{PDEeig} for $|\lambda| < \delta$ if and only if the block matrix equation
+Assume Hypotheses \ref{Eprimehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, \ref{nondegenhyp}, and \ref{c0nonzero}. Let $q_{np}(x)$ be a periodic $n-$pulse solution constructed according to Theorem \ref{perexist} with lengths $X_0, \dots, X_{n-1}$. Then there exists $\delta \leq \delta_0$ with the following property: there exists a bounded, nonzero solution $V$ of \eqref{PDEeig} for $|\lambda| < \delta$ if and only if the block matrix equation
 \begin{equation}\label{blockeq}
 \begin{pmatrix}
 K(\lambda) + C_1 K(\lambda) + K_1(\lambda) & D_1 \\
@@ -491,21 +498,21 @@ where
 a_i &= \langle \Psi(X_i), Q'(-X_i) \rangle \\
 \end{align*}
 
-\item $K_1(\lambda)$ and $K_2(\lambda)$ are small perturbations of $K(\lambda)$, where the nonzero terms of $K(\lambda)$ are perturbed by $\mathcal{O}(|\lambda| + r^{1/2})$. This is defined precisely in the proof.
-
-\item The remainder terms are analytic in $\lambda$ and have uniform bounds
-\begin{align*}
-C_1 &= \mathcal{O}\left(r^{\tilde{\gamma}/2}(|\lambda| + r^{1/2})\right) \\
-D_1 &= \mathcal{O}\left((|\lambda| + r^{1/2})^2\right) \\
-C_2 &= \mathcal{O}\left(r^{\tilde{\gamma}/2}(|\lambda| + r^{1/2})^2\right) \\
-D_2 &= \mathcal{O}\left((|\lambda| + r^{1/2})^3\right)
-\end{align*}
-with $0 < \tilde{\gamma} < 1$.
-
 \item $M$ is the higher order Melnikov integral
 \begin{align*}
 M &= \int_{-\infty}^\infty \Psi(y) t(y) dy \\
 \end{align*}
+
+\item The remainder terms are analytic in $\lambda$ and have uniform bounds
+\begin{align*}
+C_1 &= \mathcal{O}(e^{-(\alpha - \eta) X_m}(|\lambda| + e^{-\alpha X_m})) \\
+D_1 &= \mathcal{O}((|\lambda| + e^{-\alpha X_m})^2)
+C_2 &= \mathcal{O}(e^{-(\alpha - \eta) X_m}(|\lambda| + e^{-\alpha X_m})^2) \\
+D_2 &= \mathcal{O}((|\lambda| + e^{-\alpha X_m})^3)
+\end{align*}
+where $\eta < \alpha_0/4$, $\alpha = \alpha_0 - \eta$, and $X_m = \min\{X_0, \dots, X_{n-1}\}$.
+
+\item $K_1(\lambda)$ and $K_2(\lambda)$ are small perturbations of $K(\lambda)$, where the nonzero terms of $K(\lambda)$ are perturbed by $\mathcal{O}(|\lambda| + e^{-\alpha X_m})$. These are defined precisely in the proof of Lemmas \ref{jumpcenteradj} and \ref{jumpadj}
 
 \end{enumerate}
 \end{theorem}
