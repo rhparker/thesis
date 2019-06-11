@@ -32,11 +32,11 @@ The Hamiltonian $H$ is conserved (in $x$). We can write this in standard form by
 \[
 Q = (q_1, q_2, p_1, p_2) = (u, u', -u''' + u', u'')
 \]
-in which case we have $Q' = J \nabla \tilde{H} Q$, where
+in which case we have $Q' = (J \nabla \tilde{H}) Q$, where
 \begin{equation}
-H(q_1, q_2, p_1, p_2) = \frac{1}{3}q_1^3 - \frac{1}{2}c q_1^2 + p_1 q_1 - \frac{1}{2}q_2^2 + \frac{1}{2}p_2^2
+\tilde{H}(q_1, q_2, p_1, p_2) = \frac{1}{3}q_1^3 - \frac{1}{2}c q_1^2 + p_1 q_2 - \frac{1}{2}q_2^2 + \frac{1}{2}p_2^2
 \end{equation}
-and $J$ is standard $4 \timed 4$ symplectic matrix.
+and $J$ is the standard $4 \times 4$ symplectic matrix.
 
 The linearization of the 4th order ODE \eqref{eqODE4} about a solution $u^*(x)$ of \eqref{eqODE4} is the self-adjoint linear operator
 \begin{equation}\label{defA0}
@@ -71,13 +71,15 @@ where $[\rho(u)](x) = u(-x)$.
 \item $E'(u)$ is translation invariant, i.e. $E'(u) = 0$ implies $E'(\tau_\xi(u)) = 0$ for all $\xi \in \R$, where $[\tau_\xi(u)](x) = u(x - \xi)$.
 \end{enumerate}
 \end{hypothesis}
-Reversibility implies that the linear part of the operator $E'(u)$ only involves even-order derivatives of $u$ with respect to $x$. If $u(x)$ is an even function, the nonlinear part is also an even function in $x$.
+Reversibility implies that the linear part of the operator $E'(u)$ only involves even-order derivatives of $u$ with respect to $x$. If $u(x)$ is an even function, the nonlinear part is also an even function in $x$. 
 
 Equilibrium solutions which decay to 0 at $\pm \infty$ satisfy the ODE 
 \begin{equation}\label{ODEonR}
 E'(u) = \partial_x^{2m}u + \tilde{E}(u) = 0
 \end{equation}
-which is obtained from \eqref{genPDE} by taking $u_t = 0$ and integrating once. By Hypothesis \ref{Eprimehyp}, the highest order derivative $\partial_x^{2m}$ in $E'(u)$ appears by itself with a coefficient of 1. Thus we can write \eqref{ODEonR} as a first-order system in the standard way as
+which is obtained from \eqref{genPDE} by taking $u_t = 0$ and integrating once. If $u^*(x)$ is a solution to \eqref{ODEonR}, translation invariance implies that $E''(u^*(x))\partial_x u^*(x) = 0$.
+
+By Hypothesis \ref{Eprimehyp}, the highest order derivative $\partial_x^{2m}$ in $E'(u)$ appears by itself with a coefficient of 1. Thus we can write \eqref{ODEonR} as a first-order system in the standard way as
 \begin{equation}\label{genODE}
 U'(x) = F(U(x))
 \end{equation}
@@ -194,9 +196,9 @@ We now write $W^u(0)$ and $W^s(0)$ as graphs over their tangent spaces near $Q(0
 Q^-(x; \beta^-) && x \leq 0 \\
 Q^+(x; \beta^-) && x \geq 0
 \end{align*}
-be the unique solutions to \eqref{genODE} on $\R^\pm$ with initial conditions $Q^\pm(0, \beta^\pm)$ at $x = 0$. Since these initial conditions are on the unstable and stable manifolds (respectively), these solutions decay exponentially (in the appropriate direction) with rate $\alpha_0$.
+be the unique solutions to \eqref{genODE} on $\R^\pm$ with initial conditions $Q^\pm(0, \beta^\pm)$ at $x = 0$. Since these initial conditions are on the unstable and stable manifolds (respectively), they decay exponentially (in the appropriate direction) with rate $\alpha_0$.
 
-Let $n$ be the number of pulses in the periodic solution we would like to construct. Then we will look for a solution $U$ to \eqref{genODE} which is piecewise of the form
+Let $n$ be the number of pulses in the periodic solution we would like to construct. We will look for a solution $U$ to \eqref{genODE} which is piecewise of the form
 \begin{equation}\label{Upiecewise}
 \begin{aligned}
 U_i^-(x) &= Q^-(x; \beta_i^-) + V_i^-(x) && x \in [-X_{i-1}, 0] \\
@@ -209,7 +211,7 @@ V_i^-(0) &\in Z \oplus Y^- \\
 V_i^+(0) &\in Z \oplus Y^+
 \end{align*}
 
-Since we are looking for a continuous solution, we need the functions $U_i^\pm(x)$ to match at each of the $2n$ boundaries between intervals. Thus, to obtain a periodic multi-pulse, we need to solve the following system of equations equations
+Since we are looking for a continuous solution, we need the functions $U_i^\pm(x)$ to match at each of the $2n$ boundaries between intervals. Thus, to obtain a periodic multi-pulse, we will solve the following system of equations equations
 \begin{align}
 (U_i^\pm)' - F(U_i^\pm) &= 0 \label{exsystem1} \\
 U_i^+(X_i) - U_{i+1}^-(-X_i) &= 0 \label{exsystem2} \\
@@ -236,7 +238,11 @@ The pulse distances $X_i$ are be determined by these parameters. We prove the ex
 Assume Hypotheses \ref{Eprimehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and \ref{nondegenhyp}. Let $Q(x)$ be a transversely constructed, symmetric primary pulse solution to \eqref{genODE}. Choose
 \begin{itemize}
 \item An integer $n \geq 2$ 
-\item A sequence of $n$ baseline length parameters $\{ b_0^0, \dots, b_{n-1}^0 \}$, where $b_j^0 = \exp\left(-\frac{m_j \pi}{\rho}\right) \in \mathcal{B}$ and at least one of the $b_j^0$ is 1. Without loss of generality, take $b_{n-1}^0 \leq b_j^0$ (equivalently, $m_{n-1} \geq m_j$) for $j = 0, \dots, n-2$.
+\item A sequence of $n$ baseline length parameters $\{ b_0^0, \dots, b_{n-1}^0 \}$, where 
+\[
+b_j^0 = \exp\left(-\frac{m_j \pi}{\rho}\right) \in \mathcal{B}
+\]
+and at least one of the $b_j^0$ is 1. Without loss of generality, take $b_{n-1}^0 \leq b_j^0$ (equivalently, $m_{n-1} \geq m_j$) for $j = 0, \dots, n-2$.
 \item A phase parameter $\theta \in [-\arctan \rho, \pi - \arctan \rho)$.
 \end{itemize}
 with the restriction that for $j = 0, \dots, n-2$, neither of the following is true.
@@ -263,16 +269,13 @@ Details on this parameterization are given in Lemma \ref{thetaparamlemma}
 \begin{equation}\label{Xj}
 X_j = -\frac{1}{2\alpha}\log(b_j(r; m_j, \theta) r) - \frac{\phi}{2 \beta} 
 \end{equation}
-where $\phi$ is a constant.
+and $\phi$ is a constant.
 
 \item The domain has length $2X$, where $X = X_0 + \dots + X_{n-1}$ and is given by
 \begin{align}
-X = \frac{1}{2\alpha} (n |\log r| + |\log b| ) - \frac{n \phi}{2 \beta}
+X = \frac{1}{2\alpha} \left(n |\log r| + |\log(b_0(r; m_0, \theta) \cdots b_{n-1}(r; m_{n-1}, \theta))| \right) - \frac{n \phi}{2 \beta}
 \end{align}
-where 
-\begin{equation}\
-b = \prod_{j=0}^{n-1} b_j(r; m_j, \theta)
-\end{equation}
+
 \end{enumerate}
 \end{theorem}
 
@@ -308,7 +311,7 @@ Assume Hypotheses \ref{Eprimehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp},
 	\[
 	\tilde{b}_0(s, 0) \rightarrow 1 \text{ as } s \rightarrow \infty
 	\]
-	\item These two branches meet at a pitchfork bifurcation at $(p_0(r), p_0(r))$, where $p_0(r) = e^{-\frac{1}{\rho}\theta_p(r)}$ and $\theta_p(r) \rightarrow \arctan \rho$ as $r \rightarrow 0$. In terms of the two parameterizations,
+	\item These two branches meet at a pitchfork bifurcation at $(p_0(r), p_0(r))$, where $p_0(r) \rightarrow e^{-\frac{1}{\rho}\arctan \rho}$ as $r \rightarrow 0$. In terms of the two parameterizations,
 	\[
 	(\tilde{b}_0(0, r), \tilde{b}_1(0, r)) = (b_0(p_0(r)), b_1(p_0(r)) 
 	= (p_0(r), p_0(r))
@@ -326,7 +329,7 @@ into \eqref{genPDE} and keeping terms up to order $\epsilon$, we obtain the PDE 
 \begin{equation}\label{PDEeig}
 \partial_x E''(u^*(x)) v = \lambda v
 \end{equation}
-where $E''(u^*(x))$ is the Hessian of the energy, which is self-adjoint. From the previous section, $[\partial_x E''(u^*(x))] \partial_x u^*(x) = 0$. Let $U^*(x) = (u^*(x), \partial_x u^*(x), \dots, \partial_x^{2m}u^*(x))$. Then we can write \eqref{PDEeig} as the first order system in the standard way as
+where $E''(u^*(x))$ is the Hessian of the energy, which is self-adjoint.  Let $U^*(x) = (u^*(x), \partial_x u^*(x), \dots, \partial_x^{2m}u^*(x))$. Then we can write \eqref{PDEeig} as the first order system in the standard way as
 \begin{equation}\label{PDEeig2}
 V'(x) = A(U^*(x))V(x) + \lambda B V(x)
 \end{equation}
@@ -358,10 +361,7 @@ A(Q(x)) = \begin{pmatrix}
 f_0'(x) & c_0 + f_0(x) + f_1'(x) & \dots & c_{2m-2} + f_{2m-2}(x) + f_{2m-1}' (x) & f_{2m-1}(x)
 \end{pmatrix}
 \end{equation}
-where the $c_i$ and $f_i$ are the same as in \eqref{DF}. $Q'(x)$ is an exponentially localized solution to \eqref{vareq2}. Since $q(x)$ is symmetric, satisfies the reversibility property
-\begin{equation}\label{vareqrev2}
-A(Q(-x))RV = -RA(Q(x))V
-\end{equation}
+where the $c_i$ and $f_i$ are the same as in \eqref{DF}. $Q'(x)$ is an exponentially localized solution to \eqref{vareq2}. 
 
 Since $Q(x)$ is exponentially localized, it cannot involve the center manifold $W^c(0)$, thus it must lie in the intersection of the stable and unstable manifolds. In particular, this implies that $\R Q'(0) \subset T_{Q(0)}W^s(0) \cap T_{Q(0)}W^u(0)$. From Hypothesis \ref{nondegenhyp}, these are actually equal, which we state in the following lemma.
 
@@ -387,11 +387,16 @@ where we have scaled $V_0$ so that $\langle V_0, W_0 \rangle = 1$. We have the f
 \begin{lemma}\label{varadjsolutions}
 We have the following solutions to the variational equation \eqref{vareq2} and adjoint variational equation \eqref{adjvareq2}.
 \begin{enumerate}[(i)]
-\item There exists exactly two linearly independent, bounded solutions $\Psi(x)$ and $\Psi^c(x)$ to \eqref{adjvareq2}. $\Psi(x)$ is exponentially localized, i.e. $e^{\alpha |x|}\Psi(x)$ is bounded, and the last component of $\Psi(x)$ is $q(x)$. In addition, $\Psi(x)$ is symmetric with respect to the standard reversor operator $R$, i.e. $\Psi(-x) = R \Psi(x)$. The last component of $\Psi^c(x)$ is $1$, and
+\item There exist two linearly independent, bounded solutions $\Psi(x)$ and $\Psi^c(x)$ to \eqref{adjvareq2}. 
+
+$\Psi(x)$ is exponentially localized, i.e. $e^{\alpha_0 |x|}\Psi(x)$ is bounded, and the last component of $\Psi(x)$ is $q(x)$. In addition, $\Psi(x)$ is symmetric with respect to the standard reversor operator $R$, i.e. $\Psi(-x) = R \Psi(x)$. 
+
+The last component of $\Psi^c(x)$ is $1$, and
 	\begin{equation}
 	\Psi^c(x) \rightarrow W_0 \text{ as }|x| \rightarrow \infty
 	\end{equation}
-In addition, $\Psi(0), \Psi^c(0) \perp \R Q'(0) \oplus Y^+ \oplus Y^-$.
+
+Finally, $\Psi(0), \Psi^c(0) \perp \R Q'(0) \oplus Y^+ \oplus Y^-$.
 \item There exists a bounded solution $V^c(x)$ of \eqref{vareq2} such that 
 \begin{equation}
 V^c(x) \rightarrow V_0 \text{ as }|x| \rightarrow \infty
@@ -432,7 +437,7 @@ Let $q_{np}(x)$ be a periodic $n-$pulse solution constructed according to Theore
 
 We are interested in the eigenvalues of \eqref{PDEeig} for the equilibrium solution $q_{np}(x)$. To do this, we use Lin's method to construct an eigenfunction $V(x)$ as a perturbation of a piecewise linear combination of $Q'(x)$ and $T(x)$. For $X_m = \min\{X_0, \dots, X_{n-1} \}$ sufficiently large and $\lambda$ sufficiently small, Lin's method constructs an unique function $V(x)$ which solves \eqref{PDEeig2}. This function is continuous except for $n$ jumps, so it is only an eigenfunction if all of these jumps are 0. Lin's method gives a formula for those jump conditions; finding the eigenvalues $\lambda$ amounts to solving the $n$ jump conditions.
 
-We rewrite the PDE eigenvalue problem \eqref{PDEeig2} as
+To use Lin's method, we rewrite the PDE eigenvalue problem \eqref{PDEeig2} as
 \begin{equation}\label{PDEeig3}
 V' = A(U^*(x); \lambda)V 
 \end{equation} 
@@ -607,7 +612,7 @@ These interaction eigenvalue pairs are either real or purely imaginary, and the 
 \end{equation}
 In terms of $r$ and the $b_j$, these are located at approximately
 \begin{equation}\label{lambdaessr}
-\lambda^{ess}(k; r) = C \frac{k \pi i }{n |\log r| + |\log b_0 b_1 \cdots b_{n-1}|}  \left( 1 + \mathcal{O}\left( \frac{1}{n |\log r|} \right)\right) + \mathcal{O}\left( \frac{r^{1/2}}{n |\log r|} \right)
+\lambda^{ess}(k; r) = C \frac{k \pi i }{n |\log r| + |\log (b_0 b_1 \cdots b_{n-1})|}  \left( 1 + \mathcal{O}\left( \frac{1}{n |\log r|} \right)\right) + \mathcal{O}\left( \frac{r^{1/2}}{n |\log r|} \right)
 \end{equation}
 The remainder terms cannot move these off of the imaginary axis.
 
@@ -615,8 +620,9 @@ The remainder terms cannot move these off of the imaginary axis.
 \begin{itemize}
 	\item There exists a small radius $\xi$ (which excludes the interaction eigenvalues and ``essential spectrum'' eigenvalues) such that there are exactly 3 eigenvalues inside the circle of radius $\xi$ in the complex plane. These must be the three eigenvalues from part (i).
 
-	\item There are exactly $2n + 2 k_M + 1$ eigenvalues inside the circle of radius $\tilde{\delta}$ (which may be slightly smaller than $\delta$) in the complex plane, where $k_M$ is the largest positive integer $k$ such that $\lambda^K(k,X) < \tilde{\delta}$. Thus, if the $\epsilon-$ball condition is satisfied, there are no eigenvalues inside the circle of radius $\tilde{\delta}$ other than the ones already accounted for.
+	\item There are exactly $2n + 2 k_M + 1$ eigenvalues inside the circle of radius $\tilde{\delta}$ (which may be slightly smaller than $\delta$) in the complex plane, where $k_M$ is the largest positive integer $k$ such that $\lambda^K(k,X) < \tilde{\delta}$. 
 \end{itemize}
+If the $\epsilon-$ball condition is satisfied, there are no eigenvalues inside the circle of radius $\tilde{\delta}$ other than the ones already accounted for.
 \end{enumerate}
 \end{theorem}
 
@@ -636,15 +642,13 @@ Let $r = \exp\left( -\frac{1}{\rho} m \pi \right)$, where $m$ is a nonnegative i
 \item If $m$ is even ($m$ is odd), there are $n_{\text{even}}$ purely imaginary (real) pairs of interaction eigenvalues.
 \item If $m$ is even ($m$ is odd), there are $n_{\text{odd}}$ real (purely imaginary) pairs of interaction eigenvalues.
 \end{itemize}
-where $n_{\text{even}}$ is the number of even $m_0, \dots, m_{n-2}$ and $n_{\text{odd}}$ is the number of odd $m_0, \dots, m_{n-2}$. If $M < 0$, these are reversed.
+where $n_{\text{even}}$ is the number of even $\{m_0, \dots, m_{n-2}\}$ and $n_{\text{odd}}$ is the number of odd $\{m_0, \dots, m_{n-2}\}$. If $M < 0$, these are reversed.
 \end{theorem}
 
 Finally, we consider the case of the 2-periodic pulse. For the symmetric 2-periodic pulse (i.e. $b_0 = b_1$), the interaction eigenvalues are approximately
-
 \[
 \lambda^{\text{int}} = \pm C r^{1/2} e^{-\theta/2\rho} \sqrt{ \frac{1}{M} \left( \rho \cos \theta - \sin \theta \right) }
 \]
-
 which is 0 at $\theta = \arctan \rho$. At a point near there, there is a bifurcation in which a pair of real eigenvalues collides at 0 and then becomes a pair of purely imaginary eigenvalues. We can probably use a symmetry argument or something like that to show that this occurs for small $r$ at the actual pitchfork bifurcation point $\theta^*(r)$, where $\theta^*(0) = \arctan \rho$. This has been verified numerically.
 
 \iffulldocument\else
