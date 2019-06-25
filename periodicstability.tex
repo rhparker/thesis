@@ -316,28 +316,37 @@ Q_i^-(x) &= Q^-(x; \beta_i^-) + \tilde{Q}_i^-(x) && x \in [-X_{i-1}, 0] \\
 Q_i^+(x) &= Q^+(x; \beta_i^+) + \tilde{Q}_i^+(x) && x \in [0, X_i]
 \end{aligned}
 \end{equation}
-Let $X_m = \min\{X_0, \dots, X_{n-1}\}$. Using the same intervals, we can write $T_np(x)$ piecewise as $T_i^\pm(x)$. 
 
-Recall that we are looking for solutions to the PDE eigenvalue problem
+Recall that we are looking for solutions to the eigenvalue problem 
 \begin{equation}\label{PDEeig4}
 V'(x) = A(Q_{np}(x))V(x) + \lambda B V(x)
 \end{equation}
+which comes from writing the PDE eigenvalue problem $\partial_x E''(q_{np}(x)) v = \lambda v$ as a first-order system. We can verify directly that $\partial_x E''(q_{np}(x)) q_{np}(x) = 0$. By a similar analysis to that preceding Hypothesis \ref{Melnikov2hyp}(BUT WITH DIFFERENT FUNCTION SPACES WHICH WE SHOULD SPECIFY), there exists a function $t_{np}(x)$ such that $\partial_x E''(q_{np}(x)) t_{np}(x) = q_{np}(x)$. Let $T_np(x) = t_{np}(x), \partial_x t_np(x), \dots, \partial_x^m t_np(x))$. Then we have the following relations.
 and that we have
 \begin{equation}\label{Arelations}
 \begin{aligned}
 (Q_{np}')' &= A(Q_{np}(x)) Q_{np}' \\
-(T_{np}) &= A(Q_{np}(x)) T_{np} + B Q_{np}' 
+(T_{np})'' &= A(Q_{np}(x)) T_{np} + B Q_{np}' 
 \end{aligned}
 \end{equation}
 
-To exploit these relations, we take the following piecewise ansatz for the eigenfunction $V(x)$
+Using the same intervals $\{X_0, \dots, X_{n-1}\}$, we can write $T_np(x)$ piecewise as $T_i^\pm(x)$, where
+\begin{equation}\label{Tnppiece}
+\begin{aligned}
+T_i^-(x) &= T(x) + \tilde{T}_i^-(x) && x \in [-X_{i-1}, 0] \\
+T_i^+(x) &= T(x) + \tilde{T}_i^+(x) && x \in [0, X_i]
+\end{aligned}
+\end{equation}
+Bounds on the remainder terms $T_i^\pm(x)$ will be presented in Lemma \ref{stabestimates} below.
+
+To exploit the relations \eqref{Arelations}, we take the following piecewise ansatz for the eigenfunction $V(x)$
 \begin{equation}\label{Vpiecewise}
 \begin{aligned}
 V_i^-(x) &= d_i ((Q_i^-)'(x) + \lambda T_i^-(x)) + W_i^-(x) && x \in [-X_{i-1}, 0] \\
 V_i^+(x) &= d_i ((Q_i^+)'(x) + \lambda T_i^+(x)) + W_i^+(x) && x \in [0, X_i] \\
 \end{aligned}
 \end{equation}
-where $d_i \in \C$ are arbitrary constants. Substituting this ansatz into \eqref{PDEeig4},
+where $d_i \in \C$ are arbitrary constants. Substituting this ansatz into \eqref{PDEeig4}, we have
 \begin{align*}
 d_i [(Q_i^\pm)']'(x) &+ \lambda d_i (T_i^\pm)'(x) + (W_i^\pm)'(x) \\
 &= d_i A(Q_i^\pm(x)) (Q_i^\pm)'(x) + \lambda d_i A(Q_i^\pm(x)) T_i^\pm(x) + A(Q_i^\pm(x)) W_i^\pm(x) \\
@@ -379,26 +388,32 @@ W_i^+(0) - W_i^-(0) &\in \R \Psi(0) \oplus \R \Psi^c(0) && i = 0, \dots, n-1
 \end{aligned}
 \end{equation}
 
-A solution to \eqref{eigsystem} gives us an eigenfunction corresponding to eigenvalue $\lambda$ if and only if the $n$ jumps at $x = 0$ in the direction of $\Psi(0) \oplus \R \Psi^c(0)$ are 0, i.e. if and only if the $2n$ jump conditions are satisfied, i.e. 
+We do not need to include a component in $Q'(0)$ in the third equation since that is handled by the term $d_i Q_i^\pm'(x)$ in the ansatz \eqref{Vpiecewise}. A solution to \eqref{eigsystem} gives us an eigenfunction corresponding to eigenvalue $\lambda$ if and only if the $n$ jumps at $x = 0$ in the direction of $\Psi(0) \oplus \R \Psi^c(0)$ are 0, i.e. if and only if the $2n$ jump conditions are satisfied, i.e. 
 \begin{align}
 \xi_i &= \langle \Psi(0), W_i^+(0) - W_i^-(0) \rangle = 0 \label{jumpxi} \\
 \xi_-^c &= \langle \Psi^c(0), W_i^+(0) - W_i^-(0) \rangle = 0 \label{jumpxic}
 \end{align}
 for $i = 0, \dots, n-1$.
 
-From the existence problem we have the following estimates, which we collect in the following lemma. REVISIT THIS.
-
+We will need the following estimates, which we collect in the following lemma.
 \begin{lemma}\label{stabestimates}
 Let $\Delta H_i^\pm(x) = \tilde{H}_i^\pm(x) - H(x)$. Then we have the following estimates
 \begin{enumerate}[(i)]
 \item $|H(x)|, |\tilde{H}_i^\pm(x)| \leq C e^{-\alpha_0 |x|}$
 \item $|\Delta H_i^-(x)| \leq C e^{-\alpha_0 X_{i-1}} e^{-\alpha_0(X_{i-1} + x) } + e^{-2 \alpha_0 X_i} e^{\alpha_0 x}$
-\item $|\Delta H_i^+(x)| \leq C e^{-\alpha_0 X_i} e^{-\alpha_0(X_i - x) } + e^{-2 \alpha_0 X_{i-1}} e^{-\alpha_0 x} $
+\item $|\Delta H_i^+(x)| \leq C e^{-\alpha_0 X_i} e^{-\alpha_0(X_i - x) } + e^{-2 \alpha_0 X_{i-1}} e^{-\alpha_0 x}$
 \item $||\Delta H_i^\pm|| \leq C(e^{-\alpha_0 X_i} + e^{-\alpha_0 X_{i-1}} )$ 
 \item $D_i d = ( Q'(X_i) + Q'(-X_i))(d_{i+1} - d_i ) + \mathcal{O} \left( e^{-\alpha_0 X_i} \left( |\lambda| +  e^{-\alpha_0 X_m}  \right) |d| \right)$
 \end{enumerate}
 \begin{proof}
-For (i), $H$ and $\tilde{H}_i^\pm$ are exponentially localized, and have the same decay rate as $Q$. Estimate (ii) and (iii) come from \eqref{Qpmbounds} and \eqref{Vpmbounds} in Lemma \ref{solvewithjumps}. Estimate (iv) is a uniform version of Estimates (ii)  and (iii). For estimate (v), using the definition of $D_i d$ and estimate (i), we have
+By Hypothesis \ref{Melnikov2hyp}(i), $T(x)$ is exponentially localized, thus $|H(x)| \leq C e^{-\alpha_0 |x|}$. We can use Lin's method, as in the proof of Theorem \ref{perexist}, to solve for the remainder functions $\tilde{T}_i^\pm(x)$ in \eqref{Tnppiece}. Since the details are similar to that proof, they will be omitted. The jump conditions from Lin's method are automatically satisfied, since $T_np(x)$ is a continuous function. We conclude from Lin's method that, as in Lemma \ref{solvewithjumps}, we have bounds on the remainder functions
+\begin{align*}
+|\tilde{T}_i^-(x)| &\leq C e^{-\alpha_0 X_{i-1}} e^{-\alpha_0(X_{i-1} + x) } + e^{-2 \alpha_0 X_i} e^{\alpha_0 x} \\
+|\tilde{T}_i^+(x)| &\leq C e^{-\alpha_0 X_i} e^{-\alpha_0(X_i - x) } + e^{-2 \alpha_0 X_{i-1}} e^{-\alpha_0 x}
+\end{align*}
+The bounds (i)-(iv) come from these estimates and the definitions of $H$ and $\tilde{H}_i^\pm$.
+
+For estimate (v), using the definition of $D_i d$ and estimate (i), we have
 \begin{align}\label{Did2}
 D_i d &= d_{i+1}(Q_{i+1}^-)'(-X_i) - d_i (Q_i^+)'(X_i) + \mathcal{O}(|\lambda| e^{-\alpha_0 X_i}) 
 \end{align}

@@ -411,31 +411,36 @@ Using Lemma \ref{nondegenlemma} and Lemma \ref{varadjsolutions}, we can decompos
 \end{equation}
 where $\R \Psi(0) \oplus \R \Psi^c(0) \perp \R Q'(0) \oplus Y^+ \oplus Y^-$.
 
-Finally, we will look at the Melnikov integrals relevant to the problem. The lowest order Melnikov integral is
+Finally, we will look at the Melnikov integrals relevant to the problem. Since the Melnikov integrals will be evaluated on the real line, we consider the linear operator $\partial_x E''(u^*(x)): H^{2m+1}(\R) \subset L^2(\R) \rightarrow L^2(\R)$. The lowest order Melnikov integral is
 \begin{equation}\label{M1}
 M_1 = \int_{-\infty}^\infty \langle \Psi(x), B Q'(x) \rangle =
-\int_{-\infty}^\infty q(x) \: \partial_x q(x) = 0
+\int_{-\infty}^\infty q(x) \: \partial_x q(x) 
+= \langle q(x), \partial_x q(x) \rangle_{L^2(\R)} = 0
 \end{equation}
-since $q(x)$ is an even function and the last component of $\Psi(x)$ is $q(x)$ by Lemma \ref{varadjsolutions}. Since $\ker [\partial_x E''(q)]^* = \ker(-E''(q) \partial_x)$, $\{ q, 1 \} \subset \ker [\partial_x E''(q)]^*$. By Lemma \ref{varadjsolutions}(i), $\ker [\partial_x E''(q)]^* = \text{span}\{ q, 1 \}$ and $q \perp \ker [\partial_x E''(q)]^*$ since both $\langle \partial_x q, q \rangle = 0$ and $\langle \partial_x q, 1 \rangle = 0$. Thus, by the Fredholm alternative, there exists a function $t(x) \in H^{2m}(\R)$ such that $[ \partial_x E''(q) ]t(x) = \partial_x q(x)$. Let $T(x) = (t(x), \partial_x t(x), \dots, \partial_x^{2m}(x))^T$. Then $T(x)$ solves the equation
+since $q(x)$ is an even function and the last component of $\Psi(x)$ is $q(x)$ by Lemma \ref{varadjsolutions}. 
+
+By Lemma \ref{varadjsolutions}, the only linearly independent, bounded solutions to $[\partial_x E''(q)]^* w(x) = 0$ are 1 and $q(x)$. Since we are considering $[\partial_x E''(q)]^*$ as a linear operator on a dense subspace of $L^2(\R)$, $\ker [\partial_x E''(q)]^* = \text{span}\{ q(x) \}$, thus $\partial_x q(x) \perp \ker [\partial_x E''(q)]^*$. By the Fredholm alternative, there exists a function $t(x) \in L^2(\R)$ such that $[ \partial_x E''(q) ]t(x) = \partial_x q(x)$. Let $T(x) = (t(x), \partial_x t(x), \dots, \partial_x^{2m}(x))^T$. Then $T(x)$ solves the equation
 \begin{equation}\label{eqforT}
 T'(x) = A(Q(x))T(x) + B Q'(x)
 \end{equation}
 
-We take the following hypothesis regarding the higher order Melnikov integral.
+We take the following hypothesis regarding $T(x)$ and a higher order Melnikov integral.
 \begin{hypothesis}\label{Melnikov2hyp}
-We have the following Melnikov-like expression
+\begin{enumerate}[(i)]
+\item $T(x)$ is exponentially localized with the same decay rate as $Q(x)$, i.e.
+\begin{equation}
+|T(x)| \leq C e^{-\alpha_0 |x|}
+\end{equation}
+\item The following higher order Melnikov integral is nonzero.
 \begin{equation}\label{M2}
 M_2 = \int_{-\infty}^\infty \langle \Psi(x), B T(x) \rangle dx =
 \int_{-\infty}^\infty q(x) t(x) dx \neq 0
 \end{equation}
+\end{enumerate}
 \end{hypothesis}
+In applications where $E''(q(x))$ results from linearizing a traveling wave equation about a homoclinic orbit $q(x)$, we typically have $t(x) = \partial_c q(x)$, where $c$ is the traveling wave speed; in this case, Hypothesis \ref{Melnikov2hyp}(i) is satisfied. For equations such as KdV5, numerics suggests that Hypothesis \ref{Melnikov2hyp}(ii) is satisfied.
 
-Let $q_{np}(x)$ be a periodic $n-$pulse solution constructed according to Theorem \ref{perexist}. By a similar analysis, $\partial_x E''(q_{np}) (\partial_x q_{np}(x)) = 0$, thus there exists a function $t_{np}(x) \in H^{2m}(\R)$ such that 
-\begin{align*}
-\partial_x E''(q_{np}) t_{np}(x) &= q_{np}(x) \\
-\end{align*}
-
-We are interested in the eigenvalues of \eqref{PDEeig} for the equilibrium solution $q_{np}(x)$. To do this, we use Lin's method to construct an eigenfunction $V(x)$ as a perturbation of a piecewise linear combination of $Q'(x)$ and $T(x)$. For $X_m = \min\{X_0, \dots, X_{n-1} \}$ sufficiently large and $\lambda$ sufficiently small, Lin's method constructs an unique function $V(x)$ which solves \eqref{PDEeig2}. This function is continuous except for $n$ jumps, so it is only an eigenfunction if all of these jumps are 0. Lin's method gives a formula for those jump conditions; finding the eigenvalues $\lambda$ amounts to solving the $n$ jump conditions.
+Let $q_{np}(x)$ be a periodic $n-$pulse solution constructed according to Theorem \ref{perexist}. We are interested in the eigenvalues of \eqref{PDEeig} for the equilibrium solution $q_{np}(x)$. To do this, we use Lin's method to construct an eigenfunction $V(x)$ as a perturbation of a piecewise linear combination of $Q'(x)$ and $T(x)$. For $X_m = \min\{X_0, \dots, X_{n-1} \}$ sufficiently large and $\lambda$ sufficiently small, Lin's method constructs an unique function $V(x)$ which solves \eqref{PDEeig2}. This function is continuous except for $n$ jumps, so it is only an eigenfunction if all of these jumps are 0. Lin's method gives a formula for those jump conditions; finding the eigenvalues $\lambda$ amounts to solving the $n$ jump conditions.
 
 To use Lin's method, we rewrite the PDE eigenvalue problem \eqref{PDEeig2} as
 \begin{equation}\label{PDEeig3}
