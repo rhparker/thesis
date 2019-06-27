@@ -10,9 +10,7 @@
 
 \subsection{Gap and Conjugation Lemmas}
 
-We first state and prove a gap and conjugation lemmas. This follows almost exactly from \cite{Zumbrun2009}, except we allow the parameter vector $\Lambda$ to live in a Banach space rather than in a subset of $\C^m$. The notation in the two lemmas is the same as in \cite{Zumbrun2009}. 
-
-First, we state and prove the gap lemma. The motivation behind the gap lemma is as follows. Consider the ODE $W'(x) = A(x)W(x)$, where $A(x)$ is a matrix which is exponentially asymptotic to a constant coefficient matrix $A_\infty$. Let $V_0$ be an eigenvector of $A_\infty$ with eigenvalue $\lambda$. CONTINUE ONCE WE HAVE CODDINGTON AND LEVINSON.
+We first state and prove a gap and conjugation lemmas. This follows almost exactly from \cite{Zumbrun2009}, except we allow the parameter vector $\Lambda$ to live in a Banach space rather than in a subset of $\C^m$. The notation in the two lemmas is the same as in \cite{Zumbrun2009}. First, we state and prove the gap lemma.
 
 % Gap lemma
 \begin{lemma}[Gap Lemma]\label{gaplemma}
@@ -388,7 +386,7 @@ W_i^+(0) - W_i^-(0) &\in \R \Psi(0) \oplus \R \Psi^c(0) && i = 0, \dots, n-1
 \end{aligned}
 \end{equation}
 
-We do not need to include a component in $Q'(0)$ in the third equation since that is handled by the term $d_i Q_i^\pm'(x)$ in the ansatz \eqref{Vpiecewise}. A solution to \eqref{eigsystem} gives us an eigenfunction corresponding to eigenvalue $\lambda$ if and only if the $n$ jumps at $x = 0$ in the direction of $\Psi(0) \oplus \R \Psi^c(0)$ are 0, i.e. if and only if the $2n$ jump conditions are satisfied, i.e. 
+We do not need to include a component in $Q'(0)$ in the third equation since that is handled by the term $d_i (Q_i^\pm)'(x)$ in the ansatz \eqref{Vpiecewise}. A solution to \eqref{eigsystem} gives us an eigenfunction corresponding to eigenvalue $\lambda$ if and only if the $n$ jumps at $x = 0$ in the direction of $\Psi(0) \oplus \R \Psi^c(0)$ are 0, i.e. if and only if the $2n$ jump conditions are satisfied, i.e. 
 \begin{align}
 \xi_i &= \langle \Psi(0), W_i^+(0) - W_i^-(0) \rangle = 0 \label{jumpxi} \\
 \xi_-^c &= \langle \Psi^c(0), W_i^+(0) - W_i^-(0) \rangle = 0 \label{jumpxic}
