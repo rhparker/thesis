@@ -76,12 +76,54 @@ then $T(ct)\phi(x)$ is a bound state since
 &= \partial_x T(ct) T(ct)^* E'(T(ct)\phi) \\
 &= \partial_x E'(T(ct)\phi) 
 \end{align*}
-Since $V'(\phi) = -\phi$, we can write the equilibrium equation for bound states as
+Since $V'(\phi) = -\phi$, we can write the equilibrium equation as
 \begin{equation}\label{eqODE}
 E'(\phi) + c \phi = 0 
 \end{equation}
 
+We take the following hypothesis concerning existence of bound states. In the next section, we will give a condition under which this hypothesis is satisfied. 
+\begin{hypothesis}\label{cintervalhyp}
+There exists an open interval $(c_1, c_2) \subset \R$ and a $C_1$ map $c \mapsto \phi_c$ such that for every $c \in (c_1, c_2)$, $\phi_c$ is a bound state for \eqref{genPDE}, i.e. 
+\[
+E'(\phi_c) + c \phi_c = 0 
+\]
+Furthermore, $\partial_x \phi_c \neq 0$.
+\end{hypothesis}
+Note that we have so far said nothing about what these bound states look like.
 
+We will be interested in the stability of these bound states. Let $\phi_c$ be a bound state solution to \eqref{genPDE} corresponding to $c \in \R$. Then the PDE eigenvalue problem corresponding to $\phi_c$ is
+\begin{equation}\label{PDEeig}
+\partial_x H_c = 
+\partial_x (E''(\phi_c) + c )v = \lambda v
+\end{equation}
+where $E''(u)$ is the Hessian of the energy $E(u)$ and is self-adjoint. 
+
+Using equation \eqref{Eprimesymm}, $E'(T(s)u) = T(s)E'(u)$, thus from \eqref{eqODE} we have
+\begin{align}\label{TeqODE}
+E'(T(s)\phi_c) + c T(s)\phi_c = T(s)[E'(\phi_c) + c \phi_c] = 0
+\end{align}
+since $\phi_c$ is a bound state. Differentiating with respect to $s$ at $s = 0$, this becomes
+\begin{align*}
+0 &= E''(T(0)\phi_c)T'(0)\phi_c + c T'(0)\phi_c \\
+&= (E''(\phi_c) + c ) \partial_x \phi_c \\
+&= H_c \partial_x \phi_c
+\end{align*}
+Thus $\partial_x \phi_c$ is an eigenfunction of $H_c$ with eigenvalue 0. Differentiating \eqref{eqODE} with respect to $c$, which we can do because the mapping $c \mapsto \phi_c$ in Hypothesis \ref{cintervalhyp} is $C_1$, we have
+\begin{align*}
+E''(\phi_c)\partial_c \phi_c + c \partial_c \phi_c + \phi_c = 0
+\end{align*}
+which we can rearrange to get 
+\begin{align*}
+(E''(\phi_c) + c (-\partial_c \phi_c) = \phi_c
+\end{align*}
+Differentiating both sides, we have
+\begin{align*}
+\partial_x H_c (-\partial_c \phi_c) 
+= \partial_x (E''(\phi_c) + c )(-\partial_c \phi_c) = \partial_x\phi_c
+\end{align*}
+Thus $-\partial_c \phi_c$ is a generalized eigenfunction of $\partial_x H_c$ corresponding to eigenvalue 0.
+
+\section{Next Section}
 
 Equilibrium solutions which decay to 0 at $\pm \infty$ satisfy the ODE 
 \begin{equation}\label{ODEonR}
