@@ -238,27 +238,92 @@ We have a solution to this ODE for $x \leq M$, and by variation of constants, th
 \end{lemma}
 
 \subsection{Proof of Lemma \ref{eigA0lemma}}
+$DF(0)$ is a $2m \times 2m$ constant coefficient matrix of the form
+\begin{equation}\label{DF0}
+DF(0) = \begin{pmatrix}
+0 & 1 & 0 & \dots & 0 & 0 \\
+0 & 0 & 1 & \dots & 0 & 0 \\
+& &  & \ddots &  & & \\
+0 & 0 & 0 & \dots & 0 & 1 \\
+-c & 0 & c_2 &
+ \dots & c_{2m-2} & 0
+\end{pmatrix}
+\end{equation}
+where reversibility implies that the coefficients $c_i$ in the bottom row are all 0 for $i$ odd. The characteristic polynomial of $DF(0)$ is
+\begin{equation}\label{charpolyDF0}
+p_1(\nu) = -\nu^{2m} + c_{2m-2} \nu^{2m-2} + \dots + c_2 \nu^2+ c
+\end{equation}
+
+$A(0)$ is the $(2m+1) \times (2m+1)$ constant coefficient matrix
+\begin{equation}\label{A0}
+A(Q(x)) = \begin{pmatrix}
+0 & 1 & \dots & 0 & 0 \\
+0 & 0 & \dots & 0 & 0 \\
+& & \ddots  \\
+0 & 0 & \dots & 0 & 1 \\
+0 & -c & \dots & c_{2m-2} & 0
+\end{pmatrix}
+\end{equation}
 The characteristic polynomial of $A(0)$ is 
 \begin{equation}\label{charpolyA0}
-p_2(\nu) = -\nu^{2m+1} + c_{2m-2} \nu^{2m-1} + \dots + c_2 \nu^3 - c_0 \nu = \nu p_1(\nu)
+p_2(\nu) = -\nu^{2m+1} + c_{2m-2} \nu^{2m-1} + \dots + c_2 \nu^3+ c \nu = \nu p_1(\nu)
 \end{equation}
-where $p_1(\nu)$ is the characteristic polynomial of $DF(0)$ from the previous section. Thus $A(0)$ has the same eigenvalues as $DF(0)$ as well as an additional eigenvalue at 0.
+where $p_1(\nu)$ is the characteristic polynomial of $DF(0)$ from the previous section. Thus $A(0)$ has the same eigenvalues as $DF(0)$ as well as an additional eigenvalue at 0. The eigenvalues of $DF(0)$ are characterized in Hypothesis \ref{hypeqhyp}.
+
+It can be verified directly that 
+\begin{align*}
+V_0 &= (1/c, 0, 0, \dots, 0)^T \\
+W_0 &= (c, 0, -c_2, 0, -c_4, 0, \dots, 0, -c_{2m-2}, 0, 1)^T 
+\end{align*}
+are eigenvectors of $A(0)$ and $-A(0)^*$ (respectively), and that $V_0$ is scaled so that $\langle V_0, W_0 \rangle = 1$.
 
 % nondegeneracy lemma
 \subsection{Proof of Lemma \ref{nondegenlemma}}
 Since $Q(x)$ is a homoclinic orbit in the intersection of $W^u(0)$ and $W^s(0)$, $\R Q'(0) \subset T_{Q(0)}W^s(0) \cap T_{Q(0)}W^u(0)$. If the intersection were more than one-dimensional, there would exist another exponentially localized solution $V(x) = (v_1, \dots, v_{2m}, v_{2m+1})^T$ to \eqref{vareq2}. It follows that $\tilde{V}(x) = (v_1, \dots, v_{2m})^T$ would be an exponentially localized solution to \eqref{vareq1}, which contradicts Hypothesis \ref{nondegenhyp}.
 
-% solutions to variational and adjoint variational equation
-\subsection{Proof of Lemma \ref{varadjsolutions}}
-For part (i), the adjoint variational equation \eqref{adjvareq2} is the following equation written as a first order system
-\begin{equation}\label{adj2}
-[\partial_x E''(q(x)) ]^* v(x) = -E''(q(x)) \partial_x v(x) = 0,
+% solutions to variational equation
+\subsection{Proof of Lemma \ref{varsolutions}}
+
+We employ the following dimension counting argument. Recall that $\dim W^{s/u}(0) = m$ and $\dim W^c(0) = 1$, thus $\dim W^{cs}(0) = m + 1$, and $\dim W^{cu}(0) = m + 1$. $\Psi(0) \perp T_{Q(0)}W^{cs}(0) + T_{Q(0)}W^{cu}(0)$, so $\dim T_{Q(0)}W^{cs}(0) + T_{Q(0)}W^{cu}(0) \leq 2m$. By counting dimensions, this implies that $\dim T_{Q(0)}W^{cs}(0) \cap T_{Q(0)}W^{cu}(0) = 2$. Since $\dim T_{Q(0)}W^s(0) \cap T_{Q(0)}W^s(0) = 1$ by Lemma \ref{nondegenlemma}, we conclude that there exists $Y_0 \in T_{Q(0)}W^{cs}(0) \cap T_{Q(0)}W^{cu}(0)$ which is linearly independent from $Q'(0)$, and $Y^0 \notin T_{Q(0)}W^s(0) \cap T_{Q(0)}W^s(0)$.
+
+Using the Gap Lemma, we can find solutions $V^\pm(x)$ to the variational equation \eqref{vareq2} on $\R^\pm$ such that
+\begin{equation}\label{Vplusminus}
+V^\pm(x) = V_0 + \mathcal{O}(e^{-(\alpha - \epsilon)|x|}|V_0|)
 \end{equation}
-where $E''(q(x))$ is the Hessian of the energy. 
+for some $\epsilon > 0$, so $V^\pm(x) \rightarrow V_0$ as $x \rightarrow \pm \infty$. These will not be unique, since, for example, we can add any component in $Y^+ \oplus \R Q'(0)$ to $V^+(0)$ and keep the same decay property. Since $V^\pm(x)$ remains bounded but does not decay to 0, $V^\pm(0)$ must have a component in $Y^0$ and cannot have a component in $Y^-$. If $V^+(0)$ has any component in $Y^+ \oplus \R Q'(0)$, we can subtract it out and keep the decay property in \eqref{Vplusminus}. Thus we can take $V^+(0) \in Y^0$. Similarly, we can take $V^0(0) \in Y^0$. Since both initial conditions are in $Y^0$, $V^\pm(x)$ remain bounded for all $x$.
 
-To find $\Psi(x)$, equation \ref{adj2} has an exponentially decaying solution $q(x)$. Using Lemma \ref{adjointlemma}, \eqref{adjvareq2} has a solution $\Psi(x) = (\psi_1(x), \dots, \psi_{2m+1}(x))$ with $\psi_{2m+1}(x) = q(x)$. Comparing \eqref{Axform} from Lemma \ref{adjointlemma} to \eqref{DefA}, the functions $g_k(x)$ in \eqref{Axform} are even functions for $k$ odd and odd functions for $k$ even. Using \eqref{adjWform} from Lemma \ref{adjointlemma}, for the components of $\Psi(x)$ we have $\psi_k(x)$ is even for $k$ odd and odd for $k$ even, thus $\Psi(-x) = R \Psi(x)$, where $R$ is the standard reversor operator. Finally, since the functions $f_k(x)$ in \eqref{DefA} are exponentially localized, $\Psi(x)$ is exponentially localized as well.
+By reversibility, $RV^+(-x)$ is also a solution to the variational equation on $R^-$, with 
+\begin{align*}
+R V^+(-x) &= R V_0 + \mathcal{O}(e^{-(\alpha - \epsilon)|x|}|V_0|) \\
+&= V_0 + \mathcal{O}(e^{-(\alpha - \epsilon)|x|}|V_0|)
+\end{align*}
+where $R V_0 = V_0$ since all components of $V_0$ are 0 except for the first. Reversing time swaps $Y^+$ and $Y^-$, while leaving $\R Q'(0)$ and $Y^0$ intact. Thus $RV^+(0) \in Y_0$, and so both $V^+(0)$ and $RV^+(0)$ are in the one-dimensional space $Y^0$; since the odd numbered components of $V^+(0)$ and $RV^+(0)$ are the equal and $Y^0$ is one-dimensional, it follows that $V^+(0) = RV^+(0)$.
 
-To find $\Psi^c(x)$, equation \eqref{adj2} also has the constant solution 1 as a solution. Thus \eqref{adjvareq2} has a solution $\Psi^c(x) = (\psi^c_1(x), \dots, \psi^c_{2m+1}(x))$ with $\psi_{2m+1}(x) = 1$. Comparing \eqref{Axform} from Lemma \ref{adjointlemma} to \eqref{DefA} and using \eqref{adjWform} from Lemma \ref{adjointlemma}, we have
+Since we have the same initial condition at $x = 0$ for $V^+(x)$ and $RV^+(-x)$, this implies that $V^+(-x) = RV^+(x)$. Let $V^c(x) = V^+(x)$. Then $V^c(x)$ is a bounded solution to the variational equation with is symmetric with respect to the reversor $R$, i.e. $V^c(-x) = RV^c(x)$. Furthermore, $V^c(x) \rightarrow V_0$ as $x \rightarrow \pm \infty$.
+
+% solutions to variational equation
+\subsection{Proof of Lemma \ref{adjsolutions}}
+
+The linear operator $A(Q(x))$ has the form 
+\begin{equation}\label{DefAQ}
+A(Q(x)) = \begin{pmatrix}
+0 & 1 & \dots & 0 & 0 \\
+0 & 0 & \dots & 0 & 0 \\
+& & \ddots  \\
+0 & 0 & \dots & 0 & 1 \\
+f_0'(x) & -c + f_0(x) + f_1'(x) & \dots & c_{2m-2} + f_{2m-2}(x) + f_{2m-1}' (x) & f_{2m-1}(x)
+\end{pmatrix}
+\end{equation} 
+By reversibility, since no odd-order derivatives are involved in the linear part of $E'(u)$, $c_i = 0$ for $i$ odd. In addition, since $q(x)$ is an even function, $f_i(x)$ is an even function for $i$ even and an odd function for $i$ odd. Since the functions $f_i(x)$ are smooth functions of $q(x)$ and its derivatives, they decay exponentially to 0 since $q(x)$ is exponentially localized.
+
+The adjoint variational equation \eqref{adjvareq2} is the following equation written as a first order system
+\begin{equation}\label{adj2}
+[\partial_x H_c]^* v(x) = -H_c \partial_x v(x) = 0,
+\end{equation}
+
+To find $\Psi(x)$, equation \ref{adj2} has an exponentially decaying solution $q(x)$. Using Lemma \ref{adjointlemma}, \eqref{adjvareq2} has a solution $\Psi(x) = (\psi_1(x), \dots, \psi_{2m+1}(x))$ with $\psi_{2m+1}(x) = q(x)$. Comparing \eqref{Axform} from Lemma \ref{adjointlemma} to \eqref{DefAQ}, the functions $g_k(x)$ in \eqref{Axform} are even functions for $k$ odd and odd functions for $k$ even. Using \eqref{adjWform} from Lemma \ref{adjointlemma}, for the components of $\Psi(x)$ we have $\psi_k(x)$ is even for $k$ odd and odd for $k$ even, thus $\Psi(-x) = R \Psi(x)$, where $R$ is the standard reversor operator. Finally, since the functions $f_k(x)$ in \eqref{DefAQ} are exponentially localized, $\Psi(x)$ is exponentially localized as well.
+
+To find $\Psi^c(x)$, equation \eqref{adj2} also has the constant solution 1 as a solution. Thus \eqref{adjvareq2} has a solution $\Psi^c(x) = (\psi^c_1(x), \dots, \psi^c_{2m+1}(x))$ with $\psi_{2m+1}(x) = 1$. Comparing \eqref{Axform} from Lemma \ref{adjointlemma} to \eqref{DefAQ} and using \eqref{adjWform} from Lemma \ref{adjointlemma}, we have
 \[
 \Psi^c(x) 
 = \begin{pmatrix}
@@ -284,26 +349,9 @@ where $g_k(x) = -c_{k-1} - f_{k-1}(x) - f_k'(x)$ for $k$ odd and $g_k(x) = -f_{k
 1
 \end{pmatrix}
 \]
-Since all the terms involving $g_k(x)$ are differentiated at least once, the constants $c_k$ only appear out front where they are explicitly shown. Thus every other term in $\Psi^c(x)$ decays exponentially to 0 as $|x| \rightarrow \infty$. It follows that $\Psi^c(x)$ is bounded, and $\Psi^c(x) \rightarrow (-c_0, 0, -c_2, \dots, -c_{2m-2}, 0, 1)^T = W_0$ as $|x| \rightarrow \infty$.
+Since all the terms involving $g_k(x)$ are differentiated at least once, the constants $c_k$ only appear out front where they are explicitly shown. Thus every other term in $\Psi^c(x)$ decays exponentially to 0 as $|x| \rightarrow \infty$. It follows that $\Psi^c(x)$ is bounded, and $\Psi^c(x) \rightarrow (-c_0, 0, -c_2, \dots, -c_{2m-2}, 0, 1)^T = W_0$ as $|x| \rightarrow \infty$, where $W_0$ is given in the proof of Lemma \ref{eigA0lemma}.
 
-To show that there are no other linearly independent, bounded solutions to \eqref{adjvareq2}, it follows from Lemma \ref{adjointlemma} that any bounded solution to \eqref{adjvareq2} must be perpendicular to $\R Q'(0) \oplus Y^+ \oplus Y^-$ at $x = 0$. In particular, this this holds for $\Psi(0)$ and $\Psi^c(0)$. Since $S_1 = \R Q'(0) \oplus Y^+ \oplus Y^-$ is a $(2m-1)-$dimensional subspace of $\R^{2m+1}$ and $S_2 = \Psi(0) \oplus \Psi^c(0)$ is a $2-$dimensional subspace of $\R^{2m+1}$ which is perpendicular to $S_1$, we conclude that there can be no other bounded, linearly independent solutions to \eqref{adjvareq2}.
-
-For part (ii), we employ the following dimension counting argument. Recall that $\dim W^{s/u}(0) = m$ and $\dim W^c(0) = 1$, thus $\dim W^{cs}(0) = m + 1$, and $\dim W^{cu}(0) = m + 1$. $\Psi(0) \perp T_{Q(0)}W^{cs}(0) + T_{Q(0)}W^{cu}(0)$, so $\dim T_{Q(0)}W^{cs}(0) + T_{Q(0)}W^{cu}(0) \leq 2m$. By counting dimensions, this implies that $\dim T_{Q(0)}W^{cs}(0) \cap T_{Q(0)}W^{cu}(0) = 2$. Since $\dim T_{Q(0)}W^s(0) \cap T_{Q(0)}W^s(0) = 1$ by Lemma \ref{nondegenlemma}, we conclude that there exists $Y_0 \in T_{Q(0)}W^{cs}(0) \cap T_{Q(0)}W^{cu}(0)$ which is linearly independent from $Q'(0)$, and $Y^0 \notin T_{Q(0)}W^s(0) \cap T_{Q(0)}W^s(0)$.
-
-Using the Gap Lemma, we can find solutions $V^\pm(x)$ to the variational equation \eqref{vareq2} on $\R^\pm$ such that
-\begin{equation}\label{Vplusminus}
-V^\pm(x) = V_0 + \mathcal{O}(e^{-(\alpha - \epsilon)|x|}|V_0|)
-\end{equation}
-for some $\epsilon > 0$, so $V^\pm(x) \rightarrow V_0$ as $x \rightarrow \pm \infty$. These will not be unique, since, for example, we can add any component in $Y^+ \oplus \R Q'(0)$ to $V^+(0)$ and keep the same decay property. Since $V^\pm(x)$ remains bounded but does not decay to 0, $V^\pm(0)$ must have a component in $Y^0$ and cannot have a component in $Y^-$. If $V^+(0)$ has any component in $Y^+ \oplus \R Q'(0)$, we can subtract it out and keep the decay property in \eqref{Vplusminus}. Thus we can take $V^+(0) \in Y^0$. Similarly, we can take $V^0(0) \in Y^0$. Since both initial conditions are in $Y^0$, $V^\pm(x)$ remain bounded for all $x$.
-
-By reversibility, $RV^+(-x)$ is also a solution to the variational equation on $R^-$, with 
-\begin{align*}
-R V^+(-x) &= R V_0 + \mathcal{O}(e^{-(\alpha - \epsilon)|x|}|V_0|) \\
-&= V_0 + \mathcal{O}(e^{-(\alpha - \epsilon)|x|}|V_0|)
-\end{align*}
-where $R V_0 = V_0$ since all components of $V_0$ are 0 except for the first. Reversing time swaps $Y^+$ and $Y^-$, while leaving $\R Q'(0)$ and $Y^0$ intact. Thus $RV^+(0) \in Y_0$, and so both $V^+(0)$ and $RV^+(0)$ are in the one-dimensional space $Y^0$; since the odd numbered components of $V^+(0)$ and $RV^+(0)$ are the equal and $Y^0$ is one-dimensional, it follows that $V^+(0) = RV^+(0)$.
-
-Since we have the same initial condition at $x = 0$ for $V^+(x)$ and $RV^+(-x)$, this implies that $V^+(-x) = RV^+(x)$. Let $V^c(x) = V^+(x)$. Then $V^c(x)$ is a bounded solution to the variational equation with is symmetric with respect to the reversor $R$, i.e. $V^c(-x) = RV^c(x)$. Furthermore, $V^c(x) \rightarrow V_0$ as $x \rightarrow \pm \infty$.
+Finally, it follows from Lemma \ref{adjointlemma} that any bounded solution to \eqref{adjvareq2} must be perpendicular to $\R Q'(0) \oplus Y^+ \oplus Y^-$ at $x = 0$. In particular, this holds for $\Psi(0)$ and $\Psi^c(0)$. Since $S_1 = \R Q'(0) \oplus Y^+ \oplus Y^-$ is a $(2m-1)-$dimensional subspace of $\R^{2m+1}$ and $S_2 = \Psi(0) \oplus \Psi^c(0)$ is a $2-$dimensional subspace of $\R^{2m+1}$ which is perpendicular to $S_1$, it follows that there can be no other bounded, linearly independent solutions to \eqref{adjvareq2}. 
 
 \subsection{Piecewise Formulation}
 

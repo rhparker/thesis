@@ -452,7 +452,9 @@ B = \begin{pmatrix}0 & 0 & 0 & 0 & 0 \\0 & 0 & 0 & 0 & 0 \\  &
 Since $u^*(x)$ is exponentially localized, $A(U^*(x))$ is exponentially asymptotic to the constant coeffient matrix $A(0)$. The following lemma describes the eigenvalues of $A(0)$.
 
 \begin{lemma}\label{eigA0lemma}
-$A(0)$ has a simple eigenvalue at 0 and a quartet of eigenvalues at $\pm \alpha_0 \pm \beta_0 i$. For any other eigenvalue $\nu$ of $A(0)$, $|\text{Re }\nu| > \alpha_0$. 
+$A(0)$ has a simple eigenvalue at 0 and a quartet of eigenvalues at $\pm \alpha_0 \pm \beta_0 i$. For any other eigenvalue $\nu$ of $A(0)$, $|\text{Re }\nu| > \alpha_0$.
+
+Let $V_0$ and $W_0$ be eigenvectors of $A(0)$ and $-A^*(0)$ corresponding to the simple eigenvalue 0. Then we can scale $V_0$ so that $\langle V_0, W_0 \rangle = 1$. 
 \end{lemma}
 
 Since $A(0)$ is not hyperbolic, the results of \cite{Sandstede1998} do not apply. Let $W^s(0)$, $W^u(0)$, and $W^c(0)$ be the stable, unstable, and center manifolds of the equilibrium at 0. (These are not the same as in the previous section, but we will retain the notation for convenience). By reversibility, $\dim W^s(0) = m$ and $\dim W^u(0) = m$. The center manifold $W^c(0)$ is one-dimensional.
@@ -487,24 +489,25 @@ Using the nondegeneracy condition \eqref{nondegen2}, we can decompose the tangen
 T_{Q(0)}W^s(0) &= \R Q'(0) \oplus Y^+ \\
 T_{Q(0)}W^u(0) &= \R Q'(0) \oplus Y^- \\
 \end{align*}
-Since $\dim \R Q'(0) \oplus Y^+ \oplus Y^- = 2m-1$, there are two remaining directions needed in order to span $\R^{2m+1}$. To find these, let $V_0$ and $W_0$ be eigenvectors of $A(0)$ and $-A^*(0)$ corresponding to the simple eigenvalue 0. From the proof of the next lemma, we can scale $V_0$ so that $\langle V_0, W_0 \rangle = 1$. We have the following two lemmas regarding solutions to \eqref{vareq2} and \eqref{adjvareq2}.
+Since $\dim \R Q'(0) \oplus Y^+ \oplus Y^- = 2m-1$, there are two remaining directions needed in order to span $\R^{2m+1}$. To find these, we use the following two lemmas regarding solutions to \eqref{vareq2} and \eqref{adjvareq2}.
 
 \begin{lemma}\label{varsolutions}
 There exists a bounded solution $V^c(x)$ to \eqref{vareq2} such that 
 \begin{equation}
 V^c(x) \rightarrow V_0 \text{ as }|x| \rightarrow \infty
 \end{equation}
-$V^c$ is symmetric with respect to the standard reversor operator $R$, i.e. $V^c(-x) = R V^c(x)$.
+where $V_0$ is the eigenvector of $A(0)$ corresponding to the simple eigenvalue 0. $V^c$ is symmetric with respect to the standard reversor operator $R$, i.e. $V^c(-x) = R V^c(x)$.
 \end{lemma}
 
 \begin{lemma}\label{adjsolutions}
-There exist two linearly independent, bounded solutions $\Psi(x)$ and $\Psi^c(x)$ to \eqref{adjvareq2}.
+There exist exactly two linearly independent, bounded solutions $\Psi(x)$ and $\Psi^c(x)$ to \eqref{adjvareq2}.
 \begin{enumerate}[(i)]
 \item $\Psi(x)$ is exponentially localized, i.e. $e^{\alpha_0 |x|}\Psi(x)$ is bounded, and the last component of $\Psi(x)$ is $q(x)$. In addition, $\Psi(x)$ is symmetric with respect to the standard reversor operator $R$, i.e. $\Psi(-x) = R \Psi(x)$. 
 \item $\Psi_c(x)$ is bounded, the last component of $\Psi^c(x)$ is $1$, and
 \begin{equation}
 \Psi^c(x) \rightarrow W_0 \text{ as }|x| \rightarrow \infty
 \end{equation}
+where $W_0$ is the eigenvector of $-A(0)^*$ corresponding to the simple eigenvalue 0. 
 \end{enumerate}
 Furthermore, $\Psi(0), \Psi^c(0) \perp \R Q'(0) \oplus Y^+ \oplus Y^-$.
 \end{lemma}
