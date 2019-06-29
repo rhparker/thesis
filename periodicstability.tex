@@ -251,7 +251,7 @@ DF(0) = \begin{pmatrix}
 \end{equation}
 where reversibility implies that the coefficients $c_i$ in the bottom row are all 0 for $i$ odd. The characteristic polynomial of $DF(0)$ is
 \begin{equation}\label{charpolyDF0}
-p_1(\nu) = -\nu^{2m} + c_{2m-2} \nu^{2m-2} + \dots + c_2 \nu^2+ c
+p_1(\nu) = \nu^{2m} - c_{2m-2} \nu^{2m-2} - \dots - c_2 \nu^2 + c
 \end{equation}
 
 $A(0)$ is the $(2m+1) \times (2m+1)$ constant coefficient matrix
@@ -264,18 +264,18 @@ A(Q(x)) = \begin{pmatrix}
 0 & -c & \dots & c_{2m-2} & 0
 \end{pmatrix}
 \end{equation}
-The characteristic polynomial of $A(0)$ is 
+where the constants $c_i$ are the same as in $DF(0)$. The characteristic polynomial of $A(0)$ is 
 \begin{equation}\label{charpolyA0}
-p_2(\nu) = -\nu^{2m+1} + c_{2m-2} \nu^{2m-1} + \dots + c_2 \nu^3+ c \nu = \nu p_1(\nu)
+p_2(\nu) = -\nu^{2m+1} + c_{2m-2} \nu^{2m-1} + \dots + c_2 \nu^3- c \nu = -\nu p_1(\nu)
 \end{equation}
-where $p_1(\nu)$ is the characteristic polynomial of $DF(0)$ from the previous section. Thus $A(0)$ has the same eigenvalues as $DF(0)$ as well as an additional eigenvalue at 0. The eigenvalues of $DF(0)$ are characterized in Hypothesis \ref{hypeqhyp}.
+Thus $A(0)$ has the same eigenvalues as $DF(0)$ as well as an additional eigenvalue at 0. The eigenvalues of $DF(0)$ are characterized in Hypothesis \ref{hypeqhyp}.
 
 It can be verified directly that 
 \begin{align*}
 V_0 &= (1/c, 0, 0, \dots, 0)^T \\
 W_0 &= (c, 0, -c_2, 0, -c_4, 0, \dots, 0, -c_{2m-2}, 0, 1)^T 
 \end{align*}
-are eigenvectors of $A(0)$ and $-A(0)^*$ (respectively), and that $V_0$ is scaled so that $\langle V_0, W_0 \rangle = 1$.
+are eigenvectors of $A(0)$ and $-A(0)^*$ (respectively); we have scaled $V_0$ so that $\langle V_0, W_0 \rangle = 1$.
 
 % nondegeneracy lemma
 \subsection{Proof of Lemma \ref{nondegenlemma}}
@@ -340,7 +340,7 @@ where $g_k(x) = -c_{k-1} - f_{k-1}(x) - f_k'(x)$ for $k$ odd and $g_k(x) = -f_{k
 \[
 \Psi^c(x) 
 = \begin{pmatrix}
--c_0 - f_0(x) - f_1'(x) + \sum_{k=2}^{n-1} (-1)^{k-1} \partial_x^{k-1} g_k  \\
+c - f_0(x) - f_1'(x) + \sum_{k=2}^{n-1} (-1)^{k-1} \partial_x^{k-1} g_k  \\
 - f_1(x) - f_2'(x) + \sum_{k=3}^{n-1} (-1)^{k-2} \partial_x^{k-2} g_k  \\
 -c_2 - f_2(x) - f_3'(x) + \sum_{k=4}^{n-1} (-1)^{k-3} \partial_x^{k-3} g_k  \\ 
 \vdots \\
@@ -349,9 +349,46 @@ where $g_k(x) = -c_{k-1} - f_{k-1}(x) - f_k'(x)$ for $k$ odd and $g_k(x) = -f_{k
 1
 \end{pmatrix}
 \]
-Since all the terms involving $g_k(x)$ are differentiated at least once, the constants $c_k$ only appear out front where they are explicitly shown. Thus every other term in $\Psi^c(x)$ decays exponentially to 0 as $|x| \rightarrow \infty$. It follows that $\Psi^c(x)$ is bounded, and $\Psi^c(x) \rightarrow (-c_0, 0, -c_2, \dots, -c_{2m-2}, 0, 1)^T = W_0$ as $|x| \rightarrow \infty$, where $W_0$ is given in the proof of Lemma \ref{eigA0lemma}.
+Since all the terms involving $g_k(x)$ are differentiated at least once, the constants $c_k$ only appear out front where they are explicitly shown. Thus every other term in $\Psi^c(x)$ decays exponentially to 0 as $|x| \rightarrow \infty$. It follows that $\Psi^c(x)$ is bounded, and $\Psi^c(x) \rightarrow (c, 0, -c_2, \dots, -c_{2m-2}, 0, 1)^T = W_0$ as $|x| \rightarrow \infty$, where $W_0$ is given in the proof of Lemma \ref{eigA0lemma}.
 
 Finally, it follows from Lemma \ref{adjointlemma} that any bounded solution to \eqref{adjvareq2} must be perpendicular to $\R Q'(0) \oplus Y^+ \oplus Y^-$ at $x = 0$. In particular, this holds for $\Psi(0)$ and $\Psi^c(0)$. Since $S_1 = \R Q'(0) \oplus Y^+ \oplus Y^-$ is a $(2m-1)-$dimensional subspace of $\R^{2m+1}$ and $S_2 = \Psi(0) \oplus \Psi^c(0)$ is a $2-$dimensional subspace of $\R^{2m+1}$ which is perpendicular to $S_1$, it follows that there can be no other bounded, linearly independent solutions to \eqref{adjvareq2}. 
+
+% proof of nu lambda lemma
+\subsection{Proof of Lemma \ref{nulambdalemma}}
+
+The characteristic polynomial of $A(0; \lambda)$ is
+\begin{equation}\label{charpolyA0lambda}
+p(\nu; \lambda) = p_2(\nu) + \lambda = -\nu^{2m+1} + c_{2m-2} \nu^{2m-1} + \dots + c_2 \nu^3 - c \nu + \lambda
+\end{equation}
+where $p_2(\nu)$ is the characteristic polynomial of $A(0)$ from \eqref{charpolyA0}
+
+When $\lambda = 0$, $p(0; \nu)$ has a root at $\nu = 0$. From Lemma \ref{nondegenlemma}, $\nu = 0$ is simple root and is located a distance $\sqrt{\alpha_0^2 + \beta_0^2}$ from the next smallest roots. 
+
+Since $p(0; 0) = 0$ and $\partial_\nu p(0; 0) = -c \neq 0$, we can use the IFT to can solve for $\nu$ in terms of $\lambda$ near $\lambda = 0$. In other words, there exists $\delta_0 > 0$ and a smooth function $\nu(\lambda)$ such that $\nu(0) = 0$ and for $|\lambda| < \delta$, $p(\nu(\lambda)$ is the unique solution to $p(\nu; \lambda) = 0$. Differentiating $\nu(\lambda)$ at $\lambda = 0$, we get
+\begin{align*}
+\nu'(0) &= -\frac{1}{\partial_\nu p_2(\nu(\lambda); \lambda) } \partial_\lambda p ( \nu(\lambda); \lambda ) \Big|_{\lambda = 0}\\
+&= -\frac{1}{\partial_\nu p(\nu(0); 0) } 
+&= = \frac{1}{c}
+\end{align*}
+
+Since $\nu(\lambda)$ is the root of a polynomial which is smooth in $\lambda$, we can expand $\nu(\lambda)$ in a Taylor series about $\lambda = 0$ to get
+\begin{align*}
+\nu(\lambda) = \frac{1}{c} \lambda + \mathcal{O}(|\lambda|^2)
+\end{align*}
+By reversibility, $p(\nu; \lambda)$ only involves odd powers of $\nu$, thus $p(\nu; \lambda) = 0$ implies $p(-\nu; -\lambda) = 0$. Uniqueness of the solution $\nu(\lambda)$ from the IFT implies that $\nu(-\lambda) = -\nu(\lambda)$, i.e. $\nu(\lambda)$ is an odd function of $\lambda$. Thus the Taylor expansion for $\nu(\lambda)$ involves only odd powers of $\lambda$, and we have]
+\begin{align*}
+\nu(\lambda) = \frac{1}{c} \lambda + \mathcal{O}(|\lambda|^3)
+\end{align*}
+
+Finally, we consider the case when $\lambda$ is pure imaginary. Take $\lambda = i \gamma$ and $\nu = i s$ in $p(\nu; \lambda)$ to get
+\begin{align*}
+p(i s; i \gamma) = (-1)^{m+1} i s^{2m+1} + c_{2m-2} (-1)^m i s^{2m-1} + \dots - c_2 i s^3 - c i s + i \gamma
+\end{align*}
+Since we want to solve $p(i s; i \gamma) = 0$, we can divide by $i$ to get the equilvent problem
+\begin{align*}
+\tilde{p}(s; \gamma) = (-1)^{m+1} s^{2m+1} + c_{2m-2} (-1)^m s^{2m-1} + \dots - c_2 s^3 - c s + \gamma = 0
+\end{align*}
+Since $\tilde{p}(0; 0) = 0$ and $\partial_s \tilde{p}(0; 0) = -c \neq 0$, we can use the IFT again to solve for $s$ in terms of $\gamma$. Thus we can find a smooth function $s(\gamma)$ such that $s(0) = 0$, $s(\gamma)$ is real, and $s(\gamma)$ is the unique solution to $\tilde{p}(s; \gamma) = 0$ for sufficiently small $\gamma$. Undoing these substitutions, this implies that $p(\lambda, i s(-i \lambda)) = 0$. By uniqueness of the IFT solution $\nu(\lambda)$, we conclude that $\nu(\lambda) = \nu(i \gamma) = i s(-i \lambda)$, which is pure imaginary.
 
 \subsection{Piecewise Formulation}
 
@@ -495,7 +532,7 @@ A(\lambda) = \begin{pmatrix}
 0 & 0 & \dots & 0 & 0 \\
 & & \ddots  \\
 0 & 0 & \dots & 0 & 1 \\
-\lambda & c_0 & \dots & c_{2m-2} & 0
+\lambda & -c & \dots & c_{2m-2} & 0
 \end{pmatrix}
 \end{equation}
 
@@ -1803,22 +1840,22 @@ Corollary \ref{detKcorr} tells us that that $K(\lambda)$ is singular if and only
 For sufficiently small $n/X$, $K(\lambda)$ is singular at $\lambda = \pm \lambda^K(X,n)$, where
 \begin{equation}\label{lambdaK}
 \lambda^K(X,n)
-= -c_0 \frac{n \pi i }{X} + \mathcal{O}\left( \frac{n}{X} \right)^3
+= c \frac{n \pi i }{X} + \mathcal{O}\left( \frac{n}{X} \right)^3
 \end{equation} 
 $\lambda^K(X,n)$ is purely imaginary, $\lambda^K(X, 0) = 0$, and $\lambda^K(X, -n) = -\lambda^K(X, n)$.
 \begin{proof}
 To find the values of $\lambda$ where $K(\lambda)$ is singular, we need to solve $\nu(\lambda) = n \pi i/X$ for sufficiently small $n \in \Z$. We know $\nu(0) = 0$, so we only need to do this for nonzero $n$.
 
-Let $G(\lambda, r) = \nu(\lambda) - r$. Then $G(0, 0) = 0$ and $D_\lambda G(0, 0) = \nu'(0) = -1/c_0$, which is nonzero by Hypothesis \ref{c0nonzero}. Using the IFT, we can solve for $\lambda$ in terms of $r$ for $r$ near 0. In other words, there exists a function $\lambda(r)$ such that $\lambda(0) = 0$ and $G(\lambda(r), r) = 0$ for sufficiently small $r$. Thus, for sufficiently small $r$, $\nu(\lambda(r)) = r$. By Lemma \ref{nulambdalemma}, $\nu(-\lambda(r)) = -\nu(\lambda(r)) = -r$, thus by uniqueness of the IFT solution, $\lambda(-r) = -\lambda(r)$, i.e. $\lambda(r)$ is an odd function. We also have from the IFT 
+Let $G(\lambda, r) = \nu(\lambda) - r$. Then $G(0, 0) = 0$ and $D_\lambda G(0, 0) = \nu'(0) = 1/c$, which is nonzero by Hypothesis \ref{c0nonzero}. Using the IFT, we can solve for $\lambda$ in terms of $r$ for $r$ near 0. In other words, there exists a function $\lambda(r)$ such that $\lambda(0) = 0$ and $G(\lambda(r), r) = 0$ for sufficiently small $r$. Thus, for sufficiently small $r$, $\nu(\lambda(r)) = r$. By Lemma \ref{nulambdalemma}, $\nu(-\lambda(r)) = -\nu(\lambda(r)) = -r$, thus by uniqueness of the IFT solution, $\lambda(-r) = -\lambda(r)$, i.e. $\lambda(r)$ is an odd function. We also have from the IFT 
 
 \begin{align*}
 \lambda'(r) &= -\frac{1}{\partial_\lambda G(\lambda(r), r) } \partial_r G(\lambda(r), r) \\
 &= \frac{1}{\partial_\lambda \nu(\lambda) } 
 \end{align*}
-which, at $\lambda = 0$, is $\lambda'(r) = -c_0$. Expanding $\lambda(r)$ in a Taylor series about $r = 0$ and using the fact that $\lambda(r)$ is an odd function, we have
+which, at $\lambda = 0$, is $\lambda'(r) = c$. Expanding $\lambda(r)$ in a Taylor series about $r = 0$ and using the fact that $\lambda(r)$ is an odd function, we have
 \begin{align*}
 \lambda(r) &= \lambda(0) + \lambda'(0) r + \mathcal{O}(|r|^2) \\
-&= -c_0 r + \mathcal{O}(|r|^3)
+&= c r + \mathcal{O}(|r|^3)
 \end{align*}
 
 For $n/X$ sufficiently small, take $r = n \pi i / X$. Let 
@@ -1828,7 +1865,7 @@ For $n/X$ sufficiently small, take $r = n \pi i / X$. Let
 Then $\nu(\lambda^K(X, n)) = n \pi i / X$, which implies $\det K(\lambda^K(X, n)) = 0$. We have the expansion
 \begin{align*}
 \lambda^K(X,n)
-&= -c_0 \frac{n \pi i }{X} + \mathcal{O}(n/X)^3 \\
+&= c \frac{n \pi i }{X} + \mathcal{O}(n/X)^3 \\
 \end{align*} 
 
 Since $\lambda(r)$ is an odd function, $\lambda^K(X,-n) = -\lambda^K(X,n)$. Finally, since for $\lambda$ pure imaginary, $\nu(\lambda)$ is also pure imaginary, $\lambda(X,n)$ is pure imaginary.
@@ -1891,15 +1928,15 @@ Since $X > 0$, this is equivalent to
 This implies that any purely imaginary interaction eigenvalues will be located between 0 and $\pm \lambda^K(X,1)$. Recall from Lemma \ref{Ksingularlemma} that
 \[
 \lambda^K(X,1)
-= -c_0 \frac{\pi i }{X} + \mathcal{O}(1/X)^3 
+= c \frac{\pi i }{X} + \mathcal{O}(1/X)^3 
 \]
 Thus we have
 \begin{align*}
-(|\lambda^K(X,1)| - a r^{1/2})X &= \left( |c_0| \frac{\pi}{X} + \mathcal{O}(1/X)^3 - a r^{1/2} \right)X \\
-&= |c_0| \pi + \mathcal{O}(1/X)^2 - a r^{1/2} X \\
-&= |c_0| \pi \left(1 + \mathcal{O}(1/X)^2 - \tilde{a} r^{1/2} X\right)
+(|\lambda^K(X,1)| - a r^{1/2})X &= \left( |c| \frac{\pi}{X} + \mathcal{O}(1/X)^3 - a r^{1/2} \right)X \\
+&= |c| \pi + \mathcal{O}(1/X)^2 - a r^{1/2} X \\
+&= |c| \pi \left(1 + \mathcal{O}(1/X)^2 - \tilde{a} r^{1/2} X\right)
 \end{align*}
-where $\tilde{a} = a / |c_0| \pi$. From Lemma \ref{reparam}, $X$ is given in terms of $r$ and $b_j$ by
+where $\tilde{a} = a / |c| \pi$. From Lemma \ref{reparam}, $X$ is given in terms of $r$ and $b_j$ by
 \[
 \frac{1}{2\alpha} (n |\log r| + |\log (b_0 \cdots b_{n-1})| ) + \tilde{C}
 \]
@@ -1969,9 +2006,9 @@ from which it follows that if $|\text{Re } \nu(\lambda)| \geq 1/X$,
 
 Next, we consider the case (ii). Assume the $\epsilon-$ball condition holds. There are two cases to consider. First, suppose $|\lambda| \leq \lambda^K(X,1)/2$. Since $\epsilon \leq 1/4X$, the $\epsilon$ criterion is automatically satisfied. Expanding $\sinh( \nu(\lambda) X)$ in a Taylor series about $\lambda = 0$, and recalling that $\nu(0) = 0$, we get
 \begin{align*}
-\sinh(\nu(\lambda + \xi) X) &= -\frac{1}{c_0}X\xi + \mathcal{O}((X \xi)^3)
+\sinh(\nu(\lambda + \xi) X) &= \frac{1}{c}X\xi + \mathcal{O}((X \xi)^3)
 \end{align*}
-Since $|\lambda| \geq C r^{1/2}$, we have $C_1 r^{1/2} < \xi < |c_0| \pi C_2/X$, thus for this case,
+Since $|\lambda| \geq C r^{1/2}$, we have $C_1 r^{1/2} < \xi < |c| \pi C_2/X$, thus for this case,
 \begin{align*}
 |\det K(\lambda)| &= 2 |\sinh(\nu(\lambda) X)| \\
 & \geq C r^{1/2}X
@@ -1993,15 +2030,15 @@ from which it follows that
 
 For $k/X$ suffienctly small, $\lambda^K(X, k)$ is defined by Lemma \ref{Ksingularlemma}. Since $\nu(\lambda)$ is smooth in $\lambda$, from Lemma \ref{nulambdalemma} we have the Taylor series expansion for $\nu'(\lambda)$
 \[
-\nu'(\lambda) = -\frac{1}{c_0} + \mathcal{O}(|\lambda|^2)
+\nu'(\lambda) = \frac{1}{c} + \mathcal{O}(|\lambda|^2)
 \]
 Expand $\nu(\lambda)$ in a Taylor series about $\lambda^K(X, k)$ to get
 \begin{align*}
 \nu\left( \lambda^K(X, k) + \xi \right) &= \nu( \lambda(X, k) ) + \nu'(\lambda(X, k)\xi
 + \mathcal{O}(\xi^2) \\
-&= \frac{k \pi i}{X} + \left( -\frac{1}{c_0} + \mathcal{O}(|\lambda(X, k)|^2) \right) \xi
+&= \frac{k \pi i}{X} + \left( \frac{1}{c} + \mathcal{O}(|\lambda(X, k)|^2) \right) \xi
 + \mathcal{O}(\xi^2) \\
-&= \frac{k \pi i}{X} -\frac{1}{c_0}\xi \left( 1 + \mathcal{O} \left(\frac{k}{X}\right)^2 \right) + \mathcal{O}(\xi^2)
+&= \frac{k \pi i}{X} \frac{1}{c}\xi \left( 1 + \mathcal{O} \left(\frac{k}{X}\right)^2 \right) + \mathcal{O}(\xi^2)
 \end{align*}
 Since the $\epsilon-$ball condition holds,
 \[
@@ -2188,7 +2225,7 @@ By Hamiltonian symmetry, the remainder term cannot move these off of the real or
 
 We can now find the ``essential spectrum'' eigenvalues, which we expect to occur near the points where $K(\lambda)$ is singular. In order to do this, we will need to invert $A - \lambda^2 MI$ away from the points where it is singular.
 
-As in the previous section, we will assume that the $\epsilon-$ball condition holds. In addition, since we expect that the smallest nonzero ``essential spectrum'' eigenvalues will occur at approximately $\lambda = \pm c_0 \pi i / X$, we will restrict ourselves to $\lambda$ with $|\lambda| \geq C/X$.
+As in the previous section, we will assume that the $\epsilon-$ball condition holds. In addition, since we expect that the smallest nonzero ``essential spectrum'' eigenvalues will occur at approximately $\lambda = \pm c \pi i / X$, we will restrict ourselves to $\lambda$ with $|\lambda| \geq C/X$.
 
 We first prove a lower bound the determinant of $(A - \lambda^2 MI)$.
 
@@ -2390,7 +2427,7 @@ In the next lemma, we find the ``essential spectrum'' eigenvalues.
 \begin{lemma}\label{essspeclemma}
 There exists $r_2 \leq r_1$ such that for $r \in \mathcal{R}$ with $r \leq r_2$, the following is true. For all positive integers $k$ with $|\lambda^K(X,k)| < \delta$, there is a pair of purely imaginary ``essential spectrum'' eigenvalues which are given by $\lambda = \pm \lambda^{ess}(X,k; r)$, where
 \begin{equation}\label{lambdaess}
-\lambda^{ess}(X, k; r) = c_0 \frac{k \pi i }{X} \left( 1 + \mathcal{O}\left( \frac{1}{X} \right)\right) + \mathcal{O}\left( \frac{r^{1/2}}{X} \right)
+\lambda^{ess}(X, k; r) = c \frac{k \pi i }{X} \left( 1 + \mathcal{O}\left( \frac{1}{X} \right)\right) + \mathcal{O}\left( \frac{r^{1/2}}{X} \right)
 \end{equation}
 The remainder terms cannot move this off of the imaginary axis.
 
@@ -2434,10 +2471,10 @@ where $T_n = \{ (\pm 1, \pm 1, \dots, \pm 1 \}$ and $c_\tau = \mathcal{O}(|\lamb
 where $k \in \Z$ with $|\lambda^K(X,k)| < \delta$. From the proof of Lemma \ref{detKlemma}, 
 \begin{align*}
 \nu\left( \lambda^K(X, k) + \frac{\tilde{\lambda}}{X} \right) 
-&= \frac{k \pi i}{X} -\frac{1}{c_0}\frac{\tilde{\lambda}}{X} \left( 1 + \mathcal{O} \left(\frac{k}{X}\right)^2 \right) + \mathcal{O}\left( \frac{\tilde{\lambda}}{X}\right)^2 \\
+&= \frac{k \pi i}{X} + \frac{1}{c}\frac{\tilde{\lambda}}{X} \left( 1 + \mathcal{O} \left(\frac{k}{X}\right)^2 \right) + \mathcal{O}\left( \frac{\tilde{\lambda}}{X}\right)^2 \\
 &= \frac{k \pi i}{X} + C_k \frac{\tilde{\lambda}}{X} + \mathcal{O}\left( \frac{\tilde{\lambda}}{X}\right)^2 
 \end{align*}
-where $C_k = -1/c_0 = \mathcal{O}(1)$. 
+where $C_k = 1/c = \mathcal{O}(1)$. 
 
 Substituting this into the term $\sinh(\nu(\lambda)X)$ in \eqref{Elambdaess}, we have
 \begin{align*}
@@ -2505,12 +2542,12 @@ Substituting this into \eqref{tildelambdadef}, we have eigenvalues $\lambda$ at
 \begin{align*}
 \lambda &= \lambda^K(X,k) + \frac{\tilde{\lambda}}{X} \\
 &= \lambda^K(X,k) + \mathcal{O}\left( \frac{1}{X} \left( \frac{k \pi}{X} + r^{1/2} \right) \right)\\
-&= -c_0 \frac{k \pi i }{X} \left( 1 + \mathcal{O}\left( \frac{1}{X} \right)\right) + \mathcal{O}\left( \frac{r^{1/2}}{X} \right)
+&= c \frac{k \pi i }{X} \left( 1 + \mathcal{O}\left( \frac{1}{X} \right)\right) + \mathcal{O}\left( \frac{r^{1/2}}{X} \right)
 \end{align*}
 
 By Hamiltonian symmetry, these must be purely imaginary since they cannot come in quartets. Thus, the ``essential spectrum'' eigenvalues are given by $\lambda = \pm \lambda^{ess}(X, k; r)$
 \[
-\lambda^{ess}(X, k; r) = c_0 \frac{k \pi i }{X} \left( 1 + \mathcal{O}\left( \frac{1}{X} \right)\right) + \mathcal{O}\left( \frac{r^{1/2}}{X} \right)
+\lambda^{ess}(X, k; r) = c \frac{k \pi i }{X} \left( 1 + \mathcal{O}\left( \frac{1}{X} \right)\right) + \mathcal{O}\left( \frac{r^{1/2}}{X} \right)
 \]
 where $k$ is a positive integer with $k \pi/X < \delta$. The remainder terms cannot move these off of the imaginary axis.
 \end{proof}

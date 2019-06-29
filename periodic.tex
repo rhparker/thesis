@@ -209,7 +209,7 @@ It follows from this hypothesis that $H$ is conserved along solutions $U(x)$ to 
 Since $F(0; c) = 0$ for all $c$, $U = 0$ is an equilibrium of \eqref{genODE}. The next hypothesis addresses the hyperbolicity of this equilibrium.
 
 \begin{hypothesis}\label{hypeqhyp}
-For a specific $c_0 \in \R$, $U = 0$ is a hyperbolic equilibrium of \eqref{genODE}, i.e. $DF(0; c_0)$ has no eigenvalues on the imaginary axis. Furthermore, the spectrum of $DF(0; c_0)$ contains a quartet of simple eigenvalues $\pm \alpha_0 \pm \beta_0 i$, $\alpha_0, \beta_0 > 0$, and for any other eigenvalue $\nu$ of $DF(0; c_0)$, $|\text{Re }\nu| > \alpha_0$.
+For a specific $c_0 \in \R$ with $c_0 \neq 0$, $U = 0$ is a hyperbolic equilibrium of \eqref{genODE}, i.e. $DF(0; c_0)$ has no eigenvalues on the imaginary axis. Furthermore, the spectrum of $DF(0; c_0)$ contains a quartet of simple eigenvalues $\pm \alpha_0 \pm \beta_0 i$, $\alpha_0, \beta_0 > 0$, and for any other eigenvalue $\nu$ of $DF(0; c_0)$, $|\text{Re }\nu| > \alpha_0$.
 \end{hypothesis}
 Let $W^s(0; c_0)$ and $W^u(0; c_0)$ be the stable and unstable manifolds of the equilibrium at 0, and let $E_0^s(c_0)$ and $E_0^u(c_0)$ be the stable and unstable eigenspaces of $DF(0; c_0)$. By reversibility, all of these spaces have dimension $m$. 
 
@@ -546,7 +546,7 @@ where $A(U^*(x); \lambda) = A(U^*) + \lambda B$. For $\lambda = 0$, the asymptot
 \begin{lemma}\label{nulambdalemma}
 There exists $\delta_0 > 0$ such that for $|\lambda| < \delta_0$, the asymptotic matrix $A(\lambda)$ has a simple eigenvalue $\nu(\lambda)$. $\nu(\lambda)$ is smooth in $\lambda$, $\nu(0) = 0$, and for $|\lambda| < \delta_0$,
 \begin{equation}\label{nulambda}
-\nu(\lambda) = -\frac{1}{c} \lambda + \mathcal{O}(|\lambda|^3)
+\nu(\lambda) = \frac{1}{c} \lambda + \mathcal{O}(|\lambda|^3)
 \end{equation}
 In addition,
 \begin{enumerate}[(i)]
@@ -641,7 +641,7 @@ We expect to find eigenvalues near where the matrices $K(\lambda)$ and $A - \lam
 
 	\item $K(\lambda)$ is singular at $\lambda = \pm \lambda^K(X,k)$ for integer $k$, where $\lambda(X, 0) = 0$ (algebraic multiplicity 1) and
 	\begin{align}\label{lambdaXkapprox}
-	\lambda^K(X,k) \approx -c_0 \frac{k \pi i }{X} 
+	\lambda^K(X,k) \approx c \frac{k \pi i }{X} 
 	\end{align}
 	Since 
 	\[
@@ -705,9 +705,9 @@ Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, \ref
 \end{align*}
 These interaction eigenvalue pairs are either real or purely imaginary, and the remainder term cannot move them off of the real or imaginary axis.
 
-\item There exists $r_2 \leq r_1$ such that for every $r \leq r_2$ for which the $\epsilon-$ball condition is satisfied, there are pairs of purely imaginary ``essential spectrum'' eigenvalues given by $\lambda = \pm \lambda^{ess}(X,k; r)$ for every positive integer $k$ with $\frac{c_0 \pi k}{X} < \delta$ (approximately $k < \delta n |\log r|$), where
+\item There exists $r_2 \leq r_1$ such that for every $r \leq r_2$ for which the $\epsilon-$ball condition is satisfied, there are pairs of purely imaginary ``essential spectrum'' eigenvalues given by $\lambda = \pm \lambda^{ess}(X,k; r)$ for every positive integer $k$ with $\frac{c \pi k}{X} < \delta$ (approximately $k < \delta n |\log r|$), where
 \begin{equation}\label{lambdaess}
-\lambda^{ess}(X, k; r) = c_0 \frac{k \pi i }{X} \left( 1 + \mathcal{O}\left( \frac{1}{X} \right)\right) + \mathcal{O}\left( \frac{r^{1/2}}{X} \right)
+\lambda^{ess}(X, k; r) = c \frac{k \pi i }{X} \left( 1 + \mathcal{O}\left( \frac{1}{X} \right)\right) + \mathcal{O}\left( \frac{r^{1/2}}{X} \right)
 \end{equation}
 In terms of $r$ and the $b_j$, these are located at approximately
 \begin{equation}\label{lambdaessr}
