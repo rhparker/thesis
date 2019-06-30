@@ -189,13 +189,13 @@ R(u_1, u_2, \dots, u_{2m-1}, u_{2m}) = (u_1, -u_2, \dots, u_{2m-1}, -u_{2m})
 In particular, if $U(x)$ is a solution to \eqref{genODE}, so is $RU(-x)$. Next, we assume that equation \eqref{genODE} is a conservative system. We will also parameterize the conserved quantity $H$ by $c$.
 
 \begin{hypothesis}\label{Hhyp}
-There exists a smooth function $H: \R^{2m} \times \R \rightarrow \R$ such that 
+There exists a smooth function $H: \R^{2m} \times \R \rightarrow \R$, denoted $H(U; c)$ such that 
 \begin{enumerate}[(i)]
 \item $H(0; c) = 0$ for all $c$
-\item $\nabla H(u; c) = 0$ if and only if $F(u; c) = 0$
-\item For all $u \in \R^{2m}$ and all $c$,
+\item $\nabla_U H(U; c) = 0$ if and only if $F(U; c) = 0$
+\item For all $U \in \R^{2m}$ and all $c$,
 \begin{equation}
-\langle \nabla H(u; c), F(u; c) \rangle = 0
+\langle \nabla_U H(U; c), F(U; c) \rangle = 0
 \end{equation}
 \end{enumerate}
 \end{hypothesis}
@@ -211,12 +211,18 @@ Since $F(0; c) = 0$ for all $c$, $U = 0$ is an equilibrium of \eqref{genODE}. Th
 \begin{hypothesis}\label{hypeqhyp}
 For a specific $c_0 \in \R$ with $c_0 \neq 0$, $U = 0$ is a hyperbolic equilibrium of \eqref{genODE}, i.e. $DF(0; c_0)$ has no eigenvalues on the imaginary axis. Furthermore, the spectrum of $DF(0; c_0)$ contains a quartet of simple eigenvalues $\pm \alpha_0 \pm \beta_0 i$, $\alpha_0, \beta_0 > 0$, and for any other eigenvalue $\nu$ of $DF(0; c_0)$, $|\text{Re }\nu| > \alpha_0$.
 \end{hypothesis}
-Let $W^s(0; c_0)$ and $W^u(0; c_0)$ be the stable and unstable manifolds of the equilibrium at 0, and let $E_0^s(c_0)$ and $E_0^u(c_0)$ be the stable and unstable eigenspaces of $DF(0; c_0)$. By reversibility, all of these spaces have dimension $m$. 
+Let $W^s(0; c_0)$ and $W^u(0; c_0)$ be the stable and unstable manifolds of the equilibrium at 0, and let $E_0^s(c_0)$ and $E_0^u(c_0)$ be the stable and unstable eigenspaces of $DF(0; c_0)$. By reversibility, all of these spaces have dimension $m$. The stable and unstable manifolds are smooth since $F$ is smooth.
 
 In the next hypothesis, we assume that a symmetric homoclinic orbit solution exists to \eqref{genODE}. In specific applications such at KdV5, this is indeed the case.
 
 \begin{hypothesis}\label{Qexistshyp}
-For the same $c_0$ as in Hypothesis \ref{hypeqhyp}, there exists a homoclinic orbit solution $Q(x; c_0) \in W^s(0) \cap W^u(0) \subset H^{-1}(0)$ to \eqref{genODE}. Furthermore, $Q(0; c_0) \neq 0)$, $\nabla H(Q(0; c_0)) \neq 0$, and $Q(x; c_0)$ is symmetric with respect to the reversor operator \eqref{reverserR2m}, i.e. $Q(-x; c_0) = R Q(x; c_0)$.
+For the same $c_0$ as in Hypothesis \ref{hypeqhyp}, there exists a homoclinic orbit solution $Q(x; c_0) \in W^s(0) \cap W^u(0) \subset H^{-1}(0)$ to \eqref{genODE}. In addition,
+\begin{enumerate}[(i)]
+\item $Q(0; c_0) \neq 0$
+\item $\nabla_U H(Q(0; c_0); c_0) \neq 0$
+% \item $\partial_c H(Q(0; c_0); c_0) \neq 0$
+\item $Q(x; c_0)$ is symmetric with respect to the reversor operator \eqref{reverserR2m}, i.e. $Q(-x; c_0) = R Q(x; c_0)$
+\end{enumerate}
 \end{hypothesis}
 
 Since we obtained \eqref{genODE} by putting \eqref{eqODE} into a first order system in the standard way, $Q(x; c_0) = (q(x; c_0), q'(x; c_0), \dots, q^{(2m)}(x; c_0))^T$, where $q(x; c_0)$ is an even function and is an exponentially localized bound state solution to \eqref{genODE}. 
@@ -224,7 +230,7 @@ Since we obtained \eqref{genODE} by putting \eqref{eqODE} into a first order sys
 Next, we address the intersection of the stable and unstable manifolds $W^s(0; c_0)$ and $W^u(0; c_0)$. By Hypothesis \ref{Hhyp}, $W^s(0; c_0), W^u(0; c_0) \subset H^{-1}(0; c_0)$, where $H^{-1}(0; c_0)$ is the 0-level set of $H$. We have the following lemma concerning $H^{-1}(0; c_0)$.
 
 \begin{lemma}\label{manifoldinH0}
-The zero level set of $H^{-1}(0; c_0)$ contains a $(m-1)$-dimensional manifold in a neighborhood of $Q(0; c_0)$.
+There exists $\delta > 0$ such that for $c \in (c_0 - \delta, c_0 + \delta)$, the zero level set $H^{-1}(0; c)$ contains a smooth $(2m-1)-$-dimensional manifold $M(c)$; $M(c_0)$ contains $Q(0; c_0)$.
 \end{lemma}
 
 We then take the following hypothesis regarding the intersection of the stable and unstable manifolds in $H^{-1}(0; c_0)$.
@@ -233,33 +239,41 @@ We then take the following hypothesis regarding the intersection of the stable a
 The stable manifold $W^s(0; c_0)$ and the unstable manifold $W^u(0; c_0)$ intersect transversely in $H^{-1}(0; c_0)$ at $Q(0; c_0)$.
 \end{hypothesis}
 
-Using this hypothesis, we can prove the existence of homoclinic orbits $Q(x; c)$ for $c$ near $c_0$ and show that $Q(x; c)$ is differentiable in $c$.
-
-\begin{lemma}\label{transverseint}
-Assume Hypothesis \ref{H0transversehyp}. Then there exists $\delta > 0$ such that for $c \in (c_0 - \delta, c_0 + \delta)$, there is a unique transvese intersection of the stable and unstable manifolds $W^s(0; c)$ and $W^u(0; c)$. Let $Q(x; c)$ be the homoclinic orbit associated with this unique intersection. Then there is a $C^1$ map $c \rightarrow Q(x; c)$, i.e. $Q(x; c)$ is differentiable with respect to $c$ for $c \in (c_0 - \delta, c_0 + \delta)$. Furthermore, $\partial_c Q(x; c)$ is exponentially localized.
-\end{lemma}
-
-This lemma implies that Hypothesis \ref{cintervalhyp} is satisfied. From this point forward, we will only consider the case when $c = c_0$, thus we will omit the dependence on $c$ for simlicity of notation. We will also use $c$ in place of $c_0$.
-
-Since $Q(x) \subset W^s(0) \cap W^u(0)$, 
+By Hypothesis \ref{H0transversehyp} and Lemma \ref{manifoldinH0}, 
 \[
-Q'(x) \in T_{Q(x)}W^s(0) \cap T_{Q(x)}W^u(0)
+\dim (T_{Q(0; c_0)}W^s(0; c_0) + T_{Q(0; c_0)}W^u(0; c_0)) = \dim M(c_0) = 2m-1 
 \]
-In the next hypothesis, we will assume that this intersection to be one-dimensional, which is a standard nondegeneracy condition.
-
-\begin{hypothesis}\label{nondegenhyp}
-We take the non-degeneracy condition
-\begin{equation}
-T_{Q(0)}W^s(0) \cap T_{Q(0)}W^u(0) = \R Q'(0)
+Since $\dim T_{Q(0; c_0}W^s(0; c_0) = m$ and $\dim T_{Q(0; c_0)}W^s(0; c_0) = m$, by a dimension-counting argument, $\dim T_{Q(x)}W^s(0; c_0) \cap T_{Q(x)}W^u(0; c_0) = 1$. Since $Q(x; c_0) \subset W^s(0; c_0) \cap W^u(0; c_0)$, 
+\[
+Q'(0; c_0) \in T_{Q(0; c_0}W^s(0; c_0) \cap T_{Q(0; c_0)}W^u(0; c_0)
+\]
+Thus we have the following nondegeneracy condition
+\begin{equation}\label{nondegencond}
+T_{Q(0; c_0)}W^s(0; c_0) \cap T_{Q(0; c_0)}W^u(0; c_0) = \R Q'(0; c_0)
 \end{equation}
-\end{hypothesis}
+ 
+Using \eqref{nondegencond}, we can decompose the tangent spaces of the stable and unstable manifolds at $Q(0; c_0)$. Since the two tangent spaces have a one-dimensional intersection spanned by $Q'(0; c_0)$, we can write
+\begin{equation}\label{TQ0decomp1}
+\begin{aligned}
+T_{Q(0; c_0}W^u(0; c_0) &= \R Q'(0; c_0) \oplus Y^-(c_0) \\
+T_{Q(0; c_0}W^s(0; c_0) &= \R Q'(0; c_0) \oplus Y^+(c_0)
+\end{aligned}
+\end{equation}
+
+We can now prove the existence of homoclinic orbits $Q(x; c)$ for $c$ near $c_0$ and show that $Q(x; c)$ is differentiable in $c$.
+
+\begin{theorem}\label{transverseint}
+Assume Hypothesis \ref{H0transversehyp}. Then there exists $\delta > 0$ such that for $c \in (c_0 - \delta, c_0 + \delta)$, the  stable and unstable manifolds $W^s(0; c)$ and $W^u(0; c)$ have a one-dimensional transverse intersection in $H^{-1}(0; c)$ which is a homoclinic orbit $Q(x; c)$. In addition, there is a $C^1$ map $c \rightarrow Q(x; c)$, i.e. $Q(x; c)$ is differentiable with respect to $c$ for $c \in (c_0 - \delta, c_0 + \delta)$. Furthermore, $\partial_c Q(x; c)$ is exponentially localized.
+\end{theorem}
+ 
+This theorm implies that Hypothesis \ref{cintervalhyp} is satisfied. From this point forward, we will only consider the case when $c = c_0$, thus we will omit the dependence on $c$ for simlicity of notation. We will also use $c$ in place of $c_0$.
 
 The variational and adjoint variational equations associated with equation \eqref{genODE} are
 \begin{align}
 V' = DF(Q(x)) V \label{vareq1} \\
 W' = -DF(Q(x))^* W \label{adjvareq1}
 \end{align}
-It follows from Hypothesis \ref{nondegenhyp} that $Q'(x)$ is the unique bounded solution to \eqref{vareq1}, and that there exists a unique bounded solution $\Psi(x)$ to \eqref{adjvareq1}. (In both cases, uniqueness is up to scalar multiples). Since we have a conserved quantity $H$, we know the exact form of $\Psi(x)$, which is given in the following lemma.
+It follows from \eqref{nondegencond} that $Q'(x)$ is the unique bounded solution to \eqref{vareq1}, and that there exists a unique bounded solution $\Psi(x)$ to \eqref{adjvareq1}. (In both cases, uniqueness is up to scalar multiples). Since we have a conserved quantity $H$, we know the exact form of $\Psi(x)$, which is given in the following lemma.
 
 \begin{lemma}\label{psiform}
 The solution $\Psi(x)$ to the adjoint variational equation \eqref{adjvareq1} is given by $\Psi(x) = \nabla H(Q(x))$.
@@ -276,12 +290,7 @@ Consider the linear ODE $V' = A(x)V$ and the corresponding adjoint equation $W' 
 \end{enumerate}
 \end{lemma}
 
-Finally, we will decompose the tangent spaces of the stable and unstable manifolds at $Q(0)$. By Hypothesis \ref{nondegenhyp}, the two tangent spaces have a one-dimensional intersection spanned by $Q'(0)$, so we can write
-\begin{align*}
-T_{Q(0)}W^u(0) &= \R Q'(0) \oplus Y^- \\
-T_{Q(0)}W^s(0) &= \R Q'(0) \oplus Y^+
-\end{align*}
-From Lemma \ref{eigadjoint}(ii), $\Psi(0) \perp \R Q'(0) \oplus Y^+ \oplus Y^-$, thus we have the decomposition
+Finally, from Lemma \ref{eigadjoint}(ii), $\Psi(0) \perp \R Q'(0) \oplus Y^+ \oplus Y^-$, thus we have the decomposition
 \begin{equation}\label{R2mdecomp}
 \R^{2m} = \R Q'(0) \oplus Y^+ \oplus Y^- \oplus Z
 \end{equation}
@@ -347,7 +356,7 @@ where $\rho = \beta_0 / \alpha_0$. We note that $\mathcal{R}$ is a complete metr
 The pulse distances $X_i$ are be determined by these parameters. We prove the existence of periodic multi-pulse solutions to \eqref{genODE} in the following theorem. The existence result requires that the scaling parameter $r$ be sufficiently small, which means that the individual pulses must be well-separated.
 
 \begin{theorem}[Existence of $n$-periodic solutions]\label{perexist}
-Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and \ref{nondegenhyp}. Let $Q(x)$ be a transversely constructed, symmetric primary pulse solution to \eqref{genODE}. Choose
+Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and \ref{H0transversehyp}. Let $Q(x)$ be a transversely constructed, symmetric primary pulse solution to \eqref{genODE}. Choose
 \begin{itemize}
 \item An integer $n \geq 2$ 
 \item A sequence of $n$ baseline length parameters $\{ b_0^0, \dots, b_{n-1}^0 \}$, where 
@@ -394,7 +403,7 @@ X = \frac{1}{2\alpha} \left(n |\log r| + |\log(b_0(r; m_0, \theta) \cdots b_{n-1
 If one of the baseline length parameters $b_j^0$ is small (i.e. one of the distances $X_j$ is large), the periodic $n-$pulse ``resembles'' the $n-$pulse on the real line. Without loss of generality, since we are on a periodic domain, we will choose $b_{n-1}^0$ to be small. In the next theorem, we will prove a uniform existence result. To do this, we will choose only the first $n-1$ baseline length parameters; we will allow the final baseline length parameter and the phase parameter to vary. 
 
 \begin{theorem}\label{unifperexist}
-Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and \ref{nondegenhyp}. Let $Q(x)$ be a transversely constructed, symmetric primary pulse solution to \eqref{genODE}. Choose
+Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and \ref{H0transversehyp}. Let $Q(x)$ be a transversely constructed, symmetric primary pulse solution to \eqref{genODE}. Choose
 \begin{itemize}
 \item An integer $n \geq 2$ 
 \item A sequence of $n-1$ baseline length parameters $b_0^0, \dots, b_{n-2}^0$, where $b_j^0 \in \mathcal{B}$ and at least one of the $b_j^0$ is 1.
@@ -405,7 +414,7 @@ Then there exists $r_1 > 0$ and $b^* \in \mathcal{B}$ such that for any $r < r_1
 Finally, we show that for the the family of $2-$periodic pulse, there is a pitchfork bifurcation in which solutions with unequal pulse distances bifurcate off of solutions with equal pulse distances. Note that in this case we adopt a different parameterization.
 
 \begin{theorem}\label{2pulsebifurcation}
-Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and \ref{nondegenhyp}. Let $Q(x)$ be a transversely constructed, symmetric primary pulse solution to \eqref{genODE}. For every $M \in \N$ there exists $r_0 > 0$ such that for every $r \in \mathcal{R}$ with $r < r_0$, the following is true.
+Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and \ref{H0transversehyp}. Let $Q(x)$ be a transversely constructed, symmetric primary pulse solution to \eqref{genODE}. For every $M \in \N$ there exists $r_0 > 0$ such that for every $r \in \mathcal{R}$ with $r < r_0$, the following is true.
 \begin{enumerate}[(i)]
 	\item For every $\theta \in [0, \pi)$, there is a unique 2-periodic solution with equal length parameters 
 	\[
@@ -475,7 +484,7 @@ Since $(H_c \partial_x)(-\partial_c q) = \partial_x q$, we also have
 \end{equation}
 where $Q_c(x) = (\partial_c q(x), \partial_x \partial_c q(x), \dots, \partial_x^{2m}\partial_c q(x))$.
 
-Since $Q(x)$ is exponentially localized, it cannot involve the center manifold $W^c(0)$, thus it must lie in the intersection of the stable and unstable manifolds. In particular, this implies that $\R Q'(0) \subset T_{Q(0)}W^s(0) \cap T_{Q(0)}W^u(0)$. It follows from Hypothesis \ref{nondegenhyp}, these are actually equal, which we state in the following lemma.
+Since $Q(x)$ is exponentially localized, it cannot involve the center manifold $W^c(0)$, thus it must lie in the intersection of the stable and unstable manifolds. In particular, this implies that $\R Q'(0) \subset T_{Q(0)}W^s(0) \cap T_{Q(0)}W^u(0)$. It follows from \eqref{H0transversehyp} that these are actually equal, which we state in the following lemma.
 
 \begin{lemma}\label{nondegenlemma}
 We have the nondegeneracy condition
@@ -559,7 +568,7 @@ We can now state the main theorem of the section, which gives us a condition for
 
 % block matrix theorem
 \begin{theorem}\label{blockmatrixtheorem}
-Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and \ref{nondegenhyp}. Let $q_{np}(x)$ be a periodic $n-$pulse solution constructed according to Theorem \ref{perexist} with lengths $X_0, \dots, X_{n-1}$. Then there exists $\delta \leq \delta_0$ with the following property: there exists a bounded, nonzero solution $V$ of \eqref{PDEeig} for $|\lambda| < \delta$ if and only if the block matrix equation
+Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and \ref{H0transversehyp}. Let $q_{np}(x)$ be a periodic $n-$pulse solution constructed according to Theorem \ref{perexist} with lengths $X_0, \dots, X_{n-1}$. Then there exists $\delta \leq \delta_0$ with the following property: there exists a bounded, nonzero solution $V$ of \eqref{PDEeig} for $|\lambda| < \delta$ if and only if the block matrix equation
 \begin{equation}\label{blockeq}
 \begin{pmatrix}
 K(\lambda) + C_1 K(\lambda) + K_1(\lambda) & D_1 \\
@@ -693,7 +702,7 @@ With this out of the way, we can use the following theorem to locate the eigenva
 % eigenvalue location theorem
 
 \begin{theorem}\label{locateeigtheorem}
-Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, \ref{nondegenhyp}, \ref{Melnikov2hyp}, and \ref{Adistincteigs}. Let $q_{np}(x)$ be a periodic $n-$pulse solution constructed according to Theorem \ref{perexist} with scaling parameter $r \leq r_0$. Let $\delta > 0$ be defined as in Theorem \ref{blockmatrixtheorem}. Then the following are true.
+Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, \ref{H0transversehyp}, \ref{Melnikov2hyp}, and \ref{Adistincteigs}. Let $q_{np}(x)$ be a periodic $n-$pulse solution constructed according to Theorem \ref{perexist} with scaling parameter $r \leq r_0$. Let $\delta > 0$ be defined as in Theorem \ref{blockmatrixtheorem}. Then the following are true.
 
 \begin{enumerate}[(i)]
 
@@ -732,7 +741,7 @@ b_j^0 &= e^{-\frac{1}{\rho}m_j \pi} && j = 0, \dots, n-2
 for nonnegative integers $m_j$. In this case, the parity of the  integers $m_k$ determines the eigenvalue pattern.
 
 \begin{theorem}\label{inteigsparity}
-Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, \ref{nondegenhyp}, \ref{Melnikov2hyp}, and \ref{Adistincteigs}. Let $r_1$ and $b^*$ be as in Theorem \ref{unifperexist}. Choose an integer $n \geq 2$ and a sequence of $n-1$ baseline length parameters $b_0^0, \dots, b_{n-2}^0$, where $b_j^0 = \exp\left(-\frac{1}{\rho}m_j \pi\right) \in \mathcal{B}$. 
+Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, \ref{H0transversehyp}, \ref{Melnikov2hyp}, and \ref{Adistincteigs}. Let $r_1$ and $b^*$ be as in Theorem \ref{unifperexist}. Choose an integer $n \geq 2$ and a sequence of $n-1$ baseline length parameters $b_0^0, \dots, b_{n-2}^0$, where $b_j^0 = \exp\left(-\frac{1}{\rho}m_j \pi\right) \in \mathcal{B}$. 
 
 Then there exists $\tilde{r_1} \leq r_1$ and $\tilde{b}^* \in \mathcal{B}$ with $\tilde{b}^* \leq b^*$ such that for any $r \leq \tilde{r}_1$, $b_{n-1}^0 \in \mathcal{B}$ with $b_{n-1}^0 \leq \tilde{b}^*$, and $\theta \in [-\arctan \rho, \pi - \arctan \rho)$, we have the following result.
 
