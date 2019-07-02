@@ -24,7 +24,7 @@ for $c \in (c_0 - \delta, c_0 + \delta)$. These manifold are $(2m-1)-$dimensiona
 
 First, we show that homoclinic orbits $Q(x; c)$ exist for $c$ near $c_0$.
 
-\begin{lemma}
+\begin{lemma}\label{Qcexistslemma}
 There exists $\delta > 0$ such that for $c \in (c_0 - \delta, c_0 + \delta)$, the stable and unstable manifolds $W^s(0; c)$ and $W^u(0; c)$ have a one-dimensional transverse intersection in $H^{-1}(0; c)$ which is a homoclinic orbit $Q(x; c)$. The map $c \rightarrow Q(x; c)$ is smooth.
 
 \begin{proof}
@@ -86,6 +86,135 @@ Using $P(c)$ as the initial condition at $x = 0$, we obtain a unique solution $Q
 \end{proof}
 \end{lemma}
 
+Next, we will show that $Q_c(x)$ is exponentially localized. We will show this on $\R^+$; the argument for $\R^+$ is identical. To do this, we will first show that $Q_c(x)$ is a fixed point of a map on an exponentially weighted space. We will then show that the map is differentiable in $c$.
+
+Let $\delta$ be as in Lemma \ref{Qcexistslemma}. By Hypothesis \ref{hypeqhyp}, $DF(0; c_0)$ is hyperbolic and $|\Re \nu| \geq \alpha_0$ for all eigenvalues of $DF(0; c_0)$. Since $F$ is smooth, the eigenvalues of $DF(0; c_0)$ are smooth functions of $c$. Choose any $\epsilon > 0$ such that $\alpha_0 - 2 \epsilon > 0$. Then we can find $\delta_1$ with $0 < \delta_1 \leq \delta$ such that for all $c \in (c_0 - \delta_1, c_0 + \delta_1)$, $|\Re \nu| \geq \alpha_0 - \epsilon$ for all eigenvalues of $DF(0; c)$.
+
+For convenience, let $A(c) = DF(0; c)$. Let $P^u(c)$ and $P^s(c)$ be the projections on the unstable and stable eigenspaces of $A(c)$. Then we have the following bounds for the matrix exponential $e^{A(c)x}$.
+\begin{equation}\label{eAcbounds}
+\begin{aligned}
+||e^{A(c)x}P^s(c)|| &\leq Ke^{-(\alpha_0 - \epsilon) x} && x \geq 0\\
+||e^{A(c)x}P^u(c)|| &\leq Ke^{(\alpha_0 - \epsilon) x} && x \leq 0
+\end{aligned}
+\end{equation}
+
+Let $\eta = \alpha_0 - 2 \epsilon$, and define the exponentially weighted norm
+\[
+||G||_\eta = \sup_{x \in [0, \infty)} |e^{\eta x} G(x)|
+\]
+and the exponentially weighted space
+\[
+X_\eta = \{ G \in C^0([0, \infty), \R^n) : ||G||_\eta < \infty \}
+\]
+$X_\eta$ is known to be a Banach space.
+
+% lemma: contraction map
+\begin{lemma}\label{Hcontractionlemma}
+There exists $\delta_1$ with $0 < \delta_1 \leq \delta$ with the following property. For all $c \in (c_0 - \delta_1, c_0 + \delta_1)$, there exists $x_0(c) \geq 0$ such that $Q(x + x_0(c); c)$ is the unique fixed point of the map $H: D \times B_1 \times B_2 \rightarrow D$ define by
+\begin{equation}\label{defH}
+[H(U, c, a)](x) = e^{A(c)x} P^s(c) a + \int_\infty^x e^{A(c)(x - y)}P^u(c) N(U(y))dy + \int_0^x e^{A(c)(x - y)}P^s(c) N(U(y))dy
+\end{equation}
+with initial condition $a = Q(x_0(c); c)$. The spaces $B_1$, $B_2$, and $D$ are defined below in the proof.
+
+\begin{proof}
+First, we separate $U(x)' = F(U(x); c)$ into linear and nonlinear parts by expanding in a Taylor series about $U = 0$. Since $F(0) = 0$, this gives us the ODE
+\[
+U(x)' = DF(0; c)U(x) + N(U(x)) = A(c)U(x) + N(U(x))
+\] 
+where $N(0) = 0$ and $DN(0) = 0$ since $N$ is purely nonlinear. Since we obtained \eqref{genODE} by writing \eqref{eqODE} as a first order system, only the linear part $A(c)$ depends on $c$.
+Suppose that $|U(x)| \leq \rho$ for $x \geq 0$, where $\rho$ will be chosen later. Then, following the proof of the stable manifold theorem, we can write $U(x)$ in integrated form as 
+\[
+U(x) = e^{A(c)x} P^s(c) a + \int_\infty^x e^{A(c)(x - y)}P^u(c) N(U(y))dy + \int_0^x e^{A(c)(x - y)}P^s(c) N(U(y))dy
+\]
+where $a$ is the initial condition. Define the following spaces
+\begin{align*}
+B_1 &= (c_0 - \delta_1, c_0 + \delta_1) \\
+B_2 &= \{ a \in \R^n : |P^s(c) a| \leq \rho/2K \text{ for all } c \in B_1\} \\
+D &= \{ u \in X_\eta : ||u||_\eta \leq \rho \}
+\end{align*}
+and define the map $H: D \times B_1 \times B_2 \rightarrow X_\eta$ by
+\begin{equation}\label{defH}
+[H(U, c, a)](x) = e^{A(c)x} P^s(c) a + \int_\infty^x e^{A(c)(x - y)}P^u(c) N(U(y))dy + \int_0^x e^{A(c)(x - y)}P^s(c) N(U(y))dy
+\end{equation}
+
+First, we will show that $H$ is well-defined, i.e. it maps into $X_\eta$. Since $F$ is smooth, $N$ is Lipschitz in a neighborhood of 0. Thus since $N(0) = 0$ and $DN(0) = 0$, there exists a Lipschitz constant $L(\rho)$ with $L(\rho) \rightarrow 0$ as $\rho \rightarrow 0$ such that 
+\[
+|N(U)| \leq L(\rho)|U|
+\]
+whenever $|U| \leq \rho$. In particular, if $||U(x)||_\eta \leq \rho$, $||U(x)||_\eta \leq \rho$ as well. Thus $|e^{\eta x} N(U(x))| \leq L(\rho)|e^{\eta x}U(x)|$ for all $x \in \R^+$, from which it follows that 
+\[
+|N(U)|_\eta \leq L(\rho)|U|_\eta
+\]
+Similarly, it follows from the mean value inequality that for $U, V$ with $||U||_\eta, ||V||_\eta \leq \rho$
+\[
+||N(U) - N(V)||_\eta \leq L(\rho)(||U||_\eta - ||V||_\eta) 
+\]
+
+We consider each of the terms on the RHS of \eqref{defH} individually. For the first term, since $a \in B_1$, we have
+\begin{align*}
+|e^{\eta x} e^{A(c)x } P^s(c) a | &\leq K e^{\eta x} e^{-(\alpha_0 - \epsilon) x} | P^s(c) a |\\
+&\leq K \frac{\rho}{2 K} e^{-\epsilon x}\\
+&\leq \frac{\rho}{2}
+\end{align*}
+For the first integral term,
+\begin{align*}
+\left| e^{\eta x} \int_\infty^x e^{A(c)(x - y)}P^u(c) N(U(y))dy \right| &= \left| \int_\infty^x e^{\eta x} e^{A(c)(x - y)}P^u(c) N(U(y))dy \right|\\
+&\leq \int_x^\infty K e^{\eta x}e^{(\alpha_0 - \epsilon)(x - y)}|N(U(y))|dy \\
+&= K \int_x^\infty e^{\eta (x - y)}e^{(\alpha_0 - \epsilon)(x - y)} | e^{\eta y} N(U(y))|dy \\
+&\leq K \int_x^\infty e^{(2 \alpha_0 - 3 \epsilon)(x - y)} || N(U)||_\eta dy \\
+&\leq K L(\rho) ||U||_\eta \int_x^\infty e^{(2 \alpha_0 - 3 \epsilon)(x - y)} dy \\
+&= \frac{ K L(\rho) }{2 \alpha_0 - 3 \epsilon} ||U||_\eta \\
+&\leq \frac{ K L(\rho) }{2 \alpha_0 - 3 \epsilon} \rho
+\end{align*}
+where we used the fact that $U \in D$, thus $||U||_\eta \leq \rho$. For the second integral term,
+\begin{align*}
+\left| e^{\eta x} \int_0^x e^{A(c)(x - y)}P^s(c) N(U(y)) \right| &= \left| \int_0^x e^{\eta x} e^{A(c)(x - y)}P^s(c) N(U(y)) dy \right|\\
+&\leq \int_0^x K e^{\eta x}e^{-(\alpha_0 - \epsilon)(x -y)}|N(U(y))|dy \\
+&= K \int_0^x e^{\eta (x - y)}e^{-(\alpha_0 - \epsilon)(x - y)}| e^{\eta y} N(U(y))|dy \\
+&\leq K \int_0^x e^{-\epsilon(x - y)} || N(U)||_\eta dy \\
+&\leq K L(\rho) ||U||_\eta \int_0^x e^{-\epsilon(x - y)} dy \\
+&= K L(\rho) ||U||_\eta \frac{1 - e^{-\epsilon x} }{\epsilon} \\
+&\leq \frac{K L(\rho)}{\epsilon} \rho
+\end{align*}
+
+Putting all of this together and taking the supremum over $x \in \R^+$, we have the bound
+\begin{equation*}
+||H(U, c, a)](x)||_\eta \leq \frac{\rho}{2} + K L(\rho) \left( \frac{1}{2 \alpha_0 - 3 \epsilon} + \frac{1}{\epsilon} \right) \rho
+\end{equation*}
+Choose $\rho$ sufficiently small so that 
+\[
+K L(\rho) \left( \frac{1}{2 \alpha_0 - 3 \epsilon} + \frac{1}{\epsilon} \right) \leq \frac{1}{2}
+\]
+Then 
+\[
+||H(U, c, a)](x)||_\eta \leq \rho
+\]
+which not only implies $H: D \times B_1 \times B_2 \rightarrow X_\eta$ but also $H: D \times B_1 \times B_2 \rightarrow D$. For $U, V \in D$, following what we did above, we have
+\begin{align*}
+| &e^{\eta x} ( H(U, c, a) - H(V, c, a) ) | \\
+&= \left| \int_\infty^x e^{\eta x} e^{A(c)(x - y)}P^u(c) [N(U(y)) - N(V(y))]dy + \int_0^x e^{\eta x} e^{A(c)(x - y)}P^s(c)[N(U(y)- N(V(y))]dy \right| \\
+&\leq K L(\rho) \left( \int_x^\infty e^{(2 \alpha - 3 \epsilon)(x-y)}||U - V||_\eta dy + \int_0^x e^{-\epsilon(x-y)}||U - V||_\eta dy \right) \\
+&= K L(\rho) \left( \frac{1}{2 \alpha_0 - 3 \epsilon} + \frac{1}{\epsilon} \right) ||U - V||_\eta  \\
+&\leq \frac{1}{2} ||U - V||_\eta 
+\end{align*}
+Thus $H$ is a uniform contraction. By the uniform contraction mapping principle, there is a unique map $G: B_1 \times B_2 \rightarrow D$ such that $H(G(c, a), c, a) = G(c, a)$ for all $c \in B_1$ and $a \in B_2$. The maps $G$ and $F$ have the same smoothness in the parameters $c$. 
+
+Since $Q(x; c)$ is exponentially localized, there exists $x_0(c) \geq 0$ such that $|e^{\eta x} Q(x; c)| \leq \rho$ for all $x \geq x_0(c)$. Let $a(c) = Q(x_0(c); c)$. Since $F$ is smooth, $Q(x + x_0(c); c)$ is the unique solution on $\R^+$ to \eqref{genODE} with initial condition $a(c)$. Since $||Q(x + x_0(c); c)||_\eta \leq \rho$, $Q(x + x_0(c); c)$ is also a fixed point of \eqref{defH}. Thus by uniqueness from the contraction mapping principle, 
+\[
+G(c, a(c)) = Q(x + x_0(c); c)
+\]
+\end{proof}
+\end{lemma}
+
+All that remains is to show that $H(U, c, a)$ is differentiable in $c$, which will imply that $G(c, a)$ is as well.
+
+\begin{lemma}\label{HFrechetlemma}
+The map $H: D \times B_1 \times B_2 \rightarrow D$ defined in Lemma \ref{Hcontractionlemma} is differentiable in $c$.
+\begin{proof}
+Since the only dependence on $c$ is via the term $e^{A(c)x}$, this is not difficult. First, since $F(U; c)$ is smooth, $A(c)$ is differentiable in $c$. Let $A'(c) = \frac{d}{dc}A(c)$. 
+
+\end{proof}
+\end{lemma}
 
 
 \iffulldocument\else
