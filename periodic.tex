@@ -263,7 +263,11 @@ T_{Q(0; c_0}W^s(0; c_0) &= \R Q'(0; c_0) \oplus Y^+(c_0)
 We can now prove the existence of homoclinic orbits $Q(x; c)$ for $c$ near $c_0$ and show that $Q(x; c)$ is differentiable in $c$.
 
 \begin{theorem}\label{transverseint}
-Assume Hypothesis \ref{H0transversehyp}. Then there exists $\delta > 0$ such that for $c \in (c_0 - \delta, c_0 + \delta)$, the  stable and unstable manifolds $W^s(0; c)$ and $W^u(0; c)$ have a one-dimensional transverse intersection in $H^{-1}(0; c)$ which is a homoclinic orbit $Q(x; c)$. The map $c \rightarrow Q(x; c)$ is smooth, so that in particular $Q(x; c)$ is differentiable with respect to $c$. Finally, $\partial_c Q(x; c)$ is exponentially localized.
+Assume Hypothesis \ref{H0transversehyp}. Then there exists $\delta > 0$ such that for $c \in (c_0 - \delta, c_0 + \delta)$, the  stable and unstable manifolds $W^s(0; c)$ and $W^u(0; c)$ have a one-dimensional transverse intersection in $H^{-1}(0; c)$ which is a homoclinic orbit $Q(x; c)$. The map $c \rightarrow Q(x; c)$ is smooth, so that in particular $Q(x; c)$ is differentiable with respect to $c$. Finally, $\partial_c Q(x; c)$ is exponentially localized. Specifially, for any $\epsilon > 0$, there exists $\delta_1 > 0$ with $\delta_1 < \delta$ such that for $c \in (c_0 - \delta_1, c_0 + \delta_1)$,
+\[
+|\partial_c Q(x; c)| \leq C e^{-(\alpha - \epsilon)|x|}
+\] 
+
 \end{theorem}
  
 This theorm implies that Hypothesis \ref{cintervalhyp} is satisfied. From this point forward, we will only consider the case when $c = c_0$, thus we will omit the dependence on $c$ for simlicity of notation. We will also use $c$ in place of $c_0$.

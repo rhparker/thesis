@@ -142,13 +142,13 @@ First, we will show that $H$ is well-defined, i.e. it maps into $X_\eta$. Since 
 |N(U)| \leq L(\rho)|U|
 \]
 whenever $|U| \leq \rho$. In particular, if $||U(x)||_\eta \leq \rho$, $||U(x)||_\eta \leq \rho$ as well. Thus $|e^{\eta x} N(U(x))| \leq L(\rho)|e^{\eta x}U(x)|$ for all $x \in \R^+$, from which it follows that 
-\[
+\begin{equation}\label{LrhoNU}
 |N(U)|_\eta \leq L(\rho)|U|_\eta
-\]
+\end{equation}
 Similarly, it follows from the mean value inequality that for $U, V$ with $||U||_\eta, ||V||_\eta \leq \rho$
-\[
+\begin{equation}\label{NUlip}
 ||N(U) - N(V)||_\eta \leq L(\rho)(||U||_\eta - ||V||_\eta) 
-\]
+\end{equation}
 
 We consider each of the terms on the RHS of \eqref{defH} individually. For the first term, since $a \in B_1$, we have
 \begin{align*}
@@ -206,7 +206,7 @@ G(c, a(c)) = Q(x + x_0(c); c)
 \end{proof}
 \end{lemma}
 
-All that remains is to show that $H(U, c, a)$ is differentiable in $c$, which will imply that $G(c, a)$ is as well. First, we prove the following lemma, which is a product rule for Frechet derivatives. 
+All that remains is to show that $H(U, c, a)$ is Frechet differentiable in $c$, which will imply that $G(c, a)$ is as well. First, we prove the following lemma, which is a product rule for Frechet derivatives. 
 
 \begin{lemma}\label{frechetproductlemma}
 Let $F(c): \R \rightarrow X_\eta$, where $X_\eta$ is the weighted exponential space defined in \eqref{defXeta}. Suppose $F$ is Frechet differentiable at $c$ with, with Frechet derivative $L$. Then the following are true.
@@ -255,10 +255,10 @@ For (ii), the proof is similar. For (iii), take $T(c) = S^{-1}(c)$ in (i), then 
 
 Since $F(U; c)$ is smooth, $A(c)$, $P^s(c)$, and $P^u(c)$ are differentiable in $c$. Next, we prove a result about the Frechet derivative of $e^{A(c)x} P^s(c)$.
 
-\begin{lemma}
-For $c \in (c_0 - \delta_1, c_0 + \delta_1)$, the map $c \rightarrow e^{A(c)x} P^s(c)$ is Frechet differentiable from $\R$ to $X_\eta$.
+\begin{lemma}\label{EAPsderiv}
+For $c \in (c_0 - \delta_1, c_0 + \delta_1)$, the map $c \rightarrow e^{A(c)x} P^s(c)$ is Frechet differentiable from $\R$ to $X_\mu$ for any $\mu$ with $0 \leq \mu < \alpha_0 - \epsilon$.
 \begin{proof}
-To do this, we will put the matrix $A(c)$ into Jordan canonical form. Let $S^{-1}(c)A(c)S(c) = \Lambda(c)$, where $\Lambda(c)$ is block diagonal consisting of Jordan blocks. Since $A(c)$ is smooth in $c$, $S(c)$ and $\Lambda(c)$ are as well. $S^{-1}(c)P^s(c)S(c) = P_1$, where $P_1$ is the matrix which projects onto the stable eigenspace of $\Lambda(c)$. Since $A(c)$ is hyperbolic, the dimensions of the eigenspaces will be the same for $c \in (c_0 - \delta_1, c_0 + \delta_1)$; thus since $\Lambda(c)$ is block diagonal, $P_1$ is constant coefficient and does not depend on $c$. Thus we have
+To make this easier, we will put the matrix $A(c)$ into Jordan canonical form. Let $S^{-1}(c)A(c)S(c) = \Lambda(c)$, where $\Lambda(c)$ is block diagonal consisting of Jordan blocks. Since $A(c)$ is smooth in $c$, $S(c)$ and $\Lambda(c)$ are as well. $S^{-1}(c)P^s(c)S(c) = P_1$, where $P_1$ is the matrix which projects onto the stable eigenspace of $\Lambda(c)$. Since $A(c)$ is hyperbolic, the dimensions of the eigenspaces will be the same for $c \in (c_0 - \delta_1, c_0 + \delta_1)$; thus since $\Lambda(c)$ is block diagonal, $P_1$ is constant coefficient and does not depend on $c$. Thus we have
 \begin{align*}
 S^{-1}(c) e^{A(c)x} P^s(c) S(c) &=  
 S^{-1}(c) e^{A(c)x} S(c) S^{-1}(c) P^s(c) S(c) \\
@@ -275,69 +275,117 @@ e^{\Lambda(c)x} P_1 = P_1 e^{\Lambda(c)x}
 \end{equation}
 which holds for all $c \in (c_0 - \delta_1, c_0 + \delta_1)$. 
 
-We will take
+For convenience, let $\alpha = \alpha_0 - \epsilon$ and $\mu = \alpha - \gamma$, where $\gamma > 0$. We will take
 \begin{equation}\label{Frechetansatz1}
 e^{\Lambda(c)x} P_1 \Lambda'(c)x
 \end{equation}
-as our ansatz for the Frechet derivative of $e^{\Lambda(c)x} P_1$. Since $\Lambda(c)$ is smooth in $c$, we can expand it as a Taylor series around $c$ to get
+as our ansatz for the Frechet derivative of $e^{\Lambda(c)x} P_1$. For all $x \in \R^+$, using \eqref{eAcbounds}, we have
+\begin{align*}
+\left| e^{\mu x} e^{\Lambda(c)x} P_1 \Lambda'(c)x \right| 
+&\leq K|\Lambda'(c)| e^{(\alpha - \gamma) x} e^{-\alpha x} \\
+&\leq C x e^{-\gamma x} \\
+\end{align*} 
+which is uniformly bounded in $x$. Thus \eqref{Frechetansatz1} is a bounded linear transformation from $\R$ to $X_\mu$.
+
+Since $\Lambda(c)$ is smooth in $c$, we can expand it as a Taylor series around $c$ to get
 \[
 \Lambda(c+h) = \Lambda(c) + \Lambda'(c)h + R(h)h
 \]
 where $R(h) \rightarrow 0$ as $h \rightarrow 0$. Using this together with the definition of the Frechet derivative and \eqref{P1commutes},
 \begin{align*}
-&\frac{e^{\eta x} |e^{\Lambda(c+h)x}P_1 - e^{\Lambda(c)x}P_1 - e^{\Lambda(c)x} P_1 \Lambda'(c)x h|}{|h|} \\
-&= \frac{e^{\eta x}}{|h|}| P_1|\left| e^{(\Lambda(c) + \Lambda'(c)h + R(h)h)x} - e^{\Lambda(c)x} - e^{\Lambda(c)x} P_1 \Lambda'(c)h x \right| \\
-&= \frac{e^{\eta x}}{|h|}| P_1 e^{\Lambda(c)x}|\left| e^{(\Lambda'(c)h + R(h)h)x} - I - \Lambda'(c)h x \right| \\
-&= \frac{1}{|h|} |e^{(\alpha_0 - \epsilon)x} e^{\Lambda(c)x} P_1| e^{-\epsilon x} \left| e^{\Lambda'(c)h + R(h)h} - I - \Lambda'(c)hx \right| \\
-&\leq \frac{C}{|h|} e^{-\epsilon x} \left| e^{\Lambda'(c)hx}e^{R(h)hx} - I - \Lambda'(c)hx \right| \\ 
+&\frac{e^{\mu x} |e^{\Lambda(c+h)x}P_1 - e^{\Lambda(c)x}P_1 - e^{\Lambda(c)x} P_1 \Lambda'(c)x h|}{|h|} \\
+&= \frac{e^{\mu x}}{|h|}| P_1|\left| e^{(\Lambda(c) + \Lambda'(c)h + R(h)h)x} - e^{\Lambda(c)x} - e^{\Lambda(c)x} P_1 \Lambda'(c)h x \right| \\
+&= \frac{e^{\mu x}}{|h|}| P_1 e^{\Lambda(c)x}|\left| e^{(\Lambda'(c)h + R(h)h)x} - I - \Lambda'(c)h x \right| \\
+&= \frac{1}{|h|} |e^{\alpha x} e^{\Lambda(c)x} P_1| e^{-\gamma x} \left| e^{\Lambda'(c)h + R(h)h} - I - \Lambda'(c)hx \right| \\
+&\leq \frac{C}{|h|} e^{-\gamma x} \left| e^{\Lambda'(c)hx}e^{R(h)hx} - I - \Lambda'(c)hx \right| \\ 
 \end{align*}
-where we used the fact that $e^{(\alpha_0 - \epsilon)x} e^{\Lambda(c)x} P_1$ is uniformly bounded, which follows from \eqref{eAcbounds}. Using the series expansion for the matrix exponentials, we have
+where we used the fact that $e^{\alpha x} e^{\Lambda(c)x} P_1$ is uniformly bounded, which follows from \eqref{eAcbounds}. Using the series expansion for the matrix exponentials, we have
 \begin{align*}
 e^{\Lambda'(c)hx}&e^{R(h)hx} - I - \Lambda'(c)hx \\
 &= e^{\Lambda'(c)hx} \left(I + \sum_{n=1}^\infty \frac{(R(h)hx)^n}{n!} \right) - I - \Lambda'(c)hx \\
-&= I + \Lambda'(c)hx + \sum_{n=2}^\infty \frac{(\Lambda'(c)hx)^n}{n!} + e^{\Lambda'(c)hx} \sum_{n=1}^\infty \frac{(R(h)hx)^n}{n!} \right) - I - \Lambda'(c)hx \\
-&= \sum_{n=2}^\infty \frac{(\Lambda'(c)hx)^n}{n!} + e^{\Lambda'(c)hx} \sum_{n=1}^\infty \frac{(R(h)hx)^n}{n!} \right) \\
-&= (\Lambda'(c)hx)^2 \sum_{n=0}^\infty \frac{(\Lambda'(c)hx)^n}{(n+2)!} + e^{\Lambda'(c)hx} R(h)hx \sum_{n=0}^\infty \frac{(R(h)hx)^n}{(n+1)!} \right) 
+&= I + \Lambda'(c)hx + \sum_{n=2}^\infty \frac{(\Lambda'(c)hx)^n}{n!} + e^{\Lambda'(c)hx} \sum_{n=1}^\infty \frac{(R(h)hx)^n}{n!} - I - \Lambda'(c)hx \\
+&= \sum_{n=2}^\infty \frac{(\Lambda'(c)hx)^n}{n!} + e^{\Lambda'(c)hx} \sum_{n=1}^\infty \frac{(R(h)hx)^n}{n!} \\
+&= (\Lambda'(c)hx)^2 \sum_{n=0}^\infty \frac{(\Lambda'(c)hx)^n}{(n+2)!} + e^{\Lambda'(c)hx} R(h)hx \sum_{n=0}^\infty \frac{(R(h)hx)^n}{(n+1)!} 
 \end{align*}
 Since $\Lambda'(c)$ is a constant and is smooth in $c$ and $R(h) \rightarrow 0$ as $h \rightarrow 0$, choose $h \leq 1$ sufficiently small so that for all $c \in (c_0 - \delta_1, c_0 + \delta_1)$, 
 \[
-|\Lambda'(c)h|, |R(h)h| \leq \frac{\epsilon}{4}
+|\Lambda'(c)h|, |R(h)h| \leq \frac{\gamma}{4}
 \]
 Recalling that $x \geq 0$, we have
 \begin{align*}
 &\left| e^{\Lambda'(c)hx}e^{R(h)hx} - I - \Lambda'(c)hx \right| \\
-&\leq (|\Lambda'(c)h|x)^2 \sum_{n=0}^\infty \frac{(|\Lambda'(c)h|x)^n}{n!} + e^{|\Lambda'(c)h|x} |R(h)h|x \sum_{n=0}^\infty \frac{(|R(h)h|x)^n}{n!} \right) \\
+&\leq (|\Lambda'(c)h|x)^2 \sum_{n=0}^\infty \frac{(|\Lambda'(c)h|x)^n}{n!} + e^{|\Lambda'(c)h|x} |R(h)h|x \sum_{n=0}^\infty \frac{(|R(h)h|x)^n}{n!} \\
 &\leq (|\Lambda'(c)h|x)^2 e^{|\Lambda'(c)h|x} + e^{|\Lambda'(c)h|x} |R(h)h|x e^{|R(h)h|x} \\
-&= C \left(|h|^2 x^2 \exp\left(\frac{\epsilon}{4}x\right) 
-+ |h| |R(h)|x \exp\left(\frac{\epsilon}{2}x\right) \right)
+&= C \left(|h|^2 x^2 \exp\left(\frac{\gamma}{4}x\right) 
++ |h| |R(h)|x \exp\left(\frac{\gamma}{2}x\right) \right)
 \end{align*}
 Substituting this in, we have
 \begin{align*}
-&\frac{e^{\eta x} |e^{\Lambda(c+h)x}P_1 - e^{\Lambda(c)x}P_1 - e^{\Lambda(c)x} P_1 \Lambda'(c)x h|}{|h|} \\
-&\leq \frac{C}{|h|} e^{-\epsilon x} \left(|h|^2 x^2 \exp\left(\frac{\epsilon}{4}x\right) 
-+ |h| |R(h)|x \exp\left(\frac{\epsilon}{2}x\right) \right) \\
-&\leq C \left( |h| x^2 \exp\left(-\frac{3\epsilon}{4}x\right) + |R(h)| x \exp\left(\frac{\epsilon}{2}x\right) \right) \\
+&\frac{e^{\mu x} |e^{\Lambda(c+h)x}P_1 - e^{\Lambda(c)x}P_1 - e^{\Lambda(c)x} P_1 \Lambda'(c)x h|}{|h|} \\
+&\leq \frac{C}{|h|} e^{-\gamma x} \left(|h|^2 x^2 \exp\left(\frac{\gamma}{4}x\right) 
++ |h| |R(h)|x \exp\left(\frac{\gamma}{2}x\right) \right) \\
+&\leq C \left( |h| x^2 \exp\left(-\frac{3\gamma}{4}x\right) + |R(h)| x \exp\left(-\frac{\gamma}{2}x\right) \right) \\
 &= C (|h| + |R(h)|)
 \end{align*}
 Sending $h \rightarrow 0$, since this is uniform in $x$, we conclude that
 \begin{align*}
 \lim_{h \rightarrow 0}
-\frac{||e^{\Lambda(c+h)x}P_1 - e^{\Lambda(c)x}P_1 - e^{\Lambda(c)x} P_1 \Lambda'(c)x h||_\eta}{|h|} = 0
+\frac{||e^{\Lambda(c+h)x}P_1 - e^{\Lambda(c)x}P_1 - e^{\Lambda(c)x} P_1 \Lambda'(c)x h||_\mu}{|h|} = 0
 \end{align*}
 \end{proof}
 \end{lemma}
 
+Finally, we will show that $H$ is Frechet differentiable in $c$.
+
 \begin{lemma}\label{HFrechetlemma}
 The map $H: D \times B_1 \times B_2 \rightarrow D$ defined in Lemma \ref{Hcontractionlemma} is Frechet differentiable in $c$.
 \begin{proof}
-Since the only dependence on $c$ is via the term $e^{A(c)x}$, this is not difficult. First, 
+First, we note that the dependence on $c$ is via the term $e^{A(c)x}$ and the projections $P^s(c)$ and $P^u(c)$. Since differentiation is linear, we will consider each of the three terms in $H$ separately. Recall that $U \in D$ means that $||U||_\eta \leq \rho$, which implies that $||U|| \leq \rho$.
 
-Next, we look at the Frechet derivative of $e^{A(c)x} P^s(c)$. 
+Let $L(x, c)$ be the Frechet derivative of $e^{A(c)x} P^s(c)$ from Lemma \ref{EAPsderiv}. Then the Frechet derivative of the first term is $L(x, c)a$. For the third term, we will show that the Frechet derivative is
+\begin{equation}\label{frechet3ansatz}
+L_3(U; c) = \int_0^x L(c, x - y) N(U(y)) dy
+\end{equation}
+First, we have to show that \eqref{frechet3ansatz} is a bounded linear transformation from $\R$ to $X_\eta$. Let $\mu = \eta + \epsilon/2 = \alpha_0 - 3\epsilon/2$. From Lemma \ref{EAPsderiv}, $e^{\mu x} L(c,x)$ is bounded, thus we have
+\begin{align*}
+\left| e^{\eta x} \int_0^x L(c, x - y) N(U(y)) dy \right| &\leq \int_0^x |e^{\eta (x-y)} L(c, x - y)| |e^{\eta y} N(U(y))| dy \\
+&= \int_0^x e^{-\frac{\epsilon}{2}(x-y)} |e^{\mu (x-y)} L(c, x - y)| |e^{\eta y} N(U(y))| dy \\
+&\leq C \int_0^x e^{-\frac{\epsilon}{2}(x-y)} || N(U(y))|_\eta dy \\
+&\leq C \frac{2}{\epsilon}\left(1 - e^{-\frac{\epsilon}{2}x}\right) L(\rho)||U||_\eta \\
+&\leq C ||U||_\eta
+\end{align*}
+where we used \eqref{LrhoNU} in the penultimate line. 
 
+Using the definition of the Frechet derivative, for $x \in \R^+$ we have
+\begin{align*}
+\frac{1}{|h|}&e^{\eta x}\left| \int_0^x e^{A(c+h)(x - y)}P^s(c) N(U(y))dy - \int_0^x e^{A(c)(x - y)}P^s(c) N(U(y))dy - h \int_0^x L(c, x - y) N(U(y)) dy \right|\\
+&= \frac{1}{|h|}e^{\eta x}\left| \int_0^x \left( e^{A(c+h)(x - y)}P^s(c) - e^{A(c)(x - y)}P^s(c) - h L(c, x - y) \right) N(U(y)) dy \right| \\
+&\leq \int_0^x \left| \frac{ e^{\eta(x-y)} (e^{A(c+h)(x - y)}P^s(c) - e^{A(c)(x - y)}P^s(c) - h L(c, x - y))}{h}\right| \left| e^{\eta y} N(U(y)) \right| dy \\
+&\leq \int_0^x \left| \frac{ e^{\eta(x-y)} (e^{A(c+h)(x - y)}P^s(c) - e^{A(c)(x - y)}P^s(c) - h L(c, x - y))}{h}\right| || e^{\eta y} N(U(y)) ||_\eta dy \\
+&\leq L(\rho)\rho \int_0^x \left| \frac{ e^{\eta(x-y)} (e^{A(c+h)(x - y)}P^s(c) - e^{A(c)(x - y)}P^s(c) - h L(c, x - y))}{h}\right| dy \\
+&\leq L(\rho)\rho \int_0^x \left| \frac{ e^{\eta z} (e^{A(c+h)z }P^s(c) - e^{A(c)z }P^s(c) - h L(c, z))}{h}\right| dz
+\end{align*}
+From Lemma \ref{EAPsderiv}, $e^{\mu x} L(c,x)$ is bounded, thus we have 
+\begin{align*}
+\frac{1}{|h|}&e^{\eta x}\left| \int_0^x e^{A(c+h)(x - y)}P^s(c) N(U(y))dy - \int_0^x e^{A(c)(x - y)}P^s(c) N(U(y))dy - h \int_0^x L(c, x - y) N(U(y)) dy \right|\\
+&\leq L(\rho)\rho \int_0^x e^{-\frac{\epsilon}{2}z} \left|\frac{ e^{\mu z} (e^{A(c+h)z }P^s(c) - e^{A(c)z }P^s(c) - h L(c, z))}{h}\right| dz \\
+&\leq L(\rho)\rho \frac{ || e^{A(c+h)z }P^s(c) - e^{A(c)z }P^s(c) - h L(c, z)||_\mu}{|h|}  \int_0^x e^{-\frac{\epsilon}{2}z} dz \\
+&\leq C L(\rho)\rho \frac{ || e^{A(c+h)z }P^s(c) - e^{A(c)z }P^s(c) - h L(c, z)||_\mu}{|h|} 
+\end{align*}
+By Lemma \ref{EAPsderiv}, since $L(c, z)$ is the Frechet derivative of $e^{A(c)z }P^s(c)$ from $\R$ to $X_\mu$, the RHS $\rightarrow 0$ as $h \rightarrow 0$.
 
-
+For the second term, we first show Frechet differentiability of $e^{A(c)(x}P^u(c) N(U(y))$ on the exponentially weighted space 
+\[
+\tilde{X}_\mu = \{ f \in C^0((-\infty, 0], \R^n) : \sup_{x \in (-\infty, 0]} |e^{-\mu x} f(x)| < \infty \} 
+\]
+for $0 \leq \mu < \alpha_0 - \epsilon$. This is almost identical to the proof of Lemma \ref{EAPsderiv}. The Frechet differentiability of the second term then follows similarly to that of the third term.
 \end{proof}
 \end{lemma}
+
+Since $H(U, c, a)$ is Frechet differentiable in $c$, this implies that the fixed point map $G(c, a)$ is as well. Since $G(c, a(c)) = Q(x + x_0(c); c)$, $Q(x + x_0(c); c)$ is Frechet differentiable in $c$ as a map from $R$ to $X_\eta$. Since $Q(x; c)$ is differentiable in $c$, the Frechet derivative must be $\partial_c Q(x + x_0(c); c)$. Since exponential decay involves only the tail behavior, we conclude that $\partial_c Q(x; c)$ is exponentially localized on $\R^+$ with decay rate $\eta$. An identical argument proves this exponential localization on $\R^-$. Thus $\partial_c Q(x; c)$ is exponentially localized on $\R$. Since $\epsilon$ is arbitrary, we conclude that for any $\epsilon > 0$, there exists $\delta_1 > 0$ such that for $c \in (c_0 - \delta_1, c_0 + \delta_1)$,
+\[
+|\partial_c Q(x; c)| \leq C e^{-(\alpha - \epsilon)|x|}
+\] 
 
 
 \iffulldocument\else
