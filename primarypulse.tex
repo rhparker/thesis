@@ -76,7 +76,7 @@ We wish to show that for $c$ close to $c_0$, $W^s(0; c) \cap \Sigma$ and $W^u(0;
 K(v_u, v_s; c) = (v_u - h^s(0, v_s; c), v_s - h^u(0, v_u; c))
 \end{align*}
 Since $h^s(0, 0; c_0) = h^u(0, 0; c_0) = 0$, $K(0, 0, c_0) = 0$. Since $D_{v_u} h^u(0, 0; c_0) = D_{v_s} h^s(0, 0; c_0) = 0$, 
-$D_{(v_u, v_s)}K(0, 0; c_0) = I_{2m-2}$, which is invertible. Using the IFT, there exists an open neighborhood $W$ of $(0, 0) \in V^u \times V^s$, $\tilde{\delta}$ with $0 < \tilde{\delta} < \delta$, and a unique smooth function $g: (c_0 - \tilde{\delta}, c_0 + \tilde{\delta}) \rightarrow W$ such that $g(c_0) = (0, 0)$ and $K(g(c), c) &= 0$ for all $c \in (c_0 - \tilde{\delta}, c_0 + \tilde{\delta})$.
+$D_{(v_u, v_s)}K(0, 0; c_0) = I_{2m-2}$, which is invertible. Using the IFT, there exists an open neighborhood $W$ of $(0, 0) \in V^u \times V^s$, $\tilde{\delta}$ with $0 < \tilde{\delta} < \delta$, and a unique smooth function $g: (c_0 - \tilde{\delta}, c_0 + \tilde{\delta}) \rightarrow W$ such that $g(c_0) = (0, 0)$ and $K(g(c), c) = 0$ for all $c \in (c_0 - \tilde{\delta}, c_0 + \tilde{\delta})$.
 
 Let $g(c) = (g_u(c), g_s(c)) \in V^u \times V^s$. Then for $c \in (c_0 - \tilde{\delta}, c_0 + \tilde{\delta})$, the unique intersection point of $W^s(0; c) \cap \Sigma$ and $W^u(0; c) \cap \Sigma$ is given by the smooth function
 \[
@@ -103,9 +103,9 @@ Let $\eta = \alpha_0 - 2 \epsilon$, and define the exponentially weighted norm
 ||G||_\eta = \sup_{x \in [0, \infty)} |e^{\eta x} G(x)|
 \]
 and the exponentially weighted space
-\[
+\begin{equation}\label{defXeta}
 X_\eta = \{ G \in C^0([0, \infty), \R^n) : ||G||_\eta < \infty \}
-\]
+\end{equation}
 $X_\eta$ is known to be a Banach space.
 
 % lemma: contraction map
@@ -206,12 +206,135 @@ G(c, a(c)) = Q(x + x_0(c); c)
 \end{proof}
 \end{lemma}
 
-All that remains is to show that $H(U, c, a)$ is differentiable in $c$, which will imply that $G(c, a)$ is as well.
+All that remains is to show that $H(U, c, a)$ is differentiable in $c$, which will imply that $G(c, a)$ is as well. First, we prove the following lemma, which is a product rule for Frechet derivatives. 
+
+\begin{lemma}\label{frechetproductlemma}
+Let $F(c): \R \rightarrow X_\eta$, where $X_\eta$ is the weighted exponential space defined in \eqref{defXeta}. Suppose $F$ is Frechet differentiable at $c$ with, with Frechet derivative $L$. Then the following are true.
+
+\begin{enumerate}[(i)]
+\item Let $T(c)$ be an $n \times n$ matrix which is smooth in $c$. Then $T(c)F(c): \R \rightarrow X_\eta$ has Frechet derivative $T'(c)F(c) + T(c)L$ at $c$.
+
+\item Let $S(c)$ be an $n \times n$ matrix which is smooth in $c$. Then $F(c)S(c): \R \rightarrow X_\eta$ has Frechet derivative $L S(c) + F(c)S'(c)$ at $c$.
+
+\item Let $S(c) \in GL(n, \R)$ be a family of smooth invertible matrices paramaterized by $c$, where $S(c)$ is smooth and invertible in an open interval around $c$. Then $S^{-1}(c)F(c)S: \R \rightarrow X_\eta$ has Frechet derivative $(S^{-1})'(c) F(c) S(c) + S^{-1}(c) L S (c) + S^{-1}(c) F(c) S'(c)$ at $c$.
+\end{enumerate}
+
+\begin{proof}
+Let $||F(c)||_\eta = M$. For (i), $T(c)F(c): \R \rightarrow X_\eta$ since for $x \geq 0$
+\begin{align*}
+|e^{\eta x} T(c)[F(c)](x)| \leq ||T(c)||\:|e^{\eta x} [F(c)](x)| 
+= ||T(c)|| \:||F(c)||_\eta < \infty
+\end{align*}
+Using the definition of the Frechet derivative,
+\begin{align*}
+\lim_{h \rightarrow 0}&\frac{||T(c+h)F(c+h) - T(c)F(c) - (T'(c)F(c) + T(c)L)h||_\eta}{|h|} \\
+&= \lim_{h \rightarrow 0}\frac{||T(c+h)F(c+h) - T(c)F(c+h) + T(c)F(c+h) - T(c)F(c) - (T'(c)F(c) + T(c)L)h||_\eta}{|h|} \\
+&\leq \lim_{h \rightarrow 0}\frac{||T(c+h)F(c+h) - T(c)F(c+h) - T'(c)F(c) h ||_\eta}{|h|} \\
+&\:\:+ \lim_{h \rightarrow 0}\frac{||T(c)F(c+h) - T(c)F(c) - T(c)L)h||_\eta}{|h|}
+\end{align*}
+We will evaluate the two limits on the RHS separately. For the second limit,
+\begin{align*}
+\lim_{h \rightarrow 0}&\frac{||T(c)F(c+h) - T(c)F(c) - T(c)L)h||_\eta}{|h|} \\
+&= |T(c)| \lim_{h \rightarrow 0}\frac{||F(c+h) - F(c) - L)h||_\eta}{|h|} \\
+&= 0
+\end{align*}
+since $|T(c)|$ is a constant and $F(c)$ has Frechet derivative $L$. For the first limit,
+\begin{align*}
+\lim_{h \rightarrow 0}&\frac{||T(c+h)F(c+h) - T(c)F(c+h) - T'(c)F(c) h ||_\eta}{|h|} \\
+&= \lim_{h \rightarrow 0}\frac{||T(c+h)F(c+h) - T(c)F(c+h) - T'(c)F(c+h)h + T'(c)F(c+h)h - T'(c)F(c) h ||_\eta}{|h|} \\
+&\leq \lim_{h \rightarrow 0}\frac{||T(c+h)F(c+h) - T(c)F(c+h) - T'(c)F(c+h)h||_\eta}{|h|} + \lim_{h \rightarrow 0} \frac{||T'(c)F(c+h)h - T'(c)F(c) h ||_\eta}{|h|} \\
+&\leq \lim_{h \rightarrow 0} \left| \frac{T(c+h) - T(c)}{h} - T'(c) \right| ||F(c+h)||_\eta + |T'(c)| \lim_{h \rightarrow 0} ||F(c+h) - F(c) ||_\eta \\
+&= 0 \cdot M + |T'(c)| \cdot 0 \\
+&= 0
+\end{align*}
+where we used the continuity $F: \R \rightarrow X_\eta$, the continuity of norms, and the differentiability of $T(c)$. Thus we have proved (i).
+
+For (ii), the proof is similar. For (iii), take $T(c) = S^{-1}(c)$ in (i), then use (ii).
+\end{proof}
+\end{lemma}
+
+Since $F(U; c)$ is smooth, $A(c)$, $P^s(c)$, and $P^u(c)$ are differentiable in $c$. Next, we prove a result about the Frechet derivative of $e^{A(c)x} P^s(c)$.
+
+\begin{lemma}
+For $c \in (c_0 - \delta_1, c_0 + \delta_1)$, the map $c \rightarrow e^{A(c)x} P^s(c)$ is Frechet differentiable from $\R$ to $X_\eta$.
+\begin{proof}
+To do this, we will put the matrix $A(c)$ into Jordan canonical form. Let $S^{-1}(c)A(c)S(c) = \Lambda(c)$, where $\Lambda(c)$ is block diagonal consisting of Jordan blocks. Since $A(c)$ is smooth in $c$, $S(c)$ and $\Lambda(c)$ are as well. $S^{-1}(c)P^s(c)S(c) = P_1$, where $P_1$ is the matrix which projects onto the stable eigenspace of $\Lambda(c)$. Since $A(c)$ is hyperbolic, the dimensions of the eigenspaces will be the same for $c \in (c_0 - \delta_1, c_0 + \delta_1)$; thus since $\Lambda(c)$ is block diagonal, $P_1$ is constant coefficient and does not depend on $c$. Thus we have
+\begin{align*}
+S^{-1}(c) e^{A(c)x} P^s(c) S(c) &=  
+S^{-1}(c) e^{A(c)x} S(c) S^{-1}(c) P^s(c) S(c) \\
+&= e^{\Lambda(c)x}P_1 
+\end{align*}
+from which it follows that
+\begin{align*}
+e^{A(c)x} P^s(c) 
+&= S(c) e^{\Lambda(c)x} P_1 S^{-1}(c)
+\end{align*}
+By Lemma \ref{frechetproductlemma}, it suffices to show that $e^{\Lambda(c)x} P_1$ is Frechet differentiable. Since matrices commute with their own eigenprojections, we will use the relation
+\begin{equation}\label{P1commutes}
+e^{\Lambda(c)x} P_1 = P_1 e^{\Lambda(c)x}
+\end{equation}
+which holds for all $c \in (c_0 - \delta_1, c_0 + \delta_1)$. 
+
+We will take
+\begin{equation}\label{Frechetansatz1}
+e^{\Lambda(c)x} P_1 \Lambda'(c)x
+\end{equation}
+as our ansatz for the Frechet derivative of $e^{\Lambda(c)x} P_1$. Since $\Lambda(c)$ is smooth in $c$, we can expand it as a Taylor series around $c$ to get
+\[
+\Lambda(c+h) = \Lambda(c) + \Lambda'(c)h + R(h)h
+\]
+where $R(h) \rightarrow 0$ as $h \rightarrow 0$. Using this together with the definition of the Frechet derivative and \eqref{P1commutes},
+\begin{align*}
+&\frac{e^{\eta x} |e^{\Lambda(c+h)x}P_1 - e^{\Lambda(c)x}P_1 - e^{\Lambda(c)x} P_1 \Lambda'(c)x h|}{|h|} \\
+&= \frac{e^{\eta x}}{|h|}| P_1|\left| e^{(\Lambda(c) + \Lambda'(c)h + R(h)h)x} - e^{\Lambda(c)x} - e^{\Lambda(c)x} P_1 \Lambda'(c)h x \right| \\
+&= \frac{e^{\eta x}}{|h|}| P_1 e^{\Lambda(c)x}|\left| e^{(\Lambda'(c)h + R(h)h)x} - I - \Lambda'(c)h x \right| \\
+&= \frac{1}{|h|} |e^{(\alpha_0 - \epsilon)x} e^{\Lambda(c)x} P_1| e^{-\epsilon x} \left| e^{\Lambda'(c)h + R(h)h} - I - \Lambda'(c)hx \right| \\
+&\leq \frac{C}{|h|} e^{-\epsilon x} \left| e^{\Lambda'(c)hx}e^{R(h)hx} - I - \Lambda'(c)hx \right| \\ 
+\end{align*}
+where we used the fact that $e^{(\alpha_0 - \epsilon)x} e^{\Lambda(c)x} P_1$ is uniformly bounded, which follows from \eqref{eAcbounds}. Using the series expansion for the matrix exponentials, we have
+\begin{align*}
+e^{\Lambda'(c)hx}&e^{R(h)hx} - I - \Lambda'(c)hx \\
+&= e^{\Lambda'(c)hx} \left(I + \sum_{n=1}^\infty \frac{(R(h)hx)^n}{n!} \right) - I - \Lambda'(c)hx \\
+&= I + \Lambda'(c)hx + \sum_{n=2}^\infty \frac{(\Lambda'(c)hx)^n}{n!} + e^{\Lambda'(c)hx} \sum_{n=1}^\infty \frac{(R(h)hx)^n}{n!} \right) - I - \Lambda'(c)hx \\
+&= \sum_{n=2}^\infty \frac{(\Lambda'(c)hx)^n}{n!} + e^{\Lambda'(c)hx} \sum_{n=1}^\infty \frac{(R(h)hx)^n}{n!} \right) \\
+&= (\Lambda'(c)hx)^2 \sum_{n=0}^\infty \frac{(\Lambda'(c)hx)^n}{(n+2)!} + e^{\Lambda'(c)hx} R(h)hx \sum_{n=0}^\infty \frac{(R(h)hx)^n}{(n+1)!} \right) 
+\end{align*}
+Since $\Lambda'(c)$ is a constant and is smooth in $c$ and $R(h) \rightarrow 0$ as $h \rightarrow 0$, choose $h \leq 1$ sufficiently small so that for all $c \in (c_0 - \delta_1, c_0 + \delta_1)$, 
+\[
+|\Lambda'(c)h|, |R(h)h| \leq \frac{\epsilon}{4}
+\]
+Recalling that $x \geq 0$, we have
+\begin{align*}
+&\left| e^{\Lambda'(c)hx}e^{R(h)hx} - I - \Lambda'(c)hx \right| \\
+&\leq (|\Lambda'(c)h|x)^2 \sum_{n=0}^\infty \frac{(|\Lambda'(c)h|x)^n}{n!} + e^{|\Lambda'(c)h|x} |R(h)h|x \sum_{n=0}^\infty \frac{(|R(h)h|x)^n}{n!} \right) \\
+&\leq (|\Lambda'(c)h|x)^2 e^{|\Lambda'(c)h|x} + e^{|\Lambda'(c)h|x} |R(h)h|x e^{|R(h)h|x} \\
+&= C \left(|h|^2 x^2 \exp\left(\frac{\epsilon}{4}x\right) 
++ |h| |R(h)|x \exp\left(\frac{\epsilon}{2}x\right) \right)
+\end{align*}
+Substituting this in, we have
+\begin{align*}
+&\frac{e^{\eta x} |e^{\Lambda(c+h)x}P_1 - e^{\Lambda(c)x}P_1 - e^{\Lambda(c)x} P_1 \Lambda'(c)x h|}{|h|} \\
+&\leq \frac{C}{|h|} e^{-\epsilon x} \left(|h|^2 x^2 \exp\left(\frac{\epsilon}{4}x\right) 
++ |h| |R(h)|x \exp\left(\frac{\epsilon}{2}x\right) \right) \\
+&\leq C \left( |h| x^2 \exp\left(-\frac{3\epsilon}{4}x\right) + |R(h)| x \exp\left(\frac{\epsilon}{2}x\right) \right) \\
+&= C (|h| + |R(h)|)
+\end{align*}
+Sending $h \rightarrow 0$, since this is uniform in $x$, we conclude that
+\begin{align*}
+\lim_{h \rightarrow 0}
+\frac{||e^{\Lambda(c+h)x}P_1 - e^{\Lambda(c)x}P_1 - e^{\Lambda(c)x} P_1 \Lambda'(c)x h||_\eta}{|h|} = 0
+\end{align*}
+\end{proof}
+\end{lemma}
 
 \begin{lemma}\label{HFrechetlemma}
-The map $H: D \times B_1 \times B_2 \rightarrow D$ defined in Lemma \ref{Hcontractionlemma} is differentiable in $c$.
+The map $H: D \times B_1 \times B_2 \rightarrow D$ defined in Lemma \ref{Hcontractionlemma} is Frechet differentiable in $c$.
 \begin{proof}
-Since the only dependence on $c$ is via the term $e^{A(c)x}$, this is not difficult. First, since $F(U; c)$ is smooth, $A(c)$ is differentiable in $c$. Let $A'(c) = \frac{d}{dc}A(c)$. 
+Since the only dependence on $c$ is via the term $e^{A(c)x}$, this is not difficult. First, 
+
+Next, we look at the Frechet derivative of $e^{A(c)x} P^s(c)$. 
+
+
 
 \end{proof}
 \end{lemma}
