@@ -1277,7 +1277,7 @@ Similarly,
 \langle \Psi^c(0), P_i^+(0; \lambda) e^{-\nu(\lambda) X_i} c_i \rangle &= e^{-\nu(\lambda) X_i} c_i + \mathcal{O}((|\lambda| + e^{-2 \alpha X_m})|e^{-\nu(\lambda) X_i} c_i|)
 \end{align*}
 
-\item For the terms involving $a$, we plug in $A_4$ from Lemma \ref{Zinv2}.
+\item For the terms involving $a$, we use the expressions from Lemma \ref{Zinv2}.
 \begin{align*}
 \langle &\Psi^c(0), P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) a_{i-1}^- \rangle \\
 &= -\langle \Psi^c(0), P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) P_i^-(-X_{i-1}; \lambda)^{-1} P_0^s(\lambda) D_{i-1} d \rangle \\
@@ -1287,9 +1287,9 @@ Similarly,
 For the leading order term,
 \begin{align*}
 \langle \Psi^c(0), &\Theta_i^s(0, -X_{i-1}; \lambda) P_0^s(0) D_{i-1} d \rangle
-= \langle \Psi^c(0), \Theta^s(0, -X_{i-1}; 0) P_0^s(0) D_{i-1} d \rangle + \mathcal{O}(e^{-\alpha X_{i-1}}(|\lambda| + e^{-2 \alpha X_m})|d|) \\
-&= \langle \Psi^c(0), \Theta(0, -X_{i-1}; 0) P^s_-(-X_{i-1}) P_0^s(0) D_{i-1} d \rangle + \mathcal{O}(e^{-\alpha X_{i-1}}(|\lambda| + e^{-2 \alpha X_m})|d|) \\
-&= \langle \Psi^c(-X_{i-1}), P^s_-(-X_{i-1}) P_0^s(0) D_{i-1} d \rangle + \mathcal{O}(e^{-\alpha X_{i-1}}(|\lambda| + e^{-2 \alpha X_m})|d|)
+= \langle \Psi^c(0), \Theta^s(0, -X_{i-1}; 0) P_0^s(0) D_{i-1} d \rangle + \mathcal{O}(e^{-2\alpha X_{i-1}}(|\lambda| + e^{-2 \alpha X_m})|d|) \\
+&= \langle \Psi^c(0), \Theta(0, -X_{i-1}; 0) P^s_-(-X_{i-1}) P_0^s(0) D_{i-1} d \rangle + \mathcal{O}(e^{-2\alpha X_{i-1}}(|\lambda| + e^{-2 \alpha X_m})|d|) \\
+&= \langle \Psi^c(-X_{i-1}), P^s_-(-X_{i-1}) P_0^s(0) D_{i-1} d \rangle + \mathcal{O}(e^{-2\alpha X_{i-1}}(|\lambda| + e^{-2 \alpha X_m})|d|)
 \end{align*}
 Using the expression for $D_{i-1}d$ from Lemma \ref{stabestimates},
 \begin{align*}
@@ -1307,14 +1307,15 @@ and
 \begin{align*}
 P^s_-(-X_{i-1}) P_0^s(0) Q'(-X_{i-1})
 &= P^s_-(-X_{i-1}) Q'(-X_{i-1}) + \mathcal{O}(e^{-2 \alpha X_{i-1}}) \\
-&= \mathcal{O}(e^{-2 \alpha X_{i-1}}) \\
+&= Q'(-X_{i-1}) + \mathcal{O}(e^{-2 \alpha X_{i-1}}) \\
 \end{align*}
 Thus the leading order term is
 \begin{align*}
 \langle \Psi^c(0), &\Theta_i^s(0, -X_{i-1}; \lambda) P_0^s(0) D_{i-1} d \rangle \\
+&= \langle \Psi^c(-X_{i-1}), Q'(-X_{i-1}) + Q'(X_{i-1}) \rangle (d_i - d_{i-1} ) + \mathcal{O}(e^{-\alpha X_m}(|\lambda| + e^{-\alpha X_m})|d|) \\
 &= \langle \Psi^c(-X_{i-1}), Q'(X_{i-1}) \rangle (d_i - d_{i-1} ) + \mathcal{O}(e^{-\alpha X_m}(|\lambda| + e^{-\alpha X_m})|d|)
 \end{align*}
-For the higher order term, we use the bound for $A_4$ from Lemma \ref{Zinv2} to get
+since $\langle \Psi^c(-X_{i-1}), Q'(-X_{i-1}) \rangle = 0$. For the higher order term, we use the bound for $A_4$ from Lemma \ref{Zinv2} to get
 \begin{align*}
 \langle \Psi^c(0), &P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) A_4(\lambda)_{i-1}^-(c, d) \rangle \\
 &\leq C e^{-\alpha X_{i-1}} \Big(  
@@ -1515,49 +1516,63 @@ Finally, we compute the jump in the direction of $\Psi(0)$.
 % lemma : jump in decaying adjoint direction
 \begin{lemma}\label{jumpadj}
 The jumps in the direction of $\Psi(0)$ are given by
-\begin{align}\label{xi}
-\xi_i = \langle \Psi(X_i), Q'(-X_i) \rangle (d_{i+1} - d_i)
-+ \langle \Psi(-X_i), Q'(X_i) \rangle (d_i - d_{i-1})
-- \lambda_2 d_i M + R_i(\lambda)(c^-, d)
-\end{align}
-where $M$ is the higher order Melnikov integral
-\begin{equation}\label{M}
-M = \int_{-\infty}^\infty \langle \Psi(y), H(y) \rangle dy 
+\begin{equation}
+\begin{aligned}
+\xi_i = 
+\langle \Psi(X_i), Q'(-X_i) \rangle (d_{i+1} - d_i ) + \langle \Psi(-X_{i-1}), Q'(X_{i-1}) \rangle (d_i - d_{i-1} ) \\
++ M_\Psi \lambda( e^{-\nu(\lambda)X_i}c_i + e^{\nu(\lambda)X_{i-1}}c_{i-1})
+- \lambda_2 d_i M + R_i(\lambda)(c, d)
+\end{aligned}
 \end{equation}
-The remainder term $R(\lambda)(c^-, d)$ is analytic in $\lambda$, linear in $(c^-, d)$, and has bound
+$M$ is the higher order Melnikov integral
+\begin{equation}\label{M}
+M = \int_{-\infty}^\infty \langle \Psi(y), H(y) \rangle dy
+\end{equation}
+The remainder term $R(\lambda)(c^-, d)$ is analytic in $\lambda$, linear in $(c^-, d)$, and has piecewise bound
 \begin{align*}
-|R(\lambda)_i&(c^-, d)| \leq C \Big( (|\lambda| + e^{-\alpha X_m})(|\tilde{c}_{i-1}^+| + |\tilde{c}_{i}^-|) + e^{-(\alpha - \eta) X_m}(|\lambda| + e^{-\alpha X_m})^2(|\tilde{c}_{i-2}^+| + |\tilde{c}_{i+1}^-|) \\
-&+ (|\lambda| + e^{-\alpha X_m})^3 |d| \Big) \nonumber
+|R(\lambda)_i&(c_i^-, d)| \leq C \Big( (|\lambda| + e^{-\alpha X_m})^2(|e^{\nu(\lambda)X_{i-1}}c_{i-1}| + |e^{-\nu(\lambda)X_i}c_i|) \\
+&+ (|\lambda| + e^{-\alpha X_m})^2(e^{-(\alpha - \eta) X_{i-1}} |e^{\nu(\lambda)X_{i-2}}c_{i-2}| + e^{-(\alpha - \eta) X_i} |e^{-\nu(\lambda)X_{i+1}}c_{i+1}|) \\
+&+ (|\lambda| + e^{-\alpha X_m})^3 |d| \Big)
 \end{align*}
 We can write these conditions in matrix form as
 \begin{equation}
-C_2 K(\lambda) + K_2(\lambda) + (A - \lambda^2 M I + D_2)d = 0
+(\lambda M_\Psi \tilde{K}(\lambda) + C_2 K(\lambda) + K_2(\lambda))c + (A - \lambda^2 M I + D_2)d = 0
 \end{equation}
-where the matrix $K(\lambda)$ is defined in Lemma \ref{jumpcenteradj} and the matrix $A$ is given by
+The matrix $A$ is given by
 \begin{align*}
 A &= \begin{pmatrix}
--a_0 + \tilde{a}_1 & a_0 - \tilde{a}_1 \\
--\tilde{a}_0 + a_1 & \tilde{a}_0 - a_1
+-a_0 -a_1 & a_0 + a_1 \\
+-a_0 + a_1 & -a_0 - a_1
 \end{pmatrix} && n = 2 \\
 A &= \begin{pmatrix}
-\tilde{a}_{n-1} - a_0 & a_0 & & & \dots & -\tilde{a}_{n-1}\\
--\tilde{a}_0 & \tilde{a}_0 - a_1 &  a_1 \\
-& -\tilde{a}_1 & \tilde{a}_1 - a_2 &  a_2 \\
+-a_{n-1} - a_0 & a_0 & & & \dots & a_{n-1}\\
+a_0 & -a_0 - a_1 &  a_1 \\
+& a_1 & -a_1 - a_2 &  a_2 \\
 & & \vdots & & \vdots \\
-a_{n-1} & & & & -\tilde{a}_{n-2} & \tilde{a}_{n-2} - a_{n-1} \\
+a_{n-1} & & & & a_{n-2} & -a_{n-2} - a_{n-1} \\
 \end{pmatrix} && n > 2
 \end{align*}
 with
 \begin{align*}
 a_i &= \langle \Psi(X_i), Q'(-X_i) \rangle \\
-\tilde{a}_i &= \langle \Psi(-X_i), Q'(X_i) \rangle
+\end{align*}
+The matrix $K(\lambda)$ is defined in Lemma \ref{jumpcenteradj}. The matrix $\tilde{K}(\lambda)$ is given by
+\begin{align*}
+\tilde{K}(\lambda) =  
+\begin{pmatrix}
+e^{-\nu(\lambda)X_1} & & & & & e^{\nu(\lambda)X_0} \\
+e^{\nu(\lambda)X_1} & e^{-\nu(\lambda)X_2} \\
+& e^{\nu(\lambda)X_2} & e^{-\nu(\lambda)X_3} \\
+\vdots & & \vdots & &&  \vdots \\
+& & & & e^{\nu(\lambda)X_{n-1}} & e^{-\nu(\lambda)X_0} 
+\end{pmatrix}
 \end{align*}
 The remainder matrices have uniform bounds
 \begin{align*}
 C_2 &= \mathcal{O}(e^{-(\alpha - \eta) X_m}(|\lambda| + e^{-\alpha X_m})^2) \\
 D_2 &= \mathcal{O}((|\lambda| + e^{-\alpha X_m})^3)
 \end{align*}
-$K_2(\lambda)$ is a small perturbation of $K(\lambda)$. The specific forms of $K_2(\lambda)$ and $C_2$ are given in the proof.
+$K_2(\lambda)$ has the same form as $K(\lambda)$, but each term in $K(\lambda)$ has been multiplied by a factor of order $\mathcal{O}(|\lambda| + e^{-\alpha X_m})^2$. The specific forms of $K_2(\lambda)$ and $C_2$ are given in the proof.
 
 \begin{proof}
 Recall that the terms $P_i^\pm(0; \lambda) Z_i^\pm(0)$ are given by
@@ -1588,37 +1603,53 @@ As in Lemma \ref{jumpcenteradj}, we begin by computing the leading order terms.
 \end{align*}
 The ``positive'' piece is similar, and gives us the other half of the Melnikov integral.
 
-\item For the terms involving $a_i$, we plug in $A_4$ from Lemma \ref{Zinv2}.
+\item For the terms involving $a$, we use the expressions from Lemma \ref{Zinv2}. This is similar to what we did in Lemma \ref{jumpcenteradj}. For the term involving $a_{i-1}^-$, we have 
 \begin{align*}
 \langle &\Psi(0), P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) a_{i-1}^- \rangle \\
-&= \langle \Psi(0), P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) (- P_i^-(-X_{i-1}; \lambda)^{-1} P_0^s(\lambda) D_{i-1} d + A_4(\lambda)_{i-1}^-(c^-, d)) \rangle \\
-&= -\langle \Psi(0), \Theta^s(0, -X_{i-1}) P_0^s(0) D_{i-1} d \rangle + \mathcal{O}( |\lambda|e^{-2 \alpha X_m} + e^{-\alpha X_{i-1}} |A_4(\lambda)_{i-1}^-(c^-, d)|)\\
-&= -\langle \Theta^s(-X_{i-1}, 0)^* \Psi_i(0), P_0^s(0) D_{i-1} d \rangle + \mathcal{O}( |\lambda|e^{-2 \alpha X_m} + e^{-\alpha X_{i-1}} |A_4(\lambda)_{i-1}^-(c^-, d)|)\\
-&= -\langle \Psi(-X_{i-1}), P_0^s(0) D_{i-1} d \rangle + \mathcal{O}\Big(  
-e^{-2\alpha X_{i-1}} (|\lambda| + e^{-\alpha X_m})(|\tilde{c}_{i-2}^+| + |\tilde{c}_i^-|) + e^{-2\alpha X_{i-1}} |c_{i-1}^-| \\
-&+ e^{-2 \alpha X_m}(|\lambda|^2 + |D|)|d| \Big) \\
-&= -\langle \Psi(-X_{i-1}), P_0^s(0) D_{i-1} d \rangle 
-+ \mathcal{O}\Big(  
-e^{-2\alpha X_m} (|\lambda| + e^{-\alpha X_m})(|\tilde{c}_{i-2}^+| + |\tilde{c}_i^-|) + e^{-(2\alpha-\eta) X_m} |\tilde{c}_{i-1}^+| \\
-&+ e^{-2 \alpha X_m}(|\lambda|^2 + |D|)|d| \Big) \\
+&= -\langle \Psi(0), \Theta_i^s(0, -X_{i-1}; \lambda) P_0^s(0) D_{i-1} d \rangle + \langle \Psi(0), P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) A_4(\lambda)_{i-1}^-(c, d) \rangle
+\end{align*}
+For the leading order term, similar to Lemma \ref{jumpcenteradj}, we have
+\begin{align*}
+\langle \Psi(0), &\Theta_i^s(0, -X_{i-1}; \lambda) P_0^s(0) D_{i-1} d \rangle \\
+&= \langle \Psi(-X_{i-1}), P^s_-(-X_{i-1}) P_0^s(0) D_{i-1} d \rangle + \mathcal{O}(e^{-2 \alpha X_{i-1}}(|\lambda| + e^{-2 \alpha X_m})|d|)
+\end{align*}
+Substituting the expression for $D_{i-1}d$ from Lemma \ref{stabestimates} and proceeding as in Lemma \ref{jumpcenteradj}, the leading order term becomes
+\begin{align*}
+\langle \Psi(0), &\Theta_i^s(0, -X_{i-1}; \lambda) P_0^s(0) D_{i-1} d \rangle \\
+&= \langle \Psi(-X_{i-1}), Q'(-X_{i-1}) + Q'(X_{i-1}) \rangle (d_i - d_{i-1} ) + \mathcal{O}(e^{-2 \alpha X_m}(|\lambda| + e^{-\alpha X_m})|d|) \\
+&= \langle \Psi(-X_{i-1}), Q'(X_{i-1}) \rangle (d_i - d_{i-1} ) + \mathcal{O}(e^{-2 \alpha X_m}(|\lambda| + e^{-\alpha X_m})|d|)
+\end{align*}
+since $\langle \Psi(-X_{i-1}), Q'(-X_{i-1}) \rangle = 0$. For the higher order term, we use the bound for $A_4$ from Lemma \ref{Zinv2} to get
+\begin{align*}
+\langle \Psi(0), &P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) A_4(\lambda)_{i-1}^-(c, d) \rangle \\
+&\leq C e^{-\alpha X_{i-1}} \Big(  
+e^{-\alpha X_{i-1}} (|\lambda| + e^{-\alpha X_m})(|e^{\nu(\lambda)X_{i-2}} c_{i-2}| + |e^{-\nu(\lambda)X_i}c_i|) \\
+&+ e^{-(\alpha - \eta)X_{i-1}}|c_{i-1}| + e^{-\alpha X_m} |\lambda^2||d| + e^{-\alpha X_m}|D||d| \Big)
+\end{align*}
+Combining all of these, we have for the $a_{i-1}^-$ term,
+\begin{align*}
+\langle &\Psi(0), P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) a_{i-1}^- \rangle = -\langle \Psi(-X_{i-1}), Q'(X_{i-1}) \rangle (d_i - d_{i-1} ) \\
+&+ \mathcal{O}\Big(  
+e^{-2 \alpha X_{i-1}} (|\lambda| + e^{-\alpha X_m})(|e^{\nu(\lambda)X_{i-2}} c_{i-2}| + |e^{-\nu(\lambda)X_i}c_i|) + e^{-(2 \alpha - \eta)X_{i-1}}|c_{i-1}| \\
+&+ (|\lambda| + e^{-\alpha X_m})^3 |d| )
 \end{align*}
 Similarly, for the $a_i^+$ term, we have
 \begin{align*}
-\langle &\Psi(0), P_i^+(0; \lambda) \Phi^u(0, X_i; \lambda) a_i^+ \rangle \\
-&= \langle \Psi(X_i), P_0^u(0) D_i d \rangle + \mathcal{O}\Big( e^{-2 \alpha X_m} (|\lambda| + e^{-\alpha X_m})(|\tilde{c}_{i-1}^+| + |\tilde{c}_{i+1}^-|) \\
-&+ e^{-(2 \alpha - \eta) X_m} |\tilde{c}_i^-| + e^{-2 \alpha X_m}(|\lambda|^2 + |D|)|d| \Big)
+\langle &\Psi(0), P_i^+(0; \lambda) \Phi^u(0, X_i; \lambda) a_i^+ \rangle = \langle \Psi(X_i), Q'(-X_i) \rangle (d_{i+1} - d_i ) \\
+&+ \mathcal{O}\Big(  
+e^{-2 \alpha X_i} (|\lambda| + e^{-\alpha X_m})(|e^{\nu(\lambda)X_{i-1}} c_{i-1}| + |e^{-\nu(\lambda)X_{i+1}}c_{i+1}|) + e^{-(2 \alpha - \eta)X_i}|c_i| \\
+&+ e^{-\alpha X_m} 
+(|\lambda| + e^{-\alpha X_m})^3 |d| )
 \end{align*}
-
 \end{enumerate}
 
 The remaining terms will be higher order. Doing these in turn, we have
-
 \begin{enumerate}
 \item For the terms involving $b$, we first note that by Lemma \ref{PsiIP}, the terms $P^-(0) b_i^-$ and $P^+(0)b_i^+$ will vanish when we take the inner product with $\Psi(0)$. For the remaining terms, we substitute the estimate for $B_1$ from Lemma \ref{Zinv2}.
 \begin{align*}
 &|\langle \Psi(0), (P_i^-(0; \lambda) - P^-(0))b_i^- + P_i^-(0; \lambda)(P_0^u(\lambda) - P_0^u(0))b_i^-| \\
 &\leq C (|\lambda| + e^{-\alpha X_m})\Big( 
-(|\lambda| + e^{-\alpha X_m})( |\tilde{c}_{i-1}^+| + |\tilde{c}_i^-|)+ (|\lambda| + e^{-\alpha X_m})^2|d| \Big)
+(|\lambda| + e^{-\alpha X_m})( |e^{\nu(\lambda)X_{i-1}} c_{i-1}| + |e^{-\nu(\lambda)X_i} c_i|)+ (|\lambda| + e^{-\alpha X_m})^2|d| \Big)
 \end{align*}
 
 \item For the terms involving $c$, we use Lemmas \ref{Vpmlambdalemma} and \ref{Ecconj} to get
@@ -1626,9 +1657,7 @@ The remaining terms will be higher order. Doing these in turn, we have
 \langle \Psi(0), P_i^-(0; \lambda) e^{\nu(\lambda) X_{i-1}} c_{i-1} \rangle &= \langle \Psi^c(0), V^-(0; \lambda) e^{\nu(\lambda) X_{i-1}} c_{i-1} \rangle + \mathcal{O}(e^{-2 \alpha X_m}|e^{\nu(\lambda) X_{i-1}} c_{i-1}|) \\
 &= -M_\phi \lambda e^{\nu(\lambda) X_{i-1}} c_{i-1} + \mathcal{O}((|\lambda|^2 + e^{-2 \alpha X_m})|e^{\nu(\lambda) X_{i-1}} c_{i-1}|)
 \end{align*}
-
 Similarly,
-
 \begin{align*}
 \langle \Psi(0), P_i^+(0; \lambda) e^{-\nu(\lambda) X_i} c_i \rangle 
 &= M_\phi \lambda e^{-\nu(\lambda) X_i} c_{i-1} + \mathcal{O}((|\lambda|^2 + e^{-2 \alpha X_m})|e^{-\nu(\lambda) X_i} c_i|)
@@ -1643,76 +1672,52 @@ Similarly,
 &= \mathcal{O}(|\lambda| + e^{-\alpha X_m})
 \end{align*}
 where the integral vanishes by Lemma \ref{PsiIP} since $\Phi^c(0, y; 0) P^-(y)^{-1} \tilde{H}_i^-(y) \in E^c(0)$.
+
+\item For the term involving $\tilde{c}$, we first use Lemmas \ref{Vpmlambdalemma} and \ref{Ecconj} to get
+\begin{align*}
+\langle \Psi(0), P_i^+(0; \lambda) e^{-\nu(\lambda) X_i}\tilde{c}_i \rangle \mathcal{O}((|\lambda| + e^{-2 \alpha X_m})|e^{-\nu(\lambda) X_i}\tilde{c}_i|)
+\end{align*}
+We obtained a bound for $|e^{-\nu(\lambda) X_i}\tilde{c}_i|$ in the previous lemma. Using that here, we have
+\begin{align*}
+|\langle &\Psi(0), P_i^+(0; \lambda) e^{-\nu(\lambda) X_i}\tilde{c}_i \rangle| \leq C (|\lambda| + e^{-2 \alpha X_m})\Big( e^{-(\alpha - 2\eta)X_i}|c_i| \\
+&+ e^{-(\alpha-\eta) X_i} (|\lambda| + e^{-\alpha X_m})(|e^{\nu(\lambda)X_{i-1}} c_{i-1}| + |e^{-\nu(\lambda)X_{i+1}}c_{i+1}|) + (e^{-\alpha X_m} + |\lambda|)^2|d|  \Big)
+\end{align*}
+
 \end{enumerate}
 
 Putting this all together, we have the jump expressions
 \begin{align*}
-\xi_i = \langle \Psi(X_i), P_0^u(0) D_i d \rangle
-+ \langle \Psi(-X_{i-1}), P_0^s(0) D_{i-1} d \rangle 
-- \lambda_2 d_i M + R_i(\lambda)(c, \tilde{c}, d)
+\xi_i = \langle \Psi(X_i), Q'(-X_i) \rangle (d_{i+1} - d_i ) + \langle \Psi(-X_{i-1}), Q'(X_{i-1}) \rangle (d_i - d_{i-1} ) \\
++ M_\Psi \lambda( e^{-\nu(\lambda)X_i}c_i + e^{\nu(\lambda)X_{i-1}}c_{i-1})
+- \lambda_2 d_i M + R_i(\lambda)(c, d)
 \end{align*}
 where $M$ is the higher order Melnikov integral
 \[
-M = \int_{-\infty}^\infty \langle \Psi(y), H(y) \rangle dy 
+M = \int_{-\infty}^\infty \langle \Psi(y), H(y) \rangle dy
 \]
 and the remainder term has piecewise bound
 \begin{align*}
-|R(\lambda)_i&(c_i^-, d)| \leq C \Big( (|\lambda| + e^{-\alpha X_m})(|\tilde{c}_{i-1}^+| + |\tilde{c}_{i}^-|) + e^{-(\alpha - \eta) X_m}(|\lambda| + e^{-\alpha X_m})^2(|\tilde{c}_{i-2}^+| + |\tilde{c}_{i+1}^-|) \\
+|R(\lambda)_i&(c_i^-, d)| \leq C \Big( (|\lambda| + e^{-\alpha X_m})^2(|e^{\nu(\lambda)X_{i-1}}c_{i-1}| + |e^{-\nu(\lambda)X_i}c_i|) \\
+&+ (|\lambda| + e^{-\alpha X_m})^2(e^{-(\alpha - \eta) X_{i-1}} |e^{\nu(\lambda)X_{i-2}}c_{i-2}| + e^{-(\alpha - \eta) X_i} |e^{-\nu(\lambda)X_{i+1}}c_{i+1}|) \\
 &+ (|\lambda| + e^{-\alpha X_m})^3 |d| \Big)
 \end{align*}
 
-Before we write this in matrix form, we substitute the expression from Lemma \ref{stabestimates} $D_i d$ to get
-\begin{align*}
-\langle \Psi(X_i), P_0^u(0) D_i d \rangle
-&= \langle \Psi(X_i), P_0^u(0) (Q'(X_i) + Q'(-X_i)) \rangle (d_{i+1} - d_i)
-+\mathcal{O}(e^{-2 \alpha X_i}(|\lambda| + e^{-\alpha X_i})) \\
-&= \langle \Psi(X_i), Q'(X_i) + Q'(-X_i) \rangle (d_{i+1} - d_i)
-+\mathcal{O}(e^{-2 \alpha X_i}(|\lambda| + e^{-\alpha X_i})) \\
-&= \langle \Psi(X_i), Q'(-X_i) \rangle (d_{i+1} - d_i)
-+\mathcal{O}(e^{-2 \alpha X_i}(|\lambda| + e^{-\alpha X_i})) 
-\end{align*}
-since $\langle \Psi(X_i), Q'(X_i) \rangle = 0$. Similarly, 
-\begin{align*}
-\langle \Psi(-X_i), P_0^s(0) D_i d \rangle
-&= \langle \Psi(-X_i), Q'(X_i) \rangle (d_i - d_{i-1})
-+\mathcal{O}(e^{-2 \alpha X_i}(|\lambda| + e^{-\alpha X_i})) 
-\end{align*}
-Since these higher order terms are already included the remainder term $R(\lambda)_i(c_i^-, d)$, the final jump expression is
-\begin{align*}
-\xi_i = \langle \Psi(X_i), Q'(-X_i) \rangle (d_{i+1} - d_i)
-+ \langle \Psi(-X_i), Q'(X_i) \rangle (d_i - d_{i-1})
-- \lambda_2 d_i M + R_i(\lambda)(c^-, d)
-\end{align*}
-where $R_i(\lambda)(c^-, d)$ has the same remainder bound as above.
-
-As in Lemma \ref{jumpcenteradj}, we will write these jump expressions in matrix form. The remainder terms involving the $\tilde{c}$ terms work out exactly the same as in Lemma \ref{jumpcenteradj}, except the remainder coefficients are different and we do not have the $\tilde{c}$ terms by themselves. Thus, in matrix form, the jump expressions in the direction of $\Psi(0)$ are
+As in Lemma \ref{jumpcenteradj}, we will write these jump expressions in matrix form. The terms involving the $c$ terms work out similarly to those in Lemma \ref{jumpcenteradj}. They are given by
 \[
-C_2 K(\lambda) + K_2(\lambda) + (A - \lambda^2 M I + D_2)d = 0
+(\lambda M_\Psi \tilde{K}(\lambda) + C_2 K(\lambda) + K_2(\lambda))c
 \]
-The matrix $A$ is given by
+$K(\lambda)$ is the same matrix as in Lemma \ref{jumpcenteradj}. $\tilde{K}(\lambda)$ is the same matrix as $K(\lambda)$, except all terms are positive.
 \begin{align*}
-A &= \begin{pmatrix}
--a_0 + \tilde{a}_1 & a_0 - \tilde{a}_1 \\
--\tilde{a}_0 + a_1 & \tilde{a}_0 - a_1
-\end{pmatrix} && n = 2 \\
-A &= \begin{pmatrix}
-\tilde{a}_{n-1} - a_0 & a_0 & & & \dots & -\tilde{a}_{n-1}\\
--\tilde{a}_0 & \tilde{a}_0 - a_1 &  a_1 \\
-& -\tilde{a}_1 & \tilde{a}_1 - a_2 &  a_2 \\
-& & \vdots & & \vdots \\
-a_{n-1} & & & & -\tilde{a}_{n-2} & \tilde{a}_{n-2} - a_{n-1} \\
-\end{pmatrix} && n > 2
+\tilde{K}(\lambda) =  
+\begin{pmatrix}
+e^{-\nu(\lambda)X_1} & & & & & e^{\nu(\lambda)X_0} \\
+e^{\nu(\lambda)X_1} & e^{-\nu(\lambda)X_2} \\
+& e^{\nu(\lambda)X_2} & e^{-\nu(\lambda)X_3} \\
+\vdots & & \vdots & &&  \vdots \\
+& & & & e^{\nu(\lambda)X_{n-1}} & e^{-\nu(\lambda)X_0} 
+\end{pmatrix}
 \end{align*}
-where
-\begin{align*}
-a_i &= \langle \Psi(X_i), Q'(-X_i) \rangle \\
-\tilde{a}_i &= \langle \Psi(-X_i), Q'(X_i) \rangle
-\end{align*}
-$M$ is the higher order Melnikov integral
-\[
-M = \int_{-\infty}^\infty \langle \Psi(y), H(y) \rangle dy
-\]
-$K_2(\lambda)$ is the following ``$\tilde{\gamma}-$perturbation'' of $K(\lambda)$ 
+$K_2(\lambda)$ is the ``$\tilde{\gamma}-$perturbation'' of $K(\lambda)$ given by
 \begin{align*}
 K_2(\lambda) =  
 \begin{pmatrix}
@@ -1725,7 +1730,7 @@ e^{\nu(\lambda)X_1}\tilde{\gamma}_{2,1} & e^{-\nu(\lambda)X_2}\tilde{\gamma}_{2,
 \end{align*}
 where 
 \begin{align*}
-\tilde{\gamma}_{i,i-1}, \tilde{\gamma}_{i,i} &= \mathcal{O}(|\lambda| + e^{-\alpha X_m}) \\
+\tilde{\gamma}_{i,i-1}, \tilde{\gamma}_{i,i} &= \mathcal{O}(|\lambda| + e^{-\alpha X_m})^2
 \end{align*}
 $C_2$ is the periodic, banded matrix
 \begin{align*}
@@ -1742,9 +1747,46 @@ where
 \begin{align*}
 \tilde{\gamma}_{i,i-2}, \tilde{\gamma}_{i,i+1} &= \mathcal{O}(e^{-(\alpha - \eta) X_m}(|\lambda| + e^{-\alpha X_m})^2) 
 \end{align*}
-For the matrices $C_2$ and $D_2$, we have uniform bounds
+The matrix $C_2$ has uniform bound
 \begin{align*}
-C_2 &= \mathcal{O}(e^{-(\alpha - \eta) X_m}(|\lambda| + e^{-\alpha X_m})^2) \\
+C_2 &= \mathcal{O}(e^{-(\alpha - \eta) X_m}(|\lambda| + e^{-\alpha X_m})^2)
+\end{align*}
+
+For the terms involving $d$, let
+\[
+a_i = \langle \Psi(X_i), Q'(-X_i) \rangle 
+\]
+By reversibility, $Q(-x) = R Q(x)$ implies $Q'(-x) = -R Q'(x)$. From Lemma \ref{varadjsolutions}, $\Psi(x) = R \Psi(-x)$. Thus, since $R^2 = I$ and $R$ is self-adjoint, we have as in Lemma \ref{jumpcenteradj},
+\begin{align*}
+\langle \Psi(-X_i), Q'(X_i) \rangle &= \langle \Psi(-X_i), R^2 Q'(X_i) \rangle \\
+&= -\langle R \Psi(-X_i), Q'(-X_i) \rangle \\
+&= -\langle \Psi(X_i), Q'(-X_i) \rangle \\
+&= -a_i
+\end{align*}
+Thus the terms involving $d$ are given in matrix form by
+\[
+(A - \lambda^2 M I + D_2)d
+\]
+The matrix $A$ is given by
+\begin{align*}
+A &= \begin{pmatrix}
+-a_0 -a_1 & a_0 + a_1 \\
+-a_0 + a_1 & -a_0 - a_1
+\end{pmatrix} && n = 2 \\
+A &= \begin{pmatrix}
+-a_{n-1} - a_0 & a_0 & & & \dots & a_{n-1}\\
+a_0 & -a_0 - a_1 &  a_1 \\
+& a_1 & -a_1 - a_2 &  a_2 \\
+& & \vdots & & \vdots \\
+a_{n-1} & & & & a_{n-2} & -a_{n-2} - a_{n-1} \\
+\end{pmatrix} && n > 2
+\end{align*}
+$M$ is the higher order Melnikov integral
+\[
+M = \int_{-\infty}^\infty \langle \Psi(y), H(y) \rangle dy
+\]
+The remainder terms involving $D$ are collected into the matrix $D_2$, which has uniform bound
+\begin{align*}
 D_2 &= \mathcal{O}((|\lambda| + e^{-\alpha X_m})^3)
 \end{align*}
 \end{proof}
@@ -1752,15 +1794,7 @@ D_2 &= \mathcal{O}((|\lambda| + e^{-\alpha X_m})^3)
 
 \subsection{Proof of Theorem \ref{blockmatrixtheorem}}
 
-Theorem \ref{blockmatrixtheorem} combines the jump matrix formulas from Lemma \ref{jumpcenteradj} and Lemma \ref{jumpadj} into a single block matrix. The only thing which is different in Theorem \ref{blockmatrixtheorem} is the form of the matrix $A$.
-
-By reversibility, $Q(-x) = R Q(x)$ implies $Q'(-x) = -R Q'(x)$. From Lemma \ref{varadjsolutions}, $\Psi(x) = R \Psi(-x)$. Thus, since $R^2 = I$ and $R$ is self-adjoint,
-\begin{align*}
-\langle \Psi(-X_i), Q'(X_i) \rangle &= \langle \Psi(-X_i), R^2 Q'(X_i) \rangle \\
-&= -\langle R \Psi(-X_i), Q'(-X_i) \rangle \\
-&= -\langle \Psi(X_i), Q'(-X_i) \rangle
-\end{align*}
-Thus $\tilde{a}_i = -a_i$ in the matrix $A$ in Lemma \ref{jumpadj}, which gives us the matrix $A$ in Theorem \ref{blockmatrixtheorem} 
+Theorem \ref{blockmatrixtheorem} combines the jump matrix formulas from Lemma \ref{jumpcenteradj} and Lemma \ref{jumpadj} into a single block matrix. 
 
 \section{Proof of eigenvalue location theorems}
 
