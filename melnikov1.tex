@@ -9,7 +9,7 @@ W'(x) = -A(Q(x); \lambda)^* W(x) \label{Weqlambda}
 \end{align}\
 where $Q(x)$ is the primary pulse solution and $A(Q(x), \lambda) = A(Q(x)) + \lambda B$. When $\lambda = 0$, these are the variational and adjoint variational equations.
 
-Recall that $A(0; \lambda)$ has a small eigenvalue $\nu(\lambda)$. Let $V_0(\lambda)$ and $W_0(\lambda)$ be the eigenvectors of $A(0)$ and $-A(0)^*$ corresponding to $\nu(\lambda)$. 
+Recall that $A(0; \lambda)$ has a small eigenvalue $\nu(\lambda)$. Let $V_0(\lambda)$ and $W_0(\lambda)$ be the eigenvectors of $A(0)$ and $-A(0)^*$ corresponding to $\nu(\lambda)$. For convenience, we let $V_0 = V_0(0)$ and $W_0 = W_0(0)$.
 
 In Lemma \ref{varsolutions}, we showed that when $\lambda = 0$, \eqref{Veqlambda} has a bounded solution $V^c(x)$ with
 \[
@@ -25,7 +25,45 @@ Using the Gap Lemma, we can find solutions $V^\pm(x; \lambda)$ to \eqref{Veqlamb
 V^\pm(x; \lambda) &= V_0(\lambda)e^{\nu(\lambda)x} + \tilde{V}^\pm(x; \lambda) \\
 W^\pm(x; \lambda) &= W_0(\lambda)e^{\nu(\lambda)x} + \tilde{W}^\pm(x; \lambda)
 \end{align*}
-where $\tilde{V}^\pm(x; \lambda), \tilde{W}^\pm(x; \lambda) = \mathcal{O}(e^{-\tilde{\alpha}|x|})$. Furthermore, these solutions are analytic in $\lambda$. For $\lambda$ small, $V^\pm(x; \lambda)$ is a small perturbation of $V^c(x)$, thus we write 
+where $\tilde{V}^\pm(x; \lambda), \tilde{W}^\pm(x; \lambda) = \mathcal{O}(e^{-\tilde{\alpha}|x|})$. These solutions are analytic in $\lambda$. They are also not unique.
+
+We would like to characterize these solutions. Let
+\[
+V^\pm(x; \lambda) = e^{\nu(\lambda)x}\tilde{V}^\pm(x; \lambda)
+\]
+Differentiating this and using the fact that $V^\pm(x; \lambda)$ solves \eqref{Veqlambda}, we have
+\begin{align*}
+\nu(\lambda) e^{\nu(\lambda)x}\tilde{V}^\pm(x; \lambda) 
++ e^{\nu(\lambda)x}[\tilde{V}^\pm(x; \lambda)]'
+&= A(Q(x); \lambda) (e^{\nu(\lambda)x}\tilde{V}^\pm(x; \lambda))
+\end{align*}
+Dividing by $e^{\nu(\lambda)x}$ and rearranging, we get the following ODE for $\tilde{V}^\pm(x; \lambda)$.
+\begin{align*}
+[\tilde{V}^\pm(x; \lambda)]'
+&= (A(Q(x); \lambda) - \nu(\lambda)I)\tilde{V}^\pm(x; \lambda)
+\end{align*}
+which, for convenience, we will write as
+\begin{align*}
+[\tilde{V}^\pm(x; \lambda)]'
+&= \tilde{A}(Q(x); \lambda)\tilde{V}^\pm(x; \lambda)
+\end{align*}
+where $\tilde{A}(Q(x); \lambda) = A(Q(x); \lambda) - \nu(\lambda)I)$. We note that $\mu$ is an eigenvalue of the asympotitic matrix $A(0; \lambda)$ if and only if $\mu - \nu(\lambda)$ is an eigenvalue of $\tilde{A}(0; \lambda)$, i.e. all eigenvalues are shifted by $\nu(\lambda)$. Thus the asymptotic matrix $\tilde{A}(0; \lambda)$ has a simple eigenvalue at 0, and all other eigenvalues $\mu$ satisfy
+\[
+|\text{Re }\mu| \geq \alpha_0 - |\nu(\lambda)| \geq \alpha_0 - \rho = \alpha
+\]
+$\tilde{V}^\pm(x; \lambda)$ is still analytic in $\lambda$, and $\tilde{V}^\pm(x; 0) = V^c(x)$, so we can take 
+\[
+\tilde{V}^\pm(x; \lambda) = V^c(x) + \lambda V_1^\pm(x; \lambda)
+\]
+Next, we plug this into the equation for $\tilde{V}^\pm(x; \lambda)$ to get an equation for $V_1(x; \lambda)$.
+\begin{align*}
+[V^c(x)]' + \lambda [V_1^\pm(x; \lambda)]'
+&= \tilde{A}(Q(x); \lambda)(V^c(x) + \lambda V_1^\pm(x; \lambda)) \\
+&= (A(Q(x)) + \lambda B - \nu(\lambda)I)V^c(x) + \lambda \tilde{A}(Q(x); \lambda) V_1^\pm(x; \lambda) \\
+
+\end{align*}
+
+For $\lambda$ small, $V^\pm(x; \lambda)$ is a small perturbation of $V^c(x)$, thus we write 
 \[
 V^\pm(x; \lambda) = V^c(x) + V_1^\pm(x; \lambda)
 \]
