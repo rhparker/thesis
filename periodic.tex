@@ -575,8 +575,8 @@ We can now state the main theorem of the section, which gives us a condition for
 Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and \ref{H0transversehyp}. Let $q_{np}(x)$ be a periodic $n-$pulse solution constructed according to Theorem \ref{perexist} with lengths $X_0, \dots, X_{n-1}$. Then there exists $\delta \leq \delta_0$ with the following property: there exists a bounded, nonzero solution $V$ of \eqref{PDEeig} for $|\lambda| < \delta$ if and only if the block matrix equation
 \begin{equation}\label{blockeq}
 \begin{pmatrix}
-K(\lambda) + C_1 K(\lambda) + K_1(\lambda) & D_1 \\
-C_2 K(\lambda) + K_2(\lambda) & A - \lambda^2 MI + D_2
+K(\lambda) + C_1 K(\lambda) + K_1(\lambda) & \tilde{A} + D_1 \\
+\lambda M_\Psi \tilde{K}(\lambda) + C_2 K(\lambda) + K_2(\lambda) & A - \lambda^2 MI + D_2
 \end{pmatrix}
 \begin{pmatrix} c \\ d \end{pmatrix} = 0
 \end{equation}
@@ -594,7 +594,7 @@ e^{-\nu(\lambda)X_1} & & & & & -e^{\nu(\lambda)X_0} \\
 & & & & -e^{\nu(\lambda)X_{n-1}} & e^{-\nu(\lambda)X_0} 
 \end{pmatrix}
 \end{equation}
-where $\nu(\lambda)$ is defined in Lemma \ref{nulambdalemma}.
+where $\nu(\lambda)$ is defined in Lemma \ref{nulambdalemma}. $\tilde{K}(\lambda)$ is the same matrix with all terms positive.
 
 \item $A$ is the symmetric matrix
 \begin{align}\label{Asymm}
@@ -612,13 +612,19 @@ a_{n-1} & & & & a_{n-2} & -a_{n-2} - a_{n-1} \\
 \end{align}
 where
 \begin{align*}
-a_i &= \langle \Psi(X_i), Q'(-X_i) \rangle \\
+a_i &= \langle \Psi(X_i), Q'(-X_i) \rangle
 \end{align*}
+$\tilde{A}$ is the same matrix with entries
+\begin{align*}
+\tilde{a}_i &= \langle \Psi^c(X_i), Q'(-X_i) \rangle
+\end{align*}
+and $||\tilde{A}|| = \mathcal{O}(e^{-\alpha X_m})$.
 
 \item $M$ is the higher order Melnikov integral
 \begin{align*}
 M &= \int_{-\infty}^\infty \Psi(y) t(y) dy \\
 \end{align*}
+$M_\Psi$ WILL BE DEFINED ONCE WE FIGURE OUT WHAT IT IS.
 
 \item The remainder terms are analytic in $\lambda$ and have uniform bounds
 \begin{align*}
@@ -629,7 +635,7 @@ D_2 &= \mathcal{O}((|\lambda| + e^{-\alpha X_m})^3)
 \end{align*}
 where $\eta < \alpha_0/4$, $\alpha = \alpha_0 - \eta$, and $X_m = \min\{X_0, \dots, X_{n-1}\}$.
 
-\item $K_1(\lambda)$ and $K_2(\lambda)$ are matrices where the nonzero terms of $K(\lambda)$ are multiplied by $\mathcal{O}(|\lambda| + e^{-\alpha X_m})$. These are defined precisely in the proof of Lemmas \ref{jumpcenteradj} and \ref{jumpadj}
+\item $K_1(\lambda)$ and $K_2(\lambda)$ are matrices where the nonzero terms of $K(\lambda)$ are multiplied by $\mathcal{O}(|\lambda| + e^{-\alpha X_m})$ and $\mathcal{O}(|\lambda| + e^{-\alpha X_m})^2$ (respectively). These are defined precisely in the proofs of Lemmas \ref{jumpcenteradj} and \ref{jumpadj}
 
 \end{enumerate}
 \end{theorem}
