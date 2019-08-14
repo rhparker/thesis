@@ -1,0 +1,153 @@
+\documentclass[thesis.tex]{subfiles}
+
+\begin{document}
+
+\section{The Search for the Krein Bubble}
+
+For the 2-pulse, the block matrix $B$ takes the form
+
+\[
+B \approx \begin{pmatrix}
+\begin{pmatrix}
+e^{-\nu(\lambda)X_1} & -e^{\nu(\lambda)X_0} \\
+-e^{\nu(\lambda)X_1} & e^{-\nu(\lambda)X_0} 
+\end{pmatrix} &
+\begin{pmatrix}
+d_1 & d_2 \\ d_3 & d_4
+\end{pmatrix} \\
+M_\Psi \lambda
+\begin{pmatrix}
+e^{-\nu(\lambda)X_1} & e^{\nu(\lambda)X_0} \\
+e^{\nu(\lambda)X_1} & e^{-\nu(\lambda)X_0} 
+\end{pmatrix} &
+\begin{pmatrix}
+-a - \lambda^2 M & a \\
+a & -a - \lambda^2 M
+\end{pmatrix}
+\end{pmatrix}
+\]
+where $M$, $M_\Psi$ are constants and
+\[
+a = \langle \Psi(X_0), Q'(-X_0) \rangle
++ \langle \Psi(X_1), Q'(-X_1) \rangle \approx \mathcal{O}(e^{-2\alpha X_0})
+\]
+since $X_1 >> X_0$. For now, take the upper right block to be to leading order
+\[
+\begin{pmatrix}
+-d & d \\ d & -d
+\end{pmatrix} 
+\] 
+which is plausible by symmetry. Using Mathematica to take the determinant, we have
+\begin{align*}
+\det B &\approx -2 \lambda^2 M \left[ (2a + \lambda^2 M) \sinh(\nu(\lambda)X) + 2 d M_\Psi \lambda 
+(\cosh(\nu(\lambda)X) - \cosh(\nu(\lambda)(X_1 - X_0))
+\right] \\
+&\approx -2 \lambda^2 M \left[ (2a + \lambda^2 M) \sinh(\nu(\lambda)X) + 2 d M_\Psi \lambda 
+(\cosh(\nu(\lambda)X) - \cosh(\nu(\lambda)(X - 2 X_0))
+\right]
+\end{align*}
+where $X = X_0 + X_1$. Now we approximate the various terms. Krein bubbles occur (numerically) when interaction eigenvalues and essential spectrum eigenvalues collide. The essential spectrum eigenvalues occur at approximately 
+\[
+\lambda = c \frac{n \pi i}{X}
+\]
+for integer $n$. With this as motivation, we first take the scaling $\lambda = c \mu / X$. Then we have (from what we have already shown)
+\begin{align*}
+\nu(\lambda) &= \frac{1}{c} \lambda + \mathcal{O}(|\lambda|^3) 
+\\
+&= \frac{\mu}{X} + \mathcal{O}(\mu^3 / X^3)
+\end{align*}
+Next, we want $\mu$ to be a small perturbation of $n \pi i$, so take 
+\[
+\mu = n \pi i + h
+\]
+Substituting this into various things, we get
+\begin{align*}
+\sinh(\nu(\lambda)X) &= \sinh(n \pi i + h + \mathcal{O}(\mu^2 / X^3)) = (-1)^n h + \mathcal{O}(h^3 + \mu^2 / X^3) \\
+\cosh(\nu(\lambda)X) &= 1 + \mathcal{O}(h^2 + \mu^4 / X^6)
+\end{align*}
+and
+\begin{align*}
+\cosh( \nu(\lambda)(X - 2 X_0))
+&= \cosh( \nu(\lambda)X) \cosh(2 \nu(\lambda)X_0) 
+- \sinh( \nu(\lambda)X) \sinh(2 \nu(\lambda)X_0) 
+\end{align*}
+which we are going to neglect for now since $\nu(\lambda)$ is small and $X_0$ is also relatively small. Substituting these in and neglecting higher order terms, we have
+\begin{align*}
+\det B &\approx -2 \frac{\mu^2}{X^2} M \left[ \left(2a + \frac{\mu^2}{X^2} M\right)(-1)^n h - 2 d M_\Psi \frac{\mu}{X} \right] 
+\end{align*}
+We want to solve
+\[
+\left(2a + \frac{\mu^2}{X^2} M\right)(-1)^n h - 2 d M_\Psi \frac{\mu}{X} = 0
+\]
+Multiplying by $X^2/M$, this becomes
+\[
+\left(\frac{2aX^2}{M} + \mu^2 \right)(-1)^n h - \frac{2 d M_\Psi X \mu}{M} = 0
+\]
+For convenience, take
+\[
+b = \sqrt{-\frac{2a}{M}}X 
+\]
+which must be pure imaginary for this matter. Then this simplifies to
+\[
+(\mu + b)(\mu - b)(-1)^n h - \frac{2 d M_\Psi X \mu}{M} = 0
+\]
+The Krein bubble only occurs when the interaction eigenvalues are close to the essential spectrum eigenvalues. For this to occur, we need either $b$ or $-b$ to be close to $n \pi i$ small or $\mu + b$ small. By symmetry, it does not matter which one we take, so let
+\[
+n \pi i - b = 2 k
+\]
+from which it follows that
+\begin{align*}
+\mu &= n \pi i + h = 2 k + h + b \\
+\mu - b &= 2 k + h \\
+\mu + b &= 2 k + h + 2b
+\end{align*}
+Substituting this in, we have
+\[
+(2k + h + 2b)(2k + h)(-1)^n h - \frac{2 d M_\Psi X}{M}(k + h + b) = 0
+\]
+Since $h$ and $k$ are small compared to $b$, this is approximately
+\[
+2b (2 k + h)(-1)^n h - \frac{2 d M_\Psi X}{M}b = 0
+\]
+which simplies to
+\[
+h^2 + 2kh - (-1)^n R = 0
+\]
+where
+\[
+R = \frac{d M_\Psi X}{M}
+\]
+which has solution
+\[
+h = -k \pm \sqrt{k^2 + (-1)^n R}
+\]
+For now, assume that this looks like
+\[
+h = -k \pm \sqrt{k^2 - R}
+\]
+Then for $|k| \leq \sqrt{R}$, we get
+\[
+h = -k \pm i \sqrt{R - k^2}
+\]
+So $h$ lies on a circle of radius $\sqrt{R}$ centered around the origin in the complex plane. Undoing the scaling, the radius of the Krein bubble has order
+\[
+\frac{\sqrt{R}}{X} = \frac{\sqrt{d}}{\sqrt{X}}
+\] 
+Numerics confirms the scaling in $X$. Ideally, we would like numerics to suggest a scaling in $X_0$, likely some power of $e^{-\alpha X_0}$, but this has produced equivocal results so far.
+
+\section{Evaluating some Inner Products}
+
+These inner products show up in the jump expressions and (likely) are key terms in the block matrix. Recall that the $\Phi^{s/u/c}(x, y; \lambda)$ are the evolution operators of the conjugated system, and $\Theta_i^{s/u/c}(x, y; \lambda)$ are the evolution operators of the original system.
+
+First, we look at a term from the jump in the decaying adjoint direction.
+
+\begin{align*}
+\langle &\Psi(0), P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) P_i^-(-X_{i-1}; \lambda)^{-1} P_0^s(\lambda) Q'(X_{i-1})\rangle \\
+&= \langle \Psi(0), \Theta_-^s(0, -X_{i-1}; \lambda) P_0^s(\lambda) Q'(X_{i-1})\rangle \\
+&= \langle \Psi(0), \Theta_-^s(0, -X_{i-1}; 0) P_0^s(0) Q'(X_{i-1})\rangle + \mathcal{O}(e^{-2\alpha X_{i-1}}(|\lambda| + e^{-\alpha X_m})) \\
+&= \langle \Psi(0), \Theta_-^s(0, -X_{i-1}; 0) P^s_+(X_{i-1}) Q'(X_{i-1})\rangle + \mathcal{O}(e^{-2\alpha X_{i-1}}(|\lambda| + e^{-\alpha X_m})) \\
+&= \langle \Psi(0), \Theta(0, -X_{i-1}; 0) P^s_-(-X_{i-1}) P^s_+(X_{i-1}) Q'(X_{i-1})\rangle + \mathcal{O}(e^{-2\alpha X_{i-1}}(|\lambda| + e^{-\alpha X_m}))
+\end{align*}
+
+
+\end{document}

@@ -1,0 +1,92 @@
+\documentclass[thesis.tex]{subfiles}
+
+\begin{document}
+
+Consider the equations
+\begin{align}
+V'(x) = A(Q(x); \lambda) V(x) \label{Veqlambda} \\
+W'(x) = -A(Q(x); \lambda)^* W(x) \label{Weqlambda}
+\end{align}\
+where $Q(x)$ is the primary pulse solution and $A(Q(x), \lambda) = A(Q(x)) + \lambda B$. When $\lambda = 0$, these are the variational and adjoint variational equations.
+
+Recall that $A(0; \lambda)$ has a small eigenvalue $\nu(\lambda)$. Let $V_0(\lambda)$ and $W_0(\lambda)$ be the eigenvectors of $A(0)$ and $-A(0)^*$ corresponding to $\nu(\lambda)$. 
+
+In Lemma \ref{varsolutions}, we showed that when $\lambda = 0$, \eqref{Veqlambda} has a bounded solution $V^c(x)$ with
+\[
+V^c(x) \rightarrow V_0(0) \text{ as }|x| \rightarrow \infty
+\]
+which is symmetric with respect to the standard reversor operator $R$. In Lemma \ref{adjsolutions}, we showed that when $\lambda = 0$, \eqref{Weqlambda} has an exponentially decaying solution $\Psi(x)$ and a bounded solution $\Psi^c(x)$ with 
+\[
+\Psi^c(x) \rightarrow W_0 \text{ as }|x| \rightarrow \infty
+\]
+
+Using the Gap Lemma, we can find solutions $V^\pm(x; \lambda)$ to \eqref{Veqlambda} and $W^\pm(x; \lambda)$ to \eqref{Weqlambda} on $\R^\pm$ such that
+\begin{align*}
+V^\pm(x; \lambda) &= V_0(\lambda)e^{\nu(\lambda)x} + \tilde{V}^\pm(x; \lambda) \\
+W^\pm(x; \lambda) &= W_0(\lambda)e^{\nu(\lambda)x} + \tilde{W}^\pm(x; \lambda)
+\end{align*}
+where $\tilde{V}^\pm(x; \lambda), \tilde{W}^\pm(x; \lambda) = \mathcal{O}(e^{-\tilde{\alpha}|x|})$. Furthermore, these solutions are analytic in $\lambda$. For $\lambda$ small, $V^\pm(x; \lambda)$ is a small perturbation of $V^c(x)$, thus we write 
+\[
+V^\pm(x; \lambda) = V^c(x) + V_1^\pm(x; \lambda)
+\]
+Substituting this into \eqref{Veqlambda}, we get
+\begin{align*}
+(V^c)'(x) &+ (V_1^\pm)'(x; \lambda)
+= (A(Q(x)) + \lambda B)(V^c(x) + V_1^\pm(x; \lambda)) \\
+&= A (Q(x))V^c(x) + A(Q(x))V_1^\pm(x; \lambda) + \lambda B V^c(x) + \lambda B V_1^\pm(x; \lambda) \\
+\end{align*}
+Since $V^c(x)$ satisfies \eqref{Veqlambda} with $\lambda = 0$, this simplifies to the following ODE for $V_1^\pm(x; \lambda)$.
+\begin{align*}
+(V_1^\pm)'(x; \lambda)
+= A(Q(x))V_1^\pm(x; \lambda) + \lambda B V_1^\pm(x; \lambda) + \lambda B V^c(x) \\
+\end{align*}
+Let $\Phi(x,y)$ be the evolution operator for \eqref{Veqlambda} with $\lambda = 0$. Then we can write this in integrated form as the following fixed point equations
+\begin{equation*}
+\begin{aligned}
+V_1^-(x) &= \Phi_s^-(x, -L) a^- + \Phi_u^+(x, 0) b^- + \Phi_c^-(x, -L) c^- \\
+&+ \lambda \int_0^x \Phi_u^-(x, y) [B V_1^-(y; \lambda) + B V^c(y)] dy + \lambda \int_{-L}^x \Phi_s^-(x, y)[B V_1^-(y; \lambda) + B V^c(y)] dy \\
+&+ \lambda \int_{-L}^x \Phi_c^-(x, y) [B V_1^-(y; \lambda) + B V^c(y)] dy \\ 
+V_1^+(x) &= \Phi_u^+(x, L) a^+ + \Phi_s^+(x, 0) b^+ + \Phi_c^+(x, L)c^+ \\
+&+ \lambda \int_0^x \Phi_s^+(x, y)[B V_1^+(y; \lambda) + B V^c(y)] dy
++ \lambda \int_{L}^x \Phi_u^+(x, y)[B V_1^+(y; \lambda) + B V^c(y)] dy \\
+&+ \lambda \int_{L}^x \Phi_c^+(x, y)[B V_1^+(y; \lambda) + B V^c(y)] dy
+\end{aligned}
+\end{equation*}
+where $L$ is arbitrary and for the initial conditions we have
+\begin{align*}
+a^- &\in E^s \\
+a^+ &\in E^u \\
+b^- &\in \text{ran}(P_u^-(0)) = \R Q'(0) \oplus Y^- \\
+b^+ &\in \text{ran}(P_s^+(0)) = \R Q'(0) \oplus Y^+ \\
+c^\pm &\in E^c \\
+\end{align*}
+Since the center evolution occurs in a 1-dimensional space, we know its exact form.
+\[
+\Phi^c(x, y) u = V^c(x)\langle u, W^c(x)\rangle
+\]
+Substituting this in, we have
+\begin{equation*}
+\begin{aligned}
+V_1^-(x) &= \Phi_s^-(x, -L) a^- + \Phi_u^-(x, 0) b^- + V^c(x)\langle c^-, W^c(-L)\rangle \\
+&+ \lambda \int_0^x \Phi_u^-(x, y) [B V_1^-(y; \lambda) + B V^c(y)] dy + \lambda \int_{-L}^x \Phi_s^-(x, y)[B V_1^-(y; \lambda) + B V^c(y)] dy \\
+&+ \lambda \int_{-L}^x V^c(x)\langle B V_1^-(y; \lambda) + B V^c(y), W^c(y) \rangle dy \\ 
+V_1^+(x) &= \Phi_u^+(x, L) a^+ + \Phi_s^+(x, 0) b^+ + V^c(x)\langle c^+, W^c(L)\rangle \\
+&+ \lambda \int_0^x \Phi_s^+(x, y)[B V_1^+(y; \lambda) + B V^c(y)] dy
++ \lambda \int_{L}^x \Phi_u^+(x, y)[B V_1^+(y; \lambda) + B V^c(y)] dy \\
+&+ \lambda \int_{L}^x V^c(x) \langle B V_1^+(y; \lambda) + B V^c(y), W^c(y) \rangle  dy
+\end{aligned}
+\end{equation*}
+Evaluating these at $x = 0$, we have
+\begin{equation*}
+\begin{aligned}
+V_1^-(0) &= \Phi_s^-(0, -L) a^- + b^- + V^c(0)\langle c^-, W^c(-L)\rangle \\
+&+ \lambda \int_{-L}^0 \Phi_s^-(0, y)[B V_1^-(y; \lambda) + B V^c(y)] dy \\
+&+ \lambda \int_{-L}^0 V^c(0)\langle B V_1^-(y; \lambda) + B V^c(y), W^c(y) \rangle dy \\ 
+V_1^+(0) &= \Phi_u^+(0, L) a^+ + b^+ + V^c(0)\langle c^+, W^c(L)\rangle \\
+&+ \lambda \int_{L}^0 \Phi_u^+(0, y)[B V_1^+(y; \lambda) + B V^c(y)] dy \\
+&+ \lambda \int_{L}^0 V^c(0) \langle B V_1^+(y; \lambda) + B V^c(y), W^c(y) \rangle  dy
+\end{aligned}
+\end{equation*}
+
+
+\end{document}
