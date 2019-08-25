@@ -238,7 +238,45 @@ We have a solution to this ODE for $x \leq M$, and by variation of constants, th
 \end{lemma}
 
 \subsection{Proof of Lemma \ref{eigA0lemma}}
-$DF(0)$ is a $2m \times 2m$ constant coefficient matrix of the form
+
+Before we prove Lemma \ref{eigA0lemma}, we will prove a general result from finite dimensional linear algebra.
+
+\begin{lemma}\label{kernelprojlemma}
+Let $A$ be an $n \times n$ matrix with simple kernel spanned by $v$, and let $\ker A^* = \text{span}(w)$. Then 
+\begin{enumerate}[(i)]
+\item We can scale $v$ and/or $w$ so that $\langle v, w \rangle = 1$.
+\item Having chosen the scaling in part (i), the projection on the kernel of $A$ is given by
+\[
+P_{\ker A} = \langle w, \cdot \rangle v
+\]
+\end{enumerate}
+\begin{proof}
+For part (i), if $\langle v, w \rangle = 0$, then $v \perp \ker A^*$, thus by the Fredholm alternative we can solve $A u = v$. This is not possible since $A$ has simple kernel. Since $\langle v, w \rangle \neq 0$ we can scale $v$ and/or $w$ so that $\langle v, w \rangle = 1$.
+
+For part (ii), Let $0, \lambda_2, \dots, \lambda_n$ be the eigenvalues (with multiplicity) of $A$ with corresponding generalized eigenvectors $v, v_2, \dots, v_n$. Let $P u = \langle w, u \rangle v$. First, let $u \in \ker A$. Then $u = \alpha v$ for $\alpha \in \R$, thus 
+\[
+P u = \langle w, \alpha v \rangle v = \alpha \langle w, v \rangle v = \alpha v = u
+\]
+Since $A$ is diagonalizable, its eigenfunctions form a basis for $\R^n$. Let $u \in R^n$ and write $u$ in the eigenbasis as
+\[
+u = \alpha v + \sum_{k=2}^n \alpha_k v_k
+\]
+For $k = 2, \dots, n$, since $\lambda_k \neq 0$
+\begin{align*}
+\langle w, v_k \rangle &= \langle w, \frac{1}{\lambda_k}\lambda_k v_k \rangle \\
+&= \langle w, \frac{1}{\lambda_k} A v_k \rangle \\
+&= \langle w, A \frac{1}{\lambda_k} v_k \rangle \\
+&= \langle A^* w, \frac{1}{\lambda_k} v_k \rangle \\
+&= 0
+\end{align*}
+Thus we have
+\[
+P u = \alpha v
+\]
+\end{proof}
+\end{lemma}
+
+Now we prove Lemma \ref{eigA0lemma}. $DF(0)$ is a $2m \times 2m$ constant coefficient matrix of the form
 \begin{equation}\label{DF0}
 DF(0) = \begin{pmatrix}
 0 & 1 & 0 & \dots & 0 & 0 \\
@@ -249,7 +287,7 @@ DF(0) = \begin{pmatrix}
  \dots & c_{2m-2} & 0
 \end{pmatrix}
 \end{equation}
-where reversibility implies that the coefficients $c_i$ in the bottom row are all 0 for $i$ odd. The characteristic polynomial of $DF(0)$ is
+where $c_k = \partial_{u_k}f(0)$. The reversibility relations \eqref{frev} imply that the coefficients $c_k$ in the bottom row are all 0 for $k$ odd. In addition, $c_0 = -c$. The characteristic polynomial of $DF(0)$ is
 \begin{equation}\label{charpolyDF0}
 p_1(\nu) = \nu^{2m} - c_{2m-2} \nu^{2m-2} - \dots - c_2 \nu^2 + c
 \end{equation}
@@ -270,12 +308,12 @@ p_2(\nu) = -\nu^{2m+1} + c_{2m-2} \nu^{2m-1} + \dots + c_2 \nu^3- c \nu = -\nu p
 \end{equation}
 Thus $A(0)$ has the same eigenvalues as $DF(0)$ as well as an additional eigenvalue at 0. The eigenvalues of $DF(0)$ are characterized in Hypothesis \ref{hypeqhyp}.
 
-It can be verified directly that 
+By assumption, $A(0)$ has simple kernel. It can be verified directly that 
 \begin{align*}
 V_0 &= (1/c, 0, 0, \dots, 0)^T \\
 W_0 &= (c, 0, -c_2, 0, -c_4, 0, \dots, 0, -c_{2m-2}, 0, 1)^T 
 \end{align*}
-are eigenvectors of $A(0)$ and $-A(0)^*$ (respectively); we have scaled $V_0$ so that $\langle V_0, W_0 \rangle = 1$.
+are eigenvectors of $A(0)$ and $-A(0)^*$ (respectively) corresponding to eigenvalue 0; we have scaled $V_0$ so that $\langle V_0, W_0 \rangle = 1$. The expression for the projection on the kernel of $A(0)$ comes from Lemma \ref{kernelprojlemma}.
 
 % nondegeneracy lemma
 \subsection{Proof of Lemma \ref{nondegenlemma}}

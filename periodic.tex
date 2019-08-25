@@ -66,9 +66,9 @@ The energy $E(u)$ has the following properties
 \item $E(u)$ is translation invariant, i.e. $E(T(s)u) = E(u)$, where $\{T(s) : s \in \R \}$ is the one parameter group of unitary operators on $X$ defined by $[T(s)]u(\cdot) = u(\cdot - s)$.
 \item $E'(u): X \rightarrow X$ is a differential operator of the form
 \begin{equation}\label{Eprimeuform}
-E'(u) = \partial_x^{2m}u + \tilde{E}'(u)
+E'(u) = \partial_x^{2m}u - f(u, \partial_x u, \dots, \partial_x^{2m-1} u)
 \end{equation}
-where all derivatives involved in $\tilde{E}'(u)$ are order $2m-1$ and lower.
+where $f: \R^{2m} \rightarrow \R$ is smooth.
 \end{enumerate}
 \end{hypothesis}
 
@@ -130,7 +130,7 @@ Without loss of generality, we can assume that $E'(\phi)$ does not contain any t
 
 We take the following hypothesis concerning existence of bound states. In the next section, we will give a condition under which this hypothesis is satisfied. 
 \begin{hypothesis}\label{cintervalhyp}
-There exists an open interval $(c_1, c_2) \subset \R$ and a $C_1$ map $c \mapsto \phi_c$ such that for every $c \in (c_1, c_2)$, $\phi_c$ is a bound state for \eqref{genPDE}, i.e. 
+There exists an open interval $(c_1, c_2) \subset \R$ and a $C^1$ map $c \mapsto \phi_c$ such that for every $c \in (c_1, c_2)$, $\phi_c$ is a bound state for \eqref{genPDE}, i.e. 
 \[
 E'(\phi_c) + c \phi_c = 0 
 \]
@@ -174,11 +174,18 @@ Thus $-\partial_c \phi_c$ is a generalized eigenfunction of $\partial_x H_c$ cor
 
 In this section, we will look at primary pulse solutions to \eqref{eqODE}, which are exponentially localized bound states of \eqref{genPDE} and can be thought of as traveling pulses. We will use a spatial dynamics approach and view a primary pulse solution as a homoclinic orbit connecting the background state to itself. 
 
-To do this, we will write equation \eqref{eqODE} as a first order system in the standard way. By Hypothesis \ref{Ehyp}(iv), the highest order derivative $\partial_x^{2m}$ in $E'(u)$ appears by itself with a coefficient of 1. Letting $U = (u, \partial_x u, \dots, \partial_x^{2m-1} u) \in \R^{2m}$, we obtain the equivalent first-order system
+To do this, we will write equation \eqref{eqODE} as a first order system in the standard way. Let $U = (u, \partial_x u, \dots, \partial_x^{2m-1} u) \in \R^{2m}$. Then by Hypothesis \ref{Ehyp}(iv) we can write \eqref{eqODE} as the equivalent first-order system
 \begin{equation}\label{genODE}
 U'(x) = F(U(x); c)
 \end{equation}
-where $F: \R^{2m} \times \R \rightarrow \R^{2m}$ is smooth, and $F(0; c) = 0$ for all $c$. Since we are interested in bound states, we take $c$ from \eqref{eqODE} as a parameter. Reversibility implies that
+where $F: \R^{2m} \times \R \rightarrow \R^{2m}$ is given by
+\begin{equation}\label{defF}
+F(u_1, u_2, \dots, u_{2m}) = 
+\begin{pmatrix}
+u_2 \\ u_3 \\ \vdots \\ f(u_1, u_2, \dots, u_{2m})
+\end{pmatrix}
+\end{equation}
+$F$ is smooth, and $F(0; c) = 0$ for all $c$. Since we are interested in bound states, we take $c$ from \eqref{eqODE} as a parameter. Reversibility implies that
 \begin{equation}\label{genODErev}
 F(RU; c) = -RF(U; c)
 \end{equation}
@@ -186,7 +193,15 @@ where $R:\R^{2m} \rightarrow \R^{2m}$ is the standard reversor operator defined 
 \begin{equation}\label{reverserR2m}
 R(u_1, u_2, \dots, u_{2m-1}, u_{2m}) = (u_1, -u_2, \dots, u_{2m-1}, -u_{2m})
 \end{equation}
-In particular, if $U(x)$ is a solution to \eqref{genODE}, so is $RU(-x)$. Next, we assume that equation \eqref{genODE} is a conservative system. We will also parameterize the conserved quantity $H$ by $c$.
+In particular, if $U(x)$ is a solution to \eqref{genODE}, so is $RU(-x)$. It also follows from reversibility that
+\begin{equation}\label{frev}
+\partial_{u_k} f(R U) = \begin{cases}
+\partial_{u_k} f(U) & k\text{ odd} \\
+-\partial_{u_k} f(U) & k\text{ even} 
+\end{cases}
+\end{equation}
+
+Next, we assume that equation \eqref{genODE} is a conservative system. We will also parameterize the conserved quantity $H$ by $c$.
 
 \begin{hypothesis}\label{Hhyp}
 There exists a smooth function $H: \R^{2m} \times \R \rightarrow \R$, denoted $H(U; c)$ such that 
@@ -462,12 +477,18 @@ B = \begin{pmatrix}0 & 0 & 0 & 0 & 0 \\0 & 0 & 0 & 0 & 0 \\  &
 \vdots & & \vdots & \\0 & 0 & 0 & 0 & 0 \\1 & 0 & 0 & 0 & 0 \end{pmatrix} 
 \end{equation}
 
-Since $u^*(x)$ is exponentially localized, $A(U^*(x))$ is exponentially asymptotic to the constant coeffient matrix $A(0)$. The following lemma describes the eigenvalues of $A(0)$.
+Since $u^*(x)$ is exponentially localized, $A(U^*(x))$ is exponentially asymptotic to the constant coeffient matrix $A(0)$. The following lemma describes the eigenvalues and kernel of $A(0)$.
 
 \begin{lemma}\label{eigA0lemma}
-$A(0)$ has a simple eigenvalue at 0 and a quartet of eigenvalues at $\pm \alpha_0 \pm \beta_0 i$. For any other eigenvalue $\nu$ of $A(0)$, $|\text{Re }\nu| > \alpha_0$.
-
-Let $V_0$ and $W_0$ be eigenvectors of $A(0)$ and $-A^*(0)$ corresponding to the simple eigenvalue 0. Then we can scale $V_0$ so that $\langle V_0, W_0 \rangle = 1$. 
+The following hold concerning the eigenvalues of $A(0)$.
+\begin{enumerate}[(i)]
+\item $A(0)$ has a simple eigenvalue at 0 and a quartet of eigenvalues at $\pm \alpha_0 \pm \beta_0 i$. For any other eigenvalue $\nu$ of $A(0)$, $|\text{Re }\nu| > \alpha_0$.
+\item We can find eigenvectors $V_0$ and $W_0$ of $A(0)$ and $-A^*(0)$ corresponding to the simple eigenvalue 0 with $\langle V_0, W_0 \rangle = 1$.
+\item The projection on the kernel of $A(0)$ is given by
+\begin{equation}\label{projkernelA0}
+P_{\ker A(0)} = \langle W_0, \cdot \rangle V_0
+\end{equation}
+\end{enumerate} 
 \end{lemma}
 
 Since $A(0)$ is not hyperbolic, the results of \cite{Sandstede1998} do not apply. Let $W^s(0)$, $W^u(0)$, and $W^c(0)$ be the stable, unstable, and center manifolds of the equilibrium at 0. (These are not the same as in the previous section, but we will retain the notation for convenience). By reversibility, $\dim W^s(0) = m$ and $\dim W^u(0) = m$. The center manifold $W^c(0)$ is one-dimensional.
