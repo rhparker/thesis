@@ -22,15 +22,21 @@ which is symmetric with respect to the standard reversor operator $R$. In Lemma 
 
 Using the Gap Lemma, we can find solutions $V^\pm(x; \lambda)$ to \eqref{Veqlambda} and $W^\pm(x; \lambda)$ to \eqref{Weqlambda} on $\R^\pm$ such that
 \begin{align*}
-V^\pm(x; \lambda) &= V_0(\lambda)e^{\nu(\lambda)x} + \tilde{V}^\pm(x; \lambda) \\
-W^\pm(x; \lambda) &= W_0(\lambda)e^{\nu(\lambda)x} + \tilde{W}^\pm(x; \lambda)
+V^\pm(x; \lambda) &= V_0(\lambda)e^{\nu(\lambda)x} + V_R^\pm(x; \lambda) \\
+W^\pm(x; \lambda) &= W_0(\lambda)e^{\nu(\lambda)x} + W_R^\pm(x; \lambda)
 \end{align*}
-where $\tilde{V}^\pm(x; \lambda), \tilde{W}^\pm(x; \lambda) = \mathcal{O}(e^{-\tilde{\alpha}|x|})$. These solutions are analytic in $\lambda$. They are also not unique.
+where for the remainder terms we have $V_R^\pm(x; \lambda), W_R^\pm(x; \lambda) = \mathcal{O}(e^{-\tilde{\alpha}|x|})$. These solutions are analytic in $\lambda$. They are also not unique.
 
-We would like to characterize these solutions. Let
+We would like to better characterize these solutions. Let
 \[
 V^\pm(x; \lambda) = e^{\nu(\lambda)x}\tilde{V}^\pm(x; \lambda)
 \]
+Then we can write $\tilde{V}^\pm(x; \lambda)$ as
+\[
+\tilde{V}^\pm(x; \lambda) = V_0(\lambda) + \tilde{V}_R^\pm(x; \lambda)
+\]
+where $\tilde{V}^\pm(x; \lambda)$ is a remainder term which decays exponentially at a slightly slower rate (which we can make precise). We can do the same for $W$.
+
 Differentiating this, we have
 \begin{align*}
 \nu(\lambda) e^{\nu(\lambda)x}\tilde{V}^\pm(x; \lambda) 
@@ -60,34 +66,50 @@ Next, we plug this into the equation for $\tilde{V}^\pm(x; \lambda)$ to get an e
 [V^c(x)]' + \lambda [V_1^\pm(x; \lambda)]'
 &= \tilde{A}(Q(x); \lambda)(V^c(x) + \lambda V_1^\pm(x; \lambda)) \\
 &= (A(Q(x)) + \lambda B - \nu(\lambda)I)V^c(x) + \lambda \tilde{A}(Q(x); \lambda) V_1^\pm(x; \lambda) \\
-
+\lambda [V_1^\pm(x; \lambda)]' &= (\lambda B - \nu(\lambda)I)V^c(x) + \lambda \tilde{A}(Q(x); \lambda) V_1^\pm(x; \lambda)
 \end{align*}
 
-For $\lambda$ small, $V^\pm(x; \lambda)$ is a small perturbation of $V^c(x)$, thus we write 
+Substituting the expansion for $\nu(\lambda)$
 \[
-V^\pm(x; \lambda) = V^c(x) + V_1^\pm(x; \lambda)
+\nu(\lambda) = \frac{1}{c} \lambda + \mathcal{O}(|\lambda|^3)
 \]
-Substituting this into \eqref{Veqlambda}, we get
+this becomes
 \begin{align*}
-(V^c)'(x) &+ (V_1^\pm)'(x; \lambda)
-= (A(Q(x)) + \lambda B)(V^c(x) + V_1^\pm(x; \lambda)) \\
-&= A (Q(x))V^c(x) + A(Q(x))V_1^\pm(x; \lambda) + \lambda B V^c(x) + \lambda B V_1^\pm(x; \lambda) \\
+\lambda [V_1^\pm(x; \lambda)]' &= \lambda \tilde{A}(Q(x); \lambda) V_1^\pm(x; \lambda) + \left(\lambda B - \frac{1}{c} \lambda I + \mathcal{O}(|\lambda|^3)I\right)V^c(x)
 \end{align*}
-Since $V^c(x)$ satisfies \eqref{Veqlambda} with $\lambda = 0$, this simplifies to the following ODE for $V_1^\pm(x; \lambda)$.
+Finally, divide by $\lambda$ to get
 \begin{align*}
-(V_1^\pm)'(x; \lambda)
-= A(Q(x))V_1^\pm(x; \lambda) + \lambda B V_1^\pm(x; \lambda) + \lambda B V^c(x) \\
+[V_1^\pm(x; \lambda)]' &= \tilde{A}(Q(x); \lambda) V_1^\pm(x; \lambda) + \tilde{B} V^c(x) + \lambda^2 R(x)
 \end{align*}
-Let $\Phi(x,y)$ be the evolution operator for \eqref{Veqlambda} with $\lambda = 0$. Then we can write this in integrated form as the following fixed point equations
+where
+\[
+\tilde{B} = B - \frac{1}{c} I
+\]
+and $||R|| \leq C$. 
+
+For what follows, we will take $\lambda$ fixed, so we suppress the dependence on $\lambda$, i.e. we write
+\begin{align*}
+[V_1^\pm(x)]' &= \tilde{A}(Q(x)) V_1^\pm(x) + \tilde{B} V^c(x) + \lambda^2 R(x)
+\end{align*}
+Let $\Phi(x,y)$ be the evolution operator for the ODE
+\[
+V' = \tilde{A}(Q(x))V
+\]
+For the center subspace, the evolution operator is given by
+\[
+\Phi^c_\pm(x,y) = \langle \tilde{W}^\pm(x), \cdot \rangle \tilde{V}^\pm(x)
+\]
+
+Then we can write our systemn in integrated form as the following set of fixed point equations
 \begin{equation*}
 \begin{aligned}
-V_1^-(x) &= \Phi_s^-(x, -L) a^- + \Phi_u^+(x, 0) b^- + \Phi_c^-(x, -L) c^- \\
-&+ \lambda \int_0^x \Phi_u^-(x, y) [B V_1^-(y; \lambda) + B V^c(y)] dy + \lambda \int_{-L}^x \Phi_s^-(x, y)[B V_1^-(y; \lambda) + B V^c(y)] dy \\
-&+ \lambda \int_{-L}^x \Phi_c^-(x, y) [B V_1^-(y; \lambda) + B V^c(y)] dy \\ 
-V_1^+(x) &= \Phi_u^+(x, L) a^+ + \Phi_s^+(x, 0) b^+ + \Phi_c^+(x, L)c^+ \\
-&+ \lambda \int_0^x \Phi_s^+(x, y)[B V_1^+(y; \lambda) + B V^c(y)] dy
-+ \lambda \int_{L}^x \Phi_u^+(x, y)[B V_1^+(y; \lambda) + B V^c(y)] dy \\
-&+ \lambda \int_{L}^x \Phi_c^+(x, y)[B V_1^+(y; \lambda) + B V^c(y)] dy
+V_1^-(x) &= \Phi_u^+(x, 0) b^- + \Phi_c^-(x, -L) c^- \\
+&+ \int_0^x \Phi_u^-(x, y) [\tilde{B} V^c(y) + \lambda^2 R(y)] dy + \int_{-\infty}^x \Phi_s^-(x, y)[\tilde{B} V^c(y) + \lambda^2 R(y)] dy \\
+&+ \int_{-L}^x \Phi_c^-(x, y)[\tilde{B} V^c(y) + \lambda^2 R(y)] dy \\ 
+V_1^+(x) &= \Phi_s^+(x, 0) b^+ + \Phi_c^+(x, L)c^+ \\
+&+ \int_0^x \Phi_s^+(x, y)[\tilde{B} V^c(y) + \lambda^2 R(y)] dy
++ \int_{\infty}^x \Phi_u^+(x, y) [\tilde{B} V^c(y) + \lambda^2 R(y)] dy \\
+&+ \int_{L}^x \Phi_c^+(x, y)[\tilde{B} V^c(y) + \lambda^2 R(y)] dy
 \end{aligned}
 \end{equation*}
 where $L$ is arbitrary and for the initial conditions we have
@@ -98,6 +120,21 @@ b^- &\in \text{ran}(P_u^-(0)) = \R Q'(0) \oplus Y^- \\
 b^+ &\in \text{ran}(P_s^+(0)) = \R Q'(0) \oplus Y^+ \\
 c^\pm &\in E^c \\
 \end{align*}
+
+Substituting in the form of the center evolution,
+\begin{equation*}
+\begin{aligned}
+V_1^-(x) &= \Phi_u^+(x, 0) b^- + \langle \tilde{W}^-(x), c^- \rangle \tilde{V}^-(x) \\
+&+ \int_0^x \Phi_u^-(x, y) [\tilde{B} V^c(y) + \lambda^2 R(y)] dy + \int_{-\infty}^x \Phi_s^-(x, y)[\tilde{B} V^c(y) + \lambda^2 R(y)] dy \\
+&+ \int_{-L}^x \langle \tilde{W}^-(x), \tilde{B} V^c(y) + \lambda^2 R(y) \rangle \tilde{V}^-(x) dy \\ 
+V_1^+(x) &= \Phi_s^+(x, 0) b^+ + \langle \tilde{W}^+(x), c^+ \rangle \tilde{V}^+(x) \\
+&+ \int_0^x \Phi_s^+(x, y)[\tilde{B} V^c(y) + \lambda^2 R(y)] dy
++ \int_{\infty}^x \Phi_u^+(x, y) [\tilde{B} V^c(y) + \lambda^2 R(y)] dy \\
+&+ \int_{L}^x \langle \tilde{W}^+(x), \tilde{B} V^c(y) + \lambda^2 R(y) \rangle \tilde{V}^+(x) dy
+\end{aligned}
+\end{equation*}
+
+
 Since the center evolution occurs in a 1-dimensional space, we know its exact form.
 \[
 \Phi^c(x, y) u = V^c(x)\langle u, W^c(x)\rangle

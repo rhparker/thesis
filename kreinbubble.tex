@@ -63,7 +63,7 @@ Next, we want $\mu$ to be a small perturbation of $n \pi i$, so take
 Substituting this into various things, we get
 \begin{align*}
 \sinh(\nu(\lambda)X) &= \sinh(n \pi i + h + \mathcal{O}(\mu^2 / X^3)) = (-1)^n h + \mathcal{O}(h^3 + \mu^2 / X^3) \\
-\cosh(\nu(\lambda)X) &= 1 + \mathcal{O}(h^2 + \mu^4 / X^6)
+\cosh(\nu(\lambda)X) &= \sinh(n \pi i + h + \mathcal{O}(\mu^2 / X^3)) = (-1)^n +  \mathcal{O}(h^2 + \mu^4 / X^6)
 \end{align*}
 and
 \begin{align*}
@@ -73,15 +73,16 @@ and
 \end{align*}
 which we are going to neglect for now since $\nu(\lambda)$ is small and $X_0$ is also relatively small. Substituting these in and neglecting higher order terms, we have
 \begin{align*}
-\det B &\approx -2 \frac{\mu^2}{X^2} M \left[ \left(2a + \frac{\mu^2}{X^2} M\right)(-1)^n h - 2 d M_\Psi \frac{\mu}{X} \right] 
+\det B &\approx -2 \frac{\mu^2}{X^2} M \left[ \left(2a + \frac{\mu^2}{X^2} M\right)(-1)^n h + (-1)^n 2 d M_\Psi \frac{\mu}{X} \right] \\
+&= -2 (-1)^n \frac{\mu^2}{X^2} M \left[ \left(2a + \frac{\mu^2}{X^2} M\right) h + 2 d M_\Psi \frac{\mu}{X} \right] 
 \end{align*}
 We want to solve
 \[
-\left(2a + \frac{\mu^2}{X^2} M\right)(-1)^n h - 2 d M_\Psi \frac{\mu}{X} = 0
+\left(2a + \frac{\mu^2}{X^2} M\right) h + 2 d M_\Psi \frac{\mu}{X} = 0
 \]
 Multiplying by $X^2/M$, this becomes
 \[
-\left(\frac{2aX^2}{M} + \mu^2 \right)(-1)^n h - \frac{2 d M_\Psi X \mu}{M} = 0
+\left(\frac{2aX^2}{M} + \mu^2 \right) h + \frac{2 d M_\Psi X \mu}{M} = 0
 \]
 For convenience, take
 \[
@@ -89,7 +90,7 @@ b = \sqrt{-\frac{2a}{M}}X
 \]
 which must be pure imaginary for this matter. Then this simplifies to
 \[
-(\mu + b)(\mu - b)(-1)^n h - \frac{2 d M_\Psi X \mu}{M} = 0
+(\mu + b)(\mu - b) h + \frac{2 d M_\Psi X \mu}{M} = 0
 \]
 The Krein bubble only occurs when the interaction eigenvalues are close to the essential spectrum eigenvalues. For this to occur, we need either $b$ or $-b$ to be close to $n \pi i$ small or $\mu + b$ small. By symmetry, it does not matter which one we take, so let
 \[
@@ -103,25 +104,21 @@ from which it follows that
 \end{align*}
 Substituting this in, we have
 \[
-(2k + h + 2b)(2k + h)(-1)^n h - \frac{2 d M_\Psi X}{M}(k + h + b) = 0
+(2k + h + 2b)(2k + h) h + \frac{2 d M_\Psi X}{M}(k + h + b) = 0
 \]
 Since $h$ and $k$ are small compared to $b$, this is approximately
 \[
-2b (2 k + h)(-1)^n h - \frac{2 d M_\Psi X}{M}b = 0
+2b (2 k + h) h + \frac{2 d M_\Psi X}{M}b = 0
 \]
 which simplies to
 \[
-h^2 + 2kh - (-1)^n R = 0
+h^2 + 2kh + R = 0
 \]
 where
 \[
 R = \frac{d M_\Psi X}{M}
 \]
 which has solution
-\[
-h = -k \pm \sqrt{k^2 + (-1)^n R}
-\]
-For now, assume that this looks like
 \[
 h = -k \pm \sqrt{k^2 - R}
 \]
@@ -140,14 +137,135 @@ Numerics confirms the scaling in $X$. Ideally, we would like numerics to suggest
 These inner products show up in the jump expressions and (likely) are key terms in the block matrix. Recall that the $\Phi^{s/u/c}(x, y; \lambda)$ are the evolution operators of the conjugated system, and $\Theta_i^{s/u/c}(x, y; \lambda)$ are the evolution operators of the original system.
 
 First, we look at a term from the jump in the decaying adjoint direction.
-
 \begin{align*}
 \langle &\Psi(0), P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) P_i^-(-X_{i-1}; \lambda)^{-1} P_0^s(\lambda) Q'(X_{i-1})\rangle \\
 &= \langle \Psi(0), \Theta_-^s(0, -X_{i-1}; \lambda) P_0^s(\lambda) Q'(X_{i-1})\rangle \\
 &= \langle \Psi(0), \Theta_-^s(0, -X_{i-1}; 0) P_0^s(0) Q'(X_{i-1})\rangle + \mathcal{O}(e^{-2\alpha X_{i-1}}(|\lambda| + e^{-\alpha X_m})) \\
 &= \langle \Psi(0), \Theta_-^s(0, -X_{i-1}; 0) P^s_+(X_{i-1}) Q'(X_{i-1})\rangle + \mathcal{O}(e^{-2\alpha X_{i-1}}(|\lambda| + e^{-\alpha X_m})) \\
-&= \langle \Psi(0), \Theta(0, -X_{i-1}; 0) P^s_-(-X_{i-1}) P^s_+(X_{i-1}) Q'(X_{i-1})\rangle + \mathcal{O}(e^{-2\alpha X_{i-1}}(|\lambda| + e^{-\alpha X_m}))
+&= \langle \Psi(0), \Theta(0, -X_{i-1}; 0) P^s_-(-X_{i-1}) P^s_+(X_{i-1}) Q'(X_{i-1})\rangle + \mathcal{O}(e^{-2\alpha X_{i-1}}(|\lambda| + e^{-\alpha X_m})) \\
+&= \langle \Psi(-X_{i-1}), P^s_+(X_{i-1}) Q'(X_{i-1})\rangle + \mathcal{O}(e^{-2\alpha X_{i-1}}(|\lambda| + e^{-\alpha X_m})) \\
+&= \langle \Psi(-X_{i-1}), Q'(X_{i-1})\rangle + \mathcal{O}(e^{-2\alpha X_{i-1}}(|\lambda| + e^{-\alpha X_m})) 
 \end{align*}
+
+Similarly, for the jump in the center adjoint direction, we should have
+First, we look at a term from the jump in the decaying adjoint direction.
+\begin{align*}
+\langle &\Psi^c(0), P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) P_i^-(-X_{i-1}; \lambda)^{-1} P_0^s(\lambda) Q'(X_{i-1})\rangle \\
+&= \langle \Psi^c(-X_{i-1}), Q'(X_{i-1})\rangle + \mathcal{O}(e^{-\alpha X_{i-1}}(|\lambda| + e^{-\alpha X_m}))
+\end{align*}
+
+\section{Ditching the Center Component}
+
+\begin{lemma}Let $A$ be an $n \times n$ diagonalizable matrix with simple kernel spanned by $v$, and let $\ker A^* = \text{span}(w)$. Then 
+\begin{enumerate}[(i)]
+\item We can scale $v$ and/or $w$ so that $\langle v, w \rangle = 1$.
+\item Assuming we have chosen the scaling in part (i), the projection on the kernel of $A$ is given by
+\[
+P_{\ker A} = \langle w, \cdot \rangle v
+\]
+\begin{proof}
+Let $0, \lambda_2, \dots, \lambda_n$ be the eigenvalues of $A$ with corresponding eigenvectors $v, v_2, \dots, v_n$. If $\langle v, w \rangle = 0$, then $v \perp \ker A^*$, thus by the Fredholm alternative we can solve $A u = v$. This is not possible since $A$ has simple kernel. Since $\langle v, w \rangle \neq 0$ we can scale $v$ and/or $w$ so that $\langle v, w \rangle = 1$.
+
+For part (ii), let $P u = \langle w, u \rangle v$.
+First, let $u \in \ker A$. Then $u = \alpha v$ for $\alpha \in \R$, thus 
+\[
+P u = \langle w, \alpha v \rangle v = \alpha \langle w, v \rangle v = \alpha v = u
+\]
+Since $A$ is diagonalizable, its eigenfunctions form a basis for $\R^n$. Let $u \in R^n$ and write $u$ in the eigenbasis as
+\[
+u = \alpha v + \sum_{k=2}^n \alpha_k v_k
+\]
+For $k = 2, \dots, n$, since $\lambda_k \neq 0$
+\begin{align*}
+\langle w, v_k \rangle &= \langle w, \frac{1}{\lambda_k}\lambda_k v_k \rangle \\
+&= \langle w, \frac{1}{\lambda_k} A v_k \rangle \\
+&= \langle w, A \frac{1}{\lambda_k} v_k \rangle \\
+&= \langle A^* w, \frac{1}{\lambda_k} v_k \rangle \\
+&= 0
+\end{align*}
+Thus we have
+\[
+P u = \alpha v
+\]
+\end{proof}
+\end{lemma}
+
+
+
+\begin{lemma}
+\[
+P_0^c Q'(x) = 0
+\]
+for all $x \in \R$.
+\begin{proof}
+By assumption, we can write the equilibrium equation as
+\[
+\partial_x( \partial_x^{2m}u + f(u, \partial_x u, \dots, \partial_x^{2m-1}u)) = 0
+\]
+which we can integrate once to get
+\[
+\partial_x^{2m}u + f(u, \partial_x u, \dots, \partial_x^{2m-1}u) = k
+\]
+for a constant $k$. Let
+\[
+U = (u_1, \dots, u_{2m}, k ) = 
+(u, \partial_x u, \dots, \partial_x^{2m-1} u, k)^T
+\]
+Then we can write this as the following first order system in $\R^{2m+1}$.
+\[
+\partial_x
+\begin{pmatrix}u_1 \\ \vdots \\ u_{2m-1} \\ u_{2m} \\ k \end{pmatrix} = 
+\begin{pmatrix}
+u_2 \\ \vdots \\ u_{2m} \\ -f(u_1, \dots, u_{2m}) \\ 0 
+\end{pmatrix} 
+\]
+Linearize this about the primary pulse solution $Q(x)$, noting that $k = 0$ for this solution since it decays to a baseline of 0. The linearization will involve the partial derivatives of $f$ with respect to the $u_k$. Separating out the linear terms in $f$, 
+\[
+\frac{\partial}{\partial u_k} = c_{k-1} + g_{k-1}(q_1, \dots, q_n)(x)
+\]
+where the $g_k(x)$ decay exponentially to 0 since $f$ is smooth and the primary pulse is exponentially localized. Furthermore, by SYMMETRIES AND PRIOR DISCUSSION, $c_0 = c$ and $c_k = 0$ for $k$ odd. Thus for the linearization we have the first order linear system $V'(x) = \tilde{A}(Q(x))V(x)$, where
+\[
+\tilde{A}(Q(x)) = 
+\begin{pmatrix}
+0 & 1 & 0 & \dots & 0 & 0\\
+0 & 0 & 1 & \dots & 0 & 0\\
+&& \vdots && \vdots \\
+0 & 0 & 0 & \dots & 1 & 0\\
+-c - g_0(x) & -g_1(x) & -c_2 - g_2(x) & \dots 
+& -g_{2m-1}(x) & 1 \\
+0 & 0 & 0 & \dots & 0 & 0 \\
+\end{pmatrix}
+\]
+$\tilde{A}(Q(x))$ is exponentially asymptotic to $\tilde{A}(0)$, which is given by
+\[
+\tilde{A}(0) = 
+\begin{pmatrix}
+0 & 1 & 0 & \dots & 0 & 0\\
+0 & 0 & 1 & \dots & 0 & 0\\
+&& \vdots && \vdots \\
+0 & 0 & 0 & \dots & 1 & 0\\
+-c & 0 & -c_2 & \dots 
+& 0 & 1 \\
+0 & 0 & 0 & \dots & 0 & 0 \\
+\end{pmatrix}
+\]
+Since the top $2n-1$ rows are linearly independent and the bottom row is all 0s, $\tilde{A}(0)$ has a one dimensional kernel spanned by
+\[
+\tilde{V}_0 = (1/c, 0, \dots, 0, 1)^T
+\]
+and $\tilde{A}^*(0)$ has a one dimensional kernel spanned by
+\[
+\tilde{W}_0 = (0, 0, \dots, 0, 1)^T
+\]
+Let $Q'(x) = (\partial_x q(x), \dots, \partial_x^{2m-2}, 0)^T$. Then by the previous lemma,
+\[
+P_{\tilde{V}_0}(Q'(x)) = \langle \tilde{W}_0, Q'(x) \rangle \tilde{V}_0 &= 0
+\]
+
+\end{proof}
+\end{lemma}
+
+
 
 
 \end{document}
