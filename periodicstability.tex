@@ -287,7 +287,7 @@ DF(0) = \begin{pmatrix}
  \dots & c_{2m-2} & 0
 \end{pmatrix}
 \end{equation}
-where $c_k = \partial_{u_k}f(0)$. The reversibility relations \eqref{frev} imply that the coefficients $c_k$ in the bottom row are all 0 for $k$ odd. In addition, $c_0 = -c$. The characteristic polynomial of $DF(0)$ is
+where $c_k = \partial_{u_{k+1}}f(0)$. The reversibility relations \eqref{frev} imply that the coefficients $c_k$ in the bottom row are all 0 for $k$ odd. In addition, $c_0 = -c$. The characteristic polynomial of $DF(0)$ is
 \begin{equation}\label{charpolyDF0}
 p_1(\nu) = \nu^{2m} - c_{2m-2} \nu^{2m-2} - \dots - c_2 \nu^2 + c
 \end{equation}
@@ -310,8 +310,8 @@ Thus $A(0)$ has the same eigenvalues as $DF(0)$ as well as an additional eigenva
 
 By assumption, $A(0)$ has simple kernel. It can be verified directly that 
 \begin{align*}
-V_0 &= (1/c, 0, 0, \dots, 0)^T \\
-W_0 &= (c, 0, -c_2, 0, -c_4, 0, \dots, 0, -c_{2m-2}, 0, 1)^T 
+V_0 &= (-1/c, 0, 0, \dots, 0)^T \\
+W_0 &= (-c, 0, c_2, 0, c_4, 0, \dots, 0, c_{2m-2}, 0, 1)^T 
 \end{align*}
 are eigenvectors of $A(0)$ and $-A(0)^*$ (respectively) corresponding to eigenvalue 0; we have scaled $V_0$ so that $\langle V_0, W_0 \rangle = 1$. The expression for the projection on the kernel of $A(0)$ comes from Lemma \ref{kernelprojlemma}.
 
@@ -349,45 +349,69 @@ A(Q(x)) = \begin{pmatrix}
 0 & 0 & \dots & 0 & 0 \\
 & & \ddots  \\
 0 & 0 & \dots & 0 & 1 \\
-f_0'(x) & -c + f_0(x) + f_1'(x) & \dots & c_{2m-2} + f_{2m-2}(x) + f_{2m-1}' (x) & f_{2m-1}(x)
+h_1(x) & h_2(x) & \dots & h_{2m}(x) & h_{2m+1}(x)
 \end{pmatrix}
 \end{equation} 
-By reversibility, since no odd-order derivatives are involved in the linear part of $E'(u)$, $c_i = 0$ for $i$ odd. In addition, since $q(x)$ is an even function, $f_i(x)$ is an even function for $i$ even and an odd function for $i$ odd. Since the functions $f_i(x)$ are smooth functions of $q(x)$ and its derivatives, they decay exponentially to 0 since $q(x)$ is exponentially localized.
+where
+\begin{equation*}
+\begin{aligned}
+h_1(x) &= \sum_{k=1}^{2m}\partial^2_{u_1 u_k} f(Q(x))\partial_x^k q(x) \\
+h_j(x) &= \sum_{k=1}^{2m}\partial^2_{u_j u_k} f(Q(x))\partial_x^k q(x) + \partial_{u_{j-1}}f(Q(x)) && j = 2, \dots, 2m \\
+h_{2m+1}(x) &= \partial_{u_{2m}}f(Q(x))
+\end{aligned}
+\end{equation*}
+Using the reversibility relation $Q(-x) = R Q(x)$ and \eqref{frev},
+\begin{align*}
+h_j(-x) &= \sum_{k=1}^{2m}\partial^2_{u_j u_k} f(Q(-x))\partial_x^k q(-x) + \partial_{u_{j-1}}f(Q(-x)) \\
+&= \sum_{k=1}^{2m}\partial^2_{u_j u_k} f(RQ(x))\partial_x^k q(-x) + \partial_{u_{j-1}}f(RQ(x)) \\
+&= \sum_{k=1}^{2m} (-1)^{j+k} \partial^2_{u_j u_k} f(Q(x)) (-1)^k \partial_x^k q(x) + (-1)^j \partial_{u_{j-1}}f(Q(x)) \\
+&= (-1)^j \left( \sum_{k=1}^{2m} \partial^2_{u_j u_k} f(Q(x)) \partial_x^k q(x) + (-1)^j \partial_{u_{j-1}}f(Q(x)) \right) \\
+&= (-1)^j h(x)
+\end{align*} 
+thus $h_j(x)$ is an odd function for $j$ odd and an even function for $j$ even. Since $f$ is smooth and $Q(x)$ is exponentially localized, the functions $h_j(x)$ are smooth and bounded.
 
 The adjoint variational equation \eqref{adjvareq2} is the following equation written as a first order system
 \begin{equation}\label{adj2}
-[\partial_x H_c]^* v(x) = -H_c \partial_x v(x) = 0,
+[\partial_x H_c]^* w(x) = -H_c \partial_x w(x) = 0,
 \end{equation}
+Suppose \eqref{adj2} has a solution $w(x)$ which is an even function. Then by Lemma \ref{adjointlemma}, \eqref{adjvareq2} has a solution $W(x) = (w_1(x), \dots, w_{2m+1}(x))$ with $w_{2m+1}(x) = w(x)$. Comparing \eqref{Axform} from Lemma \ref{adjointlemma} to \eqref{DefAQ}, the other components of $W(x)$ are given by 
+\begin{align}\label{adjWform}
+w_r(x) &= (-1)^{2m+1-r} \partial_x^{2m+1-r}w(x) + \sum_{k=r}^{2m} (-1)^{k-r} \partial_x^{k-r}(h_{k+1}(x) w(x)) && r = 1, \dots 2m
+\end{align}
+Since we are assuming $w(x)$ is even, $w_r(x)$ is an even function for $r$ odd and an odd function for $r$ even, thus $W(-x) = R W(x)$. 
 
-To find $\Psi(x)$, equation \ref{adj2} has an exponentially decaying solution $q(x)$. Using Lemma \ref{adjointlemma}, \eqref{adjvareq2} has a solution $\Psi(x) = (\psi_1(x), \dots, \psi_{2m+1}(x))$ with $\psi_{2m+1}(x) = q(x)$. Comparing \eqref{Axform} from Lemma \ref{adjointlemma} to \eqref{DefAQ}, the functions $g_k(x)$ in \eqref{Axform} are even functions for $k$ odd and odd functions for $k$ even. Using \eqref{adjWform} from Lemma \ref{adjointlemma}, for the components of $\Psi(x)$ we have $\psi_k(x)$ is even for $k$ odd and odd for $k$ even, thus $\Psi(-x) = R \Psi(x)$, where $R$ is the standard reversor operator. Finally, since the functions $f_k(x)$ in \eqref{DefAQ} are exponentially localized, $\Psi(x)$ is exponentially localized as well.
+To find $\Psi(x)$, equation \ref{adj2} has an exponentially decaying solution $q(x)$, which is an even function. Thus we obtain $\Psi(x)$ by taking $w(x) = q(x)$ above. Every term in \eqref{adjWform} is a product of $q(x)$ or one of its derivatives with a smooth, bounded function. Since $q(x)$ is exponentially localized, $\Psi(x)$ is exponentially localized as well.
 
-To find $\Psi^c(x)$, equation \eqref{adj2} also has the constant solution 1 as a solution. Thus \eqref{adjvareq2} has a solution $\Psi^c(x) = (\psi^c_1(x), \dots, \psi^c_{2m+1}(x))$ with $\psi_{2m+1}(x) = 1$. Comparing \eqref{Axform} from Lemma \ref{adjointlemma} to \eqref{DefAQ} and using \eqref{adjWform} from Lemma \ref{adjointlemma}, we have
-\[
-\Psi^c(x) 
-= \begin{pmatrix}
-\sum_{k=1}^{n-1} (-1)^{k-1} \partial_x^{k-1} g_k  \\
-\sum_{k=2}^{n-1} (-1)^{k-2} \partial_x^{k-2} g_k  \\
-\sum_{k=3}^{n-1} (-1)^{k-3} \partial_x^{k-3} g_k  \\ 
-\vdots \\
-g_{2m}(x) -\partial_x g_{2m+1}(x) \\
-g_{2m+1}(x) \\
-1
-\end{pmatrix}
-\]
-where $g_k(x) = -c_{k-1} - f_{k-1}(x) - f_k'(x)$ for $k$ odd and $g_k(x) = -f_{k-1}(x) - f_k'(x)$ for $k$ even, except for $k = 2m$, for which we have $g_{2m}(x) = -f_{2m-1}(x)$. Extracting the first term of each sum, this becomes
-\[
-\Psi^c(x) 
-= \begin{pmatrix}
-c - f_0(x) - f_1'(x) + \sum_{k=2}^{n-1} (-1)^{k-1} \partial_x^{k-1} g_k  \\
-- f_1(x) - f_2'(x) + \sum_{k=3}^{n-1} (-1)^{k-2} \partial_x^{k-2} g_k  \\
--c_2 - f_2(x) - f_3'(x) + \sum_{k=4}^{n-1} (-1)^{k-3} \partial_x^{k-3} g_k  \\ 
-\vdots \\
--c_{2m-2} - f_{2m-2}(x) - f_{2m}'(x) -\partial_x g_{2m+1}(x) \\
--f_{2m-1}(x) \\
-1
-\end{pmatrix}
-\]
-Since all the terms involving $g_k(x)$ are differentiated at least once, the constants $c_k$ only appear out front where they are explicitly shown. Thus every other term in $\Psi^c(x)$ decays exponentially to 0 as $|x| \rightarrow \infty$. It follows that $\Psi^c(x)$ is bounded, and $\Psi^c(x) \rightarrow (c, 0, -c_2, \dots, -c_{2m-2}, 0, 1)^T = W_0$ as $|x| \rightarrow \infty$, where $W_0$ is given in the proof of Lemma \ref{eigA0lemma}.
+To find $\Psi^c(x)$, equation \eqref{adj2} also has the constant solution 1 as a solution, which is an even function. Thus we obtain $\Psi(x)$ by taking $w(x) = 1$ above. The individual entries are given by
+\begin{align}\label{Psicrows}
+[\Psi^c(x)]_r &= \sum_{k=r}^{2m} (-1)^{k-r} \partial_x^{k-r} h_{k+1}(x)
+\end{align}
+When we take $|x| \rightarrow \infty$, $h_{k+1}(x) \rightarrow \partial_{u_k}f(0)$, which is equal to $c_{k-1}$ for $k$ even and 0 for $k$ odd, and $c_0 = -c$. All higher derivatives of $h_{k+1}$ vanish. Thus we have
+\begin{align*}
+\lim_{|x|\rightarrow \infty}
+[\Psi^c(x)]_r &= c_{r-1}
+\end{align*}
+Since $[\Psi^c(x)]_{2m+1} = 1$, we conclude that $\Psi^c(x) \rightarrow (-c, 0, c_2, \dots, c_{2m-2}, 0, 1)^T = W_0$. Alternatively, we can verify by direct substitution that $\Psi^c(x) = ( -Df(Q(x)), 1)$. Then as $|x| \rightarrow 0$, $\Psi^c(x) \rightarrow W_0$.
+
+Using this, we have
+\begin{align*}
+\langle \Psi^c(x), Q'(x) \rangle 
+&= \langle (-Df(Q(x)), 1), ((\partial_x q(x), \dots, \partial_x^{2m} q(x)), \partial_{2m+1}(x)) \rangle \\
+&= -\langle Df(Q(x)), (\partial_x q(x), \dots, \partial_x^{2m} q(x)) \rangle + \partial_{2m+1}(x) \\
+&= \partial_{2m+1}(x) - \partial_x f(q(x)) \\
+&= 0
+\end{align*}
+since $q(x)$ is an equilibrum solution to the original PDE. Of course, we already knew that $\langle \Psi^c(x), Q'(x) \rangle = 0$ since the inner product is constant and $Q'(x)$ decays to 0. We also have (NEEDS BETTER NOTATION)
+\begin{align*}
+\langle \Psi^c(x), Q'(-x) \rangle 
+&= \langle (-Df(Q(x)), 1), (Q'(-x), \partial_{2m+1}(-x)) \rangle \\
+&= \langle (-Df(Q(x)), 1), (-RQ'(x), -\partial_{2m+1}(x)) \rangle \\
+&= \langle Df(Q(x)), RQ'(x) \rangle - \partial_{2m+1}(x) \\
+&= \langle R Df(R Q(x)), RQ'(x) \rangle - \partial_{2m+1}(x) \\
+&= \frac{\partial}{\partial x} R f(R Q(x)) - \partial_{2m+1}(x) \\
+&= \frac{\partial}{\partial x} f(Q(x)) - \partial_{2m+1}(x) \\
+&= 0
+\end{align*}
 
 Finally, it follows from Lemma \ref{adjointlemma} that any bounded solution to \eqref{adjvareq2} must be perpendicular to $\R Q'(0) \oplus Y^+ \oplus Y^-$ at $x = 0$. In particular, this holds for $\Psi(0)$ and $\Psi^c(0)$. Since $S_1 = \R Q'(0) \oplus Y^+ \oplus Y^-$ is a $(2m-1)-$dimensional subspace of $\R^{2m+1}$ and $S_2 = \Psi(0) \oplus \Psi^c(0)$ is a $2-$dimensional subspace of $\R^{2m+1}$ which is perpendicular to $S_1$, it follows that there can be no other bounded, linearly independent solutions to \eqref{adjvareq2}. 
 

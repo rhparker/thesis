@@ -193,12 +193,12 @@ where $R:\R^{2m} \rightarrow \R^{2m}$ is the standard reversor operator defined 
 \begin{equation}\label{reverserR2m}
 R(u_1, u_2, \dots, u_{2m-1}, u_{2m}) = (u_1, -u_2, \dots, u_{2m-1}, -u_{2m})
 \end{equation}
-In particular, if $U(x)$ is a solution to \eqref{genODE}, so is $RU(-x)$. It also follows from reversibility that
+In particular, if $U(x)$ is a solution to \eqref{genODE}, so is $RU(-x)$. Since $f(RU) = f(U)$, it also follows from reversibility that $Df(RU) = RDf(U)$, and so we have
 \begin{equation}\label{frev}
-\partial_{u_k} f(R U) = \begin{cases}
-\partial_{u_k} f(U) & k\text{ odd} \\
--\partial_{u_k} f(U) & k\text{ even} 
-\end{cases}
+\begin{aligned}
+\partial_{u_j} f(R U) &= (-1)^{j+1} \partial_{u_j} f(U) \\
+\partial^2_{u_j u_k} f(R U) &= (-1)^{j+k} \partial^2_{u_j u_k} F(U)
+\end{aligned}
 \end{equation}
 
 Next, we assume that equation \eqref{genODE} is a conservative system. We will also parameterize the conserved quantity $H$ by $c$.
@@ -537,13 +537,16 @@ where $V_0$ is the eigenvector of $A(0)$ corresponding to the simple eigenvalue 
 There exist exactly two linearly independent, bounded solutions $\Psi(x)$ and $\Psi^c(x)$ to \eqref{adjvareq2}.
 \begin{enumerate}[(i)]
 \item $\Psi(x)$ is exponentially localized, i.e. $e^{\alpha_0 |x|}\Psi(x)$ is bounded, and the last component of $\Psi(x)$ is $q(x)$. In addition, $\Psi(x)$ is symmetric with respect to the standard reversor operator $R$, i.e. $\Psi(-x) = R \Psi(x)$. 
-\item $\Psi_c(x)$ is bounded, the last component of $\Psi^c(x)$ is $1$, and
+\item $\Psi_c(x)$ is bounded, the last component of $\Psi^c(x)$ is $1$, $\Psi^c(-x) = R \Psi^c(x)$, and
 \begin{equation}
 \Psi^c(x) \rightarrow W_0 \text{ as }|x| \rightarrow \infty
 \end{equation}
-where $W_0$ is the eigenvector of $-A(0)^*$ corresponding to the simple eigenvalue 0. 
+where $W_0$ is the eigenvector of $-A(0)^*$ corresponding to the simple eigenvalue 0. Furthermore, $\Psi^c = (-DF(Q(x)), 1)$, and we have
+\[
+\langle \Psi^c(x), Q'(x) \rangle = \langle \Psi^c(x), Q'(-x) \rangle = 0
+\]
 \end{enumerate}
-Furthermore, $\Psi(0), \Psi^c(0) \perp \R Q'(0) \oplus Y^+ \oplus Y^-$.
+Finally, $\Psi(0), \Psi^c(0) \perp \R Q'(0) \oplus Y^+ \oplus Y^-$.
 \end{lemma}
  
 Using Lemma \ref{nondegenlemma} and Lemma \ref{adjsolutions}, we can decompose $\R^{2m+1}$ as  
