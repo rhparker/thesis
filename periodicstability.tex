@@ -485,7 +485,6 @@ and
 where $M_\Psi$ is a constant.
 \end{lemma}
 
-
 \subsection{Piecewise Formulation}
 
 We are finally ready to prove the main stability results. Let $q_{np}(x)$ be a $n-$periodic pulse solution to \eqref{genODE} constructed according to Theorem \ref{perexist}, and let $Q_{np}(x) = (q_{np}(x), \partial_x q_{np}(x), \dots, \partial_x^{2m} q_{np}(x) )$. From Theorem \ref{perexist}, we can write $Q_{np}(x)$ piecewise as
@@ -582,7 +581,11 @@ Let $\Delta H_i^\pm(x) = \tilde{H}_i^\pm(x) - H(x)$. Then we have the following 
 \item $|\Delta H_i^-(x)| \leq C e^{-\alpha_0 X_{i-1}} e^{-\alpha_0(X_{i-1} + x) } + e^{-2 \alpha_0 X_i} e^{\alpha_0 x}$
 \item $|\Delta H_i^+(x)| \leq C e^{-\alpha_0 X_i} e^{-\alpha_0(X_i - x) } + e^{-2 \alpha_0 X_{i-1}} e^{-\alpha_0 x}$
 \item $||\Delta H_i^\pm|| \leq C(e^{-\alpha_0 X_i} + e^{-\alpha_0 X_{i-1}} )$ 
-\item $D_i d = ( Q'(X_i) + Q'(-X_i))(d_{i+1} - d_i ) + \mathcal{O} \left( e^{-\alpha_0 X_i} \left( |\lambda| +  e^{-\alpha_0 X_m}  \right) |d| \right)$
+\item $D_i d = ( Q'(X_i) + Q'(-X_i) + Q^r(X_i))(d_{i+1} - d_i ) + \mathcal{O} ( e^{-\alpha X_i} |\lambda| )$
+where
+\[
+|Q_R(X_i)| \leq C e^{-\alpha_0 X_i} e^{-\alpha_0 X_m}
+\]
 \end{enumerate}
 \begin{proof}
 By Hypothesis \ref{Melnikov2hyp}(i), $T(x)$ is exponentially localized, thus $|H(x)| \leq C e^{-\alpha_0 |x|}$. We can use Lin's method, as in the proof of Theorem \ref{perexist}, to solve for the remainder functions $\tilde{T}_i^\pm(x)$ in \eqref{Tnppiece}. Since the details are similar to that proof, they will be omitted. The jump conditions from Lin's method are automatically satisfied, since $T_np(x)$ is a continuous function. We conclude from Lin's method that, as in Lemma \ref{solvewithjumps}, we have bounds on the remainder functions
@@ -595,7 +598,7 @@ The bounds (i)-(iv) come from these estimates and the definitions of $H$ and $\t
 For estimate (v), we use \eqref{VQpm} in Lemma \ref{solvewithjumps} and \eqref{Vpiecewise} (with $\tilde{Q}$ in place of $V$) to get
 \begin{align*}
 Q_{i+1}^-(-X_i) &= Q^-(-X_i; \beta_{i+1}^-) + \tilde{Q}_{i+1}^-(-X_i) \\
-&= Q^-(-X_i; \beta_{i+1} ^-) + Q^+(X_i; \beta_i^+) + \mathcal{O}(e^{-2 \alpha X_i}) \\
+&= Q^-(-X_i; \beta_{i+1} ^-) + Q^+(X_i; \beta_i^+) + \mathcal{O}(e^{-2 \alpha_0 X_i}) \\
 &= Q(-X_i) + Q(X_i) 
 + \mathcal{O}(e^{-\alpha_0 X_i}(e^{-\alpha_0 X_{i-1}}+e^{-\alpha_0 X_i}+e^{-\alpha_0 X_{i+1}}))
 \end{align*}
@@ -603,11 +606,23 @@ Since the bounds \ref{solvewithjumps} also apply to derivatives with respect to 
 \begin{align*}
 (Q_{i+1}^-)'(-X_i) &= Q'(-X_i) + Q'(X_i) + \mathcal{O}(e^{-\alpha_0 X_i}e^{-\alpha_0 X_m})
 \end{align*}
+We write this as 
+\begin{align*}
+(Q_{i+1}^-)'(-X_i) &= Q'(-X_i) + Q'(X_i) + Q^R(X_i)
+\end{align*}
+where $Q^R(X_i)$ is a remainder term with
+\[
+|Q_R(X_i)| \leq C e^{-\alpha_0 X_i} e^{-\alpha_0 X_m}
+\]
 Similarly,
 \begin{align*}
 (Q_i^+)'(X_i)' &= Q'(-X_i) + Q'(X_i) + \mathcal{O}(e^{-\alpha_0 X_i}e^{-\alpha_0 X_m})
 \end{align*}
-Substituting these into \eqref{Did2} gives us the estimate (v).
+As part of the construction of the periodic multipulse using Lin's method, we peformed a match at $\pm X_i$. Thus we have
+$(Q_{i+1}^-)'(-X_i) = Q_i^+(X_i)$. In particular, this implies \begin{align*}
+(Q_i^+)'(X_i)' &= Q'(-X_i) + Q'(X_i) + Q^R(X_i)
+\end{align*}
+To get the estimate (v), we substitute these into \eqref{Did2} and use the fact that $|\partial_c Q'(x)| \leq C e^{-\alpha |x|}$.
 \end{proof}
 \end{lemma}
 
@@ -910,19 +925,16 @@ Using the bound on $L_3$ and noting which pieces are involved, $A_1$ has piecewi
 \leq C \Big( e^{-\alpha X_i} (|b_i^+| + |b_{i+1}^-| + |c_i| + |\lambda^2||d|) + |D_i||d| \Big)
 \end{align*} 
 
-Next, we apply the projections $P_0^{s/u/c}(\lambda)$ on the eigenspaces $E^{s/u/c}(\lambda)$ to \eqref{Dideq1} to obtain the expressions
+Next, we apply the projections $P_0^{s/u}(\lambda)$ on the eigenspaces $E^{s/u}(\lambda)$ to \eqref{Dideq1} to obtain the expressions
 \begin{align*}
 a_i^+ &= P_0^u(\lambda) D_i d + A_2(\lambda)_i^+(b, c^-, d) \\
 a_i^- &= -P_0^s(\lambda) D_i d + A_2(\lambda)_i^-(b, c^-, d) \\
-\tilde{c}_i &= P_0^c(\lambda) D_i d + A_2(\lambda)_i^c(b, c^-, d) )
 \end{align*}
 The bound on the remainder term $A_2(\lambda)_i(b, c^-, d)$ is found by substituting the bound for $A_1$ into the bound for $L_3$ and simplifying. 
-
 \begin{align*}
 |A_2&(\lambda)_i(b, c^-, d)|
 \leq C e^{-\alpha X_i} \left( |b_i^+| + |b_{i+1}^-| + |c_i| + |\lambda|^2|d| + |D_i||d| \right)
 \end{align*} 
-
 Anticipating what we will need at the end, we will derive expressions for $a_i^+$ and $a_i^-$ which involve the conjugation projections. Using the conjugation operator $P_i^+(X_i; \lambda)$, we write $a_i^+$ as
 \begin{align*}
 a_i^+ 
@@ -947,7 +959,15 @@ We do the same thing for $a_i^-$, which gives us
 a_i^- &= -P_i^-(-X_i; \lambda) P_0^s(\lambda) D_i d + A_2(\lambda)_i^-(b, c^-, d)
 \end{align*}
 
-Finally, we would like to obtain an estimate for $P_0^c(\lambda) D_i d$. Recall from Lemma \ref{stabestimates} that
+Finally, apply the projection $P_0^c(\lambda)$ on the eigenspace $E^c(\lambda)$ to \eqref{Dideq1}. To do this, we will rewrite use \eqref{projTheta} to rewrite $L_3$ as
+\begin{align*}
+L_3(\lambda)_i(a, b, c, \tilde{c}, d) &= \Theta_i^+(X_i; \lambda)a_i^+ + \Theta_i^+(X_i; \lambda)c_i + \Theta_i^+(X_i; \lambda)\tilde{c}_i + (I + \Theta_i^+(X_i; \lambda))\Phi^s(X_i, 0; \lambda) b_i^+ \\
+&+ \lambda^2 d_i (I + \Theta_i^+(X_i; \lambda)) \int_0^{X_i} \Phi^s(X_i, y; \lambda) P_i^+(y; \lambda)^{-1} \tilde{H}_i^+(y) dy \\
+&- \Theta_{i+1}^-(-X_i; \lambda)a_i^- - \Theta_{i+1}^-(-X_i; \lambda)c_i - (I + \Theta_{i+1}^-(-X_i; \lambda)) \Phi^u(-X_i, 0; \lambda) b_{i+1}^- \\ &- \lambda^2 d_{i+1} (I + \Theta_{i+1}^-(-X_i; \lambda)) \int_0^{-X_i} \Phi^u(-X_i, y; \lambda) P_{i+1}^-(y; \lambda)^{-1} \tilde{H}_i^-(y) dy \\
+\end{align*}
+Since the ranges of the evolution operators $\Phi^s(x, y; \lambda)$ and $\Phi^u(x, y; \lambda)$ are $E^s(\lambda)$ and $E^u(\lambda)$ (respectively), applying the projection $P_0^c(\lambda)$ eliminates any terms involving these. Thus we have the estimate....
+
+We would like to obtain an estimate for $P_0^c(\lambda) D_i d$. Recall from Lemma \ref{stabestimates} that
 \begin{equation}\label{Did3}
 D_i d = ( Q'(X_i) + Q'(-X_i))(d_{i+1} - d_i ) + \mathcal{O} \left( e^{-\alpha_0 X_i} \left( |\lambda| +  e^{-\alpha_0 X_m}  \right) |d| \right) 
 \end{equation}
@@ -1302,7 +1322,7 @@ and
 \end{align*}
 where
 \[
-\tilde{a}_i = \langle \Psi^c(X_i), Q'(-X_i) \rangle 
+\tilde{a}_i = \langle \Psi^c(X_i), Q^R(X_i) \rangle 
 \]
 The matrices have uniform bounds
 \begin{align*}
