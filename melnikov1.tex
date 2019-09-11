@@ -35,13 +35,13 @@ V^\pm(x; \lambda) &= e^{\nu(\lambda)x} (V_0(\lambda) + e^{-\nu(\lambda)x} V_R^\p
 &= e^{\nu(\lambda)x}(V_0(\lambda) + \tilde{V}_R^\pm(x; \lambda))
 \end{align*}
 where $\tilde{V}_R^\pm(x; \lambda) = \mathcal{O}(e^{-(\alpha - \eta) |x|})$. Let
-\begin{equation}\label{tildeV}
+\begin{equation*}
 V^\pm(x; \lambda) = e^{\nu(\lambda)x}\tilde{V}^\pm(x; \lambda)
-\end{equation}
+\end{equation*}
 Then we have
-\[
+\begin{equation}\label{tildeV}
 \tilde{V}^\pm(x; \lambda) = V_0(\lambda) + \tilde{V}_R^\pm(x; \lambda)
-\]
+\end{equation}
 
 \item Derive an ODE which is solved by $\tilde{V}^\pm(x; \lambda)$. Differentiating equation \eqref{tildeV}, we obtain
 \begin{align*}
@@ -69,127 +69,94 @@ We note that $\mu$ is an eigenvalue of the asympotitic matrix $A(0; \lambda)$ if
 |\text{Re }\mu| \geq \alpha_0 - |\nu(\lambda)| \geq \alpha_0 - \eta = \alpha
 \]
 
-\item Taylor expand $\tilde{V}^\pm(x; \lambda)$. Since $\tilde{V}^\pm(x; \lambda)$ is still analytic in $\lambda$, and $\tilde{V}^\pm(x; 0) = V^c(x)$, we have the leading order expansion
+\item Taylor expand $\tilde{V}^\pm(x; \lambda)$ about $\lambda = 0$. Since $\tilde{V}^\pm(x; \lambda)$ is still analytic in $\lambda$, we can do this. Expanding both terms on the RHS of \eqref{tildeV}, we have
 \begin{align*}
-\tilde{V}^\pm(x; \lambda) &= \tilde{V}^\pm(x; 0) + \lambda V_1^\pm(x; \lambda) \\
-&= V^c(x) + \lambda V_1^\pm(x; \lambda)
+\tilde{V}^\pm(x; \lambda) &= V_0(0) + \lambda Z_0(\lambda) + \tilde{V}_R^\pm(x; 0) + \lambda V_1^\pm(x; \lambda) \\
+&= V^c(x) + \lambda Z_0(\lambda) + \lambda V_1^\pm(x; \lambda)
 \end{align*}
+where $Z_0(\lambda)$ is a constant and 
+\[
+V_1^\pm(x; \lambda) = \mathcal{O}(e^{-(\alpha - \eta)|x|})
+\]
 
 \item Derive an ODE which is solved by $V_1^\pm(x; \lambda)$.
-Plug the expansion for $\tilde{V}^\pm(x; \lambda$ into equation \eqref{tildeVeq} to get
+Plug the expansion for $\tilde{V}^\pm(x; \lambda)$ into equation \eqref{tildeVeq} to get
 \begin{align*}
-[V^c(x)]' + \lambda [V_1^\pm(x; \lambda)]'
-&= \tilde{A}(Q(x); \lambda)(V^c(x) + \lambda V_1^\pm(x; \lambda)) \\
-&= (A(Q(x)) + \lambda B - \nu(\lambda)I)V^c(x) + \lambda \tilde{A}(Q(x); \lambda) V_1^\pm(x; \lambda) \\
-\lambda [V_1^\pm(x; \lambda)]' &= (\lambda B - \nu(\lambda)I)V^c(x) + \lambda \tilde{A}(Q(x); \lambda) V_1^\pm(x; \lambda)
+[V^c(x) + \lambda Z_0(\lambda) + \lambda V_1^\pm(x; \lambda)]'
+&= \tilde{A}(Q(x); \lambda)(V^c(x) + \lambda Z_0(\lambda) + \lambda V_1^\pm(x; \lambda)) \\
+[V^c(x)]' + \lambda[V_1^\pm(x; \lambda)]' &= (A(Q(x); 0) + \lambda B - \nu(\lambda)I)V^c(x) + \lambda \tilde{A}(Q(x); \lambda) ( Z_0(\lambda) + V_1^\pm(x; \lambda)) \\
+\lambda [V_1^\pm(x; \lambda)]' &= (\lambda B - \nu(\lambda)I)V^c(x) + \lambda \tilde{A}(Q(x); \lambda) ( Z_0(\lambda) + V_1^\pm(x; \lambda))
 \end{align*}
-Substituting the expansion for $\nu(\lambda)$
+Substituting the following expansion for $\nu(\lambda)$
 \[
 \nu(\lambda) = \frac{1}{c} \lambda + \mathcal{O}(|\lambda|^3),
 \]
 this becomes
 \begin{align*}
-\lambda [V_1^\pm(x; \lambda)]' &= \lambda \tilde{A}(Q(x); \lambda) V_1^\pm(x; \lambda) + \left(\lambda B - \frac{1}{c} \lambda I + \mathcal{O}(|\lambda|^3)I\right)V^c(x)
+\lambda [V_1^\pm(x; \lambda)]' &= \lambda \tilde{A}(Q(x); \lambda) V_1^\pm(x; \lambda) + \left(\lambda B - \frac{1}{c} \lambda I + \mathcal{O}(|\lambda|^3)I\right)V^c(x) + \lambda \tilde{A}(Q(x); \lambda) Z_0(\lambda)
 \end{align*}
-Finally, divide by $\lambda$ to get the ODE for $V_1^\pm$
+Finally, for $\lambda \neq 0$, divide by $\lambda$ to get the ODE for $V_1^\pm$
 \begin{align}\label{V1eq}
-[V_1^\pm(x; \lambda)]' &= \tilde{A}(Q(x); \lambda) V_1^\pm(x; \lambda) + \tilde{B} V^c(x) + \lambda^2 R(x)
+[V_1^\pm(x; \lambda)]' &= \tilde{A}(Q(x); \lambda) V_1^\pm(x; \lambda) + (\tilde{B} + R(\lambda) ) V^c(x) + \tilde{A}(Q(x); \lambda) Z_0(\lambda)
 \end{align}
 where
 \[
 \tilde{B} = B - \frac{1}{c} I
 \]
-and $||R|| \leq C$. 
+and $||R|| = \mathcal{O}(|\lambda|^2)$. For now, let
+\[
+H(x) = (\tilde{B} + R(\lambda) ) V^c(x) + \tilde{A}(Q(x); \lambda) Z_0(\lambda)
+\]
+be all the terms which do not involve $V_1^\pm(x; \lambda)$. Then \eqref{V1eq} reduces to
+\begin{align}\label{V1eq2}
+[V_1^\pm(x; \lambda)]' &= \tilde{A}(Q(x); \lambda) V_1^\pm(x; \lambda) + H(x)
+\end{align}
 
-\item Compare the two expressions for $\tilde{V}^\pm(x; \lambda)$, i.e. 
-\begin{align*}
-V^c(x) + \lambda V_1^\pm(x; \lambda) &= V_0(\lambda) + \tilde{V}_R^\pm(x; \lambda)
-\end{align*}
-Taylor expand $V_0(\lambda)$ about $\lambda = 0$ to get
+\item Write this in integrated form. Let $\Phi(x,y; \lambda)$ be the evolution operator for the ODE
 \[
-V_0(\lambda) = V_0 + \lambda Z_0(\lambda)
+V' = \tilde{A}(Q(x); \lambda)V
 \]
-and recall that when $\lambda = 0$ we have
+which has an exponential trichotomy on $\R^+$ and $\R^-$ with a one-dimensional center subspace corresponding to the eigenvalue $\lambda = 0$ of the asymptotic matrix $\tilde{A}(0; \lambda)$. Since the center subspace is one-dimensional and $\tilde{V}(x; \lambda)$ lies in that subspace, it is not hard to show that the center evolution operator in that subspace is given by
 \[
-V^c(x) = V_0 + V^c_R(x)
+\Phi^c_\pm(x,y; \lambda) = \langle \tilde{W}^\pm(x; \lambda), \cdot \rangle \tilde{V}^\pm(x; \lambda)
 \]
-where $V^c_R(x) = \mathcal{O}(e^{-\alpha |x|})$. Since
-\begin{align*}
-\tilde{V}^\pm(x; \lambda) = V_0(\lambda) + \tilde{V}_R^\pm(x; \lambda)
-\end{align*}
-we take $\lambda = 0$ to get
-\begin{align*}
-\tilde{V}^\pm(x; 0) = V_0 + \tilde{V}_R^\pm(x; 0) \\
-V^c(x) = V_0 + \tilde{V}_R^\pm(x; 0) 
-\end{align*}
-from which we see that
-\[
-\tilde{V}_R^\pm(x; 0) = V^c_R(x)
-\]
-This allows us to Taylor expand $\tilde{V}_R^\pm(x; \lambda)$ about $\lambda = 0$ to get
-\[
-\tilde{V}_R^\pm(x; \lambda) = V^c_R(x) + \lambda V_2^\pm(x; 
-\lambda)
-\]
-Substituting all of these in, we get
-\begin{align*}
-V_0 + V^c_R(x) + \lambda V_1^\pm(x; \lambda) &= V_0 + \lambda Z_0(\lambda) + V^c_R(x) + \lambda V_2^\pm(x; \lambda) 
-\end{align*}
-which simplifies to
-\begin{equation}\label{V2eq}
-V_1^\pm(x; \lambda) = Z_0(\lambda) + V_2^\pm(x; \lambda)
-\end{equation}
-where $V_2^\pm(x; \lambda) = \mathcal{O}(e^{-(\alpha - \eta)x}) $. So basically we know that $V_1^\pm(x; \lambda)$ is a constant plus something which decays exponentially.
-
-\item Plug this in to get an equation for $V_2^\pm(x; \lambda)$. For what follows, we will take $\lambda$ fixed, so we suppress the dependence on $\lambda$ for convenience of notation. We write equation \eqref{V1eq} as
-\begin{align*}
-[V_1^\pm(x)]' &= \tilde{A}(Q(x)) V_1^\pm(x) + \tilde{B} V^c(x) + \lambda^2 R(x)
-\end{align*}
-Plugging in \eqref{V2eq}, we get
-\begin{align*}
-[Z_0(\lambda) + V_2^\pm(x)]' &= \tilde{A}(Q(x)) [Z_0(\lambda) + V_2^\pm(x)] + \tilde{B} V^c(x) + \lambda^2 R(x) \\
-[V_2^\pm(x)]' &= \tilde{A}(Q(x)) V_2^\pm(x) + \tilde{A}(Q(x)) Z_0(\lambda) + \tilde{B} V^c(x) + \lambda^2 R(x) \\
-\end{align*}
-For convenience, let
-\[
-H(x) = \tilde{A}(Q(x)) Z_0(\lambda) + \tilde{B} V^c(x) + \lambda^2 R(x)
-\]
-Then we have
-\[
-[V_2^\pm(x)]' = \tilde{A}(Q(x)) V_2^\pm(x) + H(x)
-\]
-Let $\Phi(x,y)$ be the evolution operator for the ODE
-\[
-V' = \tilde{A}(Q(x))V
-\]
-which has an exponential trichotomy on $\R^+$ and $\R^-$ with a one-dimensional center subspace corresponding to the eigenvalue $\lambda = 0$ of the asymptotic matrix. Since the center subspace is one-dimensional, we can show that the evolution operator in that subspace is given by
-\[
-\Phi^c_\pm(x,y) = \langle \tilde{W}^\pm(x), \cdot \rangle \tilde{V}^\pm(x)
-\]
-Then we can write our system in integrated form as the following set of fixed point equations
+Then we can formally write our system in integrated form as the following set of fixed point equations
 \begin{equation*}
 \begin{aligned}
-V_2^-(x) &= \Phi_u^-(x, 0) b^- + \Phi_c^-(x, -L) c^- \\
-&+ \int_0^x \Phi_u^-(x, y) H(y) dy + \int_{-\infty}^x \Phi_s^-(x, y) H(y) dy + \int_{-L}^x \Phi_c^-(x, y) H(y) dy \\ 
-V_2^+(x) &= \Phi_s^+(x, 0) b^+ + \Phi_c^+(x, L)c^+ \\
-&+ \int_0^x \Phi_s^+(x, y)H(y) dy
-+ \int_{\infty}^x \Phi_u^+(x, y)H(y) dy + \int_{L}^x \Phi_c^+(x, y) H(y) dy
+V_1^-(x; \lambda) &= \Phi_u^-(x, 0; \lambda) b^-
++ \int_0^x \Phi_u^-(x, y; \lambda) H(y) dy \\
+&+ \int_{-\infty}^x \Phi_s^-(x, y; \lambda) H(y) dy + \int_{-\infty}^x \Phi_c^-(x, y; \lambda) H(y) dy \\ 
+V_1^+(x; \lambda) &= \Phi_s^+(x, 0; \lambda) b^+ 
++ \int_0^x \Phi_s^+(x, y; \lambda)H(y) dy \\
+&+ \int_{\infty}^x \Phi_u^+(x, y; \lambda)H(y) dy + \int_{\infty}^x \Phi_c^+(x, y) H(y) dy
 \end{aligned}
 \end{equation*}
-where $L$ is arbitrary (for now). Ideally we would like to take $L = \pm \infty$, which requires that the integrals converge. For the initial conditions we have
+where for the initial conditions we have
 \begin{align*}
 b^- &\in \text{ran}(P_u^-(0)) \\
 b^+ &\in \text{ran}(P_s^+(0)) \\
-c^\pm &\in E^c \\
 \end{align*}
 Substituting in the form of the center evolution,
 \begin{equation*}
 \begin{aligned}
-V_2^-(x) &= \Phi_u^-(x, 0) b^- + \langle \tilde{W}^-(x), c^- \rangle \tilde{V}^-(x) \\
-&+ \int_0^x \Phi_u^-(x, y) H(y) dy + \int_{-\infty}^x \Phi_s^-(x, y) H(y) dy + \int_{-L}^x \langle \tilde{W}^-(x), H(y) \rangle \tilde{V}^-(x) dy \\ 
-V_2^+(x) &= \Phi_s^+(x, 0) b^+ +  \langle \tilde{W}^+(x), c^+ \rangle \tilde{V}^+(x) \\
-&+ \int_0^x \Phi_s^+(x, y)H(y) dy
-+ \int_{\infty}^x \Phi_u^+(x, y)H(y) dy + \int_{L}^x \langle \tilde{W}^+(x), H(y) \rangle \tilde{V}^+(x) dy
+V_1^-(x; \lambda) &= \Phi_u^-(x, 0; \lambda) b^- 
++ \int_0^x \Phi_u^-(x, y; \lambda) H(y) dy \\
+&+ \int_{-\infty}^x \Phi_s^-(x, y; \lambda) H(y) dy + \int_{-\infty}^x \langle \tilde{W}^-(x; \lambda), H(y) \rangle \tilde{V}^-(x; \lambda) dy \\ 
+V_1^+(x; \lambda) &= \Phi_s^+(x, 0; \lambda) b^+ 
++ \int_0^x \Phi_s^+(x, y; \lambda)H(y) dy \\
+&+ \int_{\infty}^x \Phi_u^+(x, y; \lambda)H(y) dy + \int_{\infty}^x \langle \tilde{W}^+(x; \lambda), H(y) \rangle \tilde{V}^+(x; \lambda) dy
+\end{aligned}
+\end{equation*}
+
+Next, we substitute \eqref{tildeVeq} into the center integral terms on the RHS.
+\begin{equation*}
+\begin{aligned}
+V_1^-(x; \lambda) &= \Phi_u^-(x, 0; \lambda) b^- 
++ \int_0^x \Phi_u^-(x, y; \lambda) H(y) dy \\
+&+ \int_{-\infty}^x \Phi_s^-(x, y; \lambda) H(y) dy + \int_{-\infty}^x \langle \tilde{W}^-(x; \lambda), H(y) \rangle \tilde{V}^-(x; \lambda) dy \\ 
+V_1^+(x; \lambda) &= \Phi_s^+(x, 0; \lambda) b^+ 
++ \int_0^x \Phi_s^+(x, y; \lambda)H(y) dy \\
+&+ \int_{\infty}^x \Phi_u^+(x, y; \lambda)H(y) dy + \int_{\infty}^x \langle \tilde{W}^+(x; \lambda), H(y) \rangle \tilde{V}^+(x; \lambda) dy
 \end{aligned}
 \end{equation*}
 
