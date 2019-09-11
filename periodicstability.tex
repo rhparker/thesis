@@ -749,8 +749,7 @@ Since $E^c(\lambda)$ is one-dimensional, we have a formula for $\Phi^c(x, y; \la
 \Phi^c(x, y; \lambda) v &= e^{\nu(\lambda)(x - y)} v && v \in E^c(\lambda)
 \end{align}
 
-Finally, we will look at the variational and adjoint variational e
-equations for the linearization about the primary pulse $Q(x)$. Recall that these are given by 
+Finally, we will look at the variational and adjoint variational equations for the linearization about the primary pulse $Q(x)$. Recall that these are given by 
 \begin{align*}
 V_i'(x) &= A(Q(x); 0) V_i(x) \\
 W_i'(x) &= -A(Q(x); 0)^* W_i(x)
@@ -1366,19 +1365,16 @@ Similarly,
 &+ \langle \Psi^c(0), P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) A_4(\lambda)_{i-1}^-(c, d) \rangle \\
 &= -\langle \Psi^c(0), \Theta_i^s(0, -X_{i-1}; \lambda) P_0^s(0) D_{i-1} d \rangle + \langle \Psi^c(0), P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) A_4(\lambda)_{i-1}^-(c, d) \rangle
 \end{align*}
-For the leading order term,
+For the first term on the RHS, using the expression for $D_{i-1}d$ from Lemma \ref{stabestimates}, we have
 \begin{align*}
-\langle \Psi^c(0), &\Theta_i^s(0, -X_{i-1}; \lambda) P_0^s(0) D_{i-1} d \rangle
-= \langle \Psi^c(0), \Theta^s(0, -X_{i-1}; 0) P_0^s(0) D_{i-1} d \rangle + \mathcal{O}(e^{-2\alpha X_{i-1}}(|\lambda| + e^{-2 \alpha X_m})|d|) \\
-&= \langle \Psi^c(0), \Theta(0, -X_{i-1}; 0) P^s_-(-X_{i-1}) P_0^s(0) D_{i-1} d \rangle + \mathcal{O}(e^{-2\alpha X_{i-1}}(|\lambda| + e^{-2 \alpha X_m})|d|) \\
-&= \langle \Psi^c(-X_{i-1}), P^s_-(-X_{i-1}) P_0^s(0) D_{i-1} d \rangle + \mathcal{O}(e^{-2\alpha X_{i-1}}(|\lambda| + e^{-2 \alpha X_m})|d|)
-\end{align*}
-Using the expression for $D_{i-1}d$ from Lemma \ref{stabestimates},
-\begin{align*}
-P^s_-(-X_{i-1}) &P_0^s(0) D_{i-1} d = P^s_-(-X_{i-1}) P_0^s(0) ( Q'(X_{i-1}) + Q'(-X_{i-1})(d_i - d_{i-1}) \\
-&+ \mathcal{O} \left( e^{-\alpha X_m} \left( |\lambda| +  e^{-\alpha X_m}  \right) |d| \right)
-\end{align*}
-For the first two terms on the RHS, we have
+\langle &\Psi^c(0), \Theta_i^s(0, -X_{i-1}; \lambda) P_0^s(0) D_{i-1} d \rangle \\
+&= \langle \Psi^c(0), \Theta_i^s(0, -X_{i-1}; \lambda) P_0^s(0) ( Q'(X_{i-1}) + Q'(-X_{i-1}) + Q^R(X_{i-1}))(d_i - d_{i-1}) \\
+&+ \mathcal{O} \left( e^{-\alpha X_m} \left( |\lambda| +  e^{-\alpha X_m}  \right) |d| \right) \rangle \\
+&= \langle \Psi^c(0), \Theta_i^s(0, -X_{i-1}; 0) P_0^s(0) ( Q'(X_{i-1}) + Q'(-X_{i-1}))(d_i - d_{i-1})\rangle \\
+&+ \mathcal{O}( e^{-\alpha X_{i-1}} e^{-\alpha X_m} ( |\lambda| +  e^{-\alpha X_m} ) |d|)
+\end{align*} 
+
+Evaluating the terms $P^s_-(-X_{i-1}) P_0^s(0) Q'(X_{i-1})$ and $P^s_-(-X_{i-1}) P_0^s(0) Q'(-X_{i-1})$
 \begin{align*}
 P^s_-(-X_{i-1}) P_0^s(0) Q'(X_{i-1})
 &= P_0^s(0) Q'(X_{i-1}) + \mathcal{O}(e^{-2 \alpha X_{i-1}}) \\
@@ -1391,6 +1387,16 @@ P^s_-(-X_{i-1}) P_0^s(0) Q'(-X_{i-1})
 &= P^s_-(-X_{i-1}) Q'(-X_{i-1}) + \mathcal{O}(e^{-2 \alpha X_{i-1}}) \\
 &= Q'(-X_{i-1}) + \mathcal{O}(e^{-2 \alpha X_{i-1}}) \\
 \end{align*}
+
+
+For the term involving $Q'(X_{i-1}) + Q'(-X_{i-1})$, we have
+\begin{align*}
+\langle &\Psi^c(0), \Theta_i^s(0, -X_{i-1}; \lambda) P_0^s(0) ( Q'(X_{i-1}) + Q'(-X_{i-1}))(d_i - d_{i-1}) \rangle \\
+&= \langle \Psi^c(0), \Theta^s(0, -X_{i-1}; 0) P_0^s(0) ( Q'(X_{i-1}) + Q'(-X_{i-1}))(d_i - d_{i-1}) \rangle + \mathcal{O}(e^{-2\alpha X_{i-1}}|\lambda||d|) \\
+&= \langle \Psi^c(0), \Theta(0, -X_{i-1}; 0) P^s_-(-X_{i-1}) P_0^s(0) ( Q'(X_{i-1}) + Q'(-X_{i-1}))(d_i - d_{i-1}) \rangle + \mathcal{O}(e^{-2\alpha X_{i-1}}|\lambda||d|) \\
+&= \langle \Psi^c(-X_{i-1}), P^s_-(-X_{i-1}) P_0^s(0) ( Q'(X_{i-1}) + Q'(-X_{i-1}))(d_i - d_{i-1}) \rangle + \mathcal{O}(e^{-2\alpha X_{i-1}}|\lambda||d|)
+\end{align*}
+
 Thus the leading order term is
 \begin{align*}
 \langle \Psi^c(0), &\Theta_i^s(0, -X_{i-1}; \lambda) P_0^s(0) D_{i-1} d \rangle \\
