@@ -822,19 +822,17 @@ such that $(a, \tilde{c}) = A_1(\lambda)(b, c, d)$ solves \eqref{systemmiddle} f
 \end{align} 
 In addition, we can write $a_i^\pm$ and $\tilde{c}$ as 
 \begin{align*}
-a_i^+ &= P_i^+(X_i; \lambda) P_0^u(\lambda) D_i d + A_2(\lambda)_i^+(b, c, d) \\
-a_i^- &= -P_i^-(-X_i; \lambda) P_0^s(\lambda) D_i d + A_2(\lambda)_i^-(b, c, d) \\
-\tilde{c}_i &= P_0^c(\lambda) D_i d + A_2(\lambda)_i^c(b, c, d) )
+a_i^+ &= P_i^+(X_i; \lambda)^{-1} P_0^u(\lambda) D_i d + A_2(\lambda)_i^+(b, c, d) \\
+a_i^- &= -P_i^-(-X_i; \lambda)^{-1} P_0^s(\lambda) D_i d + A_2(\lambda)_i^-(b, c, d) \\
+\tilde{c}_i &= k_i + C_2(\lambda)_i(b, c, d)
 \end{align*}
-where $A_2$ is analytic in $\lambda$, linear in $(b, c, d)$, and has piecewise bounds
-\begin{align}\label{A2bound}
-|A_2&(\lambda)_i(b, c, d)|
-\leq C e^{-\alpha X_i} \left( |b_i^+| + |b_{i+1}^-| + |c_i| + |\lambda|^2|d| + |D_i||d| \right)
+where $k_i = \mathcal{O}(e^{-\alpha X_i})$. $A_2$ and $C_2$ are analytic in $\lambda$, linear in $(b, c, d)$, and have piecewise bounds
+\begin{align}
+|A_2(\lambda)_i(b, c, d)|
+&\leq C e^{-\alpha X_i} \left( |b_i^+| + |b_{i+1}^-| + |c_i| + |\lambda|^2|d| + |D_i||d| \right) \label{A2bound} \\
+|C_2(\lambda)(b, c, d)_i| &\leq 
+C \left( e^{-2 \alpha X_i} (|b_i^+| + |b_{i+1}^-|) + e^{-\alpha X_i}|c_i| + e^{-\alpha X_i}|\lambda||d| \right) \label{C2bound}
 \end{align}
-Finally, we have the estimate
-\begin{equation}\label{P0cDid}
-|P_0^c(\lambda) D_i d| \leq C e^{-\alpha_0 X_i}(|\lambda| + e^{-\alpha_0 X_m})|d|
-\end{equation}
 
 \begin{proof}
 At $\pm X_i$, the fixed point equations \eqref{Zfpeq} become
@@ -951,34 +949,56 @@ P_i^+(X_i; \lambda)a_i^+ &= P_0^u(\lambda) D_i d + A_2(\lambda)_i^+(b, c^-, d)
 \end{align*}
 Finally, apply the operator $P_i^+(X_i; \lambda)^{-1}$ on the left on both sides to solve for $a_i^+$. Since $P_i^+(X_i; \lambda)^{-1}$ a bounded operator, we will also incorporate this into $A_2(\lambda)_i^+(b, c^-, d)$, which will leave the bound unchanged. Thus we have
 \begin{align*}
-a_i^+ &= P_i^+(X_i; \lambda) P_0^u(\lambda) D_i d + A_2(\lambda)_i^+(b, c^-, d)
+a_i^+ &= P_i^+(X_i; \lambda)^{-1} P_0^u(\lambda) D_i d + A_2(\lambda)_i^+(b, c^-, d)
 \end{align*}
 We do the same thing for $a_i^-$, which gives us
 \begin{align*}
-a_i^- &= -P_i^-(-X_i; \lambda) P_0^s(\lambda) D_i d + A_2(\lambda)_i^-(b, c^-, d)
+a_i^- &= -P_i^-(-X_i; \lambda)^{-1} P_0^s(\lambda) D_i d + A_2(\lambda)_i^-(b, c^-, d)
 \end{align*}
 
-Finally, apply the projection $P_0^c(\lambda)$ on the eigenspace $E^c(\lambda)$ to \eqref{Dideq1}. To do this, we will rewrite use \eqref{projTheta} to rewrite $L_3$ as
+Finally, apply the projection $P_0^c(\lambda)$ on the eigenspace $E^c(\lambda)$ to \eqref{Dideq1} to get an expression for $\tilde{c}_i$. To do this, we will rewrite use \eqref{projTheta} to rewrite $L_3$ as
 \begin{align*}
 L_3(\lambda)_i(a, b, c, \tilde{c}, d) &= \Theta_i^+(X_i; \lambda)a_i^+ + \Theta_i^+(X_i; \lambda)c_i + \Theta_i^+(X_i; \lambda)\tilde{c}_i + (I + \Theta_i^+(X_i; \lambda))\Phi^s(X_i, 0; \lambda) b_i^+ \\
 &+ \lambda^2 d_i (I + \Theta_i^+(X_i; \lambda)) \int_0^{X_i} \Phi^s(X_i, y; \lambda) P_i^+(y; \lambda)^{-1} \tilde{H}_i^+(y) dy \\
 &- \Theta_{i+1}^-(-X_i; \lambda)a_i^- - \Theta_{i+1}^-(-X_i; \lambda)c_i - (I + \Theta_{i+1}^-(-X_i; \lambda)) \Phi^u(-X_i, 0; \lambda) b_{i+1}^- \\ &- \lambda^2 d_{i+1} (I + \Theta_{i+1}^-(-X_i; \lambda)) \int_0^{-X_i} \Phi^u(-X_i, y; \lambda) P_{i+1}^-(y; \lambda)^{-1} \tilde{H}_i^-(y) dy \\
 \end{align*}
-Since the ranges of the evolution operators $\Phi^s(x, y; \lambda)$ and $\Phi^u(x, y; \lambda)$ are $E^s(\lambda)$ and $E^u(\lambda)$ (respectively), applying the projection $P_0^c(\lambda)$ eliminates any terms involving these. Thus we have the estimate....
-
-We would like to obtain an estimate for $P_0^c(\lambda) D_i d$. Recall from Lemma \ref{stabestimates} that
-\begin{equation}\label{Did3}
-D_i d = ( Q'(X_i) + Q'(-X_i))(d_{i+1} - d_i ) + \mathcal{O} \left( e^{-\alpha_0 X_i} \left( |\lambda| +  e^{-\alpha_0 X_m}  \right) |d| \right) 
-\end{equation}
-Using the fact that the eigenprojection $P_0^c(\lambda)$ is a smooth function of $\lambda$, we have for $P_0^c(Q'(X_i) + Q'(-X_i))$,
+Since the ranges of the evolution operators $\Phi^s(x, y; \lambda)$ and $\Phi^u(x, y; \lambda)$ are $E^s(\lambda)$ and $E^u(\lambda)$ (respectively), applying the projection $P_0^c(\lambda)$ eliminates any terms involving these. Plugging in the estimate $A_1$ for $a_i^\pm$ and $\tilde{c}_i$, we have
 \begin{align*}
-P_0^c(\lambda)(Q'(X_i) + Q'(-X_i))
-&= P_0^c(0)(Q'(X_i) + Q'(-X_i)) + \mathcal{O}(|\lambda|e^{-\alpha_0 X_i}) \\
-&= \mathcal{O}(e^{-\alpha_0 X_i}(|\lambda| + e^{-\alpha_0 X_i})) \\
+\tilde{c}_i &= P_0^c(\lambda) D_i d + C_2(\lambda)_i(b, c, d)
 \end{align*}
-since $Q'(-X_i)$ decays exponentially towards $E^u$ and $Q'(X_i)$ decays exponentially towards $E^s$. Combining this with the bound on the higher order terms of \eqref{Did3}, we obtain the bound
+where
 \[
-|P_0^c(\lambda) D_i d| \leq C e^{-\alpha_0 X_i}(|\lambda| + e^{-\alpha_0 X_m})|d|
+|C_2(\lambda)(b, c, d)_i| \leq 
+C \left( e^{-2 \alpha X_i} (|b_i^+| + |b_{i+1}^-| + |\lambda|^2 |d|) + e^{-\alpha X_i}|c_i| + e^{-\alpha X_i}|D_i||d| \right)
+\]
+To evaluate $P_0^c(\lambda) D_i d$, we the estimate from \eqref{stabestimates}.
+\begin{align*}
+P_0^c(\lambda) D_i d = 
+P_0^c(Q'(X_i) + Q'(-X_i) + Q^R(X_i))(d_{i+1} - d_i) + \mathcal{O}(|\lambda|e^{-\alpha_0 X_i}|d|)
+\end{align*}
+To evaluate $P_0^c (Q'(X_i) + Q'(-X_i))$, we use Lemma \eqref{kernelprojlemma}.
+\begin{align*}
+P_0^c&(0)(Q'(X_i) + Q'(-X_i)) = \langle W_0, Q'(X_i) + Q'(-X_i) \rangle \\
+&= \langle \begin{pmatrix} -c \\ 0 \\ c2 \\ 0 \\ \vdots \\ c_{2m-2} \\ 0 \\ 1 \end{pmatrix},
+\begin{pmatrix} 0 \\ 2 \partial_x^2 q(X_i) \\ 0 \\ 2 \partial_x^4 q(X_i) \\ \vdots \\ 0 \\ 2 \partial_x^{2m} q(X_i) \\ 0 \end{pmatrix} \rangle = 0
+\end{align*}
+Incorporating the additional remainder terms into $C_2$, we have
+\begin{align*}
+\tilde{c}_i &= P_0^c Q^R(X_i) + C_2(\lambda)_i(b, c, d)
+\end{align*}
+where 
+\[
+|C_2(\lambda)(b, c, d)_i| \leq 
+C \left( e^{-2 \alpha X_i} (|b_i^+| + |b_{i+1}^-|) + e^{-\alpha X_i}|c_i| + e^{-\alpha X_i}(|\lambda| + |D_i|)|d| \right)
+\]
+For now (WE MIGHT BE ABLE TO GET SOMETHING ACTUALLY COMPUTABLE LATER), we separate out the terms which are $\mathcal{O}(e^{-2 \alpha X_i})$ and write this as
+\begin{align*}
+\tilde{c}_i &= k_i + C_2(\lambda)_i(b, c, d)
+\end{align*}
+where $k_i = \mathcal{O}(e^{-\alpha X_i})$ and we redefine
+\[
+|C_2(\lambda)(b, c, d)_i| \leq 
+C \left( e^{-2 \alpha X_i} (|b_i^+| + |b_{i+1}^-|) + e^{-\alpha X_i}|c_i| + e^{-\alpha X_i}|\lambda||d| \right)
 \]
 \end{proof}
 \end{lemma}
@@ -1363,47 +1383,39 @@ Similarly,
 \langle &\Psi^c(0), P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) a_{i-1}^- \rangle \\
 &= -\langle \Psi^c(0), P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) P_i^-(-X_{i-1}; \lambda)^{-1} P_0^s(\lambda) D_{i-1} d \rangle \\
 &+ \langle \Psi^c(0), P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) A_4(\lambda)_{i-1}^-(c, d) \rangle \\
-&= -\langle \Psi^c(0), \Theta_i^s(0, -X_{i-1}; \lambda) P_0^s(0) D_{i-1} d \rangle + \langle \Psi^c(0), P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) A_4(\lambda)_{i-1}^-(c, d) \rangle
+&= -\langle \Psi^c(0), \Theta_i^s(0, -X_{i-1}; \lambda) P_0^s(0) D_{i-1} d \rangle + \langle \Psi^c(0), P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) A_4(\lambda)_{i-1}^-(c, d) \rangle \\
+&+ \mathcal{O}(e^{-2 \alpha X_m}|\lambda|)
 \end{align*}
 For the first term on the RHS, using the expression for $D_{i-1}d$ from Lemma \ref{stabestimates}, we have
 \begin{align*}
 \langle &\Psi^c(0), \Theta_i^s(0, -X_{i-1}; \lambda) P_0^s(0) D_{i-1} d \rangle \\
 &= \langle \Psi^c(0), \Theta_i^s(0, -X_{i-1}; \lambda) P_0^s(0) ( Q'(X_{i-1}) + Q'(-X_{i-1}) + Q^R(X_{i-1}))(d_i - d_{i-1}) \\
-&+ \mathcal{O} \left( e^{-\alpha X_m} \left( |\lambda| +  e^{-\alpha X_m}  \right) |d| \right) \rangle \\
-&= \langle \Psi^c(0), \Theta_i^s(0, -X_{i-1}; 0) P_0^s(0) ( Q'(X_{i-1}) + Q'(-X_{i-1}))(d_i - d_{i-1})\rangle \\
-&+ \mathcal{O}( e^{-\alpha X_{i-1}} e^{-\alpha X_m} ( |\lambda| +  e^{-\alpha X_m} ) |d|)
-\end{align*} 
-
-Evaluating the terms $P^s_-(-X_{i-1}) P_0^s(0) Q'(X_{i-1})$ and $P^s_-(-X_{i-1}) P_0^s(0) Q'(-X_{i-1})$
-\begin{align*}
-P^s_-(-X_{i-1}) P_0^s(0) Q'(X_{i-1})
-&= P_0^s(0) Q'(X_{i-1}) + \mathcal{O}(e^{-2 \alpha X_{i-1}}) \\
-&= P^s_+(X_{i-1}) Q'(X_{i-1}) + \mathcal{O}(e^{-2 \alpha X_{i-1}}) \\
-&= Q'(X_{i-1}) + \mathcal{O}(e^{-2 \alpha X_{i-1}}) \\
-\end{align*}
-and
-\begin{align*}
-P^s_-(-X_{i-1}) P_0^s(0) Q'(-X_{i-1})
-&= P^s_-(-X_{i-1}) Q'(-X_{i-1}) + \mathcal{O}(e^{-2 \alpha X_{i-1}}) \\
-&= Q'(-X_{i-1}) + \mathcal{O}(e^{-2 \alpha X_{i-1}}) \\
+&+ \mathcal{O} \left( |\lambda| e^{-\alpha X_{i-1}} |d| \right) \rangle \\
+&= \langle \Psi^c(0), \Theta^s(0, -X_{i-1}; 0) P_0^s(0) ( Q'(X_{i-1}) + Q'(-X_{i-1}))(d_i - d_{i-1})\rangle \\
+&+ \mathcal{O}( e^{-2 \alpha X_m} ( |\lambda| +  e^{-\alpha X_m} ) |d|)
 \end{align*}
 
-
-For the term involving $Q'(X_{i-1}) + Q'(-X_{i-1})$, we have
+For the term involving $Q'(-X_{i-1})$, we have
 \begin{align*}
-\langle &\Psi^c(0), \Theta_i^s(0, -X_{i-1}; \lambda) P_0^s(0) ( Q'(X_{i-1}) + Q'(-X_{i-1}))(d_i - d_{i-1}) \rangle \\
-&= \langle \Psi^c(0), \Theta^s(0, -X_{i-1}; 0) P_0^s(0) ( Q'(X_{i-1}) + Q'(-X_{i-1}))(d_i - d_{i-1}) \rangle + \mathcal{O}(e^{-2\alpha X_{i-1}}|\lambda||d|) \\
-&= \langle \Psi^c(0), \Theta(0, -X_{i-1}; 0) P^s_-(-X_{i-1}) P_0^s(0) ( Q'(X_{i-1}) + Q'(-X_{i-1}))(d_i - d_{i-1}) \rangle + \mathcal{O}(e^{-2\alpha X_{i-1}}|\lambda||d|) \\
-&= \langle \Psi^c(-X_{i-1}), P^s_-(-X_{i-1}) P_0^s(0) ( Q'(X_{i-1}) + Q'(-X_{i-1}))(d_i - d_{i-1}) \rangle + \mathcal{O}(e^{-2\alpha X_{i-1}}|\lambda||d|)
+\langle \Psi^c(0), &\Theta^s(0, -X_{i-1}; 0) P_0^s(0) Q'(-X_{i-1}) \rangle \\
+&= \langle \Psi^c(0), \Theta^s(0, -X_{i-1}; 0) P_0^s(0) P^u_-(-X_{i-1}) Q'(-X_{i-1}) \rangle \\
+&= \langle \Psi^c(0), \Theta^s(0, -X_{i-1}; 0) P_0^s(0) P_0^u(0) Q'(-X_{i-1}) \rangle + \mathcal{O}(e^{-3 \alpha X_m}) \\
+&= \mathcal{O}(e^{-3 \alpha X_m})
 \end{align*}
-
-Thus the leading order term is
+For the term involving $Q'(X_{i-1})$, we have
 \begin{align*}
-\langle \Psi^c(0), &\Theta_i^s(0, -X_{i-1}; \lambda) P_0^s(0) D_{i-1} d \rangle \\
-&= \langle \Psi^c(-X_{i-1}), Q'(-X_{i-1}) + Q'(X_{i-1}) \rangle (d_i - d_{i-1} ) + \mathcal{O}(e^{-\alpha X_m}(|\lambda| + e^{-\alpha X_m})|d|) \\
-&= \langle \Psi^c(-X_{i-1}), Q'(X_{i-1}) \rangle (d_i - d_{i-1} ) + \mathcal{O}(e^{-\alpha X_m}(|\lambda| + e^{-\alpha X_m})|d|)
+\langle \Psi^c(0), &\Theta^s(0, -X_{i-1}; 0) P_0^s(0) Q'(X_{i-1}) \rangle \\
+&= \langle \Psi^c(0), \Theta^s(0, -X_{i-1}; 0) P^s_+(X_{i-1}) Q'(X_{i-1}) \rangle + \mathcal{O}(e^{-3 \alpha X_m}) \\
+&= \langle \Psi^c(0), \Theta(0, -X_{i-1}; 0) P^s_-(-X_{i-1}) Q'(X_{i-1}) \rangle + \mathcal{O}(e^{-3 \alpha X_m}) \\
+&= \langle \Psi^c(-X_{i-1}), P^s_-(-X_{i-1}) Q'(X_{i-1}) \rangle + \mathcal{O}(e^{-3 \alpha X_m}) \\
+&= P^c_-(-X_{i-1}) P^s_-(-X_{i-1}) Q'(X_{i-1}) + \mathcal{O}(e^{-3 \alpha X_m}) \\
+&= \mathcal{O}(e^{-3 \alpha X_m}) \\
 \end{align*}
-since $\langle \Psi^c(-X_{i-1}), Q'(-X_{i-1}) \rangle = 0$. For the higher order term, we use the bound for $A_4$ from Lemma \ref{Zinv2} to get
+Combining all of these gives us
+\begin{align*}
+\langle &\Psi^c(0), \Theta_i^s(0, -X_{i-1}; \lambda) P_0^s(0) D_{i-1} d \rangle = \mathcal{O}( e^{-2 \alpha X_m} ( |\lambda| +  e^{-\alpha X_m} ) |d|)
+\end{align*}
+For the term involving $A_4$, we use the bound from Lemma \ref{Zinv2} to get
 \begin{align*}
 \langle \Psi^c(0), &P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) A_4(\lambda)_{i-1}^-(c, d) \rangle \\
 &\leq C e^{-\alpha X_{i-1}} \Big(  
@@ -1412,19 +1424,19 @@ e^{-\alpha X_{i-1}} (|\lambda| + e^{-\alpha X_m})(|e^{\nu(\lambda)X_{i-2}} c_{i-
 \end{align*}
 Combining all of these, we have for the $a_{i-1}^-$ term,
 \begin{align*}
-\langle &\Psi^c(0), P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) a_{i-1}^- \rangle = -\langle \Psi^c(-X_{i-1}), Q'(X_{i-1}) \rangle (d_i - d_{i-1} ) \\
-&+ \mathcal{O}\Big(  
+\langle &\Psi^c(0), P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) a_{i-1}^- \rangle \\
+&= \mathcal{O}\Big(  
 e^{-2 \alpha X_{i-1}} (|\lambda| + e^{-\alpha X_m})(|e^{\nu(\lambda)X_{i-2}} c_{i-2}| + |e^{-\nu(\lambda)X_i}c_i|) + e^{-(2 \alpha - \eta)X_{i-1}}|c_{i-1}| \\
-&+ e^{-\alpha X_m} 
-(|\lambda| + e^{-\alpha X_m})^2 |d| )
+&+ e^{-2 \alpha X_m} 
+(|\lambda| + e^{-\alpha X_m}) |d| )
 \end{align*}
 Similarly, for the $a_i^+$ term, we have
 \begin{align*}
-\langle &\Psi^c(0), P_i^+(0; \lambda) \Phi^u(0, X_i; \lambda) a_i^+ \rangle = \langle \Psi^c(X_i), Q'(-X_i) \rangle (d_{i+1} - d_i ) \\
-&+ \mathcal{O}\Big(  
+\langle &\Psi^c(0), P_i^+(0; \lambda) \Phi^u(0, X_i; \lambda) a_i^+ \rangle \\
+&= \mathcal{O}\Big(  
 e^{-2 \alpha X_i} (|\lambda| + e^{-\alpha X_m})(|e^{\nu(\lambda)X_{i-1}} c_{i-1}| + |e^{-\nu(\lambda)X_{i+1}}c_{i+1}|) + e^{-(2 \alpha - \eta)X_i}|c_i| \\
-&+ e^{-\alpha X_m} 
-(|\lambda| + e^{-\alpha X_m})^2 |d| )
+&+ e^{-2 \alpha X_m} 
+(|\lambda| + e^{-\alpha X_m}) |d| )
 \end{align*}
 \end{enumerate}
 
