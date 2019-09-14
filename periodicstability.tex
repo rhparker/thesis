@@ -847,14 +847,14 @@ To obtain these, we used the fact that, for example, $a_i^- \in E^s(\lambda)$ an
 D_i d &= (I + \Theta_i^+(X_i; \lambda))a_i^+ + (I + \Theta_i^+(X_i; \lambda))(c_i + \tilde{c}_i) + P_i^+(X_i; \lambda)\Phi^s(X_i, 0; \lambda) b_i^+ \\
 &+ \lambda^2 d_i P_i^+(X_i; \lambda) \int_0^{X_i} \Phi^s(X_i, y; \lambda) P_i^+(y; \lambda)^{-1} \tilde{H}_i^+(y) dy \\
 &- (I + \Theta_{i+1}^-(-X_i; \lambda))a_i^- - (I + \Theta_{i+1}^-(-X_i; \lambda))c_i - P_{i+1}^-(-X_i; \lambda)\Phi^u(-X_i, 0; \lambda) b_{i+1}^- \\ 
-&- \lambda^2 d_{i+1} P_{i+1}^-(-X_i; \lambda) \int_0^{-X_i} \Phi^u(-X_i, y; \lambda) P_{i+1}^-(y; \lambda)^{-1} \tilde{H}_i^-(y) dy \\
+&- \lambda^2 d_{i+1} P_{i+1}^-(-X_i; \lambda) \int_0^{-X_i} \Phi^u(-X_i, y; \lambda) P_{i+1}^-(y; \lambda)^{-1} \tilde{H}_i^-(y) dy
 \end{align*}
 which simplifies to
 \begin{align*}
 D_i d &= (I + \Theta_i^+(X_i; \lambda))a_i^+ + \Theta_i^+(X_i; \lambda)c_i + (I + \Theta_i^+(X_i; \lambda))\tilde{c}_i + P_i^+(X_i; \lambda)\Phi^s(X_i, 0; \lambda) b_i^+ \\
 &+ \lambda^2 d_i P_i^+(X_i; \lambda) \int_0^{X_i} \Phi^s(X_i, y; \lambda) P_i^+(y; \lambda)^{-1} \tilde{H}_i^+(y) dy \\
 &- (I + \Theta_{i+1}^-(-X_i; \lambda))a_i^- - \Theta_{i+1}^-(-X_i; \lambda)c_i - P_{i+1}^-(-X_i; \lambda)\Phi^u(-X_i, 0; \lambda) b_{i+1}^- \\ 
-&- \lambda^2 d_{i+1} P_{i+1}^-(-X_i; \lambda) \int_0^{-X_i} \Phi^u(-X_i, y; \lambda) P_{i+1}^-(y; \lambda)^{-1} \tilde{H}_i^-(y) dy \\
+&- \lambda^2 d_{i+1} P_{i+1}^-(-X_i; \lambda) \int_0^{-X_i} \Phi^u(-X_i, y; \lambda) P_{i+1}^-(y; \lambda)^{-1} \tilde{H}_i^-(y) dy
 \end{align*}
 This is of the form
 \begin{align}\label{Dideq1}
@@ -1043,15 +1043,19 @@ In addition, we can write
 \begin{align*}
 a_i^+ &= P_i^+(X_i; \lambda) P_0^u(\lambda) D_i d + A_4(\lambda)_i^+(c, d) \\
 a_i^- &= -P_i^-(-X_i; \lambda) P_0^s(\lambda) D_i d + A_4(\lambda)_i^-(c, d) \\
-\tilde{c}_i &= P_0^c(\lambda) D_i d + A_4(\lambda)_i^c(c, d) )
+\tilde{c}_i &= k_i + C_4(\lambda)_i(c, d) )
 \end{align*}
 
-where $A_4(\lambda)(c, d)$ is analytic in $\lambda$, linear in $(c^-, d)$, and has piecewise bounds
+where $A_4$ and $C_4$ are analytic in $\lambda$, linear in $(c, d)$, and have piecewise bounds
 \begin{align}
 |A_4&(\lambda)_i(c, d)|
 \leq C \Big(  
 e^{-\alpha X_i} (|\lambda| + e^{-\alpha X_m})(|e^{\nu(\lambda)X_{i-1}} c_{i-1}| + |e^{-\nu(\lambda)X_{i+1}}c_{i+1}|) \nonumber \\
-&+ e^{-(\alpha - \eta)X_i}|c_i^-| + e^{-\alpha X_i} |\lambda^2||d| + e^{-\alpha X_i}|D||d| \Big)\label{A4bound}
+&+ e^{-(\alpha - \eta)X_i}|c_i^-| + e^{-\alpha X_i} |\lambda^2||d| + e^{-\alpha X_i}|D||d| \Big)\label{A4bound} \\
+|C_4&(\lambda)_i(c, d)|
+\leq C \Big(  
+e^{-2\alpha X_i} (|\lambda| + e^{-\alpha X_m})(|e^{\nu(\lambda)X_{i-1}} c_{i-1}| + |e^{-\nu(\lambda)X_{i+1}}c_{i+1}|) \\
+&+ e^{-(\alpha - \eta)X_i}|c_i| + e^{-\alpha X_i}|\lambda||d| \Big)
 \end{align}
 
 \begin{proof}
@@ -1160,15 +1164,13 @@ and
 &\leq C (e^{-\alpha X_m} + |\lambda|)|e^{-\nu(\lambda)X_i} c_i|
 \end{align*}
 
-\item For the $\tilde{c}_i$ terms, we use \eqref{PTaylor}, the expression $\tilde{c}_i = P_0^c(\lambda) D_i d + A_2(\lambda)_i^c(b, c^-, d) )$ from Lemma \ref{Zinv1}, and the bounds on $P_0^c(\lambda) D_i d$ and $A_2$ from that lemma to get
+\item For the $\tilde{c}_i$ terms, we use the expression $\tilde{c}_i = k_i + C_2(\lambda)_i(b, c, d) )$ from Lemma \ref{Zinv1}, and the bounds on $C_2$ from that lemma to get
 \begin{align*}
-|(P_i^+(0; \lambda) &- P^+(0))P_0^c(0) e^{-\nu(\lambda)X_i} \tilde{c}_i + P_i^+(0; \lambda) (P_0^c(\lambda) - P_0^c(0)) e^{-\nu(\lambda)X_i} \tilde{c}_i| \\
-&\leq C (e^{-\alpha X_m} + |\lambda|)|P_0^c(\lambda) D_i d + A_2(\lambda)_i^c(b, c^-, d) | \\
-&\leq C (e^{-\alpha X_m} + |\lambda|) e^{-|\nu(\lambda)|X_i} \Big( e^{-\alpha_0 X_i}(|\lambda| + e^{-\alpha_0 X_m})|d| \\
-&+ e^{-\alpha X_i}(|b_i^+| + |b_{i+1}^-| + |c_i| + |\lambda|^2|d| + |D_i||d| ) \Big) \\
-&\leq C e^{-(\alpha - \eta)X_i} (e^{-\alpha X_m} + |\lambda|) (|b_i^+| + |b_{i+1}^-| + |c_i| + |\lambda|^2|d| + |D_i||d| )
+|(P_i^+&(0; \lambda) - P^+(0))P_0^c(0) e^{-\nu(\lambda)X_i} \tilde{c}_i + P_i^+(0; \lambda) (P_0^c(\lambda) - P_0^c(0)) e^{-\nu(\lambda)X_i} \tilde{c}_i| \\
+&\leq C (e^{-\alpha X_m} + |\lambda|)e^{-|\nu(\lambda)|X_i} |k_i + C_2(\lambda)_i(b, c, d) | \\
+&\leq C (e^{-\alpha X_m} + |\lambda|) e^{-|\nu(\lambda)|X_i} \left( e^{-2 \alpha X_i} (|b_i^+| + |b_{i+1}^-|) + e^{-\alpha X_i}|c_i| + e^{-2 \alpha X_i}|d| + e^{-\alpha X_i}|\lambda||d| \right) \\
+&\leq C e^{-(\alpha - \eta)X_i} (e^{-\alpha X_m} + |\lambda|) ( e^{-\alpha X_i}( |b_i^+| + |b_{i+1}^-|) + |c_i| + (e^{-\alpha X_i} + |\lambda|)|d| )
 \end{align*}
-where we used the fact that $D_i = \mathcal{O}(e^{-\alpha_0 X_i}$ is lower order than $e^{-\alpha X_i}(|\lambda| + e^{-\alpha_0 X_m})$.
 
 \item The bound on the integral terms is determined by the integrals involving the center subspace, since there is potential growth in that subspace.
 \begin{align*}
@@ -1238,6 +1240,13 @@ We can also plug $B_1$ into the bound \eqref{A2bound} for $A_2$ to get $A_4$ wit
 \leq C \Big(  
 e^{-\alpha X_i} (|\lambda| + e^{-\alpha X_m})(|e^{\nu(\lambda)X_{i-1}} c_{i-1}| + |e^{-\nu(\lambda)X_{i+1}}c_{i+1}|) \\
 &+ e^{-(\alpha - \eta)X_i}|c_i| + e^{-\alpha X_i} |\lambda^2||d| + e^{-\alpha X_i}|D||d| \Big)
+\end{align*} 
+Finally, we plug in $B_1$ into the bound \eqref{C2bound} for $C_2$ to get $C_4$ with bound
+\begin{align*}
+|C_4&(\lambda)_i(c, d)|
+\leq C \Big(  
+e^{-2\alpha X_i} (|\lambda| + e^{-\alpha X_m})(|e^{\nu(\lambda)X_{i-1}} c_{i-1}| + |e^{-\nu(\lambda)X_{i+1}}c_{i+1}|) \\
+&+ e^{-(\alpha - \eta)X_i}|c_i| + e^{-\alpha X_i}|\lambda||d|  \Big)
 \end{align*} 
 
 \end{proof}
