@@ -1,5 +1,4 @@
 \documentclass[12pt,reqno,oneside]{amsbook}
-% \documentclass[12pt,reqno,oneside]{siamonline171218}
 % \usepackage[pdfborder={0 0 0.5 [3 2]}]{hyperref}%
 \usepackage[left=1in,right=1in,top=1in,bottom=1.5in]{geometry}%
 
@@ -16,11 +15,10 @@
 \usepackage{float}
 \usepackage{subfiles}
 \usepackage{thmtools, thm-restate}
-\usepackage{hyperref}
-\usepackage[capitalize,nameinlink]{cleveref}
 
+% my custom packages
 \usepackage{macros}
-
+\usepackage{packages}
 
 % \usepackage[backend=biber]{biblatex}
 % \addbibresource{thesis.bib}
@@ -43,7 +41,6 @@
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{example}[theorem]{Example}
-\newtheorem{xca}[theorem]{Exercise}
 
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
@@ -80,7 +77,7 @@
 % \previousdegrees{
 % 		B.Sc., University of Massachusetts, Amherst; Amherst, MA, 2014\\ 	
 % 		M.Sc., Brown University; Providence, RI, 2015} 
-\thesismonth{Dec} \thesisyear{2019}
+\thesismonth{December} \thesisyear{2019}
 
 \begin{document}
 
@@ -144,6 +141,8 @@
 % chapter : KdV5
 \chapter{The 5th order KdV equation}
 \subfile{kdv5}
+\subfile{kdv5numerics}
+\subfile{kdv5general}
 \subfile{periodic}
 \subfile{primarypulse}
 \subfile{periodicexist}
