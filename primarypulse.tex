@@ -3,10 +3,10 @@
 \begin{document}
 
 \iffulldocument\else
-	\chapter{KdV5 with periodic boundary conditions}
+	\chapter{KdV5}
 \fi
 
-\section{Proof of Primary Pulse Theorems}
+\section{Proof of Results in \cref{sec:KdV5gen} }
 
 \subsection{Proof of Lemma \ref{manifoldinH0}}
 
@@ -386,6 +386,330 @@ Since $H(U, c, a)$ is Frechet differentiable in $c$, this implies that the fixed
 \[
 |\partial_c Q(x; c)| \leq C e^{-(\alpha - \epsilon)|x|}
 \] 
+
+\subsection{Characterization of solutions to adjoint linear ODEs}
+
+In this section, we prove a lemma relating solutions of the adjoint of an $n$-th order linear ODE to solutions of the adjoint problem when written as a first order system in the standard way.
+
+\begin{lemma}\label{adjointlemma}
+Consider the $n$-th order linear ODE 
+\begin{equation}\label{linODE}
+\partial_x^n u(x) + \sum_{k=0}^{n-1}g_k(x) \partial_x^k u(x) = 0
+\end{equation}
+which we can write as a first order system in the standard way as
+\begin{equation}\label{linODEsys}
+U'(x) = A(x)U(x)
+\end{equation}
+where
+\begin{equation}\label{Axform}
+A(x) = \begin{pmatrix}
+0 & 1 & 0 & \dots & 0 & 0 \\
+0 & 0 & 1 & \dots & 0 & 0 \\
+& &  & \ddots &  & & \\
+0 & 0 & 0 & \dots & 0 & 1 \\
+-g_0(x) & -g_1(x) & -g_2(x) &
+ \dots & -g_{n-2}(x) & -g_{n-1}(x)
+\end{pmatrix}
+\end{equation}
+Then if $W(x) = (w_1(x), \dots, w_n(x))$ solves the adjoint system
+\begin{equation}\label{adjODEsys}
+W'(x) = -[A(x)]^* W(x),
+\end{equation}
+$w_n(x)$ solves the adjoint linear ODE
+\begin{equation}\label{adjODE}
+(-1)^n \partial_x^n w(x) + \sum_{k=0}^{n-1} (-1)^k \partial_x^k( g_k(x) w(x)) = 0
+\end{equation}
+and the remaining entries of $W(x)$ are given by
+\begin{align}\label{adjWform}
+w_r(x) &= (-1)^{n-r} \partial_x^{n-r}w_n(x) + \sum_{k=r}^{n-1} (-1)^{k-r} \partial_x^{k-r}(g_k(x) w_n(x)) && r = 1, \dots n-1
+\end{align}
+\begin{proof}
+The adjoint system is given by
+\begin{equation*}
+\begin{pmatrix}
+w_1'(x) \\ w_2'(x) \\ w_3'(x) \\ \vdots \\ w_n'(x)
+\end{pmatrix} = \begin{pmatrix}
+0 &  0 & 0  & \dots & 0 & g_0(x) \\
+0 & -1 & 0  & \dots & 0 & g_1(x) \\
+0 &  0 & -1 & \dots & 0 & g_2(x) \\
+& &  & \ddots &  & & \\
+0 & 0 & 0 & \dots  & -1 & g_{n-1}(x) \\
+\end{pmatrix}
+\begin{pmatrix}
+w_1(x) \\ w_2(x) \\ w_3(x) \\ \vdots \\ w_n(x)
+\end{pmatrix}
+\end{equation*}
+which gives us the system of $n$ equation 
+\begin{align*}
+w_1'(x) &= g_0(x) w_n(x) \\
+w_2'(x) &= -w_1(x) + g_1(x) w_n(x) \\
+\vdots \\
+w_{n-1}'(x) &= -w_{n-2}(x) + g_{n-2}(x) w_n(x) \\
+w_n'(x) &= -w_{n-1}(x) + g_{n-1}(x) w_n(x) \\
+\end{align*}
+Suppressing the dependence on $x$ for convenience of notation, we rearrange this to get
+\begin{align*}
+0 &= -w_1' + g_0 w_n \\
+w_1 &= -w_2' + g_1 w_n \\
+w_2 &= -w_3' + g_2 w_n \\
+\vdots \\
+w_{n-2} &= -w_{n-1}' + g_{n-2} w_n \\
+w_{n-1} &= -w_n' + g_{n-1} w_n \\
+\end{align*}
+Differentiate the $w_{n-1}$ equation to get $w_{n-1}' = -\partial_x^2 w_n + \partial_x(g_{n-1}w_n)$ and substitite it into the $w_{n-2}$ equation to get
+\begin{align*}
+w_{n-2} &= \partial_x^2 w_n - \partial_x(g_{n-1} w_n) + g_{n-2} w_n
+\end{align*}
+Differentiate this and substitute it into the $w_{n-3}$ equation to get
+\[
+w_{n-3} = -\partial_x^3 w_n + \partial_x^2(g_{n-1} w_n) - \partial_x(g_{n-2} w_n) + g_{n-3} w_n
+\]
+Continuing this process, we have the general expression for $w_r$
+\begin{align*}
+w_r &= (-1)^{n-r} \partial_x^{n-r}w_n + \sum_{k=r}^{n-1} (-1)^{k-r} \partial_x^{k-r}(g_k w_n) && r = 1, \dots n-1
+\end{align*}
+When we reach the $w_1$ (after $n-1$ iterations), we have
+\[
+w_1 = (-1)^{n-1} \partial_x^{n-1} w_n + \sum_{k=1}^{n-1} (-1)^{k-1} \partial_x^{k-1}(g_k w_n)
+\]
+Differentiate this once more, and substitute it into the first equation $0 = -w_1' + g_0 w_n$ to get 
+\begin{align*}
+0 &= (-1)^{n} \partial_x^{n} w_n + \sum_{k=1}^{n-1} (-1)^{k} \partial_x^{k}(g_k w_n) + g_0 w_n \\
+&= (-1)^{n} \partial_x^{n} w_n + \sum_{k=0}^{n-1} (-1)^{k} \partial_x^{k}(g_k w_n)
+\end{align*}
+which is identical to adjoint linear ODE \eqref{adjODE}. Thus $w_n$ is a solution to \eqref{adjODE}.
+\end{proof}
+\end{lemma}
+
+\subsection{Proof of Lemma \ref{psiform}}
+Since \eqref{genODE} is Hamiltonian, $\langle F(Q(x)), \nabla H(Q(x)) \rangle = 0$ for all $x$. Taking the gradient of this and using known vector calculus identities,
+\begin{align*}
+0 &= \nabla \langle F(Q(x)), \nabla H(Q(x)) \rangle \\
+&= D F(Q(x))^* \nabla H(Q(x)) + D^2 H(Q(x))^* F(Q(x)) \\
+&= D F(Q(x))^* \nabla H(Q(x)) + D^2 H(Q(x)) Q'(x) \\
+&= D F(Q(x))^* \nabla H(Q(x)) + \frac{d}{dx} \nabla H(Q(x))
+\end{align*}
+since the Hessian matrix is self-adjoint. Rearranging this,
+\begin{equation*}
+\frac{d}{dx} \nabla H(Q(x)) = -D F(Q(x))^* \nabla H(Q(x)) 
+\end{equation*}
+thus $\nabla H(Q(x))$ is a solution to the adjoint variational equation \eqref{adjvareq1}. Since $\nabla H$ is continuous and $Q(x)$ is bounded (it decays exponentially to 0 at $\pm \infty$), $\nabla H(Q(x))$ is bounded as well. By Hypothesis \ref{nondegenhyp}, there is a unique such solution. It follows that $\Psi(x) = \nabla H(Q(x))$.
+
+For the symmetry relation, we will show that $R \Psi(-x)$ is a also a solution to \eqref{adjvareq1}. Using \eqref{genODErevDF} and the symmetry of the primary pulse $Q(x)$, 
+\begin{align*}
+[R \Psi(-x)]' &= -R \Psi'(-x) \\
+&= -R DF(Q(-x)) \Psi(-x) \\
+&= -R DF(RQ(x)) \Psi(-x) \\
+&= -R [-RDF(Q(x))R] \Psi(-x) \\
+&= DF(Q(x))R \Psi(-x)
+\end{align*}
+Thus by uniqueness, $\Psi(x) = R \Psi(-x)$, from which it follows that $\Psi(-x) = R \Psi(x)$.
+
+Finally, the variational equation $V'(x) = DF(Q(x)) V(x)$ is equivalent to the linear ODE 
+\begin{equation}\label{var1}
+\calE''(q(x))v(x) = 0.
+\end{equation}
+Since the differential operator $\calE''(q(x))$ has an isolated term $\partial_x^{2m}$ and all other derivative terms are lower order, equation \eqref{var1} is of the form \eqref{linODE}. By Lemma \ref{adjointlemma}, $\Psi_{2m}(x)$ solves the adjoint of \eqref{var1}. Since the operator $\calE''(q(x))$ is self-adjoint, $\Psi_{2m}(x)$ solves equation \eqref{var1}. Since \eqref{var1} has the unique solution $q'(x)$, we conclude that $\Psi_{2m}(x) = q(x)$.
+
+\subsection{Proof of Lemma \ref{eigadjoint}}
+
+For part (i), 
+\begin{align*}
+\dfrac{d}{dx}\langle V(x), W(x) \rangle &= 
+\langle V'(x), W(x) \rangle + \langle V(x), W'(x) \rangle \\
+&= \langle A(x)V(x), W(x) \rangle + \langle V(x), -A(x)^* W(x) \rangle \\
+&= \langle A(x)V(x), W(x) \rangle - \langle A(x)V(x), W(x) \rangle \\
+&= 0
+\end{align*}
+
+For part (ii), let $|W(x)| \leq K$ and $V(x) \rightarrow 0$ as $x \rightarrow \infty$, By (i), $\langle V(x), W(x) \rangle = c$, where $c$ is a constant. Taking $x \rightarrow \infty$ and using the Cauchy-Schwartz inequality and the continuity of the norm,
+\begin{align*}
+|c| &= \left| \lim_{x\rightarrow \infty} \langle V(x), W(x) \rangle \right| \\
+&= \lim_{x\rightarrow \infty} \left| \langle V(x), W(x) \rangle \right| \\
+&\leq \lim_{x\rightarrow \infty} |V(x)||W(x)| \\
+&\leq K \lim_{x\rightarrow \infty} |V(x)| \\
+&= 0
+\end{align*}
+
+For part (iii), take the derivative of the expression $\Phi(y, x)\Phi(x, y) = I$ with respect to $y$ to get
+\begin{align*}
+0 &= \left(\frac{d}{dy}\Phi(y, x)\right) \Phi(x, y) +
+\Phi(y, x)\left(\frac{d}{dy}\Phi(x, y)\right) \\
+&= A(y)\Phi(y, x) \Phi(x, y) +
+\Phi(y, x)\left(\frac{d}{dy}\Phi(x, y)\right) \\
+&= A(y) + \Phi(y, x)\left(\frac{d}{dy}\Phi(x, y)\right) 
+\end{align*}
+Rearrange this to get
+\begin{align*}
+\Phi(y, x)\left(\frac{d}{dy}\Phi(x, y)\right) &= -A(y) \\
+\frac{d}{dy}\Phi(x, y) &= -\Phi(x, y) A(y) 
+\end{align*}
+Taking the transpose of both sides, we get
+\begin{align*}
+\frac{d}{dy}\Phi(x, y)^* &= -A(y)^* \Phi(x, y)^*  
+\end{align*}
+from which (iii) follows.
+
+\subsection{Proof of Lemma \ref{eigA0lemma}}
+
+Before we prove Lemma \ref{eigA0lemma}, we will prove a general result from finite dimensional linear algebra.
+
+\begin{lemma}\label{kernelprojlemma}
+Let $A$ be an $n \times n$ matrix with simple kernel spanned by $v$, and let $\ker A^* = \text{span}(w)$. Then 
+\begin{enumerate}[(i)]
+\item We can scale $v$ and/or $w$ so that $\langle v, w \rangle = 1$.
+\item Having chosen the scaling in part (i), the projection on the kernel of $A$ is given by
+\[
+P_{\ker A} = \langle w, \cdot \rangle v
+\]
+\end{enumerate}
+\begin{proof}
+For part (i), if $\langle v, w \rangle = 0$, then $v \perp \ker A^*$, thus by the Fredholm alternative we can solve $A u = v$. This is not possible since $A$ has simple kernel. Since $\langle v, w \rangle \neq 0$ we can scale $v$ and/or $w$ so that $\langle v, w \rangle = 1$.
+
+For part (ii), Let $0, \lambda_2, \dots, \lambda_n$ be the eigenvalues (with multiplicity) of $A$ with corresponding generalized eigenvectors $v, v_2, \dots, v_n$. Let $P u = \langle w, u \rangle v$. First, let $u \in \ker A$. Then $u = \alpha v$ for $\alpha \in \R$, thus 
+\[
+P u = \langle w, \alpha v \rangle v = \alpha \langle w, v \rangle v = \alpha v = u
+\]
+Since $A$ is diagonalizable, its eigenfunctions form a basis for $\R^n$. Let $u \in R^n$ and write $u$ in the eigenbasis as
+\[
+u = \alpha v + \sum_{k=2}^n \alpha_k v_k
+\]
+For $k = 2, \dots, n$, since $\lambda_k \neq 0$
+\begin{align*}
+\langle w, v_k \rangle &= \langle w, \frac{1}{\lambda_k}\lambda_k v_k \rangle \\
+&= \langle w, \frac{1}{\lambda_k} A v_k \rangle \\
+&= \langle w, A \frac{1}{\lambda_k} v_k \rangle \\
+&= \langle A^* w, \frac{1}{\lambda_k} v_k \rangle \\
+&= 0
+\end{align*}
+Thus we have
+\[
+P u = \alpha v
+\]
+\end{proof}
+\end{lemma}
+
+We now turn to the proof of Lemma \ref{eigA0lemma}. Let $p_1(\nu)$ and $p_2(\nu)$ be the characteristic polynomials of $DF(0)$ and $A(0)$ (respectively). From \eqref{defAphi} and \eqref{defDF}, $A(0)$ is the block matrix
+\[
+A(0) = \begin{pmatrix}
+DF(0) & E \\
+0 & 0
+\end{pmatrix}
+\]
+where $E$ is the $2m \times 1$ matrix $E = (0, 0, \dots, 1)^T$, and $0$ represents a block composed of zeros of the appropriate size. Expanding the determinant by minors using the bottom row, we have for $p_2(\nu)$,
+\begin{align*}
+p_2(\nu) &= \det(A_0 - \nu I) \\
+&= -\nu \det(DF(0) - \nu I) \\
+&= -\nu p_1(\nu)
+\end{align*}
+Thus $A(0)$ has the same eigenvalues as $DF(0)$ as well as an additional eigenvalue at 0. The eigenvalues of $DF(0)$ are characterized in Hypothesis \ref{hypeqhyp}, from which (i) follows.
+
+For part (ii) we can verify directly from the form of $A(0)$ that 
+\begin{align*}
+V_0 &= (1/c, 0, \dots, 0, 1)^T \\
+W_0 &= (0, 0, \dots, 0, 1)^T
+\end{align*}
+are eigenvectors of $A(0)$ and $-A(0)^*$ (respectively) corresponding to eigenvalue 0; these have been scaled $V_0$ so that $\langle V_0, W_0 \rangle = 1$. The expression for the projection on the kernel of $A(0)$ in part (iii) comes from Lemma \ref{kernelprojlemma}, since the kernel of $A(0)$ is simple.
+
+% nondegeneracy lemma
+\subsection{Proof of Lemma \ref{nondegenlemma}}
+Since $Q(x)$ is a homoclinic orbit in the intersection of $W^u(0)$ and $W^s(0)$, $\R Q'(0) \subset T_{Q(0)}W^s(0) \cap T_{Q(0)}W^u(0)$. If the intersection were more than one-dimensional, there would exist another exponentially localized solution $V(x) = (v_1, \dots, v_{2m}, v_{2m+1})^T$ to \eqref{vareq2}. It follows that $\tilde{V}(x) = (v_1, \dots, v_{2m})^T$ would be an exponentially localized solution to \eqref{vareq1}, which contradicts \eqref{nondegencond}.
+
+% solutions to variational equation
+\subsection{Proof of Lemma \ref{varsolutions}}
+
+We employ the following dimension counting argument. Recall that $\dim W^{s/u}(0) = m$ and $\dim W^c(0) = 1$, thus $\dim W^{cs}(0) = m + 1$, and $\dim W^{cu}(0) = m + 1$. $\Psi(0) \perp T_{Q(0)}W^{cs}(0) + T_{Q(0)}W^{cu}(0)$, so $\dim T_{Q(0)}W^{cs}(0) + T_{Q(0)}W^{cu}(0) \leq 2m$. By counting dimensions, this implies that $\dim T_{Q(0)}W^{cs}(0) \cap T_{Q(0)}W^{cu}(0) = 2$. Since $\dim T_{Q(0)}W^s(0) \cap T_{Q(0)}W^s(0) = 1$ by Lemma \ref{nondegenlemma}, we conclude that there exists $Y_0 \in T_{Q(0)}W^{cs}(0) \cap T_{Q(0)}W^{cu}(0)$ which is linearly independent from $Q'(0)$, and $Y^0 \notin T_{Q(0)}W^s(0) \cap T_{Q(0)}W^s(0)$.
+
+Using the Gap Lemma, we can find solutions $V^\pm(x)$ to the variational equation \eqref{vareq2} on $\R^\pm$ such that
+\begin{equation}\label{Vplusminus}
+V^\pm(x) = V_0 + \mathcal{O}(e^{-(\alpha - \epsilon)|x|}|V_0|)
+\end{equation}
+for some $\epsilon > 0$, so $V^\pm(x) \rightarrow V_0$ as $x \rightarrow \pm \infty$. These will not be unique, since, for example, we can add any component in $Y^+ \oplus \R Q'(0)$ to $V^+(0)$ and keep the same decay property. Since $V^\pm(x)$ remains bounded but does not decay to 0, $V^\pm(0)$ must have a component in $Y^0$ and cannot have a component in $Y^-$. If $V^+(0)$ has any component in $Y^+ \oplus \R Q'(0)$, we can subtract it out and keep the decay property in \eqref{Vplusminus}. Thus we can take $V^+(0) \in Y^0$. Similarly, we can take $V^0(0) \in Y^0$. Since both initial conditions are in $Y^0$, $V^\pm(x)$ remain bounded for all $x$.
+
+By reversibility, $RV^+(-x)$ is also a solution to the variational equation on $R^-$, with 
+\begin{align*}
+R V^+(-x) &= R V_0 + \mathcal{O}(e^{-(\alpha - \epsilon)|x|}|V_0|) \\
+&= V_0 + \mathcal{O}(e^{-(\alpha - \epsilon)|x|}|V_0|)
+\end{align*}
+where $R V_0 = V_0$ since all components of $V_0$ are 0 except for the first. Reversing time swaps $Y^+$ and $Y^-$, while leaving $\R Q'(0)$ and $Y^0$ intact. Thus $RV^+(0) \in Y_0$, and so both $V^+(0)$ and $RV^+(0)$ are in the one-dimensional space $Y^0$; since the odd numbered components of $V^+(0)$ and $RV^+(0)$ are the equal and $Y^0$ is one-dimensional, it follows that $V^+(0) = RV^+(0)$.
+
+Since we have the same initial condition at $x = 0$ for $V^+(x)$ and $RV^+(-x)$, this implies that $V^+(-x) = RV^+(x)$. Let $V^c(x) = V^+(x)$. Then $V^c(x)$ is a bounded solution to the variational equation with is symmetric with respect to the reversor $R$, i.e. $V^c(-x) = RV^c(x)$. Furthermore, $V^c(x) \rightarrow V_0$ as $x \rightarrow \pm \infty$.
+
+% solutions to variational equation
+\subsection{Proof of Lemma \ref{adjsolutions}}
+
+The linear operator $A(Q(x))$ has the form 
+\begin{equation}\label{DefAQ}
+A(Q(x)) = \begin{pmatrix}
+0 & 1 & \dots & 0 & 0 \\
+0 & 0 & \dots & 0 & 0 \\
+& & \ddots  \\
+0 & 0 & \dots & 0 & 1 \\
+h_1(x) & h_2(x) & \dots & h_{2m}(x) & h_{2m+1}(x)
+\end{pmatrix}
+\end{equation} 
+where
+\begin{equation*}
+\begin{aligned}
+h_1(x) &= \sum_{k=1}^{2m}\partial^2_{u_1 u_k} f(Q(x))\partial_x^k q(x) \\
+h_j(x) &= \sum_{k=1}^{2m}\partial^2_{u_j u_k} f(Q(x))\partial_x^k q(x) + \partial_{u_{j-1}}f(Q(x)) && j = 2, \dots, 2m \\
+h_{2m+1}(x) &= \partial_{u_{2m}}f(Q(x))
+\end{aligned}
+\end{equation*}
+Using the reversibility relation $Q(-x) = R Q(x)$ and \eqref{frev},
+\begin{align*}
+h_j(-x) &= \sum_{k=1}^{2m}\partial^2_{u_j u_k} f(Q(-x))\partial_x^k q(-x) + \partial_{u_{j-1}}f(Q(-x)) \\
+&= \sum_{k=1}^{2m}\partial^2_{u_j u_k} f(RQ(x))\partial_x^k q(-x) + \partial_{u_{j-1}}f(RQ(x)) \\
+&= \sum_{k=1}^{2m} (-1)^{j+k} \partial^2_{u_j u_k} f(Q(x)) (-1)^k \partial_x^k q(x) + (-1)^j \partial_{u_{j-1}}f(Q(x)) \\
+&= (-1)^j \left( \sum_{k=1}^{2m} \partial^2_{u_j u_k} f(Q(x)) \partial_x^k q(x) + (-1)^j \partial_{u_{j-1}}f(Q(x)) \right) \\
+&= (-1)^j h(x)
+\end{align*} 
+thus $h_j(x)$ is an odd function for $j$ odd and an even function for $j$ even. Since $f$ is smooth and $Q(x)$ is exponentially localized, the functions $h_j(x)$ are smooth and bounded.
+
+The adjoint variational equation \eqref{adjvareq2} is the following equation written as a first order system
+\begin{equation}\label{adj2}
+[\partial_x H_c]^* w(x) = -H_c \partial_x w(x) = 0,
+\end{equation}
+Suppose \eqref{adj2} has a solution $w(x)$ which is an even function. Then by Lemma \ref{adjointlemma}, \eqref{adjvareq2} has a solution $W(x) = (w_1(x), \dots, w_{2m+1}(x))$ with $w_{2m+1}(x) = w(x)$. Comparing \eqref{Axform} from Lemma \ref{adjointlemma} to \eqref{DefAQ}, the other components of $W(x)$ are given by 
+\begin{align}\label{adjWform}
+w_r(x) &= (-1)^{2m+1-r} \partial_x^{2m+1-r}w(x) + \sum_{k=r}^{2m} (-1)^{k-r} \partial_x^{k-r}(h_{k+1}(x) w(x)) && r = 1, \dots 2m
+\end{align}
+Since we are assuming $w(x)$ is even, $w_r(x)$ is an even function for $r$ odd and an odd function for $r$ even, thus $W(-x) = R W(x)$. 
+
+To find $\Psi(x)$, equation \ref{adj2} has an exponentially decaying solution $q(x)$, which is an even function. Thus we obtain $\Psi(x)$ by taking $w(x) = q(x)$ above. Every term in \eqref{adjWform} is a product of $q(x)$ or one of its derivatives with a smooth, bounded function. Since $q(x)$ is exponentially localized, $\Psi(x)$ is exponentially localized as well.
+
+To find $\Psi^c(x)$, equation \eqref{adj2} also has the constant solution 1 as a solution, which is an even function. Thus we obtain $\Psi(x)$ by taking $w(x) = 1$ above. The individual entries are given by
+\begin{align}\label{Psicrows}
+[\Psi^c(x)]_r &= \sum_{k=r}^{2m} (-1)^{k-r} \partial_x^{k-r} h_{k+1}(x)
+\end{align}
+When we take $|x| \rightarrow \infty$, $h_{k+1}(x) \rightarrow \partial_{u_k}f(0)$, which is equal to $c_{k-1}$ for $k$ even and 0 for $k$ odd, and $c_0 = -c$. All higher derivatives of $h_{k+1}$ vanish. Thus we have
+\begin{align*}
+\lim_{|x|\rightarrow \infty}
+[\Psi^c(x)]_r &= c_{r-1}
+\end{align*}
+Since $[\Psi^c(x)]_{2m+1} = 1$, we conclude that $\Psi^c(x) \rightarrow (-c, 0, c_2, \dots, c_{2m-2}, 0, 1)^T = W_0$. Alternatively, we can verify by direct substitution that $\Psi^c(x) = ( -Df(Q(x)), 1)$. Then as $|x| \rightarrow 0$, $\Psi^c(x) \rightarrow W_0$.
+
+Using this, we have
+\begin{align*}
+\langle \Psi^c(x), Q'(x) \rangle 
+&= \langle (-Df(Q(x)), 1), ((\partial_x q(x), \dots, \partial_x^{2m} q(x)), \partial_{2m+1}(x)) \rangle \\
+&= -\langle Df(Q(x)), (\partial_x q(x), \dots, \partial_x^{2m} q(x)) \rangle + \partial_{2m+1}(x) \\
+&= \partial_{2m+1}(x) - \partial_x f(q(x)) \\
+&= 0
+\end{align*}
+since $q(x)$ is an equilibrum solution to the original PDE. Of course, we already knew that $\langle \Psi^c(x), Q'(x) \rangle = 0$ since the inner product is constant and $Q'(x)$ decays to 0. We also have (NEEDS BETTER NOTATION)
+\begin{align*}
+\langle \Psi^c(x), Q'(-x) \rangle 
+&= \langle (-Df(Q(x)), 1), (Q'(-x), \partial_{2m+1}(-x)) \rangle \\
+&= \langle (-Df(Q(x)), 1), (-RQ'(x), -\partial_{2m+1}(x)) \rangle \\
+&= \langle Df(Q(x)), RQ'(x) \rangle - \partial_{2m+1}(x) \\
+&= \langle R Df(R Q(x)), RQ'(x) \rangle - \partial_{2m+1}(x) \\
+&= \frac{\partial}{\partial x} R f(R Q(x)) - \partial_{2m+1}(x) \\
+&= \frac{\partial}{\partial x} f(Q(x)) - \partial_{2m+1}(x) \\
+&= 0
+\end{align*}
+
+Finally, it follows from Lemma \ref{adjointlemma} that any bounded solution to \eqref{adjvareq2} must be perpendicular to $\R Q'(0) \oplus Y^+ \oplus Y^-$ at $x = 0$. In particular, this holds for $\Psi(0)$ and $\Psi^c(0)$. Since $S_1 = \R Q'(0) \oplus Y^+ \oplus Y^-$ is a $(2m-1)-$dimensional subspace of $\R^{2m+1}$ and $S_2 = \Psi(0) \oplus \Psi^c(0)$ is a $2-$dimensional subspace of $\R^{2m+1}$ which is perpendicular to $S_1$, it follows that there can be no other bounded, linearly independent solutions to \eqref{adjvareq2}.
 
 
 \iffulldocument\else

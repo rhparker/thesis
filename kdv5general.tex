@@ -6,7 +6,7 @@
 	\chapter{KdV5}
 \fi
 
-\section{Generalization of Problem}
+\section{Generalization of problem}\label{sec:KdV5gen}
 
 \subsection{Hamiltonian PDE}\label{sec:HamPDE}
 
@@ -68,11 +68,11 @@ We are interested in bound states of \cref{genPDE}, which are solutions of the f
 \begin{equation}
 u(x, t) = T(ct)\phi(x) = \phi(x - ct),
 \end{equation}
-where $\phi \in X$. Since $T(s)$ is the translation group, these bound states are traveling waves; we will refer to these states as traveling wave from here on. If $\phi$ satisfies the equilibrium equation
+where $\phi \in X$. Since $T(s)$ is the translation group, these bound states are traveling waves; we will refer to these states as traveling waves from here on. If $\phi$ satisfies the equilibrium equation
 \begin{equation}\label{eqODE1}
 \calE'(\phi) = c V'(\phi)
 \end{equation}
-then $T(ct)\phi(x)$ is a bound state since 
+then $T(ct)\phi(x)$ is a traveling wave since 
 \begin{align*}
 \frac{d}{dt}T(ct)\phi &= c T'(ct)\phi 
 = c T'(0)T(ct)\phi \\
@@ -89,7 +89,7 @@ Without loss of generality, we can assume that $\calE'(\phi)$ does not contain a
 
 We take the following hypothesis concerning existence of traveling waves. In the next section, we will give a condition under which this hypothesis is satisfied. 
 \begin{hypothesis}\label{cintervalhyp}
-There exists an open interval $(c_1, c_2) \subset \R$ and a $C^1$ map $c \mapsto \phi_c$ such that for every $c \in (c_1, c_2)$, $\phi_c$ is a bound state for \cref{genPDE}, i.e. 
+There exists an open interval $(c_1, c_2) \subset \R$ and a $C^1$ map $c \mapsto \phi_c$ such that for every $c \in (c_1, c_2)$, $\phi_c$ is a traveling wave for \cref{genPDE}, i.e. 
 \[
 \calE'(\phi_c) + c \phi_c = 0 
 \]
@@ -107,7 +107,7 @@ Using \cref{Eprimesymm}, $\calE'(T(s)u) = T(s)\calE'(u)$, thus from \cref{eqODE}
 \begin{align}\label{TeqODE}
 \calE'(T(s)\phi_c) + c T(s)\phi_c = T(s)[\calE'(\phi_c) + c \phi_c] = 0
 \end{align}
-since $\phi_c$ is a bound state. Differentiating \cref{TeqODE} with respect to $s$ at $s = 0$, this becomes
+since $\phi_c$ is a traveling wave. Differentiating \cref{TeqODE} with respect to $s$ at $s = 0$, this becomes
 \begin{align*}
 0 &= \calE''(T(0)\phi_c)T'(0)\phi_c + c T'(0)\phi_c \\
 &= (\calE''(\phi_c) + c ) \partial_x \phi_c \\
@@ -151,7 +151,11 @@ where $R:\R^{2m} \rightarrow \R^{2m}$ is the standard reversor operator defined 
 \begin{equation}\label{reverserR2m}
 R(u_1, u_2, \dots, u_{2m-1}, u_{2m}) = (u_1, -u_2, \dots, u_{2m-1}, -u_{2m}).
 \end{equation}
-In particular, if $U(x)$ is a solution to \cref{genODE}, so is $RU(-x)$. Since $f(RU) = f(U)$, it also follows from reversibility that $Df(RU) = RDf(U)$, and so we have
+In particular, if $U(x)$ is a solution to \cref{genODE}, so is $RU(-x)$. Taking the derivative of \ref{genODErev}, it follows that 
+\begin{equation}\label{genODErevDF}
+D F(RU; c) = -RDF(U; c)R,
+\end{equation}
+From the last component of \eqref{genODErev}, $f(RU) = f(U)$, it also follows from reversibility that $Df(RU) = RDf(U)$, and so we have
 \begin{equation}\label{frev}
 \begin{aligned}
 \partial_{u_j} f(R U) &= (-1)^{j+1} \partial_{u_j} f(U) \\
@@ -238,14 +242,14 @@ T_{Q(0; c_0)}W^s(0; c_0) \cap T_{Q(0; c_0)}W^u(0; c_0) = \R Q'(0; c_0)
 \end{equation}
  
 Using \cref{nondegencond}, we can decompose the tangent spaces of the stable and unstable manifolds at $Q(0; c_0)$. Since the two tangent spaces have a one-dimensional intersection spanned by $Q'(0; c_0)$, we can write
-\begin{equation}\label{TQ0decomp1}
+
+
+We can now prove the existence of homoclinic orbits $Q(x; c)$ for $c$ near $c_0$ and s\begin{equation}\label{TQ0decomp1}
 \begin{aligned}
 T_{Q(0; c_0)}W^u(0; c_0) &= \R Q'(0; c_0) \oplus Y^-(c_0) \\
 T_{Q(0; c_0)}W^s(0; c_0) &= \R Q'(0; c_0) \oplus Y^+(c_0)
 \end{aligned}
-\end{equation}
-
-We can now prove the existence of homoclinic orbits $Q(x; c)$ for $c$ near $c_0$ and show that $Q(x; c)$ is differentiable in $c$.
+\end{equation}how that $Q(x; c)$ is differentiable in $c$.
 
 \begin{theorem}\label{transverseint}
 Assume \cref{H0transversehyp}. Then there exists $\delta > 0$ such that for $c \in (c_0 - \delta, c_0 + \delta)$, the stable and unstable manifolds $W^s(0; c)$ and $W^u(0; c)$ have a one-dimensional transverse intersection in $H^{-1}(0; c)$ which is a homoclinic orbit $Q(x; c)$. The map $c \rightarrow Q(x; c)$ is smooth, so that in particular $Q(x; c)$ is differentiable with respect to $c$. Finally, $\partial_c Q(x; c)$ is exponentially localized. Specifially, for any $\epsilon > 0$, there exists $\delta_1 > 0$ with $\delta_1 < \delta$ such that for $c \in (c_0 - \delta_1, c_0 + \delta_1)$,
@@ -261,12 +265,24 @@ Assume \cref{H0transversehyp}. Then there exists $\delta > 0$ such that for $c \
 The variational equation is the linearization of \cref{genODE} about the primary pulse solution $Q(x)$. The variational and adjoint variational equations associated with \cref{genODE} are
 \begin{align}
 V' = DF(Q(x)) V \label{vareq1} \\
-W' = -DF(Q(x))^* W \label{adjvareq1}
+W' = -DF(Q(x))^* W \label{adjvareq1},
 \end{align}
+where $DF(Q(x))$ is the $2m \times 2m$ matrix
+\begin{equation}\label{defDF}
+DF(Q(x)) = 
+\begin{pmatrix}
+0 & 1 & 0 & \dots & 0 & 0 \\
+0 & 0 & 1 & \dots & 0 & 0 \\
+& \vdots && \vdots \\
+0 & 0 & 0 & \dots & 0 & 1 \\
+f_{u_1}(q) - c & f_{u_2}(q) & f_{u_3}(q) & \dots & f_{u_{2m-1}}(q) & f_{u_{2m}}(q)
+\end{pmatrix}
+\end{equation}
 It follows from \cref{nondegencond} that $Q'(x)$ is the unique bounded solution to \cref{vareq1}, and that there exists a unique bounded solution $\Psi(x)$ to \cref{adjvareq1}. (In both cases, uniqueness is up to scalar multiples). Since we have a conserved quantity $H$, we know the exact form of $\Psi(x)$, which is given in the following lemma.
 
 \begin{lemma}\label{psiform}
-The unique bounded solution $\Psi(x)$ to the adjoint variational equation \cref{adjvareq1} is given by $\Psi(x) = \nabla H(Q(x))$. The last component of $\Psi(x)$ is $q'(x)$.
+The unique bounded solution $\Psi(x)$ to the adjoint variational equation \cref{adjvareq1} is given by $\Psi(x) = \nabla H(Q(x))$. In addition, $\Psi(x)$ is symmetric with respect to the standard reversor operator $R$, i.e. $\Psi(-x) = R \Psi(x)$, and
+the last component of $\Psi(x)$ is $q'(x)$.
 \end{lemma}
 
 The last lemma of the section collects a few important results about solutions to the variational and adjoint variational equations.
@@ -324,6 +340,7 @@ and $B$ is the $(2m+1) \times (2m+1)$ constant coefficient matrix
 B = \begin{pmatrix}0 & 0 & 0 & 0 & 0 \\0 & 0 & 0 & 0 & 0 \\  & 
 \vdots & & \vdots & \\0 & 0 & 0 & 0 & 0 \\1 & 0 & 0 & 0 & 0 \end{pmatrix} 
 \end{equation}
+We note that the upper left $2m \times 2m$ block of $A(\phi(x))$ is $DF(\phi(x))$.
 
 Since $\phi$ is a traveling wave, it is exponentially localized, thus $A(\phi(x))$ is exponentially asymptotic to the constant coeffient matrix $A(0)$. The following lemma describes the eigenvalues and kernel of $A(0)$.
 
@@ -333,8 +350,8 @@ The following hold concerning the eigenvalues of $A(0)$.
 \item $A(0)$ has a simple eigenvalue at 0 and a quartet of eigenvalues at $\pm \alpha_0 \pm \beta_0 i$. For any other eigenvalue $\nu$ of $A(0)$, $|\text{Re }\nu| > \alpha_0$.
 \item The kernel of $A(0)$ is spanned by $V_0$ and the kernel of $A^*(0)$ is spanned by $W_0$, where
 \begin{align}
-V_0 &= (1/c, 0, \dots, 0, 1)^T \\
-W_0 &= (0, 0, \dots, 0, 1)^T
+V_0 &= (1/c, 0, \dots, 0, 1)^T \label{V0} \\
+W_0 &= (0, 0, \dots, 0, 1)^T \label{W0}
 \end{align}
 We note that $\langle V_0, W_0 \rangle = 1$.
 \item The projection on the kernel of $A(0)$ is given by
@@ -421,7 +438,7 @@ M_2 = \int_{-\infty}^\infty \langle \Psi(x), B Q_c(x) \rangle dx =
 \int_{-\infty}^\infty q(x) q_c(x) dx \neq 0
 \end{equation}
 \end{hypothesis}
-In applications such as KdV5, numerical analysis suggests that \cref{Melnikov2hyp} is satisfied.
+In applications such as KdV5, numerical analysis suggests that \cref{Melnikov2hyp} is satisfied with $M_2 > 0$.
 
 \section{Multi-pulses on the real line}\label{sec:multiR}
 
@@ -451,22 +468,37 @@ for $m_j \in \N_0$, and we have the additional restriction that $m_j \in \{0, 1\
 The following theorem, which is adapted from \cite[Theorem 3.6]{SandstedeStrut} states the existence result for multi-pulse solutions.
 
 \begin{theorem}[Existence of Multi-Pulses]\label{multipulseexistR}
-There exists $\delta > 0$ such that for any $n \geq 2$ the following holds. For any sequence of baseline length parameters $\{ b_1^0, \dots, b_{n-1}^0 \}$, there exists $r_0 \in \calR$, $r_0 > 0$ with the following property.
+Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and \ref{H0transversehyp}. There exists $\delta > 0$ such that for any $n \geq 2$ the following holds. For any sequence of baseline length parameters $\{ b_1^0, \dots, b_{n-1}^0 \}$, there exists $r_0 \in \calR$, $r_0 > 0$ with the following property.
 \begin{enumerate}[(i)]
 \item For every scaling parameter $r \in \exp\left(-\frac{2 \pi \alpha_0}{\beta_0}m \right) \in \calR$ with $0 < r \leq r_0$ there exists a unique $n$-pulse solution $Q_n$ to \cref{genODE} which resembles $n$ consecutive copies of $Q$. The distances between consecutive peaks are given by
 \[
 2 X_j = \frac{\pi}{\beta_0}(2 m + m_j) + R_j(r) + \tilde{L}
 \]
 where $\tilde{L}$ is a constant and the remainder terms $R_j(r) \rightarrow 0$ as $r \rightarrow 0$.
+
 \item There are exactly $n$ real eigenvalues $\lambda_j$ of $\calE''(q_n)$ with $|\lambda_j| < \delta$. These are as follows.
 \begin{enumerate}
 	\item There are $n_{\text{odd}}$ negative eigenvalues, where $n_{\text{odd}}$ is the number of $m_j$ which are odd.
 	\item There are $n_{\text{even}}$ positive eigenvalues, where $n_{\text{even}}$ is the number of $m_j$ which are even.
 	\item There is a simple eigenvalue at 0 with corresponding eigenfunction $\partial_x Q_n$.
 \end{enumerate}
+
+\item We can write $Q_n(x)$ as a piecewise perturbation of the primary pulse $Q(x)$ composed of the $2n$ pieces $\{ Q_j^\pm(x) : j = 1, \dots, n \}$, where $Q_j^-: [-X_{j-1}, 0] \rightarrow \R^{2m}$ and $Q_j^+: [0, X_j] \rightarrow \R^{2m}$, with $X_0 = X_n = \infty$. The pieces are joined together end-to-end as in \cite{Sandstede1998}. We can write the $Q_j^\pm(x)$ as 
+\begin{equation}\label{Qpmexpansions}
+Q_j^\pm(x) = Q(x) + \tilde{Q}_j^\pm(x)
+\end{equation}
+where $\tilde{Q}_j^\pm(x)$ are small remainder terms, and we have the estimates
+\begin{equation}
+\begin{aligned}
+\|\tilde{Q}_j^\pm\| &\leq C e^{-\alpha_0 X_m} \\
+|\tilde{Q}_{j+1}^-(-X_j) - Q(X_j)| &\leq C e^{-2 \alpha_0 X_m} \\
+|\tilde{Q}_j^+(X_j) - Q(-X_j)| &\leq C e^{-2 \alpha_0 X_m} \\
+\end{aligned}
+\end{equation}
+which hold in addition for derivatives of $Q$.
 \end{enumerate}
 \begin{proof}
-We will show that the hypotheses in \cite{SandstedeStrut} are satisfied. \cref{hypeqhyp} and \cref{Hhyp} are equivalent to Hypotheses 3.1 and 3.3 in \cite{SandstedeStrut}. The eigenvalue problem corresponding to \cref{genODE} is
+Parts (i) and (ii) follow from \cite{SandstedeStrut}. We will show that the hypotheses in \cite{SandstedeStrut} are satisfied. \cref{hypeqhyp} and \cref{Hhyp} are equivalent to Hypotheses 3.1 and 3.3 in \cite{SandstedeStrut}. The eigenvalue problem corresponding to \cref{genODE} is
 \[
 V'(x) = (\calE''(q_n(x)) + \lambda B )V(x)
 \]
@@ -475,6 +507,8 @@ where $B$ is a $2m\times 2m$ matrix of the same form as \cref{DefB}. The relevan
 M = \int_{-\infty}^\infty \langle \Psi(x), B \frac{d}{dx} Q(x) \rangle  dx = \int_{-\infty}^\infty q'(x)^2 dx > 0
 \]
 since the last component of $\Psi_(x)$ is $q'(x)$ by \cref{psiform}. Thus Hypotheses 3.5 in \cite{SandstedeStrut} is satisfied. The result follows from \cite[Theorem 3.6]{SandstedeStrut}. Since $\calE''(q_n)$ is self-adjoint, its eigenvalues are real.
+
+Part (iii) follows from \cite[Theorem 2]{Sandstede1998}, which follow from \cite{Sandstede1993}.
 \end{proof}
 \end{theorem}
 
@@ -516,7 +550,7 @@ In the exponentially weighted space, the operator $\partial_x \calL_c(q_n(x))$ b
 \calL_\eta(q_n)v(x) = \lambda v(x)
 \end{equation}
 
-Choose any $\eta$ with $0 < \eta < 2 \alpha_0$. Then $e^{\eta x} \partial_x q_n$ and $e^{\eta x} \partial_c q_n$ are in $H_\eta^{2m+1}(\R)$, and we have
+Choose any $\eta$ with $0 < \eta < \alpha_0/2$. Then $e^{\eta x} \partial_x q_n$ and $e^{\eta x} \partial_c q_n$ are in $H_\eta^{2m+1}(\R)$, and we have
 \begin{equation}\label{weightedkernel1}
 \begin{aligned}
 \calL_\eta(q_n) (e^{\eta x} \partial_x q_n) &= 0 \\
@@ -541,15 +575,375 @@ which is equivalent to \cref{PDEeigweighted}. In this form, the equations \cref{
 \end{aligned}
 \end{equation}
 
-The matrix $A(q_n(x)) + \eta I$ is exponentially asymptotic to the constant coeffient matrix $A(0) + \eta I$. The eigenvalues of $A(0) + \eta I$ are shifted to the left by $\eta$, thus by \ref{eigA0lemma}, $A(0) + \eta I$ is hyperbolic with $\Re|\nu| > \eta$ for all eigenvalues $\nu$. The equilibrium at $U = 0$ thus has a $2m$-dimensional unstable manifold and a $(2m+1)$-dimensional stable manifold. Since $A(0) + \eta I$ is hyperbolic, we will be able to adapt the results of \cite{Sandstede1998}. 
+The matrix $A(q_n(x)) + \eta I$ is exponentially asymptotic to the constant coeffient matrix $A(0) + \eta I$. The eigenvalues of $A(0) + \eta I$ are shifted to the right by $\eta$, thus by \ref{eigA0lemma}, $A(0) + \eta I$ is hyperbolic with $\Re|\nu| > \eta$ for all eigenvalues $\nu$. The equilibrium at $U = 0$ thus has a $2m$-dimensional unstable manifold and a $(2m+1)$-dimensional stable manifold. Since $A(0) + \eta I$ is hyperbolic, we will be able to adapt the results of \cite{Sandstede1998}. 
+
+As in \cite{Sandstede1998}, we can decompose the tangent spaces of the equilibrium at 0 at $Q(0)$ as
+\begin{equation}\label{Tetadecomp}
+\begin{aligned}
+T_{Q(0)}W^u(0; \eta) &= \R Q'(0) \oplus Y_\eta^- \\
+T_{Q(0)}W^s(0; \eta) &= \R Q'(0) \oplus Y_\eta^+
+\end{aligned}
+\end{equation}
 
 The weighted variational equation and adjoint variational equation are
 \begin{align}
 V' &= (A(q(x)) + \eta I)V \label{weightedvareq} \\
 W' &= -(A(q(x)) + \eta I)^* W \label{weightedadjvareq}
 \end{align}
-Since $Q'(x)$ and $\Psi(x)$ are solutions to the unweighted variational equation \cref{vareq2} and unweighted adjoint variational equation \cref{adjvareq2} (respectively), $e^{\eta x}Q'(x)$ and $e^{-\eta x}\Psi(x)$ are solutions to \cref{weightedvareq} and \cref{weightedadjvareq} (respectively). By our choice of $\eta$, both of these solutions are exponentially localized. In fact, they are the unique bounded solutions (up to scalar multiple) to \cref{weightedvareq} and \cref{weightedadjvareq}. We note that while $e^{\eta x} V^c(x)$ and $e^{-\eta x}\Psi^c(x)$ solve \cref{weightedvareq} and \cref{weightedadjvareq}, they are not bounded.
+Since $Q'(x)$ and $\Psi(x)$ are solutions to the unweighted variational equation \cref{vareq2} and unweighted adjoint variational equation \cref{adjvareq2} (respectively), $V_\eta(x) = e^{\eta x}Q'(x)$ and $\Psi_\eta(x) = e^{-\eta x}\Psi(x)$ are solutions to \cref{weightedvareq} and \cref{weightedadjvareq} (respectively). By our choice of $\eta$, both of these solutions are exponentially localized. In fact, they are the unique bounded solutions (up to scalar multiple) to \cref{weightedvareq} and \cref{weightedadjvareq}. We note that while $e^{\eta x} V^c(x)$ and $e^{-\eta x}\Psi^c(x)$ solve \cref{weightedvareq} and \cref{weightedadjvareq}, they are not bounded.
 
+As in \cite{Sandstede1998}, we can decompose $\R^{2m+1}$ as
+\[
+\R^{2m+1} = \R Q'(0) \oplus Y_\eta^+ \oplus Y_\eta^- \oplus \R \Psi(0) 
+\]
+
+\subsection{Location of interaction eigenvalues}
+
+The following theorem gives the location of the small interaction eigenvalues for the PDE eigenvalue problem posed in an exponentially weighted space. The result is almost identical to that in Theorem 2 in \cite{Sandstede1998}. The proof will be presented in a later section. Before we present the theorem, we require one more hypothesis.
+
+\begin{theorem}\label{expwtstabtheorem}
+Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, \ref{H0transversehyp}, and \ref{Melnikov2hyp}. Let $Q_n(x)$ be an $n$-pulse traveling wave solution to \cref{genODE} constructed as in \ref{multipulseexistR} with pulse lengths $X_1, \dots, X_{n-1}$. Then there exists a bounded, nonzero solution $V$ of the weighted eigenvalue problem \eqref{weightedeig} with weight $0 < \eta < \alpha_0/2$ for $\lambda$ close to 0 if and only if $\det S(\lambda) = 0$, where
+\[
+S(\lambda) = A - \lambda^2 M I + R(\lambda).
+\]
+The matrix $A$ is given by
+\begin{equation}\label{defA}
+A = \begin{pmatrix}
+-a_1 & a_1 \\
+a_1 & -a_2 - a_1 & a_2 \\
+& a_2 & -a_3 - a_2 & a_3 \\
+\vdots & & & \vdots \\
+& & & a_{n-1} & -a_{n-1} 
+\end{pmatrix}
+\end{equation}
+where $a_i = \langle \Psi(X_i), Q'(-X_i) \rangle$. The remainder term $R(\lambda)$ is analytic in $\lambda$ and has bound
+\begin{equation}
+||R(\lambda)|| \leq C 
+\left( (e^{-\alpha X_m} + |\lambda|)^2 e^{-(\alpha - \eta)X_m}  
++ (e^{-\alpha X_m} + |\lambda| )|\lambda^2| \right)
+\end{equation}
+where $X_m = \min\{X_1, \dots, X_{n-1}\}$.
+\end{theorem}
+
+\subsection{Proof of \cref{expwtstabtheorem}}
+
+\subsubsection{Exponential Dichotomy}
+
+Since the weighted asymptotic matrix $A(0) + \eta I$ is hyperbolic the weighted variational equation \cref{weightedvareq} has exponential dichotomies on $\R^+$ and $\R^-$. Let $\Phi(x, y; \eta)$ be the evolution operator for the weigted variational equation \cref{weightedvareq}. Then we have the following lemma, which is identical to Lemma 3.2 in \cite{Sandstede1998}.
+
+% lemma : exponential dichotomy 
+\begin{lemma}\label{weighteddichotomy}
+Let $\eta > 0$. Then the evolution $\Phi(x, y; \eta)$ of the variational equation \cref{weightedvareq} can be decomposed in exponential dichotomies on $\R^+$ and $\R^-$ as
+\begin{align*}
+\Phi(x, y; \eta) &= \Phi^s_+(x, y; \eta) + \Phi^u_+(x, y; \eta) && x, y \geq 0 \\
+\Phi(x, y; \eta) &= \Phi^s_-(x, y; \eta) + \Phi^u_-(x, y; \eta) && x, y \leq 0 
+\end{align*}
+for which we have estimates
+\begin{align*}
+|\Phi^s_+(y,x; \eta)| &\leq Ce^{-\alpha^s(y-x)} && 0 \leq x \leq y \\
+|\Phi^u_+(y,x; \eta)| &\leq Ce^{\alpha^u(y-x)}  && 0 \leq y \leq x \\
+|\Phi^s_-(y,x; \eta)| &\leq Ce^{-\alpha^s(y-x)} && x \leq y \leq 0 \\
+|\Phi^u_-(y,x; \eta)| &\leq Ce^{\alpha^u(y-x)}  && y \leq x \leq 0 \\
+\end{align*}
+where $\alpha^u = \eta$ and $\alpha^s = \alpha_0 - \eta$. The projection operators at $x$ are given by
+\begin{align*}
+P^s_\pm(x; \eta) &= \Phi^s_\pm(x,x)\\
+P^u_\pm(x; \eta) &= \Phi^u_\pm(x,x)
+\end{align*}
+for which we have estimates
+\begin{align*}
+|P^s_+(x; \eta) - P_0^s(\eta)| \leq Ce^{-\alpha^s x} && x \geq 0 \\
+|P^u_+(x; \eta) - P_0^u(\eta)| \leq Ce^{-\alpha^s x} && x \geq 0 \\
+|P^s_-(x; \eta) - P_0^s(\eta)| \leq Ce^{\alpha^u x} && x \leq 0 \\
+|P^u_-(x; \eta) - P_0^u(\eta)| \leq Ce^{\alpha^u x} && x \leq 0 \\
+\end{align*}
+where $P_0^s(\eta)$ and $P_0^u(\eta)$ are the eigenprojections for the equilibrium at 0 in the weighted space. 
+\end{lemma}
+
+\subsubsection{Piecewise Ansatz}
+
+Following \cite{Sandstede1998}, we will use a piecewise ansatz for the eigenfunction $V(x)$. However, if we use the ansatz \cite[(3.5)]{Sandstede1998}, that will lead to the a Melnikov integral $\int_{-\infty}^\infty q(x) q'(x) dx$, which is zero. Instead, we use the ansatz
+\begin{equation}\label{weightedansatz}
+V_i^\pm(x) = d_i (e^{\eta x} Q'(x) + \lambda e^{\eta x} \partial_c Q(x)) + W_i^\pm(x)
+\end{equation}
+on the intervals 
+\[
+(-X_0, 0], [0, X_1], [-X_1, 0], \dots, [0, X_{n-1}], [-X_{n-1}, 0], [0, X_n) 
+\]
+where $X_0 = X_n = \infty$ and the pieces are glued together end-to-end as in \cite{Sandstede1998}.
+
+Plugging \cref{weightedansatz} into the weighted eigenvalue problem \cref{weightedeig} and simplifying using the relations above, $W_i^\pm(x)$ solves the equation
+\[
+(W_i^\pm)'(x) = [A(q_n(x)) + \eta I] W_i^\pm(x) + \lambda B W_i^\pm(x) + \lambda^2 e^{\eta x} \partial_c Q_n(x)
+\]
+To write this in terms of $A(q_n)$, let
+\begin{align*}
+G_i^\pm(x) &= A(q_n(x)) - A(q(x))
+\end{align*}
+Then this becomes
+\[
+(W_i^\pm)'(x) = [A(q(x)) + \eta I] W_i^\pm(x)+ G_i^\pm(x)W_i^\pm(x) + \lambda B W_i^\pm(x) + \lambda^2 e^{\eta x} \partial_c Q_n(x)
+\]
+
+In order for $W_i^\pm(x)$ to be an eigenfunction, it must be continuous at the joins between the intervals. Thus we require that the following conditions are satisfied.
+\begin{align}
+W_i^+(X_i) - W_{i+1}^-(-X_i) &= D_i(\eta) d \label{tailjoinwt} \\
+W^+(0) - W^-(0) &= 0 \label{centerjoinwt}
+\end{align}
+where
+\begin{equation}\label{Dideta}
+D_i(\eta) d = d_{i+1} e^{-\eta X_i}[ Q_n'(-X_i) + \lambda \partial_c Q_n(-X_i)] 
+- d_i e^{\eta X_i}[ Q_n'(X_i) + \lambda \partial_c Q_n(X_i)] 
+\end{equation}
+The first condition joins the tails of the eigenfunction pieces, and the second condition is a condition at the centers of the pulses. As in \cite{Sandstede1998}, we will be able solve uniquely for $W_i^\pm(x)$ such that \cref{tailjoinwt} is satisfied. In general, however, we will not be able to solve \cref{centerjoinwt}. Instead, we relax the system of equations to the following.
+\begin{equation}\label{weightedsystem}
+\begin{aligned}
+(W_i^\pm)'(x) &= [A(q(x)) + \eta I] W_i^\pm(x)+ G_i^\pm(x)W_i^\pm(x) + \lambda B W_i^\pm(x) + \lambda^2 e^{\eta x} \partial_c Q_n(x) \\
+W_i^+(X_i) - W_{i+1}^-(-X_i) &= D_i(\eta) d \\
+W^\pm(x) &\in \C \Psi(0) \oplus Y_\eta^+ \oplus Y_\eta^- \\
+W^+(0) - W^-(0) &\in \C \Psi(0) \\
+\end{aligned}
+\end{equation}
+Using Lin's method, we will be able to find a unique solution to \cref{weightedsystem}. Then we have a true eigenfunction if and only if the $n$ jump conditions
+\begin{equation}\label{weightedjumps}
+\xi_j = \langle \Psi(0), W^+(0) - W^-(0) \rangle = 0
+\end{equation}
+are satisfied.
+
+In the next lemma, we show some estimates similar to that in Lemma 3.1 in Sandstede (1998).
+
+% estimates lemma
+
+\begin{lemma}\label{estimates}
+
+We have the estimates
+
+\begin{align*}
+|G_i^\pm(x; \eta)| &\leq C|R_i^\pm(x)| \leq C e^{-\alpha X_m} \\
+| \tilde{H}_i^\pm(x)  - H(x) | & \leq C | e^{\eta x} R_i^\pm(x)| \leq C e^{-(\alpha - \eta) X_m}  \\
+D_i d &= ( Q'(X_i) + Q'(-X_i) )(d_2 e^{-\eta X_i} - d_1 e^{\eta X_i}) + \mathcal{O} \left( e^{-(\alpha - \eta) X_m}\left( |\lambda| +  e^{-\alpha X_m} \right) |d| \right) \\
+\end{align*}
+where $X_m = \min\{X_1, \dots, X_n\}$.
+
+\begin{proof}
+Since 
+
+\begin{align*}
+G_i^\pm(x; \eta) = A(q_n(x); \eta) - A(q(x); \eta) &= (A(q_n(x)) + \eta I) - (A(q(x)) + \eta I) \\
+&= A(q_n(x)) - A(q(x)) \\
+&= A(r_i^\pm(x))
+\end{align*}
+
+$G_i^\pm(x) = \mathcal{O}(r_i^\pm(x)|)$, for which we have the bound \eqref{ripmbound}. The estimate (ii),
+
+\[
+\tilde{H}_i^\pm(x)  - H(x) = e^{\eta x} \partial_c R_i^\pm(x),
+\]
+
+and the bound follows \eqref{ripmbound}. For estimate (iii), we first write $D_i d$ as
+
+\begin{align*}
+D_i d &= d_{i+1} e^{-\eta X_i}[ Q_n'(-X_i) + \lambda \partial_c Q_n(-X_i)] 
+- d_i e^{\eta X_i}[ Q_n'(X_i) + \lambda \partial_c Q_n(X_i)]  \\
+&= d_{i+1} e^{-\eta X_i} [ Q'(-X_i) + \lambda \partial_c Q(-X_i) + (R_{i+1}^-)'(-X_i) + \lambda  \partial_c R_{i+1}^-(-X_i)] \\
+&- d_i e^{\eta X_i} [ Q'(X_i) + \lambda \partial_c Q(X_i) + (R_i^+)'(X_i) + \lambda \partial_c R_i^+(X_i)] 
+\end{align*}
+
+Adapting Lemma 2.6 in \cite{Sandstede1998}, we have
+
+\begin{align*}
+|R_{i+1}^-(-X_i) - Q(X_i)| \leq C e^{-2 \alpha X_m} \\
+|R_{i}^+(X_i) - Q(-X_i)| \leq C e^{-2 \alpha X_m}
+\end{align*}
+
+which hold as well for derivatives with respect to $x$ and $c$. Substituting these into the expression for $D_i d$
+
+\begin{align*}
+D_i d &= d_{i+1} e^{-\eta X_i} \left[ Q'(X_i) + Q'(-X_i) + \lambda( \partial_c Q(X_i) + \partial_c Q_c(-X_i)) + \mathcal{O} \left( e^{-2 \alpha X_m} \right) \right] \\
+&- d_i e^{\eta X_i} \left[ Q'(X_i) + Q'(-X_i) + \lambda( \partial_c Q(X_i) + \partial_c Q_c(-X_i)) + \mathcal{O} \left( e^{-2 \alpha X_m} \right) \right]
+\end{align*}
+
+Finally, since $\partial_c Q(\pm X_i)$ is of order $e^{-\alpha X_i}$, this becomes
+
+\begin{align*}
+D_i d &= ( Q'(X_i) + Q'(-X_i) )(d_{i+1} e^{-\eta X_i} - d_i e^{\eta X_i})
++ \mathcal{O} \left( e^{-(\alpha - \eta) X_m}\left( |\lambda| +  e^{-\alpha X_m} \right) |d| \right)
+\end{align*}
+
+which is estimate (iii).
+
+\end{proof}
+\end{lemma}
+
+We are now in position to use Lin's method, following \cite{Sandstede1998}. The only differences between what we have and the situation in \cite{Sandstede1998} is that the term $\lambda \tilde{H}$ is replaced by $\lambda^2 \tilde{H}$, and the estimate for $D_i d$ takes a slightly different form. Thus we can adapt Lemma 3.6 in \cite{Sandstede1998}. Recalling that $\Psi_\eta(x) = e^{-\eta x}\Psi(x)$ is the unique bounded solution to the adjoint variational equation, we can use Lin's method to obtain a unique, piecewise smooth solution $(W_i^\pm, d_i)$ with $n$ jumps which are given by
+
+\begin{align*}
+\xi_i &= \langle \Psi_\eta(X_i), P_0^u D_i d \rangle
++ \langle \Psi_\eta(-X_{i-1}), P_0^u D_{i-1} d \rangle
+- \lambda^2 d_i \int_{-\infty}^\infty \langle \Psi_\eta(y), H(y) \rangle dy
++ (R(\lambda)d)_i
+\end{align*}
+
+The remainder term has bound
+
+\begin{align*}
+|(R&(\lambda)d)_i| \leq C \left( (e^{-\alpha X_m} + |G| + |\lambda|)^2 |D| + (e^{-\alpha X_m} + |G| + ||\tilde{H}_i - H|| + |\lambda| )|\lambda^2| \right)|d|
+\end{align*}
+
+\subsection{The Substitution}
+
+Finally, we substitute our expressions for $D_i$, $\Psi_\eta$, $\tilde{H}$, and $H$ into the jump equations. The Melnikov integral term is given by
+
+\begin{align*}
+M &= \int_{-\infty}^{\infty} \langle \Psi_\eta(y), H(y) \rangle dy \\
+&= \int_{-\infty}^{\infty} \langle e^{-\eta y} \Psi(y), e^{-\eta y} B \partial_c q(y) \rangle dy \\
+&= \int_{-\infty}^{\infty} e^{-\eta y} q(y), e^{-\eta y} \partial_c q(y) dy \\
+&= \int_{-\infty}^{\infty} q(y) \partial_c q(y) dy \\
+&= \int_{-\infty}^{\infty} \partial_c \left( \frac{1}{2} q(y)^2 \right) dy
+\end{align*}
+
+For the terms involving $d_i$, we use the estimate from Lemma \ref{estimates}.
+
+\begin{align*}
+\langle \Psi_\eta(X_i), &P_0^u D_i d \rangle
+= \langle e^{-\eta X_i} \Psi(X_i), P_0^u( Q'(X_i) + Q'(-X_i) )(d_{i+1} e^{-\eta X_i} - d_i e^{\eta X_i}) + \mathcal{O} \left( e^{-(\alpha - \eta) X_m}\left( |\lambda| +  e^{-\alpha X_m} \right) |d| \right) \rangle \\
+&= \langle \Psi(X_i), Q'(-X_i) \rangle ( e^{-2 \eta X_i}d_{i+1} - d_i ) + \mathcal{O} \left( e^{-(\alpha - \eta) X_m}\left( |\lambda| +  e^{-\alpha X_m} \right) |d| \right)
+\end{align*}
+
+where we used the fact that $\Psi(-X_i) \perp Q'(-X_i)$. The other term is similar.
+
+\begin{align*}
+\langle \Psi_\eta(-X_{i-1}), P_0^s D_{i-1} d \rangle 
+&= \langle \Psi(-X_{i-1}), Q'(X_{i-1}) \rangle (d_i - e^{2 \eta X_{i-1}} d_{i-1} ) + \mathcal{O} \left( e^{-(\alpha - \eta) X_m}\left( |\lambda| +  e^{-\alpha X_m} \right) |d| \right)
+\end{align*}
+
+For the remainder bound, using Lemma \ref{estimates} and the fact that $|D| = \mathcal{O}(e^{-(\alpha - \eta)X_m}|d|)$, we have
+
+\begin{align*}
+|(R&(\lambda)d)_i| \leq C 
+\left( (e^{-\alpha X_m} + |\lambda|)^2 e^{-(\alpha - \eta)X_m}  
++ (e^{-\alpha X_m} + |\lambda| )|\lambda^2| \right)|d|
+\end{align*}
+
+Finally, using the expressions for $Q'(x)$ and $\Psi(x)$ and the fact that $q(x)$ is an even function, we have
+
+\[
+\langle \Psi(-X), Q'(X) \rangle = -\langle \Psi(X), Q'(-X) \rangle
+\]
+
+Using this relation with the jump expression and combining the various remainder terms into a single remainder term $\tilde{R}(\lambda)_i$ gives us our final jump expressions
+
+\begin{align*}
+\xi_i & = \langle \Psi(X_i), Q'(-X_i) \rangle ( e^{-2 \eta X_i}d_{i+1} - d_i ) 
+- \langle \Psi(X_{i-1}), Q'(-X_{i-1}) \rangle (d_i - e^{2 \eta X_{i-1}} d_{i-1} ) - \lambda^2 d_i M  + (\tilde{R}(\lambda)d)_i \\
+|(\tilde{R}(\lambda)d)_i| &\leq C 
+\left( (e^{-\alpha X_m} + |\lambda|)^2 e^{-(\alpha - \eta)X_m}  
++ (e^{-\alpha X_m} + |\lambda| )|\lambda^2| \right)|d|
+\end{align*}
+
+Let 
+
+\[
+a_i = \langle \Psi(X_i), Q'(-X_i) \rangle
+\]
+
+Then we can write the jump equations as
+
+\[
+\xi_i = a_i ( e^{-2 \eta X_i}d_{i+1} - d_i ) 
+- a_{i-1} (d_i - e^{2 \eta X_{i-1}} d_{i-1} ) - \lambda^2 d_i M  + (\tilde{R}(\lambda)d)_i \\
+\]
+
+We have a smooth solution to the eigenvalue problem when all $n$ jumps are 0. We can write the $n$ jump conditions in matrix form as
+
+\[
+S_\eta(\lambda)d = (A_\eta - \lambda^2 M I + \tilde{R}(\lambda))d = 0
+\]
+
+where $A_\eta$ is the tri-diagonal matrix
+
+\[
+A_\eta = \begin{pmatrix}
+-a_1 & e^{-2 \eta X_1} a_1 \\
+e^{2 \eta X_1} a_1 & -a_2 - a_1 & e^{-2 \eta X_2} a_2 \\
+& e^{2 \eta X_2} a_2 & -a_3 - a_2 & e^{-2 \eta X_3} a_3 \\
+\vdots & & & \vdots \\
+& & & e^{2 \eta X_{n-1}} a_{n-1} & -a_{n-1} 
+\end{pmatrix}
+\]
+
+Thus we have a nontrivial solution if and only if $\det S_\eta(\lambda) = 0$.\\
+
+However, we are not finished, since we would like (and we expect) the jump conditions to be independent of the choice of weight $\eta$. We prove that this is the case in the next lemma.
+
+% Lemma : jump conditions
+
+\begin{lemma}
+We have a nontrivial solution if and only if $\det S(\lambda) = 0$, where
+
+\[
+S(\lambda) = A - \lambda^2 M I + R(\lambda)
+\]
+
+the matrix $A$ is given by
+
+\begin{equation}\label{defA}
+A = \begin{pmatrix}
+-a_1 & a_1 \\
+a_1 & -a_2 - a_1 & a_2 \\
+& a_2 & -a_3 - a_2 & a_3 \\
+\vdots & & & \vdots \\
+& & & a_{n-1} & -a_{n-1} 
+\end{pmatrix}
+\end{equation}
+
+and we have bound
+
+\begin{equation}
+||R(\lambda)|| \leq C 
+\left( (e^{-\alpha X_m} + |\lambda|)^2 e^{-(\alpha - \eta)X_m}  
++ (e^{-\alpha X_m} + |\lambda| )|\lambda^2| \right)
+\end{equation}
+
+\begin{proof}
+There is probably a much more elegant way to show this, but this one should work. For any nonsingular matrix $T$, $\det S_\eta(\lambda) = \det T^{-1} S_\eta(\lambda) T$. All we need to do is choose the appropriate matrix $T$. Let $T = U_1 U_2 \dots U_{n-1}$, where the $U_i$ are the elementary matrices
+
+\begin{align*}
+U_1 &= \text{diag}(1, e^{2 \eta X_1}, 1, \dots, 1) \\
+U_2 &= \text{diag}(1, 1, e^{2 \eta (X_1 + X_2)}, \dots, 1) \\
+&\vdots \\
+U_{n-1} &= \text{diag}(1, 1, \dots, e^{2 \eta (X_1 + X_2 + \dots + X_{n-1})}) \\
+\end{align*}
+
+First, we look at $T^-1 A_\eta T = U_{n-1}^{-1} \dots U_2^{-1} U_1^{-1} A_\eta U_1 U_2 \dots U_{n-1}$. We perform the multiplication from inside to outside. For the innermost multiplication,
+
+\begin{align*}
+U_1^{-1} A_\eta U_1 &= \begin{pmatrix}
+-a_1 & e^{2 \eta X_1} e^{-2 \eta X_1} a_1 \\
+e^{-2 \eta X_1} e^{2 \eta X_1} a_1 & e^{2 \eta X_1} e^{-2 \eta X_1}(-a_2 - a_1) & e^{-2 \eta X_1}e^{-2 \eta X_2} a_2 \\
+& e^{2 \eta X_1} e^{2 \eta X_2} a_2 & -a_3 - a_2 & e^{-2 \eta X_3} a_3 \\
+\vdots & & & \vdots \\
+& & & e^{2 \eta X_{n-1}} a_{n-1} & -a_{n-1} 
+\end{pmatrix}\\
+&= \begin{pmatrix}
+-a_1 & a_1 \\
+a_1 & -a_2 - a_1 & e^{-2 \eta (X_1+X_2)} a_2 \\
+& e^{2 \eta (X_1+X_2)} a_2 & -a_3 - a_2 & e^{-2 \eta X_3} a_3 \\
+\vdots & & & \vdots \\
+& & & e^{2 \eta X_{n-1}} a_{n-1} & -a_{n-1} 
+\end{pmatrix}
+\end{align*}
+
+Repeat this $n-2$ more times to get $T^{-1} A_\eta T = A$. Since $M I$ is diagonal, we can see that $T^{-1} MI T = MI$. Finally, for the remainder term, let $R(\lambda) = T^{-1} \tilde{R}(\lambda)T$. Then we have 
+
+\begin{align*}
+||T^{-1} \tilde{R}(\lambda)T|| \leq ||T^{-1} ||\:|| \tilde{R}(\lambda)||\:||T|| = || \tilde{R}(\lambda)||
+\end{align*}
+
+Thus $R(\lambda)$ has the same bound as $\tilde{R}(\lambda)$. Combining all of these gives us the result.
+
+\end{proof}
+\end{lemma}
 
 
 

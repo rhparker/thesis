@@ -18,28 +18,32 @@ B = \begin{pmatrix}0 & 0 & 0 & 0 & 0 \\0 & 0 & 0 & 0 & 0 \\  &
 \end{equation*}
 For KdV5, 
 \begin{equation*}
-A(Q(x)) = \begin{pmatrix}0 & 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 & 1 \\
-2q'(x) & 2 q(x) - c & 0 & 1 & 0 
+A(Q(x)) = \begin{pmatrix}0 & 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 & 0 \\ 2 q(x) - c & 0 & 1 & 0 & 1 \\
+0 & 0 & 0 & 0 & 0 
 \end{pmatrix}
 \end{equation*}
-and we have an appropriate general form for this.
+and we have an appropriate general form for this. $A(0)$ and $A(0)^*$ have eigenvalues at 0 with corresponding eigenvectors
+\begin{align*}
+V_0 &= (1/c, 0, \dots, 0, 1)^T \\
+W_0 &= (0, 0, \dots, 0, 1)^T
+\end{align*}
 
 When $\lambda = 0$, these are the variational and adjoint variational equations. In Lemma \ref{varsolutions}, we showed that when $\lambda = 0$, \eqref{Veqlambda} has a bounded solution $V^c(x)$ with
 \[
-V^c(x) \rightarrow V_0(0) \text{ as }|x| \rightarrow \infty
+V^c(x) \rightarrow V_0 \text{ as }|x| \rightarrow \infty
 \]
-which is symmetric with respect to the standard reversor operator $R$. In Lemma \ref{adjsolutions}, we showed that when $\lambda = 0$, \eqref{Weqlambda} has an exponentially decaying solution $\Psi(x)$ and a bounded solution $\Psi^c(x)$ with 
+which is symmetric with respect to the standard reversor operator $R$. In Lemma \ref{adjsolutions}, we showed that when $\lambda = 0$, \eqref{Weqlambda} has an exponentially decaying solution $\Psi(x)$ and a constant, bounded solution $\Psi^c(x)$ given by 
 \[
-\Psi^c(x) \rightarrow W_0 \text{ as }|x| \rightarrow \infty
+\Psi^c(x) = W_0 
 \]
-Both adjoint solutions are symmetric with respect to the standard reversor operator $R$. We have also scaled things so that $\langle \Psi^c(x), V^c(x) = 1 \rangle$ for all $x$.
+Both adjoint solutions are symmetric with respect to the standard reversor operator $R$. We have also scaled things so that $\langle \Psi^c(x), V^c(x) \rangle = 1$ for all $x$.
 
-Next, recall that $A(0; \lambda)$ has a small eigenvalue $\nu(\lambda)$, where $\nu(0) = 0$. Let $V_0(\lambda)$ and $W_0(\lambda)$ be the eigenvectors of $A(0)$ and $-A(0)^*$ corresponding to $\nu(\lambda)$. For convenience, we let $V_0 = V_0(0)$ and $W_0 = W_0(0)$. We can scale these so that $\langle V_0(\lambda), W_0(\lambda) \rangle = 1$.
+Next, recall that $A(0; \lambda)$ has a small eigenvalue $\nu(\lambda)$, where $\nu(0) = 0$. Let $V_0(\lambda)$ and $W_0(\lambda)$ be the eigenvectors of $A(0)$ and $-A(0)^*$ corresponding to $\nu(\lambda)$ and $-\overline{ \nu(\lambda)}$. We note that $V_0 = V_0(0)$ and $W_0 = W_0(0)$. We can scale these so that $\langle V_0(\lambda), W_0(\lambda) \rangle = 1$.
 
 Using the Gap Lemma, we can find solutions $V^\pm(x; \lambda)$ to \eqref{Veqlambda} and $W^\pm(x; \lambda)$ to \eqref{Weqlambda} on $\R^\pm$ such that
 \begin{align}
 V^\pm(x; \lambda) &= V_0(\lambda)e^{\nu(\lambda)x} + V_R^\pm(x; \lambda) \label{Vpm} \\
-W^\pm(x; \lambda) &= W_0(\lambda)e^{\nu(\lambda)x} + W_R^\pm(x; \lambda) \label{Vpm}
+W^\pm(x; \lambda) &= W_0(\lambda)e^{-\overline{\nu(\lambda)}x} + W_R^\pm(x; \lambda) \label{Vpm}
 \end{align}
 where for the remainder terms we have $V_R^\pm(x; \lambda), W_R^\pm(x; \lambda) = \mathcal{O}(e^{-\alpha |x|})$. We have also scaled things so that $\langle V_0(\lambda), W_0(\lambda) \rangle = 1$. These solutions are analytic in $\lambda$. They are also not unique. We would like to better characterize these solutions. 
 
@@ -57,7 +61,7 @@ Our goal is the following.
 	\[
 	\langle \Psi(0), V^\pm(0, \lambda) \rangle = \lambda \langle \Psi(0), V_1^\pm(0, \lambda) \rangle
 	\]
-	We wish to characterise the $\langle \Psi(0), V_1^\pm(0, \lambda) \rangle$. In particular, we would like to show something like
+	We wish to characterise $\langle \Psi(0), V_1^\pm(0, \lambda) \rangle$. In particular, we would like to show something like
 	\[
 	\langle \Psi(0), V_1^\pm(0, \lambda) \rangle = 
 	r_1 \pm r_2
