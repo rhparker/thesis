@@ -72,38 +72,110 @@ W_0(\lambda) = W_0 + \overline{\lambda} \tilde{W}_0 + \mathcal{O}(\overline{\lam
 \]
 where $\tilde{W}_0 = -R \tilde{W}_0$
 
-\subsection{Solutions in Center Subspace}
+\subsection{Solutions in center subspace}
 
 Consider the equations
 \begin{align}
 V'(x) = A(Q(x); \lambda) V(x) \label{Veqlambda} \\
 W'(x) = -A(Q(x); \lambda)^* W(x) \label{Weqlambda}
 \end{align}\
-where $Q(x)$ is the primary pulse solution and $A(Q(x), \lambda) = A(Q(x)) + \lambda B$. When $\lambda = 0$, these are the variational and adjoint variational equations.
+where $Q(x)$ is the primary pulse solution and $A(Q(x), \lambda) = A(Q(x)) + \lambda B$. When $\lambda = 0$, these are the variational and adjoint variational equations. By Lemma \ref{nulambdalemma}, the asymptotic matrix $A(\lambda)$ has a small eigenvalue $\nu(\lambda)$, with $\nu(\lambda) = \frac{1}{c} \lambda + \mathcal{O}(|\lambda|^3)$. The corresponding eigenvector is $V_0(\lambda)$, which is smooth in $\lambda$. We first prove the following lemma relating solutions to \eqref{Veqlambda} on $\R^+$ and $\R^-$.
 
-By Lemma \ref{nulambdalemma}, the asymptotic matrix $A(\lambda)$ has a small eigenvalue $\nu(\lambda)$, with $\nu(\lambda) = \frac{1}{c} \lambda + \mathcal{O}(|\lambda|^3)$. Let $V_0(\lambda)$ and $W_0(\lambda)$ be the eigenvectors of $A(\lambda)$ and $-A(\lambda)^*$ corresponding to $\nu(\lambda)$. Since the eigenvalues of $A(\lambda)$ are smooth in $\lambda$, $V_0(0) = 0$, scale $V_0(\lambda)$ and $W_0(\lambda)$ so that $V_0(0) = V_0$, $W_0(\lambda) = 0$, and $\langle V_0(\lambda), W_0(\lambda) \rangle = 1$.
-
-Using the Gap Lemma, we can find solutions $V^\pm(x; \lambda)$ to \eqref{Veqlambda} and $W^\pm(x; \lambda)$ to \eqref{Weqlambda} on $\R^\pm$ such that
+\begin{lemma}\label{Vlambdasymmetrylemma}
+Suppose $V(x)$ is a solution to $V'(x) = A(Q(x); \lambda) V(x)$ on $\R^+$. Then $R V(-x)$ is a solution to $V'(x) = A(Q(x); -\lambda) V(x)$ on $\R^-$, where $R$ is the standard reversor operator.
+\begin{proof}
+Since we will be dealing with reversor operators on two difference spaces, let $R_{n}$ be the matrix for the standard reversor operator on $\R^n$. Then for $x \in \R^-$,
 \begin{align*}
-V^\pm(x; \lambda) &= V_0(\lambda)e^{\nu(\lambda)x} + \tilde{V}^\pm(x; \lambda) \\
-W^\pm(x; \lambda) &= W_0(\lambda)e^{\nu(\lambda)x} + \tilde{W}^\pm(x; \lambda)
+\frac{d}{dx} &\left[ R_{2m+1} V(-x) \right] = -R_{2m+1} V'(-x) \\
+&= -R_{2m+1} A(Q(-x); \lambda) V(-x) \\
+&= -R_{2m+1} A(Q(-x); \lambda) R_{2m+1}^2 V(-x) \\
+&= \begin{pmatrix}-R_{2m} & 0 \\ 0 & -1 \end{pmatrix} 
+\begin{pmatrix}
+DF(Q(-x)) & \begin{pmatrix} 0 \\ \vdots \\ 0 \\ 1 \end{pmatrix} \\
+\begin{pmatrix} \lambda & 0 & \dots & 0 \end{pmatrix} & 0
+\end{pmatrix} \begin{pmatrix}R_{2m} & 0 \\ 0 & 1 \end{pmatrix}  R_{2m+1} V(-x) \\
+&= \begin{pmatrix}
+-R_{2m} DF(Q(-x)) R_{2m} & \begin{pmatrix} 0 \\ \vdots \\ 0 \\ 1 \end{pmatrix} \\
+\begin{pmatrix} -\lambda & 0 & \dots & 0 \end{pmatrix} & 0
+\end{pmatrix} R_{2m+1} V(-x) \\
+&= \begin{pmatrix}
+DF(R_{2m}(Q(-x))) & \begin{pmatrix} 0 \\ \vdots \\ 0 \\ 1 \end{pmatrix} \\
+\begin{pmatrix} -\lambda & 0 & \dots & 0 \end{pmatrix} & 0
+\end{pmatrix} R_{2m+1} V(-x) \\
+&= \begin{pmatrix}
+DF(Q(x)) & \begin{pmatrix} 0 \\ \vdots \\ 0 \\ 1 \end{pmatrix} \\
+\begin{pmatrix} -\lambda & 0 & \dots & 0 \end{pmatrix} & 0
+\end{pmatrix} R_{2m+1} V(-x) \\
+&= A(Q(x); \lambda) R_{2m+1} V(-x)
 \end{align*}
-where $\tilde{V}^\pm(x; \lambda), \tilde{W}^\pm(x; \lambda) = \mathcal{O}(e^{-\tilde{\alpha}|x|})$. Furthermore, these solutions are analytic in $\lambda$. Scale these solutions so that $V^\pm(x; 0) = V^c(x)$ and $W^\pm(x; 0) = \Psi^c(x)$, where $V^c(x)$ is defined in Lemma \ref{varsolutions} and $\Psi^c(x)$ is defined in Lemma \ref{adjsolutions}.
-
-Using a Melnikov-type argument, we should be able to show the following.
-
-\begin{lemma}\label{Vpmlambdalemma}
-\begin{align*}
-\langle \Psi^c(0), V^+(0; \lambda) \rangle &= 1 + \mathcal{O}(|\lambda|) \\
-\langle \Psi^c(0), V^-(0; \lambda) \rangle &= 1 + \mathcal{O}(|\lambda|) 
-\end{align*}
-and
-\begin{align*}
-\langle \Psi(0), V^+(0; \lambda) \rangle &= M_\Psi \lambda + \mathcal{O}(|\lambda|^2) \\
-\langle \Psi(0), V^-(0; \lambda) \rangle &= -M_\Psi \lambda + \mathcal{O}(|\lambda|^2) 
-\end{align*}
-where $M_\Psi$ is a constant.
+\end{proof}
 \end{lemma}
+
+In the next lemma, we find specific solutions of interest to \eqref{Veqlambda}.
+
+\begin{lemma}
+For sufficiently small $\lambda$, we can find solutions $V^+(x; \lambda)$ to \eqref{Veqlambda} on $\R^\pm$ which are of the form
+\begin{align}\label{Vpmlambda}
+V^\pm(x; \lambda) &= V_0(\lambda)e^{\nu(\lambda)x} + V_1^\pm(x; \lambda),
+\end{align}
+where $V^\pm(x; 0) = V^c(x)$ and we have the relationship
+\begin{equation}\label{Vpmsymmetry}
+V^-(x; \lambda) = R V^+(-x; -\lambda)
+\end{equation}
+
+\begin{proof}
+Using the Gap Lemma, for sufficiently small $\lambda$, we can find a solution $V^+(x; \lambda)$ to \eqref{Veqlambda} on $\R^+$ such that
+\begin{align*}
+V^+(x; \lambda) &= V_0(\lambda)e^{\nu(\lambda)x} + V_1^+(x; \lambda)
+\end{align*}
+where $V_1^+(x; \lambda) = \mathcal{O}(e^{-\tilde{\alpha}|x|})$. This solution is analytic in $\lambda$, and we scale it so that $V^+(x; 0) = V^c(x)$, where $V^c(x)$ is defined in Lemma \ref{varsolutions}. We will now construct the solution $V^-(x; \lambda)$ with the desired property.
+
+By Lemma \ref{Vlambdasymmetrylemma}, $RV^+(-x; -\lambda)$ solves $V'(x) = A(Q(x); \lambda) V(x)$ on $\R^-$. For $x \in \R^-$, by Lemma \ref{nulambdalemma} we have
+\begin{align*}
+RV^+(-x; -\lambda) &= R V_0(-\lambda)e^{-\nu(-\lambda)x} + R V_1^+(-x; -\lambda) \\
+&= V_0(\lambda)e^{\nu(\lambda)x} + R V_1^+(-x; -\lambda)
+\end{align*}
+Let $V^-(x; \lambda) = RV^+(-x; -\lambda)$. Then $V^-(x; -\lambda)$ has the form in \eqref{Vpmlambda} and has same decay properties as $V^+(x; \lambda)$.
+\end{proof}
+\end{lemma}
+
+As a corollary, we evaluate the following inner products, which will be important in the stability analysis.
+
+\begin{corollary}\label{VpmPsiIPcorr}
+\begin{equation}\label{VpmIPs}
+\begin{aligned}
+\langle \Psi^c(0), V^\pm(0; \lambda) \rangle &= 1 + \mathcal{O}(|\lambda|) \\
+\langle \Psi(0), V^\pm(0; \lambda) \rangle &= \pm p_1 \lambda + \mathcal{O}(|\lambda|^2)
+\end{aligned}
+\end{equation}
+where $p_1 = \langle \Psi(0), \tilde{V}^c \rangle$, and $\tilde{V}$ is the constant from the Taylor expansion
+\begin{equation}\label{defp1}
+V^+(0; \lambda) = V^c(0) + \tilde{V}^c \lambda + \mathcal{O}(\lambda^2).
+\end{equation}
+\begin{proof}
+For the inner product with $\Psi^c(0)$, using the Taylor expansion \eqref{defp1},
+\begin{align*}
+\langle \Psi^c(0), V^\pm(0; \lambda) \rangle &= 
+\langle \Psi^c(0), V^c(0) \rangle + \mathcal{O}(|\lambda|) \\
+&= \langle \Psi^c(0), V^c(0) \rangle + \mathcal{O}(|\lambda|) \\
+&= 1 + \mathcal{O}(|\lambda|)
+\end{align*}
+For the inner product $\langle \Psi(0), V^+(0; \lambda) \rangle$, we have
+\begin{align*}
+\langle \Psi(0), V^+(0; \lambda) \rangle 
+&= \langle \Psi(0), V^c(0) \rangle + \langle \Psi(0), \tilde{V}^c \lambda \rangle + \mathcal{O}(|\lambda|^2) \\
+&= p_1 \lambda + \mathcal{O}(|\lambda|^2)
+\end{align*}
+For the inner product $\langle \Psi(0), V^-(0; \lambda) \rangle$, using Lemma \ref{Vpmlambda},
+\begin{align*}
+\langle \Psi(0), V^-(0; \lambda) \rangle &= 
+\langle \Psi(0), R V^+(0; -\lambda) \rangle \\
+&= \langle R \Psi(0), -\tilde{V}^c \lambda \rangle + \mathcal{O}(|\lambda|^2) \\
+&= -\langle \Psi(0), \tilde{V}^c \lambda \rangle + \mathcal{O}(|\lambda|^2) \\
+&= -p_1 + \mathcal{O}(|\lambda|^2)
+\end{align*}
+\end{proof}
+\end{corollary}
 
 \subsection{Piecewise Formulation}
 
