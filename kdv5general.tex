@@ -164,9 +164,13 @@ From the last component of \eqref{genODErev}, $f(RU) = f(U)$, it also follows fr
 \end{equation}
 For $U = 0$, this implies
 \begin{align}\label{fpartials0}
-\partial_{u_j} f(0) &= 0 && j \text{ even}
+\partial_{u_j} f(0) &= \begin{cases}
+0 & j \text{ even}\\
+0 & j = 1 \\
+c_j & j \text{ odd, } j > 1
+\end{cases}
 \end{align}
-In addition, we are assuming that $\partial_{u_1} f(0) = 0$, since that is accounted for by the $c u_1$ term in \cref{defF}. 
+where the $c_j$ are constants, and we assume without without loss of generality that $c_0 = \partial_{u_1} f(0) = 0$, since that is accounted for by the $c u_1$ term in \cref{defF}.
 
 Next, we assume that \cref{genODE} is a conservative system. We will also parameterize the conserved quantity $H$ by $c$.
 
@@ -520,16 +524,7 @@ Part (iii) follows from \cite[Theorem 2]{Sandstede1998}, which follow from \cite
 
 Let $Q_n(x)$ be a multi-pulse solution to \cref{genODE} constructed using \cref{multipulseexistR}, and let $q_n(x)$ be the first component of $Q_n(x)$; $q_n(x)$ is a traveling wave solution to \eqref{genPDE}. To find the spectrum associated with $q_n$, we study the PDE eigenvalue problem \cref{genPDEeig}. 
 
-First, we look at the essential spectrum. Since any traveling wave solution we are considering is exponentially asymptotic to the rest state $u = 0$, by the Weyl essential spectrum theorem \cite[Theorem 2.2.6]{Kapitula2013} and \cite[Theorem 3.1.11]{Kapitula2013}, $\partial_x \calL_c''(q_n)$ and $\partial_x \calL_c''(0)$ have the same essential spectrum. Using \cref{fpartials0} and the remark following,
-\begin{align*}
-\partial_{u_j} f(0) &= 
-\begin{cases}
-0 & j \text{ even}\\
-0 & j = 1 \\
-c_j & j \text{ odd, } j > 1
-\end{cases}
-\end{align*}
-where $c_j \in \R$ are constants. Thus the eigenvalue problem for $u = 0$ is 
+First, we look at the essential spectrum. Since any traveling wave solution we are considering is exponentially asymptotic to the rest state $u = 0$, by the Weyl essential spectrum theorem \cite[Theorem 2.2.6]{Kapitula2013} and \cite[Theorem 3.1.11]{Kapitula2013}, $\partial_x \calL_c''(q_n)$ and $\partial_x \calL_c''(0)$ have the same essential spectrum. Using \cref{fpartials0}, the eigenvalue problem for $u = 0$ is 
 \[
 (\partial_x \calL_c''(0) - \lambda )v(x) = 
 (\partial_x^{2m+1} + c_{2m-1} \partial_x^{2m-1} + \dots + c_3 \partial_x^3 + c \partial_x - \lambda )v(x) = 0

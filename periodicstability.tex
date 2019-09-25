@@ -11,31 +11,36 @@
 % proof of nu lambda lemma
 \subsection{Proof of Lemma \ref{nulambdalemma}}
 
-The characteristic polynomial of $A(0; \lambda)$ is
-\begin{equation}\label{charpolyA0lambda}
-p(\nu; \lambda) = p_2(\nu) + \lambda = -\nu^{2m+1} + c_{2m-2} \nu^{2m-1} + \dots + c_2 \nu^3 - c \nu + \lambda
+Using \eqref{defAphi} and \eqref{fpartials0},
+\begin{equation}\label{Alambdaform}
+A(\lambda) = 
+\begin{pmatrix}
+0 & 1 & 0 & \dots & 0 & 0 & 0 \\
+0 & 0 & 1 & \dots & 0 & 0 & 0\\
+& \vdots && \vdots \\
+0 & 0 & 0 & \dots & 0 & 1 & 0 \\
+- c & 0 & c_3 & \dots & c_{2m-1} & 0 & 1 \\
+\lambda & 0 & 0 & \dots & 0 & 0 & 0
+\end{pmatrix}
 \end{equation}
-where $p_2(\nu)$ is the characteristic polynomial of $A(0)$ from \eqref{charpolyA0}
-
+which has characteristic polynomial
+\begin{equation}\label{charpolyA0lambda}
+p(\nu; \lambda) = \lambda = -\nu^{2m+1} + c_{2m-1} \nu^{2m-1} + \dots + c_3 \nu^3 - c \nu + \lambda
+\end{equation}
 When $\lambda = 0$, $p(0; \nu)$ has a root at $\nu = 0$. From Lemma \ref{nondegenlemma}, $\nu = 0$ is simple root and is located a distance $\sqrt{\alpha_0^2 + \beta_0^2}$ from the next smallest roots. 
 
-Since $p(0; 0) = 0$ and $\partial_\nu p(0; 0) = -c \neq 0$, we can use the IFT to can solve for $\nu$ in terms of $\lambda$ near $\lambda = 0$. In other words, there exists $\delta_0 > 0$ and a smooth function $\nu(\lambda)$ such that $\nu(0) = 0$ and for $|\lambda| < \delta$, $p(\nu(\lambda)$ is the unique solution to $p(\nu; \lambda) = 0$. Differentiating $\nu(\lambda)$ at $\lambda = 0$, we get
+Since $p(0; 0) = 0$ and $\partial_\nu p(0; 0) = -c \neq 0$, we can use the IFT to can solve for $\nu$ in terms of $\lambda$ near $\lambda = 0$. In other words, there exists $\delta_0 > 0$ and a smooth function $\nu(\lambda)$ such that $\nu(0) = 0$ and for $|\lambda| < \delta$, $p(\nu(\lambda)$ is the unique solution to $p(\nu; \lambda) = 0$. Using the IFT to differentiate $\nu(\lambda)$ at $\lambda = 0$,
 \begin{align*}
 \nu'(0) &= -\frac{1}{\partial_\nu p_2(\nu(\lambda); \lambda) } \partial_\lambda p ( \nu(\lambda); \lambda ) \Big|_{\lambda = 0}\\
-&= -\frac{1}{\partial_\nu p(\nu(0); 0) } 
-&= = \frac{1}{c}
+&= -\frac{1}{\partial_\nu p(\nu(0); 0) } \\
+&= \frac{1}{c}
 \end{align*}
-
-Since $\nu(\lambda)$ is the root of a polynomial which is smooth in $\lambda$, we can expand $\nu(\lambda)$ in a Taylor series about $\lambda = 0$ to get
-\begin{align*}
-\nu(\lambda) = \frac{1}{c} \lambda + \mathcal{O}(|\lambda|^2)
-\end{align*}
-By reversibility, $p(\nu; \lambda)$ only involves odd powers of $\nu$, thus $p(\nu; \lambda) = 0$ implies $p(-\nu; -\lambda) = 0$. Uniqueness of the solution $\nu(\lambda)$ from the IFT implies that $\nu(-\lambda) = -\nu(\lambda)$, i.e. $\nu(\lambda)$ is an odd function of $\lambda$. Thus the Taylor expansion for $\nu(\lambda)$ involves only odd powers of $\lambda$, and we have]
+By reversibility, $p(\nu; \lambda)$ only involves odd powers of $\nu$, thus $p(\nu; \lambda) = 0$ implies $p(-\nu; -\lambda) = 0$. Uniqueness of the solution $\nu(\lambda)$ from the IFT implies that $\nu(-\lambda) = -\nu(\lambda)$, i.e. $\nu(\lambda)$ is an odd function of $\lambda$. Since $\nu(\lambda)$ is the root of a polynomial which is smooth in $\lambda$, we can expand $\nu(\lambda)$ in a Taylor series about $\lambda = 0$. Since $\nu(\lambda)$ is an odd function, the Taylor series involves only odd powers of $\lambda$ and is given by
 \begin{align*}
 \nu(\lambda) = \frac{1}{c} \lambda + \mathcal{O}(|\lambda|^3)
 \end{align*}
 
-Finally, we consider the case when $\lambda$ is pure imaginary. Take $\lambda = i \gamma$ and $\nu = i s$ in $p(\nu; \lambda)$ to get
+Next, we consider the case when $\lambda$ is pure imaginary. Take $\lambda = i \gamma$ and $\nu = i s$ in $p(\nu; \lambda)$ to get
 \begin{align*}
 p(i s; i \gamma) = (-1)^{m+1} i s^{2m+1} + c_{2m-2} (-1)^m i s^{2m-1} + \dots - c_2 i s^3 - c i s + i \gamma
 \end{align*}
@@ -44,6 +49,28 @@ Since we want to solve $p(i s; i \gamma) = 0$, we can divide by $i$ to get the e
 \tilde{p}(s; \gamma) = (-1)^{m+1} s^{2m+1} + c_{2m-2} (-1)^m s^{2m-1} + \dots - c_2 s^3 - c s + \gamma = 0
 \end{align*}
 Since $\tilde{p}(0; 0) = 0$ and $\partial_s \tilde{p}(0; 0) = -c \neq 0$, we can use the IFT again to solve for $s$ in terms of $\gamma$. Thus we can find a smooth function $s(\gamma)$ such that $s(0) = 0$, $s(\gamma)$ is real, and $s(\gamma)$ is the unique solution to $\tilde{p}(s; \gamma) = 0$ for sufficiently small $\gamma$. Undoing these substitutions, this implies that $p(\lambda, i s(-i \lambda)) = 0$. By uniqueness of the IFT solution $\nu(\lambda)$, we conclude that $\nu(\lambda) = \nu(i \gamma) = i s(-i \lambda)$, which is pure imaginary.
+
+Finally, let $V_0(\lambda)$ be an eigenvector of $A(\lambda)$ corresponding to $\nu(\lambda)$. This is only unique up to scalar multiple, but since $V_0(\lambda)$ is smooth in $\lambda$, scale $V_0(\lambda)$ so that $V(0) = V_0$. Next, we can verify by direct calculation that 
+\[
+A(\lambda) - \nu(\lambda) I = -R(A(-\lambda) + \nu(\lambda) I)R,
+\]
+where $R$ is the standard reversor operator. Then
+\begin{align*}
+[A(\lambda) - \nu(\lambda) I]V = 0 &\iff
+-R(A(-\lambda) + \nu(\lambda) I)RV = 0 \\
+&\iff (A(-\lambda) + \nu(\lambda) I)RV
+\end{align*}
+Thus $RV_0(\lambda)$ is an eigenvector of $A(-\lambda)$ corresponding to $-\nu(\lambda)$. Since $V_0(0) = RV_0(0)$, we conclude that $V_0(-\lambda) = R V_0(\lambda)$. Expanding $V_0(\lambda)$ in a Taylor series about $\lambda = 0$, we have
+\[
+V_0(\lambda) = V_0 + \lambda \tilde{V}_0 + \mathcal{O}(\lambda^2),
+\]
+where $\tilde{V}_0 = -R \tilde{V}_0$.
+
+We can follow the same procedure with the adjoint asymptotic matrix $-A(\lambda)^*$. This has eigenvalue $-\overline{\nu(\lambda)}$ which is smooth in $\overline{\lambda}$. We can similarly find an corresponding eigenvector $W(\overline{\lambda})$ with $W_0(-\overline{\lambda}) = R V_0(\overline{\lambda})$ and Taylor expansion
+\[
+W_0(\lambda) = W_0 + \overline{\lambda} \tilde{W}_0 + \mathcal{O}(\overline{\lambda}^2),
+\]
+where $\tilde{W}_0 = -R \tilde{W}_0$
 
 \subsection{Solutions in Center Subspace}
 

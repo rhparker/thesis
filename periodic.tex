@@ -280,7 +280,18 @@ In addition,
 \begin{enumerate}[(i)]
 \item $\nu(-\lambda) = -\nu(\lambda)$, i.e. $\nu(\lambda)$ is an odd function 
 \item If $\lambda$ is pure imaginary, $\nu(\lambda)$ is also pure imaginary
+\item The corresponding eigenvector to $\nu(\lambda)$ is $V_0(\lambda)$ which is smooth in $\lambda$ and has Taylor expansion
+\begin{equation}\label{V0expansion}
+V_0(\lambda) = V_0 + \lambda \tilde{V}_0 + \mathcal{O}(\lambda^2),
+\end{equation}
+Furthermore, $V_0(-\lambda) = R V_0(\lambda)$ and $\tilde{V}_0 = -R \tilde{V}_0$, where $R$ is the standard reversor operator.
 \end{enumerate}
+
+Similarly, the adjoint asymptotic matrix $-A(\lambda)^*$ has an eigenvalue $-\overline{\nu(\lambda)}$ with corresponding eigenvector $W_0(\overline{\lambda})$, both of which are smooth in $\overline{\lambda}$. $W_0(\overline{\lambda})$ has Taylor expansion
+\begin{equation}\label{W0expansion}
+W_0(\lambda) = W_0 + \overline{\lambda} \tilde{W}_0 + \mathcal{O}(\overline{\lambda}^2),
+\end{equation}
+with symmetry propterties $W_0(-\overline{\lambda}) = R W_0(\overline{\lambda})$ and $\tilde{W}_0 = -R \tilde{W}_0$
 \end{lemma}
 
 We can now state the main theorem of the section, which gives us a condition for $\lambda$ to be an eigenvalue of \eqref{PDEeig3}. This theorem is analagous to \cite[Theorem 2]{Sandstede1998}, with the matrix $A$ replaced by a block matrix.
