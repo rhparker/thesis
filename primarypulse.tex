@@ -635,82 +635,45 @@ where $R V_0 = V_0$ since all components of $V_0$ are 0 except for the first. Re
 
 Since we have the same initial condition at $x = 0$ for $V^+(x)$ and $RV^+(-x)$, this implies that $V^+(-x) = RV^+(x)$. Let $V^c(x) = V^+(x)$. Then $V^c(x)$ is a bounded solution to the variational equation with is symmetric with respect to the reversor $R$, i.e. $V^c(-x) = RV^c(x)$. Furthermore, $V^c(x) \rightarrow V_0$ as $x \rightarrow \pm \infty$.
 
-% solutions to variational equation
+% solutions to adjoint variational equation
 \subsection{Proof of Lemma \ref{adjsolutions}}
 
-The linear operator $A(Q(x))$ has the form 
-\begin{equation}\label{DefAQ}
-A(Q(x)) = \begin{pmatrix}
-0 & 1 & \dots & 0 & 0 \\
-0 & 0 & \dots & 0 & 0 \\
-& & \ddots  \\
-0 & 0 & \dots & 0 & 1 \\
-h_1(x) & h_2(x) & \dots & h_{2m}(x) & h_{2m+1}(x)
+Using \eqref{defAphi}, the linear operator $A(Q(x))^*$ has the form 
+\begin{equation}\label{defAphi}
+A(Q(x))^* = 
+\begin{pmatrix}
+0 & 0 & 0 & \dots & 0 & f_{u_1}(Q(x)) - c & 0 \\
+1 & 0 & 0 & \dots & 0 & f_{u_2}(Q(x)) & 0 \\
+0 & 1 & 0 & \dots & 0 & f_{u_3}(Q(x)) & 0 \\
+&& \ddots &&& \vdots \\
+0 & 0 & 0 & \dots & 1 & f_{u_{2m}}(Q(x)) & 0 \\
+0 & 0 & 0 & \dots & 0 & 1 & 0 \\
 \end{pmatrix}
-\end{equation} 
-where
-\begin{equation*}
-\begin{aligned}
-h_1(x) &= \sum_{k=1}^{2m}\partial^2_{u_1 u_k} f(Q(x))\partial_x^k q(x) \\
-h_j(x) &= \sum_{k=1}^{2m}\partial^2_{u_j u_k} f(Q(x))\partial_x^k q(x) + \partial_{u_{j-1}}f(Q(x)) && j = 2, \dots, 2m \\
-h_{2m+1}(x) &= \partial_{u_{2m}}f(Q(x))
-\end{aligned}
-\end{equation*}
-Using the reversibility relation $Q(-x) = R Q(x)$ and \eqref{frev},
-\begin{align*}
-h_j(-x) &= \sum_{k=1}^{2m}\partial^2_{u_j u_k} f(Q(-x))\partial_x^k q(-x) + \partial_{u_{j-1}}f(Q(-x)) \\
-&= \sum_{k=1}^{2m}\partial^2_{u_j u_k} f(RQ(x))\partial_x^k q(-x) + \partial_{u_{j-1}}f(RQ(x)) \\
-&= \sum_{k=1}^{2m} (-1)^{j+k} \partial^2_{u_j u_k} f(Q(x)) (-1)^k \partial_x^k q(x) + (-1)^j \partial_{u_{j-1}}f(Q(x)) \\
-&= (-1)^j \left( \sum_{k=1}^{2m} \partial^2_{u_j u_k} f(Q(x)) \partial_x^k q(x) + (-1)^j \partial_{u_{j-1}}f(Q(x)) \right) \\
-&= (-1)^j h(x)
-\end{align*} 
-thus $h_j(x)$ is an odd function for $j$ odd and an even function for $j$ even. Since $f$ is smooth and $Q(x)$ is exponentially localized, the functions $h_j(x)$ are smooth and bounded.
-
-The adjoint variational equation \eqref{adjvareq2} is the following equation written as a first order system
-\begin{equation}\label{adj2}
-[\partial_x H_c]^* w(x) = -H_c \partial_x w(x) = 0,
 \end{equation}
-Suppose \eqref{adj2} has a solution $w(x)$ which is an even function. Then by Lemma \ref{adjointlemma}, \eqref{adjvareq2} has a solution $W(x) = (w_1(x), \dots, w_{2m+1}(x))$ with $w_{2m+1}(x) = w(x)$. Comparing \eqref{Axform} from Lemma \ref{adjointlemma} to \eqref{DefAQ}, the other components of $W(x)$ are given by 
-\begin{align}\label{adjWform}
-w_r(x) &= (-1)^{2m+1-r} \partial_x^{2m+1-r}w(x) + \sum_{k=r}^{2m} (-1)^{k-r} \partial_x^{k-r}(h_{k+1}(x) w(x)) && r = 1, \dots 2m
+By inspection, 
+\[
+\Psi^c(x) = W_0 = (0, 0, \dots, 0, 1)^T
+\]
+is a bounded solution. To find $\Psi(x)$, we note that from \eqref{defDF}, the adjoint variational equation takes the block form
+\[
+\begin{pmatrix} \tilde{W}'(x) \\ W_{2m+1}(x) \end{pmatrix}
+= \begin{pmatrix }
+\begin{pmatrix}DF(Q(x))^* & 0 \\ E & 0 \end{pmatrix}
+\]
+where $\tilde{W}'(x) = (W_1(x), \dots, W_{2m}(x)) \in \R^{2m}$, $E$ is the $1 \times 2m$ matrix $E = (0, 0, \dots, 1)$, and $0$ represents blocks of zeros of the appropriate size. This can be written as the system of equations
+\begin{align}
+\tilde{W}'(x) &= DF(Q(x))^* \label{tildeWeq1} \\
+W_{2m+1}(x)' &= \tilde{W}_{2m}(x) \label{tildeWeq2}
 \end{align}
-Since we are assuming $w(x)$ is even, $w_r(x)$ is an even function for $r$ odd and an odd function for $r$ even, thus $W(-x) = R W(x)$. 
+Equation \eqref{tildeWeq1} has a solution $\tilde{W}(x) = 0$, from which it follows that $W_{2m+1}(x)$ is a constant. This is a constant multiple of $\Psi^c(x)$, so we have already taken care of it.
 
-To find $\Psi(x)$, equation \ref{adj2} has an exponentially decaying solution $q(x)$, which is an even function. Thus we obtain $\Psi(x)$ by taking $w(x) = q(x)$ above. Every term in \eqref{adjWform} is a product of $q(x)$ or one of its derivatives with a smooth, bounded function. Since $q(x)$ is exponentially localized, $\Psi(x)$ is exponentially localized as well.
+By Lemma \ref{psiform}, equation \eqref{tildeWeq1} has a unique nonzero solution $\tilde{W}(x) = \nabla H(Q(x))$, with $\tilde{W}_{2m}(x)=q'(x)$ and $\tilde{W}(-x) = R\tilde{W}(x)$. Then $W_{2m+1}(x) = q(x) + C$; we can without loss of generality take $C = 0$ since if $C$ is nonzero, we can subtract $C \Psi^c(x)$. Thus we have
+\[
+\Psi(x) = ( \nabla H(Q(x)), q(x) )
+\]
+which is exponentially localized since $q(x)$ is exponentially localized and $H$ is smooth. Since $q(x)$ is an even function, we have the symmetry relation $\Psi(-x) = R \Psi(x)$.
 
-To find $\Psi^c(x)$, equation \eqref{adj2} also has the constant solution 1 as a solution, which is an even function. Thus we obtain $\Psi(x)$ by taking $w(x) = 1$ above. The individual entries are given by
-\begin{align}\label{Psicrows}
-[\Psi^c(x)]_r &= \sum_{k=r}^{2m} (-1)^{k-r} \partial_x^{k-r} h_{k+1}(x)
-\end{align}
-When we take $|x| \rightarrow \infty$, $h_{k+1}(x) \rightarrow \partial_{u_k}f(0)$, which is equal to $c_{k-1}$ for $k$ even and 0 for $k$ odd, and $c_0 = -c$. All higher derivatives of $h_{k+1}$ vanish. Thus we have
-\begin{align*}
-\lim_{|x|\rightarrow \infty}
-[\Psi^c(x)]_r &= c_{r-1}
-\end{align*}
-Since $[\Psi^c(x)]_{2m+1} = 1$, we conclude that $\Psi^c(x) \rightarrow (-c, 0, c_2, \dots, c_{2m-2}, 0, 1)^T = W_0$. Alternatively, we can verify by direct substitution that $\Psi^c(x) = ( -Df(Q(x)), 1)$. Then as $|x| \rightarrow 0$, $\Psi^c(x) \rightarrow W_0$.
-
-Using this, we have
-\begin{align*}
-\langle \Psi^c(x), Q'(x) \rangle 
-&= \langle (-Df(Q(x)), 1), ((\partial_x q(x), \dots, \partial_x^{2m} q(x)), \partial_{2m+1}(x)) \rangle \\
-&= -\langle Df(Q(x)), (\partial_x q(x), \dots, \partial_x^{2m} q(x)) \rangle + \partial_{2m+1}(x) \\
-&= \partial_{2m+1}(x) - \partial_x f(q(x)) \\
-&= 0
-\end{align*}
-since $q(x)$ is an equilibrum solution to the original PDE. Of course, we already knew that $\langle \Psi^c(x), Q'(x) \rangle = 0$ since the inner product is constant and $Q'(x)$ decays to 0. We also have (NEEDS BETTER NOTATION)
-\begin{align*}
-\langle \Psi^c(x), Q'(-x) \rangle 
-&= \langle (-Df(Q(x)), 1), (Q'(-x), \partial_{2m+1}(-x)) \rangle \\
-&= \langle (-Df(Q(x)), 1), (-RQ'(x), -\partial_{2m+1}(x)) \rangle \\
-&= \langle Df(Q(x)), RQ'(x) \rangle - \partial_{2m+1}(x) \\
-&= \langle R Df(R Q(x)), RQ'(x) \rangle - \partial_{2m+1}(x) \\
-&= \frac{\partial}{\partial x} R f(R Q(x)) - \partial_{2m+1}(x) \\
-&= \frac{\partial}{\partial x} f(Q(x)) - \partial_{2m+1}(x) \\
-&= 0
-\end{align*}
-
-Finally, it follows from Lemma \ref{adjointlemma} that any bounded solution to \eqref{adjvareq2} must be perpendicular to $\R Q'(0) \oplus Y^+ \oplus Y^-$ at $x = 0$. In particular, this holds for $\Psi(0)$ and $\Psi^c(0)$. Since $S_1 = \R Q'(0) \oplus Y^+ \oplus Y^-$ is a $(2m-1)-$dimensional subspace of $\R^{2m+1}$ and $S_2 = \Psi(0) \oplus \Psi^c(0)$ is a $2-$dimensional subspace of $\R^{2m+1}$ which is perpendicular to $S_1$, it follows that there can be no other bounded, linearly independent solutions to \eqref{adjvareq2}.
-
+It follows from Lemma \ref{adjointlemma} that any bounded solution to \eqref{adjvareq2} must be perpendicular to $\R Q'(0) \oplus Y^+ \oplus Y^-$ at $x = 0$. In particular, this holds for $\Psi(0)$ and $\Psi^c(0)$. Since $S_1 = \R Q'(0) \oplus Y^+ \oplus Y^-$ is a $(2m-1)-$dimensional subspace of $\R^{2m+1}$ and $S_2 = \Psi(0) \oplus \Psi^c(0)$ is a $2-$dimensional subspace of $\R^{2m+1}$ which is perpendicular to $S_1$, it follows that there can be no other bounded, linearly independent solutions to \eqref{adjvareq2}.
 
 \iffulldocument\else
 	\bibliographystyle{amsalpha}

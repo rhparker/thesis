@@ -407,15 +407,19 @@ $V^c$ is symmetric with respect to the standard reversor operator $R$, i.e. $V^c
 \end{lemma}
 
 \begin{lemma}\label{adjsolutions}
-There exist exactly two (up to constant multiples) linearly independent, bounded solutions $\Psi(x)$ and $\Psi^c(x)$ to \eqref{adjvareq2}.
+There exist two linearly independent, bounded solutions $\Psi(x)$ and $\Psi^c(x)$ to \eqref{adjvareq2}.
 \begin{enumerate}[(i)]
-\item $\Psi(x)$ is exponentially localized, i.e. $e^{\alpha_0 |x|}\Psi(x)$ is bounded, and the last component of $\Psi(x)$ is $q(x)$. In addition, $\Psi(x)$ is symmetric with respect to the standard reversor operator $R$, i.e. $\Psi(-x) = R \Psi(x)$. 
-\item $\Psi_c(x)$ the constant solution
+\item $\Psi(x)$ is the exponentially localized solution
+\begin{equation}
+\Psi(x) = (\nabla H(Q(x)), q(x)).
+\end{equation}
+$\Psi(x)$ is symmetric with respect to the standard reversor operator $R$, i.e. $\Psi(-x) = R \Psi(x)$. 
+\item $\Psi_c(x)$ is the constant solution
 \begin{equation}
 \Psi^c(x) = W_0
 \end{equation}
 \end{enumerate}
-In addition, $\Psi(0), \Psi^c(0) \perp \R Q'(0) \oplus Y^+ \oplus Y^-$.
+Any other bounded solution to \eqref{adjvareq2} is a linear combination of these. Finally, $\Psi(0), \Psi^c(0) \perp \R Q'(0) \oplus Y^+ \oplus Y^-$.
 \end{lemma}
  
 Using Lemma \ref{nondegenlemma} and Lemma \ref{adjsolutions}, we can decompose $\R^{2m+1}$ as  
