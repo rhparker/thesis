@@ -179,7 +179,11 @@ For the inner product $\langle \Psi(0), V^-(0; \lambda) \rangle$, using Lemma \r
 
 \subsection{Piecewise Formulation}
 
-We are finally ready to prove the main stability results. Let $q_{np}(x)$ be a $n-$periodic pulse solution to \eqref{genODE} constructed according to Theorem \ref{perexist}, and let $Q_{np}(x) = (q_{np}(x), \partial_x q_{np}(x), \dots, \partial_x^{2m} q_{np}(x) )$. From Theorem \ref{perexist}, we can write $Q_{np}(x)$ piecewise as
+In this section we set up the eigenvalue problem we wish to solve and write it in a piecewise form similar to \cite{Sandstede1998}. Let $q_{np}(x)$ be a periodic $n-$pulse solution to \eqref{genODE} constructed according to Theorem \ref{perexist}, and let $Q_{np}(x) \in \R^{2m+1}$ be
+\[
+Q_{np}(x) = ( q_{np}(x), \partial_x q_{np}(x), \dots, \partial_x^{2m-1} q_{np}(x), 0 )
+\]
+From Theorem \ref{perexist}, we can write $Q_{np}(x)$ piecewise as
 \begin{equation}\label{Qnppiece}
 \begin{aligned}
 Q_i^-(x) &= Q^-(x; \beta_i^-) + \tilde{Q}_i^-(x) && x \in [-X_{i-1}, 0] \\
@@ -187,56 +191,47 @@ Q_i^+(x) &= Q^+(x; \beta_i^+) + \tilde{Q}_i^+(x) && x \in [0, X_i]
 \end{aligned}
 \end{equation}
 
-Recall that we are looking for solutions to the eigenvalue problem 
+Recall from \cref{sec:PDEeig} that the PDE eigenvalue problem associated with $q_{np}(x)$ is given by 
 \begin{equation}\label{PDEeig4}
-V'(x) = A(Q_{np}(x))V(x) + \lambda B V(x)
+V'(x) = A(Q_{np}(x))V(x) + \lambda B V(x),
 \end{equation}
-which comes from writing the PDE eigenvalue problem $\partial_x E''(q_{np}(x)) v = \lambda v$ as a first-order system. We can verify directly that $\partial_x E''(q_{np}(x)) q_{np}(x) = 0$. By a similar analysis to that preceding Hypothesis \ref{Melnikov2hyp}(BUT WITH DIFFERENT FUNCTION SPACES WHICH WE SHOULD SPECIFY), there exists a function $t_{np}(x)$ such that $\partial_x E''(q_{np}(x)) t_{np}(x) = q_{np}(x)$. Let $T_np(x) = t_{np}(x), \partial_x t_np(x), \dots, \partial_x^m t_np(x))$. Then we have the following relations.
-and that we have
+which we obtained by writing the PDE eigenvalue problem $\partial_x (\calE''(q_{np}(x)) + c )v(x) = \lambda v(x)$ as a first-order system. We can verify directly that $\partial_x (E''(q_{np}(x) + c) \partial_x q_{np}(x) = 0$. By a similar argument to Theorem \ref{transverseint}, $q_{np}(x)$ is differentiable in $c$, and $\partial_x E''(q_{np}(x)) (-\partial_c q_{np}(x)) = \partial_x q_{np}(x)$. Similarly to \eqref{Qprimevarsol} and \eqref{Qcvarsol}, we have
 \begin{equation}\label{Arelations}
 \begin{aligned}
-(Q_{np}')' &= A(Q_{np}(x)) Q_{np}' \\
-(T_{np})'' &= A(Q_{np}(x)) T_{np} + B Q_{np}' 
+(\partial_x Q_{np}(x))' &= A(Q_{np}(x)) (\partial_x Q_{np}(x)) \\
+(\partial_c Q_{np}(x))' &= A(Q_{np}(x)) (\partial_c Q_{np}(x)) + B (\partial_x Q_{np}(x)) 
 \end{aligned}
 \end{equation}
-
-Using the same intervals $\{X_0, \dots, X_{n-1}\}$, we can write $T_np(x)$ piecewise as $T_i^\pm(x)$, where
-\begin{equation}\label{Tnppiece}
-\begin{aligned}
-T_i^-(x) &= T(x) + \tilde{T}_i^-(x) && x \in [-X_{i-1}, 0] \\
-T_i^+(x) &= T(x) + \tilde{T}_i^+(x) && x \in [0, X_i]
-\end{aligned}
-\end{equation}
-Bounds on the remainder terms $T_i^\pm(x)$ will be presented in Lemma \ref{stabestimates} below.
 
 To exploit the relations \eqref{Arelations}, we take the following piecewise ansatz for the eigenfunction $V(x)$
 \begin{equation}\label{Vpiecewise}
 \begin{aligned}
-V_i^-(x) &= d_i ((Q_i^-)'(x) + \lambda T_i^-(x)) + W_i^-(x) && x \in [-X_{i-1}, 0] \\
-V_i^+(x) &= d_i ((Q_i^+)'(x) + \lambda T_i^+(x)) + W_i^+(x) && x \in [0, X_i] \\
+V_i^-(x) &= d_i (\partial_x Q_i^-(x) + \lambda \partial_c Q_i^-(x)) + W_i^-(x) && x \in [-X_{i-1}, 0] \\
+V_i^+(x) &= d_i (\partial_x Q_i^+(x) + \lambda \partial_x Q_i^+(x)) + W_i^+(x) && x \in [0, X_i] 
 \end{aligned}
 \end{equation}
 where $d_i \in \C$ are arbitrary constants. Substituting this ansatz into \eqref{PDEeig4}, we have
 \begin{align*}
-d_i [(Q_i^\pm)']'(x) &+ \lambda d_i (T_i^\pm)'(x) + (W_i^\pm)'(x) \\
-&= d_i A(Q_i^\pm(x)) (Q_i^\pm)'(x) + \lambda d_i A(Q_i^\pm(x)) T_i^\pm(x) + A(Q_i^\pm(x)) W_i^\pm(x) \\
-&+ \lambda d_i B (Q_i^\pm)'(x) + d_i \lambda^2 B T_i^\pm(x) + \lambda B W_i^\pm(x)
+d_i [\partial_x Q_i^\pm(x)]' &+ \lambda d_i [\partial_c Q_i^\pm(x)] + (W_i^\pm)'(x) \\
+&= d_i A(Q_i^\pm(x))(\partial_x Q_i^\pm(x)) + \lambda d_i A(Q_i^\pm(x)) (\partial_c Q_i^\pm(x)) + A(Q_i^\pm(x)) W_i^\pm(x) \\
+&+ \lambda d_i B (\partial_x Q_i^\pm(x)) + d_i \lambda^2 B (\partial_c Q_i^\pm(x)) + \lambda B W_i^\pm(x)
 \end{align*}
 Using \eqref{Arelations}, this simplifies to
+\begin{equation}\label{Wipm1}
+(W_i^\pm)'(x) = A(Q_i^\pm(x)) W_i^\pm(x) + \lambda B W_i^\pm(x) + d_i \lambda^2 B (\partial_c Q_i^\pm(x))
+\end{equation}
+Let
 \begin{align*}
-(W_i^\pm)'(x) &= A(Q_i^\pm(x)) W_i^\pm(x) + \lambda B W_i^\pm(x) + d_i \lambda^2 B T_i^\pm(x) 
+A_i^\pm(x; \lambda) &= A(Q_i^\pm(x)) + \lambda B \\
+\tilde{H}_i^\pm(x) &= \partial_c Q_i^\pm(x) \\ 
+H(x) &= \partial_c Q(x)
 \end{align*}
-Let $A_i^\pm(x; \lambda) = A(Q_i^\pm(x)) + \lambda B$ and let
-\begin{align*}
-\tilde{H}_i^\pm(x) &= B T_i^\pm(x) \\ 
-H(x) &= B T(x)
-\end{align*}
-Then this becomes 
+Using these, equation \eqref{Wipm1} simplifies to
 \begin{align*}
 (W_i^\pm)'(x) &= A_i^\pm(x; \lambda) W_i^\pm(x) + d_i \lambda^2 \tilde{H}_i^\pm(x)
 \end{align*}
 
-In order to have a solution to \eqref{PDEeig4}, the eigenfunction $V(x)$ must be continuous. In other words, the $2n$ jumps between the pieces must be 0. Thus we need to solve the system of equations
+In order to have a solution to \eqref{PDEeig4}, the eigenfunction $V(x)$ must be continuous. In other words, the $n$ jumps at $\pm X_i$ and the $n$ jumps at $0$ must be 0. Thus a solution to \eqref{PDEeig4} must solve the system of equations
 \begin{align*}
 (W_i^\pm)'(x) &= A_i^\pm(x; \lambda) W_i^\pm(x) + d_i \lambda^2 \tilde{H}_i^\pm(x) \\
 W_i^+(X_i) - W_{i+1}^-(-X_i) &= D_i d && i = 0, \dots, n-1 \\
@@ -248,7 +243,7 @@ D_i d &= d_{i+1}[(Q_{i+1}^-)'(-X_i) + \lambda T_{i+1}^-(-X_i)]
 - d_i [ (Q_i^+)'(X_i) + \lambda T_i^+(X_i) ] \\
 \end{align}
 
-It will turn out that we cannot find a unique solution to this sytem for all $\lambda$. Thus, we will instead consider the system
+As in \cite{Sandstede1998}, we will not be able to find a solution to this system for arbitrary $\lambda$. Thus we will instead consider the system
 \begin{equation}\label{eigsystem}
 \begin{aligned}
 (W_i^\pm)'(x) &= A_i^\pm(x; \lambda) W_i^\pm(x) + d_i \lambda^2 \tilde{H}_i^\pm(x) \\
@@ -257,35 +252,25 @@ W_i^\pm(0) &\in \R \Psi(0) \oplus \R \Psi^c(0) \oplus Y^+ \oplus Y^- && i = 0, \
 W_i^+(0) - W_i^-(0) &\in \R \Psi(0) \oplus \R \Psi^c(0) && i = 0, \dots, n-1 
 \end{aligned}
 \end{equation}
-
-We do not need to include a component in $Q'(0)$ in the third equation since that is handled by the term $d_i (Q_i^\pm)'(x)$ in the ansatz \eqref{Vpiecewise}. A solution to \eqref{eigsystem} gives us an eigenfunction corresponding to eigenvalue $\lambda$ if and only if the $n$ jumps at $x = 0$ in the direction of $\Psi(0) \oplus \R \Psi^c(0)$ are 0, i.e. if and only if the $2n$ jump conditions are satisfied, i.e. 
+where the center matching condition $W_i^-(0) = W_i^+(0)$ is relaxed to the requirement that the jumps $W_i^+(0) - W_i^-(0)$ can only be in the directions of $\Psi^c(0)$ and $\Psi(0)$. We do not need to include a component in $Q'(0)$ in the third equation since that is handled by the term $d_i (Q_i^\pm)'(x)$ in the ansatz \eqref{Vpiecewise}. A solution to \eqref{eigsystem} solves \eqref{PDEeig4}, i.e. is an eigenfunction corresponding to eigenvalue $\lambda$, if and only if the $n$ jumps at $x = 0$ in the direction of $\Psi(0) \oplus \R \Psi^c(0)$ are 0, i.e.  
 \begin{align}
 \xi_i &= \langle \Psi(0), W_i^+(0) - W_i^-(0) \rangle = 0 \label{jumpxi} \\
 \xi_i^c &= \langle \Psi^c(0), W_i^+(0) - W_i^-(0) \rangle = 0 \label{jumpxic}
 \end{align}
 for $i = 0, \dots, n-1$.
 
-We will need the following estimates, which we collect in the following lemma.
+Before we continue, we will need estimates on terms involved in \eqref{eigsystem}, which we collect in the following lemma.
 \begin{lemma}\label{stabestimates}
-Let $\Delta H_i^\pm(x) = \tilde{H}_i^\pm(x) - H(x)$. Then we have the following estimates
+Let $\Delta H_i^\pm(x) = \tilde{H}_i^\pm(x) - H(x)$. Then for any $\alpha_1$ with $0 < \alpha_1 < \alpha_0$, we have the following estimates
 \begin{enumerate}[(i)]
-\item $|H(x)|, |\tilde{H}_i^\pm(x)| \leq C e^{-\alpha_0 |x|}$
-\item $|\Delta H_i^-(x)| \leq C e^{-\alpha_0 X_{i-1}} e^{-\alpha_0(X_{i-1} + x) } + e^{-2 \alpha_0 X_i} e^{\alpha_0 x}$
-\item $|\Delta H_i^+(x)| \leq C e^{-\alpha_0 X_i} e^{-\alpha_0(X_i - x) } + e^{-2 \alpha_0 X_{i-1}} e^{-\alpha_0 x}$
-\item $||\Delta H_i^\pm|| \leq C(e^{-\alpha_0 X_i} + e^{-\alpha_0 X_{i-1}} )$ 
-\item $D_i d = ( Q'(X_i) + Q'(-X_i) + Q^r(X_i))(d_{i+1} - d_i ) + \mathcal{O} ( e^{-\alpha X_i} |\lambda| )$
-where
-\[
-|Q_R(X_i)| \leq C e^{-\alpha_0 X_i} e^{-\alpha_0 X_m}
-\]
+\item $|H(x)|, |\tilde{H}_i^\pm(x)| \leq C e^{-\alpha_1 |x|}$
+\item $|\Delta H_i^-(x)| \leq C e^{-\alpha_1 X_{i-1}} e^{-\alpha_0(X_{i-1} + x) } + e^{-2 \alpha_1 X_i} e^{\alpha_1 x}$
+\item $|\Delta H_i^+(x)| \leq C e^{-\alpha_1 X_i} e^{-\alpha_1(X_i - x) } + e^{-2 \alpha_1 X_{i-1}} e^{-\alpha_1 x}$
+\item $||\Delta H_i^\pm|| \leq C(e^{-\alpha_1 X_i} + e^{-\alpha_1 X_{i-1}} )$ 
+\item $D_i d = ( Q'(X_i) + Q'(-X_i))(d_{i+1} - d_i ) + \mathcal{O} ( e^{-\alpha_1 X_i} (e^{-\alpha_0 X_m} + |\lambda| )$
 \end{enumerate}
 \begin{proof}
-By Hypothesis \ref{Melnikov2hyp}(i), $T(x)$ is exponentially localized, thus $|H(x)| \leq C e^{-\alpha_0 |x|}$. We can use Lin's method, as in the proof of Theorem \ref{perexist}, to solve for the remainder functions $\tilde{T}_i^\pm(x)$ in \eqref{Tnppiece}. Since the details are similar to that proof, they will be omitted. The jump conditions from Lin's method are automatically satisfied, since $T_np(x)$ is a continuous function. We conclude from Lin's method that, as in Lemma \ref{solvewithjumps}, we have bounds on the remainder functions
-\begin{align*}
-|\tilde{T}_i^-(x)| &\leq C e^{-\alpha_0 X_{i-1}} e^{-\alpha_0(X_{i-1} + x) } + e^{-2 \alpha_0 X_i} e^{\alpha_0 x} \\
-|\tilde{T}_i^+(x)| &\leq C e^{-\alpha_0 X_i} e^{-\alpha_0(X_i - x) } + e^{-2 \alpha_0 X_{i-1}} e^{-\alpha_0 x}
-\end{align*}
-The bounds (i)-(iv) come from these estimates and the definitions of $H$ and $\tilde{H}_i^\pm$.
+Recall that $H(x) = \partial_c Q(x)$ and $\tilde{H}(x) = \partial_c Q_i^\pm(x)$. For (i), by Theorem \ref{transverseint} and the discussion following \eqref{PDEeig4}, $H(x)$ and $\tilde{H}(x)$ are exponentially localized for any $\alpha_1$ with $0 < \alpha_1 < \alpha_0$. The bounds (ii) and (iii) follow from an adaptation of Lemma \ref{solvewithjumps} to derivative with respect to $c$. The bound (iv) follows from (ii) and (iii). 
 
 For estimate (v), we use \eqref{VQpm} in Lemma \ref{solvewithjumps} and \eqref{Vpiecewise} (with $\tilde{Q}$ in place of $V$) to get
 \begin{align*}
@@ -298,23 +283,11 @@ Since the bounds \ref{solvewithjumps} also apply to derivatives with respect to 
 \begin{align*}
 (Q_{i+1}^-)'(-X_i) &= Q'(-X_i) + Q'(X_i) + \mathcal{O}(e^{-\alpha_0 X_i}e^{-\alpha_0 X_m})
 \end{align*}
-We write this as 
-\begin{align*}
-(Q_{i+1}^-)'(-X_i) &= Q'(-X_i) + Q'(X_i) + Q^R(X_i)
-\end{align*}
-where $Q^R(X_i)$ is a remainder term with
-\[
-|Q_R(X_i)| \leq C e^{-\alpha_0 X_i} e^{-\alpha_0 X_m}
-\]
 Similarly,
 \begin{align*}
 (Q_i^+)'(X_i)' &= Q'(-X_i) + Q'(X_i) + \mathcal{O}(e^{-\alpha_0 X_i}e^{-\alpha_0 X_m})
 \end{align*}
-As part of the construction of the periodic multipulse using Lin's method, we peformed a match at $\pm X_i$. Thus we have
-$(Q_{i+1}^-)'(-X_i) = Q_i^+(X_i)$. In particular, this implies \begin{align*}
-(Q_i^+)'(X_i)' &= Q'(-X_i) + Q'(X_i) + Q^R(X_i)
-\end{align*}
-To get the estimate (v), we substitute these into \eqref{Did2} and use the fact that $|\partial_c Q'(x)| \leq C e^{-\alpha |x|}$.
+To get the estimate (v), we substitute these into \eqref{Did2} and use estimate (i) for $\partial_c Q_i^\pm(x)$.
 \end{proof}
 \end{lemma}
 

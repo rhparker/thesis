@@ -379,11 +379,11 @@ be the primary pulse solution from \cref{sec:primarypulse} with an additional co
 
 Since $(\partial_x \calL_c)(\partial_x q) = 0$, it follows that $Q'(x)$ is an exponentially localized solution to the variational equation \eqref{vareq2}, i.e. 
 \begin{equation}\label{Qprimevarsol}
-(Q'(x))' = A(Q(x))Q'(x)
+(\partial_x Q(x))' = A(Q(x))(\partial_x Q(x))
 \end{equation}
 Since $(\calL_c \partial_x)(-\partial_c q) = \partial_x q$, we also have
-\begin{equation}\label{Qprimevarsol}
-(\partial_c Q(x))' = A(Q(x))(\partial_c Q(x)) + BQ'(x)
+\begin{equation}\label{Qcvarsol}
+(\partial_c Q(x))' = A(Q(x))(\partial_c Q(x)) + B(\partial_x Q(x))
 \end{equation}
 
 Since $Q(x)$ is exponentially localized, it cannot involve the center manifold $W^c(0)$, thus it must lie in the intersection of the stable and unstable manifolds. In particular, this implies that $\R Q'(0) \subset T_{Q(0)}W^s(0) \cap T_{Q(0)}W^u(0)$. It follows from \cref{H0transversehyp} that these are actually equal, which we state in the following lemma.
