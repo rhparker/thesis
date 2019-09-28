@@ -220,33 +220,37 @@ Using \eqref{Arelations}, this simplifies to
 \begin{equation}\label{Wipm1}
 (W_i^\pm)'(x) = A(Q_i^\pm(x)) W_i^\pm(x) + \lambda B W_i^\pm(x) + d_i \lambda^2 B (\partial_c Q_i^\pm(x))
 \end{equation}
-Let
+Since $A(Q(x))$ is smooth in $Q(x)$, let 
 \begin{align*}
-A_i^\pm(x; \lambda) &= A(Q_i^\pm(x)) + \lambda B \\
+G_i^\pm(x) = A(Q_i^\pm(x)) - A(Q(x))
+\end{align*}
+Finally, let
+\begin{align*}
+A(x; \lambda) &= A(Q(x)) + \lambda B \\
 \tilde{H}_i^\pm(x) &= \partial_c Q_i^\pm(x) \\ 
 H(x) &= \partial_c Q(x)
 \end{align*}
 Using these, equation \eqref{Wipm1} simplifies to
 \begin{align*}
-(W_i^\pm)'(x) &= A_i^\pm(x; \lambda) W_i^\pm(x) + d_i \lambda^2 \tilde{H}_i^\pm(x)
+(W_i^\pm)'(x) &= A(x; \lambda) W_i^\pm(x) + G_i^\pm(x) W_i^\pm(x) + d_i \lambda^2 \tilde{H}_i^\pm(x)
 \end{align*}
 
 In order to have a solution to \eqref{PDEeig4}, the eigenfunction $V(x)$ must be continuous. In other words, the $n$ jumps at $\pm X_i$ and the $n$ jumps at $0$ must be 0. Thus a solution to \eqref{PDEeig4} must solve the system of equations
 \begin{align*}
-(W_i^\pm)'(x) &= A_i^\pm(x; \lambda) W_i^\pm(x) + d_i \lambda^2 \tilde{H}_i^\pm(x) \\
+(W_i^\pm)'(x) &= A(x; \lambda) W_i^\pm(x) + G_i^\pm(x) W_i^\pm(x) + d_i \lambda^2 \tilde{H}_i^\pm(x) \\
 W_i^+(X_i) - W_{i+1}^-(-X_i) &= D_i d && i = 0, \dots, n-1 \\
 W_i^-(0) &= W_i^+(0) && i = 0, \dots, n-1  \\
 \end{align*}
 where
 \begin{align}\label{defDid}
-D_i d &= d_{i+1}[(Q_{i+1}^-)'(-X_i) + \lambda T_{i+1}^-(-X_i)]
-- d_i [ (Q_i^+)'(X_i) + \lambda T_i^+(X_i) ] \\
+D_i d &= d_{i+1}[\partial_x Q_{i+1}^-(-X_i) + \lambda \partial_c Q_{i+1}^-(-X_i)]
+- d_i [ \partial_x Q_i^+(X_i) + \lambda \partial_c Q_i^+(X_i) ] \\
 \end{align}
 
 As in \cite{Sandstede1998}, we will not be able to find a solution to this system for arbitrary $\lambda$. Thus we will instead consider the system
 \begin{equation}\label{eigsystem}
 \begin{aligned}
-(W_i^\pm)'(x) &= A_i^\pm(x; \lambda) W_i^\pm(x) + d_i \lambda^2 \tilde{H}_i^\pm(x) \\
+(W_i^\pm)'(x) &= A(x; \lambda) W_i^\pm(x) + G_i^\pm(x) W_i^\pm(x) + d_i \lambda^2 \tilde{H}_i^\pm(x) \\
 W_i^+(X_i) - W_{i+1}^-(-X_i) &= D_i d && i = 0, \dots, n-1 \\
 W_i^\pm(0) &\in \R \Psi(0) \oplus \R \Psi^c(0) \oplus Y^+ \oplus Y^- && i = 0, \dots, n-1  \\
 W_i^+(0) - W_i^-(0) &\in \R \Psi(0) \oplus \R \Psi^c(0) && i = 0, \dots, n-1 
@@ -264,15 +268,18 @@ Before we continue, we will need estimates on terms involved in \eqref{eigsystem
 Let $\Delta H_i^\pm(x) = \tilde{H}_i^\pm(x) - H(x)$. Then for any $\alpha_1$ with $0 < \alpha_1 < \alpha_0$, we have the following estimates
 \begin{enumerate}[(i)]
 \item $|H(x)|, |\tilde{H}_i^\pm(x)| \leq C e^{-\alpha_1 |x|}$
-\item $|\Delta H_i^-(x)| \leq C e^{-\alpha_1 X_{i-1}} e^{-\alpha_0(X_{i-1} + x) } + e^{-2 \alpha_1 X_i} e^{\alpha_1 x}$
+\item $|\Delta H_i^-(x)| \leq C e^{-\alpha_1 X_{i-1}} e^{-\alpha_1(X_{i-1} + x) } + e^{-2 \alpha_1 X_i} e^{\alpha_1 x}$
 \item $|\Delta H_i^+(x)| \leq C e^{-\alpha_1 X_i} e^{-\alpha_1(X_i - x) } + e^{-2 \alpha_1 X_{i-1}} e^{-\alpha_1 x}$
-\item $||\Delta H_i^\pm|| \leq C(e^{-\alpha_1 X_i} + e^{-\alpha_1 X_{i-1}} )$ 
+\item $||\Delta H_i^\pm|| \leq C(e^{-\alpha_1 X_i} + e^{-\alpha_1 X_{i-1}} )$
+\item $|G_i^-(x)| \leq C e^{-\alpha_0 X_{i-1}} e^{-\alpha_0(X_{i-1} + x) } + e^{-2 \alpha_0 X_i} e^{\alpha_0 x}$
+\item $|G_i^+(x)| \leq C e^{-\alpha_1 X_i} e^{-\alpha_0(X_i - x) } + e^{-2 \alpha_0 X_{i-1}} e^{-\alpha_0 x}$
+\item $||G|| \leq C e^{-\alpha_0 X_m}$
 \item $D_i d = ( Q'(X_i) + Q'(-X_i))(d_{i+1} - d_i ) + \mathcal{O} ( e^{-\alpha_1 X_i} (e^{-\alpha_0 X_m} + |\lambda| )$
 \end{enumerate}
 \begin{proof}
-Recall that $H(x) = \partial_c Q(x)$ and $\tilde{H}(x) = \partial_c Q_i^\pm(x)$. For (i), by Theorem \ref{transverseint} and the discussion following \eqref{PDEeig4}, $H(x)$ and $\tilde{H}(x)$ are exponentially localized for any $\alpha_1$ with $0 < \alpha_1 < \alpha_0$. The bounds (ii) and (iii) follow from an adaptation of Lemma \ref{solvewithjumps} to derivative with respect to $c$. The bound (iv) follows from (ii) and (iii). 
+Recall that $H(x) = \partial_c Q(x)$ and $\tilde{H}(x) = \partial_c Q_i^\pm(x)$. For (i), by Theorem \ref{transverseint} and the discussion following \eqref{PDEeig4}, $H(x)$ and $\tilde{H}(x)$ are exponentially localized for any $\alpha_1$ with $0 < \alpha_1 < \alpha_0$. The bounds (ii) and (iii) follow from an adaptation of Lemma \ref{solvewithjumps} to derivative with respect to $c$. The bound (iv) follows from (ii) and (iii). Since $A(Q(x))$ is smooth in $Q(x)$, the bounds (v), (vi), and (vii) come from Lemma \ref{solvewithjumps}.
 
-For estimate (v), we use \eqref{VQpm} in Lemma \ref{solvewithjumps} and \eqref{Vpiecewise} (with $\tilde{Q}$ in place of $V$) to get
+For estimate (viii), we use \eqref{VQpm} in Lemma \ref{solvewithjumps} and \eqref{Vpiecewise} (with $\tilde{Q}$ in place of $V$) to get
 \begin{align*}
 Q_{i+1}^-(-X_i) &= Q^-(-X_i; \beta_{i+1}^-) + \tilde{Q}_{i+1}^-(-X_i) \\
 &= Q^-(-X_i; \beta_{i+1} ^-) + Q^+(X_i; \beta_i^+) + \mathcal{O}(e^{-2 \alpha_0 X_i}) \\
@@ -293,20 +300,12 @@ To get the estimate (v), we substitute these into \eqref{Did2} and use estimate 
 
 \subsection{Conjugation}
 
-To simplify the system, we would like to apply a change of coordinates so that the linear operator $A_i^\pm(x; \lambda)$ is transformed into a constant coefficient matrix. To do this we will use the Conjugation Lemma. For all $\lambda$, $A^\pm(x; \lambda)$ decays exponentially to the constant-coefficient matrix $A(\lambda)$. Specifically, 
+To simplify the system, we would like to apply a change of coordinates so that the linear operator $A_i^\pm(x; \lambda)$ is transformed into a constant coefficient matrix. To do this we will use the Conjugation Lemma. For all $\lambda$, $A^\pm(x; \lambda)$ decays exponentially to the constant-coefficient matrix $A(0; \lambda)$. For convenience, let $A(\lambda) = A(0; \lambda)$. Specifically,
 \[
 |A^\pm(x; \lambda) - A(\lambda)| \leq C e^{\alpha_0 |x|}
 \]
-where
-\begin{equation}\label{Alambda}
-A(\lambda) = \begin{pmatrix}
-0 & 1 & \dots & 0 & 0 \\
-0 & 0 & \dots & 0 & 0 \\
-& & \ddots  \\
-0 & 0 & \dots & 0 & 1 \\
-\lambda & -c & \dots & c_{2m-2} & 0
-\end{pmatrix}
-\end{equation}
+
+Let $\Lambda = (U(x), \lambda) \in C_b(\R^+) \times \C$. $C_b(\R^+)$ is the space of bounded, continuous functions on $\R^+$ equipped with the supremum norm, and is known to be a Banach space. Let $\Lambda_0 = (Q(x), 0)$. Write the matrix $A(U(x); \lambda)$ as $A(x; \Lambda) = A(x; U(x), \lambda)$, where both $\lambda$ and the function $U(x)$ are parameters. Then 
 
 Before we continue, we define the following constants, which we will use throughout.
 \begin{enumerate}
