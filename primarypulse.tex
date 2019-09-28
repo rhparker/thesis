@@ -555,26 +555,29 @@ from which (iii) follows.
 Before we prove Lemma \ref{eigA0lemma}, we will prove a general result from finite dimensional linear algebra.
 
 \begin{lemma}\label{kernelprojlemma}
-Let $A$ be an $n \times n$ matrix with simple kernel spanned by $v$, and let $\ker A^* = \text{span}(w)$. Then 
+Let $A$ be an $n \times n$ diagonalizable matrix with simple kernel spanned by $v$, and let $\ker A^* = \text{span}(w)$. Then 
 \begin{enumerate}[(i)]
-\item We can scale $v$ and/or $w$ so that $\langle v, w \rangle = 1$.
+\item $\langle v, w \rangle \neq 0$.
 \item Having chosen the scaling in part (i), the projection on the kernel of $A$ is given by
-\[
-P_{\ker A} = \langle w, \cdot \rangle v
-\]
+\begin{equation}\label{PkerA}
+P_{\ker A} = \frac{ \langle w, \cdot \rangle v }{\langle w, v \rangle }
+\end{equation}
 \end{enumerate}
 \begin{proof}
-For part (i), if $\langle v, w \rangle = 0$, then $v \perp \ker A^*$, thus by the Fredholm alternative we can solve $A u = v$. This is not possible since $A$ has simple kernel. Since $\langle v, w \rangle \neq 0$ we can scale $v$ and/or $w$ so that $\langle v, w \rangle = 1$.
+For part (i), if $\langle v, w \rangle = 0$, then $v \perp \ker A^*$, thus by the Fredholm alternative we can solve $A u = v$. This is not possible since $A$ has simple kernel.
 
-For part (ii), Let $0, \lambda_2, \dots, \lambda_n$ be the eigenvalues (with multiplicity) of $A$ with corresponding generalized eigenvectors $v, v_2, \dots, v_n$. Let $P u = \langle w, u \rangle v$. First, let $u \in \ker A$. Then $u = \alpha v$ for $\alpha \in \R$, thus 
+For part (ii), Let $0, \lambda_2, \dots, \lambda_n$ be the eigenvalues (with multiplicity) of $A$ with corresponding eigenvectors $v, v_2, \dots, v_n$. Let $P$ be defined by the RHS of \eqref{PkerA}.
+
+First, let $u \in \ker A$. Then $u = \alpha v$ for $\alpha \in \R$, thus 
 \[
-P u = \langle w, \alpha v \rangle v = \alpha \langle w, v \rangle v = \alpha v = u
+P u = \frac{ \langle w, \alpha v \rangle v }{\langle w, v \rangle } = \frac{ \alpha \langle w, v \rangle v}{\langle w, v \rangle } = \alpha v = u
 \]
-Since $A$ is diagonalizable, its eigenfunctions form a basis for $\R^n$. Let $u \in R^n$ and write $u$ in the eigenbasis as
+
+Next, let $u \in R^n$. Since $A$ is diagonalizable, the eigenfunctions form a basis for $\R^n$, write $u$ in the eigenbasis as
 \[
 u = \alpha v + \sum_{k=2}^n \alpha_k v_k
 \]
-For $k = 2, \dots, n$, since $\lambda_k \neq 0$
+Choose $k \in 2, \dots, n$ and note that $\lambda_k \neq 0$since the kernel of $A$ is simple and $A v_k = \lambda_k v_k$. Then we have
 \begin{align*}
 \langle w, v_k \rangle &= \langle w, \frac{1}{\lambda_k}\lambda_k v_k \rangle \\
 &= \langle w, \frac{1}{\lambda_k} A v_k \rangle \\
@@ -609,7 +612,7 @@ For part (ii) we can verify directly from the form of $A(0)$ that
 V_0 &= (1/c, 0, \dots, 0, 1)^T \\
 W_0 &= (0, 0, \dots, 0, 1)^T
 \end{align*}
-are eigenvectors of $A(0)$ and $-A(0)^*$ (respectively) corresponding to eigenvalue 0; these have been scaled $V_0$ so that $\langle V_0, W_0 \rangle = 1$. The expression for the projection on the kernel of $A(0)$ in part (iii) comes from Lemma \ref{kernelprojlemma}, since the kernel of $A(0)$ is simple.
+are eigenvectors of $A(0)$ and $-A(0)^*$ (respectively) corresponding to eigenvalue 0; these have been scaled $V_0$ so that $\langle V_0, W_0 \rangle = 1$. The expression for the projection on the kernel of $A(0)$ in part (iii) comes from Lemma \ref{kernelprojlemma}, since the kernel of $A(0)$ is simple and $\langle W_0, V_0 \rangle = 1$.
 
 % nondegeneracy lemma
 \subsection{Proof of Lemma \ref{nondegenlemma}}
