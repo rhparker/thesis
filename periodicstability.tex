@@ -226,18 +226,18 @@ G_i^\pm(x) = A(Q_i^\pm(x)) - A(Q(x))
 \end{align*}
 Finally, let
 \begin{align*}
-A(x; \lambda) &= A(Q(x)) + \lambda B \\
+A(Q(x); \lambda) &= A(Q(x)) + \lambda B \\
 \tilde{H}_i^\pm(x) &= \partial_c Q_i^\pm(x) \\ 
 H(x) &= \partial_c Q(x)
 \end{align*}
 Using these, equation \eqref{Wipm1} simplifies to
-\begin{align*}
-(W_i^\pm)'(x) &= A(x; \lambda) W_i^\pm(x) + G_i^\pm(x) W_i^\pm(x) + d_i \lambda^2 \tilde{H}_i^\pm(x)
-\end{align*}
+\begin{align}\label{Wipm2}
+(W_i^\pm)'(x) &= A(Q(x); \lambda) W_i^\pm(x) + G_i^\pm(x) W_i^\pm(x) + d_i \lambda^2 \tilde{H}_i^\pm(x)
+\end{align}
 
 In order to have a solution to \eqref{PDEeig4}, the eigenfunction $V(x)$ must be continuous. In other words, the $n$ jumps at $\pm X_i$ and the $n$ jumps at $0$ must be 0. Thus a solution to \eqref{PDEeig4} must solve the system of equations
 \begin{align*}
-(W_i^\pm)'(x) &= A(x; \lambda) W_i^\pm(x) + G_i^\pm(x) W_i^\pm(x) + d_i \lambda^2 \tilde{H}_i^\pm(x) \\
+(W_i^\pm)'(x) &= A(Q(x); \lambda) W_i^\pm(x) + G_i^\pm(x) W_i^\pm(x) + d_i \lambda^2 \tilde{H}_i^\pm(x) \\
 W_i^+(X_i) - W_{i+1}^-(-X_i) &= D_i d && i = 0, \dots, n-1 \\
 W_i^-(0) &= W_i^+(0) && i = 0, \dots, n-1  \\
 \end{align*}
@@ -250,7 +250,7 @@ D_i d &= d_{i+1}[\partial_x Q_{i+1}^-(-X_i) + \lambda \partial_c Q_{i+1}^-(-X_i)
 As in \cite{Sandstede1998}, we will not be able to find a solution to this system for arbitrary $\lambda$. Thus we will instead consider the system
 \begin{equation}\label{eigsystem}
 \begin{aligned}
-(W_i^\pm)'(x) &= A(x; \lambda) W_i^\pm(x) + G_i^\pm(x) W_i^\pm(x) + d_i \lambda^2 \tilde{H}_i^\pm(x) \\
+(W_i^\pm)'(x) &= A(Q(x); \lambda) W_i^\pm(x) + G_i^\pm(x) W_i^\pm(x) + d_i \lambda^2 \tilde{H}_i^\pm(x) \\
 W_i^+(X_i) - W_{i+1}^-(-X_i) &= D_i d && i = 0, \dots, n-1 \\
 W_i^\pm(0) &\in \R \Psi(0) \oplus \R \Psi^c(0) \oplus Y^+ \oplus Y^- && i = 0, \dots, n-1  \\
 W_i^+(0) - W_i^-(0) &\in \R \Psi(0) \oplus \R \Psi^c(0) && i = 0, \dots, n-1 
@@ -300,12 +300,123 @@ To get the estimate (v), we substitute these into \eqref{Did2} and use estimate 
 
 \subsection{Conjugation}
 
-To simplify the system, we would like to apply a change of coordinates so that the linear operator $A_i^\pm(x; \lambda)$ is transformed into a constant coefficient matrix. To do this we will use the Conjugation Lemma. For all $\lambda$, $A^\pm(x; \lambda)$ decays exponentially to the constant-coefficient matrix $A(0; \lambda)$. For convenience, let $A(\lambda) = A(0; \lambda)$. Specifically,
+To simplify the system, we would like to apply a change of coordinates so that the linear operator $A(Q(x); \lambda)$ is transformed into a constant coefficient matrix. To do this we will use the Conjugation Lemma. For all $\lambda$, $A^\pm(x; \lambda)$ decays exponentially to the constant-coefficient matrix $A(0; \lambda)$ which, for convenience, we will write as $A(0; \lambda)$. Specifically,
 \[
-|A^\pm(x; \lambda) - A(\lambda)| \leq C e^{\alpha_0 |x|}
+|A(Q(x); \lambda) - A(\lambda)| \leq C e^{\alpha_0 |x|}
 \]
 
-Let $\Lambda = (U(x), \lambda) \in C_b(\R^+) \times \C$. $C_b(\R^+)$ is the space of bounded, continuous functions on $\R^+$ equipped with the supremum norm, and is known to be a Banach space. Let $\Lambda_0 = (Q(x), 0)$. Write the matrix $A(U(x); \lambda)$ as $A(x; \Lambda) = A(x; U(x), \lambda)$, where both $\lambda$ and the function $U(x)$ are parameters. Then 
+Using the conjugation lemma on $\R^+$ with $\Lambda = \lambda$ and $\lambda_0 = 0$, there exists $\delta_1 > 0$ and an invertible linear transformation 
+\[
+P_+(x; \lambda) = I + \Theta_+(x; \Lambda)
+\]
+such that for all $|\lambda| < \delta_1$, the change of coordinates $W^+ = P_+(x; \lambda) Z^+$ conjugates \eqref{Wipm2} into the equation
+\begin{align*}\label{Zplus1}
+(Z_i^+)'(x) &= A(\lambda) Z_i^+(x) + P_+(x; \lambda)^{-1} G_i^+(x) P_+(x; \lambda) Z_i^+(x) + d_i \lambda^2 P_+(x; \lambda)^{-1} \tilde{H}_i^+
+(x)
+\end{align*}
+
+We would also like to perform the conjugation on $\R^-$. Rather than using the conjugation lemma again on $\R^-$, we will use the symmetries of our system to define the conjugation operator on $\R^-$ in terms of the conjugation operator on $\R^+$. We do this in a series of lemmas. First we prove a symmetry relation for $A(Q(x); \lambda)$.
+
+\begin{lemma}\label{AQxsymmetrylemma}
+Let $R$ be the standard reversor operator. Then
+\begin{enumerate}[(i)]
+\item $A(Q(x); \lambda) = -R A(Q(-x); -\lambda)R$
+\item If $V(x)$ is a solution to $V'(x) = A(Q(x); \lambda) V(x)$ on $\R^+$. Then $R V(-x)$ is a solution to $V'(x) = A(Q(x); -\lambda) V(x)$ on $\R^-$
+\end{enumerate}
+\begin{proof}
+Since we will be dealing with reversor operators on two difference spaces, let $R_{n}$ be the matrix for the standard reversor operator on $\R^n$. For part (i), using the symmetry relations $DF(RU) = -RDF(U)R$ and $Q(-x) = RQ(X)$, we have
+\begin{align*}
+-R_{2m+1} &A(Q(-x); -\lambda) R_{2m+1}^2 
+= \begin{pmatrix}-R_{2m} & 0 \\ 0 & -1 \end{pmatrix} 
+\begin{pmatrix}
+DF(Q(-x)) & \begin{pmatrix} 0 \\ \vdots \\ 0 \\ 1 \end{pmatrix} \\
+\begin{pmatrix} -\lambda & 0 & \dots & 0 \end{pmatrix} & 0
+\end{pmatrix} \begin{pmatrix}R_{2m} & 0 \\ 0 & 1 \end{pmatrix} \\
+&= \begin{pmatrix}
+-R_{2m} DF(Q(-x)) R_{2m} & \begin{pmatrix} 0 \\ \vdots \\ 0 \\ 1 \end{pmatrix} \\
+\begin{pmatrix} \lambda & 0 & \dots & 0 \end{pmatrix} & 0
+\end{pmatrix} 
+= \begin{pmatrix}
+DF(R_{2m}(Q(-x))) & \begin{pmatrix} 0 \\ \vdots \\ 0 \\ 1 \end{pmatrix} \\
+\begin{pmatrix} \lambda & 0 & \dots & 0 \end{pmatrix} & 0
+\end{pmatrix} \\
+&= \begin{pmatrix}
+DF(Q(x)) & \begin{pmatrix} 0 \\ \vdots \\ 0 \\ 1 \end{pmatrix} \\
+\begin{pmatrix} \lambda & 0 & \dots & 0 \end{pmatrix} & 0
+\end{pmatrix}
+\end{align*}
+
+For part (ii), for $x \in \R^-$,
+\begin{align*}
+\frac{d}{dx} &\left[ R_{2m+1} V(-x) \right] = -R_{2m+1} V'(-x) \\
+&= -R_{2m+1} A(Q(-x); \lambda) V(-x) \\
+&= -R_{2m+1} A(Q(-x); \lambda) R_{2m+1} [ R_{2m+1} V(-x)] \\
+&= A(Q(x); -\lambda) [R_{2m+1} V(-x)]
+\end{align*}
+\end{proof}
+\end{lemma}
+
+In the next, we define the conjuation operator on $\R^-$.
+
+\begin{lemma}\label{conjRminuslemma}
+For $x \in \R^-$ and $|\lambda| < \delta_1$, define $P_-(x; \lambda)$ by
+\begin{equation}\label{defPminus}
+P_-(x; \lambda) = RP_+(-x; -\lambda)R
+\end{equation}
+Then the substitutiton $V(x) = P_-(x; \lambda) Z(x)$ conjugates the ODE 
+\begin{equation}\label{Veqminus}
+V'(x) = A(Q(x); \lambda) V(x)
+\end{equation}
+into the constant-coefficient ODE 
+\begin{equation}\label{Zeqminus}
+Z'(x) = A(\lambda)Z(x).
+\end{equation}
+\begin{proof}
+We substitute $V(x) = P_-(x; \lambda) Z(x)$ into \eqref{Veqminus}. For the LHS, we have
+\begin{align*}
+\frac{d}{dx}[P_-(x; \lambda) Z(x)] &= \frac{d}{dx}[RP_+(-x; -\lambda)R Z(x)] \\
+&= -RP'_+(-x; -\lambda)R Z(x) + RP_+(-x; -\lambda)R Z'(x)
+\end{align*}
+For the RHS, using part (i) of Lemma \ref{AQxsymmetrylemma} and $R^2 = I$, we have
+\begin{align*}
+A(Q(x); \lambda)P_-(x; \lambda) Z(x) &= A(Q(x); \lambda)RP_+(-x; -\lambda)R Z(x) \\
+&= -R[ -R A(Q(x); \lambda)R ]P_+(-x; -\lambda)R Z(x) 
+\end{align*}
+which simplifies to
+\begin{align}\label{Zeqminus1}
+A(Q(x); \lambda)P_-(x; \lambda) Z(x) &= -R A(Q(-x); -\lambda) P_+(-x; -\lambda)R Z(x). 
+\end{align}
+From the proof of the conjugation lemma,
+\begin{align*}
+P'_+(x; \lambda) = A(Q(x); \lambda)P_+(x; \lambda) - P_+(x; \lambda) A(\lambda)
+\end{align*}
+Rearranging this and evaluating it at $-x$ and $-\lambda$, 
+\begin{align*}
+ A(Q(-x); -\lambda)P_+(-x; -\lambda) = P'_+(-x; -\lambda) + P_+(-x; -\lambda) A(-\lambda)
+\end{align*}
+Substituting this into \eqref{Zeqminus1}, we have
+\begin{align*}
+A(Q(x); \lambda)&P_-(x; \lambda) Z(x) = -R [ P'_+(-x; -\lambda) + P_+(-x; -\lambda) A(-\lambda) ] R Z(x) \\
+&= -R P'_+(-x; -\lambda) R Z(x) - R P_+(-x; -\lambda) R [ R A(-\lambda) R]Z(x) \\
+&= -R P'_+(-x; -\lambda) R Z(x) + R P_+(-x; -\lambda) R A(\lambda) Z(x)
+\end{align*}
+where in the last line we used $-R A(-\lambda) R = A(\lambda)$, which we can either show directly or take $x \rightarrow \infty$ in part (i) of Lemma \ref{AQxsymmetrylemma}. Equating the LHS and RHS, we have
+\begin{align*}
+-RP'_+(-x; -\lambda)&R Z(x) + RP_+(-x; -\lambda)R Z'(x) \\
+&= -R P'_+(-x; -\lambda) R Z(x) + R P_+(-x; -\lambda) R A(\lambda) Z(x)
+\end{align*}
+which simplifies to
+\begin{align*}
+RP_+(-x; -\lambda)R Z'(x) = R P_+(-x; -\lambda) R A(\lambda) Z(x)
+\end{align*}
+Since $R$ and $P_+(-x; -\lambda)$ are invertible, this finally reduces to 
+\begin{align*}
+Z'(x) = A(\lambda) Z(x)
+\end{align*}
+which is the equation we want.
+\end{proof}
+\end{lemma}
+
 
 Before we continue, we define the following constants, which we will use throughout.
 \begin{enumerate}
