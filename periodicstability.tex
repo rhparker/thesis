@@ -266,7 +266,8 @@ where the center matching condition $W_i^-(0) = W_i^+(0)$ is relaxed to the requ
 for $i = 0, \dots, n-1$.
 
 Before we continue, we will need estimates on terms involved in \eqref{eigsystem}, which we collect in the following lemma.
-\begin{lemma}\label{stabestimates}
+
+\begin{lemma}\label{stabestimateslemma}
 Let $\Delta H_i^\pm(x) = \tilde{H}_i^\pm(x) - H(x)$. Then for any $\alpha_1$ with $0 < \alpha_1 < \alpha_0$, we have the following estimates
 \begin{enumerate}[(i)]
 \item $|H(x)|, |\tilde{H}_i^\pm(x)| \leq C e^{-\alpha_1 |x|}$
@@ -524,6 +525,7 @@ Let $\tilde{\Phi}(y, x)$ be the evolution operator for the variational equation.
 
 Define the spaces
 \begin{align*}
+V_Z &= \bigoplus_{i=0}^{n-1} C_b([-X_{i-1},0]:\C^{2m+1}) \oplus C_b([0,X_i]:\C^{2m+1})  \\
 V_a &= \bigoplus_{i=0}^{n-1} E^u(\lambda) \oplus E^s(\lambda) \\
 V_b &= \bigoplus_{i=0}^{n-1} E^u(0) \oplus E^s(0) \\
 V_c &= \bigoplus_{i=0}^{n-1} E^c(\lambda) \\
@@ -544,30 +546,30 @@ As in \cite{Sandstede1998}, we will write \eqref{systemZ} in integrated form as 
 \begin{equation}\label{Zfpeq}
 \begin{aligned}
 Z_i^-(x) &= \Phi^s(x, -X_{i-1}; \lambda) a_{i-1}^- + \Phi^u(x, 0; \lambda) b_i^- + \Phi^c(x, -X_{i-1}; \lambda) c_{i-1} \\
-&+ \int_0^x \Phi^u(x, y; \lambda)[P_-(y; \lambda)^{-1} G_i^-(y) P_-(y; \lambda) + \lambda^2 d_i P_-(y; \lambda)^{-1} \tilde{H}_i^-(y)] dy \\
-&+ \int_{-X_{i-1}}^x \Phi^s(x, y; \lambda)[P_-(y; \lambda)^{-1} G_i^-(y) P_-(y; \lambda) + \lambda^2 d_i P_-(y; \lambda)^{-1} \tilde{H}_i^-(y)] dy \\
-&+ \int_{-X_{i-1}}^x \Phi^c(x, y; \lambda) [P_-(y; \lambda)^{-1} G_i^-(y) P_-(y; \lambda) + \lambda^2 d_i P_-(y; \lambda)^{-1} \tilde{H}_i^-(y)] dy  \\ 
+&+ \int_0^x \Phi^u(x, y; \lambda)[P_-(y; \lambda)^{-1} G_i^-(y) P_-(y; \lambda)Z_i^-(y) + \lambda^2 d_i P_-(y; \lambda)^{-1} \tilde{H}_i^-(y)] dy \\
+&+ \int_{-X_{i-1}}^x \Phi^s(x, y; \lambda)[P_-(y; \lambda)^{-1} G_i^-(y) P_-(y; \lambda)Z_i^-(y) + \lambda^2 d_i P_-(y; \lambda)^{-1} \tilde{H}_i^-(y)] dy \\
+&+ \int_{-X_{i-1}}^x \Phi^c(x, y; \lambda) [P_-(y; \lambda)^{-1} G_i^-(y) P_-(y; \lambda)Z_i^-(y) + \lambda^2 d_i P_-(y; \lambda)^{-1} \tilde{H}_i^-(y)] dy  \\ 
 Z_i^+(x) &= \Phi^u(x, X_i; \lambda) a_i^+ + \Phi^s(x, 0; \lambda) b_i^+ + \Phi^c(x, X_i; \lambda)(c_i + \tilde{c}_i) \\
-&+ \int_0^x \Phi^s(x, y; \lambda) [P_+(y; \lambda)^{-1} G_i^+(y) P_+(y; \lambda) + \lambda^2 d_i P_+(y; \lambda)^{-1} \tilde{H}_i^+(y)] dy \\
-&+ \int_{X_i}^x \Phi^u(x, y; \lambda) [P_+(y; \lambda)^{-1} G_i^+(y) P_+(y; \lambda) + \lambda^2 d_i P_+(y; \lambda)^{-1} \tilde{H}_i^+(y)] dy \\
-&+ \int_{X_i}^x \Phi^c(x, y; \lambda) [P_+(y; \lambda)^{-1} G_i^+(y) P_+(y; \lambda) + \lambda^2 d_i P_+(y; \lambda)^{-1} \tilde{H}_i^+(y)] dy \\
+&+ \int_0^x \Phi^s(x, y; \lambda) [P_+(y; \lambda)^{-1} G_i^+(y) P_+(y; \lambda) Z_i^+(y) + \lambda^2 d_i P_+(y; \lambda)^{-1} \tilde{H}_i^+(y)] dy \\
+&+ \int_{X_i}^x \Phi^u(x, y; \lambda) [P_+(y; \lambda)^{-1} G_i^+(y) P_+(y; \lambda) Z_i^+(y) + \lambda^2 d_i P_+(y; \lambda)^{-1} \tilde{H}_i^+(y)] dy \\
+&+ \int_{X_i}^x \Phi^c(x, y; \lambda) [P_+(y; \lambda)^{-1} G_i^+(y) P_+(y; \lambda) Z_i^+(y) + \lambda^2 d_i P_+(y; \lambda)^{-1} \tilde{H}_i^+(y)] dy \\
 \end{aligned}
 \end{equation}
 where $i = 0, \dots, n-1$. 
 
 As in \cite{Sandstede1998}, we will solve the eigenvalue problem in a series of inversion steps. First, we will solve equation \eqref{systemZ} for $Z_i^\pm$. To do this, we rewrite \eqref{Zfpeq} as
-\begin{equation}
+\begin{equation}\label{L1L2eq}
 [I - L_1(\lambda)]Z = L_2(\lambda)(a,b,c,\tilde{c},d)Z
 \end{equation}
 where $L_1(\lambda)$ is the linear operator consisting of the terms from the RHS of \eqref{Zfpeq} involving $Z_i^\pm$ and $L_2(\lambda)(a,b,c,\tilde{c},d)$ is the linear operator consisting of the terms from the RHS of \eqref{Zfpeq} which do not involve $Z_i^\pm$. Specifically,
 \begin{align*}
 [L_1&(\lambda)_i^- Z](x) 
-= \int_0^x \Phi^u(x, y; \lambda)P_-(y; \lambda)^{-1} G_i^-(y) P_-(y; \lambda) dy \\
-&+ \int_{-X_{i-1}}^x \Phi^s(x, y; \lambda) P_-(y; \lambda)^{-1} G_i^-(y) P_-(y; \lambda) dy 
-+ \int_{-X_{i-1}}^x \Phi^c(x, y; \lambda) P_-(y; \lambda)^{-1} G_i^-(y) P_-(y; \lambda) dy  \\ 
-[L_1&(\lambda)_i^+ Z](x) = \int_0^x \Phi^s(x, y; \lambda) P_+(y; \lambda)^{-1} G_i^+(y) P_+(y; \lambda) dy \\
-&+ \int_{X_i}^x \Phi^u(x, y; \lambda) P_+(y; \lambda)^{-1} G_i^+(y) P_+(y; \lambda) dy 
-+ \int_{X_i}^x \Phi^c(x, y; \lambda) P_+(y; \lambda)^{-1} G_i^+(y) P_+(y; \lambda) dy \\
+= \int_0^x \Phi^u(x, y; \lambda)P_-(y; \lambda)^{-1} G_i^-(y) P_-(y; \lambda) Z_i^-(y) dy \\
+&+ \int_{-X_{i-1}}^x \Phi^s(x, y; \lambda) P_-(y; \lambda)^{-1} G_i^-(y) P_-(y; \lambda) Z_i^-(y) dy \\
+&+ \int_{-X_{i-1}}^x \Phi^c(x, y; \lambda) P_-(y; \lambda)^{-1} G_i^-(y) P_-(y; \lambda) Z_i^-(y) dy  \\ 
+[L_1&(\lambda)_i^+ Z](x) = \int_0^x \Phi^s(x, y; \lambda) P_+(y; \lambda)^{-1} G_i^+(y) P_+(y; \lambda) Z_i^+(y) dy \\
+&+ \int_{X_i}^x \Phi^u(x, y; \lambda) P_+(y; \lambda)^{-1} G_i^+(y) P_+(y; \lambda) Z_i^+(y) dy \\
+&+ \int_{X_i}^x \Phi^c(x, y; \lambda) P_+(y; \lambda)^{-1} G_i^+(y) P_+(y; \lambda) Z_i^+(y) dy \\
 \end{align*}
 and
 \begin{align*}
@@ -584,17 +586,79 @@ and
 
 We obtain bounds for $L_1$ and $L_2$ in the next two lemmas.
 
+\begin{lemma}\label{L1boundlemma}
+For the linear operator $L_1$, we have uniform bound
+\begin{equation}\label{L1uniformbound}
+\|L_1(\lambda)Z\| \leq C e^{-\alpha_1 X_m}\|Z\|
+\end{equation}
+\begin{proof}
+The bound on $L_1$ will depend on the integral involving the center subspace, since there is potential growth in that subspace. For the ``minus'' piece, using the bound for $G_i^\pm(x)$ from Lemma \ref{stabestimateslemma}
+\begin{align*}
+\left| \int_{-X_{i-1}}^x \right.&\left.\Phi^c(x, y; \lambda) P_-(y; \lambda)^{-1} G_i^-(y) P_-(y; \lambda) Z_i^-(y) dy \right| \\ 
+&\leq C \| Z_i^-\|\int_{-X_{i-1}}^x e^{\eta (x - y)} \left( e^{-\alpha_0 X_{i-1}} e^{-\alpha_0(X_{i-1} + y) } + e^{-2 \alpha_0 X_i} e^{\alpha_0 y} \right) dy \\
+&\leq C \| Z_i^-\|\int_{-X_{i-1}}^x e^{\eta X_{i-1}} e^{-\alpha_0 X_{i-1}} \left( e^{-\alpha_0(X_{i-1} + y) } + e^{-\alpha_0 X_i} e^{\alpha_0 y} \right) dy \\
+&\leq C e^{-\alpha_1 X_{i-1}} \| Z_i^-\| \int_{-X_{i-1}}^0 \left( e^{-\alpha_0(X_{i-1} + y) } + e^{-\alpha_0 X_i} e^{\alpha_0 y} \right) dy \\
+&\leq C e^{-\alpha_1 X_{i-1}} \| Z_i^-\| 
+\end{align*}
+For the ``plus'' piece, 
+\begin{align*}
+\left| \int_{X_i}^x \Phi^c(x, y; \lambda) P_+(y; \lambda)^{-1} \tilde{H}_i^+(y) dy \right| \leq C e^{-\alpha_1 X_i} \| Z_i^+\| 
+\end{align*}
+Since the integrals involving the stable and unstable subspaces have stronger bounds, we have the uniform bound \eqref{L1uniformbound}.
+\end{proof}
+\end{lemma}
 
+\begin{lemma}\label{L2boundlemma}
+For the linear operator $L_1$, we have piecewise bound
+\begin{equation}\label{L2bound}
+\begin{aligned}
+\| L_2(\lambda)_i^-(a,b,c,\tilde{c},d) \| &\leq C(|a_{i-1}^-| + |b_i^-| + e^{\eta X_{i-1}}|c_{i-1}| + e^{-\alpha X_{i-1}}|\lambda|^2|d|) \\
+\| L_2(\lambda)_i^+(a,b,c,\tilde{c},d) \| &\leq C(|a_i^+| + |b_i^+| + e^{\eta X_i}|c_i| + e^{\eta X_i}|\tilde{c}_i| + e^{-\alpha X_i}|\lambda|^2|d|)
+\end{aligned}
+\end{equation}
+\begin{proof}
+We will bound the ``minus'' piece first.
+\[
+\left| \Phi^s(x, -X_{i-1}; \lambda) a_{i-1}^- + \Phi^u(x, 0; \lambda) b_i^- + \Phi^c(x, -X_{i-1}; \lambda) c_{i-1} \right| \leq C(|a_{i-1}^-| + |b_i^-| + e^{\eta X_{i-1}}|c_{i-1}|)
+\]
+For the integral terms, the bound is again determined by the integral involving the center subspace. This is similar to the corresponding integral in Lemma \ref{L1boundlemma}, except the bound for $\tilde{H}$ involves the decay constant $\alpha_1$; this gives us a similar bound for the center integral term, except it involves the decay constant $\alpha$. Putting all of this together,
+\[
+\| L_2(\lambda)_i^-(a,b,c,\tilde{c},d) \| \leq C(|a_{i-1}^-| + |b_i^-| + e^{\eta X_{i-1}}|c_{i-1}| + e^{-\alpha X_{i-1}}|\lambda|^2|d|)
+\]
+The ``plus'' piece is similar except for the additional term involving $\tilde{c}_i$ which has the same bound as the $c_i$ term.
+\[
+\| L_2(\lambda)_i^+(a,b,c,\tilde{c},d) \| \leq C(|a_i^+| + |b_i^+| + e^{\eta X_i}|c_i| + e^{\eta X_i}|\tilde{c}_i| + e^{-\alpha X_i}|\lambda|^2|d|)
+\]
+\end{proof}
+\end{lemma}
 
+We can now solve equation \eqref{systemZ} for $Z$, which we do in the following lemma.
 
-
-
-
-
-
-
-
-********
+\begin{lemma}
+There exists an operator $Z_1: V_\lambda \times V_a \times V_b \times V_c \times V_{\tilde{c}} \times V_d \rightarrow V_z$ such that $Z = Z_1(\lambda)(a,b,c,\tilde{c},d)$ solves \eqref{systemZ}. The operator $Z_1$ is analytic in $\lambda$ and linear in $(a,b,c,\tilde{c},d)$, and we have the piecewise estimates
+\begin{equation}\label{Z1bound}
+\begin{aligned}
+\| Z_1(\lambda)_i^-(a,b,c,\tilde{c},d) \| &\leq C(|a_{i-1}^-| + |b_i^-| + e^{\eta X_{i-1}}|c_{i-1}| + e^{-\alpha X_{i-1}}|\lambda|^2|d|) \\
+\| Z_1(\lambda)_i^+(a,b,c,\tilde{c},d) \| &\leq C(|a_i^+| + |b_i^+| + e^{\eta X_i}|c_i| + e^{\eta X_i}|\tilde{c}_i| + e^{-\alpha X_i}|\lambda|^2|d|)
+\end{aligned}
+\end{equation}
+\begin{proof}
+Using the bound on $L_1$ from Lemma \ref{L1boundlemma}, 
+\[
+\|L_1(\lambda)Z\| \leq C e^{-\alpha_1 X_m}\|Z\|
+\]
+Since we have chosen $X_m$ sufficiently large so that
+$e^{-\alpha_1 X_m} \leq e^{-\tilde{\alpha} X_m} < \delta$, we have
+\[
+\|L_1(\lambda)Z\| \leq C \delta \|Z\|
+\]
+Thus, for sufficiently small $\delta$, $I - L_1(\lambda)$ is invertible on $V_Z$. The inverse $(I - L_1(\lambda))^{-1}$ is analytic in $\lambda$, thus we have the solution
+\begin{equation}\label{L1L2eq}
+Z = (I - L_1(\lambda)^{-1}L_2(\lambda)(a,b,c,\tilde{c},d)
+\end{equation}
+The bounds \eqref{Z1bound} follow by using the bounds \eqref{L2bound} from Lemma \ref{L2boundlemma} on the appropriate pieces of $Z$.
+\end{proof}
+\end{lemma}
 
 In the next lemma, we solve equation \eqref{systemmiddle}, which are the matching conditions at $\pm X_i$.
 \begin{align*}
