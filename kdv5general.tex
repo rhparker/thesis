@@ -402,31 +402,32 @@ T_{Q(0)}W^u(0) &= \R Q'(0) \oplus Y^- \\
 \end{align*}
 Since $\dim \R Q'(0) \oplus Y^+ \oplus Y^- = 2m-1$, there are two remaining directions needed in order to span $\R^{2m+1}$. To find these, we will use the following two lemmas regarding solutions to \eqref{vareq2} and \eqref{adjvareq2}.
 
-\begin{lemma}\label{varsolutions}
-There exists a bounded solution $V^c(x)$ to \eqref{vareq2} such that 
-\begin{equation}
-V^c(x) \rightarrow V_0 \text{ as }|x| \rightarrow \infty
-\end{equation}
-$V^c$ is symmetric with respect to the standard reversor operator $R$, i.e. $V^c(-x) = R V^c(x)$.
+\begin{lemma}\label{varadjsolutions}
+We have the following solutions to the variational equation and adjoint variational equation.
+\begin{enumerate}
+	\item There exists a bounded solution $V^c(x)$ to \eqref{vareq2} such that 
+	\begin{equation}
+	V^c(x) \rightarrow V_0 \text{ as }|x| \rightarrow \infty
+	\end{equation}
+	$V^c$ is symmetric with respect to the standard reversor operator $R$, i.e. $V^c(-x) = R V^c(x)$.
+
+	\item There exist two linearly independent, bounded solutions $\Psi(x)$ and $\Psi^c(x)$ to \eqref{adjvareq2}.
+	\begin{enumerate}[(i)]
+	\item $\Psi(x)$ is the exponentially localized solution
+	\begin{equation}
+	\Psi(x) = (\nabla H(Q(x)), q(x)).
+	\end{equation}
+	$\Psi(x)$ is symmetric with respect to the standard reversor operator $R$, i.e. $\Psi(-x) = R \Psi(x)$. 
+	\item $\Psi_c(x)$ is the constant solution
+	\begin{equation}
+	\Psi^c(x) = W_0
+	\end{equation}
+	\end{enumerate}
+	Any other bounded solution to \eqref{adjvareq2} is a linear combination of these. Finally, $\Psi(0), \Psi^c(0) \perp \R Q'(0) \oplus Y^+ \oplus Y^-$.
+\end{enumerate}
 \end{lemma}
 
-\begin{lemma}\label{adjsolutions}
-There exist two linearly independent, bounded solutions $\Psi(x)$ and $\Psi^c(x)$ to \eqref{adjvareq2}.
-\begin{enumerate}[(i)]
-\item $\Psi(x)$ is the exponentially localized solution
-\begin{equation}
-\Psi(x) = (\nabla H(Q(x)), q(x)).
-\end{equation}
-$\Psi(x)$ is symmetric with respect to the standard reversor operator $R$, i.e. $\Psi(-x) = R \Psi(x)$. 
-\item $\Psi_c(x)$ is the constant solution
-\begin{equation}
-\Psi^c(x) = W_0
-\end{equation}
-\end{enumerate}
-Any other bounded solution to \eqref{adjvareq2} is a linear combination of these. Finally, $\Psi(0), \Psi^c(0) \perp \R Q'(0) \oplus Y^+ \oplus Y^-$.
-\end{lemma}
- 
-Using Lemma \ref{nondegenlemma} and Lemma \ref{adjsolutions}, we can decompose $\R^{2m+1}$ as  
+Using Lemma \ref{nondegenlemma} and Lemma \ref{varadjsolutions}, we can decompose $\R^{2m+1}$ as  
 \begin{equation}
 \R^{2m+1} = \R \Psi(0) \oplus \R \Psi^c(0) \oplus \R Q'(0) \oplus Y^+ \oplus Y^-
 \end{equation}
@@ -438,7 +439,7 @@ M_1 = \int_{-\infty}^\infty \langle \Psi(x), B Q'(x) \rangle =
 \int_{-\infty}^\infty q(x) \: \partial_x q(x) 
 = \langle q(x), \partial_x q(x) \rangle_{L^2(\R)} = 0
 \end{equation}
-since the last component of $\Psi(x)$ is $q(x)$ by Lemma \ref{adjsolutions}, and $q(x)$ is an even function. We take the following hypothesis regarding a higher order Melnikov integral.
+since the last component of $\Psi(x)$ is $q(x)$ by Lemma \ref{varadjsolutions}, and $q(x)$ is an even function. We take the following hypothesis regarding a higher order Melnikov integral.
 \begin{hypothesis}\label{Melnikov2hyp}
 The following higher order Melnikov integral is nonzero.
 \begin{equation}\label{M2}

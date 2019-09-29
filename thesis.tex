@@ -14,11 +14,12 @@
 \usepackage{enumerate}
 \usepackage{float}
 \usepackage{subfiles}
-\usepackage{thmtools, thm-restate}
+% \usepackage{thmtools, thm-restate}
 
 % my custom packages
 \usepackage{macros}
 \usepackage{packages}
+\usepackage{style}
 
 % \usepackage[backend=biber]{biblatex}
 % \addbibresource{thesis.bib}
@@ -34,9 +35,11 @@
 %    will have the form <chapter>.<theorem>.  This may be changed if
 %    the author prefers.
 
+\theoremstyle{plain}
 \newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{corollary}{Corollary}
+\newtheorem{proposition}{Proposition}
 
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
@@ -44,7 +47,6 @@
 
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
-
 \newtheorem{hypothesis}{Hypothesis}
 
 \numberwithin{section}{chapter}
@@ -140,8 +142,8 @@
 
 % chapter : KdV5
 \chapter{The 5th order KdV equation}
-\subfile{kdv5}
-\subfile{kdv5numerics}
+% \subfile{kdv5}
+% \subfile{kdv5numerics}
 \subfile{kdv5general}
 \subfile{gapconj}
 % \subfile{periodic}

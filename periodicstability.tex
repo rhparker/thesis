@@ -72,111 +72,6 @@ W_0(\lambda) = W_0 + \overline{\lambda} \tilde{W}_0 + \mathcal{O}(\overline{\lam
 \]
 where $\tilde{W}_0 = -R \tilde{W}_0$
 
-\subsection{Solutions in center subspace}
-
-Consider the equations
-\begin{align}
-V'(x) = A(Q(x); \lambda) V(x) \label{Veqlambda} \\
-W'(x) = -A(Q(x); \lambda)^* W(x) \label{Weqlambda}
-\end{align}\
-where $Q(x)$ is the primary pulse solution and $A(Q(x), \lambda) = A(Q(x)) + \lambda B$. When $\lambda = 0$, these are the variational and adjoint variational equations. By Lemma \ref{nulambdalemma}, the asymptotic matrix $A(\lambda)$ has a small eigenvalue $\nu(\lambda)$, with $\nu(\lambda) = \frac{1}{c} \lambda + \mathcal{O}(|\lambda|^3)$. The corresponding eigenvector is $V_0(\lambda)$, which is smooth in $\lambda$. We first prove the following lemma relating solutions to \eqref{Veqlambda} on $\R^+$ and $\R^-$.
-
-\begin{lemma}\label{Vlambdasymmetrylemma}
-Suppose $V(x)$ is a solution to $V'(x) = A(Q(x); \lambda) V(x)$ on $\R^+$. Then $R V(-x)$ is a solution to $V'(x) = A(Q(x); -\lambda) V(x)$ on $\R^-$, where $R$ is the standard reversor operator.
-\begin{proof}
-Since we will be dealing with reversor operators on two difference spaces, let $R_{n}$ be the matrix for the standard reversor operator on $\R^n$. Then for $x \in \R^-$,
-\begin{align*}
-\frac{d}{dx} &\left[ R_{2m+1} V(-x) \right] = -R_{2m+1} V'(-x) \\
-&= -R_{2m+1} A(Q(-x); \lambda) V(-x) \\
-&= -R_{2m+1} A(Q(-x); \lambda) R_{2m+1}^2 V(-x) \\
-&= \begin{pmatrix}-R_{2m} & 0 \\ 0 & -1 \end{pmatrix} 
-\begin{pmatrix}
-DF(Q(-x)) & \begin{pmatrix} 0 \\ \vdots \\ 0 \\ 1 \end{pmatrix} \\
-\begin{pmatrix} \lambda & 0 & \dots & 0 \end{pmatrix} & 0
-\end{pmatrix} \begin{pmatrix}R_{2m} & 0 \\ 0 & 1 \end{pmatrix}  R_{2m+1} V(-x) \\
-&= \begin{pmatrix}
--R_{2m} DF(Q(-x)) R_{2m} & \begin{pmatrix} 0 \\ \vdots \\ 0 \\ 1 \end{pmatrix} \\
-\begin{pmatrix} -\lambda & 0 & \dots & 0 \end{pmatrix} & 0
-\end{pmatrix} R_{2m+1} V(-x) \\
-&= \begin{pmatrix}
-DF(R_{2m}(Q(-x))) & \begin{pmatrix} 0 \\ \vdots \\ 0 \\ 1 \end{pmatrix} \\
-\begin{pmatrix} -\lambda & 0 & \dots & 0 \end{pmatrix} & 0
-\end{pmatrix} R_{2m+1} V(-x) \\
-&= \begin{pmatrix}
-DF(Q(x)) & \begin{pmatrix} 0 \\ \vdots \\ 0 \\ 1 \end{pmatrix} \\
-\begin{pmatrix} -\lambda & 0 & \dots & 0 \end{pmatrix} & 0
-\end{pmatrix} R_{2m+1} V(-x) \\
-&= A(Q(x); \lambda) R_{2m+1} V(-x)
-\end{align*}
-\end{proof}
-\end{lemma}
-
-In the next lemma, we find specific solutions of interest to \eqref{Veqlambda}.
-
-\begin{lemma}
-For sufficiently small $\lambda$, we can find solutions $V^+(x; \lambda)$ to \eqref{Veqlambda} on $\R^\pm$ which are of the form
-\begin{align}\label{Vpmlambda}
-V^\pm(x; \lambda) &= V_0(\lambda)e^{\nu(\lambda)x} + V_1^\pm(x; \lambda),
-\end{align}
-where $V^\pm(x; 0) = V^c(x)$ and we have the relationship
-\begin{equation}\label{Vpmsymmetry}
-V^-(x; \lambda) = R V^+(-x; -\lambda)
-\end{equation}
-
-\begin{proof}
-Using the Gap Lemma, for sufficiently small $\lambda$, we can find a solution $V^+(x; \lambda)$ to \eqref{Veqlambda} on $\R^+$ such that
-\begin{align*}
-V^+(x; \lambda) &= V_0(\lambda)e^{\nu(\lambda)x} + V_1^+(x; \lambda)
-\end{align*}
-where $V_1^+(x; \lambda) = \mathcal{O}(e^{-\tilde{\alpha}|x|})$. This solution is analytic in $\lambda$, and we scale it so that $V^+(x; 0) = V^c(x)$, where $V^c(x)$ is defined in Lemma \ref{varsolutions}. We will now construct the solution $V^-(x; \lambda)$ with the desired property.
-
-By Lemma \ref{Vlambdasymmetrylemma}, $RV^+(-x; -\lambda)$ solves $V'(x) = A(Q(x); \lambda) V(x)$ on $\R^-$. For $x \in \R^-$, by Lemma \ref{nulambdalemma} we have
-\begin{align*}
-RV^+(-x; -\lambda) &= R V_0(-\lambda)e^{-\nu(-\lambda)x} + R V_1^+(-x; -\lambda) \\
-&= V_0(\lambda)e^{\nu(\lambda)x} + R V_1^+(-x; -\lambda)
-\end{align*}
-Let $V^-(x; \lambda) = RV^+(-x; -\lambda)$. Then $V^-(x; -\lambda)$ has the form in \eqref{Vpmlambda} and has same decay properties as $V^+(x; \lambda)$.
-\end{proof}
-\end{lemma}
-
-As a corollary, we evaluate the following inner products, which will be important in the stability analysis.
-
-\begin{corollary}\label{VpmPsiIPcorr}
-\begin{equation}\label{VpmIPs}
-\begin{aligned}
-\langle \Psi^c(0), V^\pm(0; \lambda) \rangle &= 1 + \mathcal{O}(|\lambda|) \\
-\langle \Psi(0), V^\pm(0; \lambda) \rangle &= \pm p_1 \lambda + \mathcal{O}(|\lambda|^2)
-\end{aligned}
-\end{equation}
-where $p_1 = \langle \Psi(0), \tilde{V}^c \rangle$, and $\tilde{V}$ is the constant from the Taylor expansion
-\begin{equation}\label{defp1}
-V^+(0; \lambda) = V^c(0) + \tilde{V}^c \lambda + \mathcal{O}(\lambda^2).
-\end{equation}
-\begin{proof}
-For the inner product with $\Psi^c(0)$, using the Taylor expansion \eqref{defp1},
-\begin{align*}
-\langle \Psi^c(0), V^\pm(0; \lambda) \rangle &= 
-\langle \Psi^c(0), V^c(0) \rangle + \mathcal{O}(|\lambda|) \\
-&= \langle \Psi^c(0), V^c(0) \rangle + \mathcal{O}(|\lambda|) \\
-&= 1 + \mathcal{O}(|\lambda|)
-\end{align*}
-For the inner product $\langle \Psi(0), V^+(0; \lambda) \rangle$, we have
-\begin{align*}
-\langle \Psi(0), V^+(0; \lambda) \rangle 
-&= \langle \Psi(0), V^c(0) \rangle + \langle \Psi(0), \tilde{V}^c \lambda \rangle + \mathcal{O}(|\lambda|^2) \\
-&= p_1 \lambda + \mathcal{O}(|\lambda|^2)
-\end{align*}
-For the inner product $\langle \Psi(0), V^-(0; \lambda) \rangle$, using Lemma \ref{Vpmlambda},
-\begin{align*}
-\langle \Psi(0), V^-(0; \lambda) \rangle &= 
-\langle \Psi(0), R V^+(0; -\lambda) \rangle \\
-&= \langle R \Psi(0), -\tilde{V}^c \lambda \rangle + \mathcal{O}(|\lambda|^2) \\
-&= -\langle \Psi(0), \tilde{V}^c \lambda \rangle + \mathcal{O}(|\lambda|^2) \\
-&= -p_1 + \mathcal{O}(|\lambda|^2)
-\end{align*}
-\end{proof}
-\end{corollary}
-
 \subsection{Piecewise Formulation}
 
 In this section we set up the eigenvalue problem we wish to solve and write it in a piecewise form similar to \cite{Sandstede1998}. Let $q_{np}(x)$ be a periodic $n-$pulse solution to \eqref{genODE} constructed according to Theorem \ref{perexist}, and let $Q_{np}(x) \in \R^{2m+1}$ be
@@ -324,7 +219,7 @@ We would also like to perform the conjugation on $\R^-$. Rather than using the c
 Let $R$ be the standard reversor operator. Then
 \begin{enumerate}[(i)]
 \item $A(Q(x); \lambda) = -R A(Q(-x); -\lambda)R$
-\item If $V(x)$ is a solution to $V'(x) = A(Q(x); \lambda) V(x)$ on $\R^+$. Then $R V(-x)$ is a solution to $V'(x) = A(Q(x); -\lambda) V(x)$ on $\R^-$
+\item If $V(x)$ is a solution to $V'(x) = A(Q(x); \lambda) V(x)$ on $\R^+$. Then $R V(-x)$ is a solution to $V'(x) = A(Q(x); -\lambda) V(x)$ on $\R^-$.
 \end{enumerate}
 \begin{proof}
 Since we will be dealing with reversor operators on two difference spaces, let $R_{n}$ be the matrix for the standard reversor operator on $\R^n$. For part (i), using the symmetry relations $DF(RU) = -RDF(U)R$ and $Q(-x) = RQ(X)$, we have
@@ -491,7 +386,7 @@ Since $A(\lambda)$ is a constant coefficient matrix, we know exactly how solutio
 \[
 E^c(\lambda) = \spn\{ V_0(\lambda) \},
 \]
-where $V_0(\lambda)$ is the eigenvector of $A(\lambda)$ corresponding to $\nu(\lambda)$, as defined in Lemma \ref{nulambdalemma}. Although $E^c(\lambda)$ is not a true center eigenspace if $\Re \nu(\lambda) \neq 0$, we retain this notation for convenience. Let $P^{u/s/c}(\lambda)$ be the projections on the eigenspaces $E^{u/s/c}(\lambda)$. 
+where $V_0(\lambda)$ is the eigenvector of $A(\lambda)$ corresponding to $\nu(\lambda)$, as defined in Lemma \ref{nulambdalemma}. Although $E^c(\lambda)$ is not a true center eigenspace if $\Re \nu(\lambda) \neq 0$, we retain this notation for convenience. Let $P^{u/s/c}(\lambda)$ be the projections on the eigenspaces $E^{u/s/c}(\lambda)$. These are smooth in $\lambda$. 
 
 Let $\Phi(x, y; \lambda) = e^{A(\lambda)(x-y)}$ be the evolution of the constant-coefficient ODE
 \[
@@ -520,6 +415,154 @@ Let $\tilde{\Phi}(y, x)$ be the evolution operator for the variational equation.
 \tilde{\Phi}(y, x) &= P_+(y; 0) \Phi(y, x; 0) P_+(x; 0)^{-1} && x, y \geq 0 \\
 \tilde{\Phi}(y, x) &= P_-(y; 0) \Phi(y, x; 0) P_-(x; 0)^{-1} && x, y \leq 0
 \end{align*}
+
+The conjugation operator induces exponential trichotomies on $\R^\pm$ for the variational equation. The stable, unstable, and center projections are given by
+\begin{equation}\label{trichotomyprojunconj}
+\tilde{P}^{s/u/c}_\pm(x) = P_\pm(x; 0) P^{s/u/c}(0) P_\pm(x, 0)^{-1}
+\end{equation}
+We note that the center subspaces on $\R^+$ and $\R^-$ are both one-dimensional.
+
+\subsection{Solutions in center subspace}\label{sec:centersol}
+
+In this section we construct specific solutions to the equation
+\begin{align}
+V'(x) = A(Q(x); \lambda) V(x) \label{Veqlambda}
+\end{align}
+When $\lambda = 0$, this is the variational equation. By the conjugation lemma, we can find solutions to this on $\R^\pm$ which are of the form $V^\pm(x) = P_\pm(x; \lambda)Z(x)$, where $Z(x)$ solves the constant coefficient equation $Z'(x) = A(\lambda)Z$.
+
+In the next lemma, we construct specific solutions to \eqref{Veqlambda} on $\R^\pm$ which evolve in the center subspace. We could obtain these results via the Gap Lemma, but this is much easier.
+
+\begin{lemma}\label{centersolutionslemma}
+For sufficiently small $\lambda$, we can find solutions $V^\pm(x; \lambda)$ to \eqref{Veqlambda} on $\R^\pm$ which are given by
+\begin{align}\label{Vpmlambda}
+V^\pm(x; \lambda) &= e^{\nu(\lambda)x}(V_0(\lambda) + V_1^\pm(x; \lambda)),
+\end{align}
+where
+\begin{equation}\label{Vpmdecay}
+|V_1^\pm(x; \lambda)| \leq C e^{-\alpha_1 |x|}
+\end{equation}
+and we have the symmetry relationship
+\begin{equation}\label{Vpmsymmetry}
+V^-(x; \lambda) = R V^+(-x; -\lambda)
+\end{equation}
+
+\begin{proof}
+Let $Z(x) = e^{\nu(\lambda)x}V_0(\lambda)$, which is a solution to $Z'(x) = A(\lambda)Z$ contained in the center subspace $E^c(\lambda)$. Let
+\[
+V^+(x; \lambda) = P_+(x; \lambda) Z(x) = e^{\nu(\lambda)x}P_+(x; \lambda)V_0(\lambda)
+\]
+Then by the expansion \eqref{conjlemmaP} from the Conjugation Lemma,
+\begin{align*}
+V^+(x; \lambda) &= e^{\nu(\lambda)x}(I + \Theta_+(x; \lambda))V_0(\lambda) \\
+&= e^{\nu(\lambda)x}( V_0(\lambda) + V_1^+(x; \lambda))
+\end{align*}
+where $V_1^+(x; \lambda) = \Theta_+(x; \lambda) V_0(\lambda)$. This is \eqref{Vpmlambda}, and the decay result \eqref{Vpmdecay} comes from \eqref{conjlemmathetadecay} in the Conjugation Lemma.
+
+Similarly, we define 
+\begin{align*}
+V^-(x; \lambda) &= P_-(x; \lambda) Z(x) \\
+&= RP_+(-x; -\lambda)R e^{\nu(\lambda)x} V_0(\lambda) \\
+&= e^{\nu(\lambda)x} R(I + \Theta_+(-x; -\lambda))R V_0(\lambda) \\
+&= e^{\nu(\lambda)x}( V_0(\lambda) + R\Theta_+(-x; -\lambda) V_0(-\lambda) )
+\end{align*}
+Letting $V_1^-(x; \lambda) = R\Theta_+(-x; -\lambda) V_0(-\lambda)$, we have
+\begin{align*}
+V^-(x; \lambda) &= e^{\nu(\lambda)x}( V_0(\lambda) + V_1^-(x; \lambda))
+\end{align*}
+For the symmetry relation, using Lemma \ref{nulambdalemma}, we also have
+\begin{align*}
+V^-(x; \lambda) &= e^{\nu(\lambda)x}( V_0(\lambda) + R\Theta_+(-x; -\lambda) V_0(-\lambda) ) \\
+&= e^{\nu(\lambda)x}( R V_0(-\lambda) + R\Theta_+(-x; -\lambda) V_0(-\lambda) ) \\
+&= R e^{-\nu(\lambda)(-x)}( V_0(-\lambda) + \Theta_+(-x; -\lambda) V_0(-\lambda) ) \\
+&= R e^{\nu(-\lambda)(-x)}( V_0(-\lambda) + \Theta_+(-x; -\lambda) V_0(-\lambda) ) \\
+&= R V^+(-x; -\lambda)
+\end{align*}
+\end{proof}
+\end{lemma}
+
+As a corollary, the next lemma provides the proof for part (i) of Lemma \ref{varadjsolutions}.
+ 
+\begin{lemma}\label{varsolutions}
+There exists a bounded solution $V^c(x)$ to \eqref{vareq2} such that 
+\begin{equation*}
+V^c(x) \rightarrow V_0 \text{ as }|x| \rightarrow \infty
+\end{equation*}
+$V^c$ is symmetric with respect to the standard reversor operator $R$, i.e. $V^c(-x) = R V^c(x)$, and we can write
+\[
+V^c(x) = V_0 + V^c_1(x)
+\]
+where $V^c_1(x) = \mathcal{O}(e^{-\alpha_1 |x|})$.
+\begin{proof}
+We employ the following dimension counting argument. Recall that $\dim W^{s/u}(0) = m$ and $\dim W^c(0) = 1$, thus $\dim W^{cs}(0) = m + 1$, and $\dim W^{cu}(0) = m + 1$. $\Psi(0) \perp T_{Q(0)}W^{cs}(0) + T_{Q(0)}W^{cu}(0)$, so $\dim T_{Q(0)}W^{cs}(0) + T_{Q(0)}W^{cu}(0) \leq 2m$. By counting dimensions, this implies that $\dim T_{Q(0)}W^{cs}(0) \cap T_{Q(0)}W^{cu}(0) = 2$. Since $\dim T_{Q(0)}W^s(0) \cap T_{Q(0)}W^s(0) = 1$ by Lemma \ref{nondegenlemma}, we conclude that there exists $Y_0 \in T_{Q(0)}W^{cs}(0) \cap T_{Q(0)}W^{cu}(0)$ which is linearly independent from $Q'(0)$, and $Y^0 \notin T_{Q(0)}W^s(0) \cap T_{Q(0)}W^s(0)$.
+
+Using Lemma \ref{centersolutionslemma}, let
+\[
+V^\pm(x) = V^\pm(x; 0) = V_0 + V_1^\pm(x)
+\]
+where $V_1^\pm(x) = \mathcal{O}(e^{-\alpha_0 |x|})$. From the construction in \ref{centersolutionslemma},
+\[
+V^\pm(x) = P_\pm(x; 0) V_0,
+\]
+and we also have the symmetry relation $V^-(x) = R V^+(-x)$. We will show that $V^+(0) = V^-(0)$.
+
+By the trichotomy for the variational equation, at $x = 0$ there is a one-dimensional center subspace for $\R^+$ and a one-dimensional center subspace for $\R^-$. By the dimension counting argument above, both of the center subspaces must be spanned by $Y^0$, thus they are the same subspace. Using the projections \eqref{trichotomyprojunconj}, $V^\pm(0)$ are in these center subspaces, thus $V^\pm(0) \in \Span \{Y^0 \}$. In particular, this implies that $V^+(0)$ and $V^-(0)$ are scalar multiples of each other. 
+
+From Lemma \ref{varadjsolutions}, $\Psi^c(x) = W_0$ is a solution to the adjoint variational equation on $\R$. By Lemma \ref{eigadjoint}(i), the inner product $\langle W_0, V^\pm(x) \rangle$ is constant in $x$. Sending $x \rightarrow \pm \infty$ and recalling that $V_0 = (1/c, 0, \dots, 0, 1)^T $ and $W_0 = (0, \dots, 0, 1)^T$,
+\[
+\langle W_0, V^+(0) \rangle = \langle W_0, V^-(0) \rangle
+= \langle W_0, V(0) \rangle = 1
+\]
+This implies that the last component of $V^+(0)$ and $V^-(0)$ is 1. Since $V^+(0)$ and $V^-(0)$ are scalar multiples of each other, they must in fact be equal. Let
+\[
+V^c(x) = \begin{cases}
+V^+(x) & x \geq 0 \\
+V^-(-x) & x \leq 0 
+\end{cases}
+\]
+which is well-defined since $V^+(0) = V^-(0)$ and has the properties stated in the lemma.
+\end{proof}
+\end{lemma}
+
+As a corollary, we evaluate the following inner products, which will be important in the stability analysis.
+
+\begin{corollary}\label{VpmPsiIPcorr}
+\begin{equation}\label{VpmIPs}
+\begin{aligned}
+\langle \Psi^c(0), V^\pm(0; \lambda) \rangle &= 1 + \mathcal{O}(|\lambda|) \\
+\langle \Psi(0), V^\pm(0; \lambda) \rangle &= \pm p_1 \lambda + \mathcal{O}(|\lambda|^2)
+\end{aligned}
+\end{equation}
+where $p_1 = \langle \Psi(0), \partial_\lambda V^+(0; 0) \rangle$.
+\begin{proof}
+Using Lemma \ref{centersolutionslemma} and Lemma \ref{varsolutions}, we can expand $V^+(0; \lambda)$ in a Taylor series about $\lambda = 0$ to get
+\begin{align*}
+V^+(0; \lambda) &= V^+(0; 0) + \partial_\lambda V^+(0; 0) + \mathcal{O}(|\lambda|^2) \\
+&= V^c(0) + \partial_\lambda V^+(0; 0) \lambda + \mathcal{O}(|\lambda|^2) 
+\end{align*}
+For the inner product with $\Psi^c(0)$,`'
+\begin{align*}
+\langle \Psi^c(0), V^\pm(0; \lambda) \rangle &= 
+\langle \Psi^c(0), V^c(0) \rangle + \mathcal{O}(|\lambda|) \\
+&= \langle \Psi^c(0), V^c(0) \rangle + \mathcal{O}(|\lambda|) \\
+&= 1 + \mathcal{O}(|\lambda|)
+\end{align*}
+For the inner product $\langle \Psi(0), V^+(0; \lambda) \rangle$, we have
+\begin{align*}
+\langle \Psi(0), V^+(0; \lambda) \rangle 
+&= \langle \Psi(0), V^c(0) \rangle + \langle \Psi(0), \partial_\lambda V^+(0; 0) \lambda \rangle + \mathcal{O}(|\lambda|^2) \\
+&= (\partial_\lambda V^+(0; 0)) \lambda + \mathcal{O}(|\lambda|^2) \\
+&= p_1 \lambda + \mathcal{O}(|\lambda|^2)
+\end{align*}
+For the inner product $\langle \Psi(0), V^-(0; \lambda) \rangle$, using Lemma \ref{centersolutionslemma},
+\begin{align*}
+\langle \Psi(0), V^-(0; \lambda) \rangle &= 
+\langle \Psi(0), R V^+(0; -\lambda) \rangle \\
+&= \langle R \Psi(0), -\partial_\lambda V^+(0; 0) \lambda \rangle + \mathcal{O}(|\lambda|^2) \\
+&= -\langle \Psi(0), \partial_\lambda V^+(0; 0) \lambda \rangle + \mathcal{O}(|\lambda|^2) \\
+&= -p_1 + \mathcal{O}(|\lambda|^2)
+\end{align*}
+\end{proof}
+\end{corollary}
 
 \subsection{Inversion}
 
@@ -634,7 +677,7 @@ The ``plus'' piece is similar except for the additional term involving $\tilde{c
 
 We can now solve equation \eqref{systemZ} for $Z$, which we do in the following lemma.
 
-\begin{lemma}
+\begin{lemma}\label{Zinv0}
 There exists an operator $Z_1: V_\lambda \times V_a \times V_b \times V_c \times V_{\tilde{c}} \times V_d \rightarrow V_z$ such that $Z = Z_1(\lambda)(a,b,c,\tilde{c},d)$ solves \eqref{systemZ}. The operator $Z_1$ is analytic in $\lambda$ and linear in $(a,b,c,\tilde{c},d)$, and we have the piecewise estimates
 \begin{equation}\label{Z1bound}
 \begin{aligned}
