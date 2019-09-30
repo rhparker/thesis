@@ -10,37 +10,41 @@
 
 \subsection{Hamiltonian PDE}\label{sec:HamPDE}
 
-For our analysis, we will write the problem in general terms, for which KdV5 will be a specific case. Let $X = H^{2m}(\R)$ and $Y = L^2(\R)$. Consider the PDE
+We will write the problem in general terms, for which KdV5 will be a specific case. This analysis follows \cite{Grillakis1987}. Let $X = H^{2m}(\R)$ and $Y = L^2(\R)$. Consider the PDE
 \begin{equation}\label{genPDE}
 u_t = \partial_x \calE'(u)
 \end{equation}
-where $u \in X$ and $\calE(u): X \subset Y \rightarrow \R$ is a $C^2$ functional representing the energy of the system. We take the following hypothesis regarding the energy $\calE(u)$.
+where $u \in X$ and $\calE(u): X \subset Y \rightarrow \R$ is a smooth functional representing the energy of the system. We take the following hypothesis regarding the energy $\calE(u)$.
 
 \begin{hypothesis}\label{Ehyp}
 The energy $\calE(u)$ has the following properties
 \begin{enumerate}[(i)]
 \item $\calE(0) = 0$ and $\calE'(0) = 0$.
-\item $\calE(u)$ is reversible, i.e. $\calE(u) = \calE(\rho(u))$, where $[\rho(u)](x) = u(-x)$.
-\item $\calE(u)$ is translation invariant, i.e. $\calE(T(s)u) = \calE(u)$, where $\{T(s) : s \in \R \}$ is the one parameter group of unitary operators on $X$ defined by $[T(s)]u(\cdot) = u(\cdot - s)$.
+\item $\calE(u)$ is reversible, i.e. $\calE(u) = \calE(\rho(u))$, where $\rho$ is the operator on $X$ defined by $[\rho(u)](x) = u(-x)$.
+\item $\calE(u)$ is translation invariant, i.e. $\calE(T(s)u) = \calE(u)$ for all $s \in \R$, where $\{T(s) : s \in \R \}$ is the one parameter group of unitary operators on $X$ defined by $[T(s)]u(\cdot) = u(\cdot - s)$.
 \item $\calE'(u): X \rightarrow X$ is a differential operator of the form
 \begin{equation}\label{Eprimeuform}
-\calE'(u) = \partial_x^{2m}u - f(u, \partial_x u, \dots, \partial_x^{2m-1} u)
+\calE'(u) = \partial_x^{2m}u - f(u, \partial_x u, \dots, \partial_x^{2m-1} u),
 \end{equation}
 where $f: \R^{2m} \rightarrow \R$ is smooth.
 \end{enumerate}
 \end{hypothesis}
 
-\cref{Ehyp}(iv) holds in applications such as KdV5, and ensures that we can write the equilibrium equation $\partial_x \calE'(u) = 0$ as a first-order system.
+\noi\cref{Ehyp}(iv) holds in applications such as KdV5, and ensures that we can write the equilibrium equation $\partial_x \calE'(u) = 0$ as a first order system.
 
-Differentiating the reversibility relation $E(u) = \calE(\rho(u))$ with respect to $u$, we have
+Differentiating the reversibility relation $\calE(u) = \calE(\rho(u))$ with respect to $u$, we have
 \[
-\calE'(u) = \rho^*( \calE'(\rho(u) ) = \rho( \calE'(\rho(u) )
+\calE'(u) = \rho^*( \calE'(\rho(u) ) = \rho( \calE'(\rho(u) ),
 \]
-since $\rho$ is self-adjoint. This implies that the linear part of the operator only involves even-order derivatives of $u$ with respect to $x$; in addition, if $u(x)$ is an even function, $[\calE'(u)](x)$ is also an even function. Differentiating the symmetry relation $\calE(T(s)u) = \calE(u)$ with respect to $u$, we have
+since $\rho$ is self-adjoint. This implies that the linear part of the operator only involves even-order derivatives of $u$ with respect to $x$. Differentiating the symmetry relation $\calE(T(s)u) = \calE(u)$ with respect to $u$, we have
 \begin{equation}\label{Eprimesymm}
 \calE'(u) = T(s)^* \calE'(T(s)u) = T(-s) \calE'(T(s)u)
 \end{equation}
-Finally, differentating the symmetry relation $\calE(T(s)u) = \calE(u)$ with respect to $s$ at $s = 0$, we have
+and
+\begin{equation}\label{EHessiansymm}
+\calE''(u) = T(s)^* \calE''(T(s)u) T(s).
+\end{equation}
+Finally, differentating the symmetry relation $\calE(T(s)u) = \calE(u)$ with respect to $s$ at $s = 0$, 
 \begin{align*}
 0 = \langle \calE'(u), T'(s) u \rangle|_{s = 0}
 = \langle \calE'(u), T'(0) u \rangle
@@ -50,9 +54,7 @@ for all $u \in X$, since $T'(0) = \partial_x$ is the infinitesimal generator of 
 \[
 \frac{d}{dt}\calE(u) = \langle \calE'(u), u_t \rangle = \langle \calE'(u), \partial_x \calE'(u) \rangle = 0,
 \]
-where we used the fact that the operator $\partial_x$ is skew-symmetric. 
-
-In addition, there is a second conserved quantity $V: L^2(\R) \rightarrow \R$, given by
+where we used the fact that the operator $\partial_x$ is skew-symmetric. In addition, there is a second conserved quantity $V: L^2(\R) \rightarrow \R$, given by
 \begin{equation}\label{defV}
 V(u) = -\frac{1}{2} \int_{-\infty}^\infty u^2 dx,
 \end{equation}
@@ -62,17 +64,17 @@ which represents charge in some applications. $V(u)$ is also conserved along sol
 = \langle -u, \partial_x \calE'(u) \rangle 
 = \langle \partial_x u, \calE'(u) \rangle = 0,
 \end{align*}
-where we used $V'(u) = -u$ in the second line.
+where we used $V'(u) = -u$ in the second equality.
 
-We are interested in bound states of \cref{genPDE}, which are solutions of the form
+As in \cite{Grillakis1987}, we will study bound states of \cref{genPDE}, which are solutions of the form
 \begin{equation}
 u(x, t) = T(ct)\phi(x) = \phi(x - ct),
 \end{equation}
 where $\phi \in X$. Since $T(s)$ is the translation group, these bound states are traveling waves; we will refer to these states as traveling waves from here on. If $\phi$ satisfies the equilibrium equation
 \begin{equation}\label{eqODE1}
-\calE'(\phi) = c V'(\phi)
+\calE'(\phi) = c V'(\phi),
 \end{equation}
-then $T(ct)\phi(x)$ is a traveling wave since 
+then $T(ct)\phi(x)$ is a traveling wave, since 
 \begin{align*}
 \frac{d}{dt}T(ct)\phi &= c T'(ct)\phi 
 = c T'(0)T(ct)\phi \\
@@ -83,56 +85,54 @@ then $T(ct)\phi(x)$ is a traveling wave since
 \end{align*}
 Since $V'(\phi) = -\phi$, we can write the equilibrium equation as
 \begin{equation}\label{eqODE}
-\calE'(\phi) + c \phi = 0 
+\calE'(\phi) + c \phi = 0.
 \end{equation}
-Without loss of generality, we can assume that $\calE'(\phi)$ does not contain any terms of the form $b\phi$ for $b$ constant, since those are accounted for by the term $c \phi$ in \cref{eqODE}.
+Without loss of generality, we will assume that $\calE'(\phi)$ does not contain any terms of the form $b\phi$ for $b$ constant, since those are accounted for by the $c \phi$ term in \cref{eqODE}.
 
 We take the following hypothesis concerning existence of traveling waves. In the next section, we will give a condition under which this hypothesis is satisfied. 
 \begin{hypothesis}\label{cintervalhyp}
-There exists an open interval $(c_1, c_2) \subset \R$ and a $C^1$ map $c \mapsto \phi_c$ such that for every $c \in (c_1, c_2)$, $\phi_c$ is a traveling wave for \cref{genPDE}, i.e. 
+There exists an open interval $(c_1, c_2) \subset \R$ and a $C^1$ map $c \mapsto \phi_c$ such that for every $c \in (c_1, c_2)$, $\phi_c$ is a traveling wave solution for \cref{genPDE}, i.e. 
 \[
-\calE'(\phi_c) + c \phi_c = 0 
+\calE'(\phi_c) + c \phi_c = 0.
 \]
 Furthermore, $\partial_x \phi_c \neq 0$.
 \end{hypothesis}
 
-We are interested in the stability of these traveling wave solutions. To do that, we will look at the spectrum of the linearization of the PDE \cref{genPDE} about a traveling wave. Let $\phi_c$ be a traveling wave solution to \cref{genPDE} corresponding to $c \in \R$. Then the linearization about $\phi_c$ is the linear operator
+We are interested in the stability of these traveling wave solutions. As a first step in stability analysis, we will look at the spectrum of the linearization of the PDE \cref{genPDE} about a traveling wave. For $c \in (c_1, c_2)$, let $\phi_c$ be a solution to \cref{eqODE}, which is a traveling wave solution to \cref{genPDE}. Then the linearization of the PDE \cref{genPDE} about $\phi_c$ is the linear operator $\partial_x \calL(\phi_c)$ defined by
 \begin{equation}\label{PDElinearization}
-\partial_x \calL_c = 
+\partial_x \calL(\phi_c) = 
 \partial_x (\calE''(\phi_c) + c )
 \end{equation}
-where $\calE''(u)$ is the Hessian of the energy $\calE(u)$. Both $E''(u)$ and $\calE''(u) + c$ are self-adjoint. 
-
-Using \cref{Eprimesymm}, $\calE'(T(s)u) = T(s)\calE'(u)$, thus from \cref{eqODE} we have
+where $\calE''(\phi_c)$ is the Hessian of the energy $\calE(\phi_c)$. Both $\calE''(\phi_c)$ and $\calL(\phi_c)$ are self-adjoint. Since $\phi_c$ is a traveling wave, using \cref{Eprimesymm} and \cref{eqODE}, we have
 \begin{align}\label{TeqODE}
-\calE'(T(s)\phi_c) + c T(s)\phi_c = T(s)[\calE'(\phi_c) + c \phi_c] = 0
+\calE'(T(s)\phi_c) + c T(s)\phi_c = T(s)[\calE'(\phi_c) + c \phi_c] = 0.
 \end{align}
-since $\phi_c$ is a traveling wave. Differentiating \cref{TeqODE} with respect to $s$ at $s = 0$, this becomes
+Differentiating \cref{TeqODE} with respect to $s$ at $s = 0$, this becomes
 \begin{align*}
 0 &= \calE''(T(0)\phi_c)T'(0)\phi_c + c T'(0)\phi_c \\
 &= (\calE''(\phi_c) + c ) \partial_x \phi_c \\
-&= \calL_c \partial_x \phi_c
+&= \calL(\phi_c) \partial_x \phi_c
 \end{align*}
-Thus $\partial_x \phi_c$ is an eigenfunction of $\calL_c$ with eigenvalue 0. Differentiating one more time, $\partial_x \phi_c$ is also an eigenfunction of $\partial_x \calL_x$ with eigehvalue 0.
+Thus $\partial_x \phi_c$ is an eigenfunction of $\calL(\phi_c)$ with eigenvalue 0. Differentiating one more time, $\partial_x \phi_c$ is also an eigenfunction of $\partial_x \calL(\phi_c)$ with eigehvalue 0.
 
 Differentiating \cref{eqODE} with respect to $c$, which we can do because the mapping $c \mapsto \phi_c$ in Hypothesis \ref{cintervalhyp} is $C^1$, we have
 \begin{align*}
-E''(\phi_c)\partial_c \phi_c + c \partial_c \phi_c + \phi_c = 0
+\calE''(\phi_c)\partial_c \phi_c + c \partial_c \phi_c + \phi_c = 0,
 \end{align*}
 which we can rearrange to get 
 \begin{align*}
-(E''(\phi_c) + c )(-\partial_c \phi_c) = \phi_c
+(\calE''(\phi_c) + c )(-\partial_c \phi_c) = \phi_c.
 \end{align*}
 Differentiating both sides, we have
 \begin{align*}
-\partial_x H_c (-\partial_c \phi_c) 
-= \partial_x (E''(\phi_c) + c )(-\partial_c \phi_c) = \partial_x\phi_c
+\partial_x \calL(\phi_c) (-\partial_c \phi_c) 
+= \partial_x (\calE''(\phi_c) + c )(-\partial_c \phi_c) = \partial_x\phi_c.
 \end{align*}
-Thus $-\partial_c \phi_c$ is a generalized eigenfunction of $\partial_x H_c$ corresponding to eigenvalue 0.
+Thus $-\partial_c \phi_c$ is a generalized eigenfunction of $\partial_x \calL(\phi_c)$ corresponding to eigenvalue 0.
 
 \subsection{Traveling wave solutons}\label{sec:travelingwaves}
 
-We will look now look at traveling wave solutions to \cref{genPDE}, which are solutions to \cref{eqODE}. In particular, we are interested in traveling waves which are exponentially localized, i.e. solutions to \cref{eqODE} which decay exponentially at $\pm \infty$. To do this, we will use a spatial dynamics approach. An expoentially localized traveling wave will be a homoclinic orbit connecting a rest state to itself. To do this, we write \cref{eqODE} as a first order system of ODEs in the standard way. Let $U = (u, \partial_x u, \dots, \partial_x^{2m-1} u) \in \R^{2m}$. Then by \cref{Ehyp}(iv), equation \cref{eqODE} is equivalent to the first-order system
+We will look now look at traveling wave solutions to the PDE \cref{genPDE}, which are solutions to equilibrim equation \cref{eqODE}. In particular, we are interested in traveling waves which are exponentially localized. To do this, we will use a spatial dynamics approach. From this viewpoint, an expoentially localized traveling wave is a homoclinic orbit connecting a rest state to itself. To do this, we write \cref{eqODE} as a first order system of ODEs in the standard way. Let $U = (u, \partial_x u, \dots, \partial_x^{2m-1} u)^T \in \R^{2m}$. Then by \cref{Ehyp}(iv), equation \cref{eqODE} is equivalent to the first order system
 \begin{equation}\label{genODE}
 U'(x) = F(U(x); c),
 \end{equation}
@@ -143,7 +143,7 @@ F(u_1, u_2, \dots, u_{2m}; c) =
 u_2 \\ u_3 \\ \vdots \\ f(u_1, u_2, \dots, u_{2m}) - c u_1
 \end{pmatrix}.
 \end{equation}
-$F$ is smooth, and $F(0; c) = 0$ for all $c$. Since we are interested in traveling waves, the wavespeed $c$ is a parameter. Reversibility implies that
+$F$ is smooth, and $F(0; c) = 0$ for all $c$. Reversibility implies that
 \begin{equation}\label{genODErev}
 F(RU; c) = -RF(U; c),
 \end{equation}
@@ -151,18 +151,18 @@ where $R:\R^{2m} \rightarrow \R^{2m}$ is the standard reversor operator defined 
 \begin{equation}\label{reverserR2m}
 R(u_1, u_2, \dots, u_{2m-1}, u_{2m}) = (u_1, -u_2, \dots, u_{2m-1}, -u_{2m}).
 \end{equation}
-In particular, if $U(x)$ is a solution to \cref{genODE}, so is $RU(-x)$. Taking the derivative of \ref{genODErev}, it follows that 
+In particular, if $U(x)$ is a solution to \cref{genODE}, so is $RU(-x)$. Taking the derivative of \cref{genODErev} with respect to $U$, it follows that 
 \begin{equation}\label{genODErevDF}
-D F(RU; c) = -RDF(U; c)R,
+D F(RU; c) = -RDF(U; c)R.
 \end{equation}
-From the last component of \eqref{genODErev}, $f(RU) = f(U)$, it also follows from reversibility that $Df(RU) = RDf(U)$, and so we have
+From the last component of \eqref{genODErev}, $f(RU) = f(U)$. It also follows from reversibility that $Df(RU) = RDf(U)$, which implies
 \begin{equation}\label{frev}
 \begin{aligned}
 \partial_{u_j} f(R U) &= (-1)^{j+1} \partial_{u_j} f(U) \\
 \partial^2_{u_j u_k} f(R U) &= (-1)^{j+k} \partial^2_{u_j u_k} F(U)
 \end{aligned}
 \end{equation}
-For $U = 0$, this implies
+For $U = 0$,
 \begin{align}\label{fpartials0}
 \partial_{u_j} f(0) &= \begin{cases}
 0 & j \text{ even}\\
@@ -170,12 +170,12 @@ For $U = 0$, this implies
 c_j & j \text{ odd, } j > 1
 \end{cases}
 \end{align}
-where the $c_j$ are constants, and we assume without without loss of generality that $c_0 = \partial_{u_1} f(0) = 0$, since that is accounted for by the $c u_1$ term in \cref{defF}.
+where the $c_j$ are constants. We can assume without without loss of generality that $c_0 = \partial_{u_1} f(0) = 0$, since that is accounted for by the $c u_1$ term in \cref{defF}.
 
-Next, we assume that \cref{genODE} is a conservative system. We will also parameterize the conserved quantity $H$ by $c$.
+Next, we assume that \cref{genODE} is a conservative system.
 
 \begin{hypothesis}\label{Hhyp}
-There exists a smooth function $H: \R^{2m} \times \R \rightarrow \R$, denoted $H(U; c)$ such that 
+There exists a smooth function $H: \R^{2m} \times \R \rightarrow \R$, denoted $H(U; c)$, such that 
 \begin{enumerate}[(i)]
 \item $H(0; c) = 0$ for all $c$
 \item $\nabla_U H(U; c) = 0$ if and only if $F(U; c) = 0$
@@ -186,7 +186,7 @@ There exists a smooth function $H: \R^{2m} \times \R \rightarrow \R$, denoted $H
 \end{enumerate}
 \end{hypothesis}
 
-It follows from \cref{Hhyp} that $H$ is conserved along solutions $U(x)$ to \cref{genODE}. If $U(x)$ is such a solution, then
+\noi It follows from \cref{Hhyp} that $H$ is conserved along solutions $U(x)$ to \cref{genODE}. If $U(x)$ is such a solution, then
 \[
 \frac{d}{dx}H(U(x); c) = \langle \nabla H(U(x); c), U'(x) \rangle
 = \langle \nabla H(U(x); c), F(U(x); c) \rangle = 0
@@ -195,14 +195,14 @@ It follows from \cref{Hhyp} that $H$ is conserved along solutions $U(x)$ to \cre
 Since $F(0; c) = 0$ for all $c$, the rest state $U = 0$ is an equilibrium of \cref{genODE} for all $c$. The next hypothesis addresses the hyperbolicity of this equilibrium. We note that although the eigenvalue pattern described in \cref{hypeqhyp} is not necessary for the existence of a homoclinic orbit, it is a sufficient condition for the existence of multi-pulse solutions.
 
 \begin{hypothesis}\label{hypeqhyp}
-For a specific $c_0 \in \R$ with $c_0 > 0$, $U = 0$ is a hyperbolic equilibrium of \cref{genODE}, i.e. $DF(0; c_0)$ has no eigenvalues on the imaginary axis. Furthermore, the spectrum of $DF(0; c_0)$ contains a quartet of simple eigenvalues $\pm \alpha_0 \pm \beta_0 i$, $\alpha_0, \beta_0 > 0$, and for any other eigenvalue $\nu$ of $DF(0; c_0)$, $|\text{Re }\nu| > \alpha_0$.
+For a specific $c_0 \in \R$ with $c_0 > 0$, $U = 0$ is a hyperbolic equilibrium of \cref{genODE}, i.e. $DF(0; c_0)$ has no eigenvalues with real part 0. Furthermore, the spectrum of $DF(0; c_0)$ contains a quartet of simple eigenvalues $\pm \alpha_0 \pm \beta_0 i$, $\alpha_0, \beta_0 > 0$, and for any other eigenvalue $\nu$ of $DF(0; c_0)$, $|\text{Re }\nu| > \alpha_0$.
 \end{hypothesis}
 
-Let $W^s(0; c_0)$ and $W^u(0; c_0)$ be the stable and unstable manifolds of the equilibrium at 0, and let $E_0^s(c_0)$ and $E_0^u(c_0)$ be the stable and unstable eigenspaces of $DF(0; c_0)$. By reversibility, all of these spaces have dimension $m$. The stable and unstable manifolds are smooth since $F$ is smooth.
+Let $W^s(0; c_0)$ and $W^u(0; c_0)$ be the stable and unstable manifolds of the equilibrium at 0, and let $E_0^s(c_0)$ and $E_0^u(c_0)$ be the stable and unstable eigenspaces of $DF(0; c_0)$. By reversibility, these spaces have dimension $m$. The stable and unstable manifolds are smooth since $F$ is smooth.
 
 \subsection{Primary pulse solution}\label{sec:primarypulse}
 
-We now address the existence of a primary pulse solution, which is a symmetric homoclinic orbit connecting the rest state equilibrium to itself. In general, the existence of such a solution is unknown, although in specific cases such as KdV5 we do have an existence result. Thus we take the existence of a primary pulse solution as a hypothesis.
+We now address the existence of a primary pulse solution, which is a symmetric homoclinic orbit connecting the rest state equilibrium to itself. In general, the existence of such a solution is unknown, although in specific cases such as KdV5 we do have an existence result. Thus we will take the existence of a primary pulse solution as a hypothesis.
 
 \begin{hypothesis}\label{Qexistshyp}
 For the same $c_0$ as in \cref{hypeqhyp}, there exists a homoclinic orbit solution $Q(x; c_0) \in W^s(0) \cap W^u(0) \subset H^{-1}(0)$ to \cref{genODE}. In addition,
@@ -214,9 +214,9 @@ For the same $c_0$ as in \cref{hypeqhyp}, there exists a homoclinic orbit soluti
 \end{enumerate}
 \end{hypothesis}
 
-Since we obtained \cref{genODE} by putting \cref{eqODE} into a first order system in the standard way, 
+\noi Since we obtained \cref{genODE} by putting \cref{eqODE} into a first order system in the standard way, 
 \begin{equation}\label{Qqrelation}
-Q(x; c_0) = (q(x; c_0), q'(x; c_0), \dots, q^{(2m)}(x; c_0))^T,
+Q(x; c_0) = (q(x; c_0), \partial_x q(x; c_0), \dots, \partial_x^{2m-1}q(x; c_0))^T,
 \end{equation}
 where $q(x; c_0)$ is an even function and is an exponentially localized traveling wave solution solution to \cref{genPDE}. 
 
@@ -232,37 +232,37 @@ We then take the following hypothesis regarding the intersection of the stable a
 The stable manifold $W^s(0; c_0)$ and the unstable manifold $W^u(0; c_0)$ intersect transversely in $H^{-1}(0; c_0)$ at $Q(0; c_0)$.
 \end{hypothesis}
 
-By \cref{H0transversehyp} and \cref{manifoldinH0}, 
+\noi By \cref{H0transversehyp} and \cref{manifoldinH0}, 
 \[
 \dim (T_{Q(0; c_0)}W^s(0; c_0) + T_{Q(0; c_0)}W^u(0; c_0)) = \dim M(c_0) = 2m-1 
 \]
-Since $\dim T_{Q(0; c_0}W^s(0; c_0) = m$ and $\dim T_{Q(0; c_0)}W^s(0; c_0) = m$, by a dimension-counting argument, $\dim T_{Q(x)}W^s(0; c_0) \cap T_{Q(x)}W^u(0; c_0) = 1$. Since $Q(x; c_0) \subset W^s(0; c_0) \cap W^u(0; c_0)$, 
+Since $\dim T_{Q(0; c_0)}W^s(0; c_0) = m$ and $\dim T_{Q(0; c_0)}W^s(0; c_0) = m$, by a dimension-counting argument, $\dim T_{Q(0; c_0)}W^s(0; c_0) \cap T_{Q(0; c_0)}W^u(0; c_0) = 1$. Since $Q(x; c_0) \subset W^s(0; c_0) \cap W^u(0; c_0)$, 
 \[
-Q'(0; c_0) \in T_{Q(0; c_0}W^s(0; c_0) \cap T_{Q(0; c_0)}W^u(0; c_0)
+Q'(0; c_0) \in T_{Q(0; c_0)}W^s(0; c_0) \cap T_{Q(0; c_0)}W^u(0; c_0),
 \]
-Thus we have the following nondegeneracy condition
+thus we have the nondegeneracy condition
 \begin{equation}\label{nondegencond}
 T_{Q(0; c_0)}W^s(0; c_0) \cap T_{Q(0; c_0)}W^u(0; c_0) = \R Q'(0; c_0)
 \end{equation}
  
-Using \cref{nondegencond}, we can decompose the tangent spaces of the stable and unstable manifolds at $Q(0; c_0)$. Since the two tangent spaces have a one-dimensional intersection spanned by $Q'(0; c_0)$, we can write
-
-
-We can now prove the existence of homoclinic orbits $Q(x; c)$ for $c$ near $c_0$ and s\begin{equation}\label{TQ0decomp1}
+Using \cref{nondegencond}, we can decompose the tangent spaces of the stable and unstable manifolds at $Q(0; c_0)$. Since the two tangent spaces have a one-dimensional intersection spanned by $Q'(0; c_0)$, we can decompose them as 
+\begin{equation}\label{TQ0decomp1}
 \begin{aligned}
 T_{Q(0; c_0)}W^u(0; c_0) &= \R Q'(0; c_0) \oplus Y^-(c_0) \\
 T_{Q(0; c_0)}W^s(0; c_0) &= \R Q'(0; c_0) \oplus Y^+(c_0)
 \end{aligned}
-\end{equation}how that $Q(x; c)$ is differentiable in $c$.
+\end{equation}
+
+We can now prove the existence of homoclinic orbits $Q(x; c)$ for $c$ near $c_0$ and show that $Q(x; c)$ is differentiable in $c$.
 
 \begin{theorem}\label{transverseint}
-Assume \cref{H0transversehyp}. Then there exists $\delta > 0$ such that for $c \in (c_0 - \delta, c_0 + \delta)$, the stable and unstable manifolds $W^s(0; c)$ and $W^u(0; c)$ have a one-dimensional transverse intersection in $H^{-1}(0; c)$ which is a homoclinic orbit $Q(x; c)$. The map $c \rightarrow Q(x; c)$ is smooth, so that in particular $Q(x; c)$ is differentiable with respect to $c$. Finally, $\partial_c Q(x; c)$ is exponentially localized. Specifially, for any $\epsilon > 0$, there exists $\delta_1 > 0$ with $\delta_1 < \delta$ such that for $c \in (c_0 - \delta_1, c_0 + \delta_1)$,
+Assume \cref{Hhyp} and \cref{H0transversehyp}. Then there exists $\delta > 0$ with the following property. For $c \in (c_0 - \delta, c_0 + \delta)$, the stable and unstable manifolds $W^s(0; c)$ and $W^u(0; c)$ have a one-dimensional transverse intersection in $H^{-1}(0; c)$. This intersection yields a homoclinic orbit $Q(x; c)$. The map $c \rightarrow Q(x; c)$ is smooth, and the derivative $\partial_c Q(x; c)$ is exponentially localized. Specifially, for any $\epsilon > 0$, there exists $\delta_1 > 0$ with $\delta_1 < \delta$ such that for $c \in (c_0 - \delta_1, c_0 + \delta_1)$,
 \[
 |\partial_c Q(x; c)| \leq C e^{-(\alpha - \epsilon)|x|}
 \] 
 \end{theorem}
  
-\cref{transverseint} implies that \cref{cintervalhyp} is satisfied. From this point forward, we will fix $c = c_0$, and for simplicity, we will use $c$ in place of $c_0$. We will also omit the dependence on $c$ for convenience of notation.
+\noi \cref{transverseint} implies that \cref{cintervalhyp} is satisfied. From this point forward, we will fix $c = c_0$, and for simplicity, we will use $c$ in place of $c_0$. We will also omit the dependence on $c$ for convenience of notation.
 
 \subsection{Variational equation}\label{sec:vareq1}
 
@@ -277,9 +277,10 @@ DF(Q(x)) =
 \begin{pmatrix}
 0 & 1 & 0 & \dots & 0 & 0 \\
 0 & 0 & 1 & \dots & 0 & 0 \\
-& \vdots && \vdots \\
+& && \ddots \\
+0 & 0 & 0 & \dots & 1 & 0 \\
 0 & 0 & 0 & \dots & 0 & 1 \\
-f_{u_1}(q) - c & f_{u_2}(q) & f_{u_3}(q) & \dots & f_{u_{2m-1}}(q) & f_{u_{2m}}(q)
+\partial_{u_1}f(Q(x)) - c & \partial_{u_2}f(Q(x)) & \partial_{u_3}f(Q(x)) & \dots & \partial_{u_{2m-1}}f(Q(x)) & \partial_{u_{2m}}f(Q(x))
 \end{pmatrix}
 \end{equation}
 It follows from \cref{nondegencond} that $Q'(x)$ is the unique bounded solution to \cref{vareq1}, and that there exists a unique bounded solution $\Psi(x)$ to \cref{adjvareq1}. (In both cases, uniqueness is up to scalar multiples). Since we have a conserved quantity $H$, we know the exact form of $\Psi(x)$, which is given in the following lemma.
@@ -296,15 +297,14 @@ Consider the linear ODE $V' = A(x)V$ and the corresponding adjoint equation $W' 
 \begin{enumerate}[(i)]
 \item $\dfrac{d}{dx}\langle V(x), W(x) \rangle = 0$, thus the inner product is constant in $x$.
 \item If $W(x)$ is bounded and $V(x) \rightarrow 0$ as $x \rightarrow \infty$ or $V(x) \rightarrow -\infty$, then $\langle V(x), W(x) \rangle = 0$ for all $x \in \R$. The same holds if we reverse the roles of $W$ and $V$.
-\item If $\Phi(y, x)$ is the evolution operator for $V'(x) = A(x)V(x)$, then $\Phi(x, y)^*$ is the evolution operator for the adjoint problem $W'(y) = -A(y)^* W(y)$.
+\item If $\Phi(y, x)$ is the evolution operator for $V'(x) = A(x)V(x)$, then $\Phi(x, y)^*$ is the evolution operator for the adjoint equation $W'(y) = -A(y)^* W(y)$.
 \end{enumerate}
 \end{lemma}
 
-From \cref{eigadjoint}(ii), $\Psi(0) \perp \R Q'(0) \oplus Y^+ \oplus Y^-$, thus we have the decomposition
+\noi From \cref{eigadjoint}(ii), $\Psi(0) \perp \R Q'(0) \oplus Y^+ \oplus Y^-$, thus we can decompose $\R^{2m}$ as
 \begin{equation}\label{R2mdecomp}
-\R^{2m} = \R Q'(0) \oplus Y^+ \oplus Y^- \oplus Z
+\R^{2m} = \R Q'(0) \oplus Y^+ \oplus Y^- \oplus \R \Psi(0).
 \end{equation}
-where $Z = \R \Psi(0)$.
 
 \subsection{PDE eigenvalue problem}\label{sec:PDEeig}
 

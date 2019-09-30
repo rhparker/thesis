@@ -420,7 +420,45 @@ The conjugation operator induces exponential trichotomies on $\R^\pm$ for the va
 \begin{equation}\label{trichotomyprojunconj}
 \tilde{P}^{s/u/c}_\pm(x) = P_\pm(x; 0) P^{s/u/c}(0) P_\pm(x, 0)^{-1}
 \end{equation}
-We note that the center subspaces on $\R^+$ and $\R^-$ are both one-dimensional.
+We note that the center subspaces on $\R^+$ and $\R^-$ are both one-dimensional and are given by $\C V^c(x)$. 
+
+We can easily derive an expression for the center projection.
+\begin{align*}
+\tilde{P}^c_\pm(x) u &= P_\pm(x; 0) P^c(0) P_\pm(x, 0)^{-1} u \\
+&= P_\pm(x; 0) \langle W_0, P_\pm(x, 0)^{-1} u \rangle V_0 \\
+&= \langle W_0, P_\pm(x, 0)^{-1} u \rangle P_\pm(x; 0) V_0\\
+&= \langle W_0, P_\pm(x, 0)^{-1} u \rangle V^c(x)
+\end{align*}
+
+In fact, since $\Psi^(x) = W_0$ is a constant solution to the adjoint variational equation, we have a nicer form for the center projection, i.e. we can remove the term $P_\pm(x, 0)^{-1}$. THIS MIGHT NOT BE TRUE.
+
+\begin{lemma}\label{trichcenterproj}
+For the trichotomies on $\R^\pm$, the center projection is given by 
+\begin{align}
+\tilde{P}^c_\pm(x) u &= \langle W_0, u \rangle V^c(x)
+\end{align}
+\begin{proof}
+We will show this on $\R^+$. The result on $\R^-$ is similar. First, we show that it acts as the identity on $\C V^c(x)$. Since $\Psi^c(x) = W_0$ is a solution to the adjoint variational equation and $V^c(x)$ is solution to the variational equation, by Lemma \ref{eigadjoint}(i), the inner product $\langle \Psi^c(x), V^c(x) \rangle = \langle W_0, V^c(x) \rangle$ is constant. Sending $x \rightarrow \infty$ and using the continuity of the inner product, we have
+\[
+\langle W_0, V^c(x) \rangle = \langle W_0, V_0 \rangle = 1
+\]
+Thus for $a \in \C$,
+\begin{align*}
+\langle W_0, a V^c(x) \rangle V^c(x) 
+&= a \langle W_0, V^c(x) \rangle V^c(x) \\
+&= a V^c(x)
+\end{align*}
+
+Next, we show that $W_0$ is perpendicular to any element of the stable or unstable subspaces at $x$. Let $\tilde{V}^s$ be any element of the stable subspace at $x$. Then $\tilde{V}^s = P_+(x, 0) V^s$ for some $V^s \in E^s(0)$. Let $V^s(y)$ be the unique solution to the variational equation with initial condition $V^s(x) = \tilde{V}^s$. This solution is given by
+\begin{align*}
+V^s(y) &= \tilde{\Phi}(y,x)\tilde{V}^s \\
+&= P_+(y; 0) \Phi(y, x; 0) P_+(x; 0)^{-1} P_+(x, 0) V^s \\
+&= P_+(y; 0) \Phi(y, x; 0) V^s
+\end{align*}
+Since $V^s \in E^s$, $\Phi(y, x; 0) V^s \rightarrow 0$ as $y \rightarrow \infty$, thus $V^s(y) \rightarrow 0$ as $ \rightarrow \infty$. By Lemma \ref{eigadjoint}(ii), $\langle \Psi^c(y), V^s(y) \rangle = \langle W_0, \tilde{V}^s \rangle = 0$.
+
+\end{proof}
+\end{lemma}
 
 \subsection{Solutions in center subspace}\label{sec:centersol}
 
