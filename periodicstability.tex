@@ -468,6 +468,7 @@ For all $U \in \R^{2m+1}$, we have the following.
 	\item $\langle W_0, \Theta_\pm(x, 0) P^{s/u}(0) U \rangle = 0$
 	\item $\langle W_0(\lambda), \Theta_\pm(x, \lambda) P^{s/u}(\lambda) U \rangle  = \mathcal{O}(|\lambda|( e^{-\alpha_1 |x|} + |\lambda|)|U|)$
 	\item $\langle W_0, P_\pm(0; \lambda)P^{s/u}(0) U \rangle = \mathcal{O}(|\lambda||U|)$
+	\item $P^c(0) G_i^\pm(x) U = \langle W_0, G_i^\pm(x) U\rangle = 0$
 \end{enumerate}
 \begin{proof}
 By Lemma \ref{centerprojlemma}, the projection on the center subspace when $\lambda = 0$ is given by $\tilde{P}_\pm^c(x)U = \langle W_0, U \rangle V^c(x)$, thus $\langle W_0, U \rangle = 0$ for all $U$ in the range of the stable and unstable projections of the trichotomy, which are given by $P_\pm(x, 0) E^{s/u}(0)$. This proves (i). For (ii), 
@@ -494,7 +495,7 @@ where for the last equality we used part (ii). For (iv), we expand in $\lambda$ 
 &= \langle W_0, \tilde{P}_\pm(0) U \rangle + \mathcal{O}(|\lambda||U|) \\
 &= \mathcal{O}(|\lambda||U|) 
 \end{align*}
-where in the last line we used Lemma \ref{centerprojlemma}.
+where in the last line we used Lemma \ref{centerprojlemma}. For (v), since the bottom row of $G_i^\pm(x)$ is all zeros, the last component of $G_i^\pm(x) U$ is 0 for all $U$. It follows that $\langle W_0, G_i^\pm(x) U\rangle = 0$.
 \end{proof}
 \end{lemma}
 
@@ -1418,20 +1419,21 @@ We can now compute the jump in the direction of $\Psi^c(0)$.
 The jumps in the direction of $\Psi^c(0)$ are given by
 \begin{equation}\label{xic}
 \begin{aligned}
-\xi^c_i = e^{-\nu(\lambda) X_i} c_i^- - e^{\nu(\lambda) X_{i-1}} c_{i-1}^- + e^{-\nu(\lambda) X_i} k_i (d_{i+1} - d_i ) +  R^c(\lambda)_i(c, d)
+\xi^c_i = e^{-\nu(\lambda) X_i} c_i^- - e^{\nu(\lambda) X_{i-1}} c_{i-1}^- + 2 \lambda e^{-\nu(\lambda)X_i} \langle \tilde{W}_0, Q'(X_i) \rangle (d_{i+1} - d_i )  + R^c(\lambda)_i(c, d)
 \end{aligned}
 \end{equation}
 The remainder term $R^c_i(c, d)$ is analytic in $\lambda$, linear in $(c, d)$, and has bound
 \begin{align*}
-||R^c&(c, d)_i|| \leq C \Big(
+||R^c&(c, d)_i|| \leq C |\lambda| \Big(
 (|\lambda| + e^{-\alpha X_m})(|e^{\nu(\lambda)X_{i-1}}c_{i-1}| + |e^{-\nu(\lambda)X_i}c_i|) \\
-&+ (|\lambda| + e^{-\alpha X_m})( e^{-(\alpha - \eta) X_{i-1}} |e^{\nu(\lambda)X_{i-2}}c_{i-2}| + e^{-(\alpha - \eta) X_i} |e^{-\nu(\lambda)X_{i+1}}c_{i+1}|)  \\
-&+ (e^{-\alpha X_m}|\lambda| + |\lambda|^2) |d|
+&+ (|\lambda| + e^{-\alpha X_m})( e^{-\alpha X_{i-1}} |e^{\nu(\lambda)X_{i-2}}c_{i-2}| + e^{-\alpha X_i} |e^{-\nu(\lambda)X_{i+1}}c_{i+1}|)  \\
+&+ e^{-\alpha X_m}(|c_{i+1}|+|c_{i-2}|) + e^{-2 \alpha X_m}(|c_i|+|c_{i-1}|) + (|\lambda| + e^{-\alpha X_m}|\lambda| + e^{-(2 \alpha - \eta) X_m })|d|
 \Big)
 \end{align*}
+
 The jump conditions can be written as the matrix equation
 \begin{equation}\label{matrixjumpc}
-(K(\lambda) + C_1 K(\lambda) + K_1(\lambda)) c + (\tilde{A} + D_1) d = 0
+(K(\lambda) + C_1 K(\lambda) + K_1(\lambda) + C_2) c + (\tilde{A} + D_1) d = 0
 \end{equation}
 where
 \begin{align*}
@@ -1453,13 +1455,18 @@ and
 & &  & -e^{-\nu(\lambda)X_0} k_0 & e^{-\nu(\lambda)X_0} k_0
 \end{pmatrix}
 \end{align*}
-where $k_i = \mathcal{O}(e^{-2 \alpha X_i})$. The matrices have uniform bounds
+where 
+\begin{equation}\label{defki}
+k_i = 2 \lambda \langle \tilde{W}_0, Q'(X_i) \rangle
+\end{equation}
+The matrices have uniform bounds
 \begin{align*}
-\tilde{A} &= \mathcal{O}(e^{-(2\alpha - \eta) X_m}) \\
-C_1 &= \mathcal{O}(e^{-(\alpha - \eta) X_m}(|\lambda| + e^{-\alpha X_m})) \\
-D_1 &= \mathcal{O}((e^{-\alpha X_m}|\lambda| + |\lambda|^2) |d|)
+\tilde{A} &= \mathcal{O}(|\lambda| e^{-\alpha X_m}) \\
+C_1 &= \mathcal{O}(|\lambda|e^{-\alpha X_m}(|\lambda| + e^{-\alpha X_m})) \\
+C_2 &= \mathcal{O}(|\lambda|e^{-\alpha X_m}) \\
+D_1 &= \mathcal{O}(|\lambda|(|\lambda| + e^{-\alpha X_m}|\lambda| + e^{-(2 \alpha - \eta) X_m })|d|)
 \end{align*}
-$K_1(\lambda)$ has the same form as $K(\lambda)$, but each term in $K(\lambda)$ has been multiplied by a factor of order $\mathcal{O}(|\lambda| + e^{-\alpha X_m})$. The specific forms of $K_1(\lambda)$ and $C_1$ are given in the proof.
+$K_1(\lambda)$ has the same form as $K(\lambda)$, but each term in $K(\lambda)$ has been multiplied by a factor of order $\mathcal{O}(|\lambda|(|\lambda| + e^{-\alpha X_m}))$. The specific forms of $K_1(\lambda)$ and $C_1$ are given in the proof.
 
 \begin{proof}
 Recall that $\Psi^c(0) = W_0$. From Lemma \ref{Zinv2}, $P_i^\pm(0; \lambda) Z_i^\pm(0)$ are given by\begin{align*}
@@ -1491,7 +1498,7 @@ Similarly,
 For the term involving $\tilde{c}$, using the expression from Lemma \ref{Zinv2}, we have
 \begin{align*}
 \langle &\Psi^c(0), P_i^+(0; 0) P_0^c(0) e^{-\nu(\lambda)X_i} \tilde{c}_i \rangle
-= 2 \lambda \langle \tilde{W}_0, Q'(X_i) \rangle (d_{i+1} - d_i ) \\
+= 2 \lambda e^{-\nu(\lambda)X_i} \langle \tilde{W}_0, Q'(X_i) \rangle (d_{i+1} - d_i ) \\
 &+ \mathcal{O}\Big( |\lambda| e^{-(\alpha - \eta) X_i} \Big( (|\lambda| + e^{-\alpha X_m})(|e^{\nu(\lambda)X_{i-1}} c_{i-1}| + |e^{-\nu(\lambda)X_{i+1}}c_{i+1}|) + |c_i| + (|D_i| + |\lambda|)|d| \Big)
 \end{align*}
 
@@ -1519,16 +1526,27 @@ and
 &+ e^{-\alpha X_m}(|c_{i-1}| + |c_i|) + (|\lambda| + e^{-\alpha X_m})^2 |d|  \Big)
 \end{align*}
 
-\item For the integral terms, we only need to bound the integrals involving the center subspace, since these will have weaker bounds than the integrals involving the stable and unstable subspaces. For the integrals involving $Z$, we use the estimates we derived in Lemma \ref{Zinv2} together with the estimates $Z_3$ from Lemma \ref{Zinv2}.
+\item For the integral terms, we only need to bound the integrals involving the center subspace, since these will have weaker bounds than the integrals involving the stable and unstable subspaces. For the integrals involving $Z$, 
 \begin{align*}
-&\left| P_+(0; \lambda) \int_{X_i}^0 \Phi^c(0, y; \lambda) P_+(y; \lambda)^{-1} G_i^+(y) P_+(y; \lambda) Z_i^+(y) dy\right| \\
-&\leq C e^{-\alpha X_m}\Big(|c_i| + e^{-\alpha X_m}(|c_{i-1}| + e^{-\alpha X_i} |c_{i+1}|) + e^{-(\alpha - \eta) X_m}|\lambda|^2|d| + |D_i||d|) \\
+P_+(0; \lambda) &\Phi^c(0, y; \lambda) P_+(y; \lambda)^{-1} G_i^+(y) P_+(y; \lambda) Z_i^+(y) \\
+&= P_+(0; 0) \Phi^c(0, y; 0) P_+(y; 0)^{-1} G_i^+(y) P_+(y; \lambda) Z_i^+(y) + \mathcal{O}(e^{\eta y}|\lambda||G_i^+(y) Z_i^+(y)|) \\
+&= e^{-\nu(\lambda) y} P_+(0; 0) P_+(y; 0)^{-1} G_i^+(y) P_+(y; \lambda) Z_i^+(y) + \mathcal{O}(e^{\eta y}|\lambda||G_i^+(y) Z_i^+(y)|) \\
+&= e^{-\nu(\lambda) y} G_i^+(y) P_+(y; \lambda) Z_i^+(y) + \mathcal{O}(e^{\eta y}|\lambda||G_i^+(y) Z_i^+(y)|)
+\end{align*}
+By Lemma \ref{W0projlemma}, 
+\[
+\langle W_0, e^{-\nu(\lambda) y} G_i^+(y) P_+(y; \lambda) Z_i^+(y) \rangle = 0
+\]
+Using this together with the estimate $Z_3$ and the estimate of the integral from Lemma \ref{Zinv2},
+\begin{align*}
+&\left| \langle W_0, P_+(0; \lambda) \int_{X_i}^0 \Phi^c(0, y; \lambda) P_+(y; \lambda)^{-1} G_i^+(y) P_+(y; \lambda) Z_i^+(y) dy \rangle \right| \\
+&\leq C |\lambda| e^{-\alpha X_m}\Big(|c_i| + e^{-\alpha X_m}(|c_{i-1}| + e^{-\alpha X_i} |c_{i+1}|) + e^{-(\alpha - \eta) X_m}|\lambda|^2|d| + |D_i||d|) \\
 &+ |e^{-\nu(\lambda)X_i} c_i| + (|\lambda| + e^{-\alpha X_m})(|e^{\nu(\lambda)X_{i-1}} c_{i-1}| + e^{-\alpha X_i} |e^{-\nu(\lambda)X_{i+1}} c_{i+1}|)\Big)
 \end{align*}
-and
+Similarly,
 \begin{align*}
-&\left| P_-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_-(y; \lambda)^{-1} G_i^-(y) P_-(y; \lambda)Z_i^-(y) dy \right| \\
-&\leq C\Big(|c_{i-1}| + e^{-\alpha X_m}(|c_i| + e^{-\alpha X_i} |c_{i-2}|) + e^{-(\alpha - \eta) X_m}|\lambda|^2|d| + |D_{i-1})|d| \\
+&\left| \langle W_0, P_-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_-(y; \lambda)^{-1} G_i^-(y) P_-(y; \lambda)Z_i^-(y) dy \rangle \right| \\
+&\leq C |\lambda| e^{-\alpha X_m} \Big(|c_{i-1}| + e^{-\alpha X_m}(|c_i| + e^{-\alpha X_i} |c_{i-2}|) + e^{-(\alpha - \eta) X_m}|\lambda|^2|d| + |D_{i-1})|d| \\
 &+ |e^{\nu(\lambda)X_{i-1}}c_{i-1}| + (|\lambda| + e^{-\alpha X_m})(|e^{-\nu(\lambda)X_i} c_i| + e^{-\alpha X_i} |e^{\nu(\lambda)X_{i-2}} c_{i-2}|)\Big)
 \end{align*}
 
@@ -1543,14 +1561,14 @@ The other one is similar.
 
 Putting all of this together, we obtain the center jump expressions
 \begin{align*}
-\xi^c_i = e^{-\nu(\lambda) X_i} c_i^- - e^{\nu(\lambda) X_{i-1}} c_{i-1}^- + e^{-\nu(\lambda) X_i} k_i (d_i - d_{i-1} + R^c(\lambda)_i(c^-, d)
+\xi^c_i = e^{-\nu(\lambda) X_i} c_i^- - e^{\nu(\lambda) X_{i-1}} c_{i-1}^- + 2 \lambda e^{-\nu(\lambda)X_i} \langle \tilde{W}_0, Q'(X_i) \rangle (d_{i+1} - d_i )  + R^c(\lambda)_i(c, d)
 \end{align*}
 The remainder term $R^c_i(c, d)$ has bound
 \begin{align*}
-||R^c&(c, d)_i|| \leq C \Big(
+||R^c&(c, d)_i|| \leq C |\lambda| \Big(
 (|\lambda| + e^{-\alpha X_m})(|e^{\nu(\lambda)X_{i-1}}c_{i-1}| + |e^{-\nu(\lambda)X_i}c_i|) \\
-&+ (|\lambda| + e^{-\alpha X_m})( e^{-(\alpha - \eta) X_{i-1}} |e^{\nu(\lambda)X_{i-2}}c_{i-2}| + e^{-(\alpha - \eta) X_i} |e^{-\nu(\lambda)X_{i+1}}c_{i+1}|)  \\
-&+ (e^{-\alpha X_m}|\lambda| + |\lambda|^2) |d|
+&+ (|\lambda| + e^{-\alpha X_m})( e^{-\alpha X_{i-1}} |e^{\nu(\lambda)X_{i-2}}c_{i-2}| + e^{-\alpha X_i} |e^{-\nu(\lambda)X_{i+1}}c_{i+1}|)  \\
+&+ e^{-\alpha X_m}(|c_{i+1}|+|c_{i-2}|) + e^{-2 \alpha X_m}(|c_i|+|c_{i-1}|) + (|\lambda| + e^{-\alpha X_m}|\lambda| + e^{-(2 \alpha - \eta) X_m })|d|
 \Big)
 \end{align*}
 
@@ -1565,15 +1583,18 @@ e^{-\nu(\lambda)X_1} & & & & & -e^{\nu(\lambda)X_0} \\
 & & & & -e^{\nu(\lambda)X_{n-1}} & e^{-\nu(\lambda)X_0}
 \end{pmatrix}
 \end{align*}
-The leading order terms in the center jump expression involving $c$ are given by $K(\lambda)c$, where $c = (c_1, \dots, c_{n-1}, c_0)^T$. For the remainder terms, let $G_i$ be the sum of the remainder terms of the form $e^{\pm \nu(\lambda) X_i} c_i$. Then 
+The leading order terms in the center jump expression involving $c$ are given by $K(\lambda)c$, where $c = (c_1, \dots, c_{n-1}, c_0)^T$. We will organize the remainder terms into three groups.
+
+\begin{enumerate}
+\item Let $G_i$ be the sum of the remainder terms of the form $e^{\pm \nu(\lambda) X_i} c_i$. Then 
 \[
 G_i = \gamma_{i,i-1} e^{\nu(\lambda)X_{i-1}}c_{i-1} + \gamma_{i,i} e^{-\nu(\lambda)X_i}c_i + \gamma_{i,i-2} e^{\nu(\lambda)X_{i-2}}c_{i-2} + \gamma_{i,i+1} e^{-\nu(\lambda)X_{i+1}}c_{i+1}
 \] 
 where from the remainder bound we have for the coefficients $\gamma_{i, j}$
 \begin{align*}
-\gamma_{i,i-1}, \gamma_{i,i} &= \mathcal{O}(|\lambda| + e^{-\alpha X_m}) \\
-\gamma_{i,i-2} &= \mathcal{O}(e^{-(\alpha - \eta) X_{i-1}}(|\lambda| + e^{-\alpha X_m})) \\
-\gamma_{i,i+1} &= \mathcal{O}(e^{-(\alpha - \eta) X_i}(|\lambda| + e^{-\alpha X_m}))
+\gamma_{i,i-1}, \gamma_{i,i} &= \mathcal{O}(|\lambda|(|\lambda| + e^{-\alpha X_m})) \\
+\gamma_{i,i-2} &= \mathcal{O}(e^{-\alpha X_{i-1}}|\lambda|(|\lambda| + e^{-\alpha X_m})) \\
+\gamma_{i,i+1} &= \mathcal{O}(e^{-\alpha X_i}|\lambda|(|\lambda| + e^{-\alpha X_m}))
 \end{align*}
 Adding and subtracting $e^{\nu(\lambda)X_i}c_i$ and $e^{-\nu(\lambda)X_{i-1}}c_{i-1}$, this becomes
 \begin{align*}
@@ -1582,15 +1603,15 @@ G_i &= \gamma_{i,i-1} e^{\nu(\lambda)X_{i-1}}c_{i-1} + \gamma_{i,i} e^{-\nu(\lam
 \end{align*}
 Next, we note that
 \begin{align*}
-\gamma_{i,i-2} e^{-\nu(\lambda)X_{i-1}}c_{i-1} &= \mathcal{O}(e^{-(\alpha - 3 \eta) X_{i-1}}(|\lambda| + e^{-\alpha X_m})e^{\nu(\lambda)X_{i-1}}c_{i-1} \\
-\gamma_{i,i+1} e^{\nu(\lambda)X_i}c_i &= \mathcal{O}(e^{-(\alpha - 3 \eta) X_i}(|\lambda| + e^{-\alpha X_m})e^{-\nu(\lambda)X_i}c_i
+\gamma_{i,i-2} e^{-\nu(\lambda)X_{i-1}}c_{i-1} &= \mathcal{O}(e^{-(\alpha - 3 \eta) X_{i-1}}|\lambda|(|\lambda| + e^{-\alpha X_m})e^{\nu(\lambda)X_{i-1}}c_{i-1} \\
+\gamma_{i,i+1} e^{\nu(\lambda)X_i}c_i &= \mathcal{O}(e^{-(\alpha - 3 \eta) X_i}|\lambda|(|\lambda| + e^{-\alpha X_m})e^{-\nu(\lambda)X_i}c_i
 \end{align*}
 Both of these coefficients are higher order than $\gamma_{i,i-1}$ and $\gamma_{i,i}$. Substituting these into $G_i$, collecting terms, and keeping the notation $\gamma_{i,j}$ for the resulting coefficients, we have
 \begin{align*}
 G_i(&\lambda) = \gamma_{i,i-1} e^{\nu(\lambda)X_{i-1}}c_{i-1} + \gamma_{i,i} e^{-\nu(\lambda)X_i}c_i \\
 &+ \gamma_{i,i-2} ( e^{\nu(\lambda)X_{i-2}}c_{i-2} - e^{-\nu(\lambda)X_{i-1}}c_{i-1}) + \gamma_{i,i+1} (e^{-\nu(\lambda)X_{i+1}}c_{i+1} - e^{\nu(\lambda)X_i}c_i)
 \end{align*}
-where we have the same bounds on the coefficients $\gamma_{i,j}$. Using these, we can write the terms involving $c$ in matrix form as
+where we have the same bounds on the coefficients $\gamma_{i,j}$. Using these, we can write the terms of the form $e^{\pm \nu(\lambda) X_i} c_i$ in matrix form as
 \[
 (K(\lambda) + C_1 K(\lambda) + K_1(\lambda)) c
 \]
@@ -1607,7 +1628,7 @@ e^{\nu(\lambda)X_1}\gamma_{2,1} & e^{-\nu(\lambda)X_2}\gamma_{2,2} \\
 \end{align*}
 with 
 \[
-\gamma_{i,i-1}, \gamma_{i,i} = \mathcal{O}(|\lambda| + e^{-\alpha X_m})
+\gamma_{i,i-1}, \gamma_{i,i} = \mathcal{O}(|\lambda|(|\lambda| + e^{-\alpha X_m}))
 \] 
 and $C_1$ is the periodic, banded matrix
 \begin{align*}
@@ -1623,10 +1644,15 @@ C_1 &= \begin{pmatrix}
 which has uniform bound
 \begin{align*}
 ||C_1|| &= 
-\mathcal{O}(e^{-(\alpha - \eta) X_m}(|\lambda| + e^{-\alpha X_m}))
+\mathcal{O}(e^{-\alpha X_m}|\lambda|(|\lambda| + e^{-\alpha X_m}))
 \end{align*}
 
-For the terms involving $D$, we separate out the terms of the form $e^{-\nu(\lambda)X_i} k_i (d_{i+1} - d_i)$, and place these in a matrix $\tilde{A}$, defined by
+\item For the terms involving $c$ without the exponential, we write them in matrix form as $C_2 c$, where
+\[
+C_2 = \mathcal{O}(|\lambda|e^{-\alpha X_m})
+\]
+
+\item For the terms involving $D$, we first separate out leading order terms $2 \lambda e^{-\nu(\lambda)X_i} \langle \tilde{W}_0, Q'(X_i) \rangle (d_{i+1} - d_i )$, and place them in a matrix $\tilde{A}$, defined by
 \begin{align*}
 \tilde{A} &= \begin{pmatrix}
 -e^{-\nu(\lambda)X_1} k_1 & e^{-\nu(\lambda)X_1} k_1 \\
@@ -1635,19 +1661,24 @@ For the terms involving $D$, we separate out the terms of the form $e^{-\nu(\lam
 & &  & -e^{-\nu(\lambda)X_0} k_0 & e^{-\nu(\lambda)X_0} k_0
 \end{pmatrix}
 \end{align*}
-Since $k_i = \mathcal{O}(e^{-2 \alpha X_i})$, we have the bound
+where
 \[
-\tilde{A} = \mathcal{O}(e^{-(2\alpha - \eta) X_m})
+k_i = 2 \lambda \langle \tilde{W}_0, Q'(X_i) \rangle
+\]
+Since $Q'(X_i) = \mathcal{O}(e^{-\alpha_0 X_i})$, $e^{-\nu(\lambda)X_i} k_i = \mathcal{O}(|\lambda|e^{-\alpha X_i})$, thus we have the uniform bound
+\[
+\tilde{A} = \mathcal{O}(|\lambda|e^{-\alpha X_m})
 \]
 
 Let $D_1$ be the matrix we get from the terms involving $d$ in $R^c(\lambda)_i(c, d)$. Then $D_1$ has uniform bound
 \begin{align*}
-D_1 &= \mathcal{O}((e^{-\alpha X_m}|\lambda| + |\lambda|^2) |d|)
+D_1 &= \mathcal{O}(|\lambda|(|\lambda| + e^{-\alpha X_m}|\lambda| + e^{-(2 \alpha - \eta) X_m })|d|)
 \end{align*}
+\end{enumerate}
 
 Combining everything, the center jump condition can be written in matrix form as
 \[
-(K(\lambda) + C_1 K(\lambda) + K_1(\lambda)) c + (\tilde{A} + D_1) d = 0
+(K(\lambda) + C_1 K(\lambda) + K_1(\lambda) + C_2) c + (\tilde{A} + D_1) d = 0
 \]
 \end{proof}
 \end{lemma}
