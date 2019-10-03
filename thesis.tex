@@ -85,17 +85,21 @@
 
 % \doublespacing % comment this for single-spacing (final version should be double-spaced)
 
-\begin{preliminaries}
+%%
+%% stuff specific to thesis, comment out for now
+%%
 
-\maketitle
+% \begin{preliminaries}
 
-\copyrightpage
+% \maketitle
 
-\begin{signature}
-  \director{Bj\"{o}rn Sandstede, Ph.D., Advisor}
-  \reader{SECOND READER, Ph.D., Reader}
-  \reader{THIRD READER, Ph.D., Reader}
-\end{signature}
+% \copyrightpage
+
+% \begin{signature}
+%   \director{Bj\"{o}rn Sandstede, Ph.D., Advisor}
+%   \reader{SECOND READER, Ph.D., Reader}
+%   \reader{THIRD READER, Ph.D., Reader}
+% \end{signature}
 
 % \begin{vita}\label{thesis:vita}
 %   \input{content/vita}
@@ -116,36 +120,41 @@
   % \thispagestyle{empty}
 % \end{abstract}
 
-\begin{spacing}{1} % single-spacing for these
-  \tableofcontents
-  \clearpage{\pagestyle{empty}\cleardoublepage}
+% \begin{spacing}{1} % single-spacing for these
+%   \tableofcontents
+%   \clearpage{\pagestyle{empty}\cleardoublepage}
 
-  \footnotesize
-  \fontsize{11.5pt}{12.5pt}\selectfont
-  \listoftables
-  \clearpage{\pagestyle{empty}\cleardoublepage}
+%   \footnotesize
+%   \fontsize{11.5pt}{12.5pt}\selectfont
+%   \listoftables
+%   \clearpage{\pagestyle{empty}\cleardoublepage}
 
-  \listoffigures
-  \clearpage{\pagestyle{empty}\cleardoublepage}
-  \normalsize
-\end{spacing}
+%   \listoffigures
+%   \clearpage{\pagestyle{empty}\cleardoublepage}
+%   \normalsize
+% \end{spacing}
 
-\end{preliminaries}
+% \end{preliminaries}
 
 %\pagestyle{myheadings}
 \pagestyle{plain}
 
 \fulldocumenttrue
 
-
 \mainmatter
 
-% chapter : KdV5
-\chapter{The 5th order KdV equation}
-% \subfile{kdv5}
-% \subfile{kdv5numerics}
+\chapter{The 5th order KdV equation: background and numerics}
+
+\subfile{kdv5}
+\subfile{kdv5numerics}
+
+\chapter{The 5th order KdV equation: generalization }
 \subfile{kdv5general}
-\subfile{gapconj}
+
+\chapter{The 5th order KdV equation: $n$-homoclinic solutions }
+
+\chapter{The 5th order KdV equation: $n$-periodic solutions }
+
 % \subfile{periodic}
 % \subfile{primarypulse}
 % \subfile{periodicexist}
