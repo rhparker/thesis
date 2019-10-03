@@ -432,10 +432,10 @@ We can easily derive an expression for the center projection.
 
 In fact, since $\Psi^(x) = W_0$ is a constant solution to the adjoint variational equation, we have a nicer form for the center projection, i.e. we can remove the term $P_\pm(x, 0)^{-1}$. THIS MIGHT NOT BE TRUE BUT IT SHOULD BE.
 
-\begin{lemma}\label
-For the trichotomies on $\R^\pm$, the center projection is given by {centerprojlemma}
+\begin{lemma}\label{centerprojlemma}
+For the trichotomies on $\R^\pm$, the center projection is given by 
 \begin{align}
-\tilde{P}^c_\pm(x) u &= \langle W_0, u \rangle V^c(x)
+\tilde{P}^c_\pm(x) U &= \langle W_0, U \rangle V^c(x)
 \end{align}
 \begin{proof}
 We will show this on $\R^+$. The result on $\R^-$ is similar. First, we show that it acts as the identity on $\C V^c(x)$. Since $\Psi^c(x) = W_0$ is a solution to the adjoint variational equation and $V^c(x)$ is solution to the variational equation, by Lemma \ref{eigadjoint}(i), the inner product $\langle \Psi^c(x), V^c(x) \rangle = \langle W_0, V^c(x) \rangle$ is constant. Sending $x \rightarrow \infty$ and using the continuity of the inner product, we have
@@ -463,11 +463,13 @@ We can use this to derive expansions which will be useful later.
 
 \begin{lemma}\label{W0projlemma}
 For all $U \in \R^{2m+1}$, we have the following.
-\begin{enumerate}
+\begin{enumerate}[(i)]
 	\item $\langle W_0, P_\pm(x, 0) P^{s/u}(0) U \rangle = 0$
 	\item $\langle W_0, \Theta_\pm(x, 0) P^{s/u}(0) U \rangle = 0$
-	\item $|\langle W_0(\lambda), \Theta_\pm(x, \lambda) P^{s/u}(\lambda) U \rangle | = \mathcal{O}(|\lambda|( e^{-\alpha_1 |x|} + |\lambda|)|U|)$
+	\item $\langle W_0(\lambda), \Theta_\pm(x, \lambda) P^{s/u}(\lambda) U \rangle  = \mathcal{O}(|\lambda|( e^{-\alpha_1 |x|} + |\lambda|)|U|)$
+	\item $\langle W_0, P_\pm(0; \lambda)P^{s/u}(0) U \rangle = \mathcal{O}(|\lambda||U|)$
 \end{enumerate}
+\begin{proof}
 By Lemma \ref{centerprojlemma}, the projection on the center subspace when $\lambda = 0$ is given by $\tilde{P}_\pm^c(x)U = \langle W_0, U \rangle V^c(x)$, thus $\langle W_0, U \rangle = 0$ for all $U$ in the range of the stable and unstable projections of the trichotomy, which are given by $P_\pm(x, 0) E^{s/u}(0)$. This proves (i). For (ii), 
 \begin{align*}
 \langle W_0, \Theta_\pm(x, 0) P^{s/u}(0) U\rangle &=
@@ -484,7 +486,16 @@ by part (i) and the fact that $\langle W_0, \cdot \rangle$ is the projection on 
 \mathcal{O}(|\lambda|( e^{-\alpha_1 |x|} + |\lambda|)|U|)\\
 &= \mathcal{O}(|\lambda|( e^{-\alpha_1 |x|} + |\lambda|)|U|) \\
 \end{align*}
-where for the last equality we used part (ii).
+where for the last equality we used part (ii). For (iv), we expand in $\lambda$ to get
+\begin{align*}
+\langle W_0, &P_\pm(0; \lambda)P^{s/u}(\lambda) U \rangle =
+\langle W_0, (P_\pm(0; 0) + \mathcal{O}(|\lambda|))(P^{s/u}(0) + \mathcal{O}(|\lambda|)) U) \\
+&= \langle W_0, P_\pm(0; 0) P^{s/u}(0)U \rangle + \mathcal{O}(|\lambda||U|) \\
+&= \langle W_0, \tilde{P}_\pm(0) U \rangle + \mathcal{O}(|\lambda||U|) \\
+&= \mathcal{O}(|\lambda||U|) 
+\end{align*}
+where in the last line we used Lemma \ref{centerprojlemma}.
+\end{proof}
 \end{lemma}
 
 \subsection{Solutions in center subspace}\label{sec:centersol}
@@ -1219,13 +1230,16 @@ P_-&(0; \lambda) Z_i^-(0) = P_-(0; 0)( x_i^- + y_i^- + P_0^c(0) e^{\nu(\lambda) 
 &+ P_-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) a_{i-1}^- + (P_-(0; \lambda) - P_-(0; 0))b_i^- + P_-(0; \lambda)(P_0^u(\lambda) - P_0^u(0))b_i^- \\
 &+ (P_-(0; \lambda) - P_-(0; 0)) P_0^c(0) e^{\nu(\lambda) X_{i-1}} c_{i-1} + P_-(0; \lambda) (P_0^c(\lambda) - P_0^c(0)) e^{\nu(\lambda) X_{i-1}} c_{i-1} \\
 &+ P_-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^s(0, y; \lambda) [P_-(y; \lambda)^{-1} G_i^-(y) P_-(y; \lambda)Z_i^-(y) + \lambda^2 d_i P_-(y; \lambda)^{-1} \tilde{H}_i^-(y)] dy \\
-&+ P_-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) [P_-(y; \lambda)^{-1} G_i^-(y) P_-(y; \lambda)Z_i^-(y) + \lambda^2 d_i P_-(y; \lambda)^{-1} \tilde{H}_i^-(y)] dy  \\ 
+&+ P_-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) [P_-(y; \lambda)^{-1} G_i^-(y) P_-(y; \lambda)Z_i^-(y) + \lambda^2 d_i P_-(y; \lambda)^{-1} \tilde{H}_i^-(y)] dy 
+\end{align*}
+and
+\begin{align*}
 P_+&(0; \lambda) Z_i^+(0) = P_+(0; 0)( x_i^+ + y_i^+ + P_0^c(0) e^{-\nu(\lambda)X_i} c_i + P_0^c(0) e^{-\nu(\lambda)X_i} \tilde{c}_i )\\
 &+ P_+(0; \lambda) \Phi^u(0, X_i; \lambda) a_i^+ + (P_+(0; \lambda) - P_+(0; 0)) b_i^+ + P_+(0; \lambda) (P_0^s(\lambda) - P_0^s(0)) b_i^+ \\
 &+ (P_+(0; \lambda) - P_+(0; 0))P_0^c(0) e^{-\nu(\lambda)X_i} c_i + P_+(0; \lambda) (P_0^c(\lambda) - P_0^c(0)) e^{-\nu(\lambda)X_i} c_i \\
 &+ (P_+(0; \lambda) - P_+(0; 0))P_0^c(0) e^{-\nu(\lambda)X_i} \tilde{c}_i + P_+(0; \lambda) (P_0^c(\lambda) - P_0^c(0)) e^{-\nu(\lambda)X_i} \tilde{c}_i \\
-&+ P_i^+(0; \lambda) \int_{X_i}^0 \Phi^u(0, y; \lambda) [P_+(y; \lambda)^{-1} G_i^+(y) P_+(y; \lambda) Z_i^+(y) + \lambda^2 d_i P_+(y; \lambda)^{-1} \tilde{H}_i^+(y)] dy \\
-&+ P_i^+(0; \lambda) \int_{X_i}^0 \Phi^c(0, y; \lambda) [P_+(y; \lambda)^{-1} G_i^+(y) P_+(y; \lambda) Z_i^+(y) + \lambda^2 d_i P_+(y; \lambda)^{-1} \tilde{H}_i^+(y)] dy \\
+&+ P_+(0; \lambda) \int_{X_i}^0 \Phi^u(0, y; \lambda) [P_+(y; \lambda)^{-1} G_i^+(y) P_+(y; \lambda) Z_i^+(y) + \lambda^2 d_i P_+(y; \lambda)^{-1} \tilde{H}_i^+(y)] dy \\
+&+ P_+(0; \lambda) \int_{X_i}^0 \Phi^c(0, y; \lambda) [P_+(y; \lambda)^{-1} G_i^+(y) P_+(y; \lambda) Z_i^+(y) + \lambda^2 d_i P_+(y; \lambda)^{-1} \tilde{H}_i^+(y)] dy \\
 \end{align*}
 
 With this setup, the projections on $Q'(0)$ and $Y^+ \oplus Y^-$ will either eliminate or act as the identity on the terms in the first lines of $P_i^-(0; \lambda) Z_i^-(0)$ and $P_i^+(0; \lambda) Z_i^+(0)$. Thus, applying the projections in \eqref{centercond2}, we obtain an expression of the form
@@ -1366,7 +1380,8 @@ Finally, we plug in $B_1$ into the bound for $C_2$ to get $C_4$ with bound
 \end{lemma}
 
 \subsection{Jump Conditions}
-Up to this point, we have solved uniquely for $a$, $b$, and $c^+$. We will not be able to obtain a unique solution for $c_i^-$ and $d$. We will instead compute the jump conditions in the direction of $\Psi(0)$ and $\Psi^c(0)$. Obtaining a nontrivial solution for $c_i^-$ and $d$ will be equivalent to these jump conditions being 0.
+
+Up to this point, we have solved uniquely for $a$, $b$, and $\tilde{c}$. We will not be able to obtain a unique solution for $c$ and $d$. We will instead compute jump conditions in the direction of $\Psi(0)$ and $\Psi^c(0)$. Obtaining a nontrivial solution for $c_i$ and $d$ will be equivalent to these jump conditions being 0.
 
 First, we compute the jump in the direction of $\Psi^c(0)$. Before we do that, we prove the following lemma regarding inner products with $\Psi^c(0)$ and $\Psi(0)$.
 
@@ -1393,23 +1408,6 @@ Thus $\langle \Phi^c(0), P^-(0) V \rangle = V$ for all $V \in E^c(0)$. The same 
 For (ii), we use the same argument as in (i), except we look at the inner product $\langle \Phi(x), W^-(x) \rangle$. Since this is constant in $x$, we send $x \rightarrow \infty$. This time, $W^-(x)$ remains bounded, but $\Phi(x)$ decays to 0, thus by the continuity of the inner product, we conclude that $\langle \Phi(0), W^-(0) \rangle = 0$, from which (ii) follows.
 
 For (iii) and (iv), we note that $P^-(0)E^u = \C Q'(0) \oplus Y^-$ and $P^+(0)E^u = \C Q'(0) \oplus Y^+$. The result follows since $\Psi^c(0), \Psi(0) \perp \C Q'(0) \oplus Y^+ \oplus Y^-$.
-\end{proof}
-\end{lemma}
-
-We also have the following lemma.
-
-\begin{lemma}\label{Ecconj}
-For $c \in E^c(\lambda)$, 
-\begin{align*}
-P_i^-(0; \lambda)c &= c V^-(0; \lambda) + \mathcal{O}(e^{-2\alpha X_m}) \\
-P_i^+(0; \lambda)c &= c V^+(0; \lambda) + \mathcal{O}(e^{-2\alpha X_m})
-\end{align*}
-\begin{proof}
-From \eqref{PTaylorlambda} and the conjugation, we have
-\begin{align*}
-P_i^-(0; \lambda)c &= P^-(0; \lambda)c + \mathcal{O}(e^{-2\alpha X_m}) \\
-&= c V^-(0; \lambda) + \mathcal{O}(e^{-2\alpha X_m})
-\end{align*}
 \end{proof}
 \end{lemma}
 
@@ -1464,127 +1462,83 @@ D_1 &= \mathcal{O}((e^{-\alpha X_m}|\lambda| + |\lambda|^2) |d|)
 $K_1(\lambda)$ has the same form as $K(\lambda)$, but each term in $K(\lambda)$ has been multiplied by a factor of order $\mathcal{O}(|\lambda| + e^{-\alpha X_m})$. The specific forms of $K_1(\lambda)$ and $C_1$ are given in the proof.
 
 \begin{proof}
-From Lemma \ref{Zinv2}, $P_i^\pm(0; \lambda) Z_i^\pm(0)$ are given by
+Recall that $\Psi^c(0) = W_0$. From Lemma \ref{Zinv2}, $P_i^\pm(0; \lambda) Z_i^\pm(0)$ are given by\begin{align*}
+P_-&(0; \lambda) Z_i^-(0) = P_-(0; 0)( b_i^- + P_0^c(0) e^{\nu(\lambda) X_{i-1}} c_{i-1} ) \\
+&+ P_-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) a_{i-1}^- + (P_-(0; \lambda) - P_-(0; 0))b_i^- + P_-(0; \lambda)(P_0^u(\lambda) - P_0^u(0))b_i^- \\
+&+ (P_-(0; \lambda) - P_-(0; 0)) P_0^c(0) e^{\nu(\lambda) X_{i-1}} c_{i-1} + P_-(0; \lambda) (P_0^c(\lambda) - P_0^c(0)) e^{\nu(\lambda) X_{i-1}} c_{i-1} \\
+&+ P_-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^s(0, y; \lambda) [P_-(y; \lambda)^{-1} G_i^-(y) P_-(y; \lambda)Z_i^-(y) + \lambda^2 d_i P_-(y; \lambda)^{-1} \tilde{H}_i^-(y)] dy \\
+&+ P_-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) [P_-(y; \lambda)^{-1} G_i^-(y) P_-(y; \lambda)Z_i^-(y) + \lambda^2 d_i P_-(y; \lambda)^{-1} \tilde{H}_i^-(y)] dy
+\end{align*}
+and
 \begin{align*}
-P_i^-(0; \lambda) Z_i^-(0) &= P^-(0) b_i^- + P_i^-(0; \lambda) e^{\nu(\lambda) X_{i-1}} c_{i-1} \\
-&+ P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) a_{i-1}^- + (P_i^-(0; \lambda) - P^-(0))b_i^- + P_i^-(0; \lambda)(P_0^u(\lambda) - P_0^u(0))b_i^- \\
-&+ \lambda^2 d_i P_i^-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^s(0, y; \lambda) P_i^-(y; \lambda)^{-1} \tilde{H}_i^-(y) dy \\
-&+ \lambda^2 d_i P_i^-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_i^-(y; \lambda)^{-1} \tilde{H}_i^-(y) dy  \\ 
-P_i^+(0; \lambda) Z_i^+(0) &=  P^+(0) b_i^+ + P_i^+(0; \lambda) e^{-\nu(\lambda)X_i} c_i \\
-&+ P_i^+(0; \lambda) \Phi^u(0, X_i; \lambda) a_i^+ + (P_i^+(0; \lambda) - P^+(0)) b_i^+ + P_i^+(0; \lambda) (P_0^s(\lambda) - P_0^s(0)) b_i^+ \\
-&+ P_i^+(0; \lambda) e^{-\nu(\lambda)X_i} \tilde{c}_i \\
-&+ \lambda^2 d_i P_i^+(0; \lambda) \int_{X_i}^0 \Phi^u(0, y; \lambda) P_i^+(y; \lambda)^{-1} \tilde{H}_i^+(y) dy \\
-&+ \lambda^2 d_i P_i^+(0; \lambda) \int_{X_i}^0 \Phi^c(0, y; \lambda) P_i^+(y; \lambda)^{-1} \tilde{H}_i^+(y) dy
+P_+&(0; \lambda) Z_i^+(0) = P_+(0; 0)( b_i^+ + P_0^c(0) e^{-\nu(\lambda)X_i} c_i + P_0^c(0) e^{-\nu(\lambda)X_i} \tilde{c}_i )\\
+&+ P_+(0; \lambda) \Phi^u(0, X_i; \lambda) a_i^+ + (P_+(0; \lambda) - P_+(0; 0)) b_i^+ + P_+(0; \lambda) (P_0^s(\lambda) - P_0^s(0)) b_i^+ \\
+&+ (P_+(0; \lambda) - P_+(0; 0))P_0^c(0) e^{-\nu(\lambda)X_i} c_i + P_+(0; \lambda) (P_0^c(\lambda) - P_0^c(0)) e^{-\nu(\lambda)X_i} c_i \\
+&+ (P_+(0; \lambda) - P_+(0; 0))P_0^c(0) e^{-\nu(\lambda)X_i} \tilde{c}_i + P_+(0; \lambda) (P_0^c(\lambda) - P_0^c(0)) e^{-\nu(\lambda)X_i} \tilde{c}_i \\
+&+ P_+(0; \lambda) \int_{X_i}^0 \Phi^u(0, y; \lambda) [P_+(y; \lambda)^{-1} G_i^+(y) P_+(y; \lambda) Z_i^+(y) + \lambda^2 d_i P_+(y; \lambda)^{-1} \tilde{H}_i^+(y)] dy \\
+&+ P_+(0; \lambda) \int_{X_i}^0 \Phi^c(0, y; \lambda) [P_+(y; \lambda)^{-1} G_i^+(y) P_+(y; \lambda) Z_i^+(y) + \lambda^2 d_i P_+(y; \lambda)^{-1} \tilde{H}_i^+(y)] dy \\
 \end{align*}
 
-The terms involving $c$ and $\tilde{c}$ are the leading order terms in the jump condition. Using Lemmas \ref{Vpmlambdalemma} and \ref{Ecconj}, we have
+The leading order terms are those involving $c$ and $\tilde{c}$. For the leading order terms involving $c$, 
 \begin{align*}
-\langle \Psi^c(0), P_i^-(0; \lambda) e^{\nu(\lambda) X_{i-1}} c_{i-1} \rangle &= \langle \Psi^c(0), V^+(0; \lambda) e^{\nu(\lambda) X_{i-1}} c_{i-1} \rangle + \mathcal{O}(e^{-2 \alpha X_m}|e^{\nu(\lambda) X_{i-1}} c_{i-1}|) \\
-&= e^{\nu(\lambda) X_{i-1}} c_{i-1} + \mathcal{O}((|\lambda| + e^{-2 \alpha X_m})|e^{\nu(\lambda) X_{i-1}} c_{i-1}|)
+\langle W_0, P_-(0; 0) P_0^c e^{\nu(\lambda) X_{i-1}} c_{i-1} \rangle &= \langle W_0, V^c(0) e^{\nu(\lambda) X_{i-1}} c_{i-1} \rangle \\
+&= e^{\nu(\lambda) X_{i-1}} c_{i-1}
 \end{align*}
 Similarly,
 \begin{align*}
-\langle \Psi^c(0), P_i^+(0; \lambda) e^{-\nu(\lambda) X_i} c_i \rangle &= e^{-\nu(\lambda) X_i} c_i + \mathcal{O}((|\lambda| + e^{-2 \alpha X_m})|e^{-\nu(\lambda) X_i} c_i|)
+\langle W_0, P_+(0; 0) P^c(0) e^{-\nu(\lambda) X_i} c_i \rangle &= e^{-\nu(\lambda) X_i} c_i 
 \end{align*}
-For the term involving $\tilde{c}$, we have
+For the term involving $\tilde{c}$, using the expression from Lemma \ref{Zinv2}, we have
 \begin{align*}
-\langle \Psi^c(0), P_i^+(0; \lambda) e^{-\nu(\lambda) X_i} \tilde{c}_i \rangle &= e^{-\nu(\lambda) X_i} \tilde{c}_i + \mathcal{O}((|\lambda| + e^{-2 \alpha X_m})|e^{-\nu(\lambda) X_i} c_i|)
-\end{align*}
-Using $\tilde{c}_i = k_i (d_{i+1} - d_i) + C_4(\lambda)_i(c, d) )$ from Lemma \ref{Zinv2}, this becomes
-\begin{align*}
-\langle \Psi^c(0), &P_i^+(0; \lambda) e^{-\nu(\lambda) X_i} \tilde{c}_i \rangle = e^{-\nu(\lambda) X_i} k_i (d_{i+1} - d_i ) \\
-&+ \mathcal{O}\Big(  
-e^{-2\alpha X_i} (|\lambda| + e^{-\alpha X_m})(|e^{\nu(\lambda)X_{i-1}} c_{i-1}| + |e^{-\nu(\lambda)X_{i+1}}c_{i+1}|) \\
-&+ (|\lambda| + e^{-\alpha X_m})|e^{-\nu(\lambda) X_i} c_i| + e^{-\alpha X_i}|\lambda||d| \Big)
+\langle &\Psi^c(0), P_i^+(0; 0) P_0^c(0) e^{-\nu(\lambda)X_i} \tilde{c}_i \rangle
+= 2 \lambda \langle \tilde{W}_0, Q'(X_i) \rangle (d_{i+1} - d_i ) \\
+&+ \mathcal{O}\Big( |\lambda| e^{-(\alpha - \eta) X_i} \Big( (|\lambda| + e^{-\alpha X_m})(|e^{\nu(\lambda)X_{i-1}} c_{i-1}| + |e^{-\nu(\lambda)X_{i+1}}c_{i+1}|) + |c_i| + (|D_i| + |\lambda|)|d| \Big)
 \end{align*}
 
 The rest of the terms are higher order.
 \begin{enumerate}
 
-\item For the terms involving $a$, we use the expressions from Lemma \ref{Zinv2}.
+\item For the terms involving $a$, we use the bound $A_3$ together with Lemma \ref{centerprojlemma}(iv) and the exponential dichotomy evolution bounds to get
 \begin{align*}
-\langle &\Psi^c(0), P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) a_{i-1}^- \rangle \\
-&= -\langle \Psi^c(0), P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) P_i^-(-X_{i-1}; \lambda)^{-1} P_0^s(\lambda) D_{i-1} d \rangle \\
-&+ \langle \Psi^c(0), P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) A_4(\lambda)_{i-1}^-(c, d) \rangle \\
-&= -\langle \Psi^c(0), \Theta_i^s(0, -X_{i-1}; \lambda) P_0^s(0) D_{i-1} d \rangle + \langle \Psi^c(0), P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) A_4(\lambda)_{i-1}^-(c, d) \rangle \\
-&+ \mathcal{O}(e^{-2 \alpha X_m}|\lambda|)
-\end{align*}
-For the first term on the RHS, using the expression for $D_{i-1}d$ from Lemma \ref{stabestimates}, we have
+|P_-(0; \lambda) &\Phi^s(0, -X_{i-1}; \lambda) a_{i-1}^-| \\
+&\leq C |\lambda| e^{-\alpha X_{i-1}} \Big(  
+e^{-\alpha X_{i-1}} (|\lambda| + e^{-\alpha X_m})(|e^{\nu(\lambda)X_{i-2}} c_{i-2}| + |e^{-\nu(\lambda)X_i} c_i |) \\
+&+ e^{-(\alpha - \eta)X_i}|c_{i-1}| + e^{-\alpha X_{i-1}} e^{-\alpha X_m}(|c_{i-2}| + |c_i|) + e^{-\alpha X_{i-1}} |\lambda^2||d| + |D_{i-1}||d| \Big)
+\end{align*} 
+and
 \begin{align*}
-\langle &\Psi^c(0), \Theta_i^s(0, -X_{i-1}; \lambda) P_0^s(0) D_{i-1} d \rangle \\
-&= \langle \Psi^c(0), \Theta_i^s(0, -X_{i-1}; \lambda) P_0^s(0) ( Q'(X_{i-1}) + Q'(-X_{i-1}) + Q^R(X_{i-1}))(d_i - d_{i-1}) \\
-&+ \mathcal{O} \left( |\lambda| e^{-\alpha X_{i-1}} |d| \right) \rangle \\
-&= \langle \Psi^c(0), \Theta^s(0, -X_{i-1}; 0) P_0^s(0) ( Q'(X_{i-1}) + Q'(-X_{i-1}))(d_i - d_{i-1})\rangle \\
-&+ \mathcal{O}( e^{-2 \alpha X_m} ( |\lambda| +  e^{-\alpha X_m} ) |d|)
-\end{align*}
-For the term involving $Q'(-X_{i-1})$, we have
-\begin{align*}
-\langle \Psi^c(0), &\Theta^s(0, -X_{i-1}; 0) P_0^s(0) Q'(-X_{i-1}) \rangle \\
-&= \langle \Psi^c(0), \Theta^s(0, -X_{i-1}; 0) P_0^s(0) P^u_-(-X_{i-1}) Q'(-X_{i-1}) \rangle \\
-&= \langle \Psi^c(0), \Theta^s(0, -X_{i-1}; 0) P_0^s(0) P_0^u(0) Q'(-X_{i-1}) \rangle + \mathcal{O}(e^{-3 \alpha X_m}) \\
-&= \mathcal{O}(e^{-3 \alpha X_m})
-\end{align*}
-For the term involving $Q'(X_{i-1})$, we have
-\begin{align*}
-\langle \Psi^c(0), &\Theta^s(0, -X_{i-1}; 0) P_0^s(0) Q'(X_{i-1}) \rangle \\
-&= \langle \Psi^c(0), \Theta^s(0, -X_{i-1}; 0) P^s_+(X_{i-1}) Q'(X_{i-1}) \rangle + \mathcal{O}(e^{-3 \alpha X_m}) \\
-&= \langle \Psi^c(0), \Theta(0, -X_{i-1}; 0) P^s_-(-X_{i-1}) Q'(X_{i-1}) \rangle + \mathcal{O}(e^{-3 \alpha X_m}) \\
-&= \langle \Psi^c(-X_{i-1}), P^s_-(-X_{i-1}) Q'(X_{i-1}) \rangle + \mathcal{O}(e^{-3 \alpha X_m}) \\
-&= P^c_-(-X_{i-1}) P^s_-(-X_{i-1}) Q'(X_{i-1}) + \mathcal{O}(e^{-3 \alpha X_m}) \\
-&= \mathcal{O}(e^{-3 \alpha X_m}) \\
-\end{align*}
-Combining all of these gives us
-\begin{align*}
-\langle &\Psi^c(0), \Theta_i^s(0, -X_{i-1}; \lambda) P_0^s(0) D_{i-1} d \rangle = \mathcal{O}( e^{-2 \alpha X_m} ( |\lambda| +  e^{-\alpha X_m} ) |d|)
-\end{align*}
-For the term involving $A_4$, we use the bound from Lemma \ref{Zinv2} to get
-\begin{align*}
-\langle \Psi^c(0), &P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) A_4(\lambda)_{i-1}^-(c, d) \rangle \\
-&\leq C e^{-\alpha X_{i-1}} \Big(  
-e^{-\alpha X_{i-1}} (|\lambda| + e^{-\alpha X_m})(|e^{\nu(\lambda)X_{i-2}} c_{i-2}| + |e^{-\nu(\lambda)X_i}c_i|) \\
-&+ e^{-(\alpha - \eta)X_{i-1}}|c_{i-1}| + e^{-\alpha X_m} |\lambda^2||d| + e^{-\alpha X_m}|D||d| \Big)
-\end{align*}
-Combining all of these, we have for the $a_{i-1}^-$ term,
-\begin{align*}
-\langle &\Psi^c(0), P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) a_{i-1}^- \rangle \\
-&= \mathcal{O}\Big(  
-e^{-2 \alpha X_{i-1}} (|\lambda| + e^{-\alpha X_m})(|e^{\nu(\lambda)X_{i-2}} c_{i-2}| + |e^{-\nu(\lambda)X_i}c_i|) + e^{-(2 \alpha - \eta)X_{i-1}}|c_{i-1}| \\
-&+ e^{-2 \alpha X_m} 
-(|\lambda| + e^{-\alpha X_m}) |d| )
-\end{align*}
-Similarly, for the $a_i^+$ term, we have
-\begin{align*}
-\langle &\Psi^c(0), P_i^+(0; \lambda) \Phi^u(0, X_i; \lambda) a_i^+ \rangle \\
-&= \mathcal{O}\Big(  
-e^{-2 \alpha X_i} (|\lambda| + e^{-\alpha X_m})(|e^{\nu(\lambda)X_{i-1}} c_{i-1}| + |e^{-\nu(\lambda)X_{i+1}}c_{i+1}|) + e^{-(2 \alpha - \eta)X_i}|c_i| \\
-&+ e^{-2 \alpha X_m} 
-(|\lambda| + e^{-\alpha X_m}) |d| )
+|P_+(0; \lambda) &\Phi^u(0, X_i; \lambda) a_i^+| \\
+&\leq C |\lambda| e^{-\alpha X_i} \Big( e^{-\alpha X_i} (|\lambda| + e^{-\alpha X_m})(|e^{\nu(\lambda)X_{i-1}} c_{i-1}| + |e^{-\nu(\lambda)X_{i+1}}c_{i+1}|) \\
+&+ e^{-(\alpha - \eta)X_i}|c_i| + e^{-\alpha X_i} e^{-\alpha X_m}(|c_{i-1}| + |c_{i+1}|) + e^{-\alpha X_i} |\lambda^2||d| + |D_i||d| \Big)
 \end{align*}
 
-\item For the integral terms involving the center subspace, we use the estimate from Lemma \ref{stabestimates} to get 
+\item For the terms involving $b$, the terms $P_-(0; 0) b_i^-$ and $P_+(0, 0)b_i^+$ are eliminated outright when we take the inner product with $W_0$. For the other terms, we use the estimate for $B_1$ from Lemma \ref{Zinv2}.
 \begin{align*}
-&\left| \langle \Psi^c(0), P_i^-(0; \lambda) \lambda^2 d_i \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_i^-(y; \lambda) \tilde{H}_i^-(y) dy \rangle \right| \\
-&\leq C |\lambda|^2 |d_i| \int_{-X_{i-1}}^0 e^{-|\nu(\lambda)|y}e^{\alpha y} dy \\
-&\leq C |\lambda|^2 |d| \int_{-X_{i-1}}^0 e^{\tilde{\alpha} y} dy \\
+|(P_-&(0; \lambda) - P_-(0; 0))b_i^- + P_-(0; \lambda)(P_0^u(\lambda) - P_0^u(0))b_i^-| \\
+&\leq C |\lambda| \Big( (|\lambda| + e^{-\alpha X_m})(|e^{\nu(\lambda)X_{i-1}} c_{i-1}| + |e^{-\nu(\lambda)X_i} c_i|) \\
+&+ e^{-\alpha X_m}(|c_{i-1}| + |c_i|) + (|\lambda| + e^{-\alpha X_m})^2 |d|  \Big)
+\end{align*}
+
+\item For the integral terms, we only need to bound the integrals involving the center subspace, since these will have weaker bounds than the integrals involving the stable and unstable subspaces. For the integrals involving $Z$, we use the estimates we derived in Lemma \ref{Zinv2} together with the estimates $Z_3$ from Lemma \ref{Zinv2}.
+\begin{align*}
+&\left| P_+(0; \lambda) \int_{X_i}^0 \Phi^c(0, y; \lambda) P_+(y; \lambda)^{-1} G_i^+(y) P_+(y; \lambda) Z_i^+(y) dy\right| \\
+&\leq C e^{-\alpha X_m}\Big(|c_i| + e^{-\alpha X_m}(|c_{i-1}| + e^{-\alpha X_i} |c_{i+1}|) + e^{-(\alpha - \eta) X_m}|\lambda|^2|d| + |D_i||d|) \\
+&+ |e^{-\nu(\lambda)X_i} c_i| + (|\lambda| + e^{-\alpha X_m})(|e^{\nu(\lambda)X_{i-1}} c_{i-1}| + e^{-\alpha X_i} |e^{-\nu(\lambda)X_{i+1}} c_{i+1}|)\Big)
+\end{align*}
+and
+\begin{align*}
+&\left| P_-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_-(y; \lambda)^{-1} G_i^-(y) P_-(y; \lambda)Z_i^-(y) dy \right| \\
+&\leq C\Big(|c_{i-1}| + e^{-\alpha X_m}(|c_i| + e^{-\alpha X_i} |c_{i-2}|) + e^{-(\alpha - \eta) X_m}|\lambda|^2|d| + |D_{i-1})|d| \\
+&+ |e^{\nu(\lambda)X_{i-1}}c_{i-1}| + (|\lambda| + e^{-\alpha X_m})(|e^{-\nu(\lambda)X_i} c_i| + e^{-\alpha X_i} |e^{\nu(\lambda)X_{i-2}} c_{i-2}|)\Big)
+\end{align*}
+
+For the integrals not involving $Z$, we use the estimate we derived in Lemma \ref{Zinv2} to get 
+\begin{align*}
+\left| \langle W_0, P_-(0; \lambda) \lambda^2 d_i \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_-(y; \lambda) \tilde{H}_i^-(y) dy \rangle \right| 
 &\leq C |\lambda|^2 |d|
 \end{align*}
 The other one is similar.
 
-\item For the non-center integral terms, we have the bound
-\begin{align*}
-&\left| P_i^-(0; \lambda) \lambda^2 d_i
-\int_{-X_{i-1}}^0 \Phi^s(0, y; \lambda) P^-(y; \beta_i^-, \lambda)^{-1} \tilde{H}_i^-(y) dy \right| \\
-&\leq C |\lambda|^2 |d_i| \int_{-X_{i-1}}^0 e^{\alpha_0 y} e^{\alpha_0 y} dy \\
-&\leq C |\lambda|^2 |d|
-\end{align*}
-the other one is similar.
-
-\item For the terms involving $b$, note that by Lemma \ref{PsiIP}, the terms $P^-(0) b_i^-$ and $P^+(0)b_i^+$ are eliminated outright when we take the inner product with $\Psi^c(0)$. For the other terms, we use the estimate for $B_1$ from Lemma \ref{Zinv2}.
-\begin{align*}
-&|(P_i^-(0; \lambda) - P^-(0))b_i^- + P_i^-(0; \lambda)(P_0^u(\lambda) - P_0^u(0))b_i^-| \\
-&\leq C(|\lambda| + e^{-\alpha X_m}) |B_1(c, d)| \\
-&\leq C(|\lambda| + e^{-\alpha X_m}) \Big( (|\lambda| + e^{-\alpha X_m})(|e^{\nu(\lambda)X_{i-1}}c_{i-1}| + |e^{-\nu(\lambda)X_i}c_i|)+ (|\lambda| + e^{-\alpha X_m})^2 |d| \Big)
-\end{align*}
 \end{enumerate}
 
 Putting all of this together, we obtain the center jump expressions
