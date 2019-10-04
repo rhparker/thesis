@@ -467,7 +467,7 @@ For all $U \in \R^{2m+1}$, we have the following.
 	\item $\langle W_0, P_\pm(x, 0) P^{s/u}(0) U \rangle = 0$
 	\item $\langle W_0, \Theta_\pm(x, 0) P^{s/u}(0) U \rangle = 0$
 	\item $\langle W_0(\lambda), \Theta_\pm(x, \lambda) P^{s/u}(\lambda) U \rangle  = \mathcal{O}(|\lambda|( e^{-\alpha_1 |x|} + |\lambda|)|U|)$
-	\item $\langle W_0, P_\pm(0; \lambda)P^{s/u}(0) U \rangle = \mathcal{O}(|\lambda||U|)$
+	\item $\langle W_0, P_\pm(0; \lambda) P^{s/u}(0) U \rangle = \mathcal{O}(|\lambda||U|)$
 	\item $P^c(0) G_i^\pm(x) U = \langle W_0, G_i^\pm(x) U\rangle = 0$
 \end{enumerate}
 \begin{proof}
@@ -495,7 +495,7 @@ where for the last equality we used part (ii). For (iv), we expand in $\lambda$ 
 &= \langle W_0, \tilde{P}_\pm(0) U \rangle + \mathcal{O}(|\lambda||U|) \\
 &= \mathcal{O}(|\lambda||U|) 
 \end{align*}
-where in the last line we used Lemma \ref{centerprojlemma}. For (v), since the bottom row of $G_i^\pm(x)$ is all zeros, the last component of $G_i^\pm(x) U$ is 0 for all $U$. It follows that $\langle W_0, G_i^\pm(x) U\rangle = 0$.
+where in the last line we used Lemma \ref{centerprojlemma}. For (v), since the bottom row of $G_i^\pm(x)$ is all zeros, the last component of $G_i^\pm(x) U$ is 0 for all $U$. It follows that $\langle W_0, G_i^\pm(x) U\rangle = 0$. 
 \end{proof}
 \end{lemma}
 
@@ -1464,7 +1464,7 @@ The matrices have uniform bounds
 \tilde{A} &= \mathcal{O}(|\lambda| e^{-\alpha X_m}) \\
 C_1 &= \mathcal{O}(|\lambda|e^{-\alpha X_m}(|\lambda| + e^{-\alpha X_m})) \\
 C_2 &= \mathcal{O}(|\lambda|e^{-\alpha X_m}) \\
-D_1 &= \mathcal{O}(|\lambda|(|\lambda| + e^{-\alpha X_m}|\lambda| + e^{-(2 \alpha - \eta) X_m })|d|)
+D_1 &= \mathcal{O}(|\lambda|(|\lambda| + e^{-\alpha X_m})^2|d|)
 \end{align*}
 $K_1(\lambda)$ has the same form as $K(\lambda)$, but each term in $K(\lambda)$ has been multiplied by a factor of order $\mathcal{O}(|\lambda|(|\lambda| + e^{-\alpha X_m}))$. The specific forms of $K_1(\lambda)$ and $C_1$ are given in the proof.
 
@@ -1526,14 +1526,14 @@ and
 &+ e^{-\alpha X_m}(|c_{i-1}| + |c_i|) + (|\lambda| + e^{-\alpha X_m})^2 |d|  \Big)
 \end{align*}
 
-\item For the integral terms, we only need to bound the integrals involving the center subspace, since these will have weaker bounds than the integrals involving the stable and unstable subspaces. For the integrals involving $Z$, 
+\item We will do the center integrals first. In both cases, when $\lambda = 0$, the integrands are eliminated by the center projection. For the integrals involving $Z$, we first evaluate
 \begin{align*}
 P_+(0; \lambda) &\Phi^c(0, y; \lambda) P_+(y; \lambda)^{-1} G_i^+(y) P_+(y; \lambda) Z_i^+(y) \\
 &= P_+(0; 0) \Phi^c(0, y; 0) P_+(y; 0)^{-1} G_i^+(y) P_+(y; \lambda) Z_i^+(y) + \mathcal{O}(e^{\eta y}|\lambda||G_i^+(y) Z_i^+(y)|) \\
 &= e^{-\nu(\lambda) y} P_+(0; 0) P_+(y; 0)^{-1} G_i^+(y) P_+(y; \lambda) Z_i^+(y) + \mathcal{O}(e^{\eta y}|\lambda||G_i^+(y) Z_i^+(y)|) \\
 &= e^{-\nu(\lambda) y} G_i^+(y) P_+(y; \lambda) Z_i^+(y) + \mathcal{O}(e^{\eta y}|\lambda||G_i^+(y) Z_i^+(y)|)
 \end{align*}
-By Lemma \ref{W0projlemma}, 
+Since the bottom row of $G_i^\pm(y)$ is all zeros for all $y$, 
 \[
 \langle W_0, e^{-\nu(\lambda) y} G_i^+(y) P_+(y; \lambda) Z_i^+(y) \rangle = 0
 \]
@@ -1550,12 +1550,36 @@ Similarly,
 &+ |e^{\nu(\lambda)X_{i-1}}c_{i-1}| + (|\lambda| + e^{-\alpha X_m})(|e^{-\nu(\lambda)X_i} c_i| + e^{-\alpha X_i} |e^{\nu(\lambda)X_{i-2}} c_{i-2}|)\Big)
 \end{align*}
 
-For the integrals not involving $Z$, we use the estimate we derived in Lemma \ref{Zinv2} to get 
+For the integrals not involving $Z$, we first evaluate
 \begin{align*}
-\left| \langle W_0, P_-(0; \lambda) \lambda^2 d_i \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_-(y; \lambda) \tilde{H}_i^-(y) dy \rangle \right| 
-&\leq C |\lambda|^2 |d|
+P_-&(0; \lambda) \Phi^c(0, y; \lambda) P_-(y; \lambda) \tilde{H}_i^-(y) \\
+&= P_-(0; 0) \Phi^c(0, y; 0) P_-(y; 0) \tilde{H}_i^-(y) + \mathcal{O}(e^{-\eta y}|\lambda||\tilde{H}_i^-(y)|) \\
+&= e^{-\nu(\lambda) y} P_+(0; 0) P_+(y; 0)^{-1}\tilde{H}_i^-(y) + \mathcal{O}(e^{-\eta y}|\lambda||\tilde{H}_i^-(y)|)  \\
+&= e^{-\nu(\lambda) y} \tilde{H}_i^-(y) + \mathcal{O}(e^{-\eta y}|\lambda||\tilde{H}_i^-(y)|) 
 \end{align*}
-The other one is similar.
+Since the last component of $\tilde{H}_i^\pm(y)$ is 0 for all $y$,
+\[
+\langle W_0, e^{-\nu(\lambda) y} \tilde{H}_i^-(y) \rangle = 0
+\]
+Thus we have
+\begin{align*}
+&\left| \langle W_0, P_-(0; \lambda) \lambda^2 d_i \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_-(y; \lambda) \tilde{H}_i^-(y) dy \rangle \right| \\
+&\leq C |\lambda|^3 |d| \int_{-X_{i-1}}^0 e^{\alpha_1 y} e^{-\eta y} dy \\
+&\leq C |\lambda|^3 |d| 
+\end{align*}
+The other integral is similar.
+
+\item Finally, we look at the noncenter integrals. For the integral involving $Z$, we first evaluate 
+\begin{align*}
+P_-(0; &\lambda) \Phi^s(0, y; \lambda) P_-(y; \lambda)^{-1} G_i^-(y) P_-(y; \lambda)Z_i^-(y) \\
+&= P_-(0; 0) \Phi^s(0, y; 0) P_-(y; 0)^{-1}G_i^-(y) P_-(y; \lambda)Z_i^-(y) + \mathcal{O}(|\lambda| G_i^-(y) Z_i^-(y)) \\
+&= \tilde{P}_-^s(0)G_i^-(y) P_-(y; \lambda)Z_i^-(y) + \mathcal{O}(|\lambda| G_i^-(y) Z_i^-(y))
+\end{align*}
+From Lemma \ref{centerprojlemma},
+\[
+\langle W_0, \tilde{P}_-^s(0)G_i^-(y) P_-(y; \lambda)Z_i^-(y) \rangle = 0
+\]
+The remaining integral has the same bound as for the center integral involving $Z$. The integral not involing $Z$ is handled in the a similar way. Thus the estimates for the noncenter integrals are the same as for the center integrals.
 
 \end{enumerate}
 
@@ -1568,7 +1592,7 @@ The remainder term $R^c_i(c, d)$ has bound
 ||R^c&(c, d)_i|| \leq C |\lambda| \Big(
 (|\lambda| + e^{-\alpha X_m})(|e^{\nu(\lambda)X_{i-1}}c_{i-1}| + |e^{-\nu(\lambda)X_i}c_i|) \\
 &+ (|\lambda| + e^{-\alpha X_m})( e^{-\alpha X_{i-1}} |e^{\nu(\lambda)X_{i-2}}c_{i-2}| + e^{-\alpha X_i} |e^{-\nu(\lambda)X_{i+1}}c_{i+1}|)  \\
-&+ e^{-\alpha X_m}(|c_{i+1}|+|c_{i-2}|) + e^{-2 \alpha X_m}(|c_i|+|c_{i-1}|) + (|\lambda| + e^{-\alpha X_m}|\lambda| + e^{-(2 \alpha - \eta) X_m })|d|
+&+ e^{-\alpha X_m}(|c_{i+1}|+|c_{i-2}|) + e^{-2 \alpha X_m}(|c_i|+|c_{i-1}|) + (|\lambda| + e^{-\alpha X_m})^2 |d|
 \Big)
 \end{align*}
 
@@ -1672,7 +1696,7 @@ Since $Q'(X_i) = \mathcal{O}(e^{-\alpha_0 X_i})$, $e^{-\nu(\lambda)X_i} k_i = \m
 
 Let $D_1$ be the matrix we get from the terms involving $d$ in $R^c(\lambda)_i(c, d)$. Then $D_1$ has uniform bound
 \begin{align*}
-D_1 &= \mathcal{O}(|\lambda|(|\lambda| + e^{-\alpha X_m}|\lambda| + e^{-(2 \alpha - \eta) X_m })|d|)
+D_1 &= \mathcal{O}(|\lambda|(|\lambda| + e^{-\alpha X_m})^2|d|)
 \end{align*}
 \end{enumerate}
 
