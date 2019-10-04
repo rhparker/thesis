@@ -301,8 +301,8 @@ We can now state the main theorem of the section, which gives us a condition for
 Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and \ref{H0transversehyp}. Let $q_{np}(x)$ be a periodic $n-$pulse solution constructed according to Theorem \ref{perexist} with lengths $X_0, \dots, X_{n-1}$. Then there exists $\delta \leq \delta_0$ with the following property: there exists a bounded, nonzero solution $V$ of \eqref{PDEeig} for $|\lambda| < \delta$ if and only if the block matrix equation
 \begin{equation}\label{blockeq}
 \begin{pmatrix}
-K(\lambda) + C_1 K(\lambda) + K_1(\lambda) & \tilde{A} + D_1 \\
-\lambda M_\Psi \tilde{K}(\lambda) + C_2 K(\lambda) + K_2(\lambda) & A - \lambda^2 MI + D_2
+K(\lambda) + C_1 K(\lambda) + K_1(\lambda) + C_2 & \tilde{A} + D_1 \\
+\lambda p_1 \tilde{K}(\lambda) + C_3 K(\lambda) + K_2(\lambda) + C_4 & A - \lambda^2 MI + D_2
 \end{pmatrix}
 \begin{pmatrix} c \\ d \end{pmatrix} = 0
 \end{equation}
@@ -322,7 +322,7 @@ e^{-\nu(\lambda)X_1} & & & & & -e^{\nu(\lambda)X_0} \\
 \end{equation}
 where $\nu(\lambda)$ is defined in Lemma \ref{nulambdalemma}. $\tilde{K}(\lambda)$ is the same matrix with all terms positive.
 
-\item $A$ is the symmetric matrix
+\item $A$ is the symmetric banded matrix
 \begin{align}\label{Asymm}
 A &= \begin{pmatrix}
 -a_0 -a_1 & a_0 + a_1 \\
@@ -340,28 +340,43 @@ where
 \begin{align*}
 a_i &= \langle \Psi(X_i), Q'(-X_i) \rangle
 \end{align*}
-$\tilde{A}$ is the same matrix with entries
+
+\item $\tilde{A}$ matrix
 \begin{align*}
-\tilde{a}_i &= \langle \Psi^c(X_i), Q'(-X_i) \rangle
+\tilde{A} &= \begin{pmatrix}
+-e^{-\nu(\lambda)X_1} k_1 & e^{-\nu(\lambda)X_1} k_1 \\
+& -e^{-\nu(\lambda)X_2} k_2 & e^{-\nu(\lambda)X_2} k_2 \\
+& & \ddots & \ddots \\
+& &  & -e^{-\nu(\lambda)X_0} k_0 & e^{-\nu(\lambda)X_0} k_0
+\end{pmatrix}
 \end{align*}
-and $||\tilde{A}|| = \mathcal{O}(e^{-\alpha X_m})$.
+where 
+\begin{equation*}
+k_i = 2 \lambda \langle \tilde{W}_0, Q'(X_i) \rangle
+\end{equation*}
 
 \item $M$ is the higher order Melnikov integral
 \begin{align*}
 M &= \int_{-\infty}^\infty \Psi(y) t(y) dy \\
 \end{align*}
-$M_\Psi$ WILL BE DEFINED ONCE WE FIGURE OUT WHAT IT IS.
+and
+\[
+p_1 = \langle \Psi(0), \partial_\lambda V^+(0; 0) \rangle
+\]
 
 \item The remainder terms are analytic in $\lambda$ and have uniform bounds
 \begin{align*}
-C_1 &= \mathcal{O}(e^{-(\alpha - \eta) X_m}(|\lambda| + e^{-\alpha X_m})) \\
-D_1 &= \mathcal{O}((|\lambda| + e^{-\alpha X_m})^2) \\
-C_2 &= \mathcal{O}(e^{-(\alpha - \eta) X_m}(|\lambda| + e^{-\alpha X_m})^2) \\
-D_2 &= \mathcal{O}((|\lambda| + e^{-\alpha X_m})^3)
+\tilde{A} &= \mathcal{O}(|\lambda| e^{-\alpha X_m}) \\
+C_1 &= \mathcal{O}(|\lambda|e^{-\alpha X_m}(|\lambda| + e^{-\alpha X_m})) \\
+C_2 &= \mathcal{O}(|\lambda|e^{-\alpha X_m}) \\
+C_3 &= \mathcal{O}(e^{-(2 \alpha - \eta)X_m} (|\lambda| + e^{-\alpha X_m})) \\
+C_4 &= \mathcal{O}((|\lambda| + e^{-\alpha X_m})(|\lambda| + e^{-(\alpha - \eta) X_m})) \\
+D_1 &= \mathcal{O}(|\lambda|(|\lambda| + e^{-\alpha X_m})^2|d|) \\
+D_2 &= \mathcal{O}((|\lambda| + e^{-(\alpha - \eta) X_m})(|\lambda| + e^{-\alpha X_m})^2)
 \end{align*}
 where $\eta < \alpha_0/4$, $\alpha = \alpha_0 - \eta$, and $X_m = \min\{X_0, \dots, X_{n-1}\}$.
 
-\item $K_1(\lambda)$ and $K_2(\lambda)$ are matrices where the nonzero terms of $K(\lambda)$ are multiplied by $\mathcal{O}(|\lambda| + e^{-\alpha X_m})$ and $\mathcal{O}(|\lambda| + e^{-\alpha X_m})^2$ (respectively). These are defined precisely in the proofs of Lemmas \ref{jumpcenteradj} and \ref{jumpadj}
+\item $K_1(\lambda)$ and $K_2(\lambda)$ are perturbations of $K(\lambda)$ which have the same structure as $K(\lambda)$, but the entries are multiplied by $\mathcal{O}(|\lambda|(|\lambda| + e^{-\alpha X_m}))$ and $\mathcal{O}((|\lambda| + e^{-\alpha X_m})(|\lambda| + e^{-(\alpha - \eta) X_m}))$ (respectively). These are defined precisely in the proofs of Lemmas \ref{jumpcenteradj} and \ref{jumpadj}
 
 \end{enumerate}
 \end{theorem}
