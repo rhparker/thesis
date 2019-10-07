@@ -661,9 +661,9 @@ By inspection,
 \]
 is a bounded solution. To find $\Psi(x)$, we note that from \eqref{defDF}, the adjoint variational equation takes the block form
 \[
-\begin{pmatrix} \tilde{W}'(x) \\ W_{2m+1}(x) \end{pmatrix}
-= \begin{pmatrix }
-\begin{pmatrix}DF(Q(x))^* & 0 \\ E & 0 \end{pmatrix}
+\begin{pmatrix} \tilde{W}'(x) \\ W_{2m+1}'(x) \end{pmatrix}
+= 
+\begin{pmatrix}DF(Q(x))^* & 0 \\ E & 0 \end{pmatrix}\begin{pmatrix} \tilde{W}(x) \\ W_{2m+1}(x) \end{pmatrix}
 \]
 where $\tilde{W}'(x) = (W_1(x), \dots, W_{2m}(x)) \in \R^{2m}$, $E$ is the $1 \times 2m$ matrix $E = (0, 0, \dots, 1)$, and $0$ represents blocks of zeros of the appropriate size. This can be written as the system of equations
 \begin{align}

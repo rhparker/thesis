@@ -4,139 +4,92 @@
 
 \chapter{Krein Bubble}
 
-\section{Rewriting the System}
+\section{Background}
 
-First, we prove a simple lemma from finite dimensional linear algebra.
-
-\begin{lemma}
-Let $A$ be an $n \times n$ diagonalizable matrix with simple kernel spanned by $v$, and let $\ker A^* = \text{span}(w)$. Then 
-\begin{enumerate}[(i)]
-\item We can scale $v$ and/or $w$ so that $\langle v, w \rangle = 1$.
-\item Assuming we have chosen the scaling in part (i), the projection on the kernel of $A$ is given by
+Here we have just enough background information to define the constants which will appear in the Krein bubble equation. Consider the equations
+\begin{align}
+V'(x) = A(Q(x); \lambda) V(x)  \label{Veqlambda} \\
+W'(x) = -A(Q(x); \lambda)^* W(x) \label{Weqlambda}
+\end{align}\
+where $Q(x)$ is the primary pulse solution and 
 \[
-P_{\ker A} = \langle w, \cdot \rangle v
+A(Q(x), \lambda) = A(Q(x)) + \lambda B
 \]
+with 
+\begin{equation*}
+B = \begin{pmatrix}0 & 0 & 0 & 0 & 0 \\0 & 0 & 0 & 0 & 0 \\  & 
+\vdots & & \vdots & \\0 & 0 & 0 & 0 & 0 \\1 & 0 & 0 & 0 & 0 \end{pmatrix} 
+\end{equation*}
+For KdV5, 
+\begin{equation*}
+A(Q(x)) = \begin{pmatrix}0 & 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 & 0 \\ 2 q(x) - c & 0 & 1 & 0 & 1 \\
+0 & 0 & 0 & 0 & 0 
+\end{pmatrix}
+\end{equation*}
+and we have an appropriate general form for this in which the bottom row is always all 0s. When $\lambda = 0$ and we linearize about the primary pulse $Q(x)$, these are the variational and adjoint variational equations.
+
+\begin{enumerate}
+	\item For the background state, $A(0)$ and $A(0)^*$ have eigenvalues at 0 with corresponding eigenvectors
+	\begin{align*}
+	V_0 &= (1/c, 0, \dots, 0, 1)^T \\
+	W_0 &= (0, 0, \dots, 0, 1)^T
+	\end{align*}
+	$A(\lambda)$ has eigenvalue $\nu(\lambda)$ near 0, and $-A(\lambda)^*$ has eigenvalue $-\overline{\nu(\lambda)}$. The corresponding eigenvectors $V_0(\lambda)$ and $W_0(\overline{\lambda})$ have Taylor expansions
+	\begin{align}
+	V_0(\lambda) = V_0 + \lambda \tilde{V}_0 + \mathcal{O}(\lambda^2) \label{V0expansion} \\
+	W_0(\overline{\lambda}) = W_0 + \overline{\lambda} \tilde{W}_0 + \mathcal{O}(\overline{\lambda}^2) \label{W0expansion}
+	\end{align}
+	Define the constants $k_i$ by
+	\begin{equation}\label{defki}
+	k_i = 2 \langle \tilde{W}_0, Q'(X_i) \rangle
+	\end{equation}
+	Numerics suggests this is not 0. In addition $W_0 \perp Q'(X_i)$, so we should not have $W_0(\lambda) \perp Q'(X_i)$ for small $\lambda$, which would be a degenerate case.
+
+	\item The variational equation has decaying solution $Q'(x) = (\partial_x q(x), \dots, \partial_x^{2m} q(x), 0)$ and bounded solution 
+	\[
+	Q^c(x) = V_0 + \mathcal{O}(e^{-\alpha_1 |x|})
+	\]
+	with symmetry $Q^c(-x) = R Q^c(x)$, where $R$ is the standard reversor operator. The adjoint variational equation has decaying solution $\Psi(x)$ and bounded, constant solution $\Psi^c(x) = W_0$.
+
+	For sufficiently small $\lambda$, we can find solutions $V^\pm(x; \lambda)$ to \eqref{Veqlambda} on $\R^\pm$ which are given by
+	\begin{align}\label{Vpmlambda}
+	V^\pm(x; \lambda) &= e^{\nu(\lambda)x}(V_0(\lambda) + \mathcal{O}(e^{-\alpha_1 |x|}),
+	\end{align}
+	and have the symmetry relationship
+	\begin{equation}\label{Vpmsymmetry}
+	V^-(x; \lambda) = R V^+(-x; -\lambda)
+	\end{equation}
+	and for which $V^\pm(x, 0) = V^c(x)$. 
+
+	Expanding $V^+(0; \lambda)$ in a Taylor series about $\lambda = 0$, we get
+	\begin{align*}
+	V^+(0; \lambda) 
+	&= V^c(0) + \partial_\lambda V^+(0; 0) \lambda + \mathcal{O}(|\lambda|^2) 
+	\end{align*}
+	Taking inner products with $\Psi(0)$ and $\Psi^c(0)$, we have
+	\begin{equation}
+	\begin{aligned}
+	\langle \Psi^c(0), V^\pm(0; \lambda) \rangle &= 1 + \mathcal{O}(|\lambda|) \\
+	\langle \Psi(0), V^\pm(0; \lambda) \rangle &= \pm p_1 \lambda + \mathcal{O}(|\lambda|^2)
+	\end{aligned}
+	\end{equation}
+	where $p_1 = \langle \Psi(0), \partial_\lambda V^+(0; 0) \rangle$.
+
 \end{enumerate}
-\begin{proof}
-Let $0, \lambda_2, \dots, \lambda_n$ be the eigenvalues of $A$ with corresponding eigenvectors $v, v_2, \dots, v_n$. If $\langle v, w \rangle = 0$, then $v \perp \ker A^*$, thus by the Fredholm alternative we can solve $A u = v$. This is not possible since $A$ has simple kernel. Since $\langle v, w \rangle \neq 0$ we can scale $v$ and/or $w$ so that $\langle v, w \rangle = 1$.
-
-For part (ii), let $P u = \langle w, u \rangle v$.
-First, let $u \in \ker A$. Then $u = \alpha v$ for $\alpha \in \R$, thus 
-\[
-P u = \langle w, \alpha v \rangle v = \alpha \langle w, v \rangle v = \alpha v = u
-\]
-Since $A$ is diagonalizable, its eigenfunctions form a basis for $\R^n$. Let $u \in R^n$ and write $u$ in the eigenbasis as
-\[
-u = \alpha v + \sum_{k=2}^n \alpha_k v_k
-\]
-For $k = 2, \dots, n$, since $\lambda_k \neq 0$
-\begin{align*}
-\langle w, v_k \rangle &= \langle w, \frac{1}{\lambda_k}\lambda_k v_k \rangle \\
-&= \langle w, \frac{1}{\lambda_k} A v_k \rangle \\
-&= \langle w, A \frac{1}{\lambda_k} v_k \rangle \\
-&= \langle A^* w, \frac{1}{\lambda_k} v_k \rangle \\
-&= 0
-\end{align*}
-Thus we have
-\[
-P u = \alpha v
-\]
-\end{proof}
-\end{lemma}
-
-Next, we rewrite our system in such a way as to exploit the geometry of the center subspace. By assumption, we can write the equilibrium equation as
-\[
-\partial_x( \partial_x^{2m}u + f(u, \partial_x u, \dots, \partial_x^{2m-1}u)) = 0
-\]
-which we can integrate once to get
-\[
-\partial_x^{2m}u + f(u, \partial_x u, \dots, \partial_x^{2m-1}u) = k
-\]
-for a constant $k$. Let
-\[
-U = (u_1, \dots, u_{2m}, k ) = 
-(u, \partial_x u, \dots, \partial_x^{2m-1} u, k)^T
-\]
-Then we can write this as the following first order system in $\R^{2m+1}$.
-\[
-\partial_x
-\begin{pmatrix}u_1 \\ \vdots \\ u_{2m-1} \\ u_{2m} \\ k \end{pmatrix} = 
-\begin{pmatrix}
-u_2 \\ \vdots \\ u_{2m} \\ -f(u_1, \dots, u_{2m}) \\ 0 
-\end{pmatrix} 
-\]
-Linearize this about the primary pulse solution $Q(x)$, noting that $k = 0$ for this solution since it decays to a baseline of 0. The linearization will involve the partial derivatives of $f$ with respect to the $u_k$. Separating out the linear terms in $f$, 
-\[
-\frac{\partial}{\partial u_k} = c_{k-1} + g_{k-1}(q_1, \dots, q_n)(x)
-\]
-where the $g_k(x)$ decay exponentially to 0 since $f$ is smooth and the primary pulse is exponentially localized. Furthermore, by SYMMETRIES AND PRIOR DISCUSSION, $c_0 = c$ and $c_k = 0$ for $k$ odd. Thus for the linearization we have the first order linear system $V'(x) = \tilde{A}(Q(x))V(x)$, where
-\[
-\tilde{A}(Q(x)) = 
-\begin{pmatrix}
-0 & 1 & 0 & \dots & 0 & 0\\
-0 & 0 & 1 & \dots & 0 & 0\\
-&& \vdots && \vdots \\
-0 & 0 & 0 & \dots & 1 & 0\\
--c - g_0(x) & -g_1(x) & -c_2 - g_2(x) & \dots 
-& -g_{2m-1}(x) & 1 \\
-0 & 0 & 0 & \dots & 0 & 0 \\
-\end{pmatrix}
-\]
-$\tilde{A}(Q(x))$ is exponentially asymptotic to $\tilde{A}(0)$, which is given by
-\[
-\tilde{A}(0) = 
-\begin{pmatrix}
-0 & 1 & 0 & \dots & 0 & 0\\
-0 & 0 & 1 & \dots & 0 & 0\\
-&& \vdots && \vdots \\
-0 & 0 & 0 & \dots & 1 & 0\\
--c & 0 & -c_2 & \dots 
-& 0 & 1 \\
-0 & 0 & 0 & \dots & 0 & 0 \\
-\end{pmatrix}
-\]
-Since the top $2n-1$ rows are linearly independent and the bottom row is all 0s, $\tilde{A}(0)$ has a one dimensional kernel spanned by
-\[
-\tilde{V}_0 = (1/c, 0, \dots, 0, 1)^T
-\]
-and $\tilde{A}^*(0)$ has a one dimensional kernel spanned by
-\[
-\tilde{W}_0 = (0, 0, \dots, 0, 1)^T
-\]
-
-For the eigenvalue problem, we have the additional equation $k_x = \lambda v$. Writing things this way, we have
-$V'(x) = \tilde{A}(Q(x); \lambda)V(x)$, where
-\[
-\tilde{A}(Q(x); \lambda) = 
-\begin{pmatrix}
-0 & 1 & 0 & \dots & 0 & 0\\
-0 & 0 & 1 & \dots & 0 & 0\\
-&& \vdots && \vdots \\
-0 & 0 & 0 & \dots & 1 & 0\\
--c - g_0(x) & -g_1(x) & -c_2 - g_2(x) & \dots 
-& -g_{2m-1}(x) & 1 \\
-\lambda & 0 & 0 & \dots & 0 & 0 \\
-\end{pmatrix}
-\]
-
-Now we can see what this gets us. Let $Q'(x) = (\partial_x q(x), \dots, \partial_x^{2m-2}, 0)^T$. Then by the previous lemma,
-\[
-P^c_0 Q'(x) = P_{\tilde{V}_0}(Q'(x)) = \langle \tilde{W}_0, Q'(x) \rangle \tilde{V}_0 = 0
-\]
 
 \section{The Search for the Krein Bubble}
 
-For the 2-pulse, the block matrix $B$ takes the form
+For the 2-pulse, using the block matrix theorem, the block matrix $B$ takes the form
 \[
 B \approx \begin{pmatrix}
 \begin{pmatrix}
 e^{-\nu(\lambda)X_1} & -e^{\nu(\lambda)X_0} \\
 -e^{\nu(\lambda)X_1} & e^{-\nu(\lambda)X_0} 
 \end{pmatrix} &
-\begin{pmatrix}
-d_1 & d_2 \\ d_3 & d_4
+\lambda \begin{pmatrix}
+-e^{-\nu(\lambda)X_1} k_1 & e^{-\nu(\lambda)X_1} k_1 \\ e^{-\nu(\lambda)X_0} k_0 & -e^{-\nu(\lambda)X_0} k_0
 \end{pmatrix} \\
-M_\Psi \lambda
+p_1 \lambda
 \begin{pmatrix}
 e^{-\nu(\lambda)X_1} & e^{\nu(\lambda)X_0} \\
 e^{\nu(\lambda)X_1} & e^{-\nu(\lambda)X_0} 
@@ -147,27 +100,27 @@ a & -a - \lambda^2 M
 \end{pmatrix}
 \end{pmatrix}
 \]
-where $M$, $M_\Psi$ are constants and
+where
 \[
 a = \langle \Psi(X_0), Q'(-X_0) \rangle
 + \langle \Psi(X_1), Q'(-X_1) \rangle \approx \mathcal{O}(e^{-2\alpha X_0})
 \]
-since $X_1 >> X_0$. For now, take the upper right block to be to leading order
-\[
-\begin{pmatrix}
--d & d \\ d & -d
-\end{pmatrix} 
-\] 
-which is plausible by symmetry. Using Mathematica to take the determinant, we have
+since $X_1 >> X_0$. Using Mathematica to take the determinant, we have
 \begin{align*}
-\det B &\approx -2 \lambda^2 M \left[ (2a + \lambda^2 M) \sinh(\nu(\lambda)X) + 2 d M_\Psi \lambda 
-(\cosh(\nu(\lambda)X) - \cosh(\nu(\lambda)(X_1 - X_0))
-\right] \\
-&\approx -2 \lambda^2 M \left[ (2a + \lambda^2 M) \sinh(\nu(\lambda)X) + 2 d M_\Psi \lambda 
-(\cosh(\nu(\lambda)X) - \cosh(\nu(\lambda)(X - 2 X_0))
-\right]
+\det &B \approx -\lambda^2 M \left[ (2a + \lambda^2 M) \sinh(\nu(\lambda)X) \right. \\
+&+ \left. \lambda^2 p_1 k_0 e^{-\nu(\lambda) X_0}\left( \cosh (\nu(\lambda) X) - 2 e^{-\nu(\lambda) (X_0 - X_1) } \right) \right. \\
+&+ \left. \lambda^2 p_1 k_1 e^{-\nu(\lambda) X_1}\left( \cosh (\nu(\lambda) X) - 2 e^{-\nu(\lambda) (X_1 - X_0) } \right) \right] 
 \end{align*}
-where $X = X_0 + X_1$. Now we approximate the various terms. Krein bubbles occur (numerically) when interaction eigenvalues and essential spectrum eigenvalues collide. The essential spectrum eigenvalues occur at approximately 
+where $X = X_0 + X_1$. Since $X_1 >> X_0$, $k_1 << k_0$, thus we will simplify this to 
+\begin{align*}
+\det &B \approx -\lambda^2 M \left[ (2a + \lambda^2 M) \sinh(\nu(\lambda)X) + \lambda^2 p_1 \tilde{k}_0 \cosh (\nu(\lambda) X) - 2 \lambda^2 p_1 k_0 e^{-\nu(\lambda) (2 X_0 - X_1) } \right] 
+\end{align*}
+where $\tilde{k}_0 = k_0 e^{-\nu(\lambda) X_0}$. For now, we will ignore this last term, mostly because it is annoying. If all this works out, we can hopefully show that it doesn't matter. Thus we look at 
+\begin{align*}
+\det &B \approx -\lambda^2 M \left[ (2a + \lambda^2 M) \sinh(\nu(\lambda)X) + \lambda^2 p_1 \tilde{k}_0 \cosh (\nu(\lambda) X) \right] 
+\end{align*}
+
+Now we approximate the various terms. Krein bubbles occur (numerically) when interaction eigenvalues and essential spectrum eigenvalues collide. The essential spectrum eigenvalues occur at approximately 
 \[
 \lambda = c \frac{n \pi i}{X}
 \]
@@ -179,100 +132,79 @@ for integer $n$. With this as motivation, we first take the scaling $\lambda = c
 \end{align*}
 Next, we want $\mu$ to be a small perturbation of $n \pi i$, so take 
 \[
-\mu = n \pi i + h
+\mu = n \pi i + h i
 \]
-Substituting this into various things, we get
+where the $i$ in front of $h i$ is for convenience. Substituting this into various things, we get
 \begin{align*}
-\sinh(\nu(\lambda)X) &= \sinh(n \pi i + h + \mathcal{O}(\mu^2 / X^3)) = (-1)^n h + \mathcal{O}(h^3 + \mu^2 / X^3) \\
-\cosh(\nu(\lambda)X) &= \sinh(n \pi i + h + \mathcal{O}(\mu^2 / X^3)) = (-1)^n +  \mathcal{O}(h^2 + \mu^4 / X^6)
+\sinh(\nu(\lambda)X) &= \sinh(n \pi i + h i + \mathcal{O}(\mu^2 / X^3)) = (-1)^n h i  + \mathcal{O}(h^3 + \mu^2 / X^3) \\
+\cosh(\nu(\lambda)X) &= \sinh(n \pi i + h i + \mathcal{O}(\mu^2 / X^3)) = (-1)^n +  \mathcal{O}(h^2 + \mu^4 / X^6)
 \end{align*}
-and
+Substituting these in and neglecting higher order terms, we have
 \begin{align*}
-\cosh( \nu(\lambda)(X - 2 X_0))
-&= \cosh( \nu(\lambda)X) \cosh(2 \nu(\lambda)X_0) 
-- \sinh( \nu(\lambda)X) \sinh(2 \nu(\lambda)X_0) 
+\det B &\approx -\frac{\mu^2}{X^2} M \left[ \left(2a + \frac{\mu^2}{X^2} M\right)(-1)^n h i + (-1)^n p_1 \tilde{k}_0 \frac{\mu}{X} \right] \\
+&= -(-1)^n \frac{\mu^2}{X^2} M \left[ \left(2a + \frac{\mu^2}{X^2} M\right) h i + p_1 \tilde{k}_0 \frac{\mu^2}{X^2} \right] 
 \end{align*}
-which we are going to neglect for now since $\nu(\lambda)$ is small and $X_0$ is also relatively small. Substituting these in and neglecting higher order terms, we have
-\begin{align*}
-\det B &\approx -2 \frac{\mu^2}{X^2} M \left[ \left(2a + \frac{\mu^2}{X^2} M\right)(-1)^n h + (-1)^n 2 d M_\Psi \frac{\mu}{X} \right] \\
-&= -2 (-1)^n \frac{\mu^2}{X^2} M \left[ \left(2a + \frac{\mu^2}{X^2} M\right) h + 2 d M_\Psi \frac{\mu}{X} \right] 
-\end{align*}
-We want to solve
+Since we want to solve $\det B = 0$, we can ignore the stuff out front and look at 
 \[
-\left(2a + \frac{\mu^2}{X^2} M\right) h + 2 d M_\Psi \frac{\mu}{X} = 0
+\left(2a + \frac{\mu^2}{X^2} M\right) h i + p_1 \tilde{k}_0 \frac{\mu^2}{X^2} = 0
 \]
 Multiplying by $X^2/M$, this becomes
 \[
-\left(\frac{2aX^2}{M} + \mu^2 \right) h + \frac{2 d M_\Psi X \mu}{M} = 0
+\left(\frac{2a}{M} X^2 + \mu^2 \right) h i + \frac{ p_1 \tilde{k}_0 }{M}\mu^2 = 0
 \]
 For convenience, take
-\[
-b = \sqrt{-\frac{2a}{M}}X 
-\]
-which must be pure imaginary for this matter. Then this simplifies to
-\[
-(\mu + b)(\mu - b) h + \frac{2 d M_\Psi X \mu}{M} = 0
-\]
-The Krein bubble only occurs when the interaction eigenvalues are close to the essential spectrum eigenvalues. For this to occur, we need either $b$ or $-b$ to be close to $n \pi i$ small or $\mu + b$ small. By symmetry, it does not matter which one we take, so let
-\[
-n \pi i - b = 2 k
-\]
-from which it follows that
 \begin{align*}
-\mu &= n \pi i + h = 2 k + h + b \\
-\mu - b &= 2 k + h \\
-\mu + b &= 2 k + h + 2b
+b &= \sqrt{ \frac{2a}{M} } \\
+r_0 &= \frac{ p_1 \tilde{k}_0 }{M}
+\end{align*}
+where $b$ is real. This makes sense since Krein bubbles only can occur when interaction eigenvalues are on the imaginary axis, which happens when $\frac{2a}{M} > 0$. Substituting these, we have
+\begin{align*}
+\left(\mu^2 - (bi)^2 X^2 \right) h i + r_0 \mu^2 &= 0 \\
+(\mu + i bX)(\mu - i bX) h i + r_0 \mu^2 &= 0
+\end{align*}
+The Krein bubble only occurs when the interaction eigenvalues are close to the essential spectrum eigenvalues (all of which are purely imaginary). For this to occur, we need either $i b X$ or $-i b X$ to be close to $n \pi i$ on the imaginary axis. By symmetry, it does not matter which one we do, so let
+\[
+n \pi - b X = 2 k
+\]
+where $k$ is real. It follows that
+\begin{align*}
+\mu &= n \pi i + h i = 2 k i + h i + i b X \\
+\mu - i b X &= 2 k i + h i\\
+\mu + i b X &= 2 k i + h i + 2 i b X
 \end{align*}
 Substituting this in, we have
 \[
-(2k + h + 2b)(2k + h) h + \frac{2 d M_\Psi X}{M}(k + h + b) = 0
+(2 k i + h i + 2i bX)(2k i + i h) h + r_0 (2 i k + h i + i b X)^2 = 0
 \]
-Since $h$ and $k$ are small compared to $b$, this is approximately
+Dividing by $i^2$, this becomes
 \[
-2b (2 k + h) h + \frac{2 d M_\Psi X}{M}b = 0
+(2 k + h + 2bX)(2k + h) h + r_0 (2 k + h + b X)^2 = 0
+\]
+We note that $k$ and $2bX$ are real. Since $h$ and $k$ are small compared to $b X$, this is approximately
+\[
+2bX(2k + h) h + r_0 b^2 X^2 = 0
 \]
 which simplies to
 \[
-h^2 + 2kh + R = 0
+h^2 + 2kh + R  = 0
 \]
-where
-\[
-R = \frac{d M_\Psi X}{M}
-\]
-which has solution
+where $R = \frac{r_0}{2} b X$. This has solution
 \[
 h = -k \pm \sqrt{k^2 - R}
 \]
-Then for $|k| \leq \sqrt{R}$, we get
+For now, take $R$ to be real. If $R$ has an imaginary part, it should be small. Then for $|k| \leq \sqrt{R}$, we have
 \[
 h = -k \pm i \sqrt{R - k^2}
 \]
-So $h$ lies on a circle of radius $\sqrt{R}$ centered around the origin in the complex plane. Undoing the scaling, the radius of the Krein bubble has order
+So $h$ lies on a circle of radius $\sqrt{R}$ centered around the origin in the complex plane, and we have
 \[
-\frac{\sqrt{R}}{X} = \frac{\sqrt{d}}{\sqrt{X}}
+\sqrt{R} = \mathcal{O}(e^{-\alpha X_m}X^{1/2}) = \mathcal{O}(r^{1/2} X^{1/2})
+\]
+Undoing the scaling, the radius of the Krein bubble has order
+\[
+\frac{\sqrt{R}}{X} = \frac{r^{1/2}}{X^{1/2}}
 \] 
-Numerics confirms the scaling in $X$. Ideally, we would like numerics to suggest a scaling in $X_0$, likely some power of $e^{-\alpha X_0}$, but this has produced equivocal results so far.
+Numerics confirms the scaling in $X$. There is no easy way to confirm the scaling in $r$ numerically.
 
-\section{Evaluating some Inner Products}
-
-These inner products show up in the jump expressions and (likely) are key terms in the block matrix. Recall that the $\Phi^{s/u/c}(x, y; \lambda)$ are the evolution operators of the conjugated system, and $\Theta_i^{s/u/c}(x, y; \lambda)$ are the evolution operators of the original system.
-
-First, we look at a term from the jump in the decaying adjoint direction.
-\begin{align*}
-\langle &\Psi(0), P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) P_i^-(-X_{i-1}; \lambda)^{-1} P_0^s(\lambda) Q'(X_{i-1})\rangle \\
-&= \langle \Psi(0), \Theta_-^s(0, -X_{i-1}; \lambda) P_0^s(\lambda) Q'(X_{i-1})\rangle \\
-&= \langle \Psi(0), \Theta_-^s(0, -X_{i-1}; 0) P_0^s(0) Q'(X_{i-1})\rangle + \mathcal{O}(e^{-2\alpha X_{i-1}}(|\lambda| + e^{-\alpha X_m})) \\
-&= \langle \Psi(0), \Theta_-^s(0, -X_{i-1}; 0) P^s_+(X_{i-1}) Q'(X_{i-1})\rangle + \mathcal{O}(e^{-2\alpha X_{i-1}}(|\lambda| + e^{-\alpha X_m})) \\
-&= \langle \Psi(0), \Theta(0, -X_{i-1}; 0) P^s_-(-X_{i-1}) P^s_+(X_{i-1}) Q'(X_{i-1})\rangle + \mathcal{O}(e^{-2\alpha X_{i-1}}(|\lambda| + e^{-\alpha X_m})) \\
-&= \langle \Psi(-X_{i-1}), P^s_+(X_{i-1}) Q'(X_{i-1})\rangle + \mathcal{O}(e^{-2\alpha X_{i-1}}(|\lambda| + e^{-\alpha X_m})) \\
-&= \langle \Psi(-X_{i-1}), Q'(X_{i-1})\rangle + \mathcal{O}(e^{-2\alpha X_{i-1}}(|\lambda| + e^{-\alpha X_m})) 
-\end{align*}
-
-Similarly, for the jump in the center adjoint direction, we should have
-First, we look at a term from the jump in the decaying adjoint direction.
-\begin{align*}
-\langle &\Psi^c(0), P_i^-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) P_i^-(-X_{i-1}; \lambda)^{-1} P_0^s(\lambda) Q'(X_{i-1})\rangle \\
-&= \langle \Psi^c(-X_{i-1}), Q'(X_{i-1})\rangle + \mathcal{O}(e^{-\alpha X_{i-1}}(|\lambda| + e^{-\alpha X_m}))
-\end{align*}
 
 \end{document}

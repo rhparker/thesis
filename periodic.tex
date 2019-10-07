@@ -301,7 +301,7 @@ We can now state the main theorem of the section, which gives us a condition for
 Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and \ref{H0transversehyp}. Let $q_{np}(x)$ be a periodic $n-$pulse solution constructed according to Theorem \ref{perexist} with lengths $X_0, \dots, X_{n-1}$. Then there exists $\delta \leq \delta_0$ with the following property: there exists a bounded, nonzero solution $V$ of \eqref{PDEeig} for $|\lambda| < \delta$ if and only if the block matrix equation
 \begin{equation}\label{blockeq}
 \begin{pmatrix}
-K(\lambda) + C_1 K(\lambda) + K_1(\lambda) + C_2 & \tilde{A} + D_1 \\
+K(\lambda) + C_1 K(\lambda) + K_1(\lambda) + C_2 & \lambda \tilde{A} + D_1 \\
 \lambda p_1 \tilde{K}(\lambda) + C_3 K(\lambda) + K_2(\lambda) + C_4 & A - \lambda^2 MI + D_2
 \end{pmatrix}
 \begin{pmatrix} c \\ d \end{pmatrix} = 0
@@ -346,13 +346,13 @@ a_i &= \langle \Psi(X_i), Q'(-X_i) \rangle
 \tilde{A} &= \begin{pmatrix}
 -e^{-\nu(\lambda)X_1} k_1 & e^{-\nu(\lambda)X_1} k_1 \\
 & -e^{-\nu(\lambda)X_2} k_2 & e^{-\nu(\lambda)X_2} k_2 \\
-& & \ddots & \ddots \\
-& &  & -e^{-\nu(\lambda)X_0} k_0 & e^{-\nu(\lambda)X_0} k_0
+& \ddots \\
+e^{-\nu(\lambda)X_0} k_0 & &  & -e^{-\nu(\lambda)X_0} k_0 & 
 \end{pmatrix}
 \end{align*}
 where 
 \begin{equation*}
-k_i = 2 \lambda \langle \tilde{W}_0, Q'(X_i) \rangle
+k_i = 2 \langle \tilde{W}_0, Q'(X_i) \rangle
 \end{equation*}
 
 \item $M$ is the higher order Melnikov integral
@@ -366,7 +366,7 @@ p_1 = \langle \Psi(0), \partial_\lambda V^+(0; 0) \rangle
 
 \item The remainder terms are analytic in $\lambda$ and have uniform bounds
 \begin{align*}
-\tilde{A} &= \mathcal{O}(|\lambda| e^{-\alpha X_m}) \\
+\tilde{A} &= \mathcal{O}( e^{-\alpha X_m}) \\
 C_1 &= \mathcal{O}(|\lambda|e^{-\alpha X_m}(|\lambda| + e^{-\alpha X_m})) \\
 C_2 &= \mathcal{O}(|\lambda|e^{-\alpha X_m}) \\
 C_3 &= \mathcal{O}(e^{-(2 \alpha - \eta)X_m} (|\lambda| + e^{-\alpha X_m})) \\
