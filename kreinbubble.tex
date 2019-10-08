@@ -6,7 +6,9 @@
 
 \section{Background}
 
-Here we have just enough background information to define the constants which will appear in the Krein bubble equation. Consider the equations
+Here we have just enough background information to define the constants which will appear in the Krein bubble equation. These constants are $p_1$ and $k_i$. The $k_i$ can be computed numerically, and only $k_0$ (the biggest one) should matter. There might be a way to compute $p_1$, but I haven't though of it yet.
+
+Consider the equations
 \begin{align}
 V'(x) = A(Q(x); \lambda) V(x)  \label{Veqlambda} \\
 W'(x) = -A(Q(x); \lambda)^* W(x) \label{Weqlambda}
@@ -115,7 +117,9 @@ where $X = X_0 + X_1$. Since $X_1 >> X_0$, $k_1 << k_0$, thus we will simplify t
 \begin{align*}
 \det &B \approx -\lambda^2 M \left[ (2a + \lambda^2 M) \sinh(\nu(\lambda)X) + \lambda^2 p_1 \tilde{k}_0 \cosh (\nu(\lambda) X) - 2 \lambda^2 p_1 k_0 e^{-\nu(\lambda) (2 X_0 - X_1) } \right] 
 \end{align*}
-where $\tilde{k}_0 = k_0 e^{-\nu(\lambda) X_0}$. For now, we will ignore this last term, mostly because it is annoying. If all this works out, we can hopefully show that it doesn't matter. Thus we look at 
+where $\tilde{k}_0 = k_0 e^{-\nu(\lambda) X_0}$. We really want to ignore the last term on the RHS, but I don't think we can. Thus we will need to find another way to set up the problem.
+
+For now, we will ignore this last term, mostly because it is annoying. If all this works out, we can hopefully show that it doesn't matter. Thus we look at 
 \begin{align*}
 \det &B \approx -\lambda^2 M \left[ (2a + \lambda^2 M) \sinh(\nu(\lambda)X) + \lambda^2 p_1 \tilde{k}_0 \cosh (\nu(\lambda) X) \right] 
 \end{align*}
@@ -205,6 +209,194 @@ Undoing the scaling, the radius of the Krein bubble has order
 \frac{\sqrt{R}}{X} = \frac{r^{1/2}}{X^{1/2}}
 \] 
 Numerics confirms the scaling in $X$. There is no easy way to confirm the scaling in $r$ numerically.
+
+\section{The Search for the Krein Bubble, Part 2}
+
+This time, we use a more symmetrized version of the block matrix theorem. They have to be equilvalent, but this way might give us a nicer result. This time, $B$ takes the form
+\[
+B \approx \begin{pmatrix}
+\begin{pmatrix}
+e^{-\nu(\lambda)X_1} & -e^{\nu(\lambda)X_0} \\
+-e^{\nu(\lambda)X_1} & e^{-\nu(\lambda)X_0} 
+\end{pmatrix} &
+2 \lambda \begin{pmatrix}
+-e^{-\nu(\lambda)X_1} k_1 + e^{\nu(\lambda)X_0} k_0 & e^{-\nu(\lambda)X_1} k_1 - e^{\nu(\lambda)X_0} k_0 \\ e^{-\nu(\lambda)X_0} k_0 - e^{\nu(\lambda)X_1} k_1 & -e^{-\nu(\lambda)X_0} k_0 + e^{\nu(\lambda)X_1} k_1
+\end{pmatrix} \\
+p_1 \lambda
+\begin{pmatrix}
+e^{-\nu(\lambda)X_1} & e^{\nu(\lambda)X_0} \\
+e^{\nu(\lambda)X_1} & e^{-\nu(\lambda)X_0} 
+\end{pmatrix} &
+\begin{pmatrix}
+-a - \lambda^2 M & a \\
+a & -a - \lambda^2 M
+\end{pmatrix}
+\end{pmatrix}
+\]
+where
+\[
+a = \langle \Psi(X_0), Q'(-X_0) \rangle
++ \langle \Psi(X_1), Q'(-X_1) \rangle \approx \mathcal{O}(e^{-2\alpha X_0})
+\]
+since $X_1 >> X_0$. Using Mathematica to take the determinant, we have
+\begin{align*}
+\det &B \approx -2 \lambda^2 M \Big[ (2a + \lambda^2 M) \sinh(\nu(\lambda)X) \\
+&- 2 \lambda^2 p_1 k_0 \left( \sinh(\nu(\lambda)(2 X_0 + X_1)) - 3 \sinh(\nu(\lambda)X_1)  \right) \\
+&- 2 \lambda^2 p_1 k_1 \left( \sinh(\nu(\lambda)(2 X_1 + X_0)) - 3 \sinh(\nu(\lambda)X_0)  \right) \Big] 
+\end{align*}
+Expanding the second line, we have
+\begin{align*}
+\sinh&(\nu(\lambda)(2 X_0 + X_1)) - 3 \sinh(\nu(\lambda)X_1) \\
+&= \sinh(\nu(\lambda)(X_0 + X_1))\cosh(\nu(\lambda)X_0) 
++ \cosh(\nu(\lambda)(X_0 + X_1))\sinh(\nu(\lambda)X_0) 
+- 3 \sinh(\nu(\lambda)X_1) \\
+&= \sinh(\nu(\lambda)X)\cosh(\nu(\lambda)X_0) 
++ \cosh(\nu(\lambda)X)\sinh(\nu(\lambda)X_0) 
+- 3 \sinh(\nu(\lambda)X_1) \\
+&= \sinh(\nu(\lambda)X)\cosh(\nu(\lambda)X_0) 
++ \cosh(\nu(\lambda)X)\sinh(\nu(\lambda)X_0) 
+- 3 \sinh(\nu(\lambda)(X_1 + X_0 - X_0) \\
+&= \sinh(\nu(\lambda)X)\cosh(\nu(\lambda)X_0) 
++ \cosh(\nu(\lambda)X)\sinh(\nu(\lambda)X_0) \\
+&- 3 ( \sinh(\nu(\lambda)(X_1 + X_0))\cosh(\nu(\lambda)X_0) - \cosh(\nu(\lambda)(X_1 + X_0))\sinh(\nu(\lambda)X_0) ) \\
+&= \sinh(\nu(\lambda)X)\cosh(\nu(\lambda)X_0) 
++ \cosh(\nu(\lambda)X)\sinh(\nu(\lambda)X_0) \\
+&- 3 \sinh(\nu(\lambda)X)\cosh(\nu(\lambda)X_0) + 3 \cosh(\nu(\lambda)X)\sinh(\nu(\lambda)X_0)  \\
+&= -2 \sinh(\nu(\lambda)X)\cosh(\nu(\lambda)X_0) 
++ 4 \cosh(\nu(\lambda)X)\sinh(\nu(\lambda)X_0) \\
+\end{align*}
+Similarly, expanding the third line,
+\begin{align*}
+\sinh&(\nu(\lambda)(2 X_1 + X_0)) - 3 \sinh(\nu(\lambda)X_0) \\
+&= -2 \sinh(\nu(\lambda)X)\cosh(\nu(\lambda)X_1) 
++ 4 \cosh(\nu(\lambda)X)\sinh(\nu(\lambda)X_1) \\
+\end{align*}
+Substituting these into our expression for $B$, we have
+\begin{align*}
+\det &B \approx -2 \lambda^2 M \Big[ (2a + \lambda^2 M 
++ 4 \lambda^2 p_1(k_0 \cosh(\nu(\lambda)X_0) + k_1 \cosh(\nu(\lambda)X_1)  ) ) \sinh(\nu(\lambda)X)  \\
+&- 8 \lambda^2 p_1 \cosh(\nu(\lambda)X) \left( k_0 \sinh(\nu(\lambda)X_0) 
++ k_1 \sinh(\nu(\lambda)X_1) \right) \Big] 
+\end{align*}
+At this point, we neglect some higher order terms. Since $\nu(\lambda)$ is purely imaginary for the cases we care about, all the $\sinh$ and $\cosh$ terms are bounded by 1. Since 
+\[
+\lambda^2 p_1(k_0 \cosh(\nu(\lambda)X_0) + k_1 \cosh(\nu(\lambda)X_1)  ) = \mathcal{O}(e^{-\alpha X_0}|\lambda|^2)
+\]
+we can neglect that term. Since $k_1 << k_0$, we can also neglect the term $k_1 \sinh(\nu(\lambda)X_1) )$. This leaves us with 
+\begin{align*}
+\det &B \approx -2 \lambda^2 M \Big[ (2a + \lambda^2 M  ) \sinh(\nu(\lambda)X) - 8 \lambda^2 p_1 k_0 \cosh(\nu(\lambda)X) \sinh(\nu(\lambda)X_0) \Big]
+\end{align*}
+
+Now we approximate the various terms. Krein bubbles occur (numerically) when interaction eigenvalues and essential spectrum eigenvalues collide. The essential spectrum eigenvalues occur at approximately 
+\[
+\lambda = c \frac{n \pi i}{X}
+\]
+for integer $n$. With this as motivation, we first take the scaling $\lambda = c \mu / X$. Then we have from Lemma \ref{nulambdalemma}
+\begin{align*}
+\nu(\lambda) &= \frac{1}{c} \lambda + \mathcal{O}(|\lambda|^3) 
+\\
+&= \frac{\mu}{X} + \mathcal{O}(\mu^3 / X^3)
+\end{align*}
+Next, we want $\mu$ to be a small perturbation of $n \pi i$, so take 
+\[
+\mu = n \pi i + h i
+\]
+where the $i$ in front of $h i$ is for convenience. Substituting this into the $\sinh$ and $\cosh$ terms, we get
+\begin{align*}
+\sinh(\nu(\lambda)X) &= \sinh(n \pi i + h i + \mathcal{O}(\mu^2 / X^3)) = (-1)^n h i  + \mathcal{O}(h^3 + \mu^2 / X^3) \\
+\cosh(\nu(\lambda)X) &= \sinh(n \pi i + h i + \mathcal{O}(\mu^2 / X^3)) = (-1)^n +  \mathcal{O}(h^2 + \mu^4 / X^6)
+\end{align*}
+Substituting these into the expression for $B$ and neglecting higher order terms, we have
+\begin{align*}
+\det &B \approx -2 \lambda^2 M \Big[ (2a + \lambda^2 M  ) (-1)^n h i - 8 \lambda^2 p_1 k_0 (-1)^n \sinh(\nu(\lambda)X_0) \Big] \\
+&= -2 (-1)^n \lambda^2 M \Big[ (2a + \lambda^2 M  ) h i - 8 \lambda^2 p_1 k_0 \sinh(\nu(\lambda)X_0) \Big] \\
+&= -2 (-1)^n \lambda^2 M \Big[ (2a + \lambda^2 M  ) h i - 8 \lambda^2 r_0 \Big]
+\end{align*}
+where $r_0 = p_1 k_0 \sinh(\nu(\lambda)X_0)$. Since we want to solve $\det B = 0$ and the stuff out front is nonzero, we can ignore the stuff out front. Plugging in $\lambda = c \mu / X$, this become
+\[
+\left(2a + \frac{c^2 \mu^2}{X^2} M\right) h i + r_0 \frac{c^2 \mu^2}{X^2} = 0
+\]
+Multiplying by $X^2/(M c^2)$, this becomes
+\[
+\left(\frac{2a}{M c^2} X^2 + \mu^2 \right) h i + \frac{r_0}{M}\mu^2 = 0
+\]
+Recall that Krein bubbles can only occur when the interaction eigenvalues are on the imaginary axis. This happens when $\frac{2a}{M} > 0$. For convenience, take
+\begin{align*}
+b &= \sqrt{ \frac{2a}{M} } \\
+\end{align*}
+where $b$ is real. Substituting this, we have
+\begin{align*}
+\left(\mu^2 - (bi)^2 \frac{X^2}{c^2} \right) h i + \frac{r_0}{M} \mu^2 &= 0 \\
+\left(\mu + i b\frac{X}{c}\right)\left(\mu - i b\frac{X}{c}\right) h i + \frac{r_0}{M} \mu^2 &= 0
+\end{align*}
+The Krein bubble only occurs when the interaction eigenvalues are close to the essential spectrum eigenvalues (all of which are purely imaginary). For this to occur, we need either $i b X/c$ or $-i b X/c$ to be close to $n \pi i$ on the imaginary axis. By symmetry, it does not matter which one we do, so let
+\[
+n \pi - b X/c = 2 k
+\]
+where $k$ is real. It follows that
+\begin{align*}
+\mu &= n \pi i + h i = 2 k i + h i + i b X/c \\
+\mu - i b X/c &= 2 k i + h i\\
+\mu + i b X/c &= 2 k i + h i + 2 i b X/c
+\end{align*}
+Substituting these in, we have
+\[
+\left(2 k i + h i + 2i b\frac{X}{c}\right)\left(2k i + i h\right) h i + \frac{r_0}{M} \left(2 i k + h i + i b \frac{X}{c}\right)^2 = 0
+\]
+Dividing by $i^2$, this becomes
+\[
+\left(2 k + h + 2 b\frac{X}{c}\right)\left(2k + h\right) h i + \frac{r_0}{M} \left(2 k + h + b \frac{X}{c}\right)^2 = 0
+\]
+We note that everything except for $h$ is real. Since $h$ and $k$ are small compared to $b X/c \approx n \pi$, this is approximately
+\[
+2 b\frac{X}{c}\left(2k + h\right) h i + \frac{r_0}{M} \left( b \frac{X}{c}\right)^2 = 0
+\]
+which simplifies to
+\[
+\left(2k + h\right) h i + \frac{r_0 b X }{M c} = 0
+\]
+Expanding the $\sinh$ term in $r_0$ in a Taylor series about $0$, we have
+\begin{align*}
+r_0 &= p_1 k_0 \sinh(\nu(\lambda)X_0) \\
+&= p_1 k_0 \sinh\left( \frac{n \pi i + h i}{X} X_0 + h.o.t. \right) \\
+&= p_1 k_0 \sinh\left( \frac{n \pi i X_0}{X} h.o.t. \right) \\
+&= i p_1 k_0 X_0 \frac{n \pi}{X} + h.o.t.
+\end{align*}
+Substituting $n \pi = b X/c + 2 k$, this becomes
+\begin{align*}
+r_0 &= i p_1 k_0 X_0 \frac{b X + 2 k c}{X c} + h.o.t. \\
+&= i \frac{p_1 k_0 b X_0}{c} + h.o.t.
+\end{align*}
+Substituting this in, we have
+\[
+\left(2k + h\right) h i + i \frac{p_1 k_0 b^2 X X_0 }{M c^2} = 0
+\]
+Dividing by $i$, this simplies to
+\[
+h^2 + 2kh + R = 0
+\]
+where 
+\[
+R = \frac{p_1 k_0 b^2 X X_0 }{M c^2}
+\]
+which is real. This has solution
+\[
+h = -k \pm \sqrt{k^2 - R}
+\]
+Then for $|k| \leq \sqrt{R}$,
+\[
+h = -k \pm i \sqrt{R - k^2}
+\]
+and so $h$ lies on a circle of radius $\sqrt{R}$ centered around the origin in the complex plane. Substituting back for all the things
+\[
+\sqrt{R} = \frac{b}{c} \sqrt{\frac{p_1 k_0 X X_0 }{M} }
+\]
+This is the radius in the perturbation $h$. Since $\lambda = (n \pi i + h i)/X$, to get the radius in $\lambda$, we divide by $X$ to get the Krein bubble radius
+\[
+\frac{\sqrt{R}}{X} = \frac{b}{c} \sqrt{\frac{p_1 k_0 X_0 }{M X} } = \mathcal{O}\left(\frac{ X_0^{1/2} e^{-(5/2) \alpha X_0} }{X^{1/2}} \right)
+\] 
+Numerics confirms the scaling in $X$ to high accuracy. There is no easy way to confirm the scaling in $X_0$ numerically, but questionably crude numerics confirms the scaling in $X_0$ to accuracy of $0.025$ (relative error).
+
 
 
 \end{document}
