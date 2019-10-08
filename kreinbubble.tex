@@ -117,102 +117,13 @@ where $X = X_0 + X_1$. Since $X_1 >> X_0$, $k_1 << k_0$, thus we will simplify t
 \begin{align*}
 \det &B \approx -\lambda^2 M \left[ (2a + \lambda^2 M) \sinh(\nu(\lambda)X) + \lambda^2 p_1 \tilde{k}_0 \cosh (\nu(\lambda) X) - 2 \lambda^2 p_1 k_0 e^{-\nu(\lambda) (2 X_0 - X_1) } \right] 
 \end{align*}
-where $\tilde{k}_0 = k_0 e^{-\nu(\lambda) X_0}$. We really want to ignore the last term on the RHS, but I don't think we can. Thus we will need to find another way to set up the problem.
+where $\tilde{k}_0 = k_0 e^{-\nu(\lambda) X_0}$. 
 
-For now, we will ignore this last term, mostly because it is annoying. If all this works out, we can hopefully show that it doesn't matter. Thus we look at 
-\begin{align*}
-\det &B \approx -\lambda^2 M \left[ (2a + \lambda^2 M) \sinh(\nu(\lambda)X) + \lambda^2 p_1 \tilde{k}_0 \cosh (\nu(\lambda) X) \right] 
-\end{align*}
-
-Now we approximate the various terms. Krein bubbles occur (numerically) when interaction eigenvalues and essential spectrum eigenvalues collide. The essential spectrum eigenvalues occur at approximately 
-\[
-\lambda = c \frac{n \pi i}{X}
-\]
-for integer $n$. With this as motivation, we first take the scaling $\lambda = c \mu / X$. Then we have (from what we have already shown)
-\begin{align*}
-\nu(\lambda) &= \frac{1}{c} \lambda + \mathcal{O}(|\lambda|^3) 
-\\
-&= \frac{\mu}{X} + \mathcal{O}(\mu^3 / X^3)
-\end{align*}
-Next, we want $\mu$ to be a small perturbation of $n \pi i$, so take 
-\[
-\mu = n \pi i + h i
-\]
-where the $i$ in front of $h i$ is for convenience. Substituting this into various things, we get
-\begin{align*}
-\sinh(\nu(\lambda)X) &= \sinh(n \pi i + h i + \mathcal{O}(\mu^2 / X^3)) = (-1)^n h i  + \mathcal{O}(h^3 + \mu^2 / X^3) \\
-\cosh(\nu(\lambda)X) &= \sinh(n \pi i + h i + \mathcal{O}(\mu^2 / X^3)) = (-1)^n +  \mathcal{O}(h^2 + \mu^4 / X^6)
-\end{align*}
-Substituting these in and neglecting higher order terms, we have
-\begin{align*}
-\det B &\approx -\frac{\mu^2}{X^2} M \left[ \left(2a + \frac{\mu^2}{X^2} M\right)(-1)^n h i + (-1)^n p_1 \tilde{k}_0 \frac{\mu}{X} \right] \\
-&= -(-1)^n \frac{\mu^2}{X^2} M \left[ \left(2a + \frac{\mu^2}{X^2} M\right) h i + p_1 \tilde{k}_0 \frac{\mu^2}{X^2} \right] 
-\end{align*}
-Since we want to solve $\det B = 0$, we can ignore the stuff out front and look at 
-\[
-\left(2a + \frac{\mu^2}{X^2} M\right) h i + p_1 \tilde{k}_0 \frac{\mu^2}{X^2} = 0
-\]
-Multiplying by $X^2/M$, this becomes
-\[
-\left(\frac{2a}{M} X^2 + \mu^2 \right) h i + \frac{ p_1 \tilde{k}_0 }{M}\mu^2 = 0
-\]
-For convenience, take
-\begin{align*}
-b &= \sqrt{ \frac{2a}{M} } \\
-r_0 &= \frac{ p_1 \tilde{k}_0 }{M}
-\end{align*}
-where $b$ is real. This makes sense since Krein bubbles only can occur when interaction eigenvalues are on the imaginary axis, which happens when $\frac{2a}{M} > 0$. Substituting these, we have
-\begin{align*}
-\left(\mu^2 - (bi)^2 X^2 \right) h i + r_0 \mu^2 &= 0 \\
-(\mu + i bX)(\mu - i bX) h i + r_0 \mu^2 &= 0
-\end{align*}
-The Krein bubble only occurs when the interaction eigenvalues are close to the essential spectrum eigenvalues (all of which are purely imaginary). For this to occur, we need either $i b X$ or $-i b X$ to be close to $n \pi i$ on the imaginary axis. By symmetry, it does not matter which one we do, so let
-\[
-n \pi - b X = 2 k
-\]
-where $k$ is real. It follows that
-\begin{align*}
-\mu &= n \pi i + h i = 2 k i + h i + i b X \\
-\mu - i b X &= 2 k i + h i\\
-\mu + i b X &= 2 k i + h i + 2 i b X
-\end{align*}
-Substituting this in, we have
-\[
-(2 k i + h i + 2i bX)(2k i + i h) h + r_0 (2 i k + h i + i b X)^2 = 0
-\]
-Dividing by $i^2$, this becomes
-\[
-(2 k + h + 2bX)(2k + h) h + r_0 (2 k + h + b X)^2 = 0
-\]
-We note that $k$ and $2bX$ are real. Since $h$ and $k$ are small compared to $b X$, this is approximately
-\[
-2bX(2k + h) h + r_0 b^2 X^2 = 0
-\]
-which simplies to
-\[
-h^2 + 2kh + R  = 0
-\]
-where $R = \frac{r_0}{2} b X$. This has solution
-\[
-h = -k \pm \sqrt{k^2 - R}
-\]
-For now, take $R$ to be real. If $R$ has an imaginary part, it should be small. Then for $|k| \leq \sqrt{R}$, we have
-\[
-h = -k \pm i \sqrt{R - k^2}
-\]
-So $h$ lies on a circle of radius $\sqrt{R}$ centered around the origin in the complex plane, and we have
-\[
-\sqrt{R} = \mathcal{O}(e^{-\alpha X_m}X^{1/2}) = \mathcal{O}(r^{1/2} X^{1/2})
-\]
-Undoing the scaling, the radius of the Krein bubble has order
-\[
-\frac{\sqrt{R}}{X} = \frac{r^{1/2}}{X^{1/2}}
-\] 
-Numerics confirms the scaling in $X$. There is no easy way to confirm the scaling in $r$ numerically.
+We really want to ignore the last term on the RHS, but (based on what I do below), I don't think we can. Thus we will need to find another way to set up the problem.
 
 \section{The Search for the Krein Bubble, Part 2}
 
-This time, we use a more symmetrized version of the block matrix theorem. They have to be equilvalent, but this way might give us a nicer result. This time, $B$ takes the form
+This time, we use a more ``symmetrized'' version of the block matrix theorem. I have not officially done this yet, but it should be a straightforward modification of what I have. In fact, I have suspected this would be useful for a while. Of course, it should not matter how it is set up, but the symmeterized version requires less manipulation to make it useful. Doing this, $B$ takes the form
 \[
 B \approx \begin{pmatrix}
 \begin{pmatrix}
@@ -395,8 +306,6 @@ This is the radius in the perturbation $h$. Since $\lambda = (n \pi i + h i)/X$,
 \[
 \frac{\sqrt{R}}{X} = \frac{b}{c} \sqrt{\frac{p_1 k_0 X_0 }{M X} } = \mathcal{O}\left(\frac{ X_0^{1/2} e^{-(5/2) \alpha X_0} }{X^{1/2}} \right)
 \] 
-Numerics confirms the scaling in $X$ to high accuracy. There is no easy way to confirm the scaling in $X_0$ numerically, but questionably crude numerics confirms the scaling in $X_0$ to accuracy of $0.025$ (relative error).
-
-
+Numerics confirms the scaling in $X$ to high accuracy. There is no easy way to confirm the scaling in $X_0$ numerically, but questionably crude numerics confirms the scaling in $X_0$ to reasonable accuracy.
 
 \end{document}
