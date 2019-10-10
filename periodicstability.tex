@@ -50,23 +50,42 @@ Since we want to solve $p(i s; i \gamma) = 0$, we can divide by $i$ to get the e
 \end{align*}
 Since $\tilde{p}(0; 0) = 0$ and $\partial_s \tilde{p}(0; 0) = -c \neq 0$, we can use the IFT again to solve for $s$ in terms of $\gamma$. Thus we can find a smooth function $s(\gamma)$ such that $s(0) = 0$, $s(\gamma)$ is real, and $s(\gamma)$ is the unique solution to $\tilde{p}(s; \gamma) = 0$ for sufficiently small $\gamma$. Undoing these substitutions, this implies that $p(\lambda, i s(-i \lambda)) = 0$. By uniqueness of the IFT solution $\nu(\lambda)$, we conclude that $\nu(\lambda) = \nu(i \gamma) = i s(-i \lambda)$, which is pure imaginary.
 
-Finally, let $V_0(\lambda)$ be an eigenvector of $A(\lambda)$ corresponding to $\nu(\lambda)$. This is only unique up to scalar multiple, but since $V_0(\lambda)$ is smooth in $\lambda$, scale $V_0(\lambda)$ so that $V(0) = V_0$. Next, we can verify by direct calculation that 
-\[
-A(\lambda) - \nu(\lambda) I = -R(A(-\lambda) + \nu(\lambda) I)R,
-\]
-where $R$ is the standard reversor operator. Then
+For the eigenvectors, let $V_0(\lambda)$ be an eigenvector of $A(\lambda)$ corresponding to $\nu(\lambda)$. This is only unique up to scalar multiple, but since $V_0(\lambda)$ is smooth in $\lambda$, scale $V_0(\lambda)$ so that $V(0) = V_0$. We can verify by direct calculation that $A(\lambda) = -R(A(-\lambda)R$, where $R$ is the standard reversor operator. Thus we have
 \begin{align*}
-[A(\lambda) - \nu(\lambda) I]V = 0 &\iff
--R(A(-\lambda) + \nu(\lambda) I)RV = 0 \\
-&\iff (A(-\lambda) + \nu(\lambda) I)RV
+[A(\lambda) - \nu(\lambda) I]V = 0 &\iff -R(A(-\lambda) + \nu(\lambda) I)RV = 0 \\
+&\iff (A(-\lambda) + \nu(\lambda) I)RV = 0 
 \end{align*}
-Thus $RV_0(\lambda)$ is an eigenvector of $A(-\lambda)$ corresponding to $-\nu(\lambda)$. Since $V_0(0) = RV_0(0)$, we conclude that $V_0(-\lambda) = R V_0(\lambda)$. Expanding $V_0(\lambda)$ in a Taylor series about $\lambda = 0$, we have
+Thus $RV_0(\lambda)$ is an eigenvector of $A(-\lambda)$ corresponding to $-\nu(\lambda)$. Since $V_0(0) = RV_0(0)$, we conclude that $V_0(-\lambda) = R V_0(\lambda)$. Differentiating $A(\lambda)V_0(\lambda) = \nu(\lambda) V_0(\lambda)$ with respect to $\lambda$,
+\begin{align*}
+A'(\lambda)V_0(\lambda) + A(\lambda)V_0'(\lambda) = \nu'(\lambda)V_0(\lambda) + \nu(\lambda)V_0'(\lambda)
+\end{align*}
+Evaluating this at $\lambda = 0$ and using $A'(\lambda) = b$, $\nu(0) = 0$, and $\nu'(0) = 0$, this becomes
+\begin{align*}
+B V_0(0) + A(0)V_0'(0) = \frac{1}{c} V_0(0)
+\end{align*}
+which rearranges to get
+\begin{align*}
+A(\lambda)V_0'(0) = -B V_0(0) + \frac{1}{c} V_0(0)
+= (1/c^2, 0, \dots, 0)^T
+\end{align*}
+Using \eqref{Alambdaform} for $A(\lambda)$, this has a solution $V_0'(0) = (0, 1/c^2, 0, \dots, 0)^T$ which is orthogonal to $V_0$. Thus we have the Taylor expansion
 \[
-V_0(\lambda) = V_0 + \lambda \tilde{V}_0 + \mathcal{O}(\lambda^2),
+V_0(\lambda) = V_0 + \lambda V_0'(0) + \mathcal{O}(\lambda^2),
 \]
-where $\tilde{V}_0 = -R \tilde{V}_0$.
 
-We can follow the same procedure with the adjoint asymptotic matrix $-A(\lambda)^*$. This has eigenvalue $-\overline{\nu(\lambda)}$ which is smooth in $\overline{\lambda}$. We can similarly find an corresponding eigenvector $W(\overline{\lambda})$ with $W_0(-\overline{\lambda}) = R V_0(\overline{\lambda})$ and Taylor expansion
+We can follow the same procedure with the adjoint asymptotic matrix $-A(\lambda)^*$, which has an eigenvalue $-\overline{\nu(\lambda)}$ that is smooth in $\overline{\lambda}$. To find $W_0'(\overline{\lambda})$, we follow the same procedure as above to get the equation
+\begin{align*}
+A(0)^* W_0'(0) = \frac{1}{c} W_0(0) - B^* W_0(0)
+= (-1, 0, \dots, 0, 1/c)
+\end{align*}
+which has a solution 
+\[
+V_0'(0) = (0, -c_3/c, 0, -c_5/c, )^T
+\]
+which is orthogonal to $W_0$
+
+
+We can similarly find an corresponding eigenvector $W(\overline{\lambda})$ with $W_0(-\overline{\lambda}) = R V_0(\overline{\lambda})$ and Taylor expansion
 \[
 W_0(\lambda) = W_0 + \overline{\lambda} \tilde{W}_0 + \mathcal{O}(\overline{\lambda}^2),
 \]

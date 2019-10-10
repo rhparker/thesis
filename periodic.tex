@@ -272,7 +272,7 @@ where $A(U^*(x); \lambda) = A(U^*) + \lambda B$. For $\lambda = 0$, the asymptot
 
 % nu(lambda) lemma
 \begin{lemma}\label{nulambdalemma}
-There exists $\delta_0 > 0$ such that for $|\lambda| < \delta_0$, the asymptotic matrix $A(\lambda)$ has a simple eigenvalue $\nu(\lambda)$. $\nu(\lambda)$ is smooth in $\lambda$, $\nu(0) = 0$, and for $|\lambda| < \delta_0$,
+There exists $\delta_0 > 0$ such that for $|\lambda| < \delta_0$, the asymptotic matrix $A(\lambda)$ has a simple eigenvalue $\nu(\lambda)$. $\nu(\lambda)$ is smooth in $\lambda$, $\nu(0) = 0$, $\nu'(0) = 1/c$, and for $|\lambda| < \delta_0$,
 \begin{equation}\label{nulambda}
 \nu(\lambda) = \frac{1}{c} \lambda + \mathcal{O}(|\lambda|^3)
 \end{equation}
@@ -282,16 +282,20 @@ In addition,
 \item If $\lambda$ is pure imaginary, $\nu(\lambda)$ is also pure imaginary
 \item The corresponding eigenvector to $\nu(\lambda)$ is $V_0(\lambda)$ which is smooth in $\lambda$ and has Taylor expansion
 \begin{equation}\label{V0expansion}
-V_0(\lambda) = V_0 + \lambda \tilde{V}_0 + \mathcal{O}(\lambda^2),
+V_0(\lambda) = V_0 + \lambda V_0'(0) + \mathcal{O}(\lambda^2),
 \end{equation}
-Furthermore, $V_0(-\lambda) = R V_0(\lambda)$ and $\tilde{V}_0 = -R \tilde{V}_0$, where $R$ is the standard reversor operator.
+where $V_0'(0) = (0, 1/c^2, 0, \dots, 0)^T$. Furthermore, $V_0(-\lambda) = R V_0(\lambda)$, where $R$ is the standard reversor operator.
 \end{enumerate}
 
 Similarly, the adjoint asymptotic matrix $-A(\lambda)^*$ has an eigenvalue $-\overline{\nu(\lambda)}$ with corresponding eigenvector $W_0(\overline{\lambda})$, both of which are smooth in $\overline{\lambda}$. $W_0(\overline{\lambda})$ has Taylor expansion
 \begin{equation}\label{W0expansion}
-W_0(\lambda) = W_0 + \overline{\lambda} \tilde{W}_0 + \mathcal{O}(\overline{\lambda}^2),
+W_0(\lambda) = W_0 + \overline{\lambda} W'(0) + \mathcal{O}(\overline{\lambda}^2),
 \end{equation}
-with symmetry propterties $W_0(-\overline{\lambda}) = R W_0(\overline{\lambda})$ and $\tilde{W}_0 = -R \tilde{W}_0$
+where 
+\[
+W_0'(0) = \frac{1}{c} \left( 0, -c_3, 0, -c_5, 0, \dots, 0, -c_{2m-1}, 0, 1, 0\right)^T
+\]
+and symmetry property $W_0(-\overline{\lambda}) = R W_0(\overline{\lambda})$.
 \end{lemma}
 
 We can now state the main theorem of the section, which gives us a condition for $\lambda$ to be an eigenvalue of \eqref{PDEeig3}. This theorem is analagous to \cite[Theorem 2]{Sandstede1998}, with the matrix $A$ replaced by a block matrix.
