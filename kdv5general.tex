@@ -411,7 +411,7 @@ We have the following solutions to the variational equation and adjoint variatio
 	\begin{equation}
 	V^c(x) \rightarrow V_0 \text{ as }|x| \rightarrow \infty
 	\end{equation}
-	$V^c$ is symmetric with respect to the standard reversor operator $R$, i.e. $V^c(-x) = R V^c(x)$.
+	$V^c$ is symmetric with respect to the standard reversor operator $R$, i.e. $V^c(-x) = R V^c(x)$. Furthermore, $V^c = (\tilde{V}^c, 1)$, where $\tilde{V}^c$ solves $\tilde{V}^c(x)' = DF(Q(x)) \tilde{V}^c(x) + (0, \dots, 0, 1)^T$. Finally, if $v^c(x)$ is the first component of $V^c(x)$, $v^c$ is a formal solution to $\calL(q) v_c = 1$.
 
 	\item There exist two linearly independent, bounded solutions $\Psi(x)$ and $\Psi^c(x)$ to \eqref{adjvareq2}.
 	\begin{enumerate}[(i)]
@@ -429,7 +429,7 @@ We have the following solutions to the variational equation and adjoint variatio
 \end{enumerate}
 \end{lemma}
 
-\noi We remark that although $[V^c(x)]' = A(Q(x))V^c(x)$, whether or not $V^c(x)$ is an eigenfunction depends on the space we use for the PDE eigenvalue problem \cref{PDEeigsystem}. We also retain the same notation $\Psi(x)$ for convenience.
+\noi We remark that although $[V^c(x)]' = A(Q(x))V^c(x)$, whether or not its first component $v^c(x)$ is in the kernel of $\partial_x \calL(q)$ depends on the space we use for the PDE eigenvalue problem \cref{PDEeigsystem}. The formal equation $\calL(q) v^c(x) = 1$ is very useful for computing $v^c(x)$ numerically.
 
 Using Lemma \ref{nondegenlemma} and Lemma \ref{varadjsolutions}, we can decompose $\R^{2m+1}$ as  
 \begin{equation}

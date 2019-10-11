@@ -621,29 +621,18 @@ Since $Q(x)$ is a homoclinic orbit in the intersection of $W^u(0)$ and $W^s(0)$,
 % solutions to variational equation
 \subsection{Proof of Lemma \ref{varadjsolutions}}
 
-The proof of part (i) is found in Lemma \ref{varsolutions} in \cref{sec:centersol}.
-
-Using 
-
-the Gap Lemma, we can find solutions $V^\pm(x)$ to the variational equation \eqref{vareq2} on $\R^\pm$ such that
-\begin{equation}\label{Vplusminus}
-V^\pm(x) = V_0 + \mathcal{O}(e^{-(\alpha - \epsilon)|x|}|V_0|)
-\end{equation}
-for some $\epsilon > 0$, so $V^\pm(x) \rightarrow V_0$ as $x \rightarrow \pm \infty$. These will not be unique, since, for example, we can add any component in $Y^+ \oplus \R Q'(0)$ to $V^+(0)$ and keep the same decay property. Since $V^\pm(x)$ remains bounded but does not decay to 0, $V^\pm(0)$ must have a component in $Y^0$ and cannot have a component in $Y^-$. If $V^+(0)$ has any component in $Y^+ \oplus \R Q'(0)$, we can subtract it out and keep the decay property in \eqref{Vplusminus}. Thus we can take $V^+(0) \in Y^0$. Similarly, we can take $V^-(0) \in Y^0$. Since both initial conditions are in $Y^0$, $V^\pm(x)$ remain bounded for all $x$.
-
-By reversibility, $RV^+(-x)$ is also a solution to the variational equation on $R^-$, with 
+For part (i), the proof of the existence of $V^c(x)$ is found in Lemma \ref{varsolutions} in \cref{sec:centersol}. Let $V^c = (\tilde{V}^c, 1)$. Then we can write $V^c(x)' = A(Q(x))V^c(x)$ as the block equation
 \begin{align*}
-R V^+(-x) &= R V_0 + \mathcal{O}(e^{-(\alpha - \epsilon)|x|}|V_0|) \\
-&= V_0 + \mathcal{O}(e^{-(\alpha - \epsilon)|x|}|V_0|)
+\begin{pmatrix}\tilde{V}^c(x) \\ 1 \end{pmatrix}' = 
+\begin{pmatrix}
+DF(Q(x)) & \begin{pmatrix} 0 \\ \vdots \\ 0 \\ 1 \end{pmatrix} \\
+\begin{pmatrix} 0 & 0 & \dots & 0 \end{pmatrix} & 0
+\end{pmatrix} 
+\begin{pmatrix}\tilde{V}^c(x) \\ 1 \end{pmatrix}
 \end{align*}
-where $R V_0 = V_0$ since all components of $V_0$ are 0 except for the first. Reversing time swaps $Y^+$ and $Y^-$, while leaving $\R Q'(0)$ and $Y^0$ intact. Thus $RV^+(0) \in Y_0$, and so both $V^+(0)$ and $RV^+(0)$ are in the one-dimensional space $Y^0$; since the odd numbered components of $V^+(0)$ and $RV^+(0)$ are equal and $Y^0$ is one-dimensional, it follows that $V^+(0) = RV^+(0)$.
+Since the bottom line is always satisfied, this reduces to $\tilde{V}^c(x)' = DF(Q(x)) \tilde{V}^c(x) + (0, \dots, 0, 1)^T$. Let $v^c(x)$ be the first component of $V^c(x)$. Then, using \eqref{defDF}, $v^c(x)$ is a formal solution to $\calL(q)v^c = 1$.
 
-Since we have the same initial condition at $x = 0$ for $V^+(x)$ and $RV^+(-x)$, this implies that $V^+(-x) = RV^+(x)$. Let $V^c(x) = V^+(x)$. Then $V^c(x)$ is a bounded solution to the variational equation with is symmetric with respect to the reversor $R$, i.e. $V^c(-x) = RV^c(x)$. Furthermore, $V^c(x) \rightarrow V_0$ as $x \rightarrow \pm \infty$.
-
-% solutions to adjoint variational equation
-\subsection{Proof of Lemma \ref{adjsolutions}}
-
-Using \eqref{defAphi}, the linear operator $A(Q(x))^*$ has the form 
+For part (ii), using \eqref{defAphi}, the linear operator $A(Q(x))^*$ has the form 
 \begin{equation}\label{defAphi}
 A(Q(x))^* = 
 \begin{pmatrix}

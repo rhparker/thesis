@@ -4,128 +4,49 @@
 
 \chapter{Krein Bubble}
 
-\section{Background}
-
-Here we have just enough background information to define the constants which will appear in the Krein bubble equation. These constants are $p_1$ and $k_i$. The $k_i$ can be computed numerically, and only $k_0$ (the biggest one) should matter. There might be a way to compute $p_1$, but I haven't though of it yet.
-
-Consider the equations
-\begin{align}
-V'(x) = A(Q(x); \lambda) V(x)  \label{Veqlambda} \\
-W'(x) = -A(Q(x); \lambda)^* W(x) \label{Weqlambda}
-\end{align}\
-where $Q(x)$ is the primary pulse solution and 
+Krein bubbles can occur when eigenvalues of opposite Krein signature collide on the imaginary axis. In our case, this can only occur if a purely imaginary interaction eigenvalue collides with an essential spectrum eigenvalue. The essential spectrum eigenvalues are located at approximately $c k \pi i / X$ for integer $k$. In Theorem \ref{locateeigtheorem}, we proved as long as 
 \[
-A(Q(x), \lambda) = A(Q(x)) + \lambda B
+\left| c \frac{k \pi i}X - \sqrt{\frac{\mu}{M}} \right| \geq \frac{r^{1/2}}{X^{1/2}}
 \]
-with 
-\begin{equation*}
-B = \begin{pmatrix}0 & 0 & 0 & 0 & 0 \\0 & 0 & 0 & 0 & 0 \\  & 
-\vdots & & \vdots & \\0 & 0 & 0 & 0 & 0 \\1 & 0 & 0 & 0 & 0 \end{pmatrix} 
-\end{equation*}
-For KdV5, 
-\begin{equation*}
-A(Q(x)) = \begin{pmatrix}0 & 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 & 0 \\ 2 q(x) - c & 0 & 1 & 0 & 1 \\
-0 & 0 & 0 & 0 & 0 
-\end{pmatrix}
-\end{equation*}
-and we have an appropriate general form for this in which the bottom row is always all 0s. When $\lambda = 0$ and we linearize about the primary pulse $Q(x)$, these are the variational and adjoint variational equations.
+for all nonzero eigenvalues $\mu$ of $A$, Krein bubbles cannot occur. Since the essential spectrum eigenvalues are spaced apart on the imaginary axis by approximately $c \pi i / X$, for this to be meaningful, we need to take $(r X)^{1/2} < c \pi/2$. In this section, we consider the case when this condition does not hold.
 
-\begin{enumerate}
-	\item For the background state, $A(0)$ and $A(0)^*$ have eigenvalues at 0 with corresponding eigenvectors
-	\begin{align*}
-	V_0 &= (1/c, 0, \dots, 0, 1)^T \\
-	W_0 &= (0, 0, \dots, 0, 1)^T
-	\end{align*}
-	$A(\lambda)$ has eigenvalue $\nu(\lambda)$ near 0, and $-A(\lambda)^*$ has eigenvalue $-\overline{\nu(\lambda)}$. The corresponding eigenvectors $V_0(\lambda)$ and $W_0(\overline{\lambda})$ have Taylor expansions
-	\begin{align}
-	V_0(\lambda) = V_0 + \lambda \tilde{V}_0 + \mathcal{O}(\lambda^2) \label{V0expansion} \\
-	W_0(\overline{\lambda}) = W_0 + \overline{\lambda} \tilde{W}_0 + \mathcal{O}(\overline{\lambda}^2) \label{W0expansion}
-	\end{align}
-	Define the constants $k_i$ by
-	\begin{equation}\label{defki}
-	k_i = 2 \langle \tilde{W}_0, Q'(X_i) \rangle
-	\end{equation}
-	Numerics suggests this is not 0. In addition $W_0 \perp Q'(X_i)$, so we should not have $W_0(\lambda) \perp Q'(X_i)$ for small $\lambda$, which would be a degenerate case.
-
-	\item The variational equation has decaying solution $Q'(x) = (\partial_x q(x), \dots, \partial_x^{2m} q(x), 0)$ and bounded solution 
-	\[
-	Q^c(x) = V_0 + \mathcal{O}(e^{-\alpha_1 |x|})
-	\]
-	with symmetry $Q^c(-x) = R Q^c(x)$, where $R$ is the standard reversor operator. The adjoint variational equation has decaying solution $\Psi(x)$ and bounded, constant solution $\Psi^c(x) = W_0$.
-
-	For sufficiently small $\lambda$, we can find solutions $V^\pm(x; \lambda)$ to \eqref{Veqlambda} on $\R^\pm$ which are given by
-	\begin{align}\label{Vpmlambda}
-	V^\pm(x; \lambda) &= e^{\nu(\lambda)x}(V_0(\lambda) + \mathcal{O}(e^{-\alpha_1 |x|}),
-	\end{align}
-	and have the symmetry relationship
-	\begin{equation}\label{Vpmsymmetry}
-	V^-(x; \lambda) = R V^+(-x; -\lambda)
-	\end{equation}
-	and for which $V^\pm(x, 0) = V^c(x)$. 
-
-	Expanding $V^+(0; \lambda)$ in a Taylor series about $\lambda = 0$, we get
-	\begin{align*}
-	V^+(0; \lambda) 
-	&= V^c(0) + \partial_\lambda V^+(0; 0) \lambda + \mathcal{O}(|\lambda|^2) 
-	\end{align*}
-	Taking inner products with $\Psi(0)$ and $\Psi^c(0)$, we have
-	\begin{equation}
-	\begin{aligned}
-	\langle \Psi^c(0), V^\pm(0; \lambda) \rangle &= 1 + \mathcal{O}(|\lambda|) \\
-	\langle \Psi(0), V^\pm(0; \lambda) \rangle &= \pm p_1 \lambda + \mathcal{O}(|\lambda|^2)
-	\end{aligned}
-	\end{equation}
-	where $p_1 = \langle \Psi(0), \partial_\lambda V^+(0; 0) \rangle$.
-
-\end{enumerate}
-
-\section{The Search for the Krein Bubble}
-
-For the 2-pulse, using the block matrix theorem, the block matrix $B$ takes the form
+For simplicity, we will only consider the periodic 2-pulse. The matrix $A$ for the 2-pulse is
 \[
-B \approx \begin{pmatrix}
-\begin{pmatrix}
-e^{-\nu(\lambda)X_1} & -e^{\nu(\lambda)X_0} \\
--e^{\nu(\lambda)X_1} & e^{-\nu(\lambda)X_0} 
-\end{pmatrix} &
-\lambda \begin{pmatrix}
--e^{-\nu(\lambda)X_1} k_1 & e^{-\nu(\lambda)X_1} k_1 \\ e^{-\nu(\lambda)X_0} k_0 & -e^{-\nu(\lambda)X_0} k_0
-\end{pmatrix} \\
-p_1 \lambda
-\begin{pmatrix}
-e^{-\nu(\lambda)X_1} & e^{\nu(\lambda)X_0} \\
-e^{\nu(\lambda)X_1} & e^{-\nu(\lambda)X_0} 
-\end{pmatrix} &
-\begin{pmatrix}
--a - \lambda^2 M & a \\
-a & -a - \lambda^2 M
-\end{pmatrix}
+A = \begin{pmatrix}
+-a & a \\
+a & -a
 \end{pmatrix}
 \]
 where
 \[
-a = \langle \Psi(X_0), Q'(-X_0) \rangle
-+ \langle \Psi(X_1), Q'(-X_1) \rangle \approx \mathcal{O}(e^{-2\alpha X_0})
+a = a_0 + a_1 = \langle \Psi(X_0), Q'(-X_0) \rangle + \langle \Psi(X_0), Q'(-X_0) \rangle
 \]
-since $X_1 >> X_0$. Using Mathematica to take the determinant, we have
-\begin{align*}
-\det &B \approx -\lambda^2 M \left[ (2a + \lambda^2 M) \sinh(\nu(\lambda)X) \right. \\
-&+ \left. \lambda^2 p_1 k_0 e^{-\nu(\lambda) X_0}\left( \cosh (\nu(\lambda) X) - 2 e^{-\nu(\lambda) (X_0 - X_1) } \right) \right. \\
-&+ \left. \lambda^2 p_1 k_1 e^{-\nu(\lambda) X_1}\left( \cosh (\nu(\lambda) X) - 2 e^{-\nu(\lambda) (X_1 - X_0) } \right) \right] 
-\end{align*}
-where $X = X_0 + X_1$. Since $X_1 >> X_0$, $k_1 << k_0$, thus we will simplify this to 
-\begin{align*}
-\det &B \approx -\lambda^2 M \left[ (2a + \lambda^2 M) \sinh(\nu(\lambda)X) + \lambda^2 p_1 \tilde{k}_0 \cosh (\nu(\lambda) X) - 2 \lambda^2 p_1 k_0 e^{-\nu(\lambda) (2 X_0 - X_1) } \right] 
-\end{align*}
-where $\tilde{k}_0 = k_0 e^{-\nu(\lambda) X_0}$. 
+Since Krein bubbles can only occur when $X_1 >> X_0$, in this case we have $a = \mathcal{O}(e^{-2\alpha X_m}) = \mathcal{O}(r)$. The eigenvalues of $A$ are $\{0, -2a\}$, thus by Theorem \ref{locateeigtheorem}, the interaction eigenvalues are located at approximately $\m \sqrt{-2a/M}$. These are purely imaginary if $2a/M > 0$. Since this is the case we will consider, let $b = \sqrt{2a/M} > 0$. Then the two interaction eigenvalues are located at approximately $\pm b i$.
 
-We really want to ignore the last term on the RHS, but (based on what I do below), I don't think we can. Thus we will need to find another way to set up the problem.
+Fix $k$ such that $\frac{c \pi k}{X} < \delta$, where $\delta$ is given in Theorem \ref{locateeigtheorem}. We are interested in what happens near $\lambda = c \frac{k \pi i}{X}$ when $c \frac{k \pi i}{X}$ and $bi$ are close. Specifically, we will take $\lambda$ and $bi$ to both be within $r^{1/2}/X^{1/2}$ of $c \frac{k \pi i}{X}$. Let
+\begin{align}\label{lambdah1}
+\lambda = c \frac{k \pi i}{X} + \frac{c}{X}h
+\end{align}
+and
+\begin{align}\label{lambdas1}
+s = \frac{c \pi k}{X} - b
+\end{align}
+where
+\begin{align}\label{hsbounds}
+\left| \frac{c}{X}h \right|, |s| \leq r^{1/2}/X^{1/2}
+\end{align}
+Since $(r X)^{1/2} < c \pi/2$, we also have the bound on $h$
+\begin{align}\label{hbound1}
+|h| \leq \frac{\sqrt{r X}}{\pi c} \leq \frac{\pi}{2}.
+\end{align}
 
-\section{The Search for the Krein Bubble, Part 2}
+The first step is to compute the determinant of the block matrix in Theorem \ref{blockmatrixtheorem} for $\lambda$ given by \cref{lambdah2}.
 
-This time, we use a more ``symmetrized'' version of the block matrix theorem. I have not officially done this yet, but it should be a straightforward modification of what I have. In fact, I have suspected this would be useful for a while. Of course, it should not matter how it is set up, but the symmeterized version requires less manipulation to make it useful. Doing this, $B$ takes the form
+\begin{lemma}\label{2blockmatrix}
+\begin{proof}
+First, we write the block matrix $B$ as $B = B_1 + B_2$, where
 \[
-B \approx \begin{pmatrix}
+B_1 = \begin{pmatrix}
 \begin{pmatrix}
 e^{-\nu(\lambda)X_1} & -e^{\nu(\lambda)X_0} \\
 -e^{\nu(\lambda)X_1} & e^{-\nu(\lambda)X_0} 
@@ -144,14 +65,60 @@ a & -a - \lambda^2 M
 \end{pmatrix}
 \end{pmatrix}
 \]
-where
+and $B_2$ is the block matrix 
 \[
-a = \langle \Psi(X_0), Q'(-X_0) \rangle
-+ \langle \Psi(X_1), Q'(-X_1) \rangle \approx \mathcal{O}(e^{-2\alpha X_0})
+B_2 = \begin{pmatrix}
+G_1 & G_2 \\ G_3 & G_4
+\end{pmatrix}
 \]
-since $X_1 >> X_0$. Using Mathematica to take the determinant, we have
+
+Using \cref{lambdah} and \cref{hsbounds} and $b = \mathcal{O}{r^{1/2}}$,
 \begin{align*}
-\det &B \approx -2 \lambda^2 M \Big[ (2a + \lambda^2 M) \sinh(\nu(\lambda)X) \\
+|\lambda| &\leq \left| c \frac{k \pi }{X} \right| + \left|\frac{c}{X}h \right| \\
+&\leq |b| + |s| + C\left|\frac{r^{1/2}}{X^{1/2}} \right| \\
+&\leq C r^{1/2} 
+\end{align*}
+Using this with Lemma \ref{nulambdalemma}, we have the estimate
+\begin{align*}
+\nu(\lambda) &= \frac{1}{c}\lambda + \mathcal{O}(|\lambda|^3) \\
+&= \frac{k \pi i}{X} + c \frac{h}{X} + \mathcal{O}(r^{3/2})
+\end{align*}
+from which it follows that
+\begin{align*}
+|e^{\nu(\lambda)X_j}| &\leq 
+\left| e^{i \frac{k \pi X_j}{X}}\right| e^{|c h|} e^{\mathcal{O}(r^{3/2}X)} \\
+&\leq
+e^{c \pi/2} e^{\mathcal{O}(r^{1/2} rX)} \\
+&\leq C e^{r^{1/2} c^2 \pi^2 / 4} \\
+&\leq C
+\end{align*}
+Using this, the remainder matrices $G_i$ have bounds
+\begin{align*}
+|G_1| &\leq C |\lambda| (|\lambda| + e^{-\alpha X_m} )\\
+|G_2| &\leq C |\lambda| (|\lambda| + e^{-\alpha X_m} )^2 \\
+|G_3| &\leq C (|\lambda| + e^{-\alpha X_m} )(|\lambda| + e^{-(\alpha-\eta) X_m} )\\
+|G_4| &\leq C (|\lambda| + e^{-\alpha X_m} )^2(|\lambda| + e^{-(\alpha-\eta) X_m} ) \\
+\end{align*}
+In terms of the scaling parameter $r$, these are
+\begin{align*}
+|G_1| &\leq C r \\
+|G_2| &\leq C r^{3/2} \\
+|G_3| &\leq C r^{(1 + \tilde{\eta})/2} \\
+|G_4| &\leq C r^{(2 + \tilde{\eta})/2}  \\
+\end{align*}
+where $1/2 < \tilde{\eta} < 1$. (We can deal with this later if it ends up mattering).
+
+We use Mathematica to evaluate the determinant. To do this, we write the matrices $G_j$ as
+\[
+G_j = \begin{pmatrix}t^j_1 & t^j_2 \\ t^j_3 & t^j_4 \end{pmatrix}
+\]
+where the orders of the $t^j_k$ are given in the bounds on the $G_i$ above. The remainder bound is a bound on all the terms involving $t^j_k$. Doing all of this, we get
+\begin{equation*}
+\det B = \det B_1 + \mathcal{O}(r^{2 + \tilde{\eta}/2})
+\end{equation*}
+where from Mathematica we have
+\begin{align*}
+\det &B_1 = -2 \lambda^2 M \Big[ (2a + \lambda^2 M) \sinh(\nu(\lambda)X) \\
 &- 2 \lambda^2 p_1 k_0 \left( \sinh(\nu(\lambda)(2 X_0 + X_1)) - 3 \sinh(\nu(\lambda)X_1)  \right) \\
 &- 2 \lambda^2 p_1 k_1 \left( \sinh(\nu(\lambda)(2 X_1 + X_0)) - 3 \sinh(\nu(\lambda)X_0)  \right) \Big] 
 \end{align*}
@@ -182,13 +149,18 @@ Similarly, expanding the third line,
 &= -2 \sinh(\nu(\lambda)X)\cosh(\nu(\lambda)X_1) 
 + 4 \cosh(\nu(\lambda)X)\sinh(\nu(\lambda)X_1) \\
 \end{align*}
-Substituting these into our expression for $B$, we have
+Substituting these into the expression for $\det B_1$, we have
 \begin{align*}
-\det &B \approx -2 \lambda^2 M \Big[ (2a + \lambda^2 M 
+\det &B_1 = -2 \lambda^2 M \Big[ (2a + \lambda^2 M 
 + 4 \lambda^2 p_1(k_0 \cosh(\nu(\lambda)X_0) + k_1 \cosh(\nu(\lambda)X_1)  ) ) \sinh(\nu(\lambda)X)  \\
 &- 8 \lambda^2 p_1 \cosh(\nu(\lambda)X) \left( k_0 \sinh(\nu(\lambda)X_0) 
 + k_1 \sinh(\nu(\lambda)X_1) \right) \Big] 
 \end{align*}
+
+****
+
+
+
 At this point, we neglect some higher order terms. Since $\nu(\lambda)$ is purely imaginary for the cases we care about, all the $\sinh$ and $\cosh$ terms are bounded by 1. Since 
 \[
 \lambda^2 p_1(k_0 \cosh(\nu(\lambda)X_0) + k_1 \cosh(\nu(\lambda)X_1)  ) = \mathcal{O}(e^{-\alpha X_0}|\lambda|^2)
@@ -197,6 +169,9 @@ we can neglect that term. Since $k_1 << k_0$, we can also neglect the term $k_1 
 \begin{align*}
 \det &B \approx -2 \lambda^2 M \Big[ (2a + \lambda^2 M  ) \sinh(\nu(\lambda)X) - 8 \lambda^2 p_1 k_0 \cosh(\nu(\lambda)X) \sinh(\nu(\lambda)X_0) \Big]
 \end{align*}
+
+\end{proof}
+\end{lemma}
 
 Now we approximate the various terms. Krein bubbles occur (numerically) when interaction eigenvalues and essential spectrum eigenvalues collide. The essential spectrum eigenvalues occur at approximately 
 \[
