@@ -2,15 +2,9 @@
 
 \begin{document}
 
-\chapter{Krein Bubble}
+\chapter{Double Pulse}
 
-Krein bubbles can occur when eigenvalues of opposite Krein signature collide on the imaginary axis. In our case, this can only occur if a purely imaginary interaction eigenvalue collides with an essential spectrum eigenvalue. The essential spectrum eigenvalues are located at approximately $c k \pi i / X$ for integer $k$. In Theorem \ref{locateeigtheorem}, we proved as long as 
-\[
-\left| c \frac{k \pi i}X - \sqrt{\frac{\mu}{M}} \right| \geq \frac{r^{1/2}}{X^{1/2}}
-\]
-for all nonzero eigenvalues $\mu$ of $A$, Krein bubbles cannot occur. Since the essential spectrum eigenvalues are spaced apart on the imaginary axis by approximately $c \pi i / X$, for this to be meaningful, we need to take $(r X)^{1/2} < c \pi/2$. In this section, we consider the case when this condition does not hold.
-
-For simplicity, we will only consider the periodic 2-pulse. The matrix $A$ for the 2-pulse is
+For simplicity, we will start with the periodic 2-pulse. Let $\delta > 0$ be as in Theorem \ref{blockmatrixtheorem}, so that we will only consider eigenvalues $\lambda$ with $|\lambda| < \delta$. For the periodic 2-pulse, the matrix $A$ is
 \[
 A = \begin{pmatrix}
 -a & a \\
@@ -21,28 +15,55 @@ where
 \[
 a = a_0 + a_1 = \langle \Psi(X_0), Q'(-X_0) \rangle + \langle \Psi(X_0), Q'(-X_0) \rangle
 \]
-Since Krein bubbles can only occur when $X_1 >> X_0$, in this case we have $a = \mathcal{O}(e^{-2\alpha X_m}) = \mathcal{O}(r)$. The eigenvalues of $A$ are $\{0, -2a\}$, thus by Theorem \ref{locateeigtheorem}, the interaction eigenvalues are located at approximately $\m \sqrt{-2a/M}$. These are purely imaginary if $2a/M > 0$. Since this is the case we will consider, let $b = \sqrt{2a/M} > 0$. Then the two interaction eigenvalues are located at approximately $\pm b i$.
+and $a = \mathcal{O}(e^{-2\alpha X_m}) = \mathcal{O}(r)$. The eigenvalues of $A$ are $\{0, -2a\}$, thus we expect the interaction eigenvalues to be located at approximately $\pm \sqrt{-2a/M}$. These will be real if $2a/M < 0$ and imaginary if $2a/M > 0$. 
 
-Fix $k$ such that $\frac{c \pi k}{X} < \delta$, where $\delta$ is given in Theorem \ref{locateeigtheorem}. We are interested in what happens near $\lambda = c \frac{k \pi i}{X}$ when $c \frac{k \pi i}{X}$ and $bi$ are close. Specifically, we will take $\lambda$ and $bi$ to both be within $r^{1/2}/X^{1/2}$ of $c \frac{k \pi i}{X}$. Let
-\begin{align}\label{lambdah1}
-\lambda = c \frac{k \pi i}{X} + \frac{c}{X}h
-\end{align}
-and
-\begin{align}\label{lambdas1}
-s = \frac{c \pi k}{X} - b
-\end{align}
-where
-\begin{align}\label{hsbounds}
-\left| \frac{c}{X}h \right|, |s| \leq r^{1/2}/X^{1/2}
-\end{align}
-Since $(r X)^{1/2} < c \pi/2$, we also have the bound on $h$
-\begin{align}\label{hbound1}
-|h| \leq \frac{\sqrt{r X}}{\pi c} \leq \frac{\pi}{2}.
-\end{align}
+We will only consider the case where $2a/M > 0$ here. Let $b = \sqrt{2a/M} > 0$. We expect that there will be a pair of interaction eigenvalues near $\pm b i$ and essential spectrum eigenvalues near the set 
+\[
+S = \left\{ \lambda = \pm c \frac{k \pi i}{X} : k \in Z \text{ and }|\lambda| < \delta  \right\} 
+\]
 
-The first step is to compute the determinant of the block matrix in Theorem \ref{blockmatrixtheorem} for $\lambda$ given by \cref{lambdah2}.
+Numerical analysis suggests the presence of instability bubbles when essential spectrum eigenvalues collide with the interaction eigenvalues. From the numerics, these bubbles have radius of order $r^{1/2}/X^{1/2}$. Thus as long as the points $\pm b i$ are further than $r^{1/2}/X^{1/2}$ from every point in $S$, we do not expect to find any instability bubbles. For our analysis, we will place balls of radius $r^{1/2}/X^{1/2}$ around each point in $S$. Since these balls scale like $X^{-1/2}$ and the distance between the essential spectrum eigenvalues scales like $X^{-1}$, in order for the balls to not overlap, we require the condition
+\begin{equation}\label{rXcondition}
+r^{1/2}X^{1/2} \leq \frac{c \pi}{2}
+\end{equation}
+Since $X = C_1 ( |\log r| + |\log b| + C_2$, we can always choose $r$ sufficiently small so that this is satisfied. If we fix $r$, there is an upper bound for $X$. Essentially, this will prevent us from taking the domain size to infinity.
+
+With this in mind, for the remainder of the section, we will only consider $\lambda$ with $|\Re \lambda| \leq r^{1/2}X^{1/2}$. In particular, this implies that we have the following bound.
+
+\begin{lemma}\label{lemma:expnubound}
+For $|\lambda|$ with $|\Re \lambda| \leq r^{1/2}X^{1/2}$,
+\begin{equation}\label{expnubound}
+\left|e^{\pm \nu(\lambda)X_j}\right|, \left|e^{\pm \nu(\lambda)X}\right| \leq C
+\end{equation}
+\begin{proof}
+From Lemma \ref{nulambdalemma},
+\[
+\nu(\lambda) = \frac{1}{c}\lambda + \mathcal{O}(\lambda^3)
+\]
+Thus using \eqref{rXcondition}, we have the bound
+\begin{align*}
+|\nu(\lambda)X| &\leq \frac{1}{c}|\lambda| X + C |\lambda|^3 X \\
+&\leq \frac{1}{c} r^{1/2} X^{1/2} + C r^{1/2} (r^{1/2} X^{1/2})^2 \\
+&\leq \frac{\pi}{2} + C r^{1/2} \frac{c^2 \pi^2}{4} \\
+&\leq C
+\end{align*}
+The bound \cref{expnubound} follows from this. Since $X_j \leq X$, the same bound holds.
+\end{proof}
+\end{lemma}
+
+The first step is to compute the determinant of the block matrix in Theorem \ref{blockmatrixtheorem}.
 
 \begin{lemma}\label{2blockmatrix}
+For $|\lambda| \leq r^{1/2}X^{1/2}$, the determinant of the block matrix $B$ is 
+\begin{equation}
+\begin{aligned}
+\det &B = -2 \lambda^2 M \Big[ (2a + \lambda^2 M 
++ 4 \lambda^2 p_1(k_0 \cosh(\nu(\lambda)X_0) + k_1 \cosh(\nu(\lambda)X_1)  ) ) \sinh(\nu(\lambda)X)  \\
+&- 8 \lambda^2 p_1 \cosh(\nu(\lambda)X) \left( k_0 \sinh(\nu(\lambda)X_0) 
++ k_1 \sinh(\nu(\lambda)X_1) \right) \Big]
++ \mathcal{O}( (r^{1/2} + |\lambda|)^5 )
+\end{aligned}
+\end{equation}
 \begin{proof}
 First, we write the block matrix $B$ as $B = B_1 + B_2$, where
 \[
@@ -71,58 +92,29 @@ B_2 = \begin{pmatrix}
 G_1 & G_2 \\ G_3 & G_4
 \end{pmatrix}
 \]
-
-Using \cref{lambdah} and \cref{hsbounds} and $b = \mathcal{O}{r^{1/2}}$,
+By our choice of $\lambda$, it follows from \cref{lemma:expnubound} that all the terms of the form $e^{\pm \nu(\lambda)X_j}$ are bounded by a constant. Thus the remainder matrices $G_i$ have bounds
 \begin{align*}
-|\lambda| &\leq \left| c \frac{k \pi }{X} \right| + \left|\frac{c}{X}h \right| \\
-&\leq |b| + |s| + C\left|\frac{r^{1/2}}{X^{1/2}} \right| \\
-&\leq C r^{1/2} 
+|G_1| &\leq C |\lambda| (|\lambda| + r^{1/2} )\\
+|G_2| &\leq C |\lambda| (|\lambda| + r^{1/2} )^2 \\
+|G_3| &\leq C (|\lambda| + r^{1/2} )^2 \\
+|G_4| &\leq C (|\lambda| + r^{1/2} )^3 \\
 \end{align*}
-Using this with Lemma \ref{nulambdalemma}, we have the estimate
-\begin{align*}
-\nu(\lambda) &= \frac{1}{c}\lambda + \mathcal{O}(|\lambda|^3) \\
-&= \frac{k \pi i}{X} + c \frac{h}{X} + \mathcal{O}(r^{3/2})
-\end{align*}
-from which it follows that
-\begin{align*}
-|e^{\nu(\lambda)X_j}| &\leq 
-\left| e^{i \frac{k \pi X_j}{X}}\right| e^{|c h|} e^{\mathcal{O}(r^{3/2}X)} \\
-&\leq
-e^{c \pi/2} e^{\mathcal{O}(r^{1/2} rX)} \\
-&\leq C e^{r^{1/2} c^2 \pi^2 / 4} \\
-&\leq C
-\end{align*}
-Using this, the remainder matrices $G_i$ have bounds
-\begin{align*}
-|G_1| &\leq C |\lambda| (|\lambda| + e^{-\alpha X_m} )\\
-|G_2| &\leq C |\lambda| (|\lambda| + e^{-\alpha X_m} )^2 \\
-|G_3| &\leq C (|\lambda| + e^{-\alpha X_m} )(|\lambda| + e^{-(\alpha-\eta) X_m} )\\
-|G_4| &\leq C (|\lambda| + e^{-\alpha X_m} )^2(|\lambda| + e^{-(\alpha-\eta) X_m} ) \\
-\end{align*}
-In terms of the scaling parameter $r$, these are
-\begin{align*}
-|G_1| &\leq C r \\
-|G_2| &\leq C r^{3/2} \\
-|G_3| &\leq C r^{(1 + \tilde{\eta})/2} \\
-|G_4| &\leq C r^{(2 + \tilde{\eta})/2}  \\
-\end{align*}
-where $1/2 < \tilde{\eta} < 1$. (We can deal with this later if it ends up mattering).
-
-We use Mathematica to evaluate the determinant. To do this, we write the matrices $G_j$ as
+where $r$ is the scaling parameter. We use Mathematica to evaluate the determinant. To do this, we write the matrices $G_j$ as
 \[
 G_j = \begin{pmatrix}t^j_1 & t^j_2 \\ t^j_3 & t^j_4 \end{pmatrix}
 \]
-where the orders of the $t^j_k$ are given in the bounds on the $G_i$ above. The remainder bound is a bound on all the terms involving $t^j_k$. Doing all of this, we get
+where the orders of the $t^j_k$ are given in the bounds on the $G_i$ above. The remainder bound is the sum of the bounds on all the terms involving $t^j_k$. Doing all of this, we get
 \begin{equation*}
-\det B = \det B_1 + \mathcal{O}(r^{2 + \tilde{\eta}/2})
+\det B = \det B_1 + \mathcal{O}( (r^{1/2} + |\lambda|)^5)
 \end{equation*}
-where from Mathematica we have
+
+From Mathematica, we also have
 \begin{align*}
 \det &B_1 = -2 \lambda^2 M \Big[ (2a + \lambda^2 M) \sinh(\nu(\lambda)X) \\
 &- 2 \lambda^2 p_1 k_0 \left( \sinh(\nu(\lambda)(2 X_0 + X_1)) - 3 \sinh(\nu(\lambda)X_1)  \right) \\
 &- 2 \lambda^2 p_1 k_1 \left( \sinh(\nu(\lambda)(2 X_1 + X_0)) - 3 \sinh(\nu(\lambda)X_0)  \right) \Big] 
 \end{align*}
-Expanding the second line, we have
+Expanding the second line, we get
 \begin{align*}
 \sinh&(\nu(\lambda)(2 X_0 + X_1)) - 3 \sinh(\nu(\lambda)X_1) \\
 &= \sinh(\nu(\lambda)(X_0 + X_1))\cosh(\nu(\lambda)X_0) 
@@ -156,10 +148,189 @@ Substituting these into the expression for $\det B_1$, we have
 &- 8 \lambda^2 p_1 \cosh(\nu(\lambda)X) \left( k_0 \sinh(\nu(\lambda)X_0) 
 + k_1 \sinh(\nu(\lambda)X_1) \right) \Big] 
 \end{align*}
+\end{proof}
+\end{lemma}
 
-****
+To find the eigenvalues, we will solve $\det B = 0$. First, we will look at what happens when $\pm bi$ is separated by at least $r^{1/2}/X^{1/2}$ from the set $S$. This should be a sufficient condition for no Krein bubbles. First, we locate the interaction eigenvalues.
+
+\begin{lemma}
+\begin{proof}
+By \cref{lemma:expnubound} and our choice of $\lambda$, $\cosh(\nu(\lambda)X_j)$, $\sinh(\nu(\lambda)X_j)$, and $\cosh(\nu(\lambda)X)$ are bounded by a constant. Since $k_j = \mathcal{O}(r^{1/2})$ and
+\[
+2a + \lambda^2 M = M( \lambda - b i) (\lambda + b i),
+\]
+the equation $\det B = 0$ simplifies to 
+\begin{equation}\label{simpleDetB1}
+-2 \lambda^2 M^2 ( \lambda - b i) (\lambda + b i)\sinh(\nu(\lambda)X) + \mathcal{O}( (r^{1/2} + |\lambda|)^5 ) = 0
+\end{equation}
+Since we expect the interaction eigenvalues to be near $bi = \mathcal{O}(r^{1/2})$, we scale out a factor of $r^{1/2}$ from everything. Let
+\begin{align*}
+b &= r^{1/2} \tilde{b} \\
+\lambda &= r^{1/2} \tilde{\lambda}
+\end{align*}
+Making these substitutions and dividing by $r^2$ and the constants out front, we have
+\begin{equation}\label{simpleDetB2}
+\tilde{\lambda}^2 ( \tilde{\lambda} - \tilde{b} i) (\tilde{\lambda} + \tilde{b} i)\sinh(\nu(r^{1/2}\tilde{\lambda})X) + \mathcal{O}(r^{1/2}) = 0
+\end{equation}
+Next, let $\tilde{s} = \tilde{\lambda} - \tilde{b} i$. Then this becomes
+\begin{equation}\label{simpleDetB3}
+\tilde{s} (\tilde{s} + \tilde{b} i) (\tilde{s} + 2 \tilde{b} i)\sinh(\nu(r^{1/2}(\tilde{b}i + \tilde{s}))X) = \mathcal{O}(r^{1/2})
+\end{equation}
+As long as the $\sinh$ term is not too small, we should be able to solve this for $s$ near $s = 0$. This is of the form $F(\tilde{s}) = R$, where $F(0) = 0$. Taking the derivative at $\tilde{s} = 0$, we are left with only one term
+\[
+F'(0) = -2 \tilde{b}^2 \sinh(\nu(bi)X)
+\]
+We will obtain a lower bound on $\sinh(\nu(bi)X)$, from which it follows that $F'(0) \neq 0$. For any integer $k$, let
+\[
+d_k = bi - c\frac{k \pi i}{X}
+\]
+By our initial setup, $|d_k| \geq r^{1/2}/X^{1/2}$. Then we have
+\begin{align*} 
+\nu(bi) &= \frac{1}{c}bi + \mathcal{O}(bi)^3 \\
+&= \frac{1}{c}\left( c\frac{k \pi i}{X} + \left( bi - c\frac{k \pi i}{X}\right) \right) + \mathcal{O}(r^{3/2}) \\
+&= \frac{k \pi i}{X} + \frac{d_k}{c} + \mathcal{O}(r^{3/2})
+\end{align*}
+Since $r^{1/2}X^{1/2} \leq C$, $r^{3/2}X \leq C r^{1/2}$, thus we have
+\begin{align*} 
+\sinh( \nu(bi)X) &= \sinh\left( k \pi i + \frac{d_k X}{c} + \mathcal{O}(r^{1/2}) \right)
+\end{align*}
+from which it follows that
+\[
+|\sinh( \nu(bi)X)| \geq C |d_k X| \geq C r^{1/2}X^{1/2}
+\]
+Thus we have
+\[
+|F'(0)| \geq C \tilde{b}^2 r^{1/2}X^{1/2} > 0
+\]
+Using the inverse function theorem, $F$ is invertible near 0, thus for $R$ sufficiently small, $\tilde{s} = F^{-1}(R)$. For the derivative at 0, we have bound
+\[
+|F^{-1}'(0)| = \frac{1}{F'(F^{-1}(0))} \\
+= \frac{1}{F'(0)} = \mathcal{O}(r^{-1/2}X^{-1/2})
+\]
+Expanding $F^{-1}$ in a Taylor series about $r = 0$, we have
+\[
+\tilde{s} = \mathcal{O}(r^{-1/2}X^{-1/2}) \mathcal{O}(R) = \mathcal{O}\left( \frac{1}{X^{1/2}}\right)
+\]
+\end{proof}
+\end{lemma}
+
+We do the same thing for the essential spectrum eigenvalues.
+
+\begin{lemma}
+\begin{proof}
+As in the previous lemma, we wish to solve
+\begin{equation*}
+\lambda^2 ( \lambda - b i) (\lambda + b i)\sinh(\nu(\lambda)X) + \mathcal{O}( (r^{1/2} + |\lambda|)^5 ) = 0
+\end{equation*}
+Here, we are interested in what happens near where $\nu(\lambda) = \frac{k \pi i}{X}$. This time, let
+\[
+\nu(\lambda) = \frac{k \pi i}{X} + \frac{h}{X}
+\]
+for $k$ sufficiently small (DETAILS LATER) and, at minimum $h < \pi/2$ SINCE EXPLAIN. Expanding the $\sinh$ term in a Taylor series about $n \pi i$,
+\begin{align*}
+\sinh(\nu(\lambda)X) &= \sinh(k \pi i + h) \\
+&= (-1)^k h + \mathcal{O}(h^3)
+\end{align*}
+Thus our equation to solve is
+\begin{equation*}
+\lambda^2 ( \lambda - b i) (\lambda + b i)((-1)^k h + \mathcal{O}(h^3)) + \mathcal{O}( (r^{1/2} + |\lambda|)^5 ) = 0
+\end{equation*}
+Since $\nu(0) = 0$, expanding $\nu^{-1}(t)$ in a Taylor series about $t = 0$, we have
+\[
+\nu^{-1}(t) = c t + \mathcal{O}(t^3)
+\]
+thus we have
+\begin{align*}
+\lambda &= \lambda_0 + c \frac{h}{X} + \mathcal{O}\left(\lambda_0 + \frac{h}{X} \right)^3 \\
+&= \lambda_0 + c \frac{h}{X} + \mathcal{O}(\lambda_0)^3
+\end{align*}
+where 
+\[
+\lambda_0 = c \frac{k \pi i}{X}
+\]
+Substituting all of this in and dividing by $(-1)^k$, we have
+\begin{align*}
+(h &+ \mathcal{O}(h^3))\left(\lambda_0 + c \frac{h}{X} + \mathcal{O}(\lambda_0)^3 \right)^2\left(\lambda_0 - bi + c \frac{h}{X} + \mathcal{O}(\lambda_0)^3 \right)\left(\lambda_0 + bi + c \frac{h}{X} + \mathcal{O}(\lambda_0)^3 \right)\\
+ &+ \mathcal{O}( (r^{1/2} + |\lambda_0|)^5 ) = 0
+\end{align*}
 
 
+\end{proof}
+\end{lemma}
+
+Fix $k$ such that $\frac{c \pi k}{X} < \delta$, where $\delta$ is given in Theorem \ref{locateeigtheorem}. We are interested in what happens near $\lambda = c \frac{k \pi i}{X}$ when $c \frac{k \pi i}{X}$ and $bi$ are close. Specifically, we will take $\lambda$ and $bi$ to both be within $r^{1/2}/X^{1/2}$ of $c \frac{k \pi i}{X}$. Let
+\begin{align}\label{lambdah1}
+\lambda = c \frac{k \pi i}{X} + \frac{c}{X}h
+\end{align}
+and
+\begin{align}\label{lambdas1}
+s = \frac{c \pi k}{X} - b
+\end{align}
+where
+\begin{align}\label{hsbounds}
+\left| \frac{c}{X}h \right|, |s| \leq \frac{r^{1/2}}{X^{1/2}}
+\end{align}
+Since $(r X)^{1/2} < c \pi/2$, we also have the bound on $h$
+\begin{align}\label{hbound1}
+|h| \leq \frac{\sqrt{r X}}{\pi c} \leq \frac{\pi}{2}.
+\end{align}
+
+
+In the next lemma, we evaluate $\det B$ in terms of $h$.
+
+\begin{lemma}
+In terms of $h$,
+\begin{align*}
+\det &B = -2 \lambda^2 M (-1)^k \Big[ (2a + \lambda^2 M) h - 8 i \lambda^2 p_1 \left( k_0 \sin\left(\frac{k \pi X_0}{X}\right) + k_1 \sin\left(\frac{k \pi X_1}{X}\right) \right) \Big] \\
+&+ \mathcal{O}(r^2(h + r^{\tilde{\eta}/2}))
+\end{align*}
+\begin{proof}
+From the previous lemma,
+\begin{align*}
+\nu(\lambda) X &= k \pi i + h + \mathcal{O}(r^{3/2}X) \\
+&= k \pi i + h + \mathcal{O}(r^{1/2})
+\end{align*}
+Expanding $\sinh(\nu(\lambda)X)$ and $\cosh(\nu(\lambda)X)$ in a Taylor series about $k \pi i$,
+\begin{align*}
+\sinh(\nu(\lambda)X) &= \sinh(k \pi i + h + \mathcal{O}(r^{1/2})) = (-1)^k h  + \mathcal{O}(h^3 + r^{1/2}) \\
+\cosh(\nu(\lambda)X) &= \cosh(k \pi i + h + \mathcal{O}(r^{1/2})) = (-1)^k +  \mathcal{O}(h^2 + r^{1/2})
+\end{align*}
+From the previous lemma,
+\[
+\nu(\lambda)X_j = \frac{k \pi X_j}{X}i + \frac{h X_j}{X} + \mathcal{O}(r^{3/2} X_j)
+= \frac{k \pi X_j}{X}i + \frac{h X_j}{X} + \mathcal{O}(r^{1/2})
+\]
+Expanding $\cosh(\nu(\lambda)X)$ and $\sinh(\nu(\lambda)X)$in a Taylor series about $\frac{k \pi X_j}{X}i$
+\begin{align*}
+|\cosh&(\nu(\lambda)X_j)| = \left| 
+\cosh\left( \frac{k \pi X_j}{X}i \right) + \mathcal{O}(h + r^{1/2}) \right| \leq C
+\end{align*}
+and
+\begin{align*}
+\sinh&(\nu(\lambda)X_j)
+= \sinh\left( \frac{k \pi X_j}{X}i \right) + \mathcal{O}(h + r^{1/2}) \\
+&= i \sin\left( \frac{k \pi X_j}{X}\right) + \mathcal{O}(h + r^{1/2})
+\end{align*}
+Substituting all of this in, we have
+\begin{align*}
+\det &B_1 = -2 \lambda^2 M \Big[ (2a + \lambda^2 M)((-1)^k h + \mathcal{O}(h^3 + r^{1/2})) + \mathcal{O}(r^{3/2}(h + r^{1/2})) \\
+&- 8 \lambda^2 p_1 ((-1)^k + \mathcal{O}(h + r^{1/2})) \left( k_0 i \sin\left(\frac{k \pi X_0}{X}\right) 
++ k_1 i \sin\left(\frac{k \pi X_1}{X}\right) + \mathcal{O}(r^{1/2}(h + r^{1/2})) \right) \Big] 
+\end{align*}
+which simplifies to
+\begin{align*}
+\det &B_1 = -2 \lambda^2 M (-1)^k \Big[ (2a + \lambda^2 M) h \\
+&- 8 i \lambda^2 p_1 \left( k_0 \sin\left(\frac{k \pi X_0}{X}\right) + k_1 \sin\left(\frac{k \pi X_1}{X}\right) \right) + \mathcal{O}(r(h + r^{1/2}))\Big] 
+\end{align*}
+Using \cref{lambdas1}, \cref{hsbounds}, and $k_j = \mathcal{O}r^{1/2})$, expanding the sine term in a Taylor series to get
+\begin{align*}
+k_j \sin\left( \frac{k \pi X_j}{X}\right) 
+&= k_j \sin\left( b X_j + \mathcal{O}\left( \frac{r^{1/2}X_j }{X^{1/2}} \right) \right) \\
+&= k_j \sin(b X_j) + \mathcal{O}\left(r X_j^{1/2} \right) \\
+&= k_j \sin(b X_j) + \mathcal{O}\left(r X_j^{1/2} \right)
+\end{align*}
+\end{proof}
+\end{lemma}
 
 At this point, we neglect some higher order terms. Since $\nu(\lambda)$ is purely imaginary for the cases we care about, all the $\sinh$ and $\cosh$ terms are bounded by 1. Since 
 \[
@@ -169,9 +340,6 @@ we can neglect that term. Since $k_1 << k_0$, we can also neglect the term $k_1 
 \begin{align*}
 \det &B \approx -2 \lambda^2 M \Big[ (2a + \lambda^2 M  ) \sinh(\nu(\lambda)X) - 8 \lambda^2 p_1 k_0 \cosh(\nu(\lambda)X) \sinh(\nu(\lambda)X_0) \Big]
 \end{align*}
-
-\end{proof}
-\end{lemma}
 
 Now we approximate the various terms. Krein bubbles occur (numerically) when interaction eigenvalues and essential spectrum eigenvalues collide. The essential spectrum eigenvalues occur at approximately 
 \[

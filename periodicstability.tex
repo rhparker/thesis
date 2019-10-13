@@ -44,7 +44,7 @@ Next, we consider the case when $\lambda$ is pure imaginary. Take $\lambda = i \
 \begin{align*}
 p(i s; i \gamma) = (-1)^{m+1} i s^{2m+1} + c_{2m-2} (-1)^m i s^{2m-1} + \dots - c_2 i s^3 - c i s + i \gamma
 \end{align*}
-Since we want to solve $p(i s; i \gamma) = 0$, we can divide by $i$ to get the equilvent problem
+Since we want to solve $p(i s; i \gamma) = 0$, we can divide by $i$ to get the equivalent problem
 \begin{align*}
 \tilde{p}(s; \gamma) = (-1)^{m+1} s^{2m+1} + c_{2m-2} (-1)^m s^{2m-1} + \dots - c_2 s^3 - c s + \gamma = 0
 \end{align*}
@@ -175,7 +175,7 @@ for $i = 0, \dots, n-1$.
 Before we continue, we will need estimates on terms involved in \eqref{eigsystem}, which we collect in the following lemma.
 
 \begin{lemma}\label{stabestimateslemma}
-Let $\Delta H_i^\pm(x) = \tilde{H}_i^\pm(x) - H(x)$. Then for any $\alpha_1$ with $0 < \alpha_1 < \alpha_0$, we have the following estimates
+Let $\Delta H_i^\pm(x) = \tilde{H}_i^\pm(x) - H(x)$. Then for any $\alpha_1$ with $0 < \alpha_1 < \alpha_0$, we have the following estimatees
 \begin{enumerate}[(i)]
 \item $|H(x)|, |\tilde{H}_i^\pm(x)| \leq C e^{-\alpha_1 |x|}$
 \item $|\Delta H_i^-(x)| \leq C e^{-\alpha_1 X_{i-1}} e^{-\alpha_1(X_{i-1} + x) } + e^{-2 \alpha_1 X_i} e^{\alpha_1 x}$
@@ -354,13 +354,13 @@ and the jump conditions \eqref{jumpxi} become
 Before we continue, we define the following constants, which we will use throughout. Recall that by Lemma \ref{eigA0lemma}, $A(0)$ has a simple eigenvalue at 0, a quartet of eigenvalues $\pm \alpha_0 \pm \beta_0 i$, and for all other eigenvalues $\nu$ of $A(0)$, $|\Re \nu| > \alpha_0$. Our results will require that $\lambda$ is sufficiently small. The upper bound on the magnitude of $\lambda$ will depend on $\alpha_0$.
 
 \begin{enumerate}
-	\item Choose $\eta > 0$ sufficiently small so that $\alpha_0 - 5 \eta > 0$.
-	\item Choose $\alpha_1 = \alpha_0 - \eta$
+	\item Choose $\alpha_1$ slightly smaller than $\alpha_0$
+
+	\item Choose $\eta > 0$ sufficiently small so that $\alpha_1 - 5 \eta > 0$.
 
 	\item Let
 	\begin{align*}
-	\alpha &= \alpha_0 - 2 \eta \\
-	\tilde{\alpha} &= \alpha - 2 \eta 
+	\alpha &= \alpha_1 - \eta \\
 	\end{align*}
 
 	\item Choose $\delta < \min\{\delta_0, \delta_1\}$ sufficiently small so that for all $|\lambda| < \delta$
@@ -371,7 +371,7 @@ Before we continue, we define the following constants, which we will use through
 
 	\item Choose $X_m$ sufficiently large so that
 	\begin{equation}
-	e^{-\tilde{\alpha} X_m} < \delta
+	e^{-(\alpha - \eta) X_m} < \delta
 	\end{equation}
 	where $X_m = \min\{X_0, \dots, X_{n-1}\}$.
 
@@ -881,12 +881,12 @@ where the linear operator $L_3(\lambda)_i(a, b, c, \tilde{c}, d)$ is linear in $
 \begin{enumerate}
 \item For the terms involving $a_i^\pm$, we use \eqref{conjthetadecay} to get
 \[
-|\Theta_+(X_i; \lambda)a_i^+ - \Theta_-(-X_i; \lambda)a_i^-| \leq C e^{-\alpha X_i}(|a_i^+| + |a_i^-|)
+|\Theta_+(X_i; \lambda)a_i^+ - \Theta_-(-X_i; \lambda)a_i^-| \leq C e^{-\alpha_1 X_i}(|a_i^+| + |a_i^-|)
 \]
 \item For the terms involving $c_i$, and $\tilde{c}_i$, we use \eqref{conjthetadecay} to get
 \[
 |\Theta_+(X_i; \lambda)c_i + \Theta_+(X_i; \lambda)\tilde{c}_i - \Theta_-(-X_i; \lambda)c_i| \leq 
-C e^{-\alpha X_i} (|c_i| + |\tilde{c}_i|)
+C e^{-\alpha_1 X_i} (|c_i| + |\tilde{c}_i|)
 \]
 
 \item For the terms involving $b$, we use \eqref{Zevolbounds} to get
@@ -900,7 +900,7 @@ C e^{-\alpha X_i} (|c_i| + |\tilde{c}_i|)
 P^+(X_i; \beta_i^+, \lambda) \int_0^{X_i} \Phi^s(X_i, y; \lambda) P_+(y; \lambda)^{-1} G_i^+(y) P_+(y; \lambda) Z_i^+(y) dy \right| \\
 &\leq \int_0^{X_i} e^{-\alpha(X_i - y)} |G_i^+(y)| |Z_i^+(y)| dy \\
 &\leq C \left(|a_i^+| + |b_i^+| + e^{\eta X_i}(|c_i| + |\tilde{c}_i|) + e^{-\alpha X_i}|\lambda|^2|d| \right) \int_0^{X_i} e^{-\alpha(X_i - y)} |G_i^+(y)| dy \\
-&\leq C \left(|a_i^+| + |b_i^+| + |c_i| + |\tilde{c}_i| + e^{-\alpha X_i}|\lambda|^2|d| \right) \int_0^{X_i}  e^{\eta X_i} e^{-\alpha(X_i - y)} |G_i^+(y)| dy
+&\leq C \left(|a_i^+| + |b_i^+| + |c_i| + |\tilde{c}_i| + e^{-\alpha_1 X_i}|\lambda|^2|d| \right) \int_0^{X_i}  e^{\eta X_i} e^{-\alpha(X_i - y)} |G_i^+(y)| dy
 \end{align*}
 To evaluate the integral, we use the estimates on $G$ from Lemma \ref{stabestimateslemma} to get
 \begin{align*}
@@ -1900,7 +1900,7 @@ Using the expression for $\tilde{c}$ from Lemma \ref{Zinv2},
 and
 \begin{align*}
 &\left| \langle \Psi(0), P_-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_-(y; \lambda)^{-1} G_i^-(y) P_-(y; \lambda)Z_i^-(y) dy \rangle \right| \\
-&\leq C |\lambda| e^{-\alpha X_m} \Big(|c_{i-1}| + e^{-\alpha X_m}(|c_i| + e^{-\alpha X_{i-1}} |c_{i-2}|) + e^{-(\alpha - \eta) X_m}|\lambda|^2|d| + |D_{i-1})|d| \\
+&\leq C |\lambda| e^{-\alpha X_m} \Big(|c_{i-1}| + e^{-\alpha X_m}(|c_i| + e^{-\alpha X_{i-1}} |c_{i-2}|) + e^{-(\alpha - \eta) X_m}|\lambda|^2|d| + |D_{i-1}|)|d| \\
 &+ |e^{\nu(\lambda)X_{i-1}}c_{i-1}| + (|\lambda| + e^{-\alpha X_m})(|e^{-\nu(\lambda)X_i} c_i| + e^{-\alpha X_{i-1}} |e^{\nu(\lambda)X_{i-2}} c_{i-2}|)\Big)
 \end{align*}
 For the center integrals not involving $Z$, 
@@ -1917,20 +1917,20 @@ The other integral is similar.
 &\left| \langle \Psi(0), P_+(0; \lambda) \int_{X_i}^0 \Phi^u(0, y; \lambda) P_+(y; \lambda)^{-1} G_i^+(y) P_+(y; \lambda) Z_i^+(y) dy \rangle \right| \\
 &\leq C \int_0^{X_i} e^{-\alpha y} |G_i^+(y)| |Z_i^+(y)| dy \\
 &\leq C \|Z_i^+(y)\| \int_0^{X_i} e^{-\alpha y} \left( e^{-\alpha_0 X_i} e^{-\alpha_0(X_i - y) } + e^{-2 \alpha_0 X_{i-1}} e^{-\alpha_0 y} \right) dy \\
-&\leq C \|Z_i^+(y)\| \int_0^{X_i} e^{-\alpha y} \left( e^{-\alpha X_i} e^{-(\alpha - \eta)(X_i - y) } + e^{-2\alpha X_{i-1}} e^{-\alpha y} \right) dy \\
-&= C \|Z_i^+(y)\| \left( e^{-(2 \alpha - \eta)X_i } \int_0^{X_i} e^{-\eta y} dy + e^{-2\alpha_0 X_{i-1}} \int_0^{X_i} e^{-2 \alpha_0 y} dy \right) \\
-&\leq C e^{-(2 \alpha - \eta)X_m } \|Z_i^+(y)\|
+&\leq C \|Z_i^+(y)\| \left( e^{-\alpha_0 X_i} \int_0^{X_i} e^{-(\alpha_0 - \eta) y}  e^{-(\alpha_0 - 2 \eta)(X_i - y) } dy + e^{-2\alpha_0 X_{i-1}} \int_0^{X_i} e^{-2 \alpha y}  dy \right) \\
+&= C \|Z_i^+(y)\| \left( e^{-2 \alpha X_i } \int_0^{X_i} e^{-\eta y} dy + e^{-2\alpha_0 X_{i-1}} \int_0^{X_i} e^{-2 \alpha_0 y} dy \right) \\
+&\leq C e^{-2 \alpha X_m } \|Z_i^+(y)\|
 \end{align*}
 Substituting the bound for $Z_3(\lambda)_i^+$, this becomes
 \begin{align*}
 &\left| \langle \Psi(0), P_+(0; \lambda) \int_{X_i}^0 \Phi^u(0, y; \lambda) P_+(y; \lambda)^{-1} G_i^+(y) P_+(y; \lambda) Z_i^+(y) dy \rangle \right| \\
-&= C e^{-(2 \alpha - \eta)X_m } \Big(|c_i| + e^{-\alpha X_m}(|c_{i-1}| + e^{-\alpha X_i} |c_{i+1}|) + e^{-(\alpha - \eta) X_m}|\lambda|^2|d| + |D_i||d|) \\
+&= C e^{-2 \alpha X_m } \Big(|c_i| + e^{-\alpha X_m}(|c_{i-1}| + e^{-\alpha X_i} |c_{i+1}|) + e^{-(\alpha - \eta) X_m}|\lambda|^2|d| + |D_i||d|) \\
 &+ |e^{-\nu(\lambda)X_i} c_i| + (|\lambda| + e^{-\alpha X_m})(|e^{\nu(\lambda)X_{i-1}} c_{i-1}| + e^{-\alpha X_i} |e^{-\nu(\lambda)X_{i+1}} c_{i+1}|)\Big)
 \end{align*}
 Similarly,
 \begin{align*}
 &\left| \langle \Psi(0), P_-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^s(0, y; \lambda) P_-(y; \lambda)^{-1} G_i^-(y) P_-(y; \lambda)Z_i^-(y) \rangle \right| \\
-&= C e^{-(2 \alpha - \eta)X_m } \Big(|c_{i-1}| + e^{-\alpha X_m}(|c_i| + e^{-\alpha X_{i-1}} |c_{i-2}|) + e^{-(\alpha - \eta) X_m}|\lambda|^2|d| + |D_{i-1}|)|d| \\
+&= C e^{-2 \alpha X_m } \Big(|c_{i-1}| + e^{-\alpha X_m}(|c_i| + e^{-\alpha X_{i-1}} |c_{i-2}|) + e^{-(\alpha - \eta) X_m}|\lambda|^2|d| + |D_{i-1}|)|d| \\
 &+ |e^{\nu(\lambda)X_{i-1}}c_{i-1}| + (|\lambda| + e^{-\alpha X_m})(|e^{-\nu(\lambda)X_i} c_i| + e^{-\alpha X_{i-1}} |e^{\nu(\lambda)X_{i-2}} c_{i-2}|)\Big) 
 \end{align*}
 
