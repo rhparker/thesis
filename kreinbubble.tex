@@ -222,39 +222,79 @@ As in the previous lemma, we wish to solve
 \begin{equation*}
 \lambda^2 ( \lambda - b i) (\lambda + b i)\sinh(\nu(\lambda)X) + \mathcal{O}( (r^{1/2} + |\lambda|)^5 ) = 0
 \end{equation*}
-Here, we are interested in what happens near where $\nu(\lambda) = \frac{k \pi i}{X}$. This time, let
-\[
-\nu(\lambda) = \frac{k \pi i}{X} + \frac{h}{X}
-\]
-for $k$ sufficiently small (DETAILS LATER) and, at minimum $h < \pi/2$ SINCE EXPLAIN. Expanding the $\sinh$ term in a Taylor series about $n \pi i$,
-\begin{align*}
-\sinh(\nu(\lambda)X) &= \sinh(k \pi i + h) \\
-&= (-1)^k h + \mathcal{O}(h^3)
-\end{align*}
-Thus our equation to solve is
-\begin{equation*}
-\lambda^2 ( \lambda - b i) (\lambda + b i)((-1)^k h + \mathcal{O}(h^3)) + \mathcal{O}( (r^{1/2} + |\lambda|)^5 ) = 0
-\end{equation*}
-Since $\nu(0) = 0$, expanding $\nu^{-1}(t)$ in a Taylor series about $t = 0$, we have
-\[
-\nu^{-1}(t) = c t + \mathcal{O}(t^3)
-\]
-thus we have
-\begin{align*}
-\lambda &= \lambda_0 + c \frac{h}{X} + \mathcal{O}\left(\lambda_0 + \frac{h}{X} \right)^3 \\
-&= \lambda_0 + c \frac{h}{X} + \mathcal{O}(\lambda_0)^3
-\end{align*}
-where 
+Here, we are interested in what happens near where $\lambda$ is close to $c \frac{k \pi i}{X}$. Let 
 \[
 \lambda_0 = c \frac{k \pi i}{X}
 \]
-Substituting all of this in and dividing by $(-1)^k$, we have
+where $k$ is a nonzero integer sufficiently small so that $|\lambda_0| < \delta$. Without loss of generality, take $k > 0$; the case where $k < 0$ follow by symmetry. Let
+\[
+\lambda = \lambda_k + \frac{h}{X}.
+\]
+Since we at least have $h < \pi/2$ so that we know which $\lambda_k$ we are closest to, $h/X < \lambda_k$.
+
+Using Lemma \ref{nulambdalemma},
 \begin{align*}
-(h &+ \mathcal{O}(h^3))\left(\lambda_0 + c \frac{h}{X} + \mathcal{O}(\lambda_0)^3 \right)^2\left(\lambda_0 - bi + c \frac{h}{X} + \mathcal{O}(\lambda_0)^3 \right)\left(\lambda_0 + bi + c \frac{h}{X} + \mathcal{O}(\lambda_0)^3 \right)\\
- &+ \mathcal{O}( (r^{1/2} + |\lambda_0|)^5 ) = 0
+\nu(\lambda) &= \frac{1}{c}\lambda_k + \mathcal{O}(|\lambda|^3) \\
+&= \frac{k \pi i}{X} + \frac{h}{X} + \mathcal{O}(|\lambda_k|^3)
 \end{align*}
+Expanding the $\sinh$ term in a Taylor series about $n \pi i$,
+\begin{align*}
+\sinh(\nu(\lambda)X) &= \sinh(k \pi i + h + \mathcal{O}(|\lambda_k|^3 X) \\
+&= (-1)^k ( h + \mathcal{O}(|\lambda_k|^3 X)) + \mathcal{O}(h^3)
+\end{align*}
+Thus our equation to solve is
+\begin{equation*}
+\lambda^2 ( \lambda - b i) (\lambda + b i)((-1)^k ( h + \mathcal{O}(|\lambda_k|^3 X)) + \mathcal{O}(h^3)) + \mathcal{O}( (r^{1/2} + |\lambda|)^5 ) = 0
+\end{equation*}
+Dividing by $(-1)^k$ and substituting for $\lambda$, this becomes
+\begin{align*}
+\left(\lambda_k + \frac{h}{X}\right)^2 &\left(\lambda_k - b i + \frac{h}{X}\right)\left(\lambda_k + b i + \frac{h}{X}\right) ( h + \mathcal{O}(|\lambda_k|^3 X) + \mathcal{O}(h^3)) \\
+&+ \mathcal{O}( (r^{1/2} + |\lambda_k|)^5 ) = 0
+\end{align*}
+Since $\lambda_k > 0$, $\lambda_k + b i = \mathcal{O}(|\lambda|^k + r^{1/2})$, thus 
+\begin{align*}
+\left(\lambda_k + \frac{h}{X}\right)^2 &\left(\lambda_k - b i + \frac{h}{X}\right)\left(\lambda_k + b i + \frac{h}{X}\right) ( h + \mathcal{O}(h^3)) \\
+&= \mathcal{O}\left( (r^{1/2} + |\lambda_k|)^5 + |\lambda_k|^5 (|\lambda_k| + r^{1/2})|\lambda_k - b i|X \right)
+\end{align*}
+Factoring out $\lambda_k$ from the LHS and dividing by $\lambda_k^4$, this becomes
+\begin{align*}
+\left(1 - i \frac{h}{k \pi} \right)^2 &\left(1 - \frac{b i}{\lambda_k} - i \frac{h}{k \pi} \right)\left(1 + \frac{b i}{\lambda_k} - i \frac{h}{k \pi} \right) ( h + \mathcal{O}(h^3)) \\
+&= \mathcal{O}\left( \frac{1}{|\lambda_k|^4} (r^{1/2} + |\lambda_k|)^5 + |\lambda_k| (|\lambda_k| + r^{1/2})|\lambda_k - b i|X \right)
+\end{align*}
+As with the interaction eigenvalues, this is of the form $F(h) = R$, with $f(0) = 0$. Here we have to consider two cases. First, take $|\lambda_k| \geq 2b$. Then our equation reduces to
+\begin{align*}
+\left(1 - i \frac{h}{k \pi} \right)^2 &\left(1 - \frac{b i}{\lambda_k} - i \frac{h}{k \pi} \right)\left(1 + \frac{b i}{\lambda_k} - i \frac{h}{k \pi} \right) ( h + \mathcal{O}(h^3)) \\
+&= \mathcal{O}\left(  |\lambda_k|  + |\lambda_k|^3 X \right)
+\end{align*}
+Taking the derivative with respect to $h$ at $h = 0$, we are left with the single term
+\[
+F'(0) = \left(1 - \frac{b i}{\lambda_k}\right)\left(1 + \frac{b i}{\lambda_k}\right)
+\]
+Since $|\lambda_k| \geq 2b$, $F'(0) \geq 1/2$. Thus we can use the inverse function theorem invert $F$ in a neighborhood of 0. Since $|\lambda^k| < \delta$, for sufficiently small $\delta$, $h = F^{-1}(R)$. Expanding $F^{-1}(t)$ in a Taylor series at $t = 0$, since $\lambda_k = \mathcal{O}(1/X)$, we have
+\[
+h = \mathcal{O}\left( \frac{1}{X} \right)
+\]
+which can be made arbitrarily small by decreasing $r$ (or increasing $X_1$).
 
-
+The second case is when $|\lambda_k| \leq 2 b$. In this case $|\lambda_k| = \mathcal{O}(r^{1/2})$, so we have
+\begin{align*}
+\left(1 - i \frac{h}{k \pi} \right)^2 &\left(\lambda_k - b i - i \frac{h}{k \pi} \right)\left(\lambda_k + b i - i \frac{h}{k \pi} \right) ( h + \mathcal{O}(h^3)) \\
+&= \mathcal{O}\left( \frac{1}{|\lambda_k|^2} (r^{1/2} + |\lambda_k|)^5 + |\lambda_k|^3 (|\lambda_k| + r^{1/2})|\lambda_k - b i|X \right) \\
+&= \mathcal{O}\left( r^{3/2} + r^4 |\lambda_k - b i|X \right)
+\end{align*}
+The derivative with respect to $h$ at $h = 0$ is the single term
+\[
+F'(0) = \left(\lambda_k -  b_i \right)\left(\lambda_k +  b_i \right)
+\]
+which is bounded away from 0 since we are assuming that $|\lambda_k - b_i| \leq r^{1/2}/X^{1/2}$. Doing the same thing we did for the first case, since $|\lambda_k + b_i| = \mathcal{O}(r^{1/2})$, we have
+\begin{align*}
+h &= \mathcal{O}\left( \frac{ r^{3/2} + r^4 |\lambda_k - b i|X }{|\lambda_k -  b_i ||\lambda_k +  b_i |} \right) \\
+&= \mathcal{O}(r^{1/2}X^{1/2})
+\end{align*}
+which can be made arbitrarily small by decreasing $r$. Thus we have
+\[
+\lambda = \lambda_0 + \mathcal{O}\left( \frac{r^{1/2}}{X^{1/2}} + \frac{1}{X^2} \right)
+\]
 \end{proof}
 \end{lemma}
 
