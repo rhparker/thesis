@@ -33,7 +33,7 @@ For the remainder of the section, we will only consider $\lambda$ with $|\Re \la
 \begin{lemma}\label{lemma:expnubound}
 For $|\lambda| < \delta$ with $|\Re \lambda| \leq C r^{1/2}/X^{1/2}$,
 \begin{equation}\label{expnubound}
-\left|e^{\nu(\lambda)x}\right| &\leq C \\
+\left|e^{\nu(\lambda)x}\right| \leq C \\
 \end{equation}
 for any $x$ with $|x| \leq X$, where the constant $C$ only depends on $\delta$.
 \begin{proof}
@@ -64,13 +64,11 @@ The first step is to compute the determinant of the block matrix in Theorem \ref
 
 \begin{lemma}\label{2blockmatrix}
 For $|\lambda| < \delta$ with $|\Re \lambda| \leq C r^{1/2}X^{1/2}$, the determinant of the block matrix $B$ is 
-\begin{equation}
+\begin{equation}\label{2detBeq}
 \begin{aligned}
-\det &B = -2 \lambda^2 M \Big[ (2a + \lambda^2 M 
-+ 4 \lambda^2 p_1(k_0 \cosh(\nu(\lambda)X_0) + k_1 \cosh(\nu(\lambda)X_1)  ) ) \sinh(\nu(\lambda)X)  \\
-&- 8 \lambda^2 p_1 \cosh(\nu(\lambda)X) \left( k_0 \sinh(\nu(\lambda)X_0) 
-+ k_1 \sinh(\nu(\lambda)X_1) \right) \Big]
-+ \mathcal{O}( (r^{1/2} + |\lambda|)^5 )
+\det &B = \left(-2 \lambda^2 M (2a + \lambda^2 M) +  \mathcal{O}( (r^{1/2} + |\lambda|)^5 )\right) \sinh(\nu(\lambda)X) \\
+&+16 p_1 M \lambda^4 ( k_0\sinh(\nu(\lambda)X_0) + k_1 \sinh(\nu(\lambda)X_1) ) \cosh(\nu(\lambda)X)  \\
+&+ \mathcal{O}( (r^{1/2} + |\lambda|)^6) 
 \end{aligned}
 \end{equation}
 \begin{proof}
@@ -115,46 +113,34 @@ We use Mathematica to evaluate the determinant. Briefly, we write the matrices $
 G_j = \begin{pmatrix}t^j_1 & t^j_2 \\ t^j_3 & t^j_4 \end{pmatrix}
 \]
 where the the coefficients $t^j_k$ have bounds given by \cref{Gimatrixbounds}. We then use Mathematica to expand the determinant, and we track each of the $t^j_k$. Doing all of this, we have
-\begin{align*}
+\begin{equation}\label{2detB1}
+\begin{aligned}
 \det &B = \sinh(\nu(\lambda)X)\left(-2 \lambda^2 M (2a + \lambda^2 M) +  \mathcal{O}( (r^{1/2} + |\lambda|)^5 )\right) \\
 &+4\lambda^4 p_1 k_0 M \left( \sinh(\nu(\lambda)(2 X_0 + X_1)) - 3 \sinh(\nu(\lambda)X_1)  \right) \\
 &+4\lambda^4 p_1 k_1 M \left( \sinh(\nu(\lambda)(2 X_1 + X_0)) - 3 \sinh(\nu(\lambda)X_0)  \right) \\
 &+ \mathcal{O}( (r^{1/2} + |\lambda|)^6) 
-\end{align*}
-Expanding the $\sinh$ terms in the second line, we get
+\end{aligned}
+\end{equation}
+Using standard hyperbolic trigonometric identities, we can show that 
 \begin{align*}
-\sinh&(\nu(\lambda)(2 X_0 + X_1)) - 3 \sinh(\nu(\lambda)X_1) \\
-&= \sinh(\nu(\lambda)(X_0 + X_1))\cosh(\nu(\lambda)X_0) 
-+ \cosh(\nu(\lambda)(X_0 + X_1))\sinh(\nu(\lambda)X_0) 
-- 3 \sinh(\nu(\lambda)X_1) \\
-&= \sinh(\nu(\lambda)X)\cosh(\nu(\lambda)X_0) 
-+ \cosh(\nu(\lambda)X)\sinh(\nu(\lambda)X_0) 
-- 3 \sinh(\nu(\lambda)X_1) \\
-&= \sinh(\nu(\lambda)X)\cosh(\nu(\lambda)X_0) 
-+ \cosh(\nu(\lambda)X)\sinh(\nu(\lambda)X_0) 
-- 3 \sinh(\nu(\lambda)(X_1 + X_0 - X_0) \\
-&= \sinh(\nu(\lambda)X)\cosh(\nu(\lambda)X_0) 
-+ \cosh(\nu(\lambda)X)\sinh(\nu(\lambda)X_0) \\
-&- 3 ( \sinh(\nu(\lambda)(X_1 + X_0))\cosh(\nu(\lambda)X_0) - \cosh(\nu(\lambda)(X_1 + X_0))\sinh(\nu(\lambda)X_0) ) \\
-&= \sinh(\nu(\lambda)X)\cosh(\nu(\lambda)X_0) 
-+ \cosh(\nu(\lambda)X)\sinh(\nu(\lambda)X_0) \\
-&- 3 \sinh(\nu(\lambda)X)\cosh(\nu(\lambda)X_0) + 3 \cosh(\nu(\lambda)X)\sinh(\nu(\lambda)X_0)  \\
-&= -2 \sinh(\nu(\lambda)X)\cosh(\nu(\lambda)X_0) 
-+ 4 \cosh(\nu(\lambda)X)\sinh(\nu(\lambda)X_0) \\
+\sinh(2 x + y) - 3 \sinh(y) &= 4 \cosh(x + y)\sinh(x) 
+-2 \sinh(x+y)\cosh(x) 
 \end{align*}
-Similarly, expanding the third line,
+Using this with the second line of \cref{2detB1}, 
 \begin{align*}
-\sinh&(\nu(\lambda)(2 X_1 + X_0)) - 3 \sinh(\nu(\lambda)X_0) \\
-&= -2 \sinh(\nu(\lambda)X)\cosh(\nu(\lambda)X_1) 
-+ 4 \cosh(\nu(\lambda)X)\sinh(\nu(\lambda)X_1) \\
+\lambda^4 &k_0 \left( \sinh(\nu(\lambda)(2 X_0 + X_1)) - 3 \sinh(\nu(\lambda)X_1)  \right) \\
+&= 4 \lambda^4 k_0 \cosh(\nu(\lambda)X)\sinh(\nu(\lambda)X_0) - 3 \lambda^4 k_0 \sinh(\nu(\lambda)X)\cosh(\nu(\lambda)X_0) \\
+&= 4 \lambda^4 k_0 \cosh(\nu(\lambda)X)\sinh(\nu(\lambda)X_0) + \sinh(\nu(\lambda)X)(\mathcal{O}(r^{1/2}|\lambda|^4))
 \end{align*}
-Substituting these into the expression for $\det B_1$, we have
-\begin{align*}
-\det &B_1 = -2 \lambda^2 M \Big[ (2a + \lambda^2 M 
-+ 4 \lambda^2 p_1(k_0 \cosh(\nu(\lambda)X_0) + k_1 \cosh(\nu(\lambda)X_1)  ) ) \sinh(\nu(\lambda)X)  \\
-&- 8 \lambda^2 p_1 \cosh(\nu(\lambda)X) \left( k_0 \sinh(\nu(\lambda)X_0) 
-+ k_1 \sinh(\nu(\lambda)X_1) \right) \Big] 
-\end{align*}
+since $k_0 = \mathcal{O}(r^{1/2})$ and $|\cosh(\nu(\lambda)X_0)|\leq C$ by Lemma \ref{lemma:expnubound}. Doing the same thing for the third line of \cref{2detB1}, we have
+\begin{equation*}
+\begin{aligned}
+\det &B = \left(-2 \lambda^2 M (2a + \lambda^2 M) +  \mathcal{O}( (r^{1/2} + |\lambda|)^5 )\right) \sinh(\nu(\lambda)X) \\
+&+16 p_1 M \lambda^4 ( k_0\sinh(\nu(\lambda)X_0) + k_1 \sinh(\nu(\lambda)X_1) ) \cosh(\nu(\lambda)X)  \\
+&+ \mathcal{O}( (r^{1/2} + |\lambda|)^6) 
+\end{aligned}
+\end{equation*}
+
 \end{proof}
 \end{lemma}
 
