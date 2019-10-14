@@ -4,7 +4,7 @@
 
 \chapter{Double Pulse}
 
-For simplicity, we will start with the periodic 2-pulse. Let $\delta > 0$ be as in Theorem \ref{blockmatrixtheorem}, so that we will only consider eigenvalues $\lambda$ with $|\lambda| < \delta$. For the periodic 2-pulse, the matrix $A$ is
+For simplicity, we will start with the periodic 2-pulse. Let $\delta > 0$ be as in Theorem \ref{blockmatrixtheorem}, and consider eigenvalues $\lambda$ with $|\lambda| < \delta$. For the periodic 2-pulse, the matrix $A$ is
 \[
 A = \begin{pmatrix}
 -a & a \\
@@ -17,44 +17,53 @@ a = a_0 + a_1 = \langle \Psi(X_0), Q'(-X_0) \rangle + \langle \Psi(X_0), Q'(-X_0
 \]
 and $a = \mathcal{O}(e^{-2\alpha X_m}) = \mathcal{O}(r)$. The eigenvalues of $A$ are $\{0, -2a\}$, thus we expect the interaction eigenvalues to be located at approximately $\pm \sqrt{-2a/M}$. These will be real if $2a/M < 0$ and imaginary if $2a/M > 0$. 
 
-We will only consider the case where $2a/M > 0$ here. Let $b = \sqrt{2a/M} > 0$. We expect that there will be a pair of interaction eigenvalues near $\pm b i$ and essential spectrum eigenvalues near the set 
+We will only consider the case where $2a/M > 0$ here. Since for $2a/M < 0$ we do not have to worry about Krein collisions, that case will be handled by the general theorem. Let $b = \sqrt{2a/M} > 0$. We expect that there will be a pair of interaction eigenvalues near $\pm b i$ and essential spectrum eigenvalues near the set 
 \[
 S = \left\{ \lambda = \pm c \frac{k \pi i}{X} : k \in Z \text{ and }|\lambda| < \delta  \right\} 
 \]
 
-Numerical analysis suggests the presence of instability bubbles when essential spectrum eigenvalues collide with the interaction eigenvalues. From the numerics, these bubbles have radius of order $r^{1/2}/X^{1/2}$. Thus as long as the points $\pm b i$ are further than $r^{1/2}/X^{1/2}$ from every point in $S$, we do not expect to find any instability bubbles. For our analysis, we will place balls of radius $r^{1/2}/X^{1/2}$ around each point in $S$. Since these balls scale like $X^{-1/2}$ and the distance between the essential spectrum eigenvalues scales like $X^{-1}$, in order for the balls to not overlap, we require the condition
+Numerical analysis suggests the presence of instability bubbles with radius less than $\mathcal{O}(r^{1/2}/X^{1/2})$ when essential spectrum eigenvalues (poositive Krein signature) collide with the interaction eigenvalues (negative Krein signature). As long as the points $\pm b i$ are further than $r^{1/2}/X^{1/2}$ from every point in $S$, we do not expect to find any instability bubbles. To do our analysis, we will place balls of radius $r^{1/2}/X^{1/2}$ around each point in $S$. Since these balls scale like $X^{-1/2}$ and the distance between the essential spectrum eigenvalues scales like $X^{-1}$, in order for the balls to not overlap, we require the condition
 \begin{equation}\label{rXcondition}
 r^{1/2}X^{1/2} \leq \frac{c \pi}{2}
 \end{equation}
 Since $X = C_1 ( |\log r| + |\log b| + C_2$, we can always choose $r$ sufficiently small so that this is satisfied. If we fix $r$, there is an upper bound for $X$. Essentially, this will prevent us from taking the domain size to infinity.
 
-With this in mind, for the remainder of the section, we will only consider $\lambda$ with $|\Re \lambda| \leq r^{1/2}X^{1/2}$. In particular, this implies that we have the following bound.
+For the remainder of the section, we will only consider $\lambda$ with $|\Re \lambda| \leq C r^{1/2}/X^{1/2}$. In particular, this implies the following bound.
 
 \begin{lemma}\label{lemma:expnubound}
-For $|\lambda|$ with $|\Re \lambda| \leq r^{1/2}X^{1/2}$,
+For $|\lambda| < \delta$ with $|\Re \lambda| \leq C r^{1/2}/X^{1/2}$,
 \begin{equation}\label{expnubound}
-\left|e^{\pm \nu(\lambda)X_j}\right|, \left|e^{\pm \nu(\lambda)X}\right| \leq C
+\left|e^{\nu(\lambda)x}\right| &\leq C \\
 \end{equation}
+for any $x$ with $|x| \leq X$, where the constant $C$ only depends on $\delta$.
 \begin{proof}
-From Lemma \ref{nulambdalemma},
-\[
-\nu(\lambda) = \frac{1}{c}\lambda + \mathcal{O}(\lambda^3)
-\]
-Thus using \eqref{rXcondition}, we have the bound
+Let $\lambda = a + bi$ with $|a| \leq C r^{1/2}/X^{1/2}$. Since $|\lambda| \leq \delta$, $|a|, |b| \leq \delta$ as well. Then from Lemma \ref{nulambdalemma},
 \begin{align*}
-|\nu(\lambda)X| &\leq \frac{1}{c}|\lambda| X + C |\lambda|^3 X \\
-&\leq \frac{1}{c} r^{1/2} X^{1/2} + C r^{1/2} (r^{1/2} X^{1/2})^2 \\
-&\leq \frac{\pi}{2} + C r^{1/2} \frac{c^2 \pi^2}{4} \\
-&\leq C
+\nu(\lambda) &= \frac{1}{c}\lambda + \mathcal{O}(\lambda^3) \\
+&= \frac{a}{c} + i \frac{b}{c} + \mathcal{O}\left( a(a^2 + \delta^2) \right) + i \mathcal{O}\left( a(b^2 + \delta^2) \right)
 \end{align*}
-The bound \cref{expnubound} follows from this. Since $X_j \leq X$, the same bound holds.
+where both of the remainder terms are real. (We split the remainder up into real and imaginary parts). Thus 
+\begin{align*}
+\nu(\lambda)X &= \frac{a}{c}X + i \frac{b}{c}X + \mathcal{O}\left( a(a^2 + \delta^2) X\right) + i \mathcal{O}\left( a(b^2 + \delta^2) X\right)
+\end{align*}
+When we evaluate $|\exp{(\nu(\lambda)X)}|$, the two imaginary terms on the RHS do not contribute. For the other two terms, using \eqref{rXcondition}, we have the bound
+\begin{align*}
+\left| \frac{a}{c}X + \mathcal{O}\left( a(a^2 + \delta^2) X \right) \right| &\leq C r^{1/2}X^{1/2}(1 + |a|^2 + \delta^2) \leq C r^{1/2}X^{1/2} (1 + \delta^2) \leq C
+\end{align*} 
+where the constant $C$ only depends on $\delta$. 
+Thus
+\begin{align*}
+|\exp{(\nu(\lambda)X)}| &\leq
+\exp{ \left| \frac{a}{c}X + \mathcal{O}\left( a(a^2 + \delta^2) X \right) \right| } \leq C
+\end{align*}
+The same bound holds for $|x| \leq X$.
 \end{proof}
 \end{lemma}
 
-The first step is to compute the determinant of the block matrix in Theorem \ref{blockmatrixtheorem}.
+The first step is to compute the determinant of the block matrix in Theorem \ref{blockmatrixtheorem} for the periodic 2-pulse. Since this is a $4\times 4$ matrix with tons of remainder terms, we will do this with Mathematica.
 
 \begin{lemma}\label{2blockmatrix}
-For $|\lambda| \leq r^{1/2}X^{1/2}$, the determinant of the block matrix $B$ is 
+For $|\lambda| < \delta$ with $|\Re \lambda| \leq C r^{1/2}X^{1/2}$, the determinant of the block matrix $B$ is 
 \begin{equation}
 \begin{aligned}
 \det &B = -2 \lambda^2 M \Big[ (2a + \lambda^2 M 
@@ -93,28 +102,26 @@ G_1 & G_2 \\ G_3 & G_4
 \end{pmatrix}
 \]
 By our choice of $\lambda$, it follows from \cref{lemma:expnubound} that all the terms of the form $e^{\pm \nu(\lambda)X_j}$ are bounded by a constant. Thus the remainder matrices $G_i$ have bounds
-\begin{align*}
+\begin{equation}\label{Gimatrixbounds}
+\begin{aligned}
 |G_1| &\leq C |\lambda| (|\lambda| + r^{1/2} )\\
 |G_2| &\leq C |\lambda| (|\lambda| + r^{1/2} )^2 \\
 |G_3| &\leq C (|\lambda| + r^{1/2} )^2 \\
 |G_4| &\leq C (|\lambda| + r^{1/2} )^3 \\
-\end{align*}
-where $r$ is the scaling parameter. We use Mathematica to evaluate the determinant. To do this, we write the matrices $G_j$ as
+\end{aligned}
+\end{equation}
+We use Mathematica to evaluate the determinant. Briefly, we write the matrices $G_j$ as
 \[
 G_j = \begin{pmatrix}t^j_1 & t^j_2 \\ t^j_3 & t^j_4 \end{pmatrix}
 \]
-where the orders of the $t^j_k$ are given in the bounds on the $G_i$ above. The remainder bound is the sum of the bounds on all the terms involving $t^j_k$. Doing all of this, we get
-\begin{equation*}
-\det B = \det B_1 + \mathcal{O}( (r^{1/2} + |\lambda|)^5)
-\end{equation*}
-
-From Mathematica, we also have
+where the the coefficients $t^j_k$ have bounds given by \cref{Gimatrixbounds}. We then use Mathematica to expand the determinant, and we track each of the $t^j_k$. Doing all of this, we have
 \begin{align*}
-\det &B_1 = -2 \lambda^2 M \Big[ (2a + \lambda^2 M) \sinh(\nu(\lambda)X) \\
-&- 2 \lambda^2 p_1 k_0 \left( \sinh(\nu(\lambda)(2 X_0 + X_1)) - 3 \sinh(\nu(\lambda)X_1)  \right) \\
-&- 2 \lambda^2 p_1 k_1 \left( \sinh(\nu(\lambda)(2 X_1 + X_0)) - 3 \sinh(\nu(\lambda)X_0)  \right) \Big] 
+\det &B = \sinh(\nu(\lambda)X)\left(-2 \lambda^2 M (2a + \lambda^2 M) +  \mathcal{O}( (r^{1/2} + |\lambda|)^5 )\right) \\
+&+4\lambda^4 p_1 k_0 M \left( \sinh(\nu(\lambda)(2 X_0 + X_1)) - 3 \sinh(\nu(\lambda)X_1)  \right) \\
+&+4\lambda^4 p_1 k_1 M \left( \sinh(\nu(\lambda)(2 X_1 + X_0)) - 3 \sinh(\nu(\lambda)X_0)  \right) \\
+&+ \mathcal{O}( (r^{1/2} + |\lambda|)^6) 
 \end{align*}
-Expanding the second line, we get
+Expanding the $\sinh$ terms in the second line, we get
 \begin{align*}
 \sinh&(\nu(\lambda)(2 X_0 + X_1)) - 3 \sinh(\nu(\lambda)X_1) \\
 &= \sinh(\nu(\lambda)(X_0 + X_1))\cosh(\nu(\lambda)X_0) 
@@ -204,7 +211,7 @@ Thus we have
 \]
 Using the inverse function theorem, $F$ is invertible near 0, thus for $R$ sufficiently small, $\tilde{s} = F^{-1}(R)$. For the derivative at 0, we have bound
 \[
-|F^{-1}'(0)| = \frac{1}{F'(F^{-1}(0))} \\
+|F^{-1}(0)'| = \frac{1}{F'(F^{-1}(0))} \\
 = \frac{1}{F'(0)} = \mathcal{O}(r^{-1/2}X^{-1/2})
 \]
 Expanding $F^{-1}$ in a Taylor series about $r = 0$, we have
