@@ -17,12 +17,12 @@ a = a_0 + a_1 = \langle \Psi(X_0), Q'(-X_0) \rangle + \langle \Psi(X_0), Q'(-X_0
 \]
 and $a = \mathcal{O}(e^{-2\alpha X_m}) = \mathcal{O}(r)$. The eigenvalues of $A$ are $\{0, -2a\}$, thus we expect the interaction eigenvalues to be located at approximately $\pm \sqrt{-2a/M}$. These will be real if $2a/M < 0$ and imaginary if $2a/M > 0$. 
 
-We will only consider the case where $2a/M > 0$ here. Since for $2a/M < 0$ we do not have to worry about Krein collisions, that case will be handled by the general theorem. Let $b = \sqrt{2a/M} > 0$. We expect that there will be a pair of interaction eigenvalues near $\pm b i$ and essential spectrum eigenvalues near the set 
+We will only consider the case where $2a/M > 0$ here. Since for $2a/M < 0$ we do not have to worry about Krein collisions, that case will be handled by the general theorem. Let $\sqrt{2a/M} > 0$. We expect that there will be a pair of interaction eigenvalues near $\pm \sqrt{2a/M} i$ and essential spectrum eigenvalues near the set 
 \[
 S = \left\{ \lambda = \pm c \frac{k \pi i}{X} : k \in Z \text{ and }|\lambda| < \delta  \right\} 
 \]
 
-Numerical analysis suggests the presence of instability bubbles with radius less than $\mathcal{O}(r^{1/2}/X^{1/2})$ when essential spectrum eigenvalues (poositive Krein signature) collide with the interaction eigenvalues (negative Krein signature). As long as the points $\pm b i$ are further than $r^{1/2}/X^{1/2}$ from every point in $S$, we do not expect to find any instability bubbles. To do our analysis, we will place balls of radius $r^{1/2}/X^{1/2}$ around each point in $S$. Since these balls scale like $X^{-1/2}$ and the distance between the essential spectrum eigenvalues scales like $X^{-1}$, in order for the balls to not overlap, we require the condition
+Numerical analysis suggests the presence of instability bubbles with radius less than $\mathcal{O}(r^{1/2}/X^{1/2})$ when essential spectrum eigenvalues (poositive Krein signature) collide with the interaction eigenvalues (negative Krein signature). As long as the points $\pm \sqrt{2a/M} i$ are further than $r^{1/2}/X^{1/2}$ from every point in $S$, we do not expect to find any instability bubbles. To do our analysis, we will place balls of radius $r^{1/2}/X^{1/2}$ around each point in $S$. Since these balls scale like $X^{-1/2}$ and the distance between the essential spectrum eigenvalues scales like $X^{-1}$, in order for the balls to not overlap, we require the condition
 \begin{equation}\label{rXcondition}
 r^{1/2}X^{1/2} \leq \frac{c \pi}{2}
 \end{equation}
@@ -144,7 +144,135 @@ since $k_0 = \mathcal{O}(r^{1/2})$ and $|\cosh(\nu(\lambda)X_0)|\leq C$ by Lemma
 \end{proof}
 \end{lemma}
 
-To find the eigenvalues, we will solve $\det B = 0$. First, we will look at what happens when $\pm bi$ is separated by at least $r^{1/2}/X^{1/2}$ from the set $S$. This should be a sufficient condition for no Krein bubbles. First, we locate the interaction eigenvalues.
+To find the eigenvalues, we will solve $\det B = 0$, where $\det B$ is given by Lemma \cref{lemma:expnubound}. 
+
+First, we will look at what happens when $\lambda$ is close to $bi$, which is where we expect to have an interaction eigenvalue. Since $b = \mathcal{O}(r^{1/2})$, we will take $\lambda = \mathcal{O}(r^{1/2})$ as well. Since we are looking for nonzero eigenvalues, we divide by $\lambda^2$ and the constants out front to get
+\begin{equation}\label{Bsimple1}
+\begin{aligned}
+\left((2a + \lambda^2 M) +  \mathcal{O}( r^{3/2} )\right) \sinh(\nu(\lambda)X) - k \lambda^2 \cosh(\nu(\lambda)X)+ \mathcal{O}( r^2 ) 
+\end{aligned}
+\end{equation}
+where
+\begin{equation}\label{2pdefk}
+k = 8 p_1 ( k_0\sinh(\nu(\lambda)X_0) + k_1 \sinh(\nu(\lambda)X_1) ) 
+\end{equation}
+We note that this equation involves both $\lambda$ and $\nu(\lambda)$, which is annoying. To get around this, we note that since $\nu'(0) = 1/c$ and $\nu(0) = 0$, $\nu(\lambda)$ is invertible near 0. If necessary, decrease $\delta$ so that $\nu(\lambda)$ is invertible for $|\lambda| < \delta$. Then let $\lambda = \nu^{-1}(\mu)$. Expanding in Taylor series about $\mu = 0$, 
+\[
+\nu^{-1}(\mu) = c \mu + \mathcal{O}(\mu^3)
+\]
+Since $\mu = \mathcal{O}(r^{1/2})$ as well, we have the following equation to solve for $\mu$.
+\begin{equation}\label{Bsimple2}
+\begin{aligned}
+\left((2a + \mu^2 c^2 M) +  \mathcal{O}( r^{3/2} )\right) \sinh(\mu X) - \left(k c^2 \mu^2 + \mathcal{O}( r^{5/2} ) \right)\cosh(\mu X)+ \mathcal{O}( r^2 ) = 0
+\end{aligned}
+\end{equation}
+Let
+\[
+b = \sqrt{\frac{2a}{c^2 M}}
+\]
+Since we are assuming $2a/M > 0$ and $c>0$, we can divide \cref{Bsimple2} by $c^2 M$ and simplify to get
+\begin{equation}\label{Bsimple2}
+\begin{aligned}
+\left((\mu + b i)(\mu - b i) +  \mathcal{O}( r^{3/2} )\right) \sinh(\mu )X) - \left(\frac{k}{M} \mu^2 + \mathcal{O}( r^{5/2} ) \right)\cosh(\mu X)+ \mathcal{O}( r^2 ) = 0
+\end{aligned}
+\end{equation}
+
+We will first look at what happens near $bi$ in the case where $bi$ is close to one of the essential spectrum eigenvalues. We note that this requires $X_1 > X_0$ (by a significant amount, as it turns out). First, let 
+\[
+\mu = bi + h
+\]
+measure how far we are from $bi$. Next, let 
+\[
+\mu_m = \frac{m \pi i}{X}
+\]
+where $m$ is a nonzero integer chosen so that $|\mu_m| < \delta$. For simplicity, we will only consider what happens near $\mu = b i$, so we will take $k > 0$. The case for $\mu$ negative is identical by symmetry. Finally, define the parameter $s$ by
+\[
+s = b_i - \mu_m,
+\]
+which measures the distance between $bi$ and $\mu_m$. We wish to expand the $\sinh$ and $\cosh$ terms around $\mu_m$. To do this, we write $\mu$ as
+\begin{align*}
+\mu &= \mu - \mu_m + \mu_m \\
+&= (bi - \mu_m) + h + \mu_m \\
+&= \mu_m + s + h
+\end{align*}
+Then we have the Taylor expansions
+\begin{align*}
+\sinh(\mu X) &= \sinh((\mu_m + s + h)X)
+= (-1)^m(s + h)X + \mathcal{O}\left( (s+h)^3 X^3 \right) \\
+\cosh(\mu X) &= \cosh((\mu_m + s + h)X)
+= (-1)^m + \mathcal{O}\left( (s+h)^2 X^2 \right) \\
+\end{align*}
+Substituting these into \cref{Bsimple2}, we obtain the equation
+\begin{equation}\label{Bsimple3}
+\begin{aligned}
+( h(h &+ 2 bi) + \mathcal{O}( r^{3/2} ))\left( (-1)^m(s + h)X + \mathcal{O}\left( (s+h)^3 X^3 \right) \right) \\ 
+&- \left(\frac{k}{M} (h + bi)^2 + \mathcal{O}( r^{5/2} ) \right)\left( (-1)^m + \mathcal{O}\left( (s+h)^2 X^2 \right) \right) + \mathcal{O}( r^2 ) = 0
+\end{aligned}
+\end{equation}
+
+Next, we will scale our system. In fact, we will scale it twice. While we could take the final scaling from the outset, doing it this way is more intuitive and we will be able to see where the second scaling comes from. First, since $\mu$ and $b$ are both $\mathcal{O}(r^{1/2})$, we will scale out a factor of $r^{1/2}$. Let
+\begin{align*}
+h &= r^{1/2} \tilde{h} \\
+s &= r^{1/2} \tilde{h} \\
+b &= r^{1/2} \tilde{b}
+\end{align*}
+We also want to scale $r^{1/2}$ out from $k$, but that will take a little more work $k$. Writing equation \cref{2pdefk} in terms of $\mu$, we have
+\[
+k = 8 p_1 ( k_0\sinh(\mu X_0) + k_1 \sinh(\mu X_1) ) 
+\]
+where $k_0 = \mathcal{O}(e^{-\alpha X_0}) = \mathcal{O}(r^{1/2})$ and $k_1 = \mathcal{O}(e^{-\alpha X_1})$. Since $X_1 > X_0$, let 
+\[
+\frac{X_1}{X_0} = 1 + 2 \gamma
+\]
+where $\gamma > 1$. Then
+\begin{align*}
+e^{-\alpha X_1} &= e^{-(\alpha X_0)\frac{X_1}{X_0}}
+= \left( e^{-(\alpha X_0)} \right)^{1 + 2 \gamma} = r^{1/2}r^{\gamma}
+\end{align*}
+Expanding the $\sinh$ terms in a Taylor series about 0, we have
+\begin{align*}
+\sinh(\mu X_j) &= \mu X_j + \mathcal{O}(\mu X_j)^3 \\
+&= r^{1/2}(\tilde{b}i + \tilde{h})X_j + \mathcal{O}(r^{3/2} (\tilde{b}i + \tilde{h})^3 X_j^3)
+\end{align*}
+Let $k_0 = r^{1/2} \tilde{k_0}$. Then
+\[
+k = 8 p_1 \tilde{k}_0 (\tilde{b}i + \tilde{h})r X_0 +  \mathcal{O}(r^{1 + \gamma}) + \mathcal{O}(r^{5/2} (\tilde{b}i + \tilde{h})^3 X^3)
+\]
+Substituting all of these into \cref{Bsimple2} and dividing by $r^{3/2}$ and $(-1)^m$, we obtain the rescaled equation
+\begin{equation}\label{Bsimple4}
+\begin{aligned}
+( \tilde{h}( \tilde{h} &+ 2 \tilde{b} i) + \mathcal{O}( r^{1/2} ))\left( (\tilde{s} + \tilde{h})X + \mathcal{O}\left( (\tilde{s} + \tilde{h})^3 r X^3 \right) \right) \\ 
+&- \left(\frac{8 p_1 \tilde{k}}{M} ( \tilde{h} + \tilde{b}i)^3 r^{1/2} X_0 + \mathcal{O}(r + r^{1/2 + \gamma}) + \mathcal{O}(r^{2} (\tilde{b}i + \tilde{h})^3 X_0^3) \right)\left( 1 + \mathcal{O}\left( (\tilde{s} + \tilde{h})^2 r X^2 \right) \right) \\
+&+ \mathcal{O}( r^{1/2} ) = 0
+\end{aligned}
+\end{equation} 
+
+At this point, we are most of the way there, except for the $r^{1/2}X_0$ term on the second line. To figure out an appropriate scaling ansatz, we will suppose that $\tilde{s}$ and $\tilde{h}$ are smaller than $\tilde{h}$. Eliminating all terms in $r$ other than the $r^{1/2}X_0$ term, we obtain an equation of the form
+\begin{equation}\label{Bsimpleansatz1}
+\begin{aligned}
+\tilde{h} (\tilde{s} + \tilde{h}) \tilde{b} i X 
+- C \tilde{h}^3 r^{1/2} X_0 (\tilde{b} i)^3 = 0.
+\end{aligned}
+\end{equation} 
+Since this is quadratic in $\tilde{h}$, it suggests that $\tilde{h} = \mathcal{O}(r^{1/4}(X_0/X)^{1/2})$. Adopting this scaling for $\tilde{h}$ and $\tilde{s}$, let
+\begin{align*}
+\tilde{h} &= r^{1/4}\frac{X_0^{1/2}}{X_1^{1/2}} h^* \\
+\tilde{s} &= r^{1/4}\frac{X_0^{1/2}}{X_1^{1/2}} s^*
+\end{align*}
+Substituting these into \cref{Bsimple2} and dividing by $r^{3/2}$ and $(-1)^m$, we obtain the rescaled equation
+\begin{equation}\label{Bsimple5}
+\begin{aligned}
+\left( r^{1/4}\right.&\frac{X_0^{1/2}}{X_1^{1/2}} h^* \left.\left( r^{1/4}\frac{X_0^{1/2}}{X_1^{1/2}} h^* + 2 \tilde{b} i \right) + \mathcal{O}( r^{1/2} )\right)
+\left( r^{1/4}\frac{X_0^{1/2}}{X_1^{1/2}} (s^* + h^*)X + \mathcal{O}\left( (\tilde{s} + \tilde{h})^3 r^{7/4} X^{3/2}X_0^{3/2} \right) \right) \\ 
+&- \left(\frac{8 p_1 \tilde{k}}{M} \left( r^{1/4}\frac{X_0^{1/2}}{X_1^{1/2}} h^* + \tilde{b}i\right)^3 r^{1/2} X_0 + \mathcal{O}(r + r^{1/2 + \gamma}) + \mathcal{O}\left( \left(r^{1/4}\frac{X_0^{1/2}}{X_1^{1/2}} h^* + \tilde{b}i \right)^3 r^2 X_0^3  \right) \right) \\
+&\left( 1 + \mathcal{O}\left( (s^* + h^*)^2 r^{3/2} X X_0 \right) \right) \\
+&+ \mathcal{O}( r^{1/2} ) = 0
+\end{aligned}
+\end{equation} 
+ 
+****
+
+First, we will look at what happens when $\pm bi$ is separated by at least $r^{1/2}/X^{1/2}$ from the set $S$. This should be a sufficient condition for no Krein bubbles. First, we locate the interaction eigenvalues.
 
 \begin{lemma}
 \begin{proof}
