@@ -2,7 +2,9 @@
 
 \begin{document}
 
-\chapter{Double Pulse}
+\chapter{Krein Bubble Stuff}
+
+\section{Double Pulse}
 
 For simplicity, we will start with the periodic 2-pulse. Let $\delta > 0$ be as in Theorem \ref{blockmatrixtheorem}, and consider eigenvalues $\lambda$ with $|\lambda| < \delta$. For the periodic 2-pulse, the matrix $A$ is
 \[
@@ -146,6 +148,8 @@ since $k_0 = \mathcal{O}(r^{1/2})$ and $|\cosh(\nu(\lambda)X_0)|\leq C$ by Lemma
 
 To find the eigenvalues, we will solve $\det B = 0$, where $\det B$ is given by Lemma \cref{lemma:expnubound}. 
 
+\subsection{Krein bubble}
+
 First, we will look at what happens when $\lambda$ is close to $bi$, which is where we expect to have an interaction eigenvalue. Since $b = \mathcal{O}(r^{1/2})$, we will take $\lambda = \mathcal{O}(r^{1/2})$ as well. Since we are looking for nonzero eigenvalues, we divide by $\lambda^2$ and the constants out front to get
 \begin{equation}\label{Bsimple1}
 \begin{aligned}
@@ -187,7 +191,7 @@ measure how far we are from $bi$. Next, let
 \]
 where $m$ is a nonzero integer chosen so that $|\mu_m| < \delta$. For simplicity, we will only consider what happens near $\mu = b i$, so we will take $k > 0$. The case for $\mu$ negative is identical by symmetry. Finally, define the parameter $s$ by
 \[
-s = b_i - \mu_m,
+s = b i - \mu_m,
 \]
 which measures the distance between $bi$ and $\mu_m$. We wish to expand the $\sinh$ and $\cosh$ terms around $\mu_m$. To do this, we write $\mu$ as
 \begin{align*}
@@ -242,7 +246,7 @@ Substituting all of these into \cref{Bsimple2} and dividing by $r^{3/2}$ and $(-
 \begin{equation}\label{Bsimple4}
 \begin{aligned}
 ( \tilde{h}( \tilde{h} &+ 2 \tilde{b} i) + \mathcal{O}( r^{1/2} ))\left( (\tilde{s} + \tilde{h})X + \mathcal{O}\left( (\tilde{s} + \tilde{h})^3 r X^3 \right) \right) \\ 
-&- \left(\frac{8 p_1 \tilde{k}}{M} ( \tilde{h} + \tilde{b}i)^3 r^{1/2} X_0 + \mathcal{O}(r + r^{1/2 + \gamma}) + \mathcal{O}(r^{2} (\tilde{b}i + \tilde{h})^3 X_0^3) \right)\left( 1 + \mathcal{O}\left( (\tilde{s} + \tilde{h})^2 r X^2 \right) \right) \\
+&- \left(\frac{8 p_1 \tilde{k}_0}{M} ( \tilde{h} + \tilde{b}i)^3 r^{1/2} X_0 + \mathcal{O}(r + r^{1/2 + \gamma}) + \mathcal{O}(r^{2} (\tilde{b}i + \tilde{h})^3 X_0^3) \right)\left( 1 + \mathcal{O}\left( (\tilde{s} + \tilde{h})^2 r X^2 \right) \right) \\
 &+ \mathcal{O}( r^{1/2} ) = 0
 \end{aligned}
 \end{equation} 
@@ -256,22 +260,111 @@ At this point, we are most of the way there, except for the $r^{1/2}X_0$ term on
 \end{equation} 
 Since this is quadratic in $\tilde{h}$, it suggests that $\tilde{h} = \mathcal{O}(r^{1/4}(X_0/X)^{1/2})$. Adopting this scaling for $\tilde{h}$ and $\tilde{s}$, let
 \begin{align*}
-\tilde{h} &= r^{1/4}\frac{X_0^{1/2}}{X_1^{1/2}} h^* \\
-\tilde{s} &= r^{1/4}\frac{X_0^{1/2}}{X_1^{1/2}} s^*
+\tilde{h} &= r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h^* \\
+\tilde{s} &= 2 i r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} s^*
 \end{align*}
-Substituting these into \cref{Bsimple2} and dividing by $r^{3/2}$ and $(-1)^m$, we obtain the rescaled equation
+where the factor of $2 i$ is $\tilde{s}$ is for convenience later ($s$ and $\tilde{s}$ are purely imaginary, by how $s$ is defined, thus this makes $s^*$ real). Substituting these into \cref{Bsimple2} and dividing by $r^{3/2}$ and $(-1)^m$, we obtain the rescaled equation
 \begin{equation}\label{Bsimple5}
 \begin{aligned}
-\left( r^{1/4}\right.&\frac{X_0^{1/2}}{X_1^{1/2}} h^* \left.\left( r^{1/4}\frac{X_0^{1/2}}{X_1^{1/2}} h^* + 2 \tilde{b} i \right) + \mathcal{O}( r^{1/2} )\right)
-\left( r^{1/4}\frac{X_0^{1/2}}{X_1^{1/2}} (s^* + h^*)X + \mathcal{O}\left( (\tilde{s} + \tilde{h})^3 r^{7/4} X^{3/2}X_0^{3/2} \right) \right) \\ 
-&- \left(\frac{8 p_1 \tilde{k}}{M} \left( r^{1/4}\frac{X_0^{1/2}}{X_1^{1/2}} h^* + \tilde{b}i\right)^3 r^{1/2} X_0 + \mathcal{O}(r + r^{1/2 + \gamma}) + \mathcal{O}\left( \left(r^{1/4}\frac{X_0^{1/2}}{X_1^{1/2}} h^* + \tilde{b}i \right)^3 r^2 X_0^3  \right) \right) \\
-&\left( 1 + \mathcal{O}\left( (s^* + h^*)^2 r^{3/2} X X_0 \right) \right) \\
+\left( r^{1/4}\right.&\frac{X_0^{1/2}}{X^{1/2}} h^* \left.\left( r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h^* + 2 \tilde{b} i \right) + \mathcal{O}( r^{1/2} )\right)
+\left( r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} (2 i s^* + h^*)X + \mathcal{O}\left( (2 i s^* + h^*)^3 r^{7/4} X^{3/2}X_0^{3/2} \right) \right) \\ 
+&- \left(\frac{8 p_1 \tilde{k}_0}{M} \left( r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h^* + \tilde{b}i\right)^3 r^{1/2} X_0 + \mathcal{O}(r + r^{1/2 + \gamma}) + \mathcal{O}\left( \left(r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h^* + \tilde{b}i \right)^3 r^2 X_0^3  \right) \right) \\
+&\left( 1 + \mathcal{O}\left( (2 i s^* + h^*)^2 r^{3/2} X X_0 \right) \right) + \mathcal{O}( r^{1/2} ) = 0
+\end{aligned}
+\end{equation} 
+and we rearrange the top line to get
+\begin{equation}\label{Bsimple6}
+\begin{aligned}
+\left( r^{1/4}\right.&X_0^{1/2} h^* \left.\left( r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h^* + 2 \tilde{b} i \right) + \mathcal{O}( r^{1/2} X^{1/2} )\right)
+\left( r^{1/4} X_0^{1/2} (2 i s^* + h^*) + \mathcal{O}\left( (2 i s^* + h^*)^3 r^{7/4} X X_0^{3/2} \right) \right) \\ 
+&- \left(\frac{8 p_1 \tilde{k}_0}{M} \left( r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h^* + \tilde{b}i\right)^3 r^{1/2} X_0 + \mathcal{O}(r + r^{1/2 + \gamma}) + \mathcal{O}\left( \left(r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h^* + \tilde{b}i \right)^3 r^2 X_0^3  \right) \right) \\
+&\left( 1 + \mathcal{O}\left( (2 i s^* + h^*)^2 r^{3/2} X X_0 \right) \right) + \mathcal{O}( r^{1/2} ) = 0
+\end{aligned}
+\end{equation}
+Finally, we divide by $r^{1/2}X_0$ to get 
+\begin{equation}\label{Bsimple6}
+\begin{aligned}
+&\left( h^* \left( r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h^* + 2 \tilde{b} i \right) + \mathcal{O}\left( r^{1/4} \frac{X^{1/2}}{X_0^{1/2}} \right)\right)
+\left( (2 i s^* + h^*) + \mathcal{O}\left( (2 i s^* + h^*)^3 r^{3/2} X X_0 \right) \right) \\ 
+&- \left(\frac{8 p_1 \tilde{k}_0}{M} \left( r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h^* + \tilde{b}i\right)^3 + \mathcal{O}\left( \frac{r^{1/2} + r^{\gamma}}{X_0} \right) + \mathcal{O}\left( \left(r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h^* + \tilde{b}i \right)^3 r^{3/2} X_0  \right) \right) \\
+&\left( 1 + \mathcal{O}\left( (2 i s^* + h^*)^2 r^{3/2} X X_0 \right) \right) + \mathcal{O}\left( \frac{1}{X_0} \right) = 0
+\end{aligned}
+\end{equation}
+Since $X = \mathcal{O}(|\log r|)$ and $X_1 = \mathcal{O}(|\log r|)$, this is of the form $G(s^*, h^*, r) = 0$, where
+\begin{equation}\label{BsimpleG}
+\begin{aligned}
+G(s^*, h^*, r) &=
+\left( h^* \left( 2 \tilde{b} i + \mathcal{O}(r^{1/4} h^*) \right) + \mathcal{O}\left( r^{1/4} \right)\right)
+\left( (2 i s^* + h^*) + \mathcal{O}\left( (2 i s^* + h^*)^3 r^{3/2} (\log|r|)^2 \right) \right) \\ 
+&- \left(\frac{8 p_1 \tilde{k}_0}{M} \left( \tilde{b} i + \mathcal{O}(r^{1/4} h^*) \right)^3 + \mathcal{O}\left( \frac{r^{1/2} + r^{\gamma}}{\log|r|} \right) + \mathcal{O}\left( \left( \tilde{b} i + \mathcal{O}(r^{1/4} h^*) \right)^3 r^{3/2} \log|r|  \right) \right) \\
+&\left( 1 + \mathcal{O}\left( (2 i s^* + h^*)^2 r^{3/2} (\log|r|)^2 \right) \right) + \mathcal{O}\left( \frac{1}{\log|r|} \right)
+\end{aligned}
+\end{equation}
+Since $r^{a}(\log|r|)^b \rightarrow 0$ as $r \rightarrow 0$ for any positive powers $a$ and $b$, 
+\begin{equation}\label{BsimpleG0}
+\begin{aligned}
+G(s^*, h^*, 0) &= 2 (2 i s^* + h^*) h^* \tilde{b} i  - \frac{8 p_1 \tilde{k}_0}{M} (\tilde{b} i)^3 
+\end{aligned}
+\end{equation}
+To solve $G(s^*, h^*, 0) = 0$, divide by $2 \tilde{b} i$ to get the quadratic equation
+\begin{equation}\label{Bquadeq}
+(h^*)^2 + 2 i s^* h^* - R = 0
+\end{equation}
+where 
+\[
+R^* = -\frac{4 p_1 \tilde{k}_0 \tilde{b}^2 }{M}
+\]
+Then \cref{Bquadeq} has solution
+\begin{equation}\label{Bquadsol}
+h^*(s^*) = -i s^* \pm \sqrt{R^* - (s^*)^2 }
+\end{equation}
+If $R^*$ is positive, then for $|s^*| \leq \sqrt{R^*}$, $h^(s^*)$ describes a circle of radius $\sqrt{R^*}$ in the complex plane centered at the origin. For $|s^*| \geq \sqrt{R^*}$, $h^(s^*)$ is on the imaginary axis. Thus for $r = 0$, this is Krein bubble. 
+
+The last thing to show is that this persists for small $r$. To do that, we use the IFT to solve for $h^*$ in terms of $s^*$. Computing the derivative with respect to $h^*$ and noting that all the remainder terms vanish at 0, we have
+\begin{align*}
+\partial_{h^*} G(s^*, h^*, 0) 
+&= 2 h^* + 2 i s^*
+\end{align*}
+Plugging in $h^*(s^*)$ from \cref{Bquadsol},
+\begin{align*}
+\partial_{h^*} G(s^*, h^*(s^*), 0) 
+&= 2 (-i s^* \pm \sqrt{R^* - (s^*)^2 })) + 2 i s^* \\
+&= \pm 2 \sqrt{R^* - (s^*)^2 })
+\end{align*}
+This is nonzero as long as $s^* \neq \pm \sqrt{R^*}$, at which point there is a bifurcation. 
+
+This is annoying, but I think we can get around it in the following way.
+\begin{enumerate}
+\item Choose any $\epsilon > 0$. Then on the interval $I_\epsilon = [-\sqrt{R^*} + \epsilon, \sqrt{R^*} - \epsilon]$, $\partial_{h^*} G(s^*, h^*(s^*), 0)$ is bounded away from 0 (with bound dependent on $\epsilon$). Since this bound is uniform in $s^*$, it should follow from either a uniform version of the IFT or the uniform contraction mapping principle that there exists $r_0$ such that we can solve for $h^*$ in terms of $s^*$ for all $r < r_0$. This lets us do everything except actually close the bubble at the top and bottom.
+
+\item Either do the same thing for $s^* = -\sqrt{R^*} + \epsilon$ and $s^* = \sqrt{R} - \epsilon$ to get solutions which must be on the imaginary axis (by Hamiltonian symmetry) or use the fact (that we proved) that Krein bubbles cannot happen if we are more than $C r^{1/2}/X^{1/2}$ from the interaction eignvalue. Either way, we have points above and below the bubble which we know are on the imaginary axis. Since the eigenvalues are continuous in $X$, the bubble must close.
+\end{enumerate} 
+
+Whatever the case, we can now answer the question of what is the radius of the Krein bubble, to leading order. The radius $\sqrt{R^*}$ is for the scaled variable $h^*$. In terms of the scaled variable $\tilde{h}$, the radius is $r^{1/4} \sqrt{R^*} X_0^{1/2}/X_{1/2}$. In terms of the original variable $h$, which corresponds to $\mu$, the Krein bubble has radius to leading order
+\begin{align*}
+R_\mu = r^{3/4}\frac{X_0^{1/2}}{X^{1/2}} \sqrt{-\frac{4 p_1 \tilde{k}_0 \tilde{b}^2 }{M}} = b \frac{X_0^{1/2}}{X^{1/2}} \sqrt{-\frac{4 p_1 k_0 }{M}} 
+\end{align*}
+Finally, we want the radius in terms of $\lambda$. Since $\lambda = \nu(\mu)$, the Krein bubble radius is, to leading order,
+\begin{align*}
+R_\mu = \frac{b}{c}  \frac{X_0^{1/2}}{X^{1/2}} \sqrt{-\frac{4 p_1 k_0 }{M}} 
+\end{align*}
+Numerical evidence suggests that for KdV5, $k_0 > 0$ and $p_1 < 0$, which is good. In principle, we could actually compute this, since everything is either known or can be computed numerically.
+
+\section{Interaction eigenvalues outside Krein bubble}
+
+Next, we find the interaction eigenvalues if we are outside a Krein bubble. We use the same setup as we did for the Krein bubble, since we are looking for eigenvalues of order $\mathcal{O}(r^{1/2})$. Since we are assuming that $bi$ is isolated from every point $k \pi / X$ by at least $r^{1/2}/X^{1/2}$, we can use the setup in the previous section, where we always take $|s| \geq r^{1/2}/X^{1/2}$. Thus we solve equation \cref{Bsimple4} with $\tilde{s} = \mathcal{O}(1/X^{1/2})$, which gives us
+\begin{equation}\label{Binteig1}
+\begin{aligned}
+( \tilde{h}( \tilde{h} &+ 2 \tilde{b} i) + \mathcal{O}( r^{1/2} ))\left( (\tilde{s} + \tilde{h})X + \mathcal{O}\left( (\tilde{s} + \tilde{h})^3 r X^3 \right) \right) \\ 
+&- \left(\frac{8 p_1 \tilde{k}_0}{M} ( \tilde{h} + \tilde{b}i)^3 r^{1/2} X_0 + \mathcal{O}(r + r^{1/2 + \gamma}) + \mathcal{O}(r^{2} (\tilde{b}i + \tilde{h})^3 X_0^3) \right)\left( 1 + \mathcal{O}\left( (\tilde{s} + \tilde{h})^2 r X^2 \right) \right) \\
 &+ \mathcal{O}( r^{1/2} ) = 0
 \end{aligned}
 \end{equation} 
- 
-****
 
+
+
+
+******
 First, we will look at what happens when $\pm bi$ is separated by at least $r^{1/2}/X^{1/2}$ from the set $S$. This should be a sufficient condition for no Krein bubbles. First, we locate the interaction eigenvalues.
 
 \begin{lemma}
