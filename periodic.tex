@@ -8,13 +8,14 @@
 
 \section{Periodic multi-pulse solutions}
 
-In this section, we will prove the existence of periodic multi-pulse solutions to \eqref{genODE}. The existence of multi-pulse solution on $\R$ follows from \cite{SandstedeStrut}. An $n-$periodic solution to \eqref{genODE} is a periodic orbit which resembles $n$ well-separated copies of the primary pulse. The $n$ peaks are separated by distances $2X_0, 2X_1, \dots, 2X_{n-1}$, as shown in Figure \ref{fig:permultipulse}.
-
-\begin{figure}[H]
+A periodic multi-pulse is a multi-modal solution $q_n(x)$ to \cref{eqODE} on a periodic domain. Heuristically, we construct a periodic multi-pulse by gluing together multiple copies of the primary pulse end-to-end in a loop as shown in Figure \ref{fig:permultipulse}.
+\begin{figure}
 \label{fig:permultipulse}
 \includegraphics[width=10cm]{periodic/multipulseperiodic}
 \caption{Periodic $n-$pulse solution.}
 \end{figure} 
+
+From a spatial dynamics perspective, an periodic multi-pulse is a multi-loop periodic orbit which remains close to the primary homoclinic orbit. A periodic $n$-pulse can be described by $n$ pulse distances $\{X_0, \dots, X_{n-1} \}$, where the distance between consecutive pulses in the loop is $2 X_j$. The period of the orbit is $2X$, where $X = X_0 + \dots + X_{n-1}$. A periodic $n$-pulse requires one more length parameter than a $n$-pulse on the real line, since we need one more connection to ``close the loop''.
 
 To prove existence of $n-$periodic solutions, we will use Lin's method. Rather than looking for these solutions as piecewise perturbations of the primary pulse solution $Q(x)$, we adapt the method in \cite{Sandstede1997} and take 
 \[

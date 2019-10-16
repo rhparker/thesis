@@ -338,21 +338,29 @@ This is annoying, but I think we can get around it in the following way.
 \item Choose any $\epsilon > 0$. Then on the interval $I_\epsilon = [-\sqrt{R^*} + \epsilon, \sqrt{R^*} - \epsilon]$, $\partial_{h^*} G(s^*, h^*(s^*), 0)$ is bounded away from 0 (with bound dependent on $\epsilon$). Since this bound is uniform in $s^*$, it should follow from either a uniform version of the IFT or the uniform contraction mapping principle that there exists $r_0$ such that we can solve for $h^*$ in terms of $s^*$ for all $r < r_0$. This lets us do everything except actually close the bubble at the top and bottom.
 
 \item Either do the same thing for $s^* = -\sqrt{R^*} + \epsilon$ and $s^* = \sqrt{R} - \epsilon$ to get solutions which must be on the imaginary axis (by Hamiltonian symmetry) or use the fact (that we proved) that Krein bubbles cannot happen if we are more than $C r^{1/2}/X^{1/2}$ from the interaction eignvalue. Either way, we have points above and below the bubble which we know are on the imaginary axis. Since the eigenvalues are continuous in $X$, the bubble must close.
+
+\item Alternatively, just use the IFT at $s^* = 0$ (widest part of bubble) and $s^* = \sqrt{2R}$ (outside bubble), and let continuity and Hamiltonian symmetry take care of the rest.
+
 \end{enumerate} 
 
 Whatever the case, we can now answer the question of what is the radius of the Krein bubble, to leading order. The radius $\sqrt{R^*}$ is for the scaled variable $h^*$. In terms of the scaled variable $\tilde{h}$, the radius is $r^{1/4} \sqrt{R^*} X_0^{1/2}/X_{1/2}$. In terms of the original variable $h$, which corresponds to $\mu$, the Krein bubble has radius to leading order
 \begin{align*}
 R_\mu = r^{3/4}\frac{X_0^{1/2}}{X^{1/2}} \sqrt{-\frac{4 p_1 \tilde{k}_0 \tilde{b}^2 }{M}} = b \frac{X_0^{1/2}}{X^{1/2}} \sqrt{-\frac{4 p_1 k_0 }{M}} 
+= \sqrt{ \frac{2a}{M c^2} }  \frac{X_0^{1/2}}{X^{1/2}} \sqrt{-\frac{4 p_1 k_0 }{M}} 
 \end{align*}
-Finally, we want the radius in terms of $\lambda$. Since $\lambda = \nu(\mu)$, the Krein bubble radius is, to leading order,
+where we substituted in for $b$. Finally, we want the radius in terms of $\lambda$. Since $\lambda = \nu^{-1}(\mu)$, the Krein bubble radius is, to leading order,
 \begin{align*}
-R_\mu = \frac{b}{c}  \frac{X_0^{1/2}}{X^{1/2}} \sqrt{-\frac{4 p_1 k_0 }{M}} 
+R = \sqrt{ \frac{2a}{M} }  \frac{X_0^{1/2}}{X^{1/2}} \sqrt{-\frac{4 p_1 k_0 }{M}} 
 \end{align*}
 Numerical evidence suggests that for KdV5, $k_0 > 0$ and $p_1 < 0$, which is good. In principle, we could actually compute this, since everything is either known or can be computed numerically.
 
 \section{Interaction eigenvalues outside Krein bubble}
 
-Next, we find the interaction eigenvalues if we are outside a Krein bubble. We use the same setup as we did for the Krein bubble, since we are looking for eigenvalues of order $\mathcal{O}(r^{1/2})$. Since we are assuming that $bi$ is isolated from every point $k \pi / X$ by at least $r^{1/2}/X^{1/2}$, we can use the setup in the previous section, where we always take $|s| \geq r^{1/2}/X^{1/2}$. Thus we solve equation \cref{Bsimple4} with $\tilde{s} = \mathcal{O}(1/X^{1/2})$, which gives us
+Next, we find the interaction eigenvalues if we are outside a Krein bubble. We use the same setup as we did for the Krein bubble, since we are looking for eigenvalues of order $\mathcal{O}(r^{1/2})$. 
+
+Since we are assuming that $bi$ is isolated from every point $k \pi / X$ by at least $r^{1/2}/X^{1/2}$, we can use the setup in the previous section, except we can always take $|s| \geq r^{1/2}/X^{1/2}$. Thus we start with equation \cref{Bsimple4}. 
+
+ $\tilde{s} = \mathcal{O}(1/X^{1/2})$, which gives us
 \begin{equation}\label{Binteig1}
 \begin{aligned}
 ( \tilde{h}( \tilde{h} &+ 2 \tilde{b} i) + \mathcal{O}( r^{1/2} ))\left( (\tilde{s} + \tilde{h})X + \mathcal{O}\left( (\tilde{s} + \tilde{h})^3 r X^3 \right) \right) \\ 
@@ -361,10 +369,13 @@ Next, we find the interaction eigenvalues if we are outside a Krein bubble. We u
 \end{aligned}
 \end{equation} 
 
+As long as $\tilde{s}$ is not 0, for sufficiently small $r$ (depending on $\tilde{s}$), we should be able to use the IFT to find a unique $\tilde{h}$ near $h = 0$. 
 
 
 
 ******
+GARBAGE FOLLOWS
+
 First, we will look at what happens when $\pm bi$ is separated by at least $r^{1/2}/X^{1/2}$ from the set $S$. This should be a sufficient condition for no Krein bubbles. First, we locate the interaction eigenvalues.
 
 \begin{lemma}

@@ -14,6 +14,8 @@
 \usepackage{enumerate}
 \usepackage{float}
 \usepackage{subfiles}
+\usepackage{wrapfig}
+
 % \usepackage{thmtools, thm-restate}
 
 % my custom packages
@@ -143,25 +145,22 @@
 
 \mainmatter
 
-\chapter{The 5th order KdV equation: background and numerics}
-
+\chapter{The 5th order KdV equation: background and numerics}\label{chapter:KdV5}
 \subfile{kdv5}
 \subfile{kdv5numerics}
 
-\chapter{The 5th order KdV equation: generalization }
+\chapter{The 5th order KdV equation: generalization}\label{chapter:kdv5general}
 \subfile{kdv5general}
+\subfile{primarypulse}
 
-\chapter{The 5th order KdV equation: $n$-homoclinic solutions }
+\chapter{The 5th order KdV equation: $n$-homoclinic solutions}\label{chapter:kdv5homoclinic}
 
 \subfile{kdv5homoclinic}
-
-\chapter{The 5th order KdV equation: $n$-periodic solutions }
-
+\chapter{The 5th order KdV equation: $n$-periodic solutions }\label{chapter:kdv5periodic}
 \subfile{periodic}
-\subfile{primarypulse}
-\subfile{periodicexist}
-\subfile{periodicstability}
-\subfile{periodiceig}
+% \subfile{periodicexist}
+% \subfile{periodicstability}
+% \subfile{periodiceig}
 
 % \appendix
 %    Include appendix "chapters" here.

@@ -6,9 +6,11 @@
 	\chapter{The 5th order KdV equation: generalization}
 \fi
 
+In this chapter, we write our problem in a general form, for which KdV5 will be a special case. First, we formulate the problem as a Hamiltonian PDE with certain symmetries. We then look for traveling wave solutions, which satisfy a related nonlinear in a moving reference frame. In particular, we are interested in pulses, which are localized traveling waves. To do this, we shift to a spatial dynamics perspective, in which pulses are homoclinic orbits. We discuss the existence of a primary pulse solution, which is a single, symmetric homoclinic orbit. We will use this framework to  consider the existence of multi-pulses in \cref{chapter:kdv5homoclinic} and periodic multi-pulses in \cref{chapter:kdv5periodic}. Finally, we set up the spectral problem, which we will treat separately for the $n-$homoclinic and $n-$periodic cases. Proofs will be deferred until the end of the chapter.
+
 \section{Hamiltonian PDE}\label{sec:HamPDE}
 
-We will write the problem in general terms, for which KdV5 will be a specific case. This analysis follows \cite{Grillakis1987}. Let $X = H^{2m}(\R)$ and $Y = L^2(\R)$. Consider the PDE
+First, we set up a Hamiltonian PDE which is reversible and translation invariant. This analysis follows \cite{Grillakis1987}. Let $X = H^{2m}(\R)$ and $Y = L^2(\R)$. Consider the PDE
 \begin{equation}\label{genPDE}
 u_t = \partial_x \calE'(u)
 \end{equation}
@@ -34,7 +36,7 @@ Differentiating the reversibility relation $\calE(u) = \calE(\rho(u))$ with resp
 \[
 \calE'(u) = \rho^*( \calE'(\rho(u) ) = \rho( \calE'(\rho(u) ),
 \]
-since $\rho$ is self-adjoint. This implies that the linear part of the operator only involves even-order derivatives of $u$ with respect to $x$. Differentiating the symmetry relation $\calE(T(s)u) = \calE(u)$ with respect to $u$, we have
+since $\rho$ is self-adjoint. This implies that the linear part of $\calE'(u)$ only involves even-order derivatives of $u$ with respect to $x$. Differentiating the symmetry relation $\calE(T(s)u) = \calE(u)$ with respect to $u$, we have
 \begin{equation}\label{Eprimesymm}
 \calE'(u) = T(s)^* \calE'(T(s)u) = T(-s) \calE'(T(s)u)
 \end{equation}
@@ -87,7 +89,7 @@ Since $V'(\phi) = -\phi$, we can write the equilibrium equation as
 \end{equation}
 Without loss of generality, we will assume that $\calE'(\phi)$ does not contain any terms of the form $b\phi$ for $b$ constant, since those are accounted for by the $c \phi$ term in \cref{eqODE}.
 
-We take the following hypothesis concerning existence of traveling waves. In the next section, we will give a condition under which this hypothesis is satisfied. 
+We take the following hypothesis concerning existence of traveling waves. This hypothesis is similar to \cite[Assumption 2]{Grillakis1987}. In the next section, we will give a condition under which this hypothesis is satisfied. 
 \begin{hypothesis}\label{cintervalhyp}
 There exists an open interval $(c_1, c_2) \subset \R$ and a $C^1$ map $c \mapsto \phi_c$ such that for every $c \in (c_1, c_2)$, $\phi_c$ is a traveling wave solution for \cref{genPDE}, i.e. 
 \[
@@ -128,9 +130,9 @@ Differentiating both sides, we have
 \end{align*}
 Thus $-\partial_c \phi_c$ is a generalized eigenfunction of $\partial_x \calL(\phi_c)$ corresponding to eigenvalue 0.
 
-\section{Traveling wave solutions}\label{sec:travelingwaves}
+\section{Localized traveling waves}\label{sec:travelingwaves}
 
-We will look now look at traveling wave solutions to the PDE \cref{genPDE}, which are solutions to equilibrium equation \cref{eqODE}. In particular, we are interested in traveling waves which are exponentially localized. To do this, we will use a spatial dynamics approach. From this viewpoint, an exponentially localized traveling wave is a homoclinic orbit connecting a rest state to itself. To do this, we write \cref{eqODE} as a first order system of ODEs in the standard way. Let $U = (u, \partial_x u, \dots, \partial_x^{2m-1} u)^T \in \R^{2m}$. Then by \cref{Ehyp}(iv), equation \cref{eqODE} is equivalent to the first order system
+We will look now look at traveling wave solutions to the PDE \cref{genPDE}, which are solutions to equilibrium equation \cref{eqODE}. In particular, we are interested in traveling waves which are exponentially localized. We will use a spatial dynamics approach. From this viewpoint, an exponentially localized traveling wave is a homoclinic orbit connecting a rest state to itself. To do this, we write \cref{eqODE} as a first order system of ODEs in the standard way. Let $U = (u, \partial_x u, \dots, \partial_x^{2m-1} u)^T \in \R^{2m}$. Then by \cref{Ehyp}(iv), equation \cref{eqODE} is equivalent to the first order system
 \begin{equation}\label{genODE}
 U'(x) = F(U(x); c),
 \end{equation}
@@ -168,7 +170,7 @@ For $U = 0$,
 c_j & j \text{ odd, } j > 1
 \end{cases}
 \end{align}
-where the $c_j$ are constants. We can assume without without loss of generality that $c_0 = \partial_{u_1} f(0) = 0$, since that is accounted for by the $c u_1$ term in \cref{defF}.
+where the $c_j$ are constants. Again, we can assume without without loss of generality that $c_0 = \partial_{u_1} f(0) = 0$, since that is accounted for by the $c u_1$ term in \cref{defF}.
 
 Next, we assume that \cref{genODE} is a conservative system.
 
@@ -245,7 +247,7 @@ thus we have the nondegeneracy condition
 T_{Q(0; c_0)}W^s(0; c_0) \cap T_{Q(0; c_0)}W^u(0; c_0) = \R Q'(0; c_0)
 \end{equation}
  
-Using \cref{nondegencond}, we can decompose the tangent spaces of the stable and unstable manifolds at $Q(0; c_0)$. Since the two tangent spaces have a one-dimensional intersection spanned by $Q'(0; c_0)$, we can decompose them as 
+Using \cref{nondegencond}, we decompose the tangent spaces of the stable and unstable manifolds at $Q(0; c_0)$. Since the two tangent spaces have a one-dimensional intersection spanned by $Q'(0; c_0)$, we can decompose them as 
 \begin{equation}\label{TQ0decomp1}
 \begin{aligned}
 T_{Q(0; c_0)}W^u(0; c_0) &= \R Q'(0; c_0) \oplus Y^-(c_0) \\
@@ -258,15 +260,15 @@ We can now prove the existence of homoclinic orbits $Q(x; c)$ for $c$ near $c_0$
 \begin{theorem}\label{transverseint}
 Assume \cref{Hhyp} and \cref{H0transversehyp}. Then there exists $\delta > 0$ with the following property. For $c \in (c_0 - \delta, c_0 + \delta)$, the stable and unstable manifolds $W^s(0; c)$ and $W^u(0; c)$ have a one-dimensional transverse intersection in $H^{-1}(0; c)$. This intersection yields a homoclinic orbit $Q(x; c)$. The map $c \rightarrow Q(x; c)$ is smooth, and the derivative $\partial_c Q(x; c)$ is exponentially localized. Specifially, for any $\epsilon > 0$, there exists $\delta_1 > 0$ with $\delta_1 < \delta$ such that for $c \in (c_0 - \delta_1, c_0 + \delta_1)$,
 \[
-|\partial_c Q(x; c)| \leq C e^{-(\alpha - \epsilon)|x|}
+|\partial_c Q(x; c)| \leq C e^{-(\alpha_0 - \epsilon)|x|}
 \] 
 \end{theorem}
  
-\noi \cref{transverseint} implies that \cref{cintervalhyp} is satisfied. From this point forward, we will fix $c = c_0$, and for simplicity, we will use $c$ in place of $c_0$. We will also omit the dependence on $c$ for convenience of notation.
+\noi \cref{transverseint} implies that \cref{cintervalhyp} is satisfied. From this point forward, we will fix $c = c_0$ For simplicity, we will use $c$ in place of $c_0$ and will omit the dependence on $c$ in our notation.
 
 \subsection{Variational equation}\label{sec:vareq1}
 
-The variational equation is the linearization of \cref{genODE} about the primary pulse solution $Q(x)$. The variational and adjoint variational equations associated with \cref{genODE} are
+The variational equation is the linearization of \cref{genODE} about the primary pulse solution $Q(x)$ and will be an important tool in our analysis. The variational and adjoint variational equations associated with \cref{genODE} are
 \begin{align}
 V' = DF(Q(x)) V \label{vareq1} \\
 W' = -DF(Q(x))^* W \label{adjvareq1},
@@ -306,26 +308,22 @@ Consider the linear ODE $V' = A(x)V$ and the corresponding adjoint equation $W' 
 \R^{2m} = \R Q'(0) \oplus Y^+ \oplus Y^- \oplus \R \Psi(0).
 \end{equation}
 
-\subsection{Multi-pulse solutions}
-
-A multi-pulse solution is a traveling wave solution that resembles multiple, well-separated copies of the primary pulse. From a spatial dynamics perspective, a multi-pulse is a multi-loop homoclinic orbit which remains near the primary pulse homoclinic orbit $Q(x)$. We will discuss the existence of multi-pulse solutions in [SECTION]. In addition, we will also consider periodic multi-pulses, which are periodic orbits composed of multiple loops which remain close to the homoclinic orbit $Q(x)$. The existence of periodic multi-pulses is discussed in [SECTION].
-
 \section{Spectrum of pulses}
 
-\subsection{PDE eigenvalue problem}\label{sec:PDEeig}
-
-Our primary interest is the spectral stability of traveling wave solutions to \cref{genPDE}. For a traveling wave $\phi$, we will study the spectrum of the linearized operator $\partial_x \calL(\phi) = \partial_x(\calE''(\phi) + c)$. The PDE eigenvalue problem associated with $\phi$ is given by
+In this section, we set up the the problem that we will use to find the eigenvalues associated with an equilibrium solution to \cref{genPDE}. Let $\phi$ be an exponentially localized traveling wave solution to \cref{genPDE}. We will study the spectrum of the linearized operator $\partial_x \calL(\phi) = \partial_x(\calE''(\phi) + c)$. First we note that the PDE eigenvalue problem
 \begin{equation}\label{genPDEeig}
-\partial_x \calL(\phi) v = \lambda v,
+\partial_x \calL(\phi) v = \lambda v
 \end{equation}
-which is equivalent to the system
+is equivalent to the system
 \begin{equation}\label{genPDEeig2}
 \begin{aligned}
 \calL(\phi) v &= k \\
 \partial_x k &= \lambda v
 \end{aligned}
 \end{equation}
-As in \cite{Sandstede1998}, we will take a spatial dynamics approach and write \cref{genPDEeig2} as a first order system of ODEs. Let $U(x) = (\phi(x), \partial_x \phi(x, \dots, \partial_x^{2m-1}\phi(x), 0)^T \in \R^{2m+1}$ and let $V(x) = (v(x), \partial_x v(x), \dots, \partial_x^{2m-1} v(x), k)$. Then from \cref{Eprimeuform} and \cref{PDElinearization}, equation \cref{genPDEeig2} is equivalent to the first order system
+It will turn out that \cref{genPDEeig2} is much more convenient for analysis.
+
+As in \cite{Sandstede1998} and the previous section, we will take a spatial dynamics approach. To do this, we write \cref{genPDEeig2} as a first order system of ODEs. Let $U(x) = (\phi(x), \partial_x \phi(x, \dots, \partial_x^{2m-1}\phi(x), 0)^T \in \R^{2m+1}$ and let $V(x) = (v(x), \partial_x v(x), \dots, \partial_x^{2m-1} v(x), k)$. Then from \cref{Eprimeuform} and \cref{PDElinearization}, equation \cref{genPDEeig2} is equivalent to the first order system
 \begin{equation}\label{PDEeigsystem}
 V'(x) = A(U(x))V(x) + \lambda B V(x),
 \end{equation}
@@ -349,7 +347,7 @@ B = \begin{pmatrix}0 & 0 & 0 & 0 & 0 \\0 & 0 & 0 & 0 & 0 \\  &
 \end{equation}
 We note that the upper left $2m \times 2m$ block of $A(U(x))$ is $DF(U(x))$, which is given by \cref{defDF}. We will specify the function space on which \cref{PDEeigsystem} is posed in a later section since we will use different spaces for multi-pulses and periodic multi-pulses.
 
-Since $\phi$ is a traveling wave, $U(x)$ is exponentially localized, thus $A(U(x))$ is exponentially asymptotic to the constant coefficient matrix $A(0)$. The following lemma describes the eigenvalues and kernel of $A(0)$.
+Since $\phi$ is exponentially localized, so is $U(x)$, thus $A(U(x))$ is exponentially asymptotic to the constant coefficient matrix $A(0)$. The following lemma describes the eigenvalues and kernel of $A(0)$.
 
 \begin{lemma}\label{eigA0lemma}
 The following hold concerning the eigenvalues of $A(0)$.
@@ -368,82 +366,15 @@ P_{\ker A(0)} = \langle W_0, \cdot \rangle V_0
 \end{enumerate} 
 \end{lemma}
 
-\noi Since $A(0)$ is not hyperbolic, the results of \cite{Sandstede1998} do not apply. Let $W^s(0)$, $W^u(0)$, and $W^c(0)$ be the stable, unstable, and center manifolds of the equilibrium at 0. These are not the same as in the previous section, but we will retain the notation for convenience. By reversibility, $\dim W^s(0) = m$ and $\dim W^u(0) = m$. The center manifold $W^c(0)$ is one-dimensional.
+\noi Since $A(0)$ is not hyperbolic, the results of \cite{Sandstede1998} do not apply. For multi-pulse solutions, we will get around this problem in \cref{chapter:KdV5homoclinic} by using an exponentially weighted space; this make the analysis very similar to that in \cite{Sandstede1998} but only provides limited results. In \cref{chapter:KdV5periodic}, we will look at periodic multi-pulse solutions. The analysis is more difficult, since it involves a one-dimensional center manifold, but we will be able to obtain more results. Since these two cases are very different, further analysis is deferred to the respective chapters.
 
-Let $q(x)$ be the primary pulse solution from \cref{sec:primarypulse}, and define $Q(x) \in R^{2m+1}$ by
-\[
-Q(x) = (q(x), \partial_x q(x), \dots, \partial_x^{2m-1} q(x), 0)
-\]
-We note that this is different from the primary pulse $Q(x)$ in \cref{sec:primarypulse} in that it has an extra component of 0 added to the end. Since it represents the same primary pulse solution, we retain the same notation for convenience. The variational and adjoint variational equations associated with \cref{PDEeigsystem} are
-\begin{align}
-V'(x) = A(Q(x)) V(x) \label{vareq2} \\
-W'(x) = -A(Q(x))^* W(x) \label{adjvareq2}
-\end{align}
-where again we use the same notation $V$ and $W$ for convenience. Since $(\partial_x \calL(q))\partial_x q = 0$, it follows that $\partial_x Q(x)$ is an exponentially localized solution to the variational equation \eqref{vareq2}, i.e. 
-\begin{equation}\label{Qprimevarsol}
-(\partial_x Q(x))' = A(Q(x))(\partial_x Q(x))
-\end{equation}
-Since $(\partial_x \calL(q))(-\partial_c q) = \partial_x q$, we also have
-\begin{equation}\label{Qcvarsol}
-(\partial_c Q(x))' = A(Q(x))(\partial_c Q(x)) + B(\partial_x Q(x))
-\end{equation}
-
-Since $Q(x)$ is exponentially localized, it cannot involve the center manifold $W^c(0)$, thus it must lie in the intersection of the stable and unstable manifolds. In particular, this implies that $\R Q'(0) \subset T_{Q(0)}W^s(0) \cap T_{Q(0)}W^u(0)$. It follows from \cref{H0transversehyp} that these are actually equal, which we state in the following lemma.
-
-\begin{lemma}\label{nondegenlemma}
-We have the nondegeneracy condition
-\begin{equation}\label{nondegen2}
-T_{Q(0)}W^s(0) \cap T_{Q(0)}W^u(0) = \R Q'(0)
-\end{equation}
-\end{lemma}
-
-\noi Using the nondegeneracy condition \eqref{nondegen2}, we can decompose the tangent spaces of the stable and unstable manifolds at $Q(0)$ as
-\begin{align*}
-T_{Q(0)}W^s(0) &= \R Q'(0) \oplus Y^+ \\
-T_{Q(0)}W^u(0) &= \R Q'(0) \oplus Y^- \\
-\end{align*}
-where $Y^+$ and $Y^-$ are different than in the previous section. Since $\dim \R Q'(0) \oplus Y^+ \oplus Y^- = 2m-1$, there are two remaining directions needed in order to span $\R^{2m+1}$. To find these, we will use the following lemma regarding solutions to \eqref{vareq2} and \eqref{adjvareq2}.
-
-\begin{lemma}\label{varadjsolutions}
-We have the following solutions to the variational equation and adjoint variational equation.
-\begin{enumerate}
-	\item There exists a bounded solution $V^c(x)$ to \eqref{vareq2} such that 
-	\begin{equation}
-	V^c(x) \rightarrow V_0 \text{ as }|x| \rightarrow \infty
-	\end{equation}
-	$V^c$ is symmetric with respect to the standard reversor operator $R$, i.e. $V^c(-x) = R V^c(x)$. Furthermore, $V^c = (\tilde{V}^c, 1)$, where $\tilde{V}^c$ solves $\tilde{V}^c(x)' = DF(Q(x)) \tilde{V}^c(x) + (0, \dots, 0, 1)^T$. Finally, if $v^c(x)$ is the first component of $V^c(x)$, $v^c$ is a formal solution to $\calL(q) v_c = 1$.
-
-	\item There exist two linearly independent, bounded solutions $\Psi(x)$ and $\Psi^c(x)$ to \eqref{adjvareq2}.
-	\begin{enumerate}[(i)]
-	\item $\Psi(x)$ is the exponentially localized solution
-	\begin{equation}
-	\Psi(x) = (\nabla H(Q(x)), q(x)).
-	\end{equation}
-	$\Psi(x)$ is symmetric with respect to the standard reversor operator $R$, i.e. $\Psi(-x) = R \Psi(x)$. 
-	\item $\Psi^c(x)$ is the constant solution
-	\begin{equation}
-	\Psi^c(x) = W_0
-	\end{equation}
-	\end{enumerate}
-	Any other bounded solution to \eqref{adjvareq2} is a linear combination of these. Finally, $\Psi(0), \Psi^c(0) \perp \R Q'(0) \oplus Y^+ \oplus Y^-$.
-\end{enumerate}
-\end{lemma}
-
-\noi We remark that although $[V^c(x)]' = A(Q(x))V^c(x)$, whether or not its first component $v^c(x)$ is in the kernel of $\partial_x \calL(q)$ depends on the space we use for the PDE eigenvalue problem \cref{PDEeigsystem}. The formal equation $\calL(q) v^c(x) = 1$ is very useful for computing $v^c(x)$ numerically.
-
-Using Lemma \ref{nondegenlemma} and Lemma \ref{varadjsolutions}, we can decompose $\R^{2m+1}$ as  
-\begin{equation}
-\R^{2m+1} = \R \Psi(0) \oplus \R \Psi^c(0) \oplus \R Q'(0) \oplus Y^+ \oplus Y^-
-\end{equation}
-where $\R \Psi(0) \oplus \R \Psi^c(0) \perp \R Q'(0) \oplus Y^+ \oplus Y^-$.
-
-The final hypothesis concerns a higher order Melnikov integral. Before we consider that, we note that the standard Melnikov integral is 0, i.e. 
+Before we conclude this chapter, we will make one final hypothesis concerning a higher order Melnikov integral. First, we note that the standard Melnikov integral is 0, i.e. 
 \begin{equation}\label{M1}
 M_1 = \int_{-\infty}^\infty \langle \Psi(x), B Q'(x) \rangle =
 \int_{-\infty}^\infty q(x) \: \partial_x q(x) 
 = \langle q(x), \partial_x q(x) \rangle_{L^2(\R)} = 0
 \end{equation}
-since the last component of $\Psi(x)$ is $q(x)$ by Lemma \ref{varadjsolutions}, and $q(x)$ is an even function. We take the following hypothesis regarding a higher order Melnikov integral.
+since the last component of $\Psi(x)$ is $q(x)$ by Lemma \ref{varadjsolutions}, and $q(x)$ is an even function. Since we have a Hamiltonian system, this is the expected result. We take the following hypothesis regarding a higher order Melnikov integral.
 \begin{hypothesis}\label{Melnikov2hyp}
 The following higher order Melnikov integral is nonzero.
 \begin{equation}\label{M2}
@@ -452,10 +383,6 @@ M_2 = \int_{-\infty}^\infty \langle \Psi(x), B Q_c(x) \rangle dx =
 \end{equation}
 \end{hypothesis}
 In applications such as KdV5, numerical analysis suggests that \cref{Melnikov2hyp} is satisfied with $M_2 > 0$.
-
-\subsection{Spectrum of multi-pulses}
-
-We are interested in the spectrum of multi-pulse traveling wave solutions. For the spectrum of multi-pulses on $\R$, we will use an exponentially weighted space to obtain a similar result to that in \cite{Sandstede1998}. This method, however, only lets us find the spectrum to leading order. We do this in [SECTION]. For the spectrum of periodic multi-pulses, we pose the eigenvalue problem on the space of periodic functions. This is done in [SECTION].
 
 \iffulldocument\else
 	\bibliographystyle{amsalpha}

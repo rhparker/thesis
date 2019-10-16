@@ -16,11 +16,11 @@ where $u(x, t)$ is a real-valued function, the parameters $\alpha$ and $\beta$ a
 \partial_t u = \calJ \calE'(u),
 \]
 where $\calJ = \partial_x$ is skew-Hermitian, and the energy $\calE$ is given by
-\[
+\begin{equation}\label{kawaharaE}
 \calE(u) = -\frac{1}{2}\int_{-\infty}^\infty 
 \left( \frac{1}{2}u_{xx}^2 - \frac{1}{2}\alpha u_x^2 + h(u, u_x, u_{xx})\right)dx,
-\]
-where $f$ is the variational derivative of the term involving $h$ \cite{Bridges2002}.
+\end{equation}
+and $f$ in \cref{kawahara} is the variational derivative of the term involving $h$ in \cref{kawaharaE} \cite{Bridges2002}.
 
 One specific example is the PDE
 \begin{equation}\label{capgrav}
@@ -92,51 +92,42 @@ For $c > 0$, two eigenvalues have positive real part and two have negative real 
 \label{fig:kdv5eigbif}
 \end{figure} 
 
-For an equilibrium solution $u^*$, substituting the standard linearization ansatz $u(x, t) = u^*(x) + \epsilon e^{\lambda t} v(x)$ into the PDE \eqref{KdV5c} and keeping terms up to order $\epsilon$ yields the PDE eigenvalue problem
+As a first step to studying the stability of an equilibrium solution $u^*$, we will study the spectrum of the linearization of the PDE \eqref{KdV5c} about $u^*$. Substituting the standard linearization ansatz $u(x, t) = u^*(x) + \epsilon e^{\lambda t} v(x)$ into \eqref{KdV5c} and keeping terms up to order $\epsilon$, we obtain the PDE eigenvalue problem
 \begin{equation}\label{KdV5PDEevp}
 \partial_x \calE''(u^*) v = \lambda v.
 \end{equation}
-where
-\begin{equation}\label{KdV5PDEevpop}
-\calE''(u^*) = \partial_x(\partial_x^4 - \partial_x^2 + c - 2 u^*)
-\end{equation}
+where $\calE''(u^*)$ is given in \cref{KdV5hessian}.
 
 \section{Primary pulse solution}
 
 For $c > 0$, a symmetric one-pulse solution exists to \cref{KdV5eq4}. We will refer to this as the primary pulse solution. This result is stated in the following theorem, which is adapted from \cite[Theorem 2.1]{Pelinovsky2007}. The proof uses a mountain-pass argument.
 
 \begin{theorem}[Existence of Primary Pulse]\label{KdV1pulse}
-For $c > 0$, there exists a one-pulse solution $q(x; c)$ to \cref{KdV5eq4} which is an even function and decays exponentially to 0 at $\pm \infty$. For the linear operators $\calE''(q)$ and $\partial_x \calE''(q)$, we have the following:
+For $c > 0$, there exists a one-pulse solution $q(x)$ to \cref{KdV5eq4} which is an even function and decays exponentially to 0 at $\pm \infty$. For the linear operators $\calE''(q)$ and $\partial_x \calE''(q)$, we have the following:
 \begin{enumerate}[(i)]
 \item The linear operator $\calE''(q)$ has exactly one negative eigenvalue with an even eigenfunction and a simple eigenvalue at 0 with eigenfunction $q_x$.
-\item Assume that the map $c \mapsto q(x; c)$ is $C^1$ for $c > 0$. Then the linear operator $\partial_x \calE''(q)$ has an eigenvalue at 0 with algebraic multiplicity 2 and geometric multiplicity 1; the eigenfunction is $q_x$ and the generalized eigenfunction is $q_c$. 
+\item Assume that the map $c \mapsto q(x; c)$ is $C^1$ for $c > 0$. Then the linear operator $\partial_x \calE''(q)$ has an eigenvalue at 0 with algebraic multiplicity 2 and geometric multiplicity 1; the eigenfunction is $\partial_x q(x)$ and the generalized eigenfunction is $\partial_c q(x)$. 
 \item Assume that 
 \[
-\frac{\partial}{\partial c} \left( \frac{1}{2} \int_{-\infty}^\infty q(x; c)^2 dx \right) > 0
+\frac{\partial}{\partial c} \left( \frac{1}{2} \int_{-\infty}^\infty q(x)^2 dx \right) > 0
 \]
-Then $q(x; c)$ is orbitally stable. This implies that $\partial_x \calE''(q)$ has no eigenvalues with positive real part.
+Then $q(x)$ is orbitally stable. This implies that $\partial_x \calE''(q)$ has no eigenvalues with positive real part.
 \end{enumerate}
 \end{theorem}
 
 \section{Multi-pulse solutions}
 
-For $c > 1/4$, multi-pulse solutions exist to \cref{KdV5eq4}. These resemble multiple, well-separated copies of the primary pulse $q(x)$. Heuristically, we construct a multi-pulse by gluing together multiple copies of the primary pulse end-to-end. This is shown in \cref{fig:multipulsediag}.
-
-\begin{figure}[H]
-\includegraphics[width=12cm]{images/kdv5numerics/multipulse.eps}
-\caption{Construction of a multi-pulse solution from the primary pulse.}
-\label{fig:multipulsediag}
-\end{figure}
-
-\noi For each $n \geq 2$, a countable family of multi-pulse solutions exists \cite{Buffoni1996}. The result for 2-pulse solutions is also given in \cite[Theorem 2.2]{Pelinovsky2007}. The distances between consecutive pulses are constrained to be (approximately) an integer multiple of a phase parameter which depends on $\beta_0$. Geometrically, these integers represent the number of half-twists made by the multi-pulse between consecutive peaks \cite{SandstedeStrut}. A specific alignment of stable and unstable manifolds necessary for multi-pulses to exist. In [SECTION], we will state the existence result for multi-pulse solutions, which is an adaptation of \cite[Theorem 3.6]{SandstedeStrut}. 
+For $c > 1/4$, multi-pulse solutions exist to \cref{KdV5eq4}. These resemble multiple, well-separated copies of the primary pulse $q(x)$. Heuristically, we construct a multi-pulse by gluing together multiple copies of the primary pulse end-to-end. For each $n \geq 2$, a countable family of multi-pulse solutions exists \cite{Buffoni1996}. The result for 2-pulse solutions is also given in \cite[Theorem 2.2]{Pelinovsky2007}. The distances between consecutive pulses are constrained to be (approximately) an integer multiple of a phase parameter which depends on $\beta_0$. Geometrically, these integers represent the number of half-twists made by the multi-pulse between consecutive peaks \cite{SandstedeStrut}; a specific alignment of stable and unstable manifolds necessary for multi-pulses to exist. In \cref{chapter:KdV5homoclinic}, we will state an existence result for multi-pulse solutions, which is a straightforward adaptation of \cite[Theorem 3.6]{SandstedeStrut}. 
 
 \section{Spectrum of multi-pulses}
 
-We now turn to the spectral stability problem for multi-pulses. To do this, we study the spectrum of the linearization \cref{KdV5PDEevpop} of the PDE \eqref{KdV5c} about a multi-pulse solution $q_n$. It it straightforward to show that 
+We now look at the spectral stability of multi-pulses. Let $q_n$ be an $n-$pulse equilibrium solution to \cref{KdV5c}. We are interested in the spectrum of $\calE''(q_n)$. It it straightforward to show that 
 \begin{align*}
 \partial_x \calE''(q_n) (\partial_x q_n) &= 0 \\
 \partial_x \calE''(q_n) (-\partial_c q_n) &= \partial_x q_n
 \end{align*}
+Thus there is an eigenvalue at 0 with at least algebraic multiplicity 2 and geometric multiplicity 1. The kernel eigenvalue $\partial_x q_n$ is a consequence of translation invariance.
+
 For the essential spectrum, since \cref{KdV5PDEevpop} is exponentially asymptotic to the operator 
 \[
 \partial_x \calE''(0) = 
@@ -144,7 +135,7 @@ For the essential spectrum, since \cref{KdV5PDEevpop} is exponentially asymptoti
 \]
 by the Weyl essential spectrum theorem \cite[Theorem 2.2.6]{Kapitula2013} and \cite[Theorem 3.1.11]{Kapitula2013}, $\partial_x \calE''(q_n)$ and $\partial_x \calE''(0)$ have the same essential spectrum. By a straightforward calculation, the essential spectrum of $\partial_x \calE''(q_n)$ is the entire imaginary axis.
 
-All that remains is to locate the point spectrum. We expect that, as in \cite{Sandstede1998}, an additional eigenvalue near 0 will be associated with each additional pulse. We will call these interaction eigenvalues. Since \cref{KdV5c} is Hamiltonian, these interaction eigenvalues must come in quartets $\{ \pm \lambda, \pm \overline{\lambda}\}$ \cite[Proposition 5.1.2]{Kapitula2013}. Thus we expect that each additional pulse will be associated with a set of eigenvalues which must come in one of the three patterns in \cref{fig:kdv5inteigpattern}.
+All that remains is to locate the rest of the point spectrum. We expect that, as in \cite{Sandstede1998}, the $n-$pulse $q_n$ will have $n-1$ additional sets of eigenvalues near 0. We will call these interaction eigenvalues since they result from interactions between neighboring pulses. Since \cref{KdV5c} is Hamiltonian, these interaction eigenvalues must come in quartets $\{ \pm \lambda, \pm \overline{\lambda}\}$ \cite[Proposition 5.1.2]{Kapitula2013}. Thus each set of eigenvalues must come in one of the three patterns in \cref{fig:kdv5inteigpattern}.
 
 \begin{figure}[H]
 \includegraphics[width=10cm]{images/kdv5/eigdouble2}
@@ -152,7 +143,7 @@ All that remains is to locate the point spectrum. We expect that, as in \cite{Sa
 \label{fig:kdv5inteigpattern}
 \end{figure}
 
-\noi By Hamiltonian symmetry, the presence of an eigenvalue with nonzero real part implies that there is an unstable eigenvalue with positive real part. Thus the best we can hope for is neutral stability. For double pulses, there is a pair of interaction eigenvalues with is either real or purely imaginary (to leading order) with negative Krein signature \cite[Theorem 2.3]{Pelinovsky2007}. I extend this result to multi-pulses in [SECTION].
+\noi By Hamiltonian symmetry, the presence of an eigenvalue with nonzero real part implies that there is an unstable eigenvalue with positive real part. Thus the best we can hope for is neutral stability. For double pulses, there is a pair of interaction eigenvalues with is either real or purely imaginary (to leading order) with negative Krein signature \cite[Theorem 2.3]{Pelinovsky2007}. We will extend this result to multi-pulses in \cref{chapter:KdV5homoclinic}. However, as in \cite{Pelinovsky2007}, we will only be able to prove that eigenvalues close to the imaginary axis are purely imaginary to leading order.
 
 \iffulldocument\else
 	\bibliographystyle{amsalpha}
