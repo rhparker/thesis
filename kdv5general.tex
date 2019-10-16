@@ -6,7 +6,7 @@
 	\chapter{The 5th order KdV equation: generalization}
 \fi
 
-In this chapter, we write our problem in a general form, for which KdV5 will be a special case. First, we formulate the problem as a Hamiltonian PDE with certain symmetries. We then look for traveling wave solutions, which satisfy a related nonlinear in a moving reference frame. In particular, we are interested in pulses, which are localized traveling waves. To do this, we shift to a spatial dynamics perspective, in which pulses are homoclinic orbits. We discuss the existence of a primary pulse solution, which is a single, symmetric homoclinic orbit. We will use this framework to  consider the existence of multi-pulses in \cref{chapter:kdv5homoclinic} and periodic multi-pulses in \cref{chapter:kdv5periodic}. Finally, we set up the spectral problem, which we will treat separately for the $n-$homoclinic and $n-$periodic cases. Proofs will be deferred until the end of the chapter.
+In this chapter, we write our problem in a general form, for which KdV5 will be a special case. First, we formulate the problem as a Hamiltonian PDE with certain symmetries. We then look for traveling wave solutions, which satisfy a related nonlinear in a moving reference frame. In particular, we are interested in pulses, which are localized traveling waves. To do this, we shift to a spatial dynamics perspective, in which pulses are homoclinic orbits. We discuss the existence of a primary pulse solution, which is a single, symmetric homoclinic orbit. We will use this framework to  consider the existence of multi-pulses in \cref{chapter:kdv5homoclinic} and periodic multi-pulses in \cref{chapter:kdv5periodic}. Finally, we set up the spectral problem, which we will treat separately for the $n-$homoclinic case in \cref{chapter:kdv5periodic} and the $n-$periodic case in \cref{chapter:kdv5perspec}. All proofs will be deferred until the end of this chapter.
 
 \section{Hamiltonian PDE}\label{sec:HamPDE}
 
@@ -259,9 +259,9 @@ We can now prove the existence of homoclinic orbits $Q(x; c)$ for $c$ near $c_0$
 
 \begin{theorem}\label{transverseint}
 Assume \cref{Hhyp} and \cref{H0transversehyp}. Then there exists $\delta > 0$ with the following property. For $c \in (c_0 - \delta, c_0 + \delta)$, the stable and unstable manifolds $W^s(0; c)$ and $W^u(0; c)$ have a one-dimensional transverse intersection in $H^{-1}(0; c)$. This intersection yields a homoclinic orbit $Q(x; c)$. The map $c \rightarrow Q(x; c)$ is smooth, and the derivative $\partial_c Q(x; c)$ is exponentially localized. Specifially, for any $\epsilon > 0$, there exists $\delta_1 > 0$ with $\delta_1 < \delta$ such that for $c \in (c_0 - \delta_1, c_0 + \delta_1)$,
-\[
+\begin{equation}\label{Qcbound}
 |\partial_c Q(x; c)| \leq C e^{-(\alpha_0 - \epsilon)|x|}
-\] 
+\end{equation}
 \end{theorem}
  
 \noi \cref{transverseint} implies that \cref{cintervalhyp} is satisfied. From this point forward, we will fix $c = c_0$ For simplicity, we will use $c$ in place of $c_0$ and will omit the dependence on $c$ in our notation.
@@ -366,9 +366,78 @@ P_{\ker A(0)} = \langle W_0, \cdot \rangle V_0
 \end{enumerate} 
 \end{lemma}
 
-\noi Since $A(0)$ is not hyperbolic, the results of \cite{Sandstede1998} do not apply. For multi-pulse solutions, we will get around this problem in \cref{chapter:KdV5homoclinic} by using an exponentially weighted space; this make the analysis very similar to that in \cite{Sandstede1998} but only provides limited results. In \cref{chapter:KdV5periodic}, we will look at periodic multi-pulse solutions. The analysis is more difficult, since it involves a one-dimensional center manifold, but we will be able to obtain more results. Since these two cases are very different, further analysis is deferred to the respective chapters.
+\noi Since $A(0)$ is not hyperbolic, the results of \cite{Sandstede1998} do not apply. For multi-pulse solutions, we will get around this problem in \cref{chapter:KdV5homoclinic} by using an exponentially weighted space; this make the analysis very similar to that in \cite{Sandstede1998} but only provides limited results. In \cref{chapter:KdV5perspec}, we will look at the spectrum of periodic multi-pulse solutions. The analysis is more difficult, since it involves a one-dimensional center manifold, but we will be able to obtain more results. The remainder of this section is setup material which is common to both cases.
 
-Before we conclude this chapter, we will make one final hypothesis concerning a higher order Melnikov integral. First, we note that the standard Melnikov integral is 0, i.e. 
+Let $W^s(0)$, $W^u(0)$, and $W^c(0)$ be the stable, unstable, and center manifolds of the equilibrium at 0. By reversibility, $\dim W^s(0) = m$ and $\dim W^u(0) = m$. The center manifold $W^c(0)$ is one-dimensional.
+
+Let $\tilde{Q}(x)$ be the primary pulse solution from \cref{sec:primarypulse}, and define $Q(x) \in R^{2m+1}$ by $Q(x) = (\tilde{Q}(x), 0)$. The variational and adjoint variational equations associated with \cref{PDEeigsystem} are
+\begin{align}
+V'(x) = A(Q(x)) V(x) \label{vareq2} \\
+W'(x) = -A(Q(x))^* W(x) \label{adjvareq2}
+\end{align}
+where we use the same notation $V$ and $W$ for convenience. Since $(\partial_x \calL(q))\partial_x q = 0$ and $(\partial_x \calL(q))(-\partial_c q) = \partial_x q$, it follows that 
+\begin{align}
+(\partial_x Q(x))' &= A(Q(x))(\partial_x Q(x)) \label{Qprimevarsol} \\
+(\partial_c Q(x))' &= A(Q(x))(\partial_c Q(x)) + B(\partial_x Q(x))\label{Qcvarsol}
+\end{align}
+Thus $\partial_x Q(x)$ is an exponentially localized solution to the variational equation \eqref{vareq2}.
+
+Since $Q(x)$ is exponentially localized, it cannot involve the center manifold $W^c(0)$, thus it must lie in the intersection of the stable and unstable manifolds. In particular, this implies that $\R Q'(0) \subset T_{Q(0)}W^s(0) \cap T_{Q(0)}W^u(0)$. It follows from \cref{H0transversehyp} that these are actually equal, which we state in the following lemma.
+
+\begin{lemma}\label{nondegenlemma}
+We have the nondegeneracy condition
+\begin{equation}\label{nondegen2}
+T_{Q(0)}W^s(0) \cap T_{Q(0)}W^u(0) = \R Q'(0)
+\end{equation}
+\end{lemma}
+
+\noi Using the nondegeneracy condition \eqref{nondegen2}, we can decompose the tangent spaces of the stable and unstable manifolds at $Q(0)$ as
+\begin{align*}
+T_{Q(0)}W^s(0) &= \R Q'(0) \oplus Y^+ \\
+T_{Q(0)}W^u(0) &= \R Q'(0) \oplus Y^- \\
+\end{align*}
+Since $\dim \R Q'(0) \oplus Y^+ \oplus Y^- = 2m-1$, there we need two more directions to span $\R^{2m+1}$. To find these, we will use the following lemma regarding solutions to \eqref{vareq2} and \eqref{adjvareq2}.
+
+\begin{lemma}\label{varadjsolutions}
+We have the following solutions to the variational equation and adjoint variational equation.
+\begin{enumerate}
+	\item There exists a bounded solution $V^c(x)$ to \eqref{vareq2} such that 
+	\begin{equation}
+	V^c(x) \rightarrow V_0 \text{ as }|x| \rightarrow \infty
+	\end{equation}
+	$V^c$ is symmetric with respect to the standard reversor operator $R$, i.e. $V^c(-x) = R V^c(x)$. Furthermore, $V^c = (\tilde{V}^c, 1)$, where $\tilde{V}^c$ solves $\tilde{V}^c(x)' = DF(Q(x)) \tilde{V}^c(x) + (0, \dots, 0, 1)^T$.
+
+	\item There exist two linearly independent, bounded solutions $\Psi(x)$ and $\Psi^c(x)$ to \eqref{adjvareq2}.
+	\begin{enumerate}[(i)]
+	\item $\Psi(x)$ is the exponentially localized solution
+	\begin{equation}
+	\Psi(x) = (\nabla H(Q(x)), q(x)).
+	\end{equation}
+	$\Psi(x)$ is symmetric with respect to the standard reversor operator $R$, i.e. $\Psi(-x) = R \Psi(x)$. 
+	\item $\Psi^c(x)$ is the constant solution
+	\begin{equation}
+	\Psi^c(x) = W_0
+	\end{equation}
+	\end{enumerate}
+	Any other bounded solution to \eqref{adjvareq2} is a linear combination of these. Finally, $\Psi(0), \Psi^c(0) \perp \R Q'(0) \oplus Y^+ \oplus Y^-$.
+\end{enumerate}
+\end{lemma}
+
+\begin{remark}\label{remark:computeVc}
+If $v^c(x)$ is the first component of $V^c(x)$, $v^c$ is a formal solution to $\calL(q) v_c = 1$. Since
+\[
+V^c(x) = (v^c(x), \partial_x v^c(x), \dots, \partial_x^{2m-1}v^c(x), 1 ),
+\]
+this provides a convenient way of computing $V^c(x)$ numerically.
+\end{remark}
+
+Using Lemma \ref{nondegenlemma} and Lemma \ref{varadjsolutions}, we can decompose $\R^{2m+1}$ as  
+\begin{equation}
+\R^{2m+1} = \R \Psi(0) \oplus \R \Psi^c(0) \oplus \R Q'(0) \oplus Y^+ \oplus Y^-
+\end{equation}
+where $\R \Psi(0) \oplus \R \Psi^c(0) \perp \R Q'(0) \oplus Y^+ \oplus Y^-$.
+
+Before we conclude this section, we will make one final hypothesis concerning a higher order Melnikov integral. First, we note that the standard Melnikov integral is 0, i.e. 
 \begin{equation}\label{M1}
 M_1 = \int_{-\infty}^\infty \langle \Psi(x), B Q'(x) \rangle =
 \int_{-\infty}^\infty q(x) \: \partial_x q(x) 
@@ -378,16 +447,15 @@ since the last component of $\Psi(x)$ is $q(x)$ by Lemma \ref{varadjsolutions}, 
 \begin{hypothesis}\label{Melnikov2hyp}
 The following higher order Melnikov integral is nonzero.
 \begin{equation}\label{M2}
-M_2 = \int_{-\infty}^\infty \langle \Psi(x), B Q_c(x) \rangle dx =
+M = \int_{-\infty}^\infty \langle \Psi(x), B Q_c(x) \rangle dx =
 \int_{-\infty}^\infty q(x) q_c(x) dx \neq 0
 \end{equation}
 \end{hypothesis}
-In applications such as KdV5, numerical analysis suggests that \cref{Melnikov2hyp} is satisfied with $M_2 > 0$.
+In applications such as KdV5, numerical analysis suggests that \cref{Melnikov2hyp} is satisfied with $M > 0$.
 
 \iffulldocument\else
 	\bibliographystyle{amsalpha}
 	\bibliography{thesis.bib}
 \fi
-
 
 \end{document}
