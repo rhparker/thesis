@@ -490,7 +490,7 @@ since the Hessian matrix is self-adjoint. Rearranging this,
 \begin{equation*}
 \frac{d}{dx} \nabla H(Q(x)) = -D F(Q(x))^* \nabla H(Q(x)) 
 \end{equation*}
-thus $\nabla H(Q(x))$ is a solution to the adjoint variational equation \eqref{adjvareq1}. Since $\nabla H$ is continuous and $Q(x)$ is bounded (it decays exponentially to 0 at $\pm \infty$), $\nabla H(Q(x))$ is bounded as well. By Hypothesis \ref{nondegenhyp}, there is a unique such solution. It follows that $\Psi(x) = \nabla H(Q(x))$.
+thus $\nabla H(Q(x))$ is a solution to the adjoint variational equation \eqref{adjvareq1}. Since $\nabla H$ is continuous and $Q(x)$ is bounded (it decays exponentially to 0 at $\pm \infty$), $\nabla H(Q(x))$ is bounded as well. By Hypothesis \cref{H0transversehyp}, there is a unique such solution. It follows that $\Psi(x) = \nabla H(Q(x))$.
 
 For the symmetry relation, we will show that $R \Psi(-x)$ is a also a solution to \eqref{adjvareq1}. Using \eqref{genODErevDF} and the symmetry of the primary pulse $Q(x)$, 
 \begin{align*}
@@ -613,7 +613,7 @@ Since $Q(x)$ is a homoclinic orbit in the intersection of $W^u(0)$ and $W^s(0)$,
 
 \subsection{Proof of Lemma \ref{varadjsolutions}}
 
-For part (i), the proof of the existence of $V^c(x)$ is a consequence of \cref{lemma:Vpm} in \cref{chapter:kdv5pereig} and the geometry of the system. The proof is given in \cref{lemma:Vcexists}. 
+For part (i), the proof of the existence of $V^c(x)$ is a consequence of the geometry of the system. It is easiest to prove as a consequence of \cref{lemma:Vpm} in \cref{sec:Vpmproof}. The proof is given in \cref{lemma:Vcexists} in that section. 
 
 Let $V^c = (\tilde{V}^c, 1)$, where we place 1 in the final component since $V^c(x) \rightarrow V_0$ as $x \rightarrow \pm \infty$. Then we can write $V^c(x)' = A(Q(x))V^c(x)$ as the block equation
 \begin{align*}

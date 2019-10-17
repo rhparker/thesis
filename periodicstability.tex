@@ -10,7 +10,7 @@ In this chapter, we look at the spectral stability of the periodic multi-pulses 
 
 \section{Setup of problem}
 
-Let $Q_n(x)$ be a periodic $n-$pulse solution constructed according to Theorem \ref{perexist}. As in \cref{chapter:kdv5periodic}, we will use Lin's method to construct an eigenfunction $V(x)$ as a small perturbation of a piecewise linear combination of the kernel eigenfunctions $\partial_x Q_n(x)$ and $\partial_c Q_n(x)$. For $X_m = \min\{X_0, \dots, X_{n-1} \}$ sufficiently large and $\lambda$ sufficiently small, Lin's method provides a unique function $V(x)$ which solves \eqref{PDEeig2} but which generically has $n$ jumps. Since we are not using an exponential weight, equation \cref{PDEeigsystem} has a center direction, which will imply that these $n$ jumps $V(x)$ can be the two-dimensional space spanned by $\Psi(0)$ and $\Psi^c(0)$. This gives us $2n$ jump conditions. Finding the eigenvalues amounts to solving the $2n$ jump conditions.
+Let $Q_n(x)$ be a periodic $n-$pulse solution constructed according to Theorem \ref{perexist}. As in \cref{chapter:kdv5periodic}, we will use Lin's method to construct an eigenfunction $V(x)$ as a small perturbation of a piecewise linear combination of the kernel eigenfunctions $\partial_x Q_n(x)$ and $\partial_c Q_n(x)$. For $X_m = \min\{X_0, \dots, X_{n-1} \}$ sufficiently large and $\lambda$ sufficiently small, Lin's method provides a unique function $V(x)$ which solves \cref{PDEeigsystem} but which generically has $n$ jumps. Since we are not using an exponential weight, equation \cref{PDEeigsystem} has a center direction, which will imply that these $n$ jumps $V(x)$ can be the two-dimensional space spanned by $\Psi(0)$ and $\Psi^c(0)$. This gives us $2n$ jump conditions. Finding the eigenvalues amounts to solving the $2n$ jump conditions.
  
 The first step is to rewrite the eigenvalue problem \cref{PDEeigsystem} as
 \begin{equation}\label{PDEeig3}
@@ -307,7 +307,7 @@ If $M < 0$, these are reversed.
 
 We note that since we took $b_{n-1}^0$ small, the parity of $m_{n-1}$ is irrelevant to the eigenvalue pattern.
 
-In the following sections, we provide proofs for these results.
+In the following sections, we provide proofs for these results. We note that the proof of \cref{lemma:Vpm} is in deferred to \cref{sec:Vpmproof}.
 
 \section{Proof of \cref{nulambdalemma} }
 
@@ -393,7 +393,7 @@ Q_i^-(x) &= Q^-(x; \beta_i^-) + \tilde{Q}_i^-(x) && x \in [-X_{i-1}, 0] \\
 Q_i^+(x) &= Q^+(x; \beta_i^+) + \tilde{Q}_i^+(x) && x \in [0, X_i]
 \end{aligned}
 \end{equation}
-where $Q_i^-: [-X_{i-1}, 0] \rightarrow \R$ and $Q_i^+: [0, X_i]$. 
+where $Q_i^-: [-X_{i-1}, 0] \rightarrow \R$ and $Q_i^+: [0, X_i]$. We note that this is different notation than used in \cref{chapter:kdv5periodic}
 
 Similarly to \eqref{Qprimevarsol} and \eqref{Qcvarsol}, we have
 \begin{equation}\label{Arelations}
@@ -499,9 +499,7 @@ Let $\Delta H_i^\pm(x) = \tilde{H}_i^\pm(x) - H(x)$. Then we have the following 
 \item $D_i d = ( Q'(X_i) + Q'(-X_i))(d_{i+1} - d_i ) + \mathcal{O} ( e^{-\alpha_1 X_i} (e^{-\alpha_1 X_m} + |\lambda| )$
 \end{enumerate}
 \begin{proof}
-Recall that $H(x) = \partial_c Q(x)$ and $\tilde{H}(x) = \partial_c Q_i^\pm(x)$. For (i), by Theorem \ref{transverseint} and the discussion following \eqref{PDEeig4}, $H(x)$ and $\tilde{H}(x)$ are exponentially localized for any $\alpha_1 < \alpha_0$. The bounds (ii) and (iii) follow from an adaptation of Lemma \ref{solvewithjumps} to derivative with respect to $c$. The bound (iv) follows from (ii) and (iii). Since $A(Q(x))$ is smooth in $Q(x)$, the bounds (v), (vi), and (vii) come from Lemma \ref{solvewithjumps}.
-
-For estimate (viii), we use \eqref{VQpm} in Lemma \ref{solvewithjumps} and \eqref{Vpiecewise} (with $\tilde{Q}$ in place of $V$) to get
+Recall that $H(x) = \partial_c Q(x)$ and $\tilde{H}(x) = \partial_c Q_i^\pm(x)$. For (i), by Theorem \ref{transverseint}, $H(x)$ is exponentially localized for any $\alpha_1 < \alpha_0$. The result for $\tilde{H}(x)$ is a straightforward adaptation of Theorem \ref{transverseint}. The bounds (ii) and (iii) follow from an adaptation of Lemma \ref{solvewithjumps} to derivative with respect to $c$. The bound (iv) follows from (ii) and (iii). Since $A(Q(x))$ is smooth in $Q(x)$, the bounds (v), (vi), and (vii) come from Lemma \ref{solvewithjumps}. For the estimate (viii), we use \eqref{VQpm} in Lemma \ref{solvewithjumps} and \eqref{Vpiecewise} (with $\tilde{Q}$ in place of $V$) to get
 \begin{align*}
 Q_{i+1}^-(-X_i) &= Q^-(-X_i; \beta_{i+1}^-) + \tilde{Q}_{i+1}^-(-X_i) \\
 &= Q^-(-X_i; \beta_{i+1} ^-) + Q^+(X_i; \beta_i^+) + \mathcal{O}(e^{-2 \alpha_1 X_i}) \\
@@ -516,7 +514,7 @@ Similarly,
 \begin{align*}
 (Q_i^+)'(X_i)' &= Q'(-X_i) + Q'(X_i) + \mathcal{O}(e^{-\alpha_1 X_i}e^{-\alpha_1 X_m})
 \end{align*}
-To get the estimate (v), we substitute these into \eqref{Did2} and use estimate (i) for $\partial_c Q_i^\pm(x)$.
+To get the estimate (v), we substitute these into \cref{defDid} and use estimate (i) for $\partial_c Q_i^\pm(x)$.
 \end{proof}
 \end{lemma}
 
@@ -751,7 +749,7 @@ We have a solution to this ODE for $x \leq M$, and by variation of constants, th
 \end{proof}
 \end{lemma}
 
-\section{Conjugation}
+\section{Conjugation of system}
 
 In this section, we apply the conjugation lemma to the system of equations \cref{eigsystem}. This simplifies the system by applying a change of coordinates that transforms the linear operator $A(Q(x); \lambda)$ into a constant coefficient matrix. For all $\lambda$, $A(Q(x); \lambda)$ decays exponentially to the constant-coefficient matrix $A(\lambda)$. Specifically, we have the exponential decay rate
 \[
@@ -897,8 +895,251 @@ and the jump conditions \eqref{jumpxi} become
 \end{aligned}
 \end{equation}
 
+\section{Exponential Trichotomy}
 
+Since $A(\lambda)$ is a constant coefficient matrix, we know exactly how solutions $Z' = A(\lambda)Z$ evolve. Let $E^{u/s/c}(0)$ be the stable, unstable, and center eigenspaces of $A(0)$. $E^s(0)$ and $E^u(0)$ are $m$-dimensional, and $E^c(0)$ is 1-dimensional. For $|\lambda| < \delta$, let $E^{u/s/c}(\lambda)$ be the corresponding eigenspaces of $A(\lambda)$, which have the same dimensions as $E^{u/s/c}(0)$ since $\lambda$ is small. In particular, 
+\[
+E^c(\lambda) = \spn\{ V_0(\lambda) \},
+\]
+where $V_0(\lambda)$ is defined in Lemma \ref{nulambdalemma}. Although $E^c(\lambda)$ is not a true center eigenspace if $\Re \nu(\lambda) \neq 0$, we retain this notation for convenience. Let $P^{u/s/c}(\lambda)$ be eigenprojections for the eigenspaces $E^{u/s/c}(\lambda)$. These are smooth in $\lambda$. 
 
+Next, we set up an exponential trichotomy for this system. Let
+\begin{equation}
+\Phi(x, y; \lambda) = e^{A(\lambda)(x-y)}
+\end{equation}
+be the evolution of the constant-coefficient ODE
+\[
+Z' = A(\lambda) Z
+\]
+and let $\Phi^{u/s/c}(x, y; \lambda) = \Phi(x, y; \lambda)P^{u/s/c}(\lambda)$ be the evolutions on the respective eigenspaces. For $|\lambda| < \delta$, $|\nu(\lambda)| < \eta$, and we have bounds
+\begin{equation}\label{Zevolbounds}
+\begin{aligned}
+|\Phi^s(x, y; \lambda)| &\leq C e^{-\alpha(x - y)} \\
+|\Phi^u(x, y; \lambda)| &\leq C e^{-\alpha(y - x)} \\
+|\Phi^c(x, y; \lambda)| &\leq C e^{\eta|x - y|} 
+\end{aligned}
+\end{equation}
+This is an exponential trichotomy on $\R$. Since $E^c(\lambda)$ is one-dimensional, the center evolution $\Phi^c(x, y; \lambda)$ is given by
+\begin{align}\label{centerevol}
+\Phi^c(x, y; \lambda) V &= e^{\nu(\lambda)(x - y)} P^c(\lambda)V
+\end{align}
+
+We relate the evolution of the conjugated system to that of the original system in the following way. Recall that variational for the linearization of the PDE about the primary pulse $Q(x)$ is given by 
+\begin{align}\label{vareqstab}
+V'(x) &= A(Q(x); 0) V(x)
+\end{align}
+Let $\tilde{\Phi}(y, x)$ be the evolution operator for the variational equation. The conjugation lemma gives the following relationship between $\tilde{\Phi}(y, x)$ and $\Phi(y, x; 0)$.
+\begin{align*}
+\tilde{\Phi}(y, x) &= P_+(y; 0) \Phi(y, x; 0) P_+(x; 0)^{-1} && x, y \geq 0 \\
+\tilde{\Phi}(y, x) &= P_-(y; 0) \Phi(y, x; 0) P_-(x; 0)^{-1} && x, y \leq 0
+\end{align*}
+
+Furthermore, the conjugation operator induces exponential trichotomies on $\R^\pm$ for the variational equation. The stable, unstable, and center projections for this trichotomy are given by
+\begin{equation}\label{trichotomyprojunconj}
+\tilde{P}^{s/u/c}_\pm(x) = P_\pm(x; 0) P^{s/u/c}(0) P_\pm(x, 0)^{-1}
+\end{equation}
+The center subspaces on $\R^+$ and $\R^-$ are both one-dimensional and are given by $\C V^c(x)$. 
+
+To conclude this section, we will derive an expression for the center projections $\tilde{P}^c_\pm(x)$. From \cref{trichotomyprojunconj}, it follows that
+\begin{align*}
+\tilde{P}^c_\pm(x) u &= P_\pm(x; 0) P^c(0) P_\pm(x, 0)^{-1} u \\
+&= P_\pm(x; 0) \langle W_0, P_\pm(x, 0)^{-1} u \rangle V_0 \\
+&= \langle W_0, P_\pm(x, 0)^{-1} u \rangle P_\pm(x; 0) V_0\\
+&= \langle W_0, P_\pm(x, 0)^{-1} u \rangle V^c(x)
+\end{align*}
+
+Since $\Psi^(x) = W_0$ is a constant solution to the adjoint variational equation, we can remove the conjugation operator from this expression. [I AM ALMOST CERTAIN THIS IS POSSIBLE, BUT THE PROOF IS COMPLETE.]
+
+\begin{lemma}\label{centerprojlemma}
+For the trichotomies of \cref{vareqstab} on $\R^\pm$, the center projection is given by 
+\begin{align}\label{centerproj}
+\tilde{P}^c_\pm(x) U &= \langle W_0, U \rangle V^c(x)
+\end{align}
+\begin{proof}
+We will prove the result on $\R^+$. The result on $\R^-$ is similar. First, we show that \cref{centerproj} acts as the identity on $\C V^c(x)$. Since $\Psi^c(x) = W_0$ is a solution to the adjoint variational equation and $V^c(x)$ is solution to the variational equation, by Lemma \ref{eigadjoint}(i), the inner product $\langle \Psi^c(x), V^c(x) \rangle = \langle W_0, V^c(x) \rangle$ is constant. Sending $x \rightarrow \infty$ and using the continuity of the inner product, we have
+\[
+\langle W_0, V^c(x) \rangle = \langle W_0, V_0 \rangle = 1
+\]
+Thus for $a \in \C$,
+\begin{align*}
+\langle W_0, a V^c(x) \rangle V^c(x) 
+&= a \langle W_0, V^c(x) \rangle V^c(x) \\
+&= a V^c(x)
+\end{align*}
+
+Next, we show that $W_0$ is perpendicular to any element of the stable and unstable subspaces at $x$. Let $\tilde{V}^s$ be any element of the stable subspace at $x$. Then $\tilde{V}^s = P_+(x, 0) V^s$ for some $V^s \in E^s(0)$. Let $V^s(y)$ be the unique solution to the variational equation with initial condition $V^s(x) = \tilde{V}^s$. This solution is given by
+\begin{align*}
+V^s(y) &= \tilde{\Phi}(y,x)\tilde{V}^s \\
+&= P_+(y; 0) \Phi(y, x; 0) P_+(x; 0)^{-1} P_+(x, 0) V^s \\
+&= P_+(y; 0) \Phi(y, x; 0) V^s
+\end{align*}
+Since $V^s \in E^s$, $\Phi(y, x; 0) V^s \rightarrow 0$ as $y \rightarrow \infty$, thus $V^s(y) \rightarrow 0$ as $ \rightarrow \infty$. By Lemma \ref{eigadjoint}(ii), $\langle \Psi^c(y), V^s(y) \rangle = \langle W_0, \tilde{V}^s \rangle = 0$.
+
+THIS DOES NOT WORK FOR THE UNSTABLE SUBSPACE SINCE WE CANNOT SEND $x \rightarrow -\infty$. A SYMMETRY ARGUMENT OR SOMESUCH IS NEEDED HERE.
+\end{proof}
+\end{lemma}
+
+To conclude this section, we use use \cref{centerprojlemma} to derive expansions which will be useful later.
+
+\begin{lemma}\label{W0projlemma}
+For all $U \in \R^{2m+1}$, we have the following.
+\begin{enumerate}[(i)]
+	\item $\langle W_0, P_\pm(x, 0) P^{s/u}(0) U \rangle = 0$
+	\item $\langle W_0, \Theta_\pm(x, 0) P^{s/u}(0) U \rangle = 0$
+	\item $\langle W_0(\lambda), \Theta_\pm(x, \lambda) P^{s/u}(\lambda) U \rangle  = \mathcal{O}(|\lambda|( e^{-\alpha_1 |x|} + |\lambda|)|U|)$
+	\item $\langle W_0, P_\pm(0; \lambda) P^{s/u}(0) U \rangle = \mathcal{O}(|\lambda||U|)$
+	\item $P^c(0) G_i^\pm(x) U = \langle W_0, G_i^\pm(x) U\rangle = 0$
+\end{enumerate}
+\begin{proof}
+By Lemma \ref{centerprojlemma}, $\tilde{P}_\pm^c(x)U = \langle W_0, U \rangle V^c(x)$, thus $\langle W_0, U \rangle = 0$ for all $U$ in the range of the stable and unstable projections of the trichotomy for \cref{vareqstab}. These ranges are given by $P_\pm(x, 0) E^{s/u}(0)$. This proves (i). For (ii), 
+\begin{align*}
+\langle W_0, \Theta_\pm(x, 0) P^{s/u}(0) U\rangle &=
+\langle W_0, (I - P_\pm(x, 0)) P^{s/u}(0) U\rangle \\
+&= \langle W_0, P^{s/u}(0) U \rangle - \langle P_\pm(x, 0)P^{s/u}(0) U \rangle \\
+&= 0
+\end{align*}
+by part (i) and the fact that $\langle W_0, \cdot \rangle$ is the projection on $E^c(0)$. For (iii), since the eigenprojections $P^{s/u}(\lambda)$ are matrices which are smooth in $\lambda$, we can expand them in a Taylor series about $\lambda = 0$ to get 
+\[
+P^{s/u}(\lambda) = P^{s/u}(0) + \mathcal{O}(\lambda).
+\] 
+Using the Taylor series for $W_0(\lambda)$ from \cref{nulambdalemma} and the deacay rates \cref{Thetadecay} for the conjugation operators,
+\begin{align*}
+\langle &W_0(\lambda), \Theta_\pm(x; \lambda) P^{s/u}(\lambda) U \rangle = \langle W_0 + \mathcal{O}(\overline{\lambda}), \Theta_\pm(x; 0) + \mathcal{O}(e^{-\alpha_1 |x|}|\lambda|))(P^{s/u}(0) + \mathcal{O}(\lambda)) U \rangle \\
+&= \langle W_0, (I + \Theta_\pm(x, 0))P^{s/u}(0)U \rangle +
+\mathcal{O}(|\lambda||U|) \\
+&= \langle W_0, P_\pm(x, 0)P^{s/u}(0)U \rangle +
+\mathcal{O}(|\lambda|( e^{-\alpha_1 |x|} + |\lambda|)|U|)\\
+&= \mathcal{O}(|\lambda|( e^{-\alpha_1 |x|} + |\lambda|)|U|) \\
+\end{align*}
+where for the last equality we used part (ii). 
+
+For (iv), we expand the conjugation operators in $\lambda$ to get
+\begin{align*}
+\langle W_0, &P_\pm(0; \lambda)P^{s/u}(\lambda) U \rangle =
+\langle W_0, (P_\pm(0; 0) + \mathcal{O}(|\lambda|))(P^{s/u}(0) + \mathcal{O}(|\lambda|)) U) \\
+&= \langle W_0, P_\pm(0; 0) P^{s/u}(0)U \rangle + \mathcal{O}(|\lambda||U|) \\
+&= \langle W_0, \tilde{P}_\pm(0) U \rangle + \mathcal{O}(|\lambda||U|) \\
+&= \mathcal{O}(|\lambda||U|) 
+\end{align*}
+where in the last line we used Lemma \ref{centerprojlemma}. For (v), since the bottom row of $G_i^\pm(x)$ is all zeros, the last component of $G_i^\pm(x) U$ is 0 for all $U$. It follows that $\langle W_0, G_i^\pm(x) U\rangle = 0$. 
+\end{proof}
+\end{lemma}
+
+\section{Proof of \cref{lemma:Vpm}}\label{sec:Vpmproof}
+
+Let $Z(x) = e^{\nu(\lambda)x}V_0(\lambda)$, which is a solution to $Z'(x) = A(\lambda)Z$ contained in the center subspace $E^c(\lambda)$. Let
+\[
+V^+(x; \lambda) = P_+(x; \lambda) Z(x) = e^{\nu(\lambda)x}P_+(x; \lambda)V_0(\lambda)
+\]
+Then by the expansion \eqref{conjlemmaP} from the Conjugation Lemma,
+\begin{align*}
+V^+(x; \lambda) &= e^{\nu(\lambda)x}(I + \Theta_+(x; \lambda))V_0(\lambda) \\
+&= e^{\nu(\lambda)x}( V_0(\lambda) + V_1^+(x; \lambda))
+\end{align*}
+where $V_1^+(x; \lambda) = \Theta_+(x; \lambda) V_0(\lambda)$. This is \eqref{Vpmlambda}, and the decay result \eqref{Vpmdecay} comes from the conjugation lemma.
+
+Similarly, we define 
+\begin{align*}
+V^-(x; \lambda) &= P_-(x; \lambda) Z(x) \\
+&= RP_+(-x; -\lambda)R e^{\nu(\lambda)x} V_0(\lambda) \\
+&= e^{\nu(\lambda)x} R(I + \Theta_+(-x; -\lambda))R V_0(\lambda) \\
+&= e^{\nu(\lambda)x}( V_0(\lambda) + R\Theta_+(-x; -\lambda) V_0(-\lambda) )
+\end{align*}
+Letting $V_1^-(x; \lambda) = R\Theta_+(-x; -\lambda) V_0(-\lambda)$, we have
+\begin{align*}
+V^-(x; \lambda) &= e^{\nu(\lambda)x}( V_0(\lambda) + V_1^-(x; \lambda))
+\end{align*}
+For the symmetry relation, using Lemma \ref{nulambdalemma}, we also have
+\begin{align*}
+V^-(x; \lambda) &= e^{\nu(\lambda)x}( V_0(\lambda) + R\Theta_+(-x; -\lambda) V_0(-\lambda) ) \\
+&= e^{\nu(\lambda)x}( R V_0(-\lambda) + R\Theta_+(-x; -\lambda) V_0(-\lambda) ) \\
+&= R e^{-\nu(\lambda)(-x)}( V_0(-\lambda) + \Theta_+(-x; -\lambda) V_0(-\lambda) ) \\
+&= R e^{\nu(-\lambda)(-x)}( V_0(-\lambda) + \Theta_+(-x; -\lambda) V_0(-\lambda) ) \\
+&= R V^+(-x; -\lambda)
+\end{align*}
+which completes the proof. We now use this result to provide the proof for the existence of $V^c(x)$ in part (i) of Lemma \ref{varadjsolutions}.
+ 
+\begin{lemma}\label{lemma:Vcexists}
+There exists a bounded solution $V^c(x)$ to \eqref{vareq2} such that 
+\begin{equation*}
+V^c(x) \rightarrow V_0 \text{ as }|x| \rightarrow \infty
+\end{equation*}
+$V^c$ is symmetric with respect to the standard reversor operator $R$, i.e. $V^c(-x) = R V^c(x)$, and we can write
+\[
+V^c(x) = V_0 + V^c_1(x)
+\]
+where $V^c_1(x) = \mathcal{O}(e^{-\alpha_1 |x|})$.
+\begin{proof}
+We employ the following dimension counting argument. Recall that $\dim W^{s/u}(0) = m$ and $\dim W^c(0) = 1$, thus $\dim W^{cs}(0) = m + 1$, and $\dim W^{cu}(0) = m + 1$. $\Psi(0) \perp T_{Q(0)}W^{cs}(0) + T_{Q(0)}W^{cu}(0)$, so $\dim T_{Q(0)}W^{cs}(0) + T_{Q(0)}W^{cu}(0) \leq 2m$. By counting dimensions, this implies that $\dim T_{Q(0)}W^{cs}(0) \cap T_{Q(0)}W^{cu}(0) = 2$. Since $\dim T_{Q(0)}W^s(0) \cap T_{Q(0)}W^s(0) = 1$ by Lemma \ref{nondegenlemma}, we conclude that there exists $Y_0 \in T_{Q(0)}W^{cs}(0) \cap T_{Q(0)}W^{cu}(0)$ which is linearly independent from $Q'(0)$, and $Y^0 \notin T_{Q(0)}W^s(0) \cap T_{Q(0)}W^s(0)$.
+
+Using \cref{lemma:Vpm}, let
+\[
+V^\pm(x) = V^\pm(x; 0) = V_0 + V_1^\pm(x)
+\]
+where $V_1^\pm(x) = \mathcal{O}(e^{-\alpha_0 |x|})$. From the construction in \cref{lemma:Vpm},
+\[
+V^\pm(x) = P_\pm(x; 0) V_0,
+\]
+and we also have the symmetry relation $V^-(x) = R V^+(-x)$. We will show that $V^+(0) = V^-(0)$.
+
+By the trichotomy for the variational equation, at $x = 0$ there is a one-dimensional center subspace for $\R^+$ and a one-dimensional center subspace for $\R^-$. By the dimension counting argument above, both of the center subspaces must be spanned by $Y^0$, thus they are the same subspace. Using the projections \eqref{trichotomyprojunconj}, $V^\pm(0)$ are in these center subspaces, thus $V^\pm(0) \in \Span \{Y^0 \}$. In particular, this implies that $V^+(0)$ and $V^-(0)$ are scalar multiples of each other. 
+
+From Lemma \ref{varadjsolutions}, $\Psi^c(x) = W_0$ is a solution to the adjoint variational equation on $\R$. By Lemma \ref{eigadjoint}(i), the inner product $\langle W_0, V^\pm(x) \rangle$ is constant in $x$. Sending $x \rightarrow \pm \infty$ and recalling that $V_0 = (1/c, 0, \dots, 0, 1)^T $ and $W_0 = (0, \dots, 0, 1)^T$,
+\[
+\langle W_0, V^+(0) \rangle = \langle W_0, V^-(0) \rangle
+= \langle W_0, V(0) \rangle = 1
+\]
+This implies that the last component of $V^+(0)$ and $V^-(0)$ is 1. Since $V^+(0)$ and $V^-(0)$ are scalar multiples of each other, they must in fact be equal. Let
+\[
+V^c(x) = \begin{cases}
+V^+(x) & x \geq 0 \\
+V^-(-x) & x \leq 0 
+\end{cases}
+\]
+which is well-defined since $V^+(0) = V^-(0)$ and has the properties stated in the lemma.
+\end{proof}
+\end{lemma}
+
+Finally, we evaluate the following inner products, which will be important in the stability analysis.
+
+\begin{corollary}\label{lemma:VpmPsiIP}
+\begin{equation}\label{VpmIPs}
+\begin{aligned}
+\langle \Psi^c(0), V^\pm(0; \lambda) \rangle &= 1 + \mathcal{O}(|\lambda|) \\
+\langle \Psi(0), V^\pm(0; \lambda) \rangle &= \pm p_1 \lambda + \mathcal{O}(|\lambda|^2)
+\end{aligned}
+\end{equation}
+where $p_1 = \langle \Psi(0), \partial_\lambda V^+(0; 0) \rangle$.
+\begin{proof}
+Using Lemma \ref{centersolutionslemma} and Lemma \ref{varadjsolutions}, we can expand $V^+(0; \lambda)$ in a Taylor series about $\lambda = 0$ to get
+\begin{align*}
+V^+(0; \lambda) &= V^+(0; 0) + \partial_\lambda V^+(0; 0) + \mathcal{O}(|\lambda|^2) \\
+&= V^c(0) + \partial_\lambda V^+(0; 0) \lambda + \mathcal{O}(|\lambda|^2) 
+\end{align*}
+For the inner product with $\Psi^c(0)$,
+\begin{align*}
+\langle \Psi^c(0), V^\pm(0; \lambda) \rangle &= 
+\langle \Psi^c(0), V^c(0) \rangle + \mathcal{O}(|\lambda|) \\
+&= \langle \Psi^c(0), V^c(0) \rangle + \mathcal{O}(|\lambda|) \\
+&= 1 + \mathcal{O}(|\lambda|)
+\end{align*}
+For the inner product $\langle \Psi(0), V^+(0; \lambda) \rangle$, we have
+\begin{align*}
+\langle \Psi(0), V^+(0; \lambda) \rangle 
+&= \langle \Psi(0), V^c(0) \rangle + \langle \Psi(0), \partial_\lambda V^+(0; 0) \lambda \rangle + \mathcal{O}(|\lambda|^2) \\
+&= (\partial_\lambda V^+(0; 0)) \lambda + \mathcal{O}(|\lambda|^2) \\
+&= p_1 \lambda + \mathcal{O}(|\lambda|^2)
+\end{align*}
+For the inner product $\langle \Psi(0), V^-(0; \lambda) \rangle$, using \cref{lemma:Vpm},
+\begin{align*}
+\langle \Psi(0), V^-(0; \lambda) \rangle &= 
+\langle \Psi(0), R V^+(0; -\lambda) \rangle \\
+&= \langle R \Psi(0), -\partial_\lambda V^+(0; 0) \lambda \rangle + \mathcal{O}(|\lambda|^2) \\
+&= -\langle \Psi(0), \partial_\lambda V^+(0; 0) \lambda \rangle + \mathcal{O}(|\lambda|^2) \\
+&= -p_1 + \mathcal{O}(|\lambda|^2)
+\end{align*}
+\end{proof}
+\end{corollary}
 
 
 \iffulldocument\else

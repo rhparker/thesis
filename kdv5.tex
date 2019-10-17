@@ -117,7 +117,7 @@ Then $q(x)$ is orbitally stable. This implies that $\partial_x \calE''(q)$ has n
 
 \section{Multi-pulse solutions}
 
-For $c > 1/4$, multi-pulse solutions exist to \cref{KdV5eq4}. These resemble multiple, well-separated copies of the primary pulse $q(x)$. Heuristically, we construct a multi-pulse by gluing together multiple copies of the primary pulse end-to-end. For each $n \geq 2$, a countable family of multi-pulse solutions exists \cite{Buffoni1996}. The result for 2-pulse solutions is also given in \cite[Theorem 2.2]{Pelinovsky2007}. The distances between consecutive pulses are constrained to be (approximately) an integer multiple of a phase parameter which depends on $\beta_0$. Geometrically, these integers represent the number of half-twists made by the multi-pulse between consecutive peaks \cite{SandstedeStrut}; a specific alignment of stable and unstable manifolds necessary for multi-pulses to exist. In \cref{chapter:KdV5homoclinic}, we will state an existence result for multi-pulse solutions, which is a straightforward adaptation of \cite[Theorem 3.6]{SandstedeStrut}. 
+For $c > 1/4$, multi-pulse solutions exist to \cref{KdV5eq4}. These resemble multiple, well-separated copies of the primary pulse $q(x)$. Heuristically, we construct a multi-pulse by gluing together multiple copies of the primary pulse end-to-end. For each $n \geq 2$, a countable family of multi-pulse solutions exists \cite{Buffoni1996}. The result for 2-pulse solutions is also given in \cite[Theorem 2.2]{Pelinovsky2007}. The distances between consecutive pulses are constrained to be (approximately) an integer multiple of a phase parameter which depends on $\beta_0$. Geometrically, these integers represent the number of half-twists made by the multi-pulse between consecutive peaks \cite{SandstedeStrut}; a specific alignment of stable and unstable manifolds necessary for multi-pulses to exist. In \cref{chapter:kdv5homoclinic}, we will state an existence result for multi-pulse solutions, which is a straightforward adaptation of \cite[Theorem 3.6]{SandstedeStrut}. 
 
 \section{Spectrum of multi-pulses}
 
@@ -128,7 +128,7 @@ We now look at the spectral stability of multi-pulses. Let $q_n$ be an $n-$pulse
 \end{align*}
 Thus there is an eigenvalue at 0 with at least algebraic multiplicity 2 and geometric multiplicity 1. The kernel eigenvalue $\partial_x q_n$ is a consequence of translation invariance.
 
-For the essential spectrum, since \cref{KdV5PDEevpop} is exponentially asymptotic to the operator 
+For the essential spectrum, since $\partial_x \calE''(q_n)$ is exponentially asymptotic to the operator 
 \[
 \partial_x \calE''(0) = 
 \partial_x(\partial_x^4 - \partial_x^2 + c - 2 u^*),
@@ -143,7 +143,7 @@ All that remains is to locate the rest of the point spectrum. We expect that, as
 \label{fig:kdv5inteigpattern}
 \end{figure}
 
-\noi By Hamiltonian symmetry, the presence of an eigenvalue with nonzero real part implies that there is an unstable eigenvalue with positive real part. Thus the best we can hope for is neutral stability. For double pulses, there is a pair of interaction eigenvalues with is either real or purely imaginary (to leading order) with negative Krein signature \cite[Theorem 2.3]{Pelinovsky2007}. We will extend this result to multi-pulses in \cref{chapter:KdV5homoclinic}. However, as in \cite{Pelinovsky2007}, we will only be able to prove that eigenvalues close to the imaginary axis are purely imaginary to leading order.
+\noi By Hamiltonian symmetry, the presence of an eigenvalue with nonzero real part implies that there is an unstable eigenvalue with positive real part. Thus the best we can hope for is neutral stability. For double pulses, there is a pair of interaction eigenvalues with is either real or purely imaginary (to leading order) with negative Krein signature \cite[Theorem 2.3]{Pelinovsky2007}. We will extend this result to multi-pulses in \cref{chapter:kdv5homoclinic}. However, as in \cite{Pelinovsky2007}, we will only be able to prove that eigenvalues close to the imaginary axis are purely imaginary to leading order.
 
 \iffulldocument\else
 	\bibliographystyle{amsalpha}
