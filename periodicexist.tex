@@ -21,7 +21,7 @@ To prove existence of $n-$periodic solutions, we will use Lin's method. Rather t
 \[
 U_i^\pm(x) = Q^\pm(x; \beta_i^\pm) + V_i^\pm(x)
 \]
-where the functions $Q^\pm(x; \beta_i^\pm)$ paramaterize the stable and unstable manifolds $W^s(0)$ and $W^u(0)$ near $Q(0)$, and $V_i^\pm$ is a small remainder term. In other words, we use the small parameters $\beta_i^\pm$ to break the homoclinic orbit $Q(x)$. We will then use Lin's method to glue the pieces together. We will show that we can find a unique piecewise solution $U_i^\pm$ which generically has $n$ jumps at $x = 0$. These jumps must occur in the direction of $\Psi(0)$. We will derive expressions for these $n$ jumps. A periodic multipulse solution exists if and only if these $n$ jumps are all 0.
+where the functions $Q^\pm(x; \beta_i^\pm)$ paramaterize the stable and unstable manifolds $W^s(0)$ and $W^u(0)$ near $Q(0)$, and $V_i^\pm$ is a small remainder term. In other words, we use the small parameters $\beta_i^\pm$ to break the homoclinic orbit $Q(x)$. We will then use Lin's method to glue the pieces together. We will show that we can find a unique piecewise solution $U_i^\pm$ which generically has $n$ jumps at $x = 0$. These jumps must occur in the direction of $\Psi(0)$. We will derive expressions for these $n$ jumps. A periodic multi-pulse solution exists if and only if these $n$ jumps are all 0.
 
 \section{Piecewise ansatz}
 
@@ -125,7 +125,7 @@ X = \frac{1}{2\alpha} \left(n |\log r| + |\log(b_0(r; m_0, \theta) \cdots b_{n-1
 \end{theorem}
 
 \begin{remark}
-\cref{perexist} gives an existence result only for a specific choice of baseline length parameters and phase parameters. The result holds as long as the scaling parameter $r$ is sufficiently small. The solution is unique up to ``rotating'' around the perioidic domain. For a periodic 2-pulse, for example, swapping the baseline length parameters $b_0^0$ and $b_1^1$ gives the same solution.
+\cref{perexist} gives an existence result only for a specific choice of baseline length parameters and phase parameters. The result holds as long as the scaling parameter $r$ is sufficiently small. The solution is unique up to ``rotating'' around the periodic domain. For a periodic 2-pulse, for example, swapping the baseline length parameters $b_0^0$ and $b_1^1$ gives the same solution.
 \end{remark}
 
 The next theorem gives a uniform existence result.
@@ -145,33 +145,10 @@ Finally, we show that for the the family of $2$-periodic pulses, solutions with 
 REVISE THIS AND INCLUDE PICTURE
 
 \begin{theorem}\label{2pulsebifurcation}
-Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and \ref{H0transversehyp}. Let $Q(x)$ be a transversely constructed, symmetric primary pulse solution to \eqref{genODE}. For every $M \in \N$ there exists $r_0 > 0$ such that for every $r \in \mathcal{R}$ with $r < r_0$, the following is true.
-\begin{enumerate}[(i)]
-	\item For every $\theta \in [0, \pi)$, there is a unique 2-periodic solution with equal length parameters 
-	\[
-	b_0(\theta) = b_1(\theta) = e^{-\frac{1}{\rho}\theta}
-	\]
-	\item For every $s \in [0, M]$, there is a unique 2-periodic solution with unequal length parameters
-	\[
-	(\tilde{b}_0, \tilde{b}_1) = (\tilde{b}_0(s, r), \tilde{b}_1(s, r))
-	\]
-	where
-	\[
-	\tilde{b}_1(s, 0) = e^{-\frac{1}{\rho}(\arctan \rho + s)}
-	\]
-	and
-	\[
-	\tilde{b}_0(s, 0) \rightarrow 1 \text{ as } s \rightarrow \infty
-	\]
-	\item These two branches meet at a pitchfork bifurcation at $(p_0(r), p_0(r))$, where $p_0(r) \rightarrow e^{-\frac{1}{\rho}\arctan \rho}$ as $r \rightarrow 0$. In terms of the two parameterizations,
-	\[
-	(\tilde{b}_0(0, r), \tilde{b}_1(0, r)) = (b_0(p_0(r)), b_1(p_0(r)) 
-	= (p_0(r), p_0(r))
-	\]
-\end{enumerate}
+Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and \ref{H0transversehyp}. Let $Q(x)$ be a transversely constructed, symmetric primary pulse solution to \eqref{genODE}. Then for sufficiently small $r$, asymmetric 2-periodic solutions bifurcate from symmetric 2-periodic solutions in a series of pitchfork bifurcations. These can be parameterized as in Theorem \ref{perexist}.
 \end{theorem}
 
-We prove these results in the following sections.
+We will prove these results in the following sections.
 
 \section{Exponential Dichotomy}
 
@@ -179,7 +156,7 @@ Let $\Phi_\pm(x, y; \beta^\pm)$ be the family of evolution operators for the ODE
 \begin{align}\label{qpmODEs}
 (V^\pm)' &= D F(Q^\pm(x, \beta^\pm)(x)) V^\pm && x \in \R^\pm
 \end{align}
-By \cref{hypeqhyp}, $DF(0)$ is hyperbolic, and $|\Re \nu| \geq \alpha_0$ for all eigenvaues $\nu$ of $DF(0)$. In the next lemma, we decompose these evolution operators in exponential dichotomies on $\R^+$ and $\R^-$.
+By \cref{hypeqhyp}, $DF(0)$ is hyperbolic, and $|\Re \nu| \geq \alpha_0$ for all eigenvalues $\nu$ of $DF(0)$. In the next lemma, we decompose these evolution operators in exponential dichotomies on $\R^+$ and $\R^-$.
 
 % lemma : exp dichotomy
 \begin{lemma}\label{dichotomy1}
@@ -783,7 +760,7 @@ By \cite[p. 2093]{SandstedeStrut}, since we have a conservative system by \cref{
 \end{lemma}
 
 \begin{remark}
-If $n = 1$, which repesents a periodic orbit close to the primary homoclinic orbit $Q(x)$, there is only a single jump condition which is therefore automatically safisfied. Thus $1$-periodic pulses exist for sufficiently large $X_0$.
+If $n = 1$, which represents a periodic orbit close to the primary homoclinic orbit $Q(x)$, there is only a single jump condition which is therefore automatically satisfied. Thus $1$-periodic pulses exist for sufficiently large $X_0$.
 \end{remark}
 
 \section{Scaling and change of variables}\label{sec:rescale}
@@ -874,7 +851,7 @@ From Lemma \ref{jumplemma3}, we have $n-1$ equations for $n$ unknowns $\{ b_0, \
 % lemma : diagonal system 
 
 \begin{lemma}\label{diagonalG}
-A periodic multipulse solution exists if and only if for $i = 0, \dots, n-2$
+A periodic multi-pulse solution exists if and only if for $i = 0, \dots, n-2$
 \begin{equation}\label{Geq}
 G_i(b_1, \dots, b_{n-1}, r) = b_i \sin \left( -\rho \log b_i \right) - b_{n-1} \sin \left( -\rho \log b_{n-1} \right) + \mathcal{O}(r^{\gamma / 2 \alpha}) = 0
 \end{equation}
@@ -1384,13 +1361,11 @@ Uniqueness comes from the fact that the solution families $(b_j^*(m_0, \theta), 
 
 \section{Proof of Theorem \ref{unifperexist}}
 
-We parameterize the zero set of $H$ as in Lemma \ref{thetaparamlemma}, but this time we take $m_{n-1}$ to be an additional parameter. Fix baseline length parameters $\{ b_0^0, \dots, b_{n-2}^0 \}$, where $b_j^0 = \exp(-\frac{1}{\rho}m_j \pi) \in \mathcal{B}$, with the restriction that at least one of them must be 1. Let $b^0 = (b_0^0, \dots b_{n-2}^0)$.
-
-Let $m = \max\{ m_0, \dots, m_{n-2} \}$. For each $m_{n-1} \geq m$ let
+We parameterize the zero set of $H$ as in Lemma \ref{thetaparamlemma}, but this time we take $m_{n-1}$ and $\theta$ to be additional parameters. The baseline length parameters $\{ b_0^0, \dots, b_{n-2}^0 \}$ with corresponding nonnegative integers $m_j$ are fixed. Let $m = \max\{ m_0, \dots, m_{n-2} \}$. For each $b_{n-1}$ with $\geq m$ and $\theta \in [-\arctan \rho, \pi - \arctan \rho)$, let
 \begin{align}
 (b_j^*(m_0, \theta; m_{n-1}), b_{n-1}^*(m_{n-1}, \theta)) && j = 0, \dots m_{n-2}
 \end{align}
-be the family of solutions to $H(b_j, b_{n-1}) = 0$, where $\theta \in [-\arctan \rho, \pi - \arctan \rho)$. From Lemma \ref{thetaparamlemma}, these are given by
+be the family of solutions to $H(b_j, b_{n-1}) = 0$. From Lemma \ref{thetaparamlemma}, these are given by
 \begin{equation}\label{bstarm}
 \begin{aligned}
 b_j^*(m_j, \theta; m_{n-1}) &= e^{-\frac{1}{\rho}(m_j \pi - \theta_j^*(\theta; m_{n-1}))} && j = 0, \dots, n-2 \\
@@ -1403,13 +1378,13 @@ b^*(\theta, m_{n-1}) =
 \left( b_0^*(m_0, \theta; m_{n-1}), \dots, b_{n-2}^*(m_{n-2}, \theta; m_{n-1}) \right)
 \end{equation}
 
-As in the proof of Theorem \ref{perexist}, we plug $b_{n-1}^*(m_{n-1}, \theta)$ into \eqref{Geq}. This time, however, we leave $m_{n-1}$ and $\theta$ as parameters. Define the map $G: \R^{n-1} \times \N \cap [m, \infty) \times I_\rho \times \mathcal{R} \rightarrow \R^{n-1}$ by $G = (G_0, \dots, G_{n-2})^T$, where 
+As in the proof of Theorem \ref{perexist}, we plug $b_{n-1}^*(m_{n-1}, \theta)$ into \eqref{Geq}, but we leave $m_{n-1}$ and $\theta$ as parameters. Define the map $G: \R^{n-1} \times \N \cap [m, \infty) \times I_\rho \times \mathcal{R} \rightarrow \R^{n-1}$ by $G = (G_0, \dots, G_{n-2})^T$, where 
 \begin{equation}\label{Gdef2}
 G_j(b, m_{n-1}, \theta, r) = b_j \sin \left( -\rho \log b_j \right) - b_{n-1}^*(m_{n-1}, \theta) \sin \left( -\rho \log b_{n-1}^*(m_{n-1}, \theta) \right) + \mathcal{O}(r^{\gamma / 2 \alpha})
 \end{equation}
-where $b = (b_0, \dots, b_{n-2})$. Then for all $m_{n-1} \geq m$ and $\theta \in I_\rho$, $G(b^*(\theta, m_{n-1}), m_{n-1}, \theta, 0) = 0$.
+and $b = (b_0, \dots, b_{n-2})$. Then for all $m_{n-1} \geq m$ and $\theta \in I_\rho$, $G(b^*(\theta, m_{n-1}), m_{n-1}, \theta, 0) = 0$.
 
-Next, we evaluate the Jacobian matrix $D_b G(b^0, m_{n-1}, \theta, 0)$. As in the proof of the previous theorem, $\partial_{b_j} G_k(b, m_{n-1}, \theta, 0) = 0$ for $j \neq k$. For $j = k$,
+Next, we evaluate the Jacobian matrix $D_b G(b^0, m_{n-1}, \theta, 0)$, where we note that we are plugging in the baseline length parameters $b^0$. As in the proof of the previous theorem, $\partial_{b_j} G_k(b, m_{n-1}, \theta, 0) = 0$ for $j \neq k$. For $j = k$,
 \begin{align*}
 \partial_{b_j} G_j(b, m_{n-1}, \theta, 0) &= \sin \left( -\rho \log b_j \right) - \rho \cos \left( -\rho \log b_j \right) 
 \end{align*}
@@ -1421,10 +1396,10 @@ which involves neither $m_{n-1}$ nor $\theta$. Evaluating this at $b^0$,
 \end{align*}
 Thus $D_b G(b^0, m_{n-1}, \theta, 0)$ is diagonal with entries $\{ (-1)^{m_0 + 1} \rho, \dots, (-1)^{m_{n-2} + 1} \rho \}$. This implies that $D_b G(b^0, m_{n-1}, \theta, 0)$ is invertible, and the inverse has bound
 \begin{equation}\label{DbG0invbound}
-||D_b G(b^0, m_{n-1}, \theta, 0)^{-1}|| \leq \frac{1}{\rho}
+||D_b G(b^0, m_{n-1}, \theta, 0)^{-1}|| \leq \frac{1}{\rho}.
 \end{equation}
 
-We can use the uniform contraction mapping principle to solve for $b$ in terms of $r$ near $b^*(\theta, m_{n-1})$. Specifically, define the map $K: \R^{n-1} \times \N \cap [m, \infty) \times I_\rho \times \mathcal{R} \rightarrow \R^{n-1}$ by
+We will use the uniform contraction mapping principle to solve for $b$ in terms of $r$ near $b^*(\theta, m_{n-1})$. Specifically, define the map $K: \R^{n-1} \times \N \cap [m, \infty) \times I_\rho \times \mathcal{R} \rightarrow \R^{n-1}$ by
 \begin{equation}\label{defKb}
 K(b, m_{n-1}, \theta, r) = b - [D_b G(b^0, m_{n-1}, \theta, 0)]^{-1} G(b, m_{n-1}, \theta, r)
 \end{equation}
@@ -1458,9 +1433,7 @@ Finally, using the parameterization \eqref{bstarm}, for $j = 0, \dots, n-2$,
 | e^{-\frac{1}{\rho}(m_j \pi - \theta_j^*(\theta; m_{n-1}))} - b_j^0 | \\
 &= e^{-\frac{1}{\rho}m_j \pi}| 1 - e^{\frac{1}{\rho} \theta_j^*(\theta; m_{n-1})}| 
 \end{align*}
-Using \eqref{thetastarbound} from Lemma \ref{thetaparamlemma}, $\theta_j^*(\theta; m_{n-1}) \rightarrow 0$ as $m_{n-1} \rightarrow \infty$. Thus we can find $M_1 \geq M_0$ such that for all $m_{n-1} \geq M_1$ and $\theta \in I_\rho$, $|b^*(\theta, m_{n-1}) - b^0| \leq \delta$. Let $\mathcal{N} = \{ m \in \N : m \geq M_1 \}$.
-
-Using the bounds \eqref{DbKbound} and \eqref{G0bound}, for all $b \in \overline{U_0(\delta)}$ and $r \leq r_1$
+By \eqref{thetastarbound} from Lemma \ref{thetaparamlemma}, $\theta_j^*(\theta; m_{n-1}) \rightarrow 0$ as $m_{n-1} \rightarrow \infty$. Thus we can find $M_1 \geq M_0$ such that for all $m_{n-1} \geq M_1$ and $\theta \in I_\rho$, $|b^*(\theta, m_{n-1}) - b^0| \leq \delta$. Let $\mathcal{N} = \{ m \in \N : m \geq M_1 \}$. Using the bounds \eqref{DbKbound} and \eqref{G0bound}, for all $b \in \overline{U_0(\delta)}$ and $r \leq r_1$
 \begin{align*}
 |K(b, &m_{n-1}, \theta, r) - b^0| \\
 &\leq |K(b, m_{n-1}, \theta, r) - K(b^0, m_{n-1}, \theta, r)| + |K(b^0, m_{n-1}, \theta, r) - b^0| \\ 
@@ -1478,26 +1451,24 @@ Thus we have shown $K: \overline{U_0(\delta)} \times \mathcal{N} \times I_\rho \
 &\leq \frac{1}{2} |b - \tilde{b}|
 \end{align*} 
 
-Thus we can use the uniform contraction mapping principle to conclude that there is a smooth function $b: \mathcal{R} \cup [0, r_1] \times \mathcal{N} \times I_\rho \rightarrow \overline{U_0(\delta)}$ which maps $r \in \mathcal{R}$ with $r \leq r_1$ to the unique fixed point $b$ of $K(\cdot, m_{n-1}, \theta, r)$. By uniqueness, $b(0, m_{n-1}, \theta) = b^*(\theta, m_{n-1})$. Thus for $r \leq r_1$, $m_{n-1} \in \mathcal{N}$, and $\theta \in I_\rho$,
+By the uniform contraction mapping principle, we conclude that there is a smooth function $b: \mathcal{R} \cup [0, r_1] \times \mathcal{N} \times I_\rho \rightarrow \overline{U_0(\delta)}$ which maps $r \in \mathcal{R}$ with $r \leq r_1$ to the unique fixed point $b$ of $K(\cdot, m_{n-1}, \theta, r)$. By uniqueness, $b(0, m_{n-1}, \theta) = b^*(\theta, m_{n-1})$. Thus for $r \leq r_1$, $m_{n-1} \in \mathcal{N}$, and $\theta \in I_\rho$,
 \[
 G(b(r, b_{n-1}, \theta), b_{n-1}, \theta, r) = 0
 \]
-By uniqueness, all solutions obtained this way must be identical to the solutions obtained using Theorem \ref{perexist} using the corresponding set of parameters.
+By uniqueness, all solutions obtained this way must be identical to the solutions obtained from Theorem \ref{perexist} using the corresponding set of parameters.
 
 \section{2-periodic pulse}
 
-In the special case of the 2-periodic pulse, we will be able to provide the complete bifurcation structure for sufficiently small $r$. For the 2-periodic pulse, by Lemma \ref{jumplemma3}, we only have one equation to solve
+In the special case of the 2-periodic pulse, we will be able to provide the complete bifurcation structure for sufficiently small $r$. For the 2-periodic pulse, we only have to solve the single jump equation
 \begin{equation}\label{2pulsedefG}
 G(b_0, b_1, r) = b_0 \sin \left( -\rho \log b_0 \right) - b_1 \sin \left( -\rho \log b_1 \right) + \mathcal{O}(r^{\gamma / 2 \alpha}) = 0 \\
 \end{equation}
-where, for convenience, we have dropped the subscript on $G$.
-
-First, we will show that the pitchfork bifurcation persists for small $r$. In the first lemma, we show that $G$ has the same symmetries as $H$.
+We will show that the pitchfork bifurcation persists for small $r$. In the first lemma, we show that $G$ has the same symmetries as $H$.
 
 % lemma : symmetries of G
 \begin{lemma}\label{Gsymm}
 For sufficiently small $r$, we have the symmetry relation
-\begin{equation}
+\begin{equation}\label{Gsymmjump1}
 G(b_0, b_1, r) = -G(b_1, b_0, r)
 \end{equation}
 In particular, 
@@ -1505,26 +1476,15 @@ In particular,
 G(b_0, b_0, r) = 0
 \]
 \begin{proof}
-In Lemma \ref{solvewithjumps}, we showed that given sufficiently large lengths $X_0$ and $X_1$ (i.e. sufficiently small $r$), there exists a unique piecewise solution $\{ U_0^-(x), U_0^+(x), U_1^-(x), U_1^+(x) \}$ to \eqref{systemwithjumpZ} which generically has two jumps at $x = 0$ in the direction of $\Psi(0)$. A periodic 2-pulse solution exists if and only if these jumps are 0. By uniqueness, these jumps are functions of $X_0$ and $X_1$ and are given by
+In Lemma \ref{solvewithjumps}, we showed that given an ordered pair of pulse distances $(X_0, X_1)$, as long as the $X_i$ are sufficiently large, there exists a unique piecewise solution $\{ U_0^-(x), U_0^+(x), U_1^-(x), U_1^+(x) \}$ to \eqref{systemwithjumpZ} which generically has two jumps at $x = 0$ in the direction of $\Psi(0)$. These jumps are functions of $X_0$ and $X_1$ and are given by
 \begin{equation}\label{xijumps}
 \begin{aligned}
 \xi_0(X_0, X_1) &= \langle \Psi(0), U_0^+(0) - U_0^-(0) \rangle  \\
 \xi_1(X_0, X_1) &= \langle \Psi(0), U_1^+(0) - U_1^-(0) \rangle 
 \end{aligned}
 \end{equation}
-We showed in Lemma \ref{jumplemma3} that these jumps are given in the scaled variables $b_0$, $b_1$, and $r$ by
-\begin{equation}\label{G0G1}
-\begin{aligned}
-G_0(b_0, b_1, r) = b_0 \sin \left( -\rho \log b_0 \right) - b_1 \sin \left( -\rho \log b_1 \right) + \mathcal{O}(r^{\gamma / 2 \alpha}) \\
-G_1(b_0, b_1, r) = b_1 \sin \left( -\rho \log b_1 \right) - b_0 \sin \left( -\rho \log b_0 \right) + \mathcal{O}(r^{\gamma / 2 \alpha}) 
-\end{aligned}
-\end{equation}
-In particular, since we have a Hamiltonian system, if $G_0(b_0, b_1, r) = 0$ then we automatically have $G_1(b_0, b_1, r) = 0$. Since these are two sets of equations for the same jumps, we must have 
-\begin{align}\label{xiGequiv}
-\xi_j(X_0, X_1) &= G_j(b_0, b_1, r) && j = 0, 1
-\end{align} 
 
-Suppose for an ordered pair of lengths $(X_0, X_1)$, $\{ U_0^-(x), U_0^+(x), U_1^-(x), U_1^+(x) \}$, pieced together from left to right, is a unique solution to \eqref{systemwithjumpZ}. If swap $X_0$ and $X_1$ to get the ordered pair $(X_1, X_0)$, we have another solution to \eqref{systemwithjumpZ}; by uniqueness, this solution must be $\{ U_1^-(x), U_1^+(x), U_0^-(x), U_0^+(x)\}$ since we are on a periodic domain. Thus we have for the jumps $\xi_j$,
+For a given ordered pair of lengths $(X_0, X_1)$, let $\{ U_0^-(x), U_0^+(x), U_1^-(x), U_1^+(x) \}$, pieced together from left to right, be the unique solution to \eqref{systemwithjumpZ}. If swap $X_0$ and $X_1$ to get the ordered pair $(X_1, X_0)$, we have another solution to \eqref{systemwithjumpZ}; by uniqueness, this solution must be given by $\{ U_1^-(x), U_1^+(x), U_0^-(x), U_0^+(x)\}$ since we are on a periodic domain. Thus for the jumps $\xi_j$ we have
 \begin{equation}\label{xiswapX}
 \begin{aligned}
 \xi_0(X_1, X_0) &= \langle \Psi(0), U_1^+(0) - U_1^-(0) \rangle = \xi_1(X_0, X_1) \\
@@ -1532,7 +1492,7 @@ Suppose for an ordered pair of lengths $(X_0, X_1)$, $\{ U_0^-(x), U_0^+(x), U_1
 \end{aligned}
 \end{equation}
 
-For the ordered pair $(X_0, X_1)$, if we replace $x$ with $-x$, $\{ U_1^+(-x), U_1^-(-x), U_0^+(-x), U_0^-(-x)\}$, pieced together from L to R, also satisfies \eqref{systemwithjumpZ}. By uniqueness, we must have $U_1^+(0) = U_0^-(0)$ and $U_1^-(0) = U_0^+(0)$. Thus for the jump $\xi_0$, we have
+If we keep the ordered pair $(X_0, X_1)$ but replace $x$ with $-x$, $\{ U_1^+(-x), U_1^-(-x), U_0^+(-x), U_0^-(-x)\}$, pieced together from left to right, also satisfies \eqref{systemwithjumpZ}. By uniqueness, $U_1^+(0) = U_0^-(0)$ and $U_1^-(0) = U_0^+(0)$. Thus for the jump $\xi_0$, we have
 \begin{align*}
 \xi_0(X_0, X_1) &= \langle \Psi(0), U_0^+(0) - U_0^-(0) \rangle \\
 &= \langle \Psi(0), U_1^-(0) - U_1^+(0) \rangle \\
@@ -1540,42 +1500,38 @@ For the ordered pair $(X_0, X_1)$, if we replace $x$ with $-x$, $\{ U_1^+(-x), U
 &= -\xi_1(X_0, X_1) \\
 &= -\xi_0(X_1, X_0)
 \end{align*}
-where for the last equality we used \eqref{xiswapX}. Similarly, $\xi_1(X_0, X_1) = -\xi_0(X_1, X_0)$. Using the relations \eqref{xiGequiv} and noting that swapping $X_0$ and $X_1$ in $\xi_j$ is equivalent to swapping $b_0$ and $b_1$ in $G_j$, we have
-\begin{align*}
-G_0(b_0, b_1, r) &= \xi_0(X_0, X_1) \\
-&= -\xi_0(X_1, X_0) \\
-&= -G_0(b_1, b_0, r)
-\end{align*}
-Since for the 2-periodic pulse we are using the notation $G$ for $G_0$, the result follows.
+where for the last equality we used \eqref{xiswapX}. Similarly, $\xi_1(X_0, X_1) = -\xi_0(X_1, X_0)$. The result follows since swapping $X_0$ and $X_1$ in $\xi(X_0, X_1)$ is equivalent to swapping $b_0$ and $b_1$ in \cref{Gsymmjump1}.
+
 \end{proof}
 \end{lemma}
 
 In the next lemma, we show that the pitchfork bifurcation persists on the diagonal for sufficiently small $r$.
 
 % lemma :Persistence of pitchfork
+
 \begin{lemma}\label{pitchpersist}
-For $k \in \Z$ there exists $r_2 > 0$ (depending on $k$) and a unique smooth function $p_k: \mathcal{R} \cap [0, r_2] \rightarrow \R$ such that $G(b_0, b_1, r)$ has a nondegenerate pitchfork bifurcation at $(p_k(r),p_k(r))$. Furthermore, 
+For $k \in \Z$ there exists $r_2 > 0$ (depending on $k$) and a unique smooth function $p_k: \mathcal{R} \cap [0, r_2] \rightarrow \R$ such that $G(b_0, b_1, r)$ has a non-degenerate pitchfork bifurcation at $(p_k(r),p_k(r))$ and 
 \begin{equation*}
 p_k(r) \rightarrow p_k^* \text{ as } r \rightarrow 0
 \end{equation*}
 \begin{proof}
-For simplicity, take $k = 0$. The same argument works for all other $k$. In Lemma \ref{pitchforkH}, we showed that a pitchfork bifurcation occurs in the zero set of $H(b_0, b_1)$ at $(p_0^*, p_0^*)$. First, as in Lemma \ref{pitchforkH}, we make the change of coordinates $(b_0, b_1) \mapsto (x, y)$, so that $(0, p^*)$ is a pitchfork bifurcation point of $G(x, y, 0)$. By Lemma \ref{Gsymm}, we have the symmetry 
+For simplicity, take $k = 0$. The same argument works for all other $k$. In Lemma \ref{pitchforkH}, we showed that a pitchfork bifurcation occurs in the zero set of $H(b_0, b_1)$ at $(p_0^*, p_0^*)$. As in Lemma \ref{pitchforkH}, we make the change of coordinates $(b_0, b_1) \mapsto (x, y)$, so that $(0, p^*)$ is a pitchfork bifurcation point of $G(x, y, 0)$. By Lemma \ref{Gsymm}, we have the symmetry 
 \[
 G(-x, y, r) = -G(x, y, r)
 \]
-in this coordinate system. This implies that $G(0, y, r) = 0$ for all $y$, and this is the symmetry we require for a pitchfork bifurcation to occur. We now prove the existence of a pitchfork bifurcation along this line. 
+in this coordinate system, which is the required symmetry for a pitchfork bifurcation to occur. In addition, this implies that $G(0, y, r) = 0$ for all $y$. We now prove the existence of a pitchfork bifurcation along this line. 
 
 Since a necessary condition for a pitchfork to occur is $G_x(x, y, r) = 0$, we will look at the system
-\begin{equation}
+\begin{equation*}
 K(x,y,r) = (G(x,y,r), G_x(x,y,r)) = 0
-\end{equation}
-From Lemma \ref{pitchforkH}, $G_x(0,p_0^*,0) = G_y(0, p_0^*, 0) = 0$, so $D_{x,y}K(0,p_0^*,0)$ is singular. Since we cannot use the IFT at $(0, p_0^*)$, we will instead do a Lyapunov-Schmidt reduction. In Lemma \ref{pitchforkH}, we showed that $G_{xy}(0, p_0^*, 0) = 2 \rho/p_0^* \sqrt{1 + \rho^2} \neq 0$. Thus we can use the IFT to solve $K_2(x,y,r) = G_x(x,y,r) = 0$ for $y$ in terms of $x$ and $r$ near $(x,y,r) = (0, p_0^*, 0)$. Specifically, there exists $r_2 > 0$, an open interval $(-a, a)$, and a unique smooth function $y = y^*(x, r)$ such that $y^*(0, 0) = p_0^*$ and $G_x(x, y^*(x, r), r) = 0$ for all $x \in (-a, a)$ and $r < r_2$.
+\end{equation*}
+From Lemma \ref{pitchforkH}, $G_x(0,p_0^*,0) = G_y(0, p_0^*, 0) = 0$, so $D_{x,y}K(0,p_0^*,0)$ is singular. Since we cannot apply the implicit function theorem at $(0, p_0^*)$, we will do a Lyapunov-Schmidt reduction. In Lemma \ref{pitchforkH}, we showed that $G_{xy}(0, p_0^*, 0) = 2 \rho/p_0^* \sqrt{1 + \rho^2} \neq 0$. Thus we can use the implicit function theorem to solve $K_2(x,y,r) = G_x(x,y,r) = 0$ for $y$ in terms of $x$ and $r$ near $(x,y,r) = (0, p_0^*, 0)$. Specifically, there exists $r_2 > 0$, an open interval $(-a, a)$, and a unique smooth function $y = y^*(x, r)$ such that $y^*(0, 0) = p_0^*$ and $G_x(x, y^*(x, r), r) = 0$ for all $x \in (-a, a)$ and $r < r_2$.
 
-Taking $y = y^*(x, r)$ in the equation for $G$, we now wish to solve
-\begin{equation}
-G(x, y^*(x, r), r) = 0
-\end{equation}
-As noted above, this has a solution whenever $x = 0$. We will show that a pitchfork bifurcation occurs at $(0, y^*(0, r), r)$. First, since $G(x, y, r)$ is an odd function in $x$, $G_y(0, y, r) = 0$ and $G_{xx}(0, y, r) = 0$ for all $x, r$. It follows that $G_y(0, y^*(0, r), r) = 0$ and $G_{xx}(0, y^*(0, r), r) = 0$.
+Take $y = y^*(x, r)$ in the equation for $G$. We will now solve
+\begin{equation*}
+G(x, y^*(x, r), r) = 0,
+\end{equation*}
+which always has a solution when $x = 0$. We will show that a pitchfork bifurcation occurs at $(0, y^*(0, r), r)$ by verifying the conditions needed for this bifurcation to occur. First, since $G(x, y, r)$ is an odd function in $x$, $G_y(0, y, r) = 0$ and $G_{xx}(0, y, r) = 0$ for all $x, r$. It follows that $G_y(0, y^*(0, r), r) = 0$ and $G_{xx}(0, y^*(0, r), r) = 0$.
 
 All that remains is to show that $G_{xy}$ and $G_{xxx}$ are nonzero at $(0, y^*(0, r), r)$. From Lemma \ref{pitchforkH}, $G_{xy}(0, p_0^*, 0) = c_1^0 \neq 0$. Since $G_{xy}$ and $y^*$ are smooth, $G_{xy}(0, y^*(0, r), r) \rightarrow c_1^0 \text{ as } r \rightarrow 0$. Thus, reducing $r_2$ if necessary, $G_{xy}(0, y^*(0, r), r) \neq 0$ for all $r < r_2$. Similarly, from Lemma \ref{pitchforkH}, $G_{xxx}(0, p^*) = c_2^0 \neq 0$. By the same argument, we conclude that $G_{xxx}(0, y^*(0, r), r) \neq 0$ for $r < r_2$.
 
@@ -1583,10 +1539,10 @@ Changing variables back to $(b_0, b_1)$, let $p_0(r) = (y^*(0, r), y^*(0, r))$. 
 \end{proof} 
 \end{lemma}
 
-In Lemma \ref{Gsymm}, we showed that for sufficiently small $r$, $G(b_0, b_0, r) = 0$, so the zero set of $G$ contains the diagonal. In the next lemma, we show that the arms of the pitchfork also persist for sufficiently small $r$. Since for uniqueness we will be taking the baseline length parameter $b_0^0 = 1$, i.e. $m_0 = 0$, we only have to do this for the branch of the pitchfork at $(p_0(r), p_0(r))$.
+In Lemma \ref{Gsymm}, we showed that for sufficiently small $r$, $G(b_0, b_0, r) = 0$, so the zero set of $G$ contains the diagonal. In the next lemma, we show that the arms of the pitchfork also persist for sufficiently small $r$. It suffices to show this when $m = 0$, i.e. for the pitchfork at $(p_0(r), p_0(r))$. By symmetry, we also only need to show it for the lower arm. 
 
-\begin{lemma}\label{upperarmpersists}
-Choose any $M \in \N$ and $\delta > 0$. Then there exists $r_3 < 0$ such that for $r < r_3$, the upper arm of the pitchfork at $(p_0(r), p_0(r))$ is parameterized by
+\begin{lemma}\label{armpersists}
+Choose any $M \in \N$ and $\delta > 0$. Then there exists $r_3 < 0$ such that for $r < r_3$, the lower arm of the pitchfork at $(p_0(r), p_0(r))$ is parameterized by
 \begin{align*}
 (b_0, b_1) = (\tilde{b}_0(s; r), \tilde{b}^*_1(s)) && s \in [\delta, M \pi]
 \end{align*}
@@ -1596,16 +1552,16 @@ where
 \end{align*}
 
 \begin{proof}
-For $r = 0$, using the parameterization from Lemma \ref{thetaparamlemma}, the upper arm of the pitchfork which branches from $(p_0^*, p_0^*)$ is parameterized by the $M$ pieces
+For $r = 0$, using the parameterization from Lemma \ref{thetaparamlemma}, the lower arm of the pitchfork which branches from $(p_0^*, p_0^*)$ is parameterized by the $M$ pieces
 \begin{align}\label{Mpieceparam}
 (b_0^*(0, \theta), b_1^*(m, \theta)) && m = 1, 2, \dots, M
 \end{align}
-where $\theta \in I_\rho$. From Lemma \ref{thetaparamlemma}, these pieces connect up at their endpoints. Thus we can parameterize this portion of the upper arm by the smooth function $(\tilde{b}^*_0(s), \tilde{b}^*_1(s)): [0, M \pi] \rightarrow \R^2$, where 
+where $\theta \in I_\rho$. From Lemma \ref{thetaparamlemma}, these pieces connect at their endpoints. Thus we join these $M$ pieces to  parameterize this portion of the lower arm by the smooth function $(\tilde{b}^*_0(s), \tilde{b}^*_1(s)): [0, M \pi] \rightarrow \R^2$, where 
 \begin{align*}
 \tilde{b}_1^*(s) &= e^{-\frac{1}{\rho}(\arctan \rho +s)} \\
 \tilde{b}_0^*(s) &= e^{-\frac{1}{\rho}(\arctan \rho + \theta^*(s))}
 \end{align*}
-and $(\tilde{b}^*_0(0), \tilde{b}^*_1(0)) = (p_0^*, p_0^*)$. Note that we move out the pitchfork arm with increasing $s$, and the pitchfork bifurcation occurs at $s = 0$.
+and $(\tilde{b}^*_0(0), \tilde{b}^*_1(0)) = (p_0^*, p_0^*)$. We move out the pitchfork arm with increasing $s$, and the pitchfork bifurcation would occur at $s = 0$, which are excluding from the parameterization.
 
 Take $b_1 = \tilde{b}_1^*(s)$ in $G(b_0, b_1)$ to get
 \begin{align*}
@@ -1615,7 +1571,7 @@ G(b_0, s, r)
 &= b_0 \sin(-\rho \log b_0) - p_0^* e^{-\frac{1}{\rho}s} \sin\left(\arctan \rho + s \right) + \mathcal{O}(r^{\gamma/2\alpha}) 
 \end{align*}
 
-Since we want to show how the entire pitchfork arm perturbs for small $r$, we will consider $b_0$ to be a function of $s$. Specifically, we will take $b_0 \in X$, where $X$ is the Banach space
+Since we want to show how the entire portion of the pitchfork arm perturbs for small $r$, we will consider $b_0$ as a function of $s$. Specifically, we will take $b_0 \in X$, where $X$ is the Banach space
 \[
 X = C_b([\delta, M \pi], \R)
 \]
@@ -1628,11 +1584,11 @@ Since for all $s = [\delta, M \pi]$, $G(\tilde{b}_0^*(s), s, 0) = 0$,
 \tilde{G}(\tilde{b}_0^*, 0) = 0
 \]
 
-Next, we show that the Fr\'echet partial derivative of $\tilde{G}(b_0,r)$ with respect to $b_0$ at $r = 0$ is 
+Next, we show that the Fr\'echet partial derivative of $\tilde{G}(b_0,r)$ with respect to $b_0$ at $r = 0$ is, as expected, 
 \begin{equation}
 f(s) = G_{b_0}(b_0(s), s, 0) 
 \end{equation}
-This, of course, is what we expect. Using the definition of the Fr\'echet derivative, we need to show that
+Using the definition of the Fr\'echet derivative, we need to show that
 \begin{align}
 \lim_{||y|| \rightarrow 0} \frac{|| \tilde{G}(b_0 + y, 0) - \tilde{G}(b_0, 0) - fy||}{||y||} = 0
 \end{align}
@@ -1646,11 +1602,11 @@ For $s \in [\delta, M \pi]$,
 \end{align*}
 Since we are taking $||y|| \rightarrow 0$, $|y(s)| \rightarrow 0$ for each $s \in [\delta, M \pi]$. Thus for each $s \in [\delta, M \pi]$, the RHS tends to 0 as $||y|| \rightarrow 0$ by the definition of the partial derivative on $\R$. The result follows by taking the supremum over all $s \in [\delta, M \pi]$.
 
-Using Lemma \ref{Hderivboundslemma}, there exists $\eta > 0$ (depending on $\delta$) such that for all $s \in [\delta, M \pi]$,
+Using both parts of Lemma \ref{Hderivboundslemma}, there exists $\eta > 0$ (depending on $\delta$) such that for all $s \in [\delta, M \pi]$,
 \begin{align*}
 |G_{b_0}( b_0^*(s), s, 0)| \geq \eta 
 \end{align*}
-In particular this implies that the Fr\'echet derivative $D_{b_0} \tilde{G}(b_0^*(s), 0)$ is invertible, and the inverse has bound
+This implies that the Fr\'echet derivative $D_{b_0} \tilde{G}(b_0^*(s), 0)$ is invertible, and the inverse has bound
 \[
 [D_{b_0} \tilde{G}(b_0^*, 0)]^{-1} \leq \frac{1}{\eta}
 \]
@@ -1692,7 +1648,7 @@ Thus we have $K: \overline{U_0(\epsilon)} \times \mathcal{R} \cap [0, r_2] \righ
 &\leq \frac{1}{2}||b_0 - \tilde{b}_0 ||
 \end{align*}
 
-By the uniform contraction mapping principle, there is a smooth map $b_0 : \mathcal{R} \cap [0, r_2] \rightarrow  \overline{U_0(\epsilon)}$ which maps $r$ to the unique fixed point of $K(\cdot, r)$. By uniqueness, $b_0(0) = b_0^*$. Thus for $r < r_2$, $G([b_0(r)](s), s, r) = 0$. Let $\tilde{b}_0(s; r) = [b_0(r)](s)$. Then the upper arm of the pitchfork is parameterized by
+By the uniform contraction mapping principle, there is a smooth map $b_0 : \mathcal{R} \cap [0, r_2] \rightarrow  \overline{U_0(\epsilon)}$ which maps $r$ to the unique fixed point of $K(\cdot, r)$. By uniqueness, $b_0(0) = b_0^*$. Thus for $r < r_2$, $G([b_0(r)](s), s, r) = 0$. Let $\tilde{b}_0(s; r) = [b_0(r)](s)$. Then the lower arm of the pitchfork is parameterized by
 \begin{align*}
 (b_0, b_1) = (\tilde{b}_0(s; r), \tilde{b}^*_1(s)) && s \in [0, M \pi]
 \end{align*}
@@ -1700,10 +1656,10 @@ By the uniform contraction mapping principle, there is a smooth map $b_0 : \math
 \end{proof}
 \end{lemma} 
 
-In the next lemma, we show that the upper arm of the pitchfork connects to the pitchfork bifurcation point for sufficiently small $r$. Essentially, we will extend the parameterization in Lemma \ref{upperarmpersists} to $s \in [0, M \pi]$.
+In the final lemma, we show that for sufficiently small $r$, the lower arm of the pitchfork connects to the pitchfork bifurcation point. Essentially, we will extend the parameterization in Lemma \ref{armpersists} to $s \in [0, M \pi]$.
 
 \begin{lemma}\label{pitchforkconnects}
-Choose any $M \in \N$. Then there exists $r_4 < 0$ such that for $r < r_4$, the upper arm of the pitchfork at $(p_0(r), p_0(r))$ is parameterized by
+Choose any $M \in \N$. Then there exists $r_4 < 0$ such that for $r < r_4$, the lower arm of the pitchfork at $(p_0(r), p_0(r))$ is parameterized by
 \begin{align*}
 (b_0, b_1) = (\tilde{b}_0(s; r), \tilde{b}^*_1(s)) && s \in [0, M \pi]
 \end{align*}
@@ -1722,35 +1678,32 @@ To make everything easier, we will change variables as in Lemma \ref{pitchforkH}
 x &= \frac{1}{2}(b_1 - b_0) \\
 y &= \frac{1}{2}(b_1 + b_0)
 \end{align*}
-We will look at the zero set of $G(x, y, r)$. When $r = 0$, there is a pitchfork bifurcation at $(p_0^*, 0)$. Then there exists $y_1 > 0$ such that the upper arm of the pitchfork is parameterized in the $(x,y)$ coordinate system by 
+When $r = 0$, there is a pitchfork bifurcation at $(p_0^*, 0)$. Then there exists $y_1 > 0$ such that the lower arm of the pitchfork is parameterized in the $(x,y)$ coordinate system by 
 \begin{align*}
 (x, y) &= (x_0^*(y), y) && y \in [0, y_1]
 \end{align*}
 where $x_0^*(0) = p_0^*$. 
 
-In Lemma \ref{pitchpersist}, we showed that this pitchfork bifurcation persists for small $r$. Specifically, there exists $r_2 > 0$ and $y_2$ with $0 < y_2 \leq y_1$ such that for all $r < r_2$, there is a pitchfork bifurcation at $(0, p_0(r))$, and the upper arm of the pitchfork is uniquely parameterized by
+In Lemma \ref{pitchpersist}, we showed that this pitchfork bifurcation persists for small $r$. Specifically, there exists $r_2 > 0$ and $y_2$ with $0 < y_2 \leq y_1$ such that for all $r < r_2$, there is a pitchfork bifurcation at $(0, p_0(r))$, and the lower arm of the pitchfork is uniquely parameterized by
 \begin{align*}
 (x, y) &= (x_0(y, r), y) && y \in [0, y_2]
 \end{align*}
-where $x_0(0, r) = p_0(r)$ and $x_0(y, 0) = x_0^*(y)$. 
+with $x_0(0, r) = p_0(r)$ and $x_0(y, 0) = x_0^*(y)$. 
 
-Take $\delta = y_2/2$ in Lemma \ref{upperarmpersists}. Then there exists $r_3 > 0$ such that the upper arm of the pitchfork on the interval $[y_2/2, y_2]$ is uniquely parameterized by 
+Take $\delta = y_2/2$ in Lemma \ref{armpersists}. Then there exists $r_3 > 0$ such that the lower arm of the pitchfork on the interval $[y_2/2, y_2]$ is uniquely parameterized by 
 \begin{align*}
 (x, y) &= (x_1(y, r), y) && y \in \left[\frac{y_2}{2}, y_2\right]
 \end{align*}
 
-Let $r_4 = \min\{ r_2, r_3 \}$. Then by uniqueness of the two parameterizations, for $r < r_3$,
+Let $r_4 = \min\{ r_2, r_3 \}$. Then by uniqueness of the two parameterizations, for $r < r_4$,
 \begin{align*}
 x_1(y, r), y) &= x_0(y, r), y) && y \in \left[\frac{y_2}{2}, y_2\right]
 \end{align*}
-
-Since the two parameterizations overlap on an interval, we conclude that for $r < r_3$, the upper arm of the pitchfork connects to the pitchfork bifurcation point. Thus we can take the same parameterization as in Lemma \ref{upperarmpersists} and extend it to $s \in [0, M \pi]$.
+Since the two parameterizations overlap on an interval, we conclude that for $r < r_4$, the lower arm of the pitchfork connects to the pitchfork bifurcation point. Thus we can take the same parameterization as in Lemma \ref{armpersists} and extend it to $s \in [0, M \pi]$.
 \end{proof}
 \end{lemma}
 
-\subsection{Proof of Theorem \ref{2pulsebifurcation}}
-
-Diagonal solutions exist by Lemma \ref{Gsymm}, and these are parameterized as in Lemma \ref{thetaparamlemma}. The upper arm of the pitchfork is parameterized as in Lemma \ref{pitchpersist}, and we can choose as large an $M$ as we like. The upper arm meets the diagonal at the pitchfork bifurcation point, which is given by $(p_0(r), p_0(r))$. Finally, uniqueness follows from the fact that our choice of $\theta$ has restricted ourselves to a single pitchfork in the zero set of $H$. Other pitchforks are accessed by choosing a different value for $r$.
+To prove Theorem \ref{2pulsebifurcation}, symmetric solutions with $b_1 = b_2$ exist by Lemma \ref{Gsymm}. By Lemma \ref{pitchforkconnects}, a pitchfork bifurcation point occurs on the diagonal at $(p_0(r), p_0(r))$. At this point, asymmetric solutions bifurcate from symmetric solutions.
 
 \iffulldocument\else
 	\bibliographystyle{amsalpha}
