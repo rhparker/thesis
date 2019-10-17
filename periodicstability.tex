@@ -307,6 +307,600 @@ If $M < 0$, these are reversed.
 
 We note that since we took $b_{n-1}^0$ small, the parity of $m_{n-1}$ is irrelevant to the eigenvalue pattern.
 
+In the following sections, we provide proofs for these results.
+
+\section{Proof of \cref{nulambdalemma} }
+
+Using \eqref{defAphi} and \eqref{fpartials0},
+\begin{equation}\label{Alambdaform}
+A(\lambda) = 
+\begin{pmatrix}
+0 & 1 & 0 & \dots & 0 & 0 & 0 \\
+0 & 0 & 1 & \dots & 0 & 0 & 0\\
+& \vdots && \vdots \\
+0 & 0 & 0 & \dots & 0 & 1 & 0 \\
+- c & 0 & c_3 & \dots & c_{2m-1} & 0 & 1 \\
+\lambda & 0 & 0 & \dots & 0 & 0 & 0
+\end{pmatrix}
+\end{equation}
+which has characteristic polynomial
+\begin{equation}\label{charpolyA0lambda}
+p(\nu; \lambda) = \lambda = -\nu^{2m+1} + c_{2m-1} \nu^{2m-1} + \dots + c_3 \nu^3 - c \nu + \lambda
+\end{equation}
+When $\lambda = 0$, $p(0; \nu)$ has a root at $\nu = 0$. From Lemma \ref{nondegenlemma}, $\nu = 0$ is simple root and is located a distance $\sqrt{\alpha_0^2 + \beta_0^2}$ from the next smallest roots. 
+
+Since $p(0; 0) = 0$ and $\partial_\nu p(0; 0) = -c \neq 0$, we can use the IFT to can solve for $\nu$ in terms of $\lambda$ near $\lambda = 0$. In other words, there exists $\delta_0 > 0$ and a smooth function $\nu(\lambda)$ such that $\nu(0) = 0$ and for $|\lambda| < \delta$, $p(\nu(\lambda)$ is the unique solution to $p(\nu; \lambda) = 0$. Using the IFT to differentiate $\nu(\lambda)$ at $\lambda = 0$,
+\begin{align*}
+\nu'(0) &= -\frac{1}{\partial_\nu p_2(\nu(\lambda); \lambda) } \partial_\lambda p ( \nu(\lambda); \lambda ) \Big|_{\lambda = 0}\\
+&= -\frac{1}{\partial_\nu p(\nu(0); 0) } \\
+&= \frac{1}{c}
+\end{align*}
+By reversibility, $p(\nu; \lambda)$ only involves odd powers of $\nu$, thus $p(\nu; \lambda) = 0$ implies $p(-\nu; -\lambda) = 0$. Uniqueness of the solution $\nu(\lambda)$ from the IFT implies that $\nu(-\lambda) = -\nu(\lambda)$, i.e. $\nu(\lambda)$ is an odd function of $\lambda$. Since $\nu(\lambda)$ is the root of a polynomial which is smooth in $\lambda$, we can expand $\nu(\lambda)$ in a Taylor series about $\lambda = 0$. Since $\nu(\lambda)$ is an odd function, the Taylor series involves only odd powers of $\lambda$ and is given by
+\begin{align*}
+\nu(\lambda) = \frac{1}{c} \lambda + \mathcal{O}(|\lambda|^3)
+\end{align*}
+
+Next, we consider the case when $\lambda$ is pure imaginary. Take $\lambda = i \gamma$ and $\nu = i s$ in $p(\nu; \lambda)$ to get
+\begin{align*}
+p(i s; i \gamma) = (-1)^{m+1} i s^{2m+1} + c_{2m-2} (-1)^m i s^{2m-1} + \dots - c_2 i s^3 - c i s + i \gamma
+\end{align*}
+Since we want to solve $p(i s; i \gamma) = 0$, we can divide by $i$ to get the equivalent problem
+\begin{align*}
+\tilde{p}(s; \gamma) = (-1)^{m+1} s^{2m+1} + c_{2m-2} (-1)^m s^{2m-1} + \dots - c_2 s^3 - c s + \gamma = 0
+\end{align*}
+Since $\tilde{p}(0; 0) = 0$ and $\partial_s \tilde{p}(0; 0) = -c \neq 0$, we can use the IFT again to solve for $s$ in terms of $\gamma$. Thus we can find a smooth function $s(\gamma)$ such that $s(0) = 0$, $s(\gamma)$ is real, and $s(\gamma)$ is the unique solution to $\tilde{p}(s; \gamma) = 0$ for sufficiently small $\gamma$. Undoing these substitutions, this implies that $p(\lambda, i s(-i \lambda)) = 0$. By uniqueness of the IFT solution $\nu(\lambda)$, we conclude that $\nu(\lambda) = \nu(i \gamma) = i s(-i \lambda)$, which is pure imaginary.
+
+For the eigenvectors, let $V_0(\lambda)$ be an eigenvector of $A(\lambda)$ corresponding to $\nu(\lambda)$. This is only unique up to scalar multiple, but since $V_0(\lambda)$ is smooth in $\lambda$, scale $V_0(\lambda)$ so that $V(0) = V_0$. We can verify by direct calculation that $A(\lambda) = -R(A(-\lambda)R$, where $R$ is the standard reversor operator. Thus we have
+\begin{align*}
+[A(\lambda) - \nu(\lambda) I]V = 0 &\iff -R(A(-\lambda) + \nu(\lambda) I)RV = 0 \\
+&\iff (A(-\lambda) + \nu(\lambda) I)RV = 0 
+\end{align*}
+Thus $RV_0(\lambda)$ is an eigenvector of $A(-\lambda)$ corresponding to $-\nu(\lambda)$. Since $V_0(0) = RV_0(0)$, we conclude that $V_0(-\lambda) = R V_0(\lambda)$. Differentiating $A(\lambda)V_0(\lambda) = \nu(\lambda) V_0(\lambda)$ with respect to $\lambda$,
+\begin{align*}
+A'(\lambda)V_0(\lambda) + A(\lambda)V_0'(\lambda) = \nu'(\lambda)V_0(\lambda) + \nu(\lambda)V_0'(\lambda)
+\end{align*}
+Evaluating this at $\lambda = 0$ and using $A'(\lambda) = b$, $\nu(0) = 0$, and $\nu'(0) = 0$, this becomes
+\begin{align*}
+B V_0(0) + A(0)V_0'(0) = \frac{1}{c} V_0(0)
+\end{align*}
+which rearranges to get
+\begin{align*}
+A(\lambda)V_0'(0) = -B V_0(0) + \frac{1}{c} V_0(0)
+= (1/c^2, 0, \dots, 0)^T
+\end{align*}
+Using \eqref{Alambdaform} for $A(\lambda)$, this has a solution $V_0'(0) = (0, 1/c^2, 0, \dots, 0)^T$ which is orthogonal to $V_0$. Thus we have the Taylor expansion
+\[
+V_0(\lambda) = V_0 + \lambda V_0'(0) + \mathcal{O}(\lambda^2),
+\]
+
+We can follow the same procedure with the adjoint asymptotic matrix $-A(\lambda)^*$, which has an eigenvalue $-\overline{\nu(\lambda)}$ that is smooth in $\overline{\lambda}$. To find $W_0'(\overline{\lambda})$, we follow the same procedure as above to get the equation
+\begin{align*}
+A(0)^* W_0'(0) = \frac{1}{c} W_0(0) - B^* W_0(0)
+= (-1, 0, \dots, 0, 1/c)
+\end{align*}
+which has a solution 
+\[
+W_0'(0) = \frac{1}{c} \left( 0, -c_3, 0, -c_5, 0, \dots, 0, -c_{2m-1}, 0, 1, 0\right)^T
+\]
+that is orthogonal to $W_0$.
+
+\section{Piecewise Formulation}
+
+In this section, we write the eigenvalue problem \cref{PDEeig3} in a piecewise form similar to \cite{Sandstede1998} and what we did in \cref{sec:kdvRpiecewise}. Let $Q_n(x)$ be a periodic $n$-pulse solution to \eqref{genODE} constructed according to Theorem \ref{perexist}. From Theorem \ref{perexist}, we can write $Q_n(x)$ piecewise as
+\begin{equation}\label{Qnppiece}
+\begin{aligned}
+Q_i^-(x) &= Q^-(x; \beta_i^-) + \tilde{Q}_i^-(x) && x \in [-X_{i-1}, 0] \\
+Q_i^+(x) &= Q^+(x; \beta_i^+) + \tilde{Q}_i^+(x) && x \in [0, X_i]
+\end{aligned}
+\end{equation}
+where $Q_i^-: [-X_{i-1}, 0] \rightarrow \R$ and $Q_i^+: [0, X_i]$. 
+
+Similarly to \eqref{Qprimevarsol} and \eqref{Qcvarsol}, we have
+\begin{equation}\label{Arelations}
+\begin{aligned}
+(\partial_x Q_n(x))' &= A(Q_n(x)) (\partial_x Q_n(x)) \\
+(\partial_c Q_n(x))' &= A(Q_n(x)) (\partial_c Q_n(x)) + B (\partial_x Q_n(x)) 
+\end{aligned}
+\end{equation}
+To exploit the relations \eqref{Arelations}, we take the following piecewise ansatz for the eigenfunction $V(x)$
+\begin{equation}\label{Vpiecewise}
+\begin{aligned}
+V_i^-(x) &= d_i (\partial_x Q_i^-(x) + \lambda \partial_c Q_i^-(x)) + W_i^-(x) && x \in [-X_{i-1}, 0] \\
+V_i^+(x) &= d_i (\partial_x Q_i^+(x) + \lambda \partial_x Q_i^+(x)) + W_i^+(x) && x \in [0, X_i] 
+\end{aligned}
+\end{equation}
+where $d_i \in \C$ are constants. Substituting this ansatz into \eqref{PDEeig3} and simplifying, we obtain the following equation for $W_i^\pm(x)$.
+\begin{equation}\label{Wipm1}
+(W_i^\pm)'(x) = A(Q_i^\pm(x); \lambda) W_i^\pm(x) + d_i \lambda^2 B (\partial_c Q_i^\pm(x))
+\end{equation}
+Since $A(Q(x))$ is smooth in $Q(x)$, let 
+\begin{align*}
+G_i^\pm(x) = A(Q_i^\pm(x)) - A(Q(x))
+\end{align*}
+Finally, let
+\begin{align*}
+\tilde{H}_i^\pm(x) &= \partial_c Q_i^\pm(x) \\ 
+H(x) &= \partial_c Q(x)
+\end{align*}
+Using these, equation \eqref{Wipm1} simplifies to
+\begin{align}\label{Wipm2}
+(W_i^\pm)'(x) &= A(Q(x); \lambda) W_i^\pm(x) + G_i^\pm(x) W_i^\pm(x) + d_i \lambda^2 \tilde{H}_i^\pm(x)
+\end{align}
+
+In order to have a solution to \eqref{PDEeig3}, the eigenfunction $V(x)$ must be continuous. In other words, the $n$ jumps at $\pm X_i$ and the $n$ jumps at $0$ must be 0. Thus an eigenfunction must solve the system of equations
+\begin{align*}
+(W_i^\pm)'(x) &= A(Q(x); \lambda) W_i^\pm(x) + G_i^\pm(x) W_i^\pm(x) + d_i \lambda^2 \tilde{H}_i^\pm(x) \\
+W_i^+(X_i) - W_{i+1}^-(-X_i) &= D_i d && i = 0, \dots, n-1 \\
+W_i^-(0) &= W_i^+(0) && i = 0, \dots, n-1  \\
+\end{align*}
+where
+\begin{align}\label{defDid}
+D_i d &= d_{i+1}[\partial_x Q_{i+1}^-(-X_i) + \lambda \partial_c Q_{i+1}^-(-X_i)]
+- d_i [ \partial_x Q_i^+(X_i) + \lambda \partial_c Q_i^+(X_i) ] \\
+\end{align}
+
+As in \cite{Sandstede1998}, we will not be able to find a solution to this system for arbitrary $\lambda$. Thus we will instead consider the system
+\begin{equation}\label{eigsystem}
+\begin{aligned}
+(W_i^\pm)'(x) &= A(Q(x); \lambda) W_i^\pm(x) + G_i^\pm(x) W_i^\pm(x) + d_i \lambda^2 \tilde{H}_i^\pm(x) \\
+W_i^+(X_i) - W_{i+1}^-(-X_i) &= D_i d && i = 0, \dots, n-1 \\
+W_i^\pm(0) &\in \R \Psi(0) \oplus \R \Psi^c(0) \oplus Y^+ \oplus Y^- && i = 0, \dots, n-1  \\
+W_i^+(0) - W_i^-(0) &\in \R \Psi(0) \oplus \R \Psi^c(0) && i = 0, \dots, n-1 
+\end{aligned}
+\end{equation}
+where the center matching condition $W_i^-(0) = W_i^+(0)$is relaxed to the requirement that the jumps $W_i^+(0) - W_i^-(0)$ can only be in the directions of $\Psi^c(0)$ and $\Psi(0)$. We do not need to include a component in $Q'(0)$ in the third equation since that is handled by the term $d_i (Q_i^\pm)'(x)$ in the ansatz \eqref{Vpiecewise}. A solution to \eqref{eigsystem} solves \eqref{PDEeig3} if and only if the $n$ jumps at $x = 0$ in the direction of $\Psi(0) \oplus \R \Psi^c(0)$ are 0, i.e.  
+\begin{equation}\label{jumpxi}
+\begin{aligned}
+\xi_i &= \langle \Psi(0), W_i^+(0) - W_i^-(0) \rangle = 0  \\
+\xi_i^c &= \langle \Psi^c(0), W_i^+(0) - W_i^-(0) \rangle = 0 
+\end{aligned}
+\end{equation}
+for $i = 0, \dots, n-1$.
+
+Before we continue, we define the following constants, which we will use throughout. By Lemma \ref{eigA0lemma}, $A(0)$ has a simple eigenvalue at 0, a quartet of eigenvalues $\pm \alpha_0 \pm \beta_0 i$, and for all other eigenvalues $\nu$ of $A(0)$, $|\Re \nu| > \alpha_0$. 
+
+\begin{enumerate}
+	\item Choose $\alpha_1$ slightly smaller than $\alpha_0$.
+
+	\item Choose $\eta > 0$ sufficiently small so that $\alpha_1 - 4 \eta > 0$.
+
+	\item Let
+	\begin{align*}
+	\alpha &= \alpha_1 - \eta \\
+	\end{align*}
+
+	\item Choose $\delta$ sufficiently small so that for all $|\lambda| < \delta$
+	\begin{enumerate}
+		\item $|\nu(\lambda)| < \eta$, where $\nu(\lambda)$ defined in Lemma \ref{nulambdalemma}.
+
+		\item The real part of any other eigenvalue of $A(\lambda)$ lies outside the interval $[-\alpha, \alpha]$. This is possible since the eigenvalues of $A(\lambda)$ are smooth functions of $\lambda$.
+	\end{enumerate}
+	As we proceed we may need to decrease $\delta$. 
+
+	\item Choose $X_m$ sufficiently large so that
+	\begin{equation}
+	e^{-(\alpha - \eta) X_m} < \delta
+	\end{equation}
+	where $X_m = \min\{X_0, \dots, X_{n-1}\}$.
+\end{enumerate}
+
+To conclude this section, we will collect estimates on the terms involved in \eqref{eigsystem} in the following lemma.
+
+\begin{lemma}\label{stabestimateslemma}
+Let $\Delta H_i^\pm(x) = \tilde{H}_i^\pm(x) - H(x)$. Then we have the following estimates
+\begin{enumerate}[(i)]
+\item $|H(x)|, |\tilde{H}_i^\pm(x)| \leq C e^{-\alpha_1 |x|}$
+\item $|\Delta H_i^-(x)| \leq C e^{-\alpha_1 X_{i-1}} e^{-\alpha_1(X_{i-1} + x) } + e^{-2 \alpha_1 X_i} e^{\alpha_1 x}$
+\item $|\Delta H_i^+(x)| \leq C e^{-\alpha_1 X_i} e^{-\alpha_1(X_i - x) } + e^{-2 \alpha_1 X_{i-1}} e^{-\alpha_1 x}$
+\item $||\Delta H_i^\pm|| \leq C(e^{-\alpha_1 X_i} + e^{-\alpha_1 X_{i-1}} )$
+\item $|G_i^-(x)| \leq C e^{-\alpha_1 X_{i-1}} e^{-\alpha_1(X_{i-1} + x) } + e^{-2 \alpha_1 X_i} e^{\alpha_1 x}$
+\item $|G_i^+(x)| \leq C e^{-\alpha_1 X_i} e^{-\alpha_1(X_i - x) } + e^{-2 \alpha_1 X_{i-1}} e^{-\alpha_1 x}$
+\item $||G|| \leq C e^{-\alpha_1 X_m}$
+\item $D_i d = ( Q'(X_i) + Q'(-X_i))(d_{i+1} - d_i ) + \mathcal{O} ( e^{-\alpha_1 X_i} (e^{-\alpha_1 X_m} + |\lambda| )$
+\end{enumerate}
+\begin{proof}
+Recall that $H(x) = \partial_c Q(x)$ and $\tilde{H}(x) = \partial_c Q_i^\pm(x)$. For (i), by Theorem \ref{transverseint} and the discussion following \eqref{PDEeig4}, $H(x)$ and $\tilde{H}(x)$ are exponentially localized for any $\alpha_1 < \alpha_0$. The bounds (ii) and (iii) follow from an adaptation of Lemma \ref{solvewithjumps} to derivative with respect to $c$. The bound (iv) follows from (ii) and (iii). Since $A(Q(x))$ is smooth in $Q(x)$, the bounds (v), (vi), and (vii) come from Lemma \ref{solvewithjumps}.
+
+For estimate (viii), we use \eqref{VQpm} in Lemma \ref{solvewithjumps} and \eqref{Vpiecewise} (with $\tilde{Q}$ in place of $V$) to get
+\begin{align*}
+Q_{i+1}^-(-X_i) &= Q^-(-X_i; \beta_{i+1}^-) + \tilde{Q}_{i+1}^-(-X_i) \\
+&= Q^-(-X_i; \beta_{i+1} ^-) + Q^+(X_i; \beta_i^+) + \mathcal{O}(e^{-2 \alpha_1 X_i}) \\
+&= Q(-X_i) + Q(X_i) 
++ \mathcal{O}(e^{-\alpha_1 X_i}(e^{-\alpha_1 X_{i-1}}+e^{-\alpha_1 X_i}+e^{-\alpha_1 X_{i+1}}))
+\end{align*}
+We note that $\alpha_1$ corresponds to $\alpha$ in that lemma. Since the bounds \ref{solvewithjumps} also apply to derivatives with respect to $x$, we have
+\begin{align*}
+(Q_{i+1}^-)'(-X_i) &= Q'(-X_i) + Q'(X_i) + \mathcal{O}(e^{-\alpha_1 X_i}e^{-\alpha_1 X_m})
+\end{align*}
+Similarly,
+\begin{align*}
+(Q_i^+)'(X_i)' &= Q'(-X_i) + Q'(X_i) + \mathcal{O}(e^{-\alpha_1 X_i}e^{-\alpha_1 X_m})
+\end{align*}
+To get the estimate (v), we substitute these into \eqref{Did2} and use estimate (i) for $\partial_c Q_i^\pm(x)$.
+\end{proof}
+\end{lemma}
+
+\section{Gap and conjugation Lemmas}
+
+In this section, we state and prove the gap and conjugation lemmas. We will use the conjugation lemma to simplify the system of equations \cref{eigsystem}. The statements and notation of these lemmas are very similar to those in \cite{Zumbrun2009}, except we allow the parameter vector $\Lambda$ to live in a Banach space rather than in a subset of $\C^m$. The proofs follow those in \cite{Zumbrun2009}, but are given in much more detail. First, we state and prove the gap lemma.
+
+% Gap lemma
+\begin{lemma}[Gap Lemma]\label{gaplemma}
+Let $W \in \C^N$, and consider the family of ODEs on $\R$
+\begin{equation}\label{LambdaEVP}
+W(x)' = A(x; \Lambda) W
+\end{equation}
+where $\Lambda \in \Omega$ is a parameter vector and $\Omega$ is a Banach space. Assume that
+\begin{enumerate}
+	\item The map $\Lambda \mapsto A(\cdot; \Lambda)$ is analytic in $\Lambda$.
+	\item $A(x; \Lambda) \rightarrow A_\pm(\lambda)$ (independent of $\Lambda$) as $x \rightarrow \pm \infty$, and there exists $\delta > 0$ such that for $|\Lambda| < \delta$ we have the uniform exponential decay estimates 
+	\begin{align}\label{ALambdadecay}
+	\left| \frac{\partial^k}{\partial x^k} A(x; \Lambda) - A_\pm(\Lambda) \right| 
+	&\leq C e^{-\theta |x|} && 0 \leq k \leq K
+	\end{align}
+	where $\alpha > 0$, $C > 0$, and $K$ is a nonnegative integer.
+\end{enumerate}
+Suppose $V^-(\Lambda)$ is an eigenvector of $A_-(\Lambda)$ with corresponding eigenvalue $\mu(\Lambda)$, both analytic in $\Lambda$. Then there exists a unique solution of \ref{LambdaEVP} of the form 
+\begin{equation}
+W(x; \Lambda) = V(x; \Lambda) e^{\mu(\Lambda)x}
+\end{equation}
+where $V$ is $C^1$ in $x$ and analytic in $\Lambda$ for $|\Lambda| < \delta$, and for any fixed $\tilde{\theta} < \theta$
+\begin{align}
+V(x; \Lambda) = V^-(\Lambda) + \mathcal{O}(e^{-\tilde{\theta}|x|}|V^-(\Lambda)|) && x \in \R^-
+\end{align}
+A similar result holds for $A_+(\lambda)$ on $\R^+$.
+
+\begin{proof}
+This proof follows \cite{Zumbrun2009}, with the main difference being that the parameter vector $\Lambda$ is in a general Banach space instead of a subset of $C^p$. Let $W(x; \Lambda) = V(x; \Lambda) e^{\mu(\Lambda) x}$. Substituting this into \eqref{LambdaEVP} and simplifying, we obtain the equivalent ODE
+\begin{equation}\label{VEVP}
+V(x; \Lambda)' = (A_-(\Lambda) - \mu(\Lambda)I)V(x; \Lambda) + \Theta(x; \Lambda) V(x; \Lambda)
+\end{equation}
+where $\Theta(x; \Lambda) = (A(x; \Lambda) - A_-(\Lambda)) = \mathcal{O}(e^{-\theta|x|})$ by \eqref{ALambdadecay}. Choose any $\tilde{\theta} < \theta_1 < \theta$ such that for $|\Lambda| < \delta$, the real part of the spectrum of $A_-(\Lambda)$ lies either to the left or to the right of the vertical line $\text{Re}(\nu) = \text{Re}(\mu(\Lambda) + \theta_1$ in the complex plane. Since the eigenvalues of $A_(\Lambda)$ are analytic in $\Lambda$, this is possible.
+
+For $|\Lambda| < \delta$, define the spectral projections $P(\Lambda)$ and $Q(\Lambda)$, where $P(\Lambda)$ projects onto the direct sum of all eigenspaces of $A_-(\Lambda)$ corresponding to eigenvalues $\nu$ with $\text{Re}(\nu) < \text{Re}(\mu(\Lambda) + \theta_1$, and $Q(\Lambda)$ projects onto the direct sum of all eigenspaces of $A_-(\Lambda)$ corresponding to eigenvalues $\nu$ with $\text{Re}(\nu) > \text{Re}(\mu(\Lambda) + \theta_1$. $P(\Lambda)$ and $Q(\Lambda)$ are analytic in $\Lambda$ for $|\Lambda| < \delta$, and from the definition of $\theta_1$, we have the estimates
+\begin{align*}
+\left|e^{(A_-(\Lambda) - \mu(\Lambda)I)x}P \right| &\leq C e^{\theta_1 x} && x \geq 0 \\
+\left|e^{(A_-(\Lambda) - \mu(\Lambda)I)x}Q \right| &\leq C e^{\theta_1 x} && x \leq 0
+\end{align*}
+Note that $P(\Lambda) + Q(\Lambda) = I$. Define the map $T$ on $L^\infty(-\infty, -M]$ by
+\begin{align*}
+TV(x; \Lambda) &= V^-(\Lambda) 
++ \int_{-\infty}^x e^{(A_-(\Lambda) - \mu(\Lambda)I)(x-y)}P\Theta(y; \Lambda) V(y; \Lambda) dy \\
+&- \int_x^{-M} e^{(A_-(\Lambda) - \mu(\Lambda)I)(x-y)}Q\Theta(y; \Lambda) V(y; \Lambda) dy
+\end{align*}
+Taking the absolute value of both sides, for $x \leq 0$
+\begin{align*}
+|TV(x; \Lambda)| &\leq |V^-(\Lambda)| + C ||V(x; \Lambda)||_{L^\infty(-\infty, -M]}
+\left( \int_{-\infty}^x e^{\theta_1 (x - y)} e^{\theta y} dy + \int_x^{-M} e^{\theta_1 (x - y)} e^{\theta y} dy \right) \\
+&\leq |V^-(\Lambda)| + C ||V(x; \Lambda)||_{L^\infty(-\infty, -M]} e^{\theta_1 x} \int_{-\infty}^M e^{(\theta - \theta_1) y} dy \\
+&= \leq |V^-(\Lambda)| + C ||V(x; \Lambda)||_{L^\infty(-\infty, -M]} e^{\theta_1 x} \frac{e^{-(\theta - \theta_1)M}}{\theta - \theta_1}\\
+&\leq |V^-(\Lambda)| + C ||V(x; \Lambda)||_{L^\infty(-\infty, -M]} e^{\theta_1 x} e^{-(\theta - \theta_1)M} \\
+&\leq |V^-(\Lambda)| + C ||V(x; \Lambda)||_{L^\infty(-\infty, -M]} e^{-(\theta - \theta_1)M} \\
+& < \infty
+\end{align*}
+Since the RHS is independent of $x$, we have $T: L^\infty(-\infty, -M] \rightarrow L^\infty(-\infty, -M]$. 
+
+Next, we show $T$ is a contraction.
+\begin{align*}
+|TV_1(x; \Lambda) - TV_2(x; \Lambda)| &\leq C ||V_1(x; \Lambda) - V_2(x; \Lambda)||_{L^\infty(-\infty, -M]} e^{\theta_1 x} \frac{e^{-(\theta - \theta_1)M}}{\theta - \theta_1}\\
+\end{align*}
+Since $e^{-(\theta - \theta_1)M} \rightarrow 0$ as $m \rightarrow \infty$, for sufficiently large $M$ we have 
+\begin{align*}
+|TV_1(x; \Lambda) - TV_2(x; \Lambda)|_{L^\infty(-\infty, -M]} &\leq \frac{1}{2} ||V_1(x; \Lambda) - V_2(x; \Lambda)||_{L^\infty(-\infty, -M]} 
+\end{align*}
+Thus the map $T$ is a contraction. Since $L^\infty(-\infty, -M]$ is a Banach space, by the Banach fixed point theorem, the map $T$ has a unique fixed point $V = TV$, i.e. we have a function $V \in L^\infty(-\infty, -M]$ such that 
+\begin{align*}
+V(x; \lambda) &= V^-(\Lambda) 
++ \int_{-\infty}^x e^{(A_-(\Lambda) - \mu(\Lambda)I)x}P\Theta(y; \Lambda) V(y; \Lambda) dy 
+- \int_x^{-M} e^{(A_-(\Lambda) - \mu(\Lambda)I)x}Q\Theta(y; \Lambda) V(y; \Lambda) dy
+\end{align*}
+
+Differentiating this with respect to $x$, we obtain
+\begin{align*}
+V'(x; \Lambda) &= P\Theta(x; \Lambda) V(x; \Lambda) +
+(A_-(\Lambda) - \mu(\Lambda)I) \int_{-\infty}^x e^{(A_-(\Lambda) - \mu(\Lambda)I)(x-y)}P\Theta(y; \Lambda) V(y; \Lambda) dy \\
+&-(-Q\Theta(x; \Lambda) V(x; \Lambda))
+-(A_-(\Lambda) - \mu(\Lambda)I) \int_x^{-M} e^{(A_-(\Lambda) - \mu(\Lambda)I)(x-y)}Q\Theta(y; \Lambda) V(y; \Lambda) dy \\
+&= P\Theta(x; \Lambda) V(x; \Lambda) + Q\Theta(y; \Lambda) V(x; \Lambda) + (A_-(\Lambda) - \mu(\Lambda)I)(T V(x; \lambda) - V^-(\Lambda) ) \\
+&= (P + Q)\Theta(x; \Lambda) V(x; \Lambda) + (A_-(\Lambda) - \mu(\Lambda)I)(V(x; \lambda) - V^-(\Lambda) ) \\
+&= (A_-(\Lambda) - \mu(\Lambda)I)V(x; \lambda) + \Theta(x; \Lambda) V(x; \Lambda) - (A_-(\Lambda) - \mu(\Lambda)I)V^-(\Lambda) \\
+&= (A_-(\Lambda) - \mu(\Lambda)I)V(x; \lambda) + \Theta(x; \Lambda) V(x; \Lambda)
+\end{align*}
+where we used the fact that $TV = V$ and $(A_-(\Lambda) - \mu(\Lambda)I)V^-(\Lambda) = 0$. Thus $V(x; \Lambda$ solves \eqref{VEVP}. Since $TV = V$, we let $V_1 = V$ and $V_2 = 0$ in the above to get the estimate
+\begin{align*}
+|V(x; \Lambda) - V^-(\Lambda)| &= |T(V(x; \Lambda)) - T(0)| \\
+&\leq C ||V(x; \Lambda) - 0||_{L^\infty(-\infty, -M]} e^{\theta_1 x} \\
+\end{align*}
+
+Similarly, for sufficiently large $M$, we have
+\begin{align*}
+|V(x; \Lambda)| - |V^-(\Lambda)| &\leq | |V(x; \Lambda)| - |V^-(\Lambda)| | \\
+&\leq |V(x; \Lambda) - V^-(\Lambda)| \\
+&= |T(V(x; \Lambda)) - T(0)| \\
+&\leq \frac{1}{2} ||V(x; \Lambda)||_{L^\infty(-\infty, -M]}
+\end{align*}
+thus it follows that
+\begin{align*}
+||V(x; \Lambda)||_{L^\infty(-\infty, -M]} \leq 2 |V^-(\Lambda)|
+\end{align*}
+
+Combining these, we have
+\begin{align*}
+|V(x; \Lambda) - V^-(\Lambda)| &\leq C e^{\tilde{\theta} x}|V^-(\Lambda)| \\
+\end{align*}
+from which we get
+\begin{align*}
+|V(x; \Lambda) = V^-(\Lambda) + \mathcal{O}( e^{\tilde{\theta} x}|V^-(\Lambda)| )\\
+\end{align*}
+
+Although $V(x; \Lambda)$ is only defined for $x \leq -M$, we extend $V(x; \Lambda)$ to all of $R^-$ using the evolution operator for the system.
+\end{proof}
+\end{lemma}
+
+As a corollary to this, we state and prove the Conjugation Lemma, which allows us to make a smooth change of coordinates to convert the linear ODE $Z'(x) = A^\pm(x) Z(x)$ into a constant coefficient system.
+
+% Conjugation lemma
+\begin{lemma}[Conjugation Lemma]
+Let $W \in \C^N$, and consider the family of ODEs on $\R$
+\begin{equation}\label{EVPconj}
+W(x)' = A(x; \Lambda) W(x) + G(x)W(x) + F(x)
+\end{equation}
+where $\Lambda \in \Omega$ is a parameter vector and $\Omega$ is a Banach space. Take the same assumptions as in the Gap Lemma, i.e. 
+\begin{enumerate}
+	\item The map $\Lambda \mapsto A(\cdot; \Lambda)$ is analytic in $\Lambda$.
+	\item $A(x; \Lambda) \rightarrow A_\pm(\lambda)$ (independent of $\Lambda$) as $x \rightarrow \pm \infty$, and there exists $\delta > 0$ such that for $|\Lambda| < \delta$ we have the uniform exponential decay estimates 
+	\begin{align}
+	\left| \frac{\partial^k}{\partial x^k} A(x; \Lambda) - A_\pm(\Lambda) \right| 
+	&\leq C e^{-\theta |x|} && 0 \leq k \leq K
+	\end{align}
+	where $\alpha > 0$, $C > 0$, and $K$ is a nonnegative integer.
+\end{enumerate}
+Then in a neighborhood of any $\Lambda_0 \in \Omega$ there exist invertible linear transformations
+\begin{equation}\label{conjlemmaP}
+\begin{aligned}
+P_+(x, \Lambda) &= I + \Theta_+(x, \Lambda) \\
+P_-(x, \Lambda) &= I + \Theta_-(x, \Lambda) 
+\end{aligned}
+\end{equation}
+defined on $\R^+$ and $\R^-$, respectively, such that
+\begin{enumerate}[(i)]
+\item The change of coordinates $W = P_\pm Z$ reduces \eqref{EVPconj} to the equations on $\R^\pm$
+\begin{align}\label{conjZ}
+Z'(x) = A^\pm(\Lambda) Z(x) + P_\pm(x, \Lambda)^{-1} G(x) P_\pm(x, \Lambda) + P_\pm(x, \Lambda)^{-1} F(x)
+\end{align}
+
+\item For any fixed $0 < \tilde{\theta} < \theta$, $0 \leq k \leq K+1$, and $j \geq 0$ we have the decay rates
+\begin{align}\label{conjthetadecay}
+\left| \partial_\Lambda^j \partial_x^k \Theta_\pm \right| \leq C(j, k)e^{-\tilde{\theta}|x|}
+\end{align}
+\end{enumerate}
+\begin{proof}
+We will prove this for the case where $F(x) = 0$ and $G(x) = 0$. The form of the conjugated system easily follows for general $F$ and $G$. We will also only consider the case on $\R^-$. The other case is similar. 
+
+Let $W = P_-(x, \Lambda) Z$, where we will determine $P_-(x, \Lambda)$ later. Suppose that \eqref{conjZ} holds. Substituting \eqref{conjZ} into \eqref{EVPconj}, we get
+\begin{align*}
+[P_-(x, \Lambda) Z(x)]' &= A(x; \Lambda)(P_-(x, \Lambda) Z(x)) \\
+P_-'(x, \Lambda) Z(x) + P_-(x, \Lambda) Z'(x)
+&= A(x; \Lambda)P_-(x, \Lambda) Z(x) \\
+P_-'(x, \Lambda) Z(x) + P_-(x, \Lambda) A_- Z(x)
+&= A(x; \Lambda)P_-(x, \Lambda) Z(x)
+\end{align*}
+Rearranging this, we obtain
+\begin{equation}
+P_-'(x, \Lambda) Z(x)
+= [A(x; \Lambda)P_-(x, \Lambda) - P_-(x, \Lambda) A_-]Z(x)
+\end{equation}
+
+Suppose now that
+\[
+P_-'(x, \Lambda) = A(x; \Lambda)P_-(x, \Lambda) - P_-(x, \Lambda) A_-
+\]
+Upon making the substitution $W = P_-(x, \Lambda) Z$, \eqref{EVPconj} reduces to
+\begin{align*}
+[P_-(x, \Lambda) Z(x)]' &= A(x; \Lambda)(P_-(x, \Lambda) Z(x)) \\
+P_-'(x, \Lambda) Z(x) + P_-(x, \Lambda) Z'(x)
+&= A(x; \Lambda)P_-(x, \Lambda) Z(x) \\
+(A(x; \Lambda)P_-(x, \Lambda) - P_-(x, \Lambda) A_-)Z(x) + P_-(x, \Lambda) Z'(x)
+&= A(x; \Lambda)P_-(x, \Lambda) Z(x) \\
+A(x; \Lambda)P_-(x, \Lambda)Z(x) - P_-(x, \Lambda) A_- Z(x) + P_-(x, \Lambda) Z'(x)
+&= A(x; \Lambda)P_-(x, \Lambda) Z(x) \\
+P_-(x, \Lambda) Z'(x) &= P_-(x, \Lambda) A_- Z(x) \\
+Z'(x) &= A_- Z(x)
+\end{align*}
+where the last line follows if $P_-(x, \Lambda)$ is invertible. Thus we only need to verify that this is the case. In other words, we need to find $P_-(x, \Lambda)$ such that
+\[
+P_-'(x, \Lambda) = A(x; \Lambda)P_-(x, \Lambda) - P_-(x, \Lambda) A_-
+\]
+We note that the this equation has the form 
+\begin{equation}\label{solvePminus}
+P_-'(x, \Lambda) = \mathcal{A}(x; \Lambda) P_-(x, \Lambda)
+\end{equation}
+where $\mathcal{A}(x; \Lambda)$ is the linear operator
+\[
+\mathcal{A}(x; \Lambda) P = A(x; \Lambda) P - P A_-
+\]
+By our assumptions on $A(x; \Lambda)$, $\mathcal{A} \rightarrow \mathcal{A}_-$ as $x \rightarrow -\infty$, where the limiting linear operator $\mathcal{A}_-$ is defined by
+\[
+\mathcal{A}_- P = A_- P - P A_-
+\]
+The limiting operator has analytic eigenvalue/eigenvector pair $0, I$ for all $\Lambda$, thus by the Gap Lemma, there exists a solution of \eqref{solvePminus} of the form 
+\begin{equation*}
+P_-(x, \Lambda) = I + \mathcal{O}(e^{-\tilde{\theta}|x|})
+\end{equation*}
+In other words, 
+\begin{equation*}
+P_-(x, \Lambda) = I + \Theta_-(x, \Lambda)
+\end{equation*}
+where 
+\begin{equation}\label{Thetabound}
+|\Theta_-(x, \Lambda)| \leq C e^{-\tilde{\theta}|x|}
+\end{equation}
+The $x$-derivative bound follow from the derivative bounds in the Gap Lemma, and the $\Lambda$-derivative bounds follow from standard analytic function theory.
+
+Finally, we need to show that $P_-(x, \Lambda)$ is invertible for all $x \in \R^-$. Using \eqref{Thetabound}, we can find $M$ sufficiently large and negative such that for all $x \leq M$,
+\[
+|\Theta_-(x, \Lambda)| < 1/2
+\]
+It follows that $P_-(x, \Lambda)$ is invertible for $X \leq M$. To extend invertibility to all $x \in \R^-$, suppose that $P_-(x, \Lambda)^{-1}$ exists for all $x \in R^-$. Then, differentiating $P_-(x, \Lambda)^{-1} P_-(x, \Lambda) = I$ and solving for $[P_-(x, \Lambda)^{-1}]'$ (as in the proof of the inverse function theorem), we have (suppressing the dependence on $\Lambda$ for convenience)
+\begin{align*}
+(P_-^{-1})'(x) &= -P_-^{-1}(x)P_-'(x)P_-^{-1}(x) \\
+&= -P_-^{-1}(x)( A(x)P_-(x) - P_-(x) A_-)P_-^{-1}(x) \\
+&= A_- P_-^{-1}(x) - A(x) P_-^{-1}(x)
+\end{align*}
+We have a solution to this ODE for $x \leq M$, and by variation of constants, this ODE has a unique solution for all $x \in \R^-$. Thus $P_-(x, \Lambda)^{-1}$ is obtained for all $x \in \R^-$ by evolving this ODE forward from an initial condition at some $x \leq M$. In this manner, we have shown that $P_-(x, \Lambda)^{-1}$ exists for all $x \in \R^-$.
+\end{proof}
+\end{lemma}
+
+\section{Conjugation}
+
+In this section, we apply the conjugation lemma to the system of equations \cref{eigsystem}. This simplifies the system by applying a change of coordinates that transforms the linear operator $A(Q(x); \lambda)$ into a constant coefficient matrix. For all $\lambda$, $A(Q(x); \lambda)$ decays exponentially to the constant-coefficient matrix $A(\lambda)$. Specifically, we have the exponential decay rate
+\[
+|A(Q(x); \lambda) - A(\lambda)| \leq C e^{-\alpha_0 |x|}
+\]
+
+Using the conjugation lemma on $\R^+$ with $\Lambda = \lambda$ and $\Lambda_0 = 0$, there exists $\delta_1 > 0$ and an invertible linear transformation 
+\[
+P_+(x; \lambda) = I + \Theta_+(x; \Lambda)
+\]
+such that for all $|\lambda| < \delta_1$, the change of coordinates $W_i^+ = P_+(x; \lambda) Z_i^+$ conjugates \eqref{Wipm2} into the equation
+\begin{align*}\label{Zplus1}
+(Z_i^+)'(x) &= A(\lambda) Z_i^+(x) + P_+(x; \lambda)^{-1} G_i^+(x) P_+(x; \lambda) Z_i^+(x) + d_i \lambda^2 P_+(x; \lambda)^{-1} \tilde{H}_i^+
+(x)
+\end{align*}
+Furthermore, the conjugation operator $P_+(x; \lambda)$ has the form
+\begin{equation}\label{projTheta}
+P_+(x; \lambda) = I + \Theta_+(x; \lambda)
+\end{equation}
+where $\Theta_+(x; \lambda)$ has the uniform decay rate
+\begin{equation}\label{Thetadecay}
+|\Theta_+(x; \lambda)| \leq C e^{-\alpha_1 |x|} \\
+\end{equation}
+which also applies to derivatives with respect to $x$ and $\lambda$ (though with a different constant out front).
+
+For the conjugation on $R^-$, rather than applying the conjugation lemma again on $R^-$, we will use the symmetries of our system to define the conjugation operator on $\R^-$ in terms of the conjugation operator on $\R^+$. We do this in a series of lemmas. First we prove a symmetry relation for $A(Q(x); \lambda)$.
+
+\begin{lemma}\label{AQxsymmetrylemma}
+Let $R$ be the standard reversor operator. Then
+\begin{enumerate}[(i)]
+\item $A(Q(x); \lambda) = -R A(Q(-x); -\lambda)R$
+\item If $V(x)$ is a solution to $V'(x) = A(Q(x); \lambda) V(x)$ on $\R^+$, then $R V(-x)$ is a solution to $V'(x) = A(Q(x); -\lambda) V(x)$ on $\R^-$.
+\end{enumerate}
+\begin{proof}
+Since just this one time we will be dealing with reversor operators on two difference spaces, let $R_{n}$ be the matrix for the standard reversor operator on $\R^n$. For part (i), using the symmetry relations $DF(RU) = -RDF(U)R$ and $Q(-x) = RQ(X)$, we have
+\begin{align*}
+-R_{2m+1} &A(Q(-x); -\lambda) R_{2m+1}
+= \begin{pmatrix}-R_{2m} & 0 \\ 0 & -1 \end{pmatrix} 
+\begin{pmatrix}
+DF(Q(-x)) & \begin{pmatrix} 0 \\ \vdots \\ 0 \\ 1 \end{pmatrix} \\
+\begin{pmatrix} -\lambda & 0 & \dots & 0 \end{pmatrix} & 0
+\end{pmatrix} \begin{pmatrix}R_{2m} & 0 \\ 0 & 1 \end{pmatrix} \\
+&= \begin{pmatrix}
+-R_{2m} DF(Q(-x)) R_{2m} & \begin{pmatrix} 0 \\ \vdots \\ 0 \\ 1 \end{pmatrix} \\
+\begin{pmatrix} \lambda & 0 & \dots & 0 \end{pmatrix} & 0
+\end{pmatrix} 
+= \begin{pmatrix}
+DF(R_{2m}(Q(-x))) & \begin{pmatrix} 0 \\ \vdots \\ 0 \\ 1 \end{pmatrix} \\
+\begin{pmatrix} \lambda & 0 & \dots & 0 \end{pmatrix} & 0
+\end{pmatrix} \\
+&= \begin{pmatrix}
+DF(Q(x)) & \begin{pmatrix} 0 \\ \vdots \\ 0 \\ 1 \end{pmatrix} \\
+\begin{pmatrix} \lambda & 0 & \dots & 0 \end{pmatrix} & 0
+\end{pmatrix} \\ 
+&= A(Q(x); \lambda)
+\end{align*}
+
+For part (ii), for $x \in \R^-$,
+\begin{align*}
+\frac{d}{dx} &\left[ R_{2m+1} V(-x) \right] = -R_{2m+1} V'(-x) \\
+&= -R_{2m+1} A(Q(-x); \lambda) V(-x) \\
+&= -R_{2m+1} A(Q(-x); \lambda) R_{2m+1} [ R_{2m+1} V(-x)] \\
+&= A(Q(x); -\lambda) [R_{2m+1} V(-x)]
+\end{align*}
+\end{proof}
+\end{lemma}
+
+In the next lemma, we define the conjuation operator on $\R^-$ in terms of the conjugation operator on $\R^+$.
+
+\begin{lemma}\label{conjRminuslemma}
+For $x \in \R^-$ and $|\lambda| < \delta_1$, define $P_-(x; \lambda)$ by
+\begin{equation}\label{defPminus}
+P_-(x; \lambda) = RP_+(-x; -\lambda)R
+\end{equation}
+Then the substitutiton $V(x) = P_-(x; \lambda) Z(x)$ conjugates the ODE 
+\begin{equation}\label{Veqminus}
+V'(x) = A(Q(x); \lambda) V(x)
+\end{equation}
+into the constant-coefficient ODE 
+\begin{equation}\label{Zeqminus}
+Z'(x) = A(\lambda)Z(x).
+\end{equation}
+\begin{proof}
+We substitute $V(x) = P_-(x; \lambda) Z(x)$ into \eqref{Veqminus}. For the LHS, we have
+\begin{align*}
+\frac{d}{dx}[P_-(x; \lambda) Z(x)] &= \frac{d}{dx}[RP_+(-x; -\lambda)R Z(x)] \\
+&= -RP'_+(-x; -\lambda)R Z(x) + RP_+(-x; -\lambda)R Z'(x)
+\end{align*}
+For the RHS, using part (i) of Lemma \ref{AQxsymmetrylemma} and $R^2 = I$, we have
+\begin{align*}
+A(Q(x); \lambda)P_-(x; \lambda) Z(x) &= A(Q(x); \lambda)RP_+(-x; -\lambda)R Z(x) \\
+&= -R[ -R A(Q(x); \lambda)R ]P_+(-x; -\lambda)R Z(x) 
+\end{align*}
+which simplifies to
+\begin{align}\label{Zeqminus1}
+A(Q(x); \lambda)P_-(x; \lambda) Z(x) &= -R A(Q(-x); -\lambda) P_+(-x; -\lambda)R Z(x). 
+\end{align}
+From the proof of the conjugation lemma,
+\begin{align*}
+P'_+(x; \lambda) = A(Q(x); \lambda)P_+(x; \lambda) - P_+(x; \lambda) A(\lambda)
+\end{align*}
+Rearranging this and evaluating it at $-x$ and $-\lambda$, 
+\begin{align*}
+ A(Q(-x); -\lambda)P_+(-x; -\lambda) = P'_+(-x; -\lambda) + P_+(-x; -\lambda) A(-\lambda)
+\end{align*}
+Substituting this into \eqref{Zeqminus1}, we have
+\begin{align*}
+A(Q(x); \lambda)&P_-(x; \lambda) Z(x) = -R [ P'_+(-x; -\lambda) + P_+(-x; -\lambda) A(-\lambda) ] R Z(x) \\
+&= -R P'_+(-x; -\lambda) R Z(x) - R P_+(-x; -\lambda) R [ R A(-\lambda) R]Z(x) \\
+&= -R P'_+(-x; -\lambda) R Z(x) + R P_+(-x; -\lambda) R A(\lambda) Z(x)
+\end{align*}
+where in the last line we used $-R A(-\lambda) R = A(\lambda)$, which we show either by direct computation or by taking $x \rightarrow \infty$ in part (i) of Lemma \ref{AQxsymmetrylemma}. Equating the LHS and RHS, we have
+\begin{align*}
+-RP'_+(-x; -\lambda)&R Z(x) + RP_+(-x; -\lambda)R Z'(x) \\
+&= -R P'_+(-x; -\lambda) R Z(x) + R P_+(-x; -\lambda) R A(\lambda) Z(x)
+\end{align*}
+which simplifies to
+\begin{align*}
+RP_+(-x; -\lambda)R Z'(x) = R P_+(-x; -\lambda) R A(\lambda) Z(x)
+\end{align*}
+Since $R$ and $P_+(-x; -\lambda)$ are invertible, this finally reduces to 
+\begin{align*}
+Z'(x) = A(\lambda) Z(x)
+\end{align*}
+which is the equation we want.
+\end{proof}
+\end{lemma}
+
+Using the conjugation operators $P_\pm(x; \lambda)$ and making the substitution $W_i^\pm(x) = P_\pm(x; \lambda) Z_i^\pm(x)$ in \eqref{eigsystem}, we obtain the conjugated system
+\begin{subequations}
+\begin{align}
+(Z_i^\pm(x))' = A(\lambda) Z_i^\pm(x) &+ P_\pm(x; \lambda)^{-1} G_i^\pm(x) P_\pm(x; \lambda) Z_i^\pm(x) + \lambda^2 d_i P_\pm(x; \lambda)^{-1} \tilde{H}_i^\pm(x) \label{systemZ} \\
+P_+(X_i; \lambda) Z_i^+(X_i) &- P_-(-X_i; \lambda) Z_{i+1}^-(-X_i; \lambda) = D_i d \label{systemmiddle} \\
+P_\pm(0; \lambda) Z_i^\pm(0) &\in Y^+ \oplus Y^- \oplus \C \Psi(0) \oplus \C \Psi^c(0) \label{systemcenter1} \\
+P_+(0; \lambda) Z_i^+(0) - P_-(0; \lambda) Z_i^-(0) &\in \C \Psi(0) \oplus \C \Psi^c(0) \label{systemcenter2}
+\end{align}
+\end{subequations}
+and the jump conditions \eqref{jumpxi} become
+\begin{equation}\label{jumpcondZ}
+\begin{aligned}
+\langle \Psi(0), P_+(0; \lambda) Z_i^+(0) - P_-(0; \lambda) Z_i^-(0) \rangle &= 0 \\
+\langle \Psi^c(0), P_-(0; \lambda) Z_i^+(0) - P_-(0; \lambda) Z_i^-(0) \rangle &= 0
+\end{aligned}
+\end{equation}
+
+
+
+
+
 \iffulldocument\else
 	\bibliographystyle{amsalpha}
 	\bibliography{thesis.bib}

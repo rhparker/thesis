@@ -25,7 +25,7 @@ where the functions $Q^\pm(x; \beta_i^\pm)$ paramaterize the stable and unstable
 
 \section{Piecewise ansatz}
 
-First, we write $W^u(0)$ and $W^s(0)$ as graphs over their tangent spaces near $Q(0)$. Following \cite{Sandstede1997}, we can parameterize the unstable and stable manifolds near $Q(0)$ by the smooth functions $Q^-(\alpha, \beta^-)$ and $Q^+(\alpha, \beta^+)$, where $\alpha \in \R$, $\beta^\pm \in Y^\pm$ and these functions are chosen so that $Q^+(\alpha, 0) - Q^-(\alpha, 0) \in \R \Psi(0)$. Note that $Q^+(0, 0) = Q^-(0, 0) = Q(0)$. We will always take $\alpha = 0$. Using this parameterization, let
+First, we write $W^u(0)$ and $W^s(0)$ as graphs over their tangent spaces near $Q(0)$. Following \cite{Sandstede1997}, we can parameterize the unstable and stable manifolds near $Q(0)$ by the smooth functions $Q^-(\gamma, \beta^-)$ and $Q^+(\gamma, \beta^+)$, where $\gamma \in \R$, $\beta^\pm \in Y^\pm$ and these functions are chosen so that $Q^+(\gamma, 0) - Q^-(\gamma, 0) \in \R \Psi(0)$. Note that $Q^+(0, 0) = Q^-(0, 0) = Q(0)$. We will always take $\gamma = 0$. Using this parameterization, let
 \begin{equation}\label{defQpmx}
 \begin{aligned}
 Q^-(x; \beta^-) && x \leq 0 \\
@@ -112,13 +112,13 @@ Details on this parameterization are given in Lemma \ref{thetaparamlemma}.
 
 \item The $n$ pulses in $U(x)$ are separated by distances $2 X_0, \dots, 2 X_{n-1}$, where 
 \begin{equation}\label{Xj}
-X_j = -\frac{1}{2\alpha}\log(b_j(r; m_j, \theta) r) - \frac{\phi}{2 \beta} 
+X_j = -\frac{1}{2\alpha_0}\log(b_j(r; m_j, \theta) r) - \frac{\phi}{2 \beta_0} 
 \end{equation}
 and $\phi$ is a constant.
 
 \item The periodic domain has length $2X$, where $X = X_0 + \dots + X_{n-1}$ and is given by
 \begin{align}\label{Xdomain}
-X = \frac{1}{2\alpha} \left(n |\log r| + |\log(b_0(r; m_0, \theta) \cdots b_{n-1}(r; m_{n-1}, \theta))| \right) - \frac{n \phi}{2 \beta}
+X = \frac{1}{2\alpha_0} \left(n |\log r| + |\log(b_0(r; m_0, \theta) \cdots b_{n-1}(r; m_{n-1}, \theta))| \right) - \frac{n \phi}{2 \beta_0}
 \end{align}
 
 \end{enumerate}
@@ -156,7 +156,9 @@ Let $\Phi_\pm(x, y; \beta^\pm)$ be the family of evolution operators for the ODE
 \begin{align}\label{qpmODEs}
 (V^\pm)' &= D F(Q^\pm(x, \beta^\pm)(x)) V^\pm && x \in \R^\pm
 \end{align}
-By \cref{hypeqhyp}, $DF(0)$ is hyperbolic, and $|\Re \nu| \geq \alpha_0$ for all eigenvalues $\nu$ of $DF(0)$. In the next lemma, we decompose these evolution operators in exponential dichotomies on $\R^+$ and $\R^-$.
+By \cref{hypeqhyp}, $DF(0)$ is hyperbolic, and $|\Re \nu| \geq \alpha_0$ for all eigenvalues $\nu$ of $DF(0)$. Choose any $\alpha$ slightly smaller than $\alpha_0$. 
+
+In the next lemma, we decompose these evolution operators in exponential dichotomies on $\R^+$ and $\R^-$. 
 
 % lemma : exp dichotomy
 \begin{lemma}\label{dichotomy1}
