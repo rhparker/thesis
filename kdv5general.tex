@@ -288,8 +288,7 @@ DF(Q(x)) =
 It follows from \cref{nondegencond} that $Q'(x)$ is the unique bounded solution to \cref{vareq1}, and that there exists a unique bounded solution $\Psi(x)$ to \cref{adjvareq1}. (In both cases, uniqueness is up to scalar multiples). Since we have a conserved quantity $H$, we know the exact form of $\Psi(x)$, which is given in the following lemma.
 
 \begin{lemma}\label{psiform}
-The unique bounded solution $\Psi(x)$ to the adjoint variational equation \cref{adjvareq1} is given by $\Psi(x) = \nabla H(Q(x))$. In addition, $\Psi(x)$ is symmetric with respect to the standard reversor operator $R$, i.e. $\Psi(-x) = R \Psi(x)$, and
-the last component of $\Psi(x)$ is $q'(x)$.
+The solution $\Psi(x)$ is given by $\Psi(x) = \nabla H(Q(x))$. In addition, $\Psi(x)$ is symmetric with respect to the standard reversor operator $R$, i.e. $\Psi(-x) = R \Psi(x)$, and the last component of $\Psi(x)$ is $q'(x)$.
 \end{lemma}
 
 The last lemma of the section collects a few important results about solutions to the variational and adjoint variational equations.
@@ -308,7 +307,7 @@ Consider the linear ODE $V' = A(x)V$ and the corresponding adjoint equation $W' 
 \R^{2m} = \R Q'(0) \oplus Y^+ \oplus Y^- \oplus \R \Psi(0).
 \end{equation}
 
-\section{Spectrum of pulses}
+\section{Spectrum of pulses}\label{sec:genspectrum}
 
 In this section, we set up the the problem that we will use to find the eigenvalues associated with an equilibrium solution to \cref{genPDE}. Let $\phi$ be an exponentially localized traveling wave solution to \cref{genPDE}. We will study the spectrum of the linearized operator $\partial_x \calL(\phi) = \partial_x(\calE''(\phi) + c)$. First we note that the PDE eigenvalue problem
 \begin{equation}\label{genPDEeig}
@@ -345,7 +344,7 @@ and $B$ is the $(2m+1) \times (2m+1)$ constant coefficient matrix
 B = \begin{pmatrix}0 & 0 & 0 & 0 & 0 \\0 & 0 & 0 & 0 & 0 \\  & 
 \vdots & & \vdots & \\0 & 0 & 0 & 0 & 0 \\1 & 0 & 0 & 0 & 0 \end{pmatrix}.
 \end{equation}
-We note that the upper left $2m \times 2m$ block of $A(U(x))$ is $DF(U(x))$, which is given by \cref{defDF}. We will specify the function space on which \cref{PDEeigsystem} is posed in a later section since we will use different spaces for multi-pulses and periodic multi-pulses.
+We note that the upper left $2m \times 2m$ block of $A(U(x))$ is $DF(U(x))$, which is given by \cref{defDF}. 
 
 Since $\phi$ is exponentially localized, so is $U(x)$, thus $A(U(x))$ is exponentially asymptotic to the constant coefficient matrix $A(0)$. The following lemma describes the eigenvalues and kernel of $A(0)$.
 
@@ -375,7 +374,7 @@ Let $\tilde{Q}(x)$ be the primary pulse solution from \cref{sec:primarypulse}, a
 V'(x) = A(Q(x)) V(x) \label{vareq2} \\
 W'(x) = -A(Q(x))^* W(x) \label{adjvareq2}
 \end{align}
-where we use the same notation $V$ and $W$ for convenience. Since $(\partial_x \calL(q))\partial_x q = 0$ and $(\partial_x \calL(q))(-\partial_c q) = \partial_x q$, it follows that 
+where we reuse the same notation $V$ and $W$ for convenience. Since $(\partial_x \calL(q))\partial_x q = 0$ and $(\partial_x \calL(q))(-\partial_c q) = \partial_x q$, it follows that 
 \begin{align}
 (\partial_x Q(x))' &= A(Q(x))(\partial_x Q(x)) \label{Qprimevarsol} \\
 (\partial_c Q(x))' &= A(Q(x))(\partial_c Q(x)) + B(\partial_x Q(x))\label{Qcvarsol}

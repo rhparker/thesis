@@ -6,9 +6,7 @@
 	\chapter{KdV5}
 \fi
 
-\section{Proof of Results in \cref{sec:KdV5gen} }
-
-\subsection{Proof of Lemma \ref{manifoldinH0}}
+\section{Proof of Lemma \ref{manifoldinH0}}
 
 Let $U = (u_1, \dots, u_{2m})$ and $Q(x; c_0) = (q_1(x), \dots, q_{2m}(x))$. We wish to write the zero-level set $H^{-1}(0; c)$ as a graph near $Q(0; c_0)$. We will do this using the IFT.
 
@@ -20,7 +18,7 @@ M(c) = \{ (g(U; c), U; c) : U \in V_2 \}
 \end{equation}
 for $c \in (c_0 - \delta, c_0 + \delta)$. These manifold are $(2m-1)-$dimensional, are smooth since $H$ is smooth, and are contained in $H^{-1}(0; c_0)$. Taking $U = (q_2(0), \dots, q_{2m}(0))$ and $c = c_0$ in \eqref{defMc}, $M(c_0)$ contains $Q(0; c_0)$.
 
-\subsection{Proof of Theorem \ref{transverseint}}
+\section{Proof of Theorem \ref{transverseint}}
 
 First, we show that homoclinic orbits $Q(x; c)$ exist for $c$ near $c_0$.
 
@@ -387,9 +385,9 @@ Since $H(U, c, a)$ is Frechet differentiable in $c$, this implies that the fixed
 |\partial_c Q(x; c)| \leq C e^{-(\alpha - \epsilon)|x|}
 \] 
 
-\subsection{Characterization of solutions to adjoint linear ODEs}
+\section{Proof of Lemma \ref{psiform}}
 
-In this section, we prove a lemma relating solutions of the adjoint of an $n$-th order linear ODE to solutions of the adjoint problem when written as a first order system in the standard way.
+Wee prove a result lemma relating solutions of the adjoint of an $n$-th order linear ODE to solutions of the adjoint problem when written as a first order system in the standard way. This will allow us to determine the final component of $\Psi(x)$.
 
 \begin{lemma}\label{adjointlemma}
 Consider the $n$-th order linear ODE 
@@ -481,8 +479,7 @@ which is identical to adjoint linear ODE \eqref{adjODE}. Thus $w_n$ is a solutio
 \end{proof}
 \end{lemma}
 
-\subsection{Proof of Lemma \ref{psiform}}
-Since \eqref{genODE} is Hamiltonian, $\langle F(Q(x)), \nabla H(Q(x)) \rangle = 0$ for all $x$. Taking the gradient of this and using known vector calculus identities,
+We now turn to the proof of Lemma \ref{psiform}. Since \eqref{genODE} is Hamiltonian, $\langle F(Q(x)), \nabla H(Q(x)) \rangle = 0$ for all $x$. Taking the gradient of this and using known vector calculus identities,
 \begin{align*}
 0 &= \nabla \langle F(Q(x)), \nabla H(Q(x)) \rangle \\
 &= D F(Q(x))^* \nabla H(Q(x)) + D^2 H(Q(x))^* F(Q(x)) \\
@@ -505,13 +502,13 @@ For the symmetry relation, we will show that $R \Psi(-x)$ is a also a solution t
 \end{align*}
 Thus by uniqueness, $\Psi(x) = R \Psi(-x)$, from which it follows that $\Psi(-x) = R \Psi(x)$.
 
-Finally, the variational equation $V'(x) = DF(Q(x)) V(x)$ is equivalent to the linear ODE 
+To determine the last component of $\Psi(x)$, we note that the variational equation $V'(x) = DF(Q(x)) V(x)$ corresponds to the linear ODE 
 \begin{equation}\label{var1}
 \calE''(q(x))v(x) = 0.
 \end{equation}
-Since the differential operator $\calE''(q(x))$ has an isolated term $\partial_x^{2m}$ and all other derivative terms are lower order, equation \eqref{var1} is of the form \eqref{linODE}. By Lemma \ref{adjointlemma}, $\Psi_{2m}(x)$ solves the adjoint of \eqref{var1}. Since the operator $\calE''(q(x))$ is self-adjoint, $\Psi_{2m}(x)$ solves equation \eqref{var1}. Since \eqref{var1} has the unique solution $q'(x)$, we conclude that $\Psi_{2m}(x) = q(x)$.
+Since the differential operator $\calE''(q(x))$ has an isolated term $\partial_x^{2m}$ and all other derivative terms are lower order, equation \eqref{var1} is of the form \eqref{linODE}. By Lemma \ref{adjointlemma}, $\Psi_{2m}(x)$ is a solution to $[\calE''(q(x))]^* w(x) = 0$. Since the operator $\calE''(q(x))$ is self-adjoint, $\Psi_{2m}(x)$ solves equation \eqref{var1}. Since $q'(x)$ is a solution to \eqref{var1}, we can take $\Psi_{2m}(x) = q'(x)$.
 
-\subsection{Proof of Lemma \ref{eigadjoint}}
+\section{Proof of Lemma \ref{eigadjoint}}
 
 For part (i), 
 \begin{align*}
@@ -585,10 +582,7 @@ Choose $k \in 2, \dots, n$ and note that $\lambda_k \neq 0$since the kernel of $
 &= \langle A^* w, \frac{1}{\lambda_k} v_k \rangle \\
 &= 0
 \end{align*}
-Thus we have
-\[
-P u = \alpha v
-\]
+Thus we have $P u = \alpha v$.
 \end{proof}
 \end{lemma}
 
@@ -614,14 +608,14 @@ W_0 &= (0, 0, \dots, 0, 1)^T
 \end{align*}
 are eigenvectors of $A(0)$ and $-A(0)^*$ (respectively) corresponding to eigenvalue 0; these have been scaled $V_0$ so that $\langle V_0, W_0 \rangle = 1$. The expression for the projection on the kernel of $A(0)$ in part (iii) comes from Lemma \ref{kernelprojlemma}, since the kernel of $A(0)$ is simple and $\langle W_0, V_0 \rangle = 1$.
 
-% nondegeneracy lemma
-\subsection{Proof of Lemma \ref{nondegenlemma}}
+\section{Proof of Lemma \ref{nondegenlemma}}
 Since $Q(x)$ is a homoclinic orbit in the intersection of $W^u(0)$ and $W^s(0)$, $\R Q'(0) \subset T_{Q(0)}W^s(0) \cap T_{Q(0)}W^u(0)$. If the intersection were more than one-dimensional, there would exist another exponentially localized solution $V(x) = (v_1, \dots, v_{2m}, v_{2m+1})^T$ to \eqref{vareq2}. It follows that $\tilde{V}(x) = (v_1, \dots, v_{2m})^T$ would be an exponentially localized solution to \eqref{vareq1}, which contradicts \eqref{nondegencond}.
 
-% solutions to variational equation
 \subsection{Proof of Lemma \ref{varadjsolutions}}
 
-For part (i), the proof of the existence of $V^c(x)$ is found in Lemma \ref{varsolutions} in \cref{sec:centersol}. Let $V^c = (\tilde{V}^c, 1)$. Then we can write $V^c(x)' = A(Q(x))V^c(x)$ as the block equation
+For part (i), the proof of the existence of $V^c(x)$ is a consequence of \cref{lemma:Vpm} in \cref{chapter:kdv5pereig} and the geometry of the system. The proof is given in \cref{lemma:Vcexists}. 
+
+Let $V^c = (\tilde{V}^c, 1)$, where we place 1 in the final component since $V^c(x) \rightarrow V_0$ as $x \rightarrow \pm \infty$. Then we can write $V^c(x)' = A(Q(x))V^c(x)$ as the block equation
 \begin{align*}
 \begin{pmatrix}\tilde{V}^c(x) \\ 1 \end{pmatrix}' = 
 \begin{pmatrix}
