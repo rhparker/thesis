@@ -35,7 +35,7 @@ In this section, we consider the case where $r$ is sufficiently small so that th
 
 Since $a = \mathcal{O}(r)$ and $X = \mathcal{O}(\log|r|)$, we can always choose $r$ sufficiently small so that condition (i) is satisfied. Condition (ii) is always satisfied since any interaction eigenvalues will be $\mathcal{O}(r^{1/2})$ and the essential spectrum eigenvalues will be purely imaginary. In this case, we have the following theorem, which locates the interaction and essential spectrum eigenvalues.
 
-\begin{theorem}INT EIGS
+\begin{theorem}\label{theorem:2peigscase1}
 \end{theorem}
 
 \subsection{Case 2: instability bubble}
@@ -74,7 +74,7 @@ We will call the instability bubble a Krein bubble, since it results from the co
 
 In the following theorem, we prove that these Krein bubbles occur. Since the bubbles are formed as $X$ is varied near $X^*$ we will parameterize both $X$ and the eigenvalues $\lambda_{1,2}$ by a single dimensionless parameter $s \in [-2, 2]$. THE ``h.o.t'' WILL BE SPECIFIED ONCE THE PROOF IS COMPLETE.
 
-\begin{theorem}
+\begin{theorem}\label{theorem:kreinbubbles}
 Let $\delta > 0$ be as in Theorem \ref{blockmatrixtheorem} [Theorem 5.4, the block matrix theorem]. Define
 \begin{itemize}
 \item $\lambda_* = \sqrt{\frac{2 a_0}{M}}$
@@ -246,7 +246,24 @@ To find the eigenvalues, we will find the zeros of \cref{2detBeqmu}. We will do 
 
 \section{Computation of coefficients $a_j$}
 
-Next, we compute the coefficients $a_j$ in the lower right block of the block matrix in terms of the the parameterization of the multi-pulse.
+Next, we compute the coefficients $a_j$ of the matrix $A$ in lower right block of the block matrix equation.
+
+\begin{lemma}
+
+\begin{proof}
+Taking the derivative of $\langle \Psi(x), Q(-x) \rangle$, we have
+\begin{align*}
+\frac{d}{dx} \langle \Psi(x), Q(-x) \rangle
+&= \langle \Psi'(x), Q(-x) \rangle - \langle \Psi(x), Q'(-x) \rangle
+\end{align*}
+Extract the last components of $\Psi(x)$ and $Q(x)$ by letting $\Psi(x) = (\tilde{\Psi}(x), q(x))$ and $Q(x) = (\tilde{Q}(x), 0)$. For the first inner product, since $\tilde{\Psi}(x)$ solves \cref{adjvareq1},
+\begin{align*}
+\langle \Psi'(x), Q(-x) \rangle &= \langle \tilde{\Psi}'(x), \tilde{Q}(-x) \rangle \\
+&= \langle -DF(Q(x))^* \tilde{\Psi}'(x), \tilde{Q}(-x) \rangle \\
+&= - \langle \tilde{\Psi}(x), DF(Q(x)) \tilde{Q}(-x) \rangle 
+\end{align*}
+\end{proof}
+\end{lemma}
 
 \begin{lemma}\label{lemma:ajparam}
 For the coefficients $a_j$ in the block matrix equation, 
@@ -272,7 +289,6 @@ since $b_j \in (0, 1]$. Since $r \in \mathcal{R}$, $r = \exp\left(-\frac{2 m \pi
 a_j &= s_0 e^{\alpha \phi/\beta} r b_j \left( \beta \cos\left( 2 m \pi -\rho \log b_j \right) - \alpha \sin \left( 2 m \pi -\rho \log b_j \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha}) \\
 &= s_0 e^{\alpha \phi/\beta} r b_j \left( \beta \cos\left(-\rho \log b_j \right) - \alpha \sin \left(-\rho \log b_j \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha})
 \end{align*}
-
 \end{proof}
 \end{lemma}
 
@@ -317,7 +333,7 @@ Since $X = \mathcal{O}(1/\log|r|)$, $F(0,0) = 0$. Since $\lambda_* = \mathcal{O}
 \[
 \partial_h F(0,0) = -m^2 \pi^2
 \]
-For all $m$ between 1 and $M$, $|\partial_h F(0,0)| \geq \pi^2 > 0$. Thus we can use the implicit function theorem to solve for $h$ in terms of $r$ near $h = 0$. Specifically, there exists $r_1^m \leq r_0$ and a unique smooth function $h_m(r)$ with $h_m(0) = 0$ such that for all $r \leq r_1^m$, $F(h_m(r),r) = 0$. Expanding $h_m$ in a Taylor series about $r = 0$, we have for all $|m| \leq M$,
+For all $m$ between 1 and $M$, $|\partial_h F(0,0)| \geq \pi^2 > 0$. Thus we can use the implicit function theorem to solve for $h$ in terms of $r$ near $h = 0$. Specifically, there exists $r_1^m \leq r_0$ and a unique smooth function $h_m(r)$ with $h_m(0) = 0$ such that for all $r \leq r_1^m$, $G(h_m(r),r) = 0$. Expanding $h_m$ in a Taylor series about $r = 0$, we have for all $|m| \leq M$,
 \[
 h_m(r) = \mathcal{O}\left( r^{1/2} + \frac{1}{X} \right)
 \]
@@ -329,13 +345,114 @@ Changing variables back to $\lambda$, these are located at
 \[
 \lambda_m = \frac{m \pi i}{X}\left[1 + \mathcal{O}\left( \frac{1}{X}\left( r^{1/2} + \frac{1}{X} \right) \right) \right] + \mathcal{O}\left( \frac{1}{X}\left( r^{1/2} + \frac{1}{X} \right) \right)
 \]
-By Hamiltonian symmetry, since eigenvalues must come in quartets. Thus $\lambda_m$ is pure imaginary and $\lambda_{-m} = \lambda_m$. We conclude that the nonzero essential spectrum eigenvalues are given by $\lambda = \pm \lambda_m^{\text{ess}}$, where
+By Hamiltonian symmetry, eigenvalues must come in quartets. Thus $\lambda_m$ is pure imaginary and $\lambda_{-m} = \lambda_m$. We conclude that the nonzero essential spectrum eigenvalues are given by $\lambda = \pm \lambda_m^{\text{ess}}$, where
 \[
 \lambda_m^{\text{ess}} = \frac{m \pi i}{X}\left[1 + \mathcal{O}\left( \frac{1}{X}\left( r^{1/2} + \frac{1}{X} \right) \right) \right] + \mathcal{O}\left( \frac{1}{X}\left( r^{1/2} + \frac{1}{X} \right) \right)
 \]
-is pure imaginary.
+is pure imaginary. This proves \cref{theorem:2peigscase1} part (ii).
 
-\section{Symmetric periodic 2-pulses}
+\section{Interaction eigenvalues}
+
+In this section, we will set up the estimates we need for parts (i) and (iii) of \cref{theorem:2peigscase1}. In both cases, we are looking for eigenvalue $\lambda$ of order $r^{1/2}$. Thus \cref{2detBeqmu} simplifies to
+\begin{equation}\label{2detBint1}
+\begin{aligned}
+\det &B(\mu, r) = \left(-2 c^2 \mu^2 M (2a + c^2 \mu^2 M) +  \mathcal{O}( r^{5/2} )\right) \sinh(\mu X) \\
+&+16 p_1 M \mu^4 ( k_0\sinh(\mu X_0) + k_1 \sinh(\mu X_1) ) \cosh(\mu X) + \mathcal{O}( r^3 ) 
+\end{aligned}
+\end{equation}
+For Case 1, $\lambda X \leq c/2$, thus $\mu X \leq 1/2$. We expand the $\sinh$ and $\cosh$ terms in a Taylor series about 0 to get
+\begin{align*}
+\sinh(\mu X) &= \mu X + \mathcal{O}\left(\mu X \right)^3 \\
+\cosh(\mu X) &= 1 + \mathcal{O}\left(\mu X)^2 \\
+\sinh(\mu X_j) &= \mu X_j + \mathcal{O}\left(\mu X_j \right)^3
+\end{align*}
+Substituting these and simplifying, we obtain 
+\begin{equation}\label{2detBint2}
+\begin{aligned}
+\det &B(\mu, r) = \left(-2 c^2 \mu^2 M (2a + c^2 \mu^2 M) +  \mathcal{O}( r^{5/2} )\right) \left(\mu X + \mathcal{O}\left(\mu X \right)^3 \right) \\
+&+16 p_1 M \mu^4 \left( k_0\left( \mu X_0 + \mathcal{O}\left(\mu X_0 \right)^3\right) + k_1\left( \mu X_1 + \mathcal{O}\left(\mu X_1 \right)^3\right) \right) \left( 1 + \mathcal{O}\left(\mu X)^2\right) \\
+&+ \mathcal{O}( r^3 ) 
+\end{aligned}
+\end{equation}
+Since $k_j$ terms are $\mathcal{O}(r^{1/2})$, this simplifies to 
+\begin{equation}\label{2detBint2}
+\begin{aligned}
+\det &B(\mu, r) = -2 c^2 \mu^2 M (2a + c^2 \mu^2 M)\left( \mu X + \mathcal{O}\left(\mu X \right)^3 \right) 
++ \mathcal{O}( r^3 X ) 
+\end{aligned}
+\end{equation}
+We wish to solve the equation $\det B(\mu, r) = 0$. Next, we scale out the scaling parameter $r$ from the eigenvalues. Let $\mu = r^{1/2}\tilde{\mu}$ and $a = r \tilde{a}(r) = r (\tilde{a}_1(r) + \tilde{a}_2(r))$. From Lemma \ref{lemma:ajparam}, 
+\begin{align}\label{tildea1}
+\tilde{a}_j(r) &= s_0 e^{\alpha \phi/\beta} b_j(r) \left( \beta \cos\left(-\rho \log b_j(r) \right) - \alpha \sin \left(-\rho \log b_j(r) \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha})
+\end{align}
+Making this substitution and dividing by $r^{5/2}$ and the constants out front, we want to solve
+\begin{equation}\label{2detBint4}
+\begin{aligned}
+\tilde{\mu}^2 (2\tilde{a}(r) + c^2 \tilde{\mu}^2 M)\left( \tilde{\mu} X + \mathcal{O}(r X^3)\right) + \mathcal{O}( r^{1/2} X ) = 0
+\end{aligned}
+\end{equation}
+Let $\tilde{\mu}_*(r) = \sqrt{-\frac{2\tilde{a}(r)}{M c^2}}$. Dividing by $X$ and $c^2 M$ and simplifying, we wish to solve $G(\tilde{\mu},r) = 0$, where
+\begin{equation}\label{2detBint4}
+\begin{aligned}
+G(\tilde{\mu},r) = \tilde{\mu}^2 (\tilde{\mu} - \tilde{\mu}_*(r))(\tilde{\mu} + \tilde{\mu}_*(r))\left( \tilde{\mu} + \mathcal{O}(r X^2)\right) + \mathcal{O}( r^{1/2} ) = 0
+\end{aligned}
+\end{equation}
+We expect to have interaction eigenvalues near $\tilde{\mu} = \pm \tilde{\mu}_*(0)$. Taking the derivative with respect to $\tilde{\mu}$ at $\pm \tilde{\mu}_*$, we have
+\[
+\partial_{\tilde{\mu}} G(\pm \tilde{\mu}_*,0) = 2 \tilde{\mu}_*(0)^4 
+\]
+which is 0 if and only if $\tilde{a}(0) = 0$. We will now prove a result giving a criterion for when $\tilde{a}(0) = 0$.
+
+\begin{lemma}\label{lemma:tildea0zero}
+$\tilde{a}_0 = 0$ if and only if the 2-pulse $Q_2(x)$ is parameterized by $b_0(0) = b_1(0) = p_k^*$, where $p_k^*$ is one of the pitchfork bifurcation points in the limiting case where $r = 0$.
+\begin{proof}
+For convenience, let $b_j = b_j(0)$. From \cref{tildea1},
+\begin{align*}
+\tilde{a}_j(0) &= s_0 e^{\alpha \phi/\beta} b_j \left( \beta \cos\left(-\rho \log b_j \right) - \alpha \sin \left(-\rho \log b_j \right) \right)
+\end{align*}
+thus we have
+\begin{align}\label{tildea0}
+\tilde{a}(0) &= s_0 e^{\alpha \phi/\beta}\left[ b_0 \left( \beta \cos\left(-\rho \log b_0 \right) - \alpha \sin \left(-\rho \log b_0 \right)  + b_1 \left( \beta \cos\left(-\rho \log b_1 \right) - \alpha \sin \left(-\rho \log b_1 \right) \right]
+\end{align}
+Recall from the construction of the periodic 2-pulse that
+\begin{equation}\label{b0b1relation}
+b_0 \sin \left(-\rho \log b_0) = b_1 \sin \left(-\rho \log b_1)
+\end{equation}
+BY A TEDIOUS COMPUTATION WHICH IS NOT YET DONE BUT VERY STRONGLY SUGGESTED BY NUMERICS, the only solution to $\tilde{a}(0) = 0$ which satisfies \cref{b0b1relation} is given by 
+\[
+b_0 = b_1 = p_k^*
+\]
+for integer $k$, where $p_k^*$ is one of the pitchfork bifurcation points in the zero set of $H(b_0, b_1)$ from Lemma \ref{pitchforkH}.
+\end{proof}
+\end{lemma}
+
+Since the pitchfork bifurcation points only happen along the diagonal, we will consider the cases of asymmetric and symmetric periodic 2-pulses separately.
+
+\subsection{Asymmetric periodic 2-pulses}
+
+In the asymmetric case, if $X_1 > X_0$, then $b_0(0) \neq b_1(0)$. By \cref{lemma:tildea0zero}, $\tilde{a}_0 \neq 0$, thus $\tilde{\mu}_*(0) \neq 0$. Thus we can use the implicit function theorem to solve \cref{2detBint4} for $\tilde{\mu}$ in terms of $r$ near $\pm \tilde{\mu}_*(0)$. Specifically, there exists $r_1 \leq r_0$ and unique smooth functions $\tilde{\mu}^\pm(r)$ with $\tilde{\mu}^\pm(0) = \pm \tilde{\mu}_*(0)$ such that for all $r \leq r_1^m$, $G(\tilde{\mu}^\pm(r), r) = 0$. Expanding $\tilde{\mu}^\pm(r)$ in a Taylor series about $r = 0$, we have
+for all $r \leq r_1$,
+\[
+\tilde{\mu}^\pm(r) = \pm \tilde{\mu}_*(0) + \mathcal{O}( r^{1/2} )
+\]
+Undoing the scaling, for all $r \leq r_1$, there are interaction eigenvalues located at
+\begin{align*}
+\mu^\pm(r) = \sqrt{-\frac{2 a(0)}{M c^2}} + \mathcal{O}( r^{1/2} )
+\end{align*}
+Changing variables back to $\lambda$, these are located at
+\begin{align*}
+\lambda^\pm(r) = \sqrt{-\frac{2 a(0)}{M}} + \mathcal{O}( r^{1/2} )
+\end{align*}
+By Hamiltonian symmetry, eigenvalues must come in quartets. Thus $\lambda^-(r) = -\lambda^+(r)$, and is either real or pure imaginary. We conclude that there is a pair of interaction eigenvalues which are either real or pure imaginary and are given by
+\[
+\lambda_m^{\text{ess}} = \frac{m \pi i}{X}\left[1 + \mathcal{O}\left( \frac{1}{X}\left( r^{1/2} + \frac{1}{X} \right) \right) \right] + \mathcal{O}\left( \frac{1}{X}\left( r^{1/2} + \frac{1}{X} \right) \right)
+\]
+This proves \cref{theorem:2peigscase1} part (i).
+\[
+\lambda^{\text{int}} = \pm \left( \sqrt{-\frac{2 a(0)}{M}} + \mathcal{O}( r^{1/2} ) \right)
+\]
+
+\subsection{Symmetric periodic 2-pulses}
 
 In this section, we will look at the interaction eigenvalues of the symmetric periodic 2-pulse. For this case, $X_1 = X_0$, $X = 2 X_0$, $k_0 = k_1$, and $a = 2 a_0$. Let
 \[
