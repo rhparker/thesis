@@ -2,11 +2,13 @@
 
 \begin{document}
 
-\chapter{Krein Bubble Stuff}
+\chapter{KdV5}
 
-\section{Double Pulse}
+\section{Periodic 2-pulse}
 
-For simplicity, we will start with the periodic 2-pulse. Let $\delta > 0$ be as in Theorem \ref{blockmatrixtheorem}, and consider eigenvalues $\lambda$ with $|\lambda| < \delta$. For the periodic 2-pulse, the matrix $A$ is
+In this section, we will consider the simplest case, which is the periodic 2-pulse. Let $Q_2(x)$ be a periodic 2-pulse constructed as in Theorem \ref{perexist} with scaling parameter $r$, baseline length parameters $\{b_0^0, b_0^1\}$, and phase parameter $\theta$. Let $X_0$ and $X_1$ be the actual pulse distances, whose dependence on these parameters is given in Theorem \ref{perexist}, and let $X = X_0 + X_1$.  
+
+Let $\delta > 0$ be as in Theorem \ref{blockmatrixtheorem} [Theorem 5.4, the block matrix theorem]. For the periodic 2-pulse, the matrix $A$ is
 \[
 A = \begin{pmatrix}
 -a & a \\
@@ -15,25 +17,105 @@ a & -a
 \]
 where
 \[
-a = a_0 + a_1 = \langle \Psi(X_0), Q'(-X_0) \rangle + \langle \Psi(X_0), Q'(-X_0) \rangle
+a = a_0 + a_1 = \langle \Psi(X_0), Q'(-X_0) \rangle + \langle \Psi(X_1), Q'(-X_1) \rangle
 \]
-and $a = \mathcal{O}(e^{-2\alpha X_m}) = \mathcal{O}(r)$. The eigenvalues of $A$ are $\{0, -2a\}$, thus we expect the interaction eigenvalues to be located at approximately $\pm \sqrt{-2a/M}$. These will be real if $2a/M < 0$ and imaginary if $2a/M > 0$. 
+and $a = \mathcal{O}(e^{-2\alpha X_m}) = \mathcal{O}(r)$. The eigenvalues of $A$ are $\{0, -2a\}$, thus we expect a pair of interaction eigenvalues to be located at approximately $\pm \sqrt{-2a/M}$, which will be real if $2a/M < 0$ and imaginary if $2a/M > 0$. 
 
-We will only consider the case where $2a/M > 0$ here. Since for $2a/M < 0$ we do not have to worry about Krein collisions, that case will be handled by the general theorem. Let $\sqrt{2a/M} > 0$. We expect that there will be a pair of interaction eigenvalues near $\pm \sqrt{2a/M} i$ and essential spectrum eigenvalues near the set 
+We are interested in two parameter regimes. First, we will consider the case where $r$ is sufficiently small so the interaction eigenvalues are smaller in magnitude than the essential spectrum eigenvalues. Next, we will consider the case when a purely imaginary interaction eigenvalues is close to an essential spectrum eigenvalue, which case we will have an instability bubble.
+
+\subsection{Case 1: essential spectrum is out of the way}
+
+In this section, we consider the case where $r$ is sufficiently small so that the essential spectrum is ``out of the way'' of any interaction eigenvalues. Specifically, we impose the following conditions.
+
+\begin{enumerate}[(i)]
+	\item Choose $r_0$ sufficiently small so that
+	$\left| \sqrt{\frac{2a}{M}} \right| X \leq c/2$.
+	\item Consider eigenvalues $\lambda$ with $|\Re \lambda| < C r^{1/2}$
+\end{enumerate}
+
+Since $a = \mathcal{O}(r)$ and $X = \mathcal{O}(\log|r|)$, we can always choose $r$ sufficiently small so that condition (i) is satisfied. Condition (ii) is always satisfied since any interaction eigenvalues will be $\mathcal{O}(r^{1/2})$ and the essential spectrum eigenvalues will be purely imaginary. In this case, we have the following theorem, which locates the interaction and essential spectrum eigenvalues.
+
+\begin{theorem}INT EIGS
+\end{theorem}
+
+\subsection{Case 2: instability bubble}
+
+In this section, we consider what happens when a purely imaginary interaction eigenvalues is close to an essential spectrum eigenvalue. We will show that under certain conditions, an instability bubble forms when essential spectrum eigenvalues (positive Krein signature) collide with interaction eigenvalues (negative Krein signature) on the imaginary axis. In this case, we impose the following conditions.
+
+\begin{enumerate}[(i)]
+	\item Take $2a/M > 0$
+	\item Consider eigenvalues $\lambda$ with $|\Re \lambda| < C r^{1/2}/X^{1/2}$
+	\item For any $r$, consider only $X$ with
+	$\left| r^{1/2} X^{1/2} \right| \leq c/2$. 
+	\end{enumerate}
+
+Condition (i) restricts ourselves to imaginary interaction eigenvalues. For condition (ii), numerical analysis suggests that the instability bubbles have radius less than $\mathcal{O}(r^{1/2}/X^{1/2})$. Since the essential spectrum eigenvalues are separated by $\mathcal{O}(1/X)$, for fixed $r$, the distance between essential spectrum eigenvalues shrinks faster than the radius of the instability bubbles. To prevent adjacent instability bubble from colliding, we impose condition (iii).
+
+For an instability bubble to occur, an essential spectrum eigenvalue must get close to an interaction eigenvalue. Since the two interaction eigenvalues are $\mathcal{O}(r^{1/2})$ and the smallest nonzero essential spectrum eigenvalues is $\mathcal{O}(\log|r|)$, if we decrease $r$, this can never occur. Thus the only way to achieve this is to keep $r$ fixed, so that that the pulse distance $X_0$ is constant to leading order, and to increase $X_1$.
+
+Before we state the theorem, we will illustrate what occurs graphically. Let $s \in [-2, 2]$ be a dimensionless parameter which measures the distance on the imaginary axis between $\lambda_1 i$ and $\lambda_* i$; $s = 0$ corresponds to $X = X^*$. Let $R = R_0 / \sqrt{X^*}$, where $R_0$ is a parameter that depends on $X_0$ and intrinsic properties of the system. We assume that $R_0 > 0$. This can be checked numerically.
+
+We will show that there is a pair of eigenvalues $\lambda_{1,2}$ near $\lambda_* i$ which can be parameterized by $s$. As $s$ decreases from $2$ to $-2$, a pair of purely imaginary eigenvalues collides near $\lambda_* i + i \sqrt{R}$, moves off of the imaginary axis, travels on a circle of radius $\sqrt{R}$ centered at $\lambda_* i$, and recombines near $\lambda_* i - i \sqrt{R}$. This is illustrated in \cref{fig:kreinbubbles}. The numerics match this picture.
+\begin{figure}
+\begin{center}
+\begin{tabular}{ccc}
+\includegraphics[width=5cm]{images/kreinbubbles/bubble2R} &
+\includegraphics[width=5cm]{images/kreinbubbles/bubble105R} &
+\includegraphics[width=5cm]{images/kreinbubbles/bubbleR} \\
+\includegraphics[width=5cm]{images/kreinbubbles/bubble095R} &
+\includegraphics[width=5cm]{images/kreinbubbles/bubble0} &
+\includegraphics[width=5cm]{images/kreinbubbles/bubbleminusR}
+\end{tabular}
+\caption{Plot of the complex plane illustrating eigenvalue collision and Krein bubble as parameter $s$ is decreased. Blue dots are the pair of eigenvalues. Red cross is the point $\lambda_* i$. Vertical line is the imaginary axis. Black dotted circle is the circle of radius $\sqrt{R}$ around $\lambda_*$ }
+\label{fig:kreinbubbles}
+\end{center}
+\end{figure}
+We will call the instability bubble a Krein bubble, since it results from the collision of two imaginary eigenvalues with opposite Krein signatures. Inside the Krein bubble, the eigenvalues $\lambda_{1,2}$ are symmetric across the imaginary axis. Outside the Krein bubble, there is no such symmetry for $\lambda_{1,2}$; since $\lambda_{1,2}$ are purely imaginary, Hamiltonian symmetry tells that there exist eigenvalues $-\lambda_{1,2}$ which are below the real axis.
+
+In the following theorem, we prove that these Krein bubbles occur. Since the bubbles are formed as $X$ is varied near $X^*$ we will parameterize both $X$ and the eigenvalues $\lambda_{1,2}$ by a single dimensionless parameter $s \in [-2, 2]$. THE ``h.o.t'' WILL BE SPECIFIED ONCE THE PROOF IS COMPLETE.
+
+\begin{theorem}
+Let $\delta > 0$ be as in Theorem \ref{blockmatrixtheorem} [Theorem 5.4, the block matrix theorem]. Define
+\begin{itemize}
+\item $\lambda_* = \sqrt{\frac{2 a_0}{M}}$
+\item $\lambda_k = c \frac{k \pi}{X}$, where $k$ is a positive integer such that $\lambda_k < \delta$.
+\item $X_k^* = \frac{c k \pi}{\lambda_*}$
+\item $R_0 = -\frac{4 p_1 k_0}{M}$ [OR SOMETHING CLOSE TO THIS], where $p_1$, $k_0$, and $M$ are defined in Theorem \ref{blockmatrixtheorem} [Theorem 5.4].
+\item $R = \lambda_*^2 R_0 \frac{X_0}{X}$ 
+\end{itemize}
+Assume $R_0 > 0$. Then for sufficiently small $r$, the following is true. Let $s \in [-2, 2]$. For $X = X(s)$ close to $X_k^*$, there exists a pair of eigenvalues located at
+\begin{align*}
+\lambda_{1,2}(s) = \left( \lambda_* + s \sqrt{R} \right) i \pm \sqrt{R(1 - s^2)} + \text{``h.o.t.''}
+\end{align*}
+where
 \[
-S = \left\{ \lambda = \pm c \frac{k \pi i}{X} : k \in Z \text{ and }|\lambda| < \delta  \right\} 
+X(s) = \frac{c k \pi}{s + \lambda_*}
 \]
+and $X(0) = X_k^*$. These eigenvalues have the following configuration.
+\begin{itemize}
+\item For $|s| < 1$, $\lambda_{1,2}(s)$ is symmetric across the imaginary axis, i.e. $\lambda_2(s) = -\overline{\lambda_1}(s)$. For $s = 0$, these are given by
+\[
+\lambda_{1,2}(s) = \lambda_* i \pm (\sqrt{R} + ``h.o.t.'')
+\]
+\item For $|s| \in (1, 2]$, $\lambda_{1,2}(s)$
+are purely imaginary. For $s = 2$, one of $\lambda_{1,2}(s)$ is close to $\lambda_* i$.
+\item At $s = \pm 1$, $\lambda_{1,2}(s)$ collide on the imaginary axis at 
+\[
+\lambda_{1,2}(s) = \lambda_* i \pm (\sqrt{R} + ``h.o.t.'')
+\]
+\end{itemize}
+For $|s| \leq 1$, the eigenvalues $\lambda_{1,2}(s)$ are, to leading order, located on a circle of radius $\sqrt{R}$ about $\lambda_* i$ in the complex plane, where
+\[
+\sqrt{R} = \mathcal{O}\left( r^{3/4}\frac{X_0}{X} \right)
+\]
+\end{theorem}
 
-Numerical analysis suggests the presence of instability bubbles with radius less than $\mathcal{O}(r^{1/2}/X^{1/2})$ when essential spectrum eigenvalues (poositive Krein signature) collide with the interaction eigenvalues (negative Krein signature). As long as the points $\pm \sqrt{2a/M} i$ are further than $r^{1/2}/X^{1/2}$ from every point in $S$, we do not expect to find any instability bubbles. To do our analysis, we will place balls of radius $r^{1/2}/X^{1/2}$ around each point in $S$. Since these balls scale like $X^{-1/2}$ and the distance between the essential spectrum eigenvalues scales like $X^{-1}$, in order for the balls to not overlap, we require the condition
-\begin{equation}\label{rXcondition}
-r^{1/2}X^{1/2} \leq \frac{c \pi}{2}
-\end{equation}
-Since $X = C_1 ( |\log r| + |\log b| + C_2$, we can always choose $r$ sufficiently small so that this is satisfied. If we fix $r$, there is an upper bound for $X$. Essentially, this will prevent us from taking the domain size to infinity.
+\section{Determinant of block matrix}
 
-For the remainder of the section, we will only consider $\lambda$ with $|\Re \lambda| \leq C r^{1/2}/X^{1/2}$. In particular, this implies the following bound.
+In this section, we will compute the determinant of the block matrix from \cref{blockmatrixtheorem} for the periodic 2-pulse. This is a $4 \times 4$ matrix, and although the computation is tedious, it can be done with the aid of Mathematica. Before we can do that, we will prove the following bound which makes this computation significantly easier.
 
 \begin{lemma}\label{lemma:expnubound}
-For $|\lambda| < \delta$ with $|\Re \lambda| \leq C r^{1/2}/X^{1/2}$,
+Let $|\lambda| < \delta$. Then if either the conditions of Case 1 or Case 2 hold, we have the bound
 \begin{equation}\label{expnubound}
 \left|e^{\nu(\lambda)x}\right| \leq C \\
 \end{equation}
@@ -48,12 +130,15 @@ where both of the remainder terms are real. (We split the remainder up into real
 \begin{align*}
 \nu(\lambda)X &= \frac{a}{c}X + i \frac{b}{c}X + \mathcal{O}\left( a(a^2 + \delta^2) X\right) + i \mathcal{O}\left( a(b^2 + \delta^2) X\right)
 \end{align*}
-When we evaluate $|\exp{(\nu(\lambda)X)}|$, the two imaginary terms on the RHS do not contribute. For the other two terms, using \eqref{rXcondition}, we have the bound
+When we evaluate $|\exp{(\nu(\lambda)X)}|$, the two imaginary terms on the RHS do not contribute. For the other two terms, we consider Case 1 and Case 2 separately. For Case 1, $|a| \leq r^{1/2}$ and $r^{1/2}X < C$, thus
+\begin{align*}
+\left| \frac{a}{c}X + \mathcal{O}\left( a(a^2 + \delta^2) X \right) \right| &\leq C(1 + \mathcal{O}(|a|^2 + \delta^2)) \leq C.
+\end{align*} 
+For Case 2, $|a| \leq r^{1/2}/X^{1/2}$ and $r^{1/2}X^{1/2} < C$, thus
 \begin{align*}
 \left| \frac{a}{c}X + \mathcal{O}\left( a(a^2 + \delta^2) X \right) \right| &\leq C r^{1/2}X^{1/2}(1 + |a|^2 + \delta^2) \leq C r^{1/2}X^{1/2} (1 + \delta^2) \leq C
 \end{align*} 
-where the constant $C$ only depends on $\delta$. 
-Thus
+In both cases, the constant $C$ only depends on $\delta$, and so we have
 \begin{align*}
 |\exp{(\nu(\lambda)X)}| &\leq
 \exp{ \left| \frac{a}{c}X + \mathcal{O}\left( a(a^2 + \delta^2) X \right) \right| } \leq C
@@ -62,13 +147,13 @@ The same bound holds for $|x| \leq X$.
 \end{proof}
 \end{lemma}
 
-The first step is to compute the determinant of the block matrix in Theorem \ref{blockmatrixtheorem} for the periodic 2-pulse. Since this is a $4\times 4$ matrix with tons of remainder terms, we will do this with Mathematica.
+Next, we compute the determinant of the block matrix in Theorem \ref{blockmatrixtheorem} for the periodic 2-pulse. Since this is a $4\times 4$ matrix with tons of remainder terms, our only hope is to do this with Mathematica.
 
 \begin{lemma}\label{2blockmatrix}
 For $|\lambda| < \delta$ with $|\Re \lambda| \leq C r^{1/2}X^{1/2}$, the determinant of the block matrix $B$ is 
 \begin{equation}\label{2detBeq}
 \begin{aligned}
-\det &B = \left(-2 \lambda^2 M (2a + \lambda^2 M) +  \mathcal{O}( (r^{1/2} + |\lambda|)^5 )\right) \sinh(\nu(\lambda)X) \\
+\det &B(\lambda, r) = \left(-2 \lambda^2 M (2a + \lambda^2 M) +  \mathcal{O}( (r^{1/2} + |\lambda|)^5 )\right) \sinh(\nu(\lambda)X) \\
 &+16 p_1 M \lambda^4 ( k_0\sinh(\nu(\lambda)X_0) + k_1 \sinh(\nu(\lambda)X_1) ) \cosh(\nu(\lambda)X)  \\
 &+ \mathcal{O}( (r^{1/2} + |\lambda|)^6) 
 \end{aligned}
@@ -117,7 +202,7 @@ G_j = \begin{pmatrix}t^j_1 & t^j_2 \\ t^j_3 & t^j_4 \end{pmatrix}
 where the the coefficients $t^j_k$ have bounds given by \cref{Gimatrixbounds}. We then use Mathematica to expand the determinant, and we track each of the $t^j_k$. Doing all of this, we have
 \begin{equation}\label{2detB1}
 \begin{aligned}
-\det &B = \sinh(\nu(\lambda)X)\left(-2 \lambda^2 M (2a + \lambda^2 M) +  \mathcal{O}( (r^{1/2} + |\lambda|)^5 )\right) \\
+\det &B(\lambda, r) = \sinh(\nu(\lambda)X)\left(-2 \lambda^2 M (2a + \lambda^2 M) +  \mathcal{O}( (r^{1/2} + |\lambda|)^5 )\right) \\
 &+4\lambda^4 p_1 k_0 M \left( \sinh(\nu(\lambda)(2 X_0 + X_1)) - 3 \sinh(\nu(\lambda)X_1)  \right) \\
 &+4\lambda^4 p_1 k_1 M \left( \sinh(\nu(\lambda)(2 X_1 + X_0)) - 3 \sinh(\nu(\lambda)X_0)  \right) \\
 &+ \mathcal{O}( (r^{1/2} + |\lambda|)^6) 
@@ -137,16 +222,194 @@ Using this with the second line of \cref{2detB1},
 since $k_0 = \mathcal{O}(r^{1/2})$ and $|\cosh(\nu(\lambda)X_0)|\leq C$ by Lemma \ref{lemma:expnubound}. Doing the same thing for the third line of \cref{2detB1}, we have
 \begin{equation*}
 \begin{aligned}
-\det &B = \left(-2 \lambda^2 M (2a + \lambda^2 M) +  \mathcal{O}( (r^{1/2} + |\lambda|)^5 )\right) \sinh(\nu(\lambda)X) \\
+\det &B(\lambda, r) = \left(-2 \lambda^2 M (2a + \lambda^2 M) +  \mathcal{O}( (r^{1/2} + |\lambda|)^5 )\right) \sinh(\nu(\lambda)X) \\
 &+16 p_1 M \lambda^4 ( k_0\sinh(\nu(\lambda)X_0) + k_1 \sinh(\nu(\lambda)X_1) ) \cosh(\nu(\lambda)X)  \\
 &+ \mathcal{O}( (r^{1/2} + |\lambda|)^6) 
 \end{aligned}
 \end{equation*}
+\end{proof}
+\end{lemma}
+
+We now have an equation we can solve to find the eigenvalues $\lambda$. However, this equation involves both $\lambda$ and $\nu(\lambda)$, which is annoying. We will simplify the problem by making a change of variables. Since $\nu'(0) = 1/c$ and $\nu(0) = 0$, $\nu(\lambda)$ is invertible near 0. If necessary, decrease $\delta$ so that $\nu(\lambda)$ is invertible for $|\lambda| < \delta$. Let $\lambda = \nu^{-1}(\mu)$. Expanding in Taylor series about $\mu = 0$, we have
+\[
+\nu^{-1}(\mu) = c \mu + \mathcal{O}(\mu^3)
+\]
+Substituting this into \cref{2detBeq} and simplifying, 
+\begin{equation}\label{2detBeqmu}
+\begin{aligned}
+\det &B(\mu, r) = \left(-2 c^2 \mu^2 M (2a + c^2 \mu^2 M) +  \mathcal{O}( (r^{1/2} + |\mu|)^5 )\right) \sinh(\mu X) \\
+&+16 p_1 M \mu^4 ( k_0\sinh(\mu X_0) + k_1 \sinh(\mu X_1) ) \cosh(\mu X)  \\
+&+ \mathcal{O}( (r^{1/2} + |\mu|)^6) 
+\end{aligned}
+\end{equation}
+To find the eigenvalues, we will find the zeros of \cref{2detBeqmu}. We will do this for several specific cases.
+
+\section{Computation of coefficients $a_j$}
+
+Next, we compute the coefficients $a_j$ in the lower right block of the block matrix in terms of the the parameterization of the multi-pulse.
+
+\begin{lemma}\label{lemma:ajparam}
+For the coefficients $a_j$ in the block matrix equation, 
+\begin{equation}\label{ajparam}
+a_j = s_0 e^{\alpha \phi/\beta} r b_j \left( \beta \cos\left(-\rho \log b_j \right) - \alpha \sin \left(-\rho \log b_j \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha})
+\end{equation}
+
+\begin{proof}
+From \cite[Lemma 6.1]{Sandstede1998},
+\begin{align*}\label{IPpsiQprime}
+\langle \Psi(-x), Q'(x) \rangle
+&= s_0 e^{-2 \alpha x}\left( \beta \cos(2 \beta x + \phi) - \alpha \sin(2 \beta x + \phi)\right) + \mathcal{O}(e^{-(2 \alpha + \gamma) x}
+\end{align*}
+where $s_0 > 0$ and $\gamma$ are the same as in Lemma \ref{IPform}. Thus we have
+\begin{align*}
+a_j &= \langle \Psi(-X_j), Q'(X_j) \rangle \\
+&= s_0 e^{-2 \alpha X_j}\left( \beta \cos(2 \beta X_j + \phi) - \alpha \sin(2 \beta X_j + \phi)\right) + \mathcal{O}(e^{-(2 \alpha + \gamma) X_j}) \\
+&= s_0 e^{\alpha \phi/\beta} r b_j \left( \beta \cos\left( -\frac{\beta}{\alpha} \log(b_j r) \right) - \alpha \sin \left( -\frac{\beta}{\alpha} \log(b_j r) \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha} b_j^{1 + \gamma/2\alpha}) \\
+&= s_0 e^{\alpha \phi/\beta} r b_j \left( \beta \cos\left( -\rho \log(b_j r) \right) - \alpha \sin \left( -\rho \log(b_j r) \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha})
+\end{align*}
+since $b_j \in (0, 1]$. Since $r \in \mathcal{R}$, $r = \exp\left(-\frac{2 m \pi}{\rho}\right)$ for some nonnegative integer $m$, this becomes 
+\begin{align*}
+a_j &= s_0 e^{\alpha \phi/\beta} r b_j \left( \beta \cos\left( 2 m \pi -\rho \log b_j \right) - \alpha \sin \left( 2 m \pi -\rho \log b_j \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha}) \\
+&= s_0 e^{\alpha \phi/\beta} r b_j \left( \beta \cos\left(-\rho \log b_j \right) - \alpha \sin \left(-\rho \log b_j \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha})
+\end{align*}
 
 \end{proof}
 \end{lemma}
 
-To find the eigenvalues, we will solve $\det B = 0$, where $\det B$ is given by Lemma \cref{lemma:expnubound}. 
+\section{Essential spectrum eigenvalues}
+
+In this section, we will look for the essential spectrum eigenvalues. We will only do this for Case 1. In terms of $\mu$, we expect to find the essential spectrum eigenvalues near $\pm m \pi i/X$ for integer $k$. Let $r_0$ be as above, and for $r = r_0$, let $M$ be the largest integer such that $\left| \frac{M \pi}{X} \right| < \delta$. Let $m$ be a nonzero integer with $|m| \leq M$, and let
+\[
+\mu_m = \frac{m \pi i}{X} + \frac{h}{X}
+\]
+Expanding the $\sinh(\mu_m X)$ and $\cosh(\mu_m X)$ terms in \cref{2detBeqmu} about $m \pi/X$, we have
+\begin{align*}
+\sinh(\mu_m X) &= (-1)^m h + \mathcal{O}(h^3) \\
+\cosh(\mu_m X) &= (-1)^m + \mathcal{O}(h^2) \\
+\end{align*}
+By \cref{lemma:expnubound}, the $\sinh(\mu_m X_j)$ terms in \cref{2detBeqmu} are bounded by a constant. The $k_j$ terms are $\mathcal{O}(r^{1/2})$. By the assumptions in Case 1, $|\mu_m| \geq C r^{1/2}$. Substituting these into \cref{2detBeqmu}, we have 
+\begin{equation}\label{Bess1}
+\begin{aligned}
+\det &B(h, r) = \left(-2 c^2 M  \mu_m^2 \left( 2a + c^2 M \mu_m \right)^2 + \mathcal{O}( |\mu_m|)^5 \right) \left( (-1)^m h + \mathcal{O}(h^3) \right) \\
+&+ \mu_m^4 \left( (-1)^m + \mathcal{O}(h^2)\right)\mathcal{O}(r^{1/2}) + \mathcal{O}\left( |\mu_m| \right)^6 \\
+&= \left(-2 c^2 M  \mu_m^2 \left( 2a + c^2 M \mu_m \right)^2 + \mathcal{O}( |\mu_m|)^5 \right) \left( (-1)^m h + \mathcal{O}(h^3) \right) + \mathcal{O}\left( |\mu_m|^4(r^{1/2} + |\mu_m|) \right)
+\end{aligned}
+\end{equation}
+We want to solve $\det B(\mu, r) = 0$. To simplify, let $\mu_* = \sqrt{-\frac{2a}{M c^2}}$. Dividing by $(-1)^m$, $M c^2$, and the constants out front, we want to solve 
+\begin{equation}\label{Bess2}
+\begin{aligned}
+\left(\mu_m^2 (\mu_m - \lambda_*)(\mu_m + \lambda_*) + \mathcal{O}( |\mu_m|)^5 \right) \left( h + \mathcal{O}(h^3) \right) + \mathcal{O}\left( |\mu_m|^4(r^{1/2} + |\mu_m|) \right) = 0
+\end{aligned}
+\end{equation}
+Since $\mu_m \neq 0$, divide by $\mu_m^2$ to get
+\begin{equation}\label{Bess3}
+\begin{aligned}
+\left((\mu_m - \lambda_*)(\mu_m + \lambda_*) + \mathcal{O}( |\mu_m|)^3 \right) \left( h + \mathcal{O}(h^3) \right) + \mathcal{O}\left( |\mu_m|^2(r^{1/2} + |\mu_m|) \right) = 0
+\end{aligned}
+\end{equation}
+Finally, multiply by $X^2$ and substitute for $\mu_m$. Since $m \leq M$, simplify the remainder terms to get $F_m(h, r) = 0$, where
+\begin{equation}\label{Bess4}
+\begin{aligned}
+F_m(h, r) &= (m \pi i + h - \lambda_* X)(m \pi i + h + \lambda_* X) \left( h + \mathcal{O}(h^3) \right) + \mathcal{O}\left( r^{1/2} + \frac{1}{X} \right)
+\end{aligned}
+\end{equation}
+Since $X = \mathcal{O}(1/\log|r|)$, $F(0,0) = 0$. Since $\lambda_* = \mathcal{O}(r^{1/2})$, $\lambda_* X \rightarrow 0$ as $r \rightarrow 0$. Thus we have
+\[
+\partial_h F(0,0) = -m^2 \pi^2
+\]
+For all $m$ between 1 and $M$, $|\partial_h F(0,0)| \geq \pi^2 > 0$. Thus we can use the implicit function theorem to solve for $h$ in terms of $r$ near $h = 0$. Specifically, there exists $r_1^m \leq r_0$ and a unique smooth function $h_m(r)$ with $h_m(0) = 0$ such that for all $r \leq r_1^m$, $F(h_m(r),r) = 0$. Expanding $h_m$ in a Taylor series about $r = 0$, we have for all $|m| \leq M$,
+\[
+h_m(r) = \mathcal{O}\left( r^{1/2} + \frac{1}{X} \right)
+\]
+Do this for all $|m| \leq M$, and let $r_1 = \min\{ r_1^m \}$. Undoing the scaling, for all $r \leq r_1$ and for all nonzero integers $m$ with $|m| \leq M$, there are essential spectrum eigenvalues located at
+\[
+\mu_m = \frac{m \pi i}{X} + \mathcal{O}\left( \frac{1}{X}\left( r^{1/2} + \frac{1}{X} \right) \right)
+\]
+Changing variables back to $\lambda$, these are located at
+\[
+\lambda_m = \frac{m \pi i}{X}\left[1 + \mathcal{O}\left( \frac{1}{X}\left( r^{1/2} + \frac{1}{X} \right) \right) \right] + \mathcal{O}\left( \frac{1}{X}\left( r^{1/2} + \frac{1}{X} \right) \right)
+\]
+By Hamiltonian symmetry, since eigenvalues must come in quartets. Thus $\lambda_m$ is pure imaginary and $\lambda_{-m} = \lambda_m$. We conclude that the nonzero essential spectrum eigenvalues are given by $\lambda = \pm \lambda_m^{\text{ess}}$, where
+\[
+\lambda_m^{\text{ess}} = \frac{m \pi i}{X}\left[1 + \mathcal{O}\left( \frac{1}{X}\left( r^{1/2} + \frac{1}{X} \right) \right) \right] + \mathcal{O}\left( \frac{1}{X}\left( r^{1/2} + \frac{1}{X} \right) \right)
+\]
+is pure imaginary.
+
+\section{Symmetric periodic 2-pulses}
+
+In this section, we will look at the interaction eigenvalues of the symmetric periodic 2-pulse. For this case, $X_1 = X_0$, $X = 2 X_0$, $k_0 = k_1$, and $a = 2 a_0$. Let
+\[
+\mu_* = \sqrt{-\frac{4a_0}{M c^2}}
+\]
+Thus we have
+\begin{equation}\label{Bsymmetric1}
+\begin{aligned}
+\det &B(\mu, r) = \left(-2 c^2 \mu^2 M (4a_0 + c^2 \mu^2 M) +  \mathcal{O}( (r^{1/2} + |\mu|)^5 )\right) \sinh(2 \mu X_0) \\
+&+32 p_1 M \mu^4 k_0\sinh(\mu X_0) \cosh(2 \mu X_0) + \mathcal{O}( (r^{1/2} + |\mu|)^6) 
+\end{aligned}
+\end{equation}
+Since $a = \mathcal{O}(r)$, $\mu = \mathcal{O}(r^{1/2})$. We are looking for $\mu$ close to $\lambda_*$. Since $X_0 = \mathcal{O}(\log|r|)$, choose $r$ sufficiently small so that $\mu X_0 < 1/2$. Then we can expand the $\sinh$ and $\cosh$ terms in a Taylor series about 0 to get
+\begin{align*}
+\sinh(2\mu X_0) &= 2 \mu X_0 + \mathcal{O}\left(\mu X_0 \right)^3 \\
+\cosh(2\mu X_0) &= 1 + \mathcal{O}\left(\mu X_0 \right)^2
+\end{align*}
+Substituting these, we have
+\begin{equation}\label{Bsymmetric2}
+\begin{aligned}
+\det &B(\mu, r) = \left(-2 c^2 \mu^2 M (4a_0 + c^2 \mu^2 M) +  \mathcal{O}( (r^{1/2} + |\mu|)^5 )\right) \left( 2 \mu X_0 + \mathcal{O}\left(\mu X_0 \right)^3 \right) \\
+&+32 p_1 M \mu^4 k_0 \left( 2 \mu X_0 + \mathcal{O}\left(\mu X_0 \right)^3 \right) \left( 1 + \mathcal{O}\left(\mu X_0 \right)^2 \right) + \mathcal{O}( (r^{1/2} + |\mu|)^6) 
+\end{aligned}
+\end{equation}
+Using $\mu = \mathcal{O}(r^{1/2})$, $k_0 = \mathcal{O}(r^{1/2})$, and dividing by the constants out front, we obtain the equation
+\begin{equation*}
+\begin{aligned}
+G(\mu, r) = \mu^2 (4a_0 + c^2 \mu^2 M) \mu X_0 + \mathcal{O}( r^3 X_0 ) 
+\end{aligned}
+\end{equation*}
+Dividing by $c^2 M$ and $X_0$, and letting
+\begin{equation}
+\mu_* = \sqrt{- \frac{4 a_0}{c^2 M}}
+\end{equation}
+this becomes
+\begin{equation*}
+\begin{aligned}
+G(\mu, r) = \mu^3 (\mu - \mu_*)(\mu + \mu_*) + \mathcal{O}( r^3 ) 
+\end{aligned}
+\end{equation*}
+Rescale the system by taking $\mu = r^{1/2} \tilde{\mu}$ and $\mu_* = r^{1/2} \tilde{\mu_*}$. Substituting these and dividing by $r^{5/2}$, we have
+\begin{equation*}
+\begin{aligned}
+G(\tilde{\mu}, r) = \tilde{\mu}^3 (\tilde{\mu} - \tilde{\mu}_*)(\tilde{\mu} + \tilde{\mu}_*) + \mathcal{O}( r^{1/2} ) 
+\end{aligned}
+\end{equation*}
+For $r = 0$, this has a triple zero at $\tilde{\mu} = 0$, which corresponds to the three kernel eigenfunctions. The interaction eigenvalues will occur near $\mu = \pm \tilde{\mu}$. At $\mu = \pm \pm \tilde{\mu}$, 
+\[
+\partial_{\tilde{\mu}}G(\pm \tilde{\mu}_*, 0) = 2 \tilde{\mu}_*^4
+\]
+Thus as long as $\tilde{\mu}_* \neq 0$, we can use the IFT. Since $\tilde{\mu}_* = 0$ if and only if $a_0 = 0$, we need to figure out when $a_0 = 0$. For the symmetric periodic 2-pulse, the baseline length parameters are $b_0^0 = b_0^0$, which are either $1$ or $e^{-\frac{1}{\rho} \pi}$. Thus for the length parameters, we have
+\[
+b_0^*(m, \theta) = b_1^*(m, \theta) = e^{-\frac{1}{\rho}(m \pi - \theta) }
+\]
+where either $m = 0$ or $m = 1$. Substituting these into the expression \cref{ajparam} from \cref{lemma:ajparam}, 
+\begin{align*}
+a_0 &= s_0 e^{\alpha \phi/\beta} r e^{-\frac{1}{\rho}(m \pi - \theta) } \left( \beta \cos\left(-\rho \log e^{-\frac{1}{\rho}(m \pi - \theta) } \right) - \alpha \sin \left(-\rho \log e^{-\frac{1}{\rho}(m \pi - \theta) } \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha}) \\
+&= s_0 e^{\alpha \phi/\beta} r e^{-\frac{1}{\rho}(m \pi - \theta) } \left( \beta \cos\left( m \pi - \theta \right) - \alpha \sin \left( m \pi - \theta \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha}) \\
+&= (-1)^m s_0 e^{\alpha \phi/\beta} r e^{-\frac{1}{\rho}(m \pi - \theta) } \left( \beta \cos \theta + \alpha \sin \theta \right) + \mathcal{O}(r^{1+\gamma/2\alpha}) 
+\end{align*}
+To scale out $r$, let $a_0 = r \tilde{a}_0$. Then, writing $\tilde{a}_0$ as a function of $r$ and $\theta$,
+\begin{align*}
+\tilde{a}_0(r, \theta)
+&= (-1)^m s_0 e^{\alpha \phi/\beta} e^{-\frac{1}{\rho}(m \pi - \theta) } \left( \beta \cos \theta + \alpha \sin \theta \right) + \mathcal{O}(r^{1+\gamma/2\alpha}) 
+\end{align*}
+When $r = 0$, $\tilde{a}_0(\theta) = 0$ if and only if $\beta \cos \theta + \alpha \sin \theta = 0$, i.e.
+\[
+\theta = -\arctan \rho
+\]
+At this value of $\theta$,
+\[
+b_0^*(m, \theta) = b_1^*(m, \theta)= e^{-\frac{1}{\rho}(m \pi - \theta)} = p^*_m
+\]
+where $p^*_m$ is the pitchfork bifurcation point for the zero set of $H(b_1, b_2)$ when $r = 0$. We want to show that $\tilde{a}_0(r, p^*_m) = p_m(r)$, i.e. this occurs at the pitchfork bifurcation point of the perturbed system.
 
 \subsection{Krein bubble}
 
@@ -180,6 +443,8 @@ Since we are assuming $2a/M > 0$ and $c>0$, we can divide \cref{Bsimple2} by $c^
 \left((\mu + b i)(\mu - b i) +  \mathcal{O}( r^{3/2} )\right) \sinh(\mu )X) - \left(\frac{k}{M} \mu^2 + \mathcal{O}( r^{5/2} ) \right)\cosh(\mu X)+ \mathcal{O}( r^2 ) = 0
 \end{aligned}
 \end{equation}
+
+
 
 We will first look at what happens near $bi$ in the case where $bi$ is close to one of the essential spectrum eigenvalues. We note that this requires $X_1 > X_0$ (by a significant amount, as it turns out). First, let 
 \[
@@ -337,7 +602,7 @@ This is annoying, but I think we can get around it in the following way.
 \begin{enumerate}
 \item Choose any $\epsilon > 0$. Then on the interval $I_\epsilon = [-\sqrt{R^*} + \epsilon, \sqrt{R^*} - \epsilon]$, $\partial_{h^*} G(s^*, h^*(s^*), 0)$ is bounded away from 0 (with bound dependent on $\epsilon$). Since this bound is uniform in $s^*$, it should follow from either a uniform version of the IFT or the uniform contraction mapping principle that there exists $r_0$ such that we can solve for $h^*$ in terms of $s^*$ for all $r < r_0$. This lets us do everything except actually close the bubble at the top and bottom.
 
-\item Either do the same thing for $s^* = -\sqrt{R^*} + \epsilon$ and $s^* = \sqrt{R} - \epsilon$ to get solutions which must be on the imaginary axis (by Hamiltonian symmetry) or use the fact (that we proved) that Krein bubbles cannot happen if we are more than $C r^{1/2}/X^{1/2}$ from the interaction eignvalue. Either way, we have points above and below the bubble which we know are on the imaginary axis. Since the eigenvalues are continuous in $X$, the bubble must close.
+\item Either do the same thing for $s^* = -\sqrt{R^*} + \epsilon$ and $s^* = \sqrt{R} - \epsilon$ to get solutions which must be on the imaginary axis (by Hamiltonian symmetry) or use the fact (that we proved) that Krein bubbles cannot happen if we are more than $C r^{1/2}/X^{1/2}$ from the interaction eigenvalue. Either way, we have points above and below the bubble which we know are on the imaginary axis. Since the eigenvalues are continuous in $X$, the bubble must close.
 
 \item Alternatively, just use the IFT at $s^* = 0$ (widest part of bubble) and $s^* = \sqrt{2R}$ (outside bubble), and let continuity and Hamiltonian symmetry take care of the rest.
 
@@ -449,9 +714,9 @@ As in the previous lemma, we wish to solve
 \end{equation*}
 Here, we are interested in what happens near where $\lambda$ is close to $c \frac{k \pi i}{X}$. Let 
 \[
-\lambda_0 = c \frac{k \pi i}{X}
+\lambda_k = c \frac{k \pi i}{X}
 \]
-where $k$ is a nonzero integer sufficiently small so that $|\lambda_0| < \delta$. Without loss of generality, take $k > 0$; the case where $k < 0$ follow by symmetry. Let
+where $k$ is a nonzero integer sufficiently small so that $|\lambda_k| < \delta$. Without loss of generality, take $k > 0$; the case where $k < 0$ follow by symmetry. Let
 \[
 \lambda = \lambda_k + \frac{h}{X}.
 \]
@@ -715,5 +980,10 @@ This is the radius in the perturbation $h$. Since $\lambda = (n \pi i + h i)/X$,
 \frac{\sqrt{R}}{X} = \frac{b}{c} \sqrt{\frac{p_1 k_0 X_0 }{M X} } = \mathcal{O}\left(\frac{ X_0^{1/2} e^{-(5/2) \alpha X_0} }{X^{1/2}} \right)
 \] 
 Numerics confirms the scaling in $X$ to high accuracy. There is no easy way to confirm the scaling in $X_0$ numerically, but questionably crude numerics confirms the scaling in $X_0$ to reasonable accuracy.
+
+\iffulldocument\else
+	\bibliographystyle{amsalpha}
+	\bibliography{thesis.bib}
+\fi
 
 \end{document}

@@ -10,7 +10,7 @@ In this chapter, we look at the spectral stability of the periodic multi-pulses 
 
 \section{Setup of problem}
 
-Let $Q_n(x)$ be a periodic $n-$pulse solution constructed according to Theorem \ref{perexist}. As in \cref{chapter:kdv5periodic}, we will use Lin's method to construct an eigenfunction $V(x)$ as a small perturbation of a piecewise linear combination of the kernel eigenfunctions $\partial_x Q_n(x)$ and $\partial_c Q_n(x)$. For $X_m = \min\{X_0, \dots, X_{n-1} \}$ sufficiently large and $\lambda$ sufficiently small, Lin's method provides a unique function $V(x)$ which solves \cref{PDEeigsystem} but which generically has $n$ jumps. Since we are not using an exponential weight, equation \cref{PDEeigsystem} has a center direction, which will imply that these $n$ jumps $V(x)$ can be the two-dimensional space spanned by $\Psi(0)$ and $\Psi^c(0)$. This gives us $2n$ jump conditions. Finding the eigenvalues amounts to solving the $2n$ jump conditions.
+Let $Q_n(x)$ be a periodic $n-$pulse solution constructed according to Theorem \ref{perexist}. As in \cref{chapter:kdv5periodic}, we will use Lin's method to construct an eigenfunction $V(x)$ as a small perturbation of a piecewise linear combination of the kernel eigenfunctions $\partial_x Q_n(x)$ and $\partial_c Q_n(x)$. For $X_m = \min\{X_0, \dots, X_{n-1} \}$ sufficiently large and $\lambda$ sufficiently small, Lin's method provides a unique function $V(x)$ which solves \cref{PDEeigsystem} but which generically has $n$ jumps. Since we are not using an exponential weight, equation \cref{PDEeigsystem} has a center direction, which will imply that these $n$ jumps are in the two-dimensional space spanned by $\Psi(0)$ and $\Psi^c(0)$. This gives us $2n$ jump conditions. Finding the eigenvalues amounts to solving the $2n$ jump conditions.
  
 The first step is to rewrite the eigenvalue problem \cref{PDEeigsystem} as
 \begin{equation}\label{PDEeig3}
@@ -87,7 +87,7 @@ this provides a method way of computing $V^c(x)$ numerically, as long as the app
 
 \section{Block matrix theorem}
 
-We can now state the main theorem of this chapter which provides a condition for $\lambda$ to be an eigenvalue of \eqref{PDEeig3}. This theorem is analagous to \cite[Theorem 2]{Sandstede1998}, where the matrix $A$ replaced by a block matrix.
+We can now state the main theorem of this chapter which provides a condition for $\lambda$ to be an eigenvalue of \eqref{PDEeig3}. This theorem is analogous to \cite[Theorem 2]{Sandstede1998}, where the matrix $A$ replaced by a block matrix.
 
 % block matrix theorem
 \begin{theorem}\label{blockmatrixtheorem}
@@ -177,7 +177,7 @@ for $\alpha$ slightly smaller than $\alpha_0$ (which is defined precisely in the
 \end{enumerate}
 \end{theorem}
 
-We expect to find eigenvalues near where the two leading order blocks, $A - \lambda^2 MI$ and $K(\lambda)$, are singular. As in \cref{chapter:kdv5homoclinic}, points where $A - \lambda^2 MI$ is singular give us the interaction eigenvalues as well as two kernel eigenvalues. $K(\lambda)$ is singular for a discrete set of points on the imaginary axis. These are the periodic analogue to the essential spectrum in the $n$-homoclinic case. Although they are techically still point spectrum, we will refer to them as essential spectrum eigenvalues to distinguish them from the interaction eigenvalues.
+We expect to find eigenvalues near where the two leading order blocks, $A - \lambda^2 MI$ and $K(\lambda)$, are singular. As in \cref{chapter:kdv5homoclinic}, points where $A - \lambda^2 MI$ is singular give us the interaction eigenvalues as well as two kernel eigenvalues. $K(\lambda)$ is singular for a discrete set of points on the imaginary axis. These are the periodic analogue to the essential spectrum in the $n$-homoclinic case. Although they are technically still point spectrum, we will refer to them as essential spectrum eigenvalues to distinguish them from the interaction eigenvalues.
 
 We also note that although the expressions for the remainder matrices in \cref{blockmatrixtheorem} seem tediously detailed, this will be useful for the proof of results in a later section.
 
@@ -635,7 +635,7 @@ Although $V(x; \Lambda)$ is only defined for $x \leq -M$, we extend $V(x; \Lambd
 \end{proof}
 \end{lemma}
 
-As a corollary to this, we state and prove the Conjugation Lemma, which allows us to make a smooth change of coordinates to convert the linear ODE $Z'(x) = A^\pm(x) Z(x)$ into a constant coefficient system.
+As a corollary to this, we state and prove the Conjugation Lemma, which allows us to make a smooth change of coordinates to convert the linear ODE $W'(x) = (x) W(x)$ into a constant coefficient system.
 
 % Conjugation lemma
 \begin{lemma}[Conjugation Lemma]
@@ -675,25 +675,26 @@ Z'(x) = A^\pm(\Lambda) Z(x) + P_\pm(x, \Lambda)^{-1} G(x) P_\pm(x, \Lambda) + P_
 \begin{proof}
 We will prove this for the case where $F(x) = 0$ and $G(x) = 0$. The form of the conjugated system easily follows for general $F$ and $G$. We will also only consider the case on $\R^-$. The other case is similar. 
 
-Let $W = P_-(x, \Lambda) Z$, where we will determine $P_-(x, \Lambda)$ later. Suppose that \eqref{conjZ} holds. Substituting \eqref{conjZ} into \eqref{EVPconj}, we get
+Let $W = P_-(x, \Lambda) Z$, where we will determine $P_-(x, \Lambda)$ later. Suppose that \cref{conjZ} is true. Substituting $W = P_-(x, \Lambda) Z$ into \eqref{EVPconj} and simplifying, we get
 \begin{align*}
 [P_-(x, \Lambda) Z(x)]' &= A(x; \Lambda)(P_-(x, \Lambda) Z(x)) \\
 P_-'(x, \Lambda) Z(x) + P_-(x, \Lambda) Z'(x)
 &= A(x; \Lambda)P_-(x, \Lambda) Z(x) \\
-P_-'(x, \Lambda) Z(x) + P_-(x, \Lambda) A_- Z(x)
+P_-'(x, \Lambda) Z(x) + P_-(x, \Lambda) A_-(\Lambda) Z(x)
 &= A(x; \Lambda)P_-(x, \Lambda) Z(x)
 \end{align*}
-Rearranging this, we obtain
-\begin{equation}
+where we used \cref{conjZ} in the third line. Rearranging this, we obtain
+\begin{equation*}
 P_-'(x, \Lambda) Z(x)
-= [A(x; \Lambda)P_-(x, \Lambda) - P_-(x, \Lambda) A_-]Z(x)
-\end{equation}
+= [A(x; \Lambda)P_-(x, \Lambda) - P_-(x, \Lambda) A_-(
+\Lambda)]Z(x)
+\end{equation*}
+This suggests that $P_-(x, \Lambda)$ should satisfy the ODE
+\begin{align}\label{Pprimecriterion}
+P_-'(x, \Lambda) = A(x; \Lambda)P_-(x, \Lambda) - P_-(x, \Lambda) A_-(\Lambda)
+\end{align}
 
-Suppose now that
-\[
-P_-'(x, \Lambda) = A(x; \Lambda)P_-(x, \Lambda) - P_-(x, \Lambda) A_-
-\]
-Upon making the substitution $W = P_-(x, \Lambda) Z$, \eqref{EVPconj} reduces to
+Suppose that \cref{Pprimecriterion} is true. Substituting $W = P_-(x, \Lambda) Z$ and using \cref{Pprimecriterion}, equation \cref{EVPconj} reduces to
 \begin{align*}
 [P_-(x, \Lambda) Z(x)]' &= A(x; \Lambda)(P_-(x, \Lambda) Z(x)) \\
 P_-'(x, \Lambda) Z(x) + P_-(x, \Lambda) Z'(x)
@@ -702,24 +703,21 @@ P_-'(x, \Lambda) Z(x) + P_-(x, \Lambda) Z'(x)
 &= A(x; \Lambda)P_-(x, \Lambda) Z(x) \\
 A(x; \Lambda)P_-(x, \Lambda)Z(x) - P_-(x, \Lambda) A_- Z(x) + P_-(x, \Lambda) Z'(x)
 &= A(x; \Lambda)P_-(x, \Lambda) Z(x) \\
-P_-(x, \Lambda) Z'(x) &= P_-(x, \Lambda) A_- Z(x) \\
-Z'(x) &= A_- Z(x)
+P_-(x, \Lambda) Z'(x) &= P_-(x, \Lambda) A_- Z(x) 
 \end{align*}
-where the last line follows if $P_-(x, \Lambda)$ is invertible. Thus we only need to verify that this is the case. In other words, we need to find $P_-(x, \Lambda)$ such that
-\[
-P_-'(x, \Lambda) = A(x; \Lambda)P_-(x, \Lambda) - P_-(x, \Lambda) A_-
-\]
-We note that the this equation has the form 
+If $P_-(x, \Lambda)$ is invertible, then $Z'(x) = A_- Z(x)$.
+
+Thus all that remains is to find an invertible operator $P_-(x, \Lambda)$ which satisfies \cref{Pprimecriterion}. Equation \cref{Pprimecriterion} has the form 
 \begin{equation}\label{solvePminus}
 P_-'(x, \Lambda) = \mathcal{A}(x; \Lambda) P_-(x, \Lambda)
 \end{equation}
 where $\mathcal{A}(x; \Lambda)$ is the linear operator
 \[
-\mathcal{A}(x; \Lambda) P = A(x; \Lambda) P - P A_-
+\mathcal{A}(x; \Lambda) P = A(x; \Lambda) P - P A_-(\Lambda)
 \]
 By our assumptions on $A(x; \Lambda)$, $\mathcal{A} \rightarrow \mathcal{A}_-$ as $x \rightarrow -\infty$, where the limiting linear operator $\mathcal{A}_-$ is defined by
 \[
-\mathcal{A}_- P = A_- P - P A_-
+\mathcal{A}_- P = A_-(\Lambda) P - P A_-(\Lambda)
 \]
 The limiting operator has analytic eigenvalue/eigenvector pair $0, I$ for all $\Lambda$, thus by the Gap Lemma, there exists a solution of \eqref{solvePminus} of the form 
 \begin{equation*}
@@ -742,12 +740,64 @@ Finally, we need to show that $P_-(x, \Lambda)$ is invertible for all $x \in \R^
 It follows that $P_-(x, \Lambda)$ is invertible for $X \leq M$. To extend invertibility to all $x \in \R^-$, suppose that $P_-(x, \Lambda)^{-1}$ exists for all $x \in R^-$. Then, differentiating $P_-(x, \Lambda)^{-1} P_-(x, \Lambda) = I$ and solving for $[P_-(x, \Lambda)^{-1}]'$ (as in the proof of the inverse function theorem), we have (suppressing the dependence on $\Lambda$ for convenience)
 \begin{align*}
 (P_-^{-1})'(x) &= -P_-^{-1}(x)P_-'(x)P_-^{-1}(x) \\
-&= -P_-^{-1}(x)( A(x)P_-(x) - P_-(x) A_-)P_-^{-1}(x) \\
-&= A_- P_-^{-1}(x) - A(x) P_-^{-1}(x)
+&= -P_-^{-1}(x)( A(x)P_-(x) - P_-(x) A_-(\Lambda))P_-^{-1}(x) \\
+&= A_-(\Lambda) P_-^{-1}(x) - A(x) P_-^{-1}(x)
 \end{align*}
 We have a solution to this ODE for $x \leq M$, and by variation of constants, this ODE has a unique solution for all $x \in \R^-$. Thus $P_-(x, \Lambda)^{-1}$ is obtained for all $x \in \R^-$ by evolving this ODE forward from an initial condition at some $x \leq M$. In this manner, we have shown that $P_-(x, \Lambda)^{-1}$ exists for all $x \in \R^-$.
 \end{proof}
 \end{lemma}
+
+As a corollary, we find a conjugation operator for the adjoint equation.
+
+\begin{corollary}\label{corr:adjconj}
+Take the same hypotheses as in the conjugation lemma, and let $P_\pm(x; \Lambda)$ be the conjugation operators for $V(x)' = A(x; \Lambda) V(x)$ on $\R^\pm$. Then for the adjoint equation
+\begin{equation}\label{conjadjW}
+W'(x) = -A(x; \Lambda)^* W(x),
+\end{equation}
+the change of coordinates $W = (P_\pm^{-1})^* Z$ reduces \cref{conjadjW} to the equations
+\begin{align}\label{ZconjW}
+Z'(x) = -A^\pm(\Lambda)^* Z(x) 
+\end{align}
+on $\R^\pm$.
+\begin{proof}
+For convenience, let $Y(x) = W(x)^T$ and $S(x) = Z(x)^T$. Taking the transpose, equation \cref{conjadjW} is equivalent to
+\begin{equation}\label{adjY}
+Y'(x) = -Y(x)A^\pm(x; \Lambda) 
+\end{equation}
+As in the conjugation lemma, we will only consider the case on $\R^-$. By differentiating $P_-^{-1} P_- = I$, we have the relation
+\begin{equation}\label{Pprimeinv}
+[P_-^{-1}]' = -P_-^{-1} P_-' P_-^{-1}.
+\end{equation}
+Substitute $Y(x) = S(x) P^{-1}(x, \Lambda)$ into \cref{adjY}, which is equivalent to substituting $W(x) = [P^{-1}(x, \Lambda)]^* Z(x)$ into \cref{conjadjW}.
+\begin{align*}
+S'(x) P_-^{-1}(x, \Lambda) + S(x) P_-^{-1}(x, \Lambda)'
+&= -S(x) P_-^{-1}(x, \Lambda) A(x, \Lambda)
+\end{align*}
+Using \cref{Pprimeinv}, this becomes
+\begin{align*}
+S'(x) P_-^{-1}(x, \Lambda) - S(x) P_-^{-1}(x, \Lambda) P_-'(x, \Lambda) P_-^{-1}(x, \Lambda)
+&= -S(x) P_-^{-1}(x, \Lambda) A(x, \Lambda)
+\end{align*}
+Using \cref{Pprimecriterion} from the conjugation lemma, 
+\begin{align*}
+S'(x) P_-^{-1}(x, \Lambda) - S(x) P_-^{-1}(x, \Lambda) \left(A(x; \Lambda)P_-(x, \Lambda) - P_-(x, \Lambda) A_-(\Lambda)\right) P_-^{-1}(x, \Lambda)
+&= -S(x) P_-^{-1}(x, \Lambda) A(x, \Lambda)
+\end{align*}
+which simplifies to
+\begin{align*}
+S'(x) P_-^{-1}(x, \Lambda) - S(x) P_-^{-1}(x, \Lambda) A(x; \Lambda) + S(x) A_-(\Lambda) P_-^{-1}(x, \Lambda)
+&= -S(x) P_-^{-1}(x, \Lambda) A(x, \Lambda)
+\end{align*}
+The second term on the LHS cancels, leaving us with
+\begin{align*}
+S'(x) P_-^{-1}(x, \Lambda) &= -S(x) A_-(\Lambda) P_-^{-1}(x, \Lambda)
+\end{align*}
+Applying $P_-(x, \Lambda)$ on the right and taking the transpose, this becomes
+\[
+Z'(x) = -A_-(\Lambda)^* Z(x)
+\]
+\end{proof}
+\end{corollary}
 
 \section{Conjugation of system}
 
@@ -817,7 +867,7 @@ For part (ii), for $x \in \R^-$,
 \end{proof}
 \end{lemma}
 
-In the next lemma, we define the conjuation operator on $\R^-$ in terms of the conjugation operator on $\R^+$.
+In the next lemma, we define the conjugation operator on $\R^-$ in terms of the conjugation operator on $\R^+$.
 
 \begin{lemma}\label{conjRminuslemma}
 For $x \in \R^-$ and $|\lambda| < \delta_1$, define $P_-(x; \lambda)$ by
@@ -940,15 +990,19 @@ Furthermore, the conjugation operator induces exponential trichotomies on $\R^\p
 \end{equation}
 The center subspaces on $\R^+$ and $\R^-$ are both one-dimensional and are given by $\C V^c(x)$. 
 
-To conclude this section, we will derive an expression for the center projections $\tilde{P}^c_\pm(x)$. From \cref{trichotomyprojunconj}, it follows that
+To conclude this section, we will derive an expression for the center projections $\tilde{P}^c_\pm(x)$. From \cref{trichotomyprojunconj},
 \begin{align*}
 \tilde{P}^c_\pm(x) u &= P_\pm(x; 0) P^c(0) P_\pm(x, 0)^{-1} u \\
 &= P_\pm(x; 0) \langle W_0, P_\pm(x, 0)^{-1} u \rangle V_0 \\
 &= \langle W_0, P_\pm(x, 0)^{-1} u \rangle P_\pm(x; 0) V_0\\
 &= \langle W_0, P_\pm(x, 0)^{-1} u \rangle V^c(x)
 \end{align*}
-
-Since $\Psi^(x) = W_0$ is a constant solution to the adjoint variational equation, we can remove the conjugation operator from this expression. [I AM ALMOST CERTAIN THIS IS POSSIBLE, BUT THE PROOF IS COMPLETE.]
+thus we have
+\begin{align}\label{centerproj1}
+\tilde{P}^c_\pm(x) u 
+&= \langle W_0, P_\pm(x, 0)^{-1} u \rangle V^c(x)
+\end{align}\
+Since $\Psi^(x) = W_0$ is a constant solution to the adjoint variational equation, we have a simpler form for the center projection for the variational equation. 
 
 \begin{lemma}\label{centerprojlemma}
 For the trichotomies of \cref{vareqstab} on $\R^\pm$, the center projection is given by 
@@ -956,26 +1010,17 @@ For the trichotomies of \cref{vareqstab} on $\R^\pm$, the center projection is g
 \tilde{P}^c_\pm(x) U &= \langle W_0, U \rangle V^c(x)
 \end{align}
 \begin{proof}
-We will prove the result on $\R^+$. The result on $\R^-$ is similar. First, we show that \cref{centerproj} acts as the identity on $\C V^c(x)$. Since $\Psi^c(x) = W_0$ is a solution to the adjoint variational equation and $V^c(x)$ is solution to the variational equation, by Lemma \ref{eigadjoint}(i), the inner product $\langle \Psi^c(x), V^c(x) \rangle = \langle W_0, V^c(x) \rangle$ is constant. Sending $x \rightarrow \infty$ and using the continuity of the inner product, we have
+From \cref{corr:adjconj}, $[P_\pm(x, 0)^{-1}]^*$ is the conjugation operator for the adjoint variational equation. In particular, this implies that $[P_\pm(x, 0)^{-1}]^* W_0$ is a solution to the adjoint variational equation. Since $[P_\pm(x, 0)^{-1}]^* \rightarrow I$ as $x \rightarrow \pm \infty$, 
 \[
-\langle W_0, V^c(x) \rangle = \langle W_0, V_0 \rangle = 1
+[P_\pm(x, 0)^{-1}]^* W_0 \rightarrow W_0 \text{ as }x \rightarrow \pm \infty
 \]
-Thus for $a \in \C$,
+By \cref{varadjsolutions}, the constant solution $\Psi^c(x) = W_0$ is the unique bounded solution to the adjoint variational equation which decays to $W_0$ (constant multiples will decay to something else). Thus we conclude that $[P_\pm(x, 0)^{-1}]^* W_0 = W_0$. Using this with \cref{centerproj1},
 \begin{align*}
-\langle W_0, a V^c(x) \rangle V^c(x) 
-&= a \langle W_0, V^c(x) \rangle V^c(x) \\
-&= a V^c(x)
+\tilde{P}^c_\pm(x) u 
+&= \langle W_0, P_\pm(x, 0)^{-1} u \rangle V^c(x) \\
+&= \langle [P_\pm(x, 0)^{-1}]^*W_0, u \rangle V^c(x) \\
+&= \langle W_0, u \rangle V^c(x) 
 \end{align*}
-
-Next, we show that $W_0$ is perpendicular to any element of the stable and unstable subspaces at $x$. Let $\tilde{V}^s$ be any element of the stable subspace at $x$. Then $\tilde{V}^s = P_+(x, 0) V^s$ for some $V^s \in E^s(0)$. Let $V^s(y)$ be the unique solution to the variational equation with initial condition $V^s(x) = \tilde{V}^s$. This solution is given by
-\begin{align*}
-V^s(y) &= \tilde{\Phi}(y,x)\tilde{V}^s \\
-&= P_+(y; 0) \Phi(y, x; 0) P_+(x; 0)^{-1} P_+(x, 0) V^s \\
-&= P_+(y; 0) \Phi(y, x; 0) V^s
-\end{align*}
-Since $V^s \in E^s$, $\Phi(y, x; 0) V^s \rightarrow 0$ as $y \rightarrow \infty$, thus $V^s(y) \rightarrow 0$ as $ \rightarrow \infty$. By Lemma \ref{eigadjoint}(ii), $\langle \Psi^c(y), V^s(y) \rangle = \langle W_0, \tilde{V}^s \rangle = 0$.
-
-THIS DOES NOT WORK FOR THE UNSTABLE SUBSPACE SINCE WE CANNOT SEND $x \rightarrow -\infty$. A SYMMETRY ARGUMENT OR SOMESUCH IS NEEDED HERE.
 \end{proof}
 \end{lemma}
 
@@ -1002,7 +1047,7 @@ by part (i) and the fact that $\langle W_0, \cdot \rangle$ is the projection on 
 \[
 P^{s/u}(\lambda) = P^{s/u}(0) + \mathcal{O}(\lambda).
 \] 
-Using the Taylor series for $W_0(\lambda)$ from \cref{nulambdalemma} and the deacay rates \cref{Thetadecay} for the conjugation operators,
+Using the Taylor series for $W_0(\lambda)$ from \cref{nulambdalemma} and the decay rates \cref{Thetadecay} for the conjugation operators,
 \begin{align*}
 \langle &W_0(\lambda), \Theta_\pm(x; \lambda) P^{s/u}(\lambda) U \rangle = \langle W_0 + \mathcal{O}(\overline{\lambda}), \Theta_\pm(x; 0) + \mathcal{O}(e^{-\alpha_1 |x|}|\lambda|))(P^{s/u}(0) + \mathcal{O}(\lambda)) U \rangle \\
 &= \langle W_0, (I + \Theta_\pm(x, 0))P^{s/u}(0)U \rangle +

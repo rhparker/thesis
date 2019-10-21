@@ -61,7 +61,7 @@ Physically, a periodic $n$-pulse is best described in terms of the $n$ pulse dis
 
 Let $\rho = \beta_0 / \alpha_0$. Similar to \cite{SandstedeStrut}, define the two sets
 \begin{align}
-\mathcal{R} &= \left\{ \exp\left(-\frac{2 m \pi}{\rho}\right) : m \in \N_0 \right\} \cup \{ 0 \}  \\
+\mathcal{R} &= \left\{ \exp\left(-\frac{2 k \pi}{\rho}\right) : k \in \N_0 \right\} \cup \{ 0 \}  \\
 \mathcal{B} &= \left\{ \exp\left(-\frac{m \pi}{\rho}\right) : m \in \N_0 \right\} \label{setB}
 \end{align}
 We note that $\mathcal{R}$ is a complete metric space. We will describe a periodic multi-pulse using the following four sets of parameters. 
@@ -73,9 +73,15 @@ We note that $\mathcal{R}$ is a complete metric space. We will describe a period
 \item A phase parameter $\theta \in [-\arctan \rho, \pi - \arctan \rho)$.
 \end{enumerate}
 
-\noi This is similar to what is done in \cite{SandstedeStrut}, except for the addition of a phase parameter. We will see in \cref{sec:rescale} that the interval $[-\arctan \rho, \pi - \arctan \rho)$ for the phase parameter is chosen so that matching conditions are satisfied. The pulse distances $X_i$ are determined by these parameters. The next theorem uses this parameterization to prove the existence of periodic multi-pulse solutions to \eqref{genODE}. The requirement that the scaling parameter $r$ be sufficiently small means that the individual pulses must be well-separated. 
+\noi This is the same as in \cite{SandstedeStrut,Sandstede1998} except for the addition of a phase parameter. The interval $[-\arctan \rho, \pi - \arctan \rho)$ for the phase parameter seems a little strange, but is chosen so that $\theta = 0$ corresponds the the baseline length parameters $b^0$. The pulse distances $X_i$ are determined by these parameters. For small $r$, the choice of scaling parameter $r = \exp\left(-\frac{2 k \pi}{\rho}\right)$ and baseline length parameter $b_j^0 = \exp\left(-\frac{ m \pi}{\rho}\right)$ corresponds to a pulse length of
+\[
+X_j \approx \frac{\pi}{2 b_0}(2 k + m) + L_0
+\]
+where $L_0$ is a constant. The phase parameter $\theta$ does not contribute significantly for small $r$.
 
-PICTURE HERE. INCLUDE PITCHFORK TO EXPLAIN RESTRICTION.
+The next theorem uses this parameterization to prove the existence of periodic multi-pulse solutions to \eqref{genODE}. The requirement that the scaling parameter $r$ be sufficiently small means that the individual pulses must be well-separated. 
+
+[PUT A NICE PICTURE HERE. INCLUDE PITCHFORK TO EXPLAIN RESTRICTION THAT WE HAVE TO MAKE IN THE THEOREM WHICH SEEMS STRANGE].
 
 \begin{theorem}[Existence of $n$-periodic solutions]\label{perexist}
 Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and \ref{H0transversehyp}. Let $Q(x)$ be the transversely constructed, symmetric primary pulse solution to \eqref{genODE} from \cref{Qexistshyp}. Choose
@@ -100,15 +106,7 @@ Then there exists $r_0 > 0$ such that
 
 \item For any $r \in \mathcal{R}$ with $r < r_0$, there exists an $n$-periodic solution $U(x)$ to \eqref{genODE} which can be written in the piecewise form \eqref{Upiecewise}. Estimates for the individual pieces are given below in Lemma \ref{solvewithjumps}.
 
-\item This solution is specified by $n$ length parameters $b_j(r; m_j, \theta)$, where
-\begin{align}
-b_j(r; m_j, \theta) \rightarrow b^*_j(m_j, \theta) \text{ as } r \rightarrow 0
-\end{align}
-and
-\begin{align}
-b^*_j(m_j, 0) = b_j^0
-\end{align}
-Details on this parameterization are given in Lemma \ref{thetaparamlemma}.
+\item This solution is specified by $n$ length parameters $b_j(r; m_j, \theta)$, where $b_j(0; m_j, 0) = b_j^0$. Details on this parameterization are given in Lemma \ref{thetaparamlemma}.
 
 \item The $n$ pulses in $U(x)$ are separated by distances $2 X_0, \dots, 2 X_{n-1}$, where 
 \begin{equation}\label{Xj}
@@ -140,12 +138,10 @@ Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and 
 Then there exists $r_1 > 0$ and $b^* \in \mathcal{B}$ such that for any $r \in \mathcal{R}$ with $r < r_1$, $b_{n-1}^0 \in \mathcal{B}$ with $b_{n-1}^0 \leq b^*$, and $\theta \in [-\arctan \rho, \pi - \arctan \rho)$, there exists a unique $n$-periodic solution $U(x)$ to \eqref{genODE}. This solution is the same as the one from Theorem \ref{perexist}.
 \end{theorem}
 
-Finally, we show that for the the family of $2$-periodic pulses, solutions with unequal pulse distances bifurcate off of solutions with equal pulse distances in a series of pitchfork bifurcations. In this case we adopt a different parameterization which will allow us to parameterize both the arms and the center of the pitchfork.
-
-REVISE THIS AND INCLUDE PICTURE
+Finally, we show that for the the family of periodic 2-pulses, solutions with unequal pulse distances bifurcate from solutions with equal pulse distances in a series of pitchfork bifurcations.
 
 \begin{theorem}\label{2pulsebifurcation}
-Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and \ref{H0transversehyp}. Let $Q(x)$ be a transversely constructed, symmetric primary pulse solution to \eqref{genODE}. Then for sufficiently small $r$, asymmetric 2-periodic solutions bifurcate from symmetric 2-periodic solutions in a series of pitchfork bifurcations. These can be parameterized as in Theorem \ref{perexist}.
+Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and \ref{H0transversehyp}. Let $Q(x)$ be a transversely constructed, symmetric primary pulse solution to \eqref{genODE}. Then for sufficiently small $r$, asymmetric 2-periodic solutions bifurcate from symmetric 2-periodic solutions in a series of pitchfork bifurcations. The locations of these pitchforks are given below in \cref{pitchpersist}.
 \end{theorem}
 
 We will prove these results in the following sections.
@@ -1014,7 +1010,11 @@ For every such choice, there is a smooth family of solutions $( b_0^*(m_0, \thet
 \begin{equation}\label{Irho}
 I_\rho = [\theta_\rho^-, \theta_\rho^+] = [-\arctan \rho,\pi - \arctan \rho] 
 \end{equation}
-and $(b_0^*(m_0, 0), b_1^*(m_1, 0)) = (b_0^0, b_1^0)$. In addition, these families of solutions have the following properties.
+and for $\theta = 0$,
+\[
+(b_0^*(m_0, 0), b_1^*(m_1, 0)) = (b_0^0, b_1^0)
+\]. 
+In addition, these families of solutions have the following properties.
 
 \begin{enumerate}[(i)]
 \item These families are disjoint except at their endpoints, where they connect as follows
@@ -1079,7 +1079,10 @@ where $b_0 = b_1$, and $(b_0(0), b_1(0)) = (b_0^0, b_1^0) = (1,1)$. This paramet
 \begin{equation}\label{centerpitchforkparam}
 \Big(b_0(0, \theta_\rho^-), b_1(0, \theta_\rho^-)\Big) = (p_0^*, p_0^*)
 \end{equation}
-where $p_0^*$ is the pitchfork bifurcation point defined in Lemma \ref{pitchforkH}.
+where $p_0^*$ is the pitchfork bifurcation point defined in Lemma \ref{pitchforkH}, and 
+\[
+b_0(0, 0) = b_1(0, 0) = b_0^0 = 1
+\]
 
 \item Parameterize the arm of the pitchfork. Let $b_1^0 \neq 1$ so that $m_1 > 0$. Plugging the expressions \eqref{thetaparam1} for $b_1^*(m_1, \theta)$ and $b_0^*(0, \theta)$ into $H$, we get
 \begin{align*}
@@ -1137,7 +1140,7 @@ where $\theta \in I_\rho$. This involves the following steps.
 	\begin{equation}\label{solvethetastar}
 	\theta^* = g^{-1}\left( e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1}  e^{ \frac{1}{\rho} \theta } \sin \theta \right)
 	\end{equation}
-	It follows that $\theta^*(\theta) \in I_\rho$, which ensures that we cannot overlap the region parameterized by a different $b_0^0$ by varying $\theta$.
+	It follows that $\theta^*(\theta) \in I_\rho$, which ensures that we cannot overlap the region parameterized by a different $b_0^0$ by varying $\theta$. Since $g(0) = 0$, it follows that $\theta^*(0) = 0$, thus $b_0^*(m_0, 0) = b_0^0$. $b_1^*(m_1, 0) = b_1^0$ by definition.
 \end{enumerate}
 
 \item For each $m_1$, equations \eqref{thetaparam1} and \eqref{solvethetastar} give us a smooth parameterization in $\theta$. We will now show that the pieces match up at their endpoints. 
