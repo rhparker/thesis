@@ -51,40 +51,6 @@ W_0'(0) = \frac{1}{c} \left( 0, -c_3, 0, -c_5, 0, \dots, 0, -c_{2m-1}, 0, 1, 0\r
 and symmetry property $W_0(-\overline{\lambda}) = R W_0(\overline{\lambda})$.
 \end{lemma}
 
-The constant-coefficient ODE $Z(x)' = A(\lambda)Z(x)$ has a solution $Z(x) = V_0(\lambda)e^{\nu(\lambda)x}$. In the next lemma, we show that \cref{PDEeig3} has solutions on $\R^+$ and $\R^-$ which approach $V_0(\lambda)e^{\nu(\lambda)x}$ as $x \rightarrow \pm \infty$.
-
-\begin{lemma}\label{lemma:Vpm}
-For sufficiently small $|\lambda|$ and any $\alpha_1 < \alpha_0$, the equation $V' = A(Q_n(x); \lambda)V$ has solutions $V^\pm(x; \lambda)$ on $\R^\pm$ which are given by
-\begin{align}\label{Vpmlambda}
-V^\pm(x; \lambda) &= e^{\nu(\lambda)x}(V_0(\lambda) + V_1^\pm(x; \lambda)),
-\end{align}
-where
-\begin{equation}\label{Vpmdecay}
-|V_1^\pm(x; \lambda)| \leq C e^{-\alpha_1 |x|}
-\end{equation}
-and we have the symmetry relationship
-\begin{equation}\label{Vpmsymmetry}
-V^-(x; \lambda) = R V^+(-x; -\lambda).
-\end{equation}
-$V^\pm(x; 0) = V^c(x)$, which is defined in \cref{varadjsolutions}. Finally, $V^\pm(x; \lambda)$ has Taylor expansion
-\begin{equation}
-V^\pm(x; \lambda) = V^c(x) + \partial_\lambda V^\pm(x; 0) + \mathcal{O}(|\lambda|^2)
-\end{equation}
-where $\partial_\lambda V^-(x; 0) = -R \partial_\lambda V^+(x; 0)$ and $\partial_\lambda V^+(x; 0)$ solves the equation
-\[
-Z'(x) = A(Q(x),0) Z(x) + B V^c(x)
-\]
-on $\R^+$.
-\end{lemma}
-
-\begin{remark}\label{remark:computeVc}
-If $z(x)$ is the first component of $\partial_\lambda V^+(x; 0)$, then $z(x)$ is a formal solution to $\partial_x \calL(q) z(x) = v^c(x)$ on $\R^+$, where $v^c(x)$ is the first component of $V^c(x)$. Since
-\[
-\partial_\lambda V^+(x; 0) = (z(x), \partial_x z(x), \dots, \partial_x^{2m-1}z^c(x), q^c(x) ),
-\]
-this provides a method way of computing $V^c(x)$ numerically, as long as the appropriate boundary conditions are used at 0.
-\end{remark}
-
 \section{Block matrix theorem}
 
 We can now state the main theorem of this chapter which provides a condition for $\lambda$ to be an eigenvalue of \eqref{PDEeig3}. This theorem is analogous to \cite[Theorem 2]{Sandstede1998}, where the matrix $A$ replaced by a block matrix.
@@ -305,9 +271,7 @@ Let $n_{\text{even}}$ be the number of even $\{m_0, \dots, m_{n-2}\}$ and $n_{\t
 If $M < 0$, these are reversed.
 \end{theorem} 
 
-We note that since we took $b_{n-1}^0$ small, the parity of $m_{n-1}$ is irrelevant to the eigenvalue pattern.
-
-In the following sections, we provide proofs for these results. We note that the proof of \cref{lemma:Vpm} is in deferred to \cref{sec:Vpmproof}.
+We note that since we took $b_{n-1}^0$ small, the parity of $m_{n-1}$ is irrelevant to the eigenvalue pattern. In the following sections, we provide proofs for these results.
 
 \section{Proof of \cref{nulambdalemma} }
 
@@ -1070,8 +1034,32 @@ where in the last line we used Lemma \ref{centerprojlemma}. For (v), since the b
 \end{proof}
 \end{lemma}
 
-\section{Proof of \cref{lemma:Vpm}}\label{sec:Vpmproof}
+\section{Solutions in center subspace}
 
+The constant-coefficient ODE
+\[
+Z(x)' = A(\lambda)Z(x)
+\]
+has a solution $Z(x) = V_0(\lambda)e^{\nu(\lambda)x}$. In the next lemma, we show that the ODE
+\[
+V(x)' = A(Q(x); \lambda)V(x)
+\]
+has solutions on $\R^+$ and $\R^-$ which approach $V_0(\lambda)e^{\nu(\lambda)x}$ as $x \rightarrow \pm \infty$.
+
+\begin{lemma}\label{lemma:Vpm}
+For sufficiently small $|\lambda|$ and any $\alpha_1 < \alpha_0$, the equation $V' = A(Q_n(x); \lambda)V$ has solutions $V^\pm(x; \lambda)$ on $\R^\pm$ which are given by
+\begin{align}\label{Vpmlambda}
+V^\pm(x; \lambda) &= e^{\nu(\lambda)x}(V_0(\lambda) + V_1^\pm(x; \lambda)),
+\end{align}
+where
+\begin{equation}\label{Vpmdecay}
+|V_1^\pm(x; \lambda)| \leq C e^{-\alpha_1 |x|}
+\end{equation}
+and we have the symmetry relationship
+\begin{equation}\label{Vpmsymmetry}
+V^-(x; \lambda) = R V^+(-x; -\lambda).
+\end{equation}
+\begin{proof}
 Let $Z(x) = e^{\nu(\lambda)x}V_0(\lambda)$, which is a solution to $Z'(x) = A(\lambda)Z$ contained in the center subspace $E^c(\lambda)$. Let
 \[
 V^+(x; \lambda) = P_+(x; \lambda) Z(x) = e^{\nu(\lambda)x}P_+(x; \lambda)V_0(\lambda)
@@ -1102,18 +1090,18 @@ V^-(x; \lambda) &= e^{\nu(\lambda)x}( V_0(\lambda) + R\Theta_+(-x; -\lambda) V_0
 &= R e^{\nu(-\lambda)(-x)}( V_0(-\lambda) + \Theta_+(-x; -\lambda) V_0(-\lambda) ) \\
 &= R V^+(-x; -\lambda)
 \end{align*}
-which completes the proof. We now use this result to provide the proof for the existence of $V^c(x)$ in part (i) of Lemma \ref{varadjsolutions}.
- 
+\end{proof}
+\end{lemma}
+
+We now use this result to provide the proof for the existence of $V^c(x)$ in part (i) of Lemma \ref{varadjsolutions}. It then follows that $V^\pm(x; 0) = V^c(x)$.
+
 \begin{lemma}\label{lemma:Vcexists}
-There exists a bounded solution $V^c(x)$ to \eqref{vareq2} such that 
-\begin{equation*}
-V^c(x) \rightarrow V_0 \text{ as }|x| \rightarrow \infty
-\end{equation*}
-$V^c$ is symmetric with respect to the standard reversor operator $R$, i.e. $V^c(-x) = R V^c(x)$, and we can write
+There exists a solution $V^c(x)$ to \eqref{vareq2} which is given by
 \[
 V^c(x) = V_0 + V^c_1(x)
 \]
-where $V^c_1(x) = \mathcal{O}(e^{-\alpha_1 |x|})$.
+where $V^c_1(x) = \mathcal{O}(e^{-\alpha_1 |x|})$. In particular $V^c(x) \rightarrow V_0$ as $|x| \rightarrow \infty$. $V^c$ is symmetric with respect to the standard reversor operator $R$, i.e. $V^c(-x) = R V^c(x)$. Finally, $V^c(x) = V^\pm(x; 0)$, where $V^\pm(x; 0)$ is defined in \cref{lemma:Vpm}. 
+
 \begin{proof}
 We employ the following dimension counting argument. Recall that $\dim W^{s/u}(0) = m$ and $\dim W^c(0) = 1$, thus $\dim W^{cs}(0) = m + 1$, and $\dim W^{cu}(0) = m + 1$. $\Psi(0) \perp T_{Q(0)}W^{cs}(0) + T_{Q(0)}W^{cu}(0)$, so $\dim T_{Q(0)}W^{cs}(0) + T_{Q(0)}W^{cu}(0) \leq 2m$. By counting dimensions, this implies that $\dim T_{Q(0)}W^{cs}(0) \cap T_{Q(0)}W^{cu}(0) = 2$. Since $\dim T_{Q(0)}W^s(0) \cap T_{Q(0)}W^s(0) = 1$ by Lemma \ref{nondegenlemma}, we conclude that there exists $Y_0 \in T_{Q(0)}W^{cs}(0) \cap T_{Q(0)}W^{cu}(0)$ which is linearly independent from $Q'(0)$, and $Y^0 \notin T_{Q(0)}W^s(0) \cap T_{Q(0)}W^s(0)$.
 
@@ -1144,6 +1132,109 @@ V^-(-x) & x \leq 0
 which is well-defined since $V^+(0) = V^-(0)$ and has the properties stated in the lemma.
 \end{proof}
 \end{lemma}
+
+In the next lemma, we characterize the derivative of $V^\pm(x; \lambda)$ with respect to $\lambda$.
+
+\begin{lemma}\label{lemma:Vpmderiv}
+The derivative $\partial_\lambda V^+(x; 0)$ satisfies the equation
+\begin{equation}\label{Vderivsolves}
+Y'(x) = A(Q(x)) Y(x) + B V^c(x).
+\end{equation}
+and $\partial_\lambda V^-(x; 0) = -R \partial_\lambda V^+(-x, 0)$. Let 
+\begin{equation}\label{deftildeV}
+V^+(x; \lambda) = e^{\nu(\lambda)x}\tilde{V}^+(x; \lambda).
+\end{equation}
+Then we have the relationship
+\begin{equation}\label{VtildeVderiv}
+\partial_\lambda V^+(x; 0)
+= \partial_\lambda \tilde{V}^+(x; 0) + \frac{1}{c} x V^c(x) 
+\end{equation}
+Finally, $\partial_\lambda \tilde{V}^+(x; 0)$ satisfies the equation
+\begin{equation}\label{tildeVderivsolves}
+Y'(x) = A(Q(x)) Y(x) + \left( B - \frac{1}{c}I \right) V^c(x).
+\end{equation}
+and $\partial_\lambda \tilde{V}^-(x; 0) = -R \partial_\lambda \tilde{V}^+(-x, 0)$.
+
+\begin{proof}
+We only need to do this for $V^+(x; \lambda)$ since the result for $V^-(x; \lambda)$ follows by symmetry. Recall that $V^+(x; \lambda)$ solves the equation
+\begin{equation}\label{Vplussolves1}
+V^+(x; \lambda)' = A(Q(x); \lambda) V^+(x; \lambda)
+\end{equation}
+Taking the derivative of both sides with respect to $\lambda$, we have
+\begin{align*}
+[\partial_\lambda V^+(x; \lambda)]' 
+&= A(Q(x); \lambda) \partial_\lambda V^+(x; \lambda) + [\partial_\lambda A(Q(x); \lambda)] V^+(x; \lambda) \\
+&= A(Q(x); \lambda) \partial_\lambda V^+(x; \lambda) + B V^+(x; \lambda)
+\end{align*}
+At $\lambda = 0$, this becomes
+\[
+[\partial_\lambda V^+(x; 0)] = A(Q(x)) \partial_\lambda V^+(x; 0) + B V^c(x),
+\]
+thus $\partial_\lambda V^+(x; 0)$ solves \cref{Vderivsolves}. For the symmetry relationship, we have
+\begin{align*}
+\partial_\lambda V^-(x; \lambda) &= \partial_\lambda R V^+(-x, -\lambda) \\
+&= -R \partial_\lambda V^+(-x, -\lambda)
+\end{align*}
+At $\lambda = 0$, this is
+\begin{align*}
+\partial_\lambda V^-(x; 0) 
+&= -R \partial_\lambda V^+(-x, 0)
+\end{align*}
+
+Using \cref{deftildeV} and taking the derivative with respect to $\lambda$,
+\begin{align*}
+\partial_\lambda V^+(x; \lambda)
+&= e^{\nu(\lambda)x} \partial_\lambda \tilde{V}^+(x; \lambda) + \nu'(\lambda)x \tilde{V}^+(x; \lambda) \\
+&= e^{\nu(\lambda)x} \partial_\lambda \tilde{V}^+(x; \lambda) + \frac{1}{c} x \tilde{V}^+(x; \lambda) 
+\end{align*}
+Taking $\lambda = 0$ and noting that $\tilde{V}^+(x; 0) = V^c(x)$, we obtain \cref{VtildeVderiv}.
+
+Finally, plug in \cref{deftildeV} to \cref{Vplussolves1} to get
+\begin{align*}
+e^{\nu(\lambda)x} [\tilde{V}^+(x; \lambda)]' + \nu(\lambda) e^{\nu(\lambda)x} \tilde{V}^+(x; \lambda) &= 
+A(Q(x); \lambda) e^{\nu(\lambda)x} \tilde{V}^+(x; \lambda)
+\end{align*}
+which simplifies to
+\begin{align*}
+[\tilde{V}^+(x; \lambda)]' &= 
+[A(Q(x); \lambda) - \nu(\lambda) I ] \tilde{V}^+(x; \lambda)
+\end{align*}
+Taking the derivative of this with respect to $\lambda$,
+\begin{align*}
+[\partial_\lambda \tilde{V}^+(x; \lambda)]' &= 
+[A(Q(x); \lambda) - \nu(\lambda) I ] \partial_\lambda \tilde{V}^+(x; \lambda) + \partial_\lambda [A(Q(x); \lambda) - \nu(\lambda) I ]\tilde{V}^+(x; \lambda) \\
+&= [A(Q(x); \lambda) - \nu(\lambda) I ] \partial_\lambda \tilde{V}^+(x; \lambda) + [B - \nu'(\lambda)I]\tilde{V}^+(x; \lambda) 
+\end{align*}
+At $\lambda = 0$, this becomes
+\begin{align*}
+[\partial_\lambda \tilde{V}^+(0; \lambda)]' &= A(Q(x))\partial_\lambda \tilde{V}^+(x; \lambda) + \left( B - \frac{1}{c}I\right) V^c(x),
+\end{align*}
+thus $\partial_\lambda \tilde{V}^+(0; \lambda)$ solves \cref{tildeVderivsolves}. The symmetry relationship for $\partial_\lambda \tilde{V}^-(0; \lambda)$ is the same as for $\partial_\lambda V^-(0; \lambda)$
+\end{proof}
+\end{lemma}
+
+** MELNIKOV NEXT **
+
+Finally, $V^\pm(x; \lambda)$ has Taylor expansion
+\begin{equation}
+V^\pm(x; \lambda) = V^c(x) + \partial_\lambda V^\pm(x; 0) + \mathcal{O}(|\lambda|^2)
+\end{equation}
+where $\partial_\lambda V^-(x; 0) = -R \partial_\lambda V^+(x; 0)$ and $\partial_\lambda V^+(x; 0)$ solves the equation
+\[
+Z'(x) = A(Q(x),0) Z(x) + B V^c(x)
+\]
+on $\R^+$.
+
+
+\begin{remark}\label{remark:computeVc}
+If $z(x)$ is the first component of $\partial_\lambda V^+(x; 0)$, then $z(x)$ is a formal solution to $\partial_x \calL(q) z(x) = v^c(x)$ on $\R^+$, where $v^c(x)$ is the first component of $V^c(x)$. Since
+\[
+\partial_\lambda V^+(x; 0) = (z(x), \partial_x z(x), \dots, \partial_x^{2m-1}z^c(x), q^c(x) ),
+\]
+this provides a method way of computing $V^c(x)$ numerically, as long as the appropriate boundary conditions are used at 0.
+\end{remark}
+
+
 
 Finally, we evaluate the following inner products, which will be important in the stability analysis.
 

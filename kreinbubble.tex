@@ -25,7 +25,20 @@ We are interested in two parameter regimes. First, we will consider the case whe
 
 \subsection{Case 1: essential spectrum is out of the way}
 
-In this section, we consider the case where $r$ is sufficiently small so that the essential spectrum is ``out of the way'' of any interaction eigenvalues. Specifically, we impose the following conditions.
+In this section, we consider the case where $r$ is sufficiently small so that the essential spectrum is ``out of the way'' of any interaction eigenvalues. We therefore expect that the eigenvalues will come in one of the two patterns shown in \cref{fig:2ppatterns}.
+
+\begin{figure}[H]
+\begin{center}
+\begin{tabular}{cc}
+\includegraphics[width=5cm]{images/kdv5/2punstableeigpattern.eps} &
+\includegraphics[width=5cm]{images/kdv5/2pstableeigpattern.eps} 
+\end{tabular}
+\caption{Eigenvalue patterns for periodic 2-pulse with essential spectrum out of the way. Blue dots are interaction eigenvalues, red dots are essential spectrum eigenvalues, and black X at the origin represents the three kernel eigenvalues. Left panel shows a pair of real interaction eigenvalues, and right panel shows a pair of purely imaginary interaction eigenvalues. }
+\label{fig:2ppatterns}
+\end{center}
+\end{figure}
+
+Our goal in this section is to prove that, with one important exception, these are the only possible eigenvalue patterns. To do this, we impose the following conditions.
 
 \begin{enumerate}[(i)]
 	\item Choose $r_0$ sufficiently small so that
@@ -77,7 +90,7 @@ For an instability bubble to occur, an essential spectrum eigenvalue must get cl
 Before we state the theorem, we will illustrate what occurs graphically. Let $s \in [-2, 2]$ be a dimensionless parameter which measures the distance on the imaginary axis between $\lambda_1 i$ and $\lambda_* i$; $s = 0$ corresponds to $X = X^*$. Let $R = R_0 / \sqrt{X^*}$, where $R_0$ is a parameter that depends on $X_0$ and intrinsic properties of the system. We assume that $R_0 > 0$. This can be checked numerically.
 
 We will show that there is a pair of eigenvalues $\lambda_{1,2}$ near $\lambda_* i$ which can be parameterized by $s$. As $s$ decreases from $2$ to $-2$, a pair of purely imaginary eigenvalues collides near $\lambda_* i + i \sqrt{R}$, moves off of the imaginary axis, travels on a circle of radius $\sqrt{R}$ centered at $\lambda_* i$, and recombines near $\lambda_* i - i \sqrt{R}$. This is illustrated in \cref{fig:kreinbubbles}. The numerics match this picture.
-\begin{figure}
+\begin{figure}[H]
 \begin{center}
 \begin{tabular}{ccc}
 \includegraphics[width=5cm]{images/kreinbubbles/bubble2R} &
@@ -93,26 +106,26 @@ We will show that there is a pair of eigenvalues $\lambda_{1,2}$ near $\lambda_*
 \end{figure}
 We will call the instability bubble a Krein bubble, since it results from the collision of two imaginary eigenvalues with opposite Krein signatures. Inside the Krein bubble, the eigenvalues $\lambda_{1,2}$ are symmetric across the imaginary axis. Outside the Krein bubble, there is no such symmetry for $\lambda_{1,2}$; since $\lambda_{1,2}$ are purely imaginary, Hamiltonian symmetry tells that there exist eigenvalues $-\lambda_{1,2}$ which are below the real axis.
 
-In the following theorem, we prove that these Krein bubbles occur. Since the bubbles are formed as $X$ is varied near $X^*$ we will parameterize both $X$ and the eigenvalues $\lambda_{1,2}$ by a single dimensionless parameter $s \in [-2, 2]$. THE ``h.o.t'' WILL BE SPECIFIED ONCE THE PROOF IS COMPLETE.
+In the following theorem, we prove that these Krein bubbles occur. Since the bubbles are formed as $X$ is varied near $X^*$ we will parameterize both $X$ and the eigenvalues $\lambda_{1,2}$ by a single dimensionless parameter $s \in [-2, 2]$. THE ``h.o.t'' WILL BE SPECIFIED ONCE THE PROOF IS COMPLETE. WE COULD ALSO JUST DO THIS FOR $m = 1$.
 
 \begin{theorem}\label{theorem:kreinbubbles}
 Let $\delta > 0$ be as in Theorem \ref{blockmatrixtheorem} [Theorem 5.4, the block matrix theorem]. Define
 \begin{itemize}
-\item $\lambda_k = c \frac{k \pi}{X}$, where $k$ is a positive integer such that $\lambda_k < \delta$.$\lambda_* = \sqrt{\frac{2 a_0}{M}}$
-\item 
-\item $X_k^* = \frac{c k \pi}{\lambda_*}$
+\item $\lambda_m = c \frac{m \pi}{X}$, where $m$ is a positive integer such that $\lambda_m < \delta$.
+\item $\lambda_* = \sqrt{\frac{2 a_0}{M}}$
+\item $X_m^* = \frac{c m \pi}{\lambda_*}$
 \item $R_0 = -\frac{4 p_1 k_0}{M}$ [OR SOMETHING CLOSE TO THIS], where $p_1$, $k_0$, and $M$ are defined in Theorem \ref{blockmatrixtheorem} [Theorem 5.4].
 \item $R = \lambda_*^2 R_0 \frac{X_0}{X}$ 
 \end{itemize}
-Assume $R_0 > 0$. Then there exists $r_1 > 0$ such that for all $r \leq r_1$, the following is true. Let $s \in [-2, 2]$. For $X = X(s)$ close to $X_k^*$, there exists a pair of eigenvalues located at
+Assume $R_0 > 0$. Then there exists $r_1 > 0$ such that for all $r \leq r_1$, the following is true. Let $s \in [-2, 2]$. For $X = X(s)$ close to $X_m^*$, there exists a pair of eigenvalues located at
 \begin{align*}
 \lambda_{1,2}(s) = \left( \lambda_* + s \sqrt{R} \right) i \pm \sqrt{R(1 - s^2)} + \text{``h.o.t.''}
 \end{align*}
 where
 \[
-X(s) = \frac{c k \pi}{s + \lambda_*}
+X(s) = \frac{c m \pi}{s \sqrt{R} + \lambda_*}
 \]
-and $X(0) = X_k^*$. These eigenvalues have the following configuration.
+and $X(0) = X_m^*$. These eigenvalues have the following configuration.
 \begin{itemize}
 \item For $|s| < 1$, $\lambda_{1,2}(s)$ is symmetric across the imaginary axis, i.e. $\lambda_2(s) = -\overline{\lambda_1}(s)$. For $s = 0$, these are given by
 \[
@@ -556,29 +569,29 @@ Dividing by $M c^2$ and using \cref{kreinmustar}, this becomes
 \end{aligned}
 \end{equation}
 
-We will parameterize the system in terms of two parameters: the difference $h$ between $\mu$ and $\mu_*(0)$ and the distance $s$ along the imaginary axis between $\mu_*(0)$ and $\mu_m$. We will also need a distance $l(r)$ between $\mu^*(0)$ and $\mu^*(r)$, but this will not end up mattering. We will only consider the upper half of the complex plane here; what happens in the lower half is the same by Hamiltonian symmetry. Let 
+We will parameterize the system in terms of two parameters: the difference $h$ between $\mu$ and $\mu_*(0)$ and the distance $s$ along the imaginary axis between $\mu_*(0)$ and $\mu_m$. We will only consider the upper half of the complex plane here; what happens in the lower half is the same by Hamiltonian symmetry. Let 
 \begin{align*}
 h &= \mu - \mu_*(r) i \\
 s &= \mu_m - \mu_*(r)
 \end{align*}
 where $h \in \C$ and $s \in \R$. We will scale $s$ so that it is dimensionless at the end. Our goal is derive a relationship between $s$ and $h$. In order to expand the $\sinh(\mu X)$ and $\cosh(\mu X)$ terms around $\mu_m$, we write $\mu$ as
 \begin{align*}
-\mu &= \mu - \mu_m + \mu_m \\
-&= (\mu_*(0) - \mu_m) + h + \mu_m \\
-&= \mu_m + s + h
+\mu &= \mu - \mu_m i + \mu_m i \\
+&= (\mu_*(r) - \mu_m)i + h + \mu_m i \\
+&= \mu_m i + s i + h
 \end{align*}
 Using these, we have the Taylor expansions
 \begin{align*}
-\sinh(\mu X) &= \sinh((\mu_m + s + h)X)
-= (-1)^m(s + h)X + \mathcal{O}\left( (s+h)^3 X^3 \right) \\
-\cosh(\mu X) &= \cosh((\mu_m + s + h)X)
-= (-1)^m + \mathcal{O}\left( (s+h)^2 X^2 \right) \\
+\sinh(\mu X) &= \sinh((\mu_m + s i + h)X)
+= (-1)^m(s i + h)X + \mathcal{O}\left( (s i +h)^3 X^3 \right) \\
+\cosh(\mu X) &= \cosh((\mu_m + s i + h)X)
+= (-1)^m + \mathcal{O}\left( (s i + h)^2 X^2 \right) \\
 \end{align*}
 Substituting all of these into \cref{KreinB2}, we obtain the equation
 \begin{equation}\label{KreinB3}
 \begin{aligned}
-0 &= \left( h ( h + 2 \mu_*(r) i) +  \mathcal{O}( r^{3/2} )\right) \left( (-1)^m(s + h)X + \mathcal{O}\left( (s+h)^3 X^3 \right)  \right) \\
-&-\frac{8 p_1}{M} ( h + \mu_*(r) i)^2 ( k_0\sinh(\mu X_0) + k_1 \sinh(\mu X_1) ) \left( (-1)^m + \mathcal{O}\left( (s+h)^2 X^2 \right) \right) + \mathcal{O}( r^2 )
+0 &= \left( h ( h + 2 \mu_*(r) i) +  \mathcal{O}( r^{3/2} )\right) \left( (-1)^m(s i + h)X + \mathcal{O}\left( (si+h)^3 X^3 \right)  \right) \\
+&-\frac{8 p_1}{M} ( h + \mu_*(r) i)^2 ( k_0\sinh(\mu X_0) + k_1 \sinh(\mu X_1) ) \left( (-1)^m + \mathcal{O}\left( (s i +h)^2 X^2 \right) \right) + \mathcal{O}( r^2 )
 \end{aligned}
 \end{equation}
 
@@ -611,8 +624,8 @@ k_0 \sinh(\mu X_0) + k_1 \sinh(\mu X_1)
 Substituting all of these into \cref{KreinB3} and dividing by $r^{3/2}$ and $(-1)^m$, we obtain the rescaled equation
 \begin{equation}\label{KreinB4}
 \begin{aligned}
-0 &= \left( \tilde{h} ( \tilde{h} + 2 \tilde{\mu}_*(r) i) +  \mathcal{O}( r^{1/2} )\right) \left( (\tilde{s} + \tilde{h})X + \mathcal{O}\left( (\tilde{s}+\tilde{h})^3 r X^3 \right)  \right) \\
-&-\frac{8 p_1}{M} ( \tilde{h} + \tilde{\mu}_*(r) i)^2 \left( \tilde{k}_0 (\tilde{h} + \tilde{\mu}_*(r)i )r^{1/2} X_0 + \mathcal{O}(r^{1/2 + \eta}) + \mathcal{O}(r^{3/2} (\tilde{h} + \tilde{\mu}_*(r))^3 X^3)) \right) \left( 1 + \mathcal{O}\left( (\tilde{s}+\tilde{h})^2 r X^2 \right) \right) \\
+0 &= \left( \tilde{h} ( \tilde{h} + 2 \tilde{\mu}_*(r) i) +  \mathcal{O}( r^{1/2} )\right) \left( (\tilde{s}i + \tilde{h})X + \mathcal{O}\left( (\tilde{s}i+\tilde{h})^3 r X^3 \right)  \right) \\
+&-\frac{8 p_1}{M} ( \tilde{h} + \tilde{\mu}_*(r) i)^2 \left( \tilde{k}_0 (\tilde{h} + \tilde{\mu}_*(r)i )r^{1/2} X_0 + \mathcal{O}(r^{1/2 + \eta}) + \mathcal{O}(r^{3/2} (\tilde{h} + \tilde{\mu}_*(r))^3 X^3)) \right) \left( 1 + \mathcal{O}\left( (\tilde{s}i+\tilde{h})^2 r X^2 \right) \right) \\
 &+ \mathcal{O}( r^{1/2} ) 
 \end{aligned}
 \end{equation}
@@ -620,7 +633,7 @@ Substituting all of these into \cref{KreinB3} and dividing by $r^{3/2}$ and $(-1
 At this point, we are most of the way there, except for the $r^{1/2}X_0$ term on the second line. To figure out an appropriate scaling ansatz to eliminate this, we will suppose that $\tilde{s}$ and $\tilde{h}$ are smaller than $\tilde{h}$. Eliminating all terms involving $r$ other than the $r^{1/2}X_0$ term, we obtain an equation of the form
 \begin{equation*}
 \begin{aligned}
-\tilde{h} (\tilde{s} + \tilde{h}) \tilde{\mu}_*(r) i X
+\tilde{h} (\tilde{s}i + \tilde{h}) \tilde{\mu}_*(r) i X
 - C \tilde{h}^3 r^{1/2} X_0 (\tilde{\mu}_*(r))^3 = 0.
 \end{aligned}
 \end{equation*} 
@@ -633,446 +646,100 @@ where the factor of $2$ is $\tilde{s}$ is for convenience later. Substituting th
 \begin{equation}\label{KreinB5}
 \begin{aligned}
 &\left( \frac{X_0^{1/2}}{X^{1/2}} h_0 \left( r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + 2 \tilde{\mu}_*(r) i\right) + \mathcal{O}( r^{1/4} ) \right) 
-\left( \frac{X_0^{1/2}}{X^{1/2}}(2 s_0 + h_0) X + \mathcal{O}\left( \left( 2 s_0 + h_0 \right)^3 r^{3/2} X_0^{3/2} X^{3/2} \right) \right) \\
+\left( \frac{X_0^{1/2}}{X^{1/2}}(2 s_0 i + h_0) X + \mathcal{O}\left( \left( 2 s_0 i + h_0 \right)^3 r^{3/2} X_0^{3/2} X^{3/2} \right) \right) \\
 &-\frac{8 p_1}{M} \left( r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r) i\right)^2 \left( \tilde{k}_0 \left(r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r)i \right) X_0 + \mathcal{O}(r^{\eta}) \right.\\
-&+ \left. \mathcal{O} \left (r X^3 \left(r^{1/4} \frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r)\right)^3 \right) \right) \left( 1 + \mathcal{O}\left( \left(2 s_0 + h_0\right)^2 r^{3/2} X_0 X \right) \right) + \mathcal{O}(1) = 0
+&+ \left. \mathcal{O} \left (r X^3 \left(r^{1/4} \frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r)\right)^3 \right) \right) \left( 1 + \mathcal{O}\left( \left(2 s_0 i + h_0\right)^2 r^{3/2} X_0 X \right) \right) + \mathcal{O}(1) = 0
 \end{aligned}
 \end{equation}
 Rearranging the top line, we get
 \begin{equation*}
 \begin{aligned}
 &\left( X_0 h_0 \left( r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + 2 \tilde{\mu}_*(r) i\right) + \mathcal{O}\left( r^{1/4} X_0^{1/2} X^{1/2} \right) \right) 
-\left( 2 s_0 + h_0 + \mathcal{O}\left( \left( 2 s_0 + h_0 \right)^3 r^{3/2} X_0 X \right) \right) \\
+\left( 2 s_0 i + h_0 + \mathcal{O}\left( \left( 2 s_0 i + h_0 \right)^3 r^{3/2} X_0 X \right) \right) \\
 &-\frac{8 p_1}{M} \left( r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r) i\right)^2 \left( \tilde{k}_0 \left(r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r)i \right) X_0 + \mathcal{O}(r^{\eta}) \right.\\
-&+ \left. \mathcal{O} \left (r X^3 \left(r^{1/4} \frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r)\right)^3 \right) \right) \left( 1 + \mathcal{O}\left( \left(2 s_0 + h_0\right)^2 r^{3/2} X_0 X \right) \right) + \mathcal{O}(1) = 0
+&+ \left. \mathcal{O} \left (r X^3 \left(r^{1/4} \frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r)\right)^3 \right) \right) \left( 1 + \mathcal{O}\left( \left(2 s_0 i + h_0\right)^2 r^{3/2} X_0 X \right) \right) + \mathcal{O}(1) = 0
 \end{aligned}
 \end{equation*}
 and divide by $X_0$ to get
 \begin{equation*}
 \begin{aligned}
 &\left( h_0 \left( r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + 2 \tilde{\mu}_*(r) i\right) + \mathcal{O}\left( r^{1/4} \frac{X^{1/2}}{X_0^{1/2}} \right) \right) 
-\left( 2 s_0 + h_0 + \mathcal{O}\left( \left( 2 s_0 + h_0 \right)^3 r^{3/2} X_0 X \right) \right) \\
+\left( 2 s_0 i + h_0 + \mathcal{O}\left( \left( 2 s_0 i + h_0 \right)^3 r^{3/2} X_0 X \right) \right) \\
 &-\frac{8 p_1}{M} \left( r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r) i\right)^2 \left( \tilde{k}_0 \left(r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r)i \right) + \mathcal{O}\left(\frac{r^{\eta}}{X_0} \right) \right.\\
-&+ \left. \mathcal{O} \left (r X^3 \left(r^{1/4} \frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r)\right)^3 \right) \right) \left( 1 + \mathcal{O}\left( \left(2 s_0 + h_0\right)^2 r^{3/2} X_0 X \right) \right) + \mathcal{O}\left(\frac{1}{X_0}\right) = 0
+&+ \left. \mathcal{O} \left (r X^3 \left(r^{1/4} \frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r)\right)^3 \right) \right) \left( 1 + \mathcal{O}\left( \left(2 s_0 i + h_0\right)^2 r^{3/2} X_0 X \right) \right) + \mathcal{O}\left(\frac{1}{X_0}\right) = 0
 \end{aligned}
 \end{equation*}
 Since $X = \mathcal{O}(|\log r|)$ and $X_1 = \mathcal{O}(|\log r|)$, this is of the form $G(h_0, s_0, r) = 0$. Since $r^{a}(\log|r|)^b \rightarrow 0$ as $r \rightarrow 0$ for any positive powers $a$ and $b$, 
 \begin{equation}\label{BsimpleG0}
 \begin{aligned}
-G(h_0, s_0, 0) &= h_0 (2 \mu_*(0) i)(2 s_0 + h_0) - \frac{8 p_1 \tilde{k}_0}{M}(\mu_*(0) i)^3 
+G(h_0, s_0, 0) &= h_0 (2 \mu_*(0) i)(2 s_0 i + h_0) - \frac{8 p_1 \tilde{k}_0}{M}(\mu_*(0) i)^3 
 \end{aligned}
 \end{equation}
 To solve $G(h_0, s_0, 0) = 0$, divide by $2 \mu_*(0) i$ to get the quadratic equation
 \begin{equation}\label{Bquadeq1}
-h_0^2 + 2 s_0 h_0 + R_0 = 0
+h_0^2 + 2 s_0 i h_0 - R_0 = 0
 \end{equation}
 where 
 \[
-R_0 = \frac{4 p_1 \tilde{k}_0 \mu^*(0)}{M}
+R_0 = -\frac{4 p_1 \tilde{k}_0 \mu^*(0)}{M}
 \]
 Then \cref{Bquadeq} has solution
 \begin{equation}\label{Bquadsol}
-h_0(s_0) = s_0 \pm \sqrt{ s_0^2 - R_0 }
+h_0(s_0) = -s_0 i \pm \sqrt{ R_0 - s_0^2 }
 \end{equation}
-If $R_0$ is positive, then for $|s_0| \leq \sqrt{R_0}$, $h_0(s_0)$ describes a circle of radius $\sqrt{R_0}$ in the complex plane centered at the origin. For $|s_0| \geq \sqrt{R_0}$, $h_0(s_0)$ is on the imaginary axis. Thus for $r = 0$, this is the Krein bubble!
+Assume $R_0 > 0$. Then for $|s_0| \leq \sqrt{R_0}$, $h_0(s_0)$ describes a circle of radius $\sqrt{R_0}$ in the complex plane centered at the origin. For $|s_0| \geq \sqrt{R_0}$, $h_0(s_0)$ is on the imaginary axis. Thus for $r = 0$, this is the Krein bubble!
 
-All that remains is to show that this persists for small $r$. 
-
-The last thing to show is that this persists for small $r$. To do that, we use the IFT to solve for $h^*$ in terms of $s^*$. Computing the derivative with respect to $h^*$ and noting that all the remainder terms vanish at 0, we have
+All that remains is to show that this persists for small $r$. To do that, we will use the implicit function theorem to solve for $h_0$ in terms of $s_0$ for small $r$. Computing the derivative with respect to $h_0$ and noting that all the remainder terms vanish at 0,
 \begin{align*}
-\partial_{h^*} G(s^*, h^*, 0) 
-&= 2 h^* + 2 i s^*
+\partial_{h_0} G(h_0, s_0, 0) 
+&= 4\mu_*(0) i ( h_0 + s_0 i )
 \end{align*}
-Plugging in $h^*(s^*)$ from \cref{Bquadsol},
+Plugging in $h_0(s_0)$ from \cref{Bquadsol},
 \begin{align*}
-\partial_{h^*} G(s^*, h^*(s^*), 0) 
-&= 2 (-i s^* \pm \sqrt{R^* - (s^*)^2 })) + 2 i s^* \\
-&= \pm 2 \sqrt{R^* - (s^*)^2 })
+\partial_{h_0} G(h_0(s_0), s_0, 0) 
+&= 4\mu_*(0) i \sqrt{ R_0 - s_0^2 }
 \end{align*}
-This is nonzero as long as $s^* \neq \pm \sqrt{R^*}$, at which point there is a bifurcation. 
+This is nonzero as long as $s_0 \neq \pm \sqrt{R_0}$, at which point there is a bifurcation. We will first handle what happens away from the bifurcation, and then we will deal with the bifurcation point.
 
-This is annoying, but I think we can get around it in the following way.
-\begin{enumerate}
-\item Choose any $\epsilon > 0$. Then on the interval $I_\epsilon = [-\sqrt{R^*} + \epsilon, \sqrt{R^*} - \epsilon]$, $\partial_{h^*} G(s^*, h^*(s^*), 0)$ is bounded away from 0 (with bound dependent on $\epsilon$). Since this bound is uniform in $s^*$, it should follow from either a uniform version of the IFT or the uniform contraction mapping principle that there exists $r_0$ such that we can solve for $h^*$ in terms of $s^*$ for all $r < r_0$. This lets us do everything except actually close the bubble at the top and bottom.
+Choose any $\epsilon > 0$. Then on the set
+\[
+S_\epsilon = [-2 \sqrt{R_0} -\sqrt{R_0} - \epsilon]
+\cup [-\sqrt{R_0} + \epsilon, \sqrt{R_0} - \epsilon]
+\cup [\sqrt{R_0} + \epsilon, 2\sqrt{R_0}]
+\]
+$\partial_{h_0} G(s_0, h_0(s_0), 0)$ is bounded away from 0, with bound dependent on $\epsilon$. Thus using the uniform contraction mapping principle, we can find $r_1 > 0$ such that for all $s \in S_\epsilon$, we can solve for $h_0$ in terms of $s_0$ and $r$. Specifically, there exists a smooth function $h^*(s, r)$ such that $h^*(s, 0) = h_0(s)$ and for all $r \leq r_1$ and $s \in S_\epsilon$, $G(h^*(s,r),s,r) = 0$.
 
-\item Either do the same thing for $s^* = -\sqrt{R^*} + \epsilon$ and $s^* = \sqrt{R} - \epsilon$ to get solutions which must be on the imaginary axis (by Hamiltonian symmetry) or use the fact (that we proved) that Krein bubbles cannot happen if we are more than $C r^{1/2}/X^{1/2}$ from the interaction eigenvalue. Either way, we have points above and below the bubble which we know are on the imaginary axis. Since the eigenvalues are continuous in $X$, the bubble must close.
-
-\item Alternatively, just use the IFT at $s^* = 0$ (widest part of bubble) and $s^* = \sqrt{2R}$ (outside bubble), and let continuity and Hamiltonian symmetry take care of the rest.
-
-\end{enumerate} 
-
-Whatever the case, we can now answer the question of what is the radius of the Krein bubble, to leading order. The radius $\sqrt{R^*}$ is for the scaled variable $h^*$. In terms of the scaled variable $\tilde{h}$, the radius is $r^{1/4} \sqrt{R^*} X_0^{1/2}/X_{1/2}$. In terms of the original variable $h$, which corresponds to $\mu$, the Krein bubble has radius to leading order
-\begin{align*}
-R_\mu = r^{3/4}\frac{X_0^{1/2}}{X^{1/2}} \sqrt{-\frac{4 p_1 \tilde{k}_0 \tilde{b}^2 }{M}} = b \frac{X_0^{1/2}}{X^{1/2}} \sqrt{-\frac{4 p_1 k_0 }{M}} 
-= \sqrt{ \frac{2a}{M c^2} }  \frac{X_0^{1/2}}{X^{1/2}} \sqrt{-\frac{4 p_1 k_0 }{M}} 
-\end{align*}
-where we substituted in for $b$. Finally, we want the radius in terms of $\lambda$. Since $\lambda = \nu^{-1}(\mu)$, the Krein bubble radius is, to leading order,
-\begin{align*}
-R = \sqrt{ \frac{2a}{M} }  \frac{X_0^{1/2}}{X^{1/2}} \sqrt{-\frac{4 p_1 k_0 }{M}} 
-\end{align*}
-Numerical evidence suggests that for KdV5, $k_0 > 0$ and $p_1 < 0$, which is good. In principle, we could actually compute this, since everything is either known or can be computed numerically.
-
-\section{Interaction eigenvalues outside Krein bubble}
-
-Next, we find the interaction eigenvalues if we are outside a Krein bubble. We use the same setup as we did for the Krein bubble, since we are looking for eigenvalues of order $\mathcal{O}(r^{1/2})$. 
-
-Since we are assuming that $bi$ is isolated from every point $k \pi / X$ by at least $r^{1/2}/X^{1/2}$, we can use the setup in the previous section, except we can always take $|s| \geq r^{1/2}/X^{1/2}$. Thus we start with equation \cref{Bsimple4}. 
-
- $\tilde{s} = \mathcal{O}(1/X^{1/2})$, which gives us
-\begin{equation}\label{Binteig1}
+Now we look at the bifurcation points $s_0 = \pm \sqrt{R_0}$. Add and subtract $s_0^2$ in \cref{BsimpleG1} to complete the square to get
+\begin{equation*}
 \begin{aligned}
-( \tilde{h}( \tilde{h} &+ 2 \tilde{b} i) + \mathcal{O}( r^{1/2} ))\left( (\tilde{s} + \tilde{h})X + \mathcal{O}\left( (\tilde{s} + \tilde{h})^3 r X^3 \right) \right) \\ 
-&- \left(\frac{8 p_1 \tilde{k}_0}{M} ( \tilde{h} + \tilde{b}i)^3 r^{1/2} X_0 + \mathcal{O}(r + r^{1/2 + \gamma}) + \mathcal{O}(r^{2} (\tilde{b}i + \tilde{h})^3 X_0^3) \right)\left( 1 + \mathcal{O}\left( (\tilde{s} + \tilde{h})^2 r X^2 \right) \right) \\
-&+ \mathcal{O}( r^{1/2} ) = 0
+G(h_0, s_0, 0) &= 2 \mu_*(0) i\left[ (h_0 + s_0 i)^2 + s_0^2 + \frac{8 p_1 \tilde{k}_0}{M} \mu_*(0)^2 \right] 
 \end{aligned}
-\end{equation} 
-
-As long as $\tilde{s}$ is not 0, for sufficiently small $r$ (depending on $\tilde{s}$), we should be able to use the IFT to find a unique $\tilde{h}$ near $h = 0$. 
-
-
-
-******
-GARBAGE FOLLOWS
-
-First, we will look at what happens when $\pm bi$ is separated by at least $r^{1/2}/X^{1/2}$ from the set $S$. This should be a sufficient condition for no Krein bubbles. First, we locate the interaction eigenvalues.
-
-\begin{lemma}
-\begin{proof}
-By \cref{lemma:expnubound} and our choice of $\lambda$, $\cosh(\nu(\lambda)X_j)$, $\sinh(\nu(\lambda)X_j)$, and $\cosh(\nu(\lambda)X)$ are bounded by a constant. Since $k_j = \mathcal{O}(r^{1/2})$ and
-\[
-2a + \lambda^2 M = M( \lambda - b i) (\lambda + b i),
-\]
-the equation $\det B = 0$ simplifies to 
-\begin{equation}\label{simpleDetB1}
--2 \lambda^2 M^2 ( \lambda - b i) (\lambda + b i)\sinh(\nu(\lambda)X) + \mathcal{O}( (r^{1/2} + |\lambda|)^5 ) = 0
-\end{equation}
-Since we expect the interaction eigenvalues to be near $bi = \mathcal{O}(r^{1/2})$, we scale out a factor of $r^{1/2}$ from everything. Let
-\begin{align*}
-b &= r^{1/2} \tilde{b} \\
-\lambda &= r^{1/2} \tilde{\lambda}
-\end{align*}
-Making these substitutions and dividing by $r^2$ and the constants out front, we have
-\begin{equation}\label{simpleDetB2}
-\tilde{\lambda}^2 ( \tilde{\lambda} - \tilde{b} i) (\tilde{\lambda} + \tilde{b} i)\sinh(\nu(r^{1/2}\tilde{\lambda})X) + \mathcal{O}(r^{1/2}) = 0
-\end{equation}
-Next, let $\tilde{s} = \tilde{\lambda} - \tilde{b} i$. Then this becomes
-\begin{equation}\label{simpleDetB3}
-\tilde{s} (\tilde{s} + \tilde{b} i) (\tilde{s} + 2 \tilde{b} i)\sinh(\nu(r^{1/2}(\tilde{b}i + \tilde{s}))X) = \mathcal{O}(r^{1/2})
-\end{equation}
-As long as the $\sinh$ term is not too small, we should be able to solve this for $s$ near $s = 0$. This is of the form $F(\tilde{s}) = R$, where $F(0) = 0$. Taking the derivative at $\tilde{s} = 0$, we are left with only one term
-\[
-F'(0) = -2 \tilde{b}^2 \sinh(\nu(bi)X)
-\]
-We will obtain a lower bound on $\sinh(\nu(bi)X)$, from which it follows that $F'(0) \neq 0$. For any integer $k$, let
-\[
-d_k = bi - c\frac{k \pi i}{X}
-\]
-By our initial setup, $|d_k| \geq r^{1/2}/X^{1/2}$. Then we have
-\begin{align*} 
-\nu(bi) &= \frac{1}{c}bi + \mathcal{O}(bi)^3 \\
-&= \frac{1}{c}\left( c\frac{k \pi i}{X} + \left( bi - c\frac{k \pi i}{X}\right) \right) + \mathcal{O}(r^{3/2}) \\
-&= \frac{k \pi i}{X} + \frac{d_k}{c} + \mathcal{O}(r^{3/2})
-\end{align*}
-Since $r^{1/2}X^{1/2} \leq C$, $r^{3/2}X \leq C r^{1/2}$, thus we have
-\begin{align*} 
-\sinh( \nu(bi)X) &= \sinh\left( k \pi i + \frac{d_k X}{c} + \mathcal{O}(r^{1/2}) \right)
-\end{align*}
-from which it follows that
-\[
-|\sinh( \nu(bi)X)| \geq C |d_k X| \geq C r^{1/2}X^{1/2}
-\]
-Thus we have
-\[
-|F'(0)| \geq C \tilde{b}^2 r^{1/2}X^{1/2} > 0
-\]
-Using the inverse function theorem, $F$ is invertible near 0, thus for $R$ sufficiently small, $\tilde{s} = F^{-1}(R)$. For the derivative at 0, we have bound
-\[
-|F^{-1}(0)'| = \frac{1}{F'(F^{-1}(0))} \\
-= \frac{1}{F'(0)} = \mathcal{O}(r^{-1/2}X^{-1/2})
-\]
-Expanding $F^{-1}$ in a Taylor series about $r = 0$, we have
-\[
-\tilde{s} = \mathcal{O}(r^{-1/2}X^{-1/2}) \mathcal{O}(R) = \mathcal{O}\left( \frac{1}{X^{1/2}}\right)
-\]
-\end{proof}
-\end{lemma}
-
-We do the same thing for the essential spectrum eigenvalues.
-
-\begin{lemma}
-\begin{proof}
-As in the previous lemma, we wish to solve
-\begin{equation*}
-\lambda^2 ( \lambda - b i) (\lambda + b i)\sinh(\nu(\lambda)X) + \mathcal{O}( (r^{1/2} + |\lambda|)^5 ) = 0
 \end{equation*}
-Here, we are interested in what happens near where $\lambda$ is close to $c \frac{k \pi i}{X}$. Let 
-\[
-\lambda_k = c \frac{k \pi i}{X}
-\]
-where $k$ is a nonzero integer sufficiently small so that $|\lambda_k| < \delta$. Without loss of generality, take $k > 0$; the case where $k < 0$ follow by symmetry. Let
-\[
-\lambda = \lambda_k + \frac{h}{X}.
-\]
-Since we at least have $h < \pi/2$ so that we know which $\lambda_k$ we are closest to, $h/X < \lambda_k$.
-
-Using Lemma \ref{nulambdalemma},
-\begin{align*}
-\nu(\lambda) &= \frac{1}{c}\lambda_k + \mathcal{O}(|\lambda|^3) \\
-&= \frac{k \pi i}{X} + \frac{h}{X} + \mathcal{O}(|\lambda_k|^3)
-\end{align*}
-Expanding the $\sinh$ term in a Taylor series about $n \pi i$,
-\begin{align*}
-\sinh(\nu(\lambda)X) &= \sinh(k \pi i + h + \mathcal{O}(|\lambda_k|^3 X) \\
-&= (-1)^k ( h + \mathcal{O}(|\lambda_k|^3 X)) + \mathcal{O}(h^3)
-\end{align*}
-Thus our equation to solve is
+Let $z = h_0 + s_0 i$. Then this becomes
 \begin{equation*}
-\lambda^2 ( \lambda - b i) (\lambda + b i)((-1)^k ( h + \mathcal{O}(|\lambda_k|^3 X)) + \mathcal{O}(h^3)) + \mathcal{O}( (r^{1/2} + |\lambda|)^5 ) = 0
+\begin{aligned}
+G(z, s_0, 0) &= 2 \mu_*(0) i\left[z^2 + (s_0^2 - R_0) \right] = 2 \mu_*(0) i\left[z^2 + (s_0 - \sqrt{R_0})(s_0 + \sqrt{R_0}) \right]
+\end{aligned}
 \end{equation*}
-Dividing by $(-1)^k$ and substituting for $\lambda$, this becomes
-\begin{align*}
-\left(\lambda_k + \frac{h}{X}\right)^2 &\left(\lambda_k - b i + \frac{h}{X}\right)\left(\lambda_k + b i + \frac{h}{X}\right) ( h + \mathcal{O}(|\lambda_k|^3 X) + \mathcal{O}(h^3)) \\
-&+ \mathcal{O}( (r^{1/2} + |\lambda_k|)^5 ) = 0
-\end{align*}
-Since $\lambda_k > 0$, $\lambda_k + b i = \mathcal{O}(|\lambda|^k + r^{1/2})$, thus 
-\begin{align*}
-\left(\lambda_k + \frac{h}{X}\right)^2 &\left(\lambda_k - b i + \frac{h}{X}\right)\left(\lambda_k + b i + \frac{h}{X}\right) ( h + \mathcal{O}(h^3)) \\
-&= \mathcal{O}\left( (r^{1/2} + |\lambda_k|)^5 + |\lambda_k|^5 (|\lambda_k| + r^{1/2})|\lambda_k - b i|X \right)
-\end{align*}
-Factoring out $\lambda_k$ from the LHS and dividing by $\lambda_k^4$, this becomes
-\begin{align*}
-\left(1 - i \frac{h}{k \pi} \right)^2 &\left(1 - \frac{b i}{\lambda_k} - i \frac{h}{k \pi} \right)\left(1 + \frac{b i}{\lambda_k} - i \frac{h}{k \pi} \right) ( h + \mathcal{O}(h^3)) \\
-&= \mathcal{O}\left( \frac{1}{|\lambda_k|^4} (r^{1/2} + |\lambda_k|)^5 + |\lambda_k| (|\lambda_k| + r^{1/2})|\lambda_k - b i|X \right)
-\end{align*}
-As with the interaction eigenvalues, this is of the form $F(h) = R$, with $f(0) = 0$. Here we have to consider two cases. First, take $|\lambda_k| \geq 2b$. Then our equation reduces to
-\begin{align*}
-\left(1 - i \frac{h}{k \pi} \right)^2 &\left(1 - \frac{b i}{\lambda_k} - i \frac{h}{k \pi} \right)\left(1 + \frac{b i}{\lambda_k} - i \frac{h}{k \pi} \right) ( h + \mathcal{O}(h^3)) \\
-&= \mathcal{O}\left(  |\lambda_k|  + |\lambda_k|^3 X \right)
-\end{align*}
-Taking the derivative with respect to $h$ at $h = 0$, we are left with the single term
-\[
-F'(0) = \left(1 - \frac{b i}{\lambda_k}\right)\left(1 + \frac{b i}{\lambda_k}\right)
-\]
-Since $|\lambda_k| \geq 2b$, $F'(0) \geq 1/2$. Thus we can use the inverse function theorem invert $F$ in a neighborhood of 0. Since $|\lambda^k| < \delta$, for sufficiently small $\delta$, $h = F^{-1}(R)$. Expanding $F^{-1}(t)$ in a Taylor series at $t = 0$, since $\lambda_k = \mathcal{O}(1/X)$, we have
-\[
-h = \mathcal{O}\left( \frac{1}{X} \right)
-\]
-which can be made arbitrarily small by decreasing $r$ (or increasing $X_1$).
-
-The second case is when $|\lambda_k| \leq 2 b$. In this case $|\lambda_k| = \mathcal{O}(r^{1/2})$, so we have
-\begin{align*}
-\left(1 - i \frac{h}{k \pi} \right)^2 &\left(\lambda_k - b i - i \frac{h}{k \pi} \right)\left(\lambda_k + b i - i \frac{h}{k \pi} \right) ( h + \mathcal{O}(h^3)) \\
-&= \mathcal{O}\left( \frac{1}{|\lambda_k|^2} (r^{1/2} + |\lambda_k|)^5 + |\lambda_k|^3 (|\lambda_k| + r^{1/2})|\lambda_k - b i|X \right) \\
-&= \mathcal{O}\left( r^{3/2} + r^4 |\lambda_k - b i|X \right)
-\end{align*}
-The derivative with respect to $h$ at $h = 0$ is the single term
-\[
-F'(0) = \left(\lambda_k -  b_i \right)\left(\lambda_k +  b_i \right)
-\]
-which is bounded away from 0 since we are assuming that $|\lambda_k - b_i| \leq r^{1/2}/X^{1/2}$. Doing the same thing we did for the first case, since $|\lambda_k + b_i| = \mathcal{O}(r^{1/2})$, we have
-\begin{align*}
-h &= \mathcal{O}\left( \frac{ r^{3/2} + r^4 |\lambda_k - b i|X }{|\lambda_k -  b_i ||\lambda_k +  b_i |} \right) \\
-&= \mathcal{O}(r^{1/2}X^{1/2})
-\end{align*}
-which can be made arbitrarily small by decreasing $r$. Thus we have
-\[
-\lambda = \lambda_0 + \mathcal{O}\left( \frac{r^{1/2}}{X^{1/2}} + \frac{1}{X^2} \right)
-\]
-\end{proof}
-\end{lemma}
-
-Fix $k$ such that $\frac{c \pi k}{X} < \delta$, where $\delta$ is given in Theorem \ref{locateeigtheorem}. We are interested in what happens near $\lambda = c \frac{k \pi i}{X}$ when $c \frac{k \pi i}{X}$ and $bi$ are close. Specifically, we will take $\lambda$ and $bi$ to both be within $r^{1/2}/X^{1/2}$ of $c \frac{k \pi i}{X}$. Let
-\begin{align}\label{lambdah1}
-\lambda = c \frac{k \pi i}{X} + \frac{c}{X}h
-\end{align}
-and
-\begin{align}\label{lambdas1}
-s = \frac{c \pi k}{X} - b
-\end{align}
-where
-\begin{align}\label{hsbounds}
-\left| \frac{c}{X}h \right|, |s| \leq \frac{r^{1/2}}{X^{1/2}}
-\end{align}
-Since $(r X)^{1/2} < c \pi/2$, we also have the bound on $h$
-\begin{align}\label{hbound1}
-|h| \leq \frac{\sqrt{r X}}{\pi c} \leq \frac{\pi}{2}.
-\end{align}
-
-
-In the next lemma, we evaluate $\det B$ in terms of $h$.
-
-\begin{lemma}
-In terms of $h$,
-\begin{align*}
-\det &B = -2 \lambda^2 M (-1)^k \Big[ (2a + \lambda^2 M) h - 8 i \lambda^2 p_1 \left( k_0 \sin\left(\frac{k \pi X_0}{X}\right) + k_1 \sin\left(\frac{k \pi X_1}{X}\right) \right) \Big] \\
-&+ \mathcal{O}(r^2(h + r^{\tilde{\eta}/2}))
-\end{align*}
-\begin{proof}
-From the previous lemma,
-\begin{align*}
-\nu(\lambda) X &= k \pi i + h + \mathcal{O}(r^{3/2}X) \\
-&= k \pi i + h + \mathcal{O}(r^{1/2})
-\end{align*}
-Expanding $\sinh(\nu(\lambda)X)$ and $\cosh(\nu(\lambda)X)$ in a Taylor series about $k \pi i$,
-\begin{align*}
-\sinh(\nu(\lambda)X) &= \sinh(k \pi i + h + \mathcal{O}(r^{1/2})) = (-1)^k h  + \mathcal{O}(h^3 + r^{1/2}) \\
-\cosh(\nu(\lambda)X) &= \cosh(k \pi i + h + \mathcal{O}(r^{1/2})) = (-1)^k +  \mathcal{O}(h^2 + r^{1/2})
-\end{align*}
-From the previous lemma,
-\[
-\nu(\lambda)X_j = \frac{k \pi X_j}{X}i + \frac{h X_j}{X} + \mathcal{O}(r^{3/2} X_j)
-= \frac{k \pi X_j}{X}i + \frac{h X_j}{X} + \mathcal{O}(r^{1/2})
-\]
-Expanding $\cosh(\nu(\lambda)X)$ and $\sinh(\nu(\lambda)X)$in a Taylor series about $\frac{k \pi X_j}{X}i$
-\begin{align*}
-|\cosh&(\nu(\lambda)X_j)| = \left| 
-\cosh\left( \frac{k \pi X_j}{X}i \right) + \mathcal{O}(h + r^{1/2}) \right| \leq C
-\end{align*}
+We will look at the bifurcation point at $s_0 = \sqrt{R_0}$. The other one will be similar. Let $\epsilon = s_0 - \sqrt{R_0}$. Then we have
+\begin{equation}\label{Gepsilon1}
+\begin{aligned}
+G(z, \epsilon, 0) &= 2 \mu_*(0) i\left[z^2 + (s_0^2 - R_0) \right] = 2 \mu_*(0) i\left[z^2 + \epsilon(\epsilon + 2 \sqrt{R_0}) \right]
+\end{aligned}
+\end{equation}
 and
 \begin{align*}
-\sinh&(\nu(\lambda)X_j)
-= \sinh\left( \frac{k \pi X_j}{X}i \right) + \mathcal{O}(h + r^{1/2}) \\
-&= i \sin\left( \frac{k \pi X_j}{X}\right) + \mathcal{O}(h + r^{1/2})
+G(0, 0, 0) &= 0 \\
+\partial_z G(0,0,0) &= 0 \\
+\partial_z^2 G(0,0,0) &= 4 \mu_*(0) i \neq 0 \\
+\partial_\epsilon G(0, 0, 0) &= 4 \mu_*(0) \sqrt{R_0} i \neq 0
 \end{align*}
-Substituting all of this in, we have
-\begin{align*}
-\det &B_1 = -2 \lambda^2 M \Big[ (2a + \lambda^2 M)((-1)^k h + \mathcal{O}(h^3 + r^{1/2})) + \mathcal{O}(r^{3/2}(h + r^{1/2})) \\
-&- 8 \lambda^2 p_1 ((-1)^k + \mathcal{O}(h + r^{1/2})) \left( k_0 i \sin\left(\frac{k \pi X_0}{X}\right) 
-+ k_1 i \sin\left(\frac{k \pi X_1}{X}\right) + \mathcal{O}(r^{1/2}(h + r^{1/2})) \right) \Big] 
-\end{align*}
-which simplifies to
-\begin{align*}
-\det &B_1 = -2 \lambda^2 M (-1)^k \Big[ (2a + \lambda^2 M) h \\
-&- 8 i \lambda^2 p_1 \left( k_0 \sin\left(\frac{k \pi X_0}{X}\right) + k_1 \sin\left(\frac{k \pi X_1}{X}\right) \right) + \mathcal{O}(r(h + r^{1/2}))\Big] 
-\end{align*}
-Using \cref{lambdas1}, \cref{hsbounds}, and $k_j = \mathcal{O}r^{1/2})$, expanding the sine term in a Taylor series to get
-\begin{align*}
-k_j \sin\left( \frac{k \pi X_j}{X}\right) 
-&= k_j \sin\left( b X_j + \mathcal{O}\left( \frac{r^{1/2}X_j }{X^{1/2}} \right) \right) \\
-&= k_j \sin(b X_j) + \mathcal{O}\left(r X_j^{1/2} \right) \\
-&= k_j \sin(b X_j) + \mathcal{O}\left(r X_j^{1/2} \right)
-\end{align*}
-\end{proof}
-\end{lemma}
-
-At this point, we neglect some higher order terms. Since $\nu(\lambda)$ is purely imaginary for the cases we care about, all the $\sinh$ and $\cosh$ terms are bounded by 1. Since 
-\[
-\lambda^2 p_1(k_0 \cosh(\nu(\lambda)X_0) + k_1 \cosh(\nu(\lambda)X_1)  ) = \mathcal{O}(e^{-\alpha X_0}|\lambda|^2)
-\]
-we can neglect that term. Since $k_1 << k_0$, we can also neglect the term $k_1 \sinh(\nu(\lambda)X_1) )$. This leaves us with 
-\begin{align*}
-\det &B \approx -2 \lambda^2 M \Big[ (2a + \lambda^2 M  ) \sinh(\nu(\lambda)X) - 8 \lambda^2 p_1 k_0 \cosh(\nu(\lambda)X) \sinh(\nu(\lambda)X_0) \Big]
-\end{align*}
-
-Now we approximate the various terms. Krein bubbles occur (numerically) when interaction eigenvalues and essential spectrum eigenvalues collide. The essential spectrum eigenvalues occur at approximately 
-\[
-\lambda = c \frac{n \pi i}{X}
-\]
-for integer $n$. With this as motivation, we first take the scaling $\lambda = c \mu / X$. Then we have from Lemma \ref{nulambdalemma}
-\begin{align*}
-\nu(\lambda) &= \frac{1}{c} \lambda + \mathcal{O}(|\lambda|^3) 
-\\
-&= \frac{\mu}{X} + \mathcal{O}(\mu^3 / X^3)
-\end{align*}
-Next, we want $\mu$ to be a small perturbation of $n \pi i$, so take 
-\[
-\mu = n \pi i + h i
-\]
-where the $i$ in front of $h i$ is for convenience. Substituting this into the $\sinh$ and $\cosh$ terms, we get
-\begin{align*}
-\sinh(\nu(\lambda)X) &= \sinh(n \pi i + h i + \mathcal{O}(\mu^2 / X^3)) = (-1)^n h i  + \mathcal{O}(h^3 + \mu^2 / X^3) \\
-\cosh(\nu(\lambda)X) &= \sinh(n \pi i + h i + \mathcal{O}(\mu^2 / X^3)) = (-1)^n +  \mathcal{O}(h^2 + \mu^4 / X^6)
-\end{align*}
-Substituting these into the expression for $B$ and neglecting higher order terms, we have
-\begin{align*}
-\det &B \approx -2 \lambda^2 M \Big[ (2a + \lambda^2 M  ) (-1)^n h i - 8 \lambda^2 p_1 k_0 (-1)^n \sinh(\nu(\lambda)X_0) \Big] \\
-&= -2 (-1)^n \lambda^2 M \Big[ (2a + \lambda^2 M  ) h i - 8 \lambda^2 p_1 k_0 \sinh(\nu(\lambda)X_0) \Big] \\
-&= -2 (-1)^n \lambda^2 M \Big[ (2a + \lambda^2 M  ) h i - 8 \lambda^2 r_0 \Big]
-\end{align*}
-where $r_0 = p_1 k_0 \sinh(\nu(\lambda)X_0)$. Since we want to solve $\det B = 0$ and the stuff out front is nonzero, we can ignore the stuff out front. Plugging in $\lambda = c \mu / X$, this become
-\[
-\left(2a + \frac{c^2 \mu^2}{X^2} M\right) h i + r_0 \frac{c^2 \mu^2}{X^2} = 0
-\]
-Multiplying by $X^2/(M c^2)$, this becomes
-\[
-\left(\frac{2a}{M c^2} X^2 + \mu^2 \right) h i + \frac{r_0}{M}\mu^2 = 0
-\]
-Recall that Krein bubbles can only occur when the interaction eigenvalues are on the imaginary axis. This happens when $\frac{2a}{M} > 0$. For convenience, take
-\begin{align*}
-b &= \sqrt{ \frac{2a}{M} } \\
-\end{align*}
-where $b$ is real. Substituting this, we have
-\begin{align*}
-\left(\mu^2 - (bi)^2 \frac{X^2}{c^2} \right) h i + \frac{r_0}{M} \mu^2 &= 0 \\
-\left(\mu + i b\frac{X}{c}\right)\left(\mu - i b\frac{X}{c}\right) h i + \frac{r_0}{M} \mu^2 &= 0
-\end{align*}
-The Krein bubble only occurs when the interaction eigenvalues are close to the essential spectrum eigenvalues (all of which are purely imaginary). For this to occur, we need either $i b X/c$ or $-i b X/c$ to be close to $n \pi i$ on the imaginary axis. By symmetry, it does not matter which one we do, so let
-\[
-n \pi - b X/c = 2 k
-\]
-where $k$ is real. It follows that
-\begin{align*}
-\mu &= n \pi i + h i = 2 k i + h i + i b X/c \\
-\mu - i b X/c &= 2 k i + h i\\
-\mu + i b X/c &= 2 k i + h i + 2 i b X/c
-\end{align*}
-Substituting these in, we have
-\[
-\left(2 k i + h i + 2i b\frac{X}{c}\right)\left(2k i + i h\right) h i + \frac{r_0}{M} \left(2 i k + h i + i b \frac{X}{c}\right)^2 = 0
-\]
-Dividing by $i^2$, this becomes
-\[
-\left(2 k + h + 2 b\frac{X}{c}\right)\left(2k + h\right) h i + \frac{r_0}{M} \left(2 k + h + b \frac{X}{c}\right)^2 = 0
-\]
-We note that everything except for $h$ is real. Since $h$ and $k$ are small compared to $b X/c \approx n \pi$, this is approximately
-\[
-2 b\frac{X}{c}\left(2k + h\right) h i + \frac{r_0}{M} \left( b \frac{X}{c}\right)^2 = 0
-\]
-which simplifies to
-\[
-\left(2k + h\right) h i + \frac{r_0 b X }{M c} = 0
-\]
-Expanding the $\sinh$ term in $r_0$ in a Taylor series about $0$, we have
-\begin{align*}
-r_0 &= p_1 k_0 \sinh(\nu(\lambda)X_0) \\
-&= p_1 k_0 \sinh\left( \frac{n \pi i + h i}{X} X_0 + h.o.t. \right) \\
-&= p_1 k_0 \sinh\left( \frac{n \pi i X_0}{X} h.o.t. \right) \\
-&= i p_1 k_0 X_0 \frac{n \pi}{X} + h.o.t.
-\end{align*}
-Substituting $n \pi = b X/c + 2 k$, this becomes
-\begin{align*}
-r_0 &= i p_1 k_0 X_0 \frac{b X + 2 k c}{X c} + h.o.t. \\
-&= i \frac{p_1 k_0 b X_0}{c} + h.o.t.
-\end{align*}
-Substituting this in, we have
-\[
-\left(2k + h\right) h i + i \frac{p_1 k_0 b^2 X X_0 }{M c^2} = 0
-\]
-Dividing by $i$, this simplies to
-\[
-h^2 + 2kh + R = 0
-\]
-where 
-\[
-R = \frac{p_1 k_0 b^2 X X_0 }{M c^2}
-\]
-which is real. This has solution
-\[
-h = -k \pm \sqrt{k^2 - R}
-\]
-Then for $|k| \leq \sqrt{R}$,
-\[
-h = -k \pm i \sqrt{R - k^2}
-\]
-and so $h$ lies on a circle of radius $\sqrt{R}$ centered around the origin in the complex plane. Substituting back for all the things
-\[
-\sqrt{R} = \frac{b}{c} \sqrt{\frac{p_1 k_0 X X_0 }{M} }
-\]
-This is the radius in the perturbation $h$. Since $\lambda = (n \pi i + h i)/X$, to get the radius in $\lambda$, we divide by $X$ to get the Krein bubble radius
-\[
-\frac{\sqrt{R}}{X} = \frac{b}{c} \sqrt{\frac{p_1 k_0 X_0 }{M X} } = \mathcal{O}\left(\frac{ X_0^{1/2} e^{-(5/2) \alpha X_0} }{X^{1/2}} \right)
-\] 
-Numerics confirms the scaling in $X$ to high accuracy. There is no easy way to confirm the scaling in $X_0$ numerically, but questionably crude numerics confirms the scaling in $X_0$ to reasonable accuracy.
+These are the criteria for a fold bifurcation, with the only difference being that $z \in \C$ instead of $\R$. EXTENDING STANDARD RESULTS FROM BIFURCATION THEORY TO $\C$ (OR MAYBE WRITING THIS IN $\R^2$), for sufficiently small $r$ there is a smooth, invertible change of coordinates which transforms \cref{Gepsilon1} into
+\begin{equation}\label{Gepsilon2}
+\begin{aligned}
+\tilde{G}(z, \tilde{\epsilon}) &= z^2 + \tilde{\epsilon}^2
+\end{aligned}
+\end{equation}
 
 \iffulldocument\else
 	\bibliographystyle{amsalpha}
