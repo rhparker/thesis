@@ -484,7 +484,7 @@ To get the estimate (v), we substitute these into \cref{defDid} and use estimate
 
 \section{Gap and conjugation Lemmas}
 
-In this section, we state and prove the gap and conjugation lemmas. We will use the conjugation lemma to simplify the system of equations \cref{eigsystem}. The statements and notation of these lemmas are very similar to those in \cite{Zumbrun2009}, except we allow the parameter vector $\Lambda$ to live in a Banach space rather than in a subset of $\C^m$. The proofs follow those in \cite{Zumbrun2009}, but are given in much more detail. First, we state and prove the gap lemma.
+In this section, we state and prove the gap and conjugation lemmas. We will use the conjugation lemma to simplify the system of equations \cref{eigsystem}. The statements and notation of these lemmas are very similar to those in \cite{Zumbrun2009}, except we allow the parameter vector $\Lambda$ to live in a Banach space rather than in a subset of $\C^m$. The proofs follow those in \cite{Zumbrun2009}, but are given in much more detail. In addition, the proof of the conjugation lemma is used to prove a corollary. First, we state and prove the gap lemma.
 
 % Gap lemma
 \begin{lemma}[Gap Lemma]\label{gaplemma}
@@ -1209,40 +1209,107 @@ At $\lambda = 0$, this becomes
 \begin{align*}
 [\partial_\lambda \tilde{V}^+(0; \lambda)]' &= A(Q(x))\partial_\lambda \tilde{V}^+(x; \lambda) + \left( B - \frac{1}{c}I\right) V^c(x),
 \end{align*}
-thus $\partial_\lambda \tilde{V}^+(0; \lambda)$ solves \cref{tildeVderivsolves}. The symmetry relationship for $\partial_\lambda \tilde{V}^-(0; \lambda)$ is the same as for $\partial_\lambda V^-(0; \lambda)$
+thus $\partial_\lambda \tilde{V}^+(x; \lambda)$ solves \cref{tildeVderivsolves}. The symmetry relationship for $\partial_\lambda \tilde{V}^-(0; \lambda)$ is the same as for $\partial_\lambda V^-(0; \lambda)$
 \end{proof}
 \end{lemma}
 
-** MELNIKOV NEXT **
+In the next lemma, we evaluate two important inner products involving $\partial_\lambda \tilde{V}^+(x; 0)$ which will show up in our analysis.
 
-Finally, $V^\pm(x; \lambda)$ has Taylor expansion
+\begin{lemma}\label{lemma:VderivIPs}
+We have the following inner products involving $\partial_\lambda \tilde{V}^+(0; 0)$. 
+\begin{enumerate}[(i)]
+\item
+\begin{align*}
+\langle W_0, \partial_\lambda \tilde{V}^+(0; 0) \rangle
+= -\int_0^{\infty} \left(v_0(y) - \frac{1}{c}\right) dy
+\end{align*}
+which is finite.
+\item $\langle \Psi(0), \partial_\lambda \tilde{V}^+(0; 0) \rangle = - M^c$,
+where $M^c$ is the ``center'' Melnikov-type integral
 \begin{equation}
-V^\pm(x; \lambda) = V^c(x) + \partial_\lambda V^\pm(x; 0) + \mathcal{O}(|\lambda|^2)
+M^c = \int_0^\infty q(y) v^c(y) dy
 \end{equation}
-where $\partial_\lambda V^-(x; 0) = -R \partial_\lambda V^+(x; 0)$ and $\partial_\lambda V^+(x; 0)$ solves the equation
+with $q(y)$ the first component of $Q(y)$ and $v^c(y)$ the first component of $V^c(y)$.
+
+\end{enumerate}
+\begin{proof}
+For convenience, let $Y(x) = \partial_\lambda \tilde{V}^+(x; 0)$. By Lemma \ref{lemma:Vpmderiv}, $Y(x)$ solves equation \cref{tildeVderivsolves}. Using the variation of constants formula and the exponential trichotomy projections \cref{trichotomyprojunconj}, we can formally write $Y(x)$ in integrated form as
+\begin{equation*}
+\begin{aligned}
+Y(x) &= \tilde{\Phi}^s_+(x,0)\tilde{P}^s_+(0) Y(0) 
++ \int_0^x \tilde{\Phi}^s(x,y)\left( B - \frac{1}{c}I \right) V^c(y) dy \\
+&+ \int_{\infty}^x \tilde{\Phi}^u(x,y)\left( B - \frac{1}{c}I \right) V^c(y) dy + \int_{\infty}^x \tilde{\Phi}^c(x,y)\left( B - \frac{1}{c}I \right) V^c(y) dy 
+\end{aligned}
+\end{equation*}
+Using \cref{centerprojlemma}, this becomes
+\begin{equation}\label{Yintegform}
+\begin{aligned}
+Y(x) &= \tilde{\Phi}^s_+(x,0)\tilde{P}^s_+(0) Y(0) 
++ \int_0^x \tilde{\Phi}^s(x,y)\left( B - \frac{1}{c}I \right) V^c(y) dy \\
+&+ \int_{\infty}^x \tilde{\Phi}^u(x,y)\left( B - \frac{1}{c}I \right) V^c(y) dy + V^c(x) \int_{\infty}^x \langle W_0, \left( B - \frac{1}{c}I \right) V^c(y) \rangle dy 
+\end{aligned}
+\end{equation}
+In order to prove that this is a valid expression for $Y(x)$, we need to show that the integrals converge for all $x$. The convergence of the first and second integrals is straightforward since $V^c(x)$ is bounded and we have exponentially decaying estimates for $\tilde{\Phi}^s(x,y)$ and $\tilde{\Phi}^u(x,y)$ for the direction in which we are integrating. Thus it remains to check the third integral. Let 
 \[
-Z'(x) = A(Q(x),0) Z(x) + B V^c(x)
+V^c(x) = (v^c(x), \partial_x v^c(x), \dots, \partial_x^{2m-1} v^c(x), 1)
 \]
-on $\R^+$.
-
-
-\begin{remark}\label{remark:computeVc}
-If $z(x)$ is the first component of $\partial_\lambda V^+(x; 0)$, then $z(x)$ is a formal solution to $\partial_x \calL(q) z(x) = v^c(x)$ on $\R^+$, where $v^c(x)$ is the first component of $V^c(x)$. Since
+Then it follows that
 \[
-\partial_\lambda V^+(x; 0) = (z(x), \partial_x z(x), \dots, \partial_x^{2m-1}z^c(x), q^c(x) ),
+\langle W_0, \left( B - \frac{1}{c}I \right) V^c(y) \rangle = v_0(y) - \frac{1}{c}
 \]
-this provides a method way of computing $V^c(x)$ numerically, as long as the appropriate boundary conditions are used at 0.
-\end{remark}
+By Lemma \cref{lemma:Vcexists}, $|V^c(y) - V_0|\leq Ce^{-\alpha_1 y}$. Since the first component of $V_0$ is $1/c$, $|v_0(y) - 1/c| \leq Ce^{-\alpha_1 |x|}$. Using this with the third integral of \cref{Yintegform}, 
+\begin{align*}
+\left| \int_{-\infty}^x \langle W_0, \left( B - \frac{1}{c}I \right) V^c(y) \rangle dy \right| 
+\leq C \int_x^{\infty} e^{-\alpha_1 y} dy = C \frac{e^{-\alpha_1 x}}{\alpha_1}
+\end{align*}
+which is finite for all $x$. Thus the expression \cref{Yintegform0} is valid. Evaluating this at $x = 0$, we have
+\begin{equation}\label{Yintegform0}
+\begin{aligned}
+Y(0) &= \tilde{P}^s_+(0) Y(0) 
++ \int_{\infty}^0 \tilde{\Phi}^u(0,y)\left( B - \frac{1}{c}I \right) V^c(y) dy + V^c(0) \int_{\infty}^0 \langle W_0, \left( B - \frac{1}{c}I \right) V^c(y) \rangle dy 
+\end{aligned}
+\end{equation}
 
+For the inner product with $\Psi^c(0) = W_0$, only the center integral term survives, so we have
+\begin{align*}
+\langle W_0, Y(0) \rangle
+&= \langle W_0, V^c(0) \rangle \int_{\infty}^0 \left(v_0(y) - \frac{1}{c}\right) dy 
+= -\int_0^{\infty} \left(v_0(y) - \frac{1}{c}\right) dy 
+\end{align*}
+which is finite. For the inner product with $\Psi(0)$, only the first integral term survives. First, we note that 
+\begin{align*}
+\tilde{\Phi}^u(0,y) V^c(y) = \tilde{P}_+^u(y) \tilde{P}_+^c(y)V^c(y) = 0
+\end{align*}
+Thus for the inner product with $\Psi(0)$ we have
+\begin{align*}
+\langle \Psi(0), Y(0) \rangle
+&= \int_{\infty}^0 \langle \Psi(0), \tilde{P}_+^u(0) \tilde{\Phi}(0,y) B V^c(y) \rangle dy \\
+&= \int_{\infty}^0 \langle \tilde{P}_+^u(0)^*\Psi(0), \tilde{\Phi}(0,y) B V^c(y) \rangle dy \\
+\end{align*}
 
+All that remains is to evaluate the $\tilde{P}_+^u(0)^*$. Since
+\begin{align*}
+\ker \tilde{P}_+^u(0)^* &\perp \ran \tilde{P}_+^u(0) \\
+\ran \tilde{P}_+^u(0)^* &\perp \ker \tilde{P}_+^u(0)
+\end{align*}
+and $\ker \tilde{P}_+^u(0) = T_{Q(0)} W^s(0) \oplus T_{Q(0)} W^c(0)$, $\tilde{P}_+^u(0)^*$ acts as the identity on $(T_{Q(0)} W^s(0) \oplus T_{Q(0)} W^c(0))^\perp$. Since $\Psi(0) \perp T_{Q(0)} W^s(0)$, $\Psi(0) \in \ran \tilde{P}_+^u(0)^*$, thus $\tilde{P}_+^u(0)^* \Psi(0) = \Psi(0)$. Substituting this above, we have
+\begin{align*}
+\langle \Psi(0), Y(0) \rangle
+&= \int_{\infty}^0 \langle \Psi(0), \tilde{\Phi}(0,y) B V^c(y) \rangle dy \\
+&= -\int_0^\infty \langle \Psi(y), B V^c(y) \rangle dy \\
+&=-\int_0^\infty q(y) v^c(y) dy
+\end{align*}
+\end{proof}
+\end{lemma}
 
-Finally, we evaluate the following inner products, which will be important in the stability analysis.
+As a corollary, we use the previous lemma to evaluate two important inner products.
 
 \begin{corollary}\label{lemma:VpmPsiIP}
 \begin{equation}\label{VpmIPs}
 \begin{aligned}
 \langle \Psi^c(0), V^\pm(0; \lambda) \rangle &= 1 + \mathcal{O}(|\lambda|) \\
-\langle \Psi(0), V^\pm(0; \lambda) \rangle &= \pm p_1 \lambda + \mathcal{O}(|\lambda|^2)
+\langle \Psi(0), V^+(0; \lambda) \rangle &= -M^c \lambda + \mathcal{O}(|\lambda|^2) \\
+\langle \Psi(0), V^-(0; \lambda) \rangle &= M^c \lambda + \mathcal{O}(|\lambda|^2)
 \end{aligned}
 \end{equation}
 where $p_1 = \langle \Psi(0), \partial_\lambda V^+(0; 0) \rangle$.
@@ -1256,23 +1323,22 @@ For the inner product with $\Psi^c(0)$,
 \begin{align*}
 \langle \Psi^c(0), V^\pm(0; \lambda) \rangle &= 
 \langle \Psi^c(0), V^c(0) \rangle + \mathcal{O}(|\lambda|) \\
-&= \langle \Psi^c(0), V^c(0) \rangle + \mathcal{O}(|\lambda|) \\
 &= 1 + \mathcal{O}(|\lambda|)
 \end{align*}
-For the inner product $\langle \Psi(0), V^+(0; \lambda) \rangle$, we have
+For the inner product $\langle \Psi(0), V^+(0; \lambda) \rangle$, we use \cref{lemma:VderivIPs} and \cref{VtildeVderiv} to get
 \begin{align*}
 \langle \Psi(0), V^+(0; \lambda) \rangle 
 &= \langle \Psi(0), V^c(0) \rangle + \langle \Psi(0), \partial_\lambda V^+(0; 0) \lambda \rangle + \mathcal{O}(|\lambda|^2) \\
-&= (\partial_\lambda V^+(0; 0)) \lambda + \mathcal{O}(|\lambda|^2) \\
-&= p_1 \lambda + \mathcal{O}(|\lambda|^2)
+&= (\partial_\lambda \tilde{V}^+(0; 0)) \lambda + \mathcal{O}(|\lambda|^2) \\
+&= -M^c \lambda + \mathcal{O}(|\lambda|^2)
 \end{align*}
-For the inner product $\langle \Psi(0), V^-(0; \lambda) \rangle$, using \cref{lemma:Vpm},
+For the inner product $\langle \Psi(0), V^-(0; \lambda) \rangle$, using \cref{lemma:Vpm} and \cref{lemma:VderivIPs},
 \begin{align*}
 \langle \Psi(0), V^-(0; \lambda) \rangle &= 
 \langle \Psi(0), R V^+(0; -\lambda) \rangle \\
 &= \langle R \Psi(0), -\partial_\lambda V^+(0; 0) \lambda \rangle + \mathcal{O}(|\lambda|^2) \\
-&= -\langle \Psi(0), \partial_\lambda V^+(0; 0) \lambda \rangle + \mathcal{O}(|\lambda|^2) \\
-&= -p_1 + \mathcal{O}(|\lambda|^2)
+&= -\lambda \langle \Psi(0), \partial_\lambda \tilde{V}^+(0; 0) \rangle + \mathcal{O}(|\lambda|^2) \\
+&= M^c \lambda + \mathcal{O}(|\lambda|^2)
 \end{align*}
 \end{proof}
 \end{corollary}

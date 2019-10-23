@@ -374,7 +374,47 @@ a_i^- &= -P_-(-X_i; \lambda)^{-1} P_0^s(\lambda) D_i d + A_2(\lambda)_i^-(b, c^-
 \end{proof}
 \end{lemma}
 
-Next, we derive an expression for $\tilde{c}_i$.
+Next, we derive an expression for $\tilde{c}_i$. Before we do this, we will evaluate an inner product  term which will appear in this expression.
+
+\begin{lemma}\label{lemma:WprimeIP}
+For the following inner product, we have
+\begin{equation}\label{WprimeIP}
+\langle W_0'(0), Q'(X_j) \rangle = q(X_j) + \mathcal{O}(e^{-2\alpha_0 X_j})
+\end{equation}
+where $q(x)$ is the first component of the primary pulse $Q(x)$.
+\begin{proof}
+Using the expression \cref{W0prime} for $W_0'(0)$ from \cref{nulambdalemma} and $Q'(x) = (\partial_x q(x), \partial_x^2 q(x), \dots, \partial_x^{2m}(x), 0)^T$, we can compute
+\begin{align}\label{WprimeIP1}
+\langle W_0'(0), Q'(X_j) \rangle = 
+\frac{1}{c} \left( -c_3 \partial_x^2 q(X_j) -c_5 \partial_x^4 q(X_j) -\dots -c_{2m-1} \partial_x^{2m-2} q(X_j) + \partial_x^{2m} q(X_j) \right)
+\end{align}
+where the coefficients $c_j$ are defined in \cref{fpartials0}. Using \cref{Eprimeuform}, an equilibrium solution $u(x)$ to \cref{eqODE} satisfies the equation
+\[
+\partial_x^{2m} u- f(u, \partial_x u, \dots, \partial_x^{2m-1}u ) - cu = 0
+\]
+Expanding this in a Taylor series about the zero solution $u = 0$, we extract the linear part of $f$  to get
+\[
+\partial_x^{2m} u - \sum_{k=1}^{2m} f_{u_k}(0) \partial_x^{k-1} - cu + g(u, \partial_x u, \dots, \partial_x^{2m-1}u ) = 0
+\]
+where $g$ is at least quadratic in all of its arguments. Substituting the coefficients $c_j$ from \cref{fpartials0}, this becomes
+\begin{equation*}
+\partial_x^{2m} u - c_3 \partial_x^2 u - c_5 \partial_x^4 u - \dots - c_{2m-1} \partial_x^{2m-2}u - cu + g(u, \partial_x u, \dots, \partial_x^{2m-1}u ) = 0
+\end{equation*}
+which we rearrange to get 
+\begin{equation}\label{lineqODE1}
+\partial_x^{2m} u - c_3 \partial_x^2 u - c_5 \partial_x^4 u - \dots - c_{2m-1} \partial_x^{2m-2}u = cu - g(u, \partial_x u, \dots, \partial_x^{2m-1}u )
+\end{equation}
+Since $q(x)$ solves \cref{lineqODE1}, equation \cref{WprimeIP1} becomes
+\begin{align*}
+\langle W_0'(0), Q'(X_j) \rangle &= 
+\frac{1}{c} \left( cu - g(q(X_j), \partial_x q(X_j), \dots, \partial_x^{2m-1}q(X_j) \right) \\
+&= q(X_j) + \mathcal{O}(e^{-2\alpha_0 X_j})
+\end{align*}
+since $g$ is as least quadratic in all of its and $q(x)$ and all of its derivatives are exponentially localized.
+\end{proof}
+\end{lemma}
+
+We can now derive an expression for $\tilde{c}_i$.
 
 \begin{lemma}\label{lemma:tildec1}
 For the $\tilde{c}$, we have the expression
