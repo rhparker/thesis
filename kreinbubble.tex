@@ -6,26 +6,26 @@
 
 \section{Periodic 2-pulse}
 
-In this section, we will consider the simplest case, which is the periodic 2-pulse. Let $Q_2(x)$ be a periodic 2-pulse constructed as in Theorem \ref{perexist} with scaling parameter $r$, baseline length parameters $\{b_0^0, b_0^1\}$, and phase parameter $\theta$. Let $X_0$ and $X_1$ be the actual pulse distances, whose dependence on these parameters is given in Theorem \ref{perexist}, and let $X = X_0 + X_1$.  
+In this section, we will consider the simplest case, which is the periodic 2-pulse. Let $Q_2(x)$ be a periodic 2-pulse constructed as in Theorem \ref{perexist} with scaling parameter $r$, baseline length parameters $\{b_0^0, b_1^0 \}$ with $b_j^0 = \exp\left(-\frac{m_j \pi}{\rho}\right)$, and phase parameter $\theta$. Without loss of generality, $m_0 \in \{0, 1\}$. Let $b_0(r)$ and $b_1(r)$ be the associated length parameters, and let $X_0$ and $X_1$ be the actual pulse distances, whose dependence on these parameters is given in Theorem \ref{perexist}. Finally, let $X = X_0 + X_1$.  
 
-Let $\delta > 0$ be as in Theorem \ref{blockmatrixtheorem} [Theorem 5.4, the block matrix theorem]. For the periodic 2-pulse, the matrix $A$ is
+By Theorem \ref{blockmatrixtheorem} [Theorem 5.4, the block matrix theorem], the eigenvalues for the linearization about $Q_2(x)$ can be found by finding the zeros of the determinant of a block matrix. To leading order, this is block diagonal. We expect to find the interaction eigenvalues when $A - \lambda^2 M I$ is singular and the essential spectrum eigenvalues when $K(\lambda)$ is singular. Thus we anticipate the following eigenvalue pattern.
+\begin{itemize}
+\item There will be a pair of nonzero interaction eigenvalues at $\lambda = \pm \sqrt{-2a(r)/M}$, where 
 \[
-A = \begin{pmatrix}
--a & a \\
-a & -a
-\end{pmatrix}
+a(r) = a_0(r) + a_1(r) = \langle \Psi(X_0), Q'(-X_0) \rangle + \langle \Psi(X_1), Q'(-X_1) \rangle = \mathcal{O}(r)
 \]
-where
+\item There will be essential spectrum eigenvalues at
 \[
-a = a_0 + a_1 = \langle \Psi(X_0), Q'(-X_0) \rangle + \langle \Psi(X_1), Q'(-X_1) \rangle
+\lambda = \pm c \frac{k \pi i}{X}
 \]
-and $a = \mathcal{O}(e^{-2\alpha X_m}) = \mathcal{O}(r)$. The eigenvalues of $A$ are $\{0, -2a\}$, thus we expect a pair of interaction eigenvalues to be located at approximately $\pm \sqrt{-2a/M}$, which will be real if $2a/M < 0$ and imaginary if $2a/M > 0$. 
+for integer $k$, where $X = \mathcal{O}(|\log r|)$.
+\end{itemize}
 
-We are interested in two parameter regimes. First, we will consider the case where $r$ is sufficiently small so the interaction eigenvalues are smaller in magnitude than the essential spectrum eigenvalues. Next, we will consider the case when a purely imaginary interaction eigenvalues is close to an essential spectrum eigenvalue, which case we will have an instability bubble.
+We are interested in two parameter regimes. First, we will consider the case where $r$ is sufficiently small so the interaction eigenvalues are smaller in magnitude than the essential spectrum eigenvalues. Next, we will consider the case when a purely imaginary interaction eigenvalue is close to the first nonzero essential spectrum eigenvalue, which case we will have an instability bubble.
 
-\subsection{Case 1: essential spectrum is out of the way}
+\subsection{Case 1: essential spectrum is out of the way}\label{section:2pernobubble}
 
-In this section, we consider the case where $r$ is sufficiently small so that the essential spectrum is ``out of the way'' of any interaction eigenvalues. We therefore expect that the eigenvalues will come in one of the two patterns shown in \cref{fig:2ppatterns}.
+In this section, we consider the case where the essential spectrum is ``out of the way'' of any interaction eigenvalues. Since the interaction eigenvalues scale like $r^{1/2}$ and the essential spectrum eigenvalues scale like $1/|\log r|$, we can always choose $r$ sufficiently small so that this is the case. We therefore expect that the eigenvalues will come in one of the two patterns shown in \cref{fig:2ppatterns}.
 
 \begin{figure}[H]
 \begin{center}
@@ -38,32 +38,37 @@ In this section, we consider the case where $r$ is sufficiently small so that th
 \end{center}
 \end{figure}
 
-Our goal in this section is to prove that, with one important exception, these are the only possible eigenvalue patterns. To do this, we impose the following conditions.
-
-\begin{enumerate}[(i)]
-	\item Choose $r_0$ sufficiently small so that
-	$\left| \sqrt{\frac{2a}{M}} \right| X \leq c/2$.
-	\item Consider eigenvalues $\lambda$ with $|\Re \lambda| < C r^{1/2}$
-\end{enumerate}
-
-Since $a = \mathcal{O}(r)$ and $X = \mathcal{O}(\log|r|)$, we can always choose $r$ sufficiently small so that condition (i) is satisfied. Condition (ii) is always satisfied since any interaction eigenvalues will be $\mathcal{O}(r^{1/2})$ and the essential spectrum eigenvalues will be purely imaginary. In this case, we have the following theorem, which locates the interaction and essential spectrum eigenvalues.
+In the next theorem we prove that, with one important exception, that these are the only possible eigenvalue patterns. 
 
 \begin{theorem}\label{theorem:2peigscase1}
-Let $Q_2(x)$ be a periodic 2-pulse with length parameters $b_0$ and $b_1$. Let $\delta > 0$ be as in Theorem \ref{blockmatrixtheorem}. 
-\begin{enumerate}[(i)]
-\item Choose any positive integer $M$ such that
+Let $Q_2(x)$ be a periodic 2-pulse with length parameters $b_0(r)$ and $b_1(r)$. Let $\delta > 0$ be as in Theorem \ref{blockmatrixtheorem}. Let
+\begin{equation}
+a(r) = \langle \Psi(X_0), Q'(-X_0) \rangle + \langle \Psi(X_1), Q'(-X_1) \rangle
+\end{equation}
+and take $a(r) = r \tilde{a}(r)$. Choose $r_0$ sufficiently small so that 
+\begin{equation}\label{nobubblecond}
+\left| \sqrt{\frac{2 \tilde{a}(0)}{M}}\right|r_0^{1/2} \leq \frac{1}{2} \frac{c}{\left( 2 |\log r_0| + |\log( b_0(0) b_1(0) |\right)}
+\end{equation}
+In terms of the physical parameters, 
 \[
-\frac{M c \pi}{2 \log|r_0| + \log|b_0 b_1| } < \delta
+\left| \sqrt{\frac{2a(r_0)}{M}} \right| \leq \frac{c}{2 X}
 \]
-Then there exists $r_1 \leq r_0$ such that for all $r\leq r_1$, there are $2M$ nonzero essential spectrum eigenvalues $\lambda = \pm \lambda_m^{\text{ess}}$, where
-\[
-\lambda_m^{\text{ess}}(r) = c \frac{m \pi i}{X}\left[1 + \mathcal{O}\left( \frac{1}{X}\left( r^{1/2} + \frac{1}{X} \right) \right) \right] + \mathcal{O}\left( \frac{1}{X}\left( r^{1/2} + \frac{1}{X} \right) \right)
-\]
-is pure imaginary.
 
-\item If $X_1 > X_0$, then there exists $r_2 \leq r_0$ such that for all $r \leq r_2$, there is a pair of interaction eigenvalues located at
+\begin{enumerate}[(i)]
+\item There exists $r_1 \leq r_0$ such that for all $r \leq r_1$, there is an eigenvalue at 0 with algebraic multiplicity 3.
+\item Choose any positive integer $N$ such that
+\[
+\frac{N c \pi}{2 |\log r_0| + |\log b_0 b_1| } < \delta
+\]
+Then there exists $r_2 \leq r_0$ such that for all $r\leq r_2$, there are $2N$ nonzero essential spectrum eigenvalues $\lambda = \{ \pm \lambda_m^{\text{ess}} : m = 1, \dots, N\}$, where
+\[
+\lambda_m^{\text{ess}}(r) = c \frac{m \pi i}{X}\left[1 + \mathcal{O}\left( \frac{1}{|\log r|}\left( r^{1/2} + \frac{1}{|\log r|} \right) \right) \right] + \mathcal{O}\left( \frac{1}{|\log r|}\left( r^{1/2} + \frac{1}{|\log r|} \right) \right)
+\]
+is on the imaginary axis. There is an additional essential spectrum eigenvalue at 0.
+
+\item If $X_1 > X_0$, then there exists $r_3 \leq r_0$ such that for all $r \leq r_3$, there is a pair of interaction eigenvalues located at
 \begin{align*}
-\lambda^{\text{int}} = \pm \left( \sqrt{-\frac{2 a}{M}} + \mathcal{O}( r^{1/2} ) \right)
+\lambda^{\text{int}} = \pm \left( \sqrt{-\frac{2 a(r)}{M}} + \mathcal{O}( r ) \right)
 \end{align*}
 which is either real or pure imaginary.
 
@@ -72,7 +77,7 @@ which is either real or pure imaginary.
 \end{enumerate}
 \end{theorem}
 
-\subsection{Case 2: instability bubble}
+\subsection{Case 2: instability bubble}\label{section:2perbubble}
 
 In this section, we consider what happens when a purely imaginary interaction eigenvalues is close to an essential spectrum eigenvalue. We will show that under certain conditions, an instability bubble forms when essential spectrum eigenvalues (positive Krein signature) collide with interaction eigenvalues (negative Krein signature) on the imaginary axis. In this case, we impose the following conditions.
 
@@ -146,14 +151,14 @@ For $|s| \leq 1$, the eigenvalues $\lambda_{1,2}(s)$ are, to leading order, loca
 
 \section{Determinant of block matrix}
 
-In this section, we will compute the determinant of the block matrix from \cref{blockmatrixtheorem} for the periodic 2-pulse. This is a $4 \times 4$ matrix, and although the computation is tedious, it can be done with the aid of Mathematica. Before we can do that, we will prove the following bound which makes this computation significantly easier.
+In this section, we will compute the determinant of the block matrix from \cref{blockmatrixtheorem} for the periodic 2-pulse. This is a $4 \times 4$ matrix, and although the computation is tedious, it can be done with the aid of Mathematica. Before we can do that, we will prove the following bound which makes this computation significantly easier. Since all eigenvalues we will consider have real part of order $\mathcal{O}(r^{1/2})$ or smaller, this is not a restriction.
 
 \begin{lemma}\label{lemma:expnubound}
-Let $|\lambda| < \delta$. Then if either the conditions of Case 1 or Case 2 hold, we have the bound
+Let $|\lambda| < \delta$. Then if $|\Re \lambda| \leq C_1 r^{1/2}$ and $r^{1/2} X \leq C_2$, we have the bound
 \begin{equation}\label{expnubound}
 \left|e^{\nu(\lambda)x}\right| \leq C \\
 \end{equation}
-for any $x$ with $|x| \leq X$, where the constant $C$ only depends on $\delta$.
+for any $x$ with $|x| \leq X$. The constant $C$ only depends on $C_1$, $C_2$, and $\delta$.
 \begin{proof}
 Let $\lambda = a + bi$ with $|a| \leq C r^{1/2}/X^{1/2}$. Since $|\lambda| \leq \delta$, $|a|, |b| \leq \delta$ as well. Then from Lemma \ref{nulambdalemma},
 \begin{align*}
@@ -164,15 +169,11 @@ where both of the remainder terms are real. (We split the remainder up into real
 \begin{align*}
 \nu(\lambda)X &= \frac{a}{c}X + i \frac{b}{c}X + \mathcal{O}\left( a(a^2 + \delta^2) X\right) + i \mathcal{O}\left( a(b^2 + \delta^2) X\right)
 \end{align*}
-When we evaluate $|\exp{(\nu(\lambda)X)}|$, the two imaginary terms on the RHS do not contribute. For the other two terms, we consider Case 1 and Case 2 separately. For Case 1, $|a| \leq r^{1/2}$ and $r^{1/2}X < C$, thus
+When we evaluate $|\exp{(\nu(\lambda)X)}|$, the two imaginary terms on the RHS do not contribute. Since $|a| \leq C_1 r^{1/2}$ and $r^{1/2}X \leq C_2$, 
 \begin{align*}
-\left| \frac{a}{c}X + \mathcal{O}\left( a(a^2 + \delta^2) X \right) \right| &\leq C(1 + \mathcal{O}(|a|^2 + \delta^2)) \leq C.
-\end{align*} 
-For Case 2, $|a| \leq r^{1/2}/X^{1/2}$ and $r^{1/2}X^{1/2} < C$, thus
-\begin{align*}
-\left| \frac{a}{c}X + \mathcal{O}\left( a(a^2 + \delta^2) X \right) \right| &\leq C r^{1/2}X^{1/2}(1 + |a|^2 + \delta^2) \leq C r^{1/2}X^{1/2} (1 + \delta^2) \leq C
-\end{align*} 
-In both cases, the constant $C$ only depends on $\delta$, and so we have
+\left| \frac{a}{c}X + \mathcal{O}\left( a(a^2 + \delta^2) X \right) \right| &\leq C(1 + \mathcal{O}(|a|^2 + \delta^2)) \leq C
+\end{align*}
+where the constant $C$ only depends on $\delta$, $C_1$, and $C_2$. Thus we have
 \begin{align*}
 |\exp{(\nu(\lambda)X)}| &\leq
 \exp{ \left| \frac{a}{c}X + \mathcal{O}\left( a(a^2 + \delta^2) X \right) \right| } \leq C
@@ -181,14 +182,16 @@ The same bound holds for $|x| \leq X$.
 \end{proof}
 \end{lemma}
 
-Next, we compute the determinant of the block matrix in Theorem \ref{blockmatrixtheorem} for the periodic 2-pulse. Since this is a $4\times 4$ matrix with tons of remainder terms, our only hope is to do this with Mathematica.
+In all cases, we will only consider eigenvalues with real part at most $\mathcal{O}(r^{1/2})$. In \cref{section:2pernobubble}, the condition \cref{nobubblecond} guarantees that the hypotheses of \cref{lemma:expnubound} are satisfied. In \cref{section:2perbubble}, we are taking $r^{1/2} X = C$, so the hypotheses of \cref{lemma:expnubound} are also satisfied. 
+
+Using this estimate, we compute the determinant of the block matrix in Theorem \ref{blockmatrixtheorem} for the periodic 2-pulse. Since this is a $4\times 4$ matrix with tons of remainder terms, our only hope is to do this with Mathematica.
 
 \begin{lemma}\label{2blockmatrix}
 For $|\lambda| < \delta$ with $|\Re \lambda| \leq C r^{1/2}X^{1/2}$, the determinant of the block matrix $B$ is 
 \begin{equation}\label{2detBeq}
 \begin{aligned}
 \det &B(\lambda, r) = \left(-2 \lambda^2 M (2a + \lambda^2 M) +  \mathcal{O}( (r^{1/2} + |\lambda|)^5 )\right) \sinh(\nu(\lambda)X) \\
-&+16 p_1 M \lambda^4 ( k_0\sinh(\nu(\lambda)X_0) + k_1 \sinh(\nu(\lambda)X_1) ) \cosh(\nu(\lambda)X)  \\
+&-16 M M^c \lambda^4 ( q(X_0)\sinh(\nu(\lambda)X_0) + q(X_1) \sinh(\nu(\lambda)X_1) ) \cosh(\nu(\lambda)X)  \\
 &+ \mathcal{O}( (r^{1/2} + |\lambda|)^6) 
 \end{aligned}
 \end{equation}
@@ -201,9 +204,9 @@ e^{-\nu(\lambda)X_1} & -e^{\nu(\lambda)X_0} \\
 -e^{\nu(\lambda)X_1} & e^{-\nu(\lambda)X_0} 
 \end{pmatrix} &
 2 \lambda \begin{pmatrix}
--e^{-\nu(\lambda)X_1} k_1 + e^{\nu(\lambda)X_0} k_0 & e^{-\nu(\lambda)X_1} k_1 - e^{\nu(\lambda)X_0} k_0 \\ e^{-\nu(\lambda)X_0} k_0 - e^{\nu(\lambda)X_1} k_1 & -e^{-\nu(\lambda)X_0} k_0 + e^{\nu(\lambda)X_1} k_1
+-e^{-\nu(\lambda)X_1} q(X_1) + e^{\nu(\lambda)X_0} q(X_1) & e^{-\nu(\lambda)X_1} q(X_1) - e^{\nu(\lambda)X_0} q(X_1) \\ e^{-\nu(\lambda)X_0} q(X_1) - e^{\nu(\lambda)X_1} q(X_1) & -e^{-\nu(\lambda)X_0} q(X_1) + e^{\nu(\lambda)X_1} q(X_1)
 \end{pmatrix} \\
-p_1 \lambda
+-M^c \lambda
 \begin{pmatrix}
 e^{-\nu(\lambda)X_1} & e^{\nu(\lambda)X_0} \\
 e^{\nu(\lambda)X_1} & e^{-\nu(\lambda)X_0} 
@@ -237,8 +240,8 @@ where the the coefficients $t^j_k$ have bounds given by \cref{Gimatrixbounds}. W
 \begin{equation}\label{2detB1}
 \begin{aligned}
 \det &B(\lambda, r) = \sinh(\nu(\lambda)X)\left(-2 \lambda^2 M (2a + \lambda^2 M) +  \mathcal{O}( (r^{1/2} + |\lambda|)^5 )\right) \\
-&+4\lambda^4 p_1 k_0 M \left( \sinh(\nu(\lambda)(2 X_0 + X_1)) - 3 \sinh(\nu(\lambda)X_1)  \right) \\
-&+4\lambda^4 p_1 k_1 M \left( \sinh(\nu(\lambda)(2 X_1 + X_0)) - 3 \sinh(\nu(\lambda)X_0)  \right) \\
+&-4\lambda^4 q(X_0) M M^c \left( \sinh(\nu(\lambda)(2 X_0 + X_1)) - 3 \sinh(\nu(\lambda)X_1)  \right) \\
+&-4\lambda^4 q(X_1) M M^c \left( \sinh(\nu(\lambda)(2 X_1 + X_0)) - 3 \sinh(\nu(\lambda)X_0)  \right) \\
 &+ \mathcal{O}( (r^{1/2} + |\lambda|)^6) 
 \end{aligned}
 \end{equation}
@@ -249,15 +252,15 @@ Using standard hyperbolic trigonometric identities, we can show that
 \end{align*}
 Using this with the second line of \cref{2detB1}, 
 \begin{align*}
-\lambda^4 &k_0 \left( \sinh(\nu(\lambda)(2 X_0 + X_1)) - 3 \sinh(\nu(\lambda)X_1)  \right) \\
-&= 4 \lambda^4 k_0 \cosh(\nu(\lambda)X)\sinh(\nu(\lambda)X_0) - 3 \lambda^4 k_0 \sinh(\nu(\lambda)X)\cosh(\nu(\lambda)X_0) \\
-&= 4 \lambda^4 k_0 \cosh(\nu(\lambda)X)\sinh(\nu(\lambda)X_0) + \sinh(\nu(\lambda)X)(\mathcal{O}(r^{1/2}|\lambda|^4))
+\lambda^4 &q(X_0) \left( \sinh(\nu(\lambda)(2 X_0 + X_1)) - 3 \sinh(\nu(\lambda)X_1)  \right) \\
+&= 4 \lambda^4 q(X_0) \cosh(\nu(\lambda)X)\sinh(\nu(\lambda)X_0) - 3 \lambda^4 q(X_0) \sinh(\nu(\lambda)X)\cosh(\nu(\lambda)X_0) \\
+&= 4 \lambda^4 q(X_0) \cosh(\nu(\lambda)X)\sinh(\nu(\lambda)X_0) + \sinh(\nu(\lambda)X)(\mathcal{O}(r^{1/2}|\lambda|^4))
 \end{align*}
-since $k_0 = \mathcal{O}(r^{1/2})$ and $|\cosh(\nu(\lambda)X_0)|\leq C$ by Lemma \ref{lemma:expnubound}. Doing the same thing for the third line of \cref{2detB1}, we have
+since $|\cosh(\nu(\lambda)X_0)|\leq C$ by Lemma \ref{lemma:expnubound}. Doing the same thing for the third line of \cref{2detB1}, substituting the results into \cref{2detB1}, and simplifying, we have
 \begin{equation*}
 \begin{aligned}
-\det &B(\lambda, r) = \left(-2 \lambda^2 M (2a + \lambda^2 M) +  \mathcal{O}( (r^{1/2} + |\lambda|)^5 )\right) \sinh(\nu(\lambda)X) \\
-&+16 p_1 M \lambda^4 ( k_0\sinh(\nu(\lambda)X_0) + k_1 \sinh(\nu(\lambda)X_1) ) \cosh(\nu(\lambda)X)  \\
+\det &B(\lambda, r) = \left(-2 \lambda^2 M (2a + \lambda^2 M) + \mathcal{O}( (r^{1/2} + |\lambda|)^5 )\right) \sinh(\nu(\lambda)X) \\
+&-16 M M^c \lambda^4 ( k_0\sinh(\nu(\lambda)X_0) + k_1 \sinh(\nu(\lambda)X_1) ) \cosh(\nu(\lambda)X)  \\
 &+ \mathcal{O}( (r^{1/2} + |\lambda|)^6) 
 \end{aligned}
 \end{equation*}
@@ -281,23 +284,6 @@ To find the eigenvalues, we will find the zeros of \cref{2detBeqmu}. We will do 
 \section{Computation of coefficients $a_j$}
 
 Next, we compute the coefficients $a_j$ of the matrix $A$ in lower right block of the block matrix equation.
-
-\begin{lemma}
-
-\begin{proof}
-Taking the derivative of $\langle \Psi(x), Q(-x) \rangle$, we have
-\begin{align*}
-\frac{d}{dx} \langle \Psi(x), Q(-x) \rangle
-&= \langle \Psi'(x), Q(-x) \rangle - \langle \Psi(x), Q'(-x) \rangle
-\end{align*}
-Extract the last components of $\Psi(x)$ and $Q(x)$ by letting $\Psi(x) = (\tilde{\Psi}(x), q(x))$ and $Q(x) = (\tilde{Q}(x), 0)$. For the first inner product, since $\tilde{\Psi}(x)$ solves \cref{adjvareq1},
-\begin{align*}
-\langle \Psi'(x), Q(-x) \rangle &= \langle \tilde{\Psi}'(x), \tilde{Q}(-x) \rangle \\
-&= \langle -DF(Q(x))^* \tilde{\Psi}'(x), \tilde{Q}(-x) \rangle \\
-&= - \langle \tilde{\Psi}(x), DF(Q(x)) \tilde{Q}(-x) \rangle 
-\end{align*}
-\end{proof}
-\end{lemma}
 
 \begin{lemma}\label{lemma:ajparam}
 For the coefficients $a_j$ in the block matrix equation, 
@@ -325,6 +311,71 @@ a_j &= s_0 e^{\alpha \phi/\beta} r b_j \left( \beta \cos\left( 2 m \pi -\rho \lo
 \end{align*}
 \end{proof}
 \end{lemma}
+
+In the next sections, we will prove \cref{theorem:2peigscase1}. First, we locate the eigenvalues at 0.
+
+\section{Eigenvalues at 0}
+
+The corresponding eigenfunctions are $\partial_x Q_2(x)$ and $\partial_c Q_2(x)$. We will show that there is one more eigenvalue at 0.
+
+Start with equation \cref{2detBeqmu}. Let $\mu_*(r) = \sqrt{-2a(r)/M c^2}$. By \cref{lemma:expnubound}, all the $\sinh$ and $\cosh$ terms in \cref{2detBeqmu} are bounded by a constant. Since $q(X_j) = \mathcal{O}(r^{1/2})$, equation \cref{2detBeqmu} simplifies to
+\begin{equation}\label{2detBeqmu3}
+\begin{aligned}
+\det B(\mu, r) &= -2 \mu^2 M (\mu - \mu_*(r)) (\mu + \mu_*(r)) \sinh(\mu X) + \mathcal{O}( r^{1/2} + |\mu|)^5
+\end{aligned}
+\end{equation}
+By the condition \cref{nobubblecond}, $\mu X \leq 1/2$, thus we expand the $\sinh(\mu X)$ term in a Taylor series about 0 to get
+\begin{equation}\label{2detBeqmu4}
+\begin{aligned}
+\det B(\mu, r) &= -2 \mu^2 M (\mu - \mu_*(r)) (\mu + \mu_*(r))( \mu X + \mathcal{O}(\mu X)^3) + \mathcal{O}( r^{1/2} + |\mu|)^5
+\end{aligned}
+\end{equation}
+Finally, rescale the problem by taking
+\begin{align*}
+\mu = r^{1/2}\tilde{\mu} \\
+\mu_*(r) = r^{1/2}\tilde{\mu}_*(r)
+\end{align*}
+Substituting these in, we have
+\begin{equation}\label{2detBeqmu5}
+\begin{aligned}
+\det B(\tilde{\mu}, r) &= -2 \tilde{\mu}^2 M r^{5/2} (\tilde{\mu} - \tilde{\mu}_*(r)) (\tilde{\mu} + \tilde{\mu}_*(r))( \tilde{\mu} X + \mathcal{O}(\tilde{\mu}^3 r X^3) + \mathcal{O}( r^{1/2} + |\mu|)^5
+\end{aligned}
+\end{equation}
+By \cref{lemma:ajparam}, $\tilde{\mu}_*(r) = \tilde{\mu}_*(0) + \mathcal{O}(r^{\gamma/4 \alpha)}$, thus we have
+\begin{equation}\label{2detBeqmu5}
+\begin{aligned}
+\det B(\tilde{\mu}, r) &= -2 \tilde{\mu}^2 M r^{5/2} (\tilde{\mu} - \tilde{\mu}_*(0)) (\tilde{\mu} + \tilde{\mu}_*(0))( \tilde{\mu} X + \mathcal{O}(\tilde{\mu}^3 r X^3) + \mathcal{O}( r^{1/2} + |\mu|)^5
+\end{aligned}
+\end{equation}
+
+We want to show that $\det B(\mu, r)$ has exactly three zeros inside a small circle around the origin in the complex plane. To do this, consider a circle of radius $\xi$, where
+\[
+\xi = \frac{1}{2}|\mu_*(0)|
+\]
+Then for $\mu$ with $|\mu| = \xi$,
+\begin{equation*}
+\begin{aligned}
+\det B(\tilde{\mu}, r) &= -2 \tilde{\mu}^2 M r^{5/2} (\tilde{\mu} - \tilde{\mu}_*(0)) (\tilde{\mu} + \tilde{\mu}_*(0))( \tilde{\mu} X + \mathcal{O}(\tilde{\mu}^3 r X^3) + \mathcal{O}( r^{5/2} )
+\end{aligned}
+\end{equation*}
+Dividing by $r^{5/2}X$ and recalling that $X = \mathcal(|\log r|)$, we are looking for zeros of
+\[
+G(\tilde{\mu}, r) = -2 \tilde{\mu}^3 M (\tilde{\mu} - \tilde{\mu}_*(0)) (\tilde{\mu} + \tilde{\mu}_*(0)) + \mathcal{O}\left( r |\log r|^2 + \frac{1}{|\log r|} \right)
+\]
+which we write as $G(\tilde{\mu}, r) = G_1(\tilde{\mu}) + G_2(\tilde{\mu}, r)$, where 
+\[
+G_1(\tilde{\mu}) = -2 \tilde{\mu}^3 M (\tilde{\mu} - \tilde{\mu}_*(0)) (\tilde{\mu} + \tilde{\mu}_*(0)),
+\]
+which is independent of $r$, and
+\[
+G_2(\tilde{\mu}, r) = \mathcal{O}\left( r |\log r|^2 + \frac{1}{|\log r|} \right)
+\]
+
+Let $\xi = r^{1/2} \tilde{\xi} = \tilde{\mu}_*(0)/2|$. Then on a circle of radius $\tilde{\xi}$,
+\[
+|G_1(\tilde{\mu})| \geq \frac{|M|}{16}|\tilde{\mu}_*(0)|^5
+\]
+Since $|G_2(\tilde{\mu}, r)| \rightarrow 0$ as $r \rightarrow 0$, as long as $\tilde{\mu}_*(0) \neq 0$, there exists $r_1 \leq r_0$ such that $|G_2(\tilde{\mu}, r)| < |G_1(\tilde{\mu})|$ on a circle of radius $\tilde{\xi}$. By Rouch\'{e}'s theorem $G(\tilde{\mu}, r)$ and $G_1(\tilde{\mu})$ have the same number of zeros (counted with multiplicity) inside the circle of radius $\tilde{\xi}$. By the choice of $\tilde{\xi}$, $G_1(\tilde{\mu})$ has exactly 3 zeros inside the circle, thus $G(\tilde{\mu}, r)$ does as well. Since there is an eigenvalue at 0 of at least algebraic multiplicity 2, at least two of these zeros must be at the origin. By Hamiltonian symmetry, the third zero must also be at the origin.
 
 \section{Essential spectrum eigenvalues}
 
@@ -681,7 +732,7 @@ h_0^2 + 2 s_0 i h_0 - R_0 = 0
 \end{equation}
 where 
 \[
-R_0 = -\frac{4 p_1 \tilde{k}_0 \mu^*(0)}{M}
+R_0 = -\frac{4 p_1 \tilde{k}_0 \mu^*(0)^2}{M}
 \]
 Then \cref{Bquadeq} has solution
 \begin{equation}\label{Bquadsol}

@@ -57,11 +57,11 @@ We can now state the main theorem of this chapter which provides a condition for
 
 % block matrix theorem
 \begin{theorem}\label{blockmatrixtheorem}
-Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and \ref{H0transversehyp}. Let $Q_n(x)$ be a periodic $n-$pulse solution constructed according to Theorem \ref{perexist} with [pulse lengths $X_0, \dots, X_{n-1}$. Then there exists $\delta > 0$ with the following property. There exists a bounded, nonzero solution $V$ of \eqref{PDEeig3} for $|\lambda| < \delta$ if and only if the $(2n \times 2n)$ block matrix equation
+Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and \ref{H0transversehyp}. Let $Q(x)$ be the primary pulse solution, an let $Q_n(x)$ be a periodic $n-$pulse solution constructed according to Theorem \ref{perexist} with pulse lengths $X_0, \dots, X_{n-1}$. Then there exists $\delta > 0$ with the following property. There exists a bounded, nonzero solution $V$ of \eqref{PDEeig3} for $|\lambda| < \delta$ if and only if the $(2n \times 2n)$ block matrix equation
 \begin{equation}\label{blockeq}
 \begin{pmatrix}
-K(\lambda) + C_1 K(\lambda) + K_1(\lambda) + C_2 & \lambda \tilde{A} + D_1 \\
-\lambda p_1 \tilde{K}(\lambda) + C_3 K(\lambda) + K_2(\lambda) + C_4 & A - \lambda^2 MI + D_2
+K(\lambda) + C_1 K(\lambda) + K_1(\lambda) + C_2 & 2 \lambda \tilde{A} + D_1 \\
+-\lambda M^c \tilde{K}(\lambda) + C_3 K(\lambda) + K_2(\lambda) + C_4 & A - \lambda^2 MI + D_2
 \end{pmatrix}
 \begin{pmatrix} c \\ d \end{pmatrix} = 0
 \end{equation}
@@ -103,30 +103,23 @@ a_i &= \langle \Psi(X_i), Q'(-X_i) \rangle
 \item $\tilde{A}$ is the matrix
 \begin{align*}
 \tilde{A} &= \begin{pmatrix}
--e^{-\nu(\lambda)X_1} k_1 & e^{-\nu(\lambda)X_1} k_1 \\
-& -e^{-\nu(\lambda)X_2} k_2 & e^{-\nu(\lambda)X_2} k_2 \\
+-e^{-\nu(\lambda)X_1} q(X_1) & e^{-\nu(\lambda)X_1} q(X_1) \\
+& -e^{-\nu(\lambda)X_2} q(X_2) & e^{-\nu(\lambda)X_2} q(X_2) \\
 & \ddots \\
-e^{-\nu(\lambda)X_0} k_0 & &  & -e^{-\nu(\lambda)X_0} k_0 & 
+e^{-\nu(\lambda)X_0} q(X_0) & &  & -e^{-\nu(\lambda)X_0} q(X_0) & 
 \end{pmatrix}
 \end{align*}
-where 
-\begin{equation*}
-k_i = 2 \langle W_0'(0), Q'(X_i) \rangle
-\end{equation*}
-and $W'(0)$ is defined by \cref{W0prime} in \cref{nulambdalemma}. $\tilde{A}$ has uniform bound
+where $q(x)$ is the first component of the primary pulse $Q(x)$. $\tilde{A}$ has uniform bound
 \begin{align*}
 \tilde{A} &= \mathcal{O}( e^{-\alpha X_m})
 \end{align*}
 
-\item $M$ is the higher order Melnikov integral
+\item $M$ and $M^c$ are the Melnikov-type integrals
 \begin{align*}
-M &= \int_{-\infty}^\infty \Psi(y) t(y) dy \\
+M &= \int_{-\infty}^\infty q(y) \partial_c q(y) dy \\
+M^c &= \int_{0}^\infty q(y) v^c(y) dy
 \end{align*}
-and
-\begin{align*}
-p_1 = \langle \Psi(0), \partial_\lambda V^+(0; 0) \rangle
-\end{align*}
-where $V^+(0; 0)$ is defined in \cref{lemma:Vpm}.
+where $v^c(y)$ is the first component of $V^c(y)$, which is defined in \cref{varadjsolutions}.
 
 \item The remaining terms are remainder matrices which are analytic in $\lambda$ and have uniform bounds
 \begin{align*}
