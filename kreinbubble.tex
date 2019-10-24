@@ -585,21 +585,43 @@ This proves \cref{theorem:2peigscase1} part (ii)(b).
 
 \subsection{Degenerate case}
 
-The final case to consider is when $\tilde{a}(0) \neq 0$, which occurs only at the two pitchfork bifurcation points.
-
-For simplicity, take the case where $m_0 = m_1 = 0$, and let $\epsilon = \mu_*(0)$. Then in a small neighborhood of $\theta = -\arctan \rho$,
-\begin{align*}
-\epsilon &< 0 && \theta < -\arctan \rho \\
-\epsilon &= 0 && \theta = -\arctan \rho \\
-\epsilon &> 0 && \theta = -\arctan \rho 
-\end{align*}
-Write \cref{2detBint4} as
-\begin{equation}\label{2detBintBif}
+The final case to consider is when $\tilde{a}(0) \neq 0$, which occurs only at the two pitchfork bifurcation points. Starting with \cref{2detBint4}, since we know there are always two eigenvalues at 0 corresponding to $\partial_x Q_2(x)$ and $\partial_c Q_2(x)$, we can divide by $\tilde{\mu}^2$ to get
+\begin{equation}\label{2degen1}
 \begin{aligned}
-G(\tilde{\mu},\epsilon, r) = \tilde{\mu}^2 (\tilde{\mu} - \epsilon)(\tilde{\mu} + \epsilon)\left( \tilde{\mu} + \mathcal{O}(r X^2)\right) + \mathcal{O}( r^{1/2} ) = 0
+G(\tilde{\mu},r) = (\tilde{\mu} - \tilde{\mu}_*(r))(\tilde{\mu} + \tilde{\mu}_*(r))\left( \tilde{\mu} + \mathcal{O}(r X^2)\right) + \mathcal{O}( r^{1/2} )
 \end{aligned}
 \end{equation}
-THIS IS BASICALLY THE NORMAL FORM OF A SADDLE EXCEPT IT IS MULTIPLIED BY AN EXTRA $\tilde{\mu}^3$. I ASSUME WE CANNOT JUST DIVIDE BY $\tilde{\mu}^3$ HERE SINCE EVERYTHING IS COLLIDING AT 0.
+
+At this point, we need to know that there is always a third eigenfunction at 0. SUPPOSE FOR NOW THAT THIS IS THE CASE, i.e. that there is another eigenvalue at 0 with eigenfunction $V^c_2(x)$. Then we can divide by $\tilde{\mu}$ one more time to get
+\begin{equation}\label{2degen2}
+\begin{aligned}
+G(\tilde{\mu},r) = (\tilde{\mu} - \tilde{\mu}_*(r))(\tilde{\mu} + \tilde{\mu}_*(r)) + \mathcal{O}( r^{1/2} + rX^2 )
+\end{aligned}
+\end{equation}
+
+When $r = 0$, this becomes
+\[
+G(\tilde{\mu},0) = (\tilde{\mu} - \tilde{\mu}_*(0))(\tilde{\mu} + \tilde{\mu}_*(0))
+\]
+We are interested in the case when $\tilde{\mu}$ is close to 0, which occurs when $\tilde{a}(0)$ is close to 0. Substituting $\mu_*(0) = \sqrt{2 \tilde{a}(0)/M c^2}$, this becomes
+\begin{equation*}
+G(\tilde{\mu},0) = \left( \tilde{\mu} - \sqrt{\frac{2 \tilde{a}(0)}{M c^2}} \right)\left(\tilde{\mu} +  \sqrt{\frac{2 \tilde{a}(0)}{M c^2}} \right) \\
+= \tilde{\mu}^2 - \frac{2}{M c^2}\tilde{a}(0)
+\end{equation*}
+Since $\tilde{a}(0) = 0$ only at the two pitchfork bifurcations, we will look at one of them. The other one will be similar. 
+
+Take the case $m_0 = m_1 = 0$. As $\theta$ is varied in a small neighborhood of $\theta = -\arctan \rho$,
+\begin{align*}
+\tilde{a}(0) &> 0 && \theta < -\arctan \rho \\
+\tilde{a}(0) &= 0 && \theta = -\arctan \rho \\
+\tilde{a}(0) &< 0 && \theta = -\arctan \rho 
+\end{align*}
+Let $\epsilon = 2 \tilde{a}(0) / M c^2$. As $\theta$ passes through $-\arctan \rho$, the sign of $\epsilon$ changes; the direction of the change depends on the sign of $M$. Since $\tilde{\mu}_*(r) = \tilde{\mu}_*(0) + \mathcal{O}(r^{\gamma/4\alpha})$, equation \cref{2degen3} is in the normal form of a saddle node bifurcation, except with $\tilde{\mu}$ complex.
+\begin{equation}\label{2degen3}
+\begin{aligned}
+G(\tilde{\mu},r) = \tilde{\mu}^2 - \epsilon + \mathcal{O}( r^{1/2} + r^{\gamma/4\alpha} + rX^2 )
+\end{aligned}
+\end{equation}
 
 \section{Proof of \cref{theorem:kreinbubbles}}
 
