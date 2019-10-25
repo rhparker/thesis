@@ -60,7 +60,7 @@ We can now state the main theorem of this chapter which provides a condition for
 Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and \ref{H0transversehyp}. Let $Q(x)$ be the primary pulse solution, an let $Q_n(x)$ be a periodic $n-$pulse solution constructed according to Theorem \ref{perexist} with pulse lengths $X_0, \dots, X_{n-1}$. Then there exists $\delta > 0$ with the following property. There exists a bounded, nonzero solution $V$ of \eqref{PDEeig3} for $|\lambda| < \delta$ if and only if the $(2n \times 2n)$ block matrix equation
 \begin{equation}\label{blockeq}
 \begin{pmatrix}
-K(\lambda) + C_1 K(\lambda) + K_1(\lambda) + C_2 & 2 \lambda \tilde{A} + D_1 \\
+K(\lambda) + C_1 K(\lambda) + K_1(\lambda) + C_2 & \lambda \tilde{A} + D_1 \\
 -\lambda M^c \tilde{K}(\lambda) + C_3 K(\lambda) + K_2(\lambda) + C_4 & A - \lambda^2 MI + D_2
 \end{pmatrix}
 \begin{pmatrix} c \\ d \end{pmatrix} = 0
@@ -103,13 +103,19 @@ a_i &= \langle \Psi(X_i), Q'(-X_i) \rangle
 \item $\tilde{A}$ is the matrix
 \begin{align*}
 \tilde{A} &= \begin{pmatrix}
--e^{-\nu(\lambda)X_1} q(X_1) & e^{-\nu(\lambda)X_1} q(X_1) \\
-& -e^{-\nu(\lambda)X_2} q(X_2) & e^{-\nu(\lambda)X_2} q(X_2) \\
-& \ddots \\
-e^{-\nu(\lambda)X_0} q(X_0) & &  & -e^{-\nu(\lambda)X_0} q(X_0) & 
+\tilde{a}_0^+ - \tilde{a}_1^- & \tilde{a}_1^- &&& -\tilde{a}_0^+ \\
+-\tilde{a}_1^+ & \tilde{a}_1^+ - \tilde{a}_2^- & \tilde{a}_2^- \\
+& -\tilde{a}_2^+ & \tilde{a}_2^+ - \tilde{a}_3^- & \tilde{a}_3^- \\ && \ddots \\
+\\
+\tilde{a}_0^- &&& -\tilde{a}_{n-1}^+ & \tilde{a}_{n-1}^+ - \tilde{a}_0^- 
 \end{pmatrix}
 \end{align*}
-where $q(x)$ is the first component of the primary pulse $Q(x)$. $\tilde{A}$ has uniform bound
+with entries
+\begin{align*}
+\tilde{a}_i^- &= e^{-\nu(\lambda)X_i} q(X_i)\\
+\tilde{a}_i^+ &= e^{\nu(\lambda)X_i} q(X_i)\\
+\end{align*}
+where $q(x)$ is the first component of the primary pulse solution $Q(x)$. $\tilde{A}$ has uniform bound
 \begin{align*}
 \tilde{A} &= \mathcal{O}( e^{-\alpha X_m})
 \end{align*}
@@ -125,14 +131,14 @@ where $v^c(y)$ is the first component of $V^c(y)$, which is defined in \cref{var
 \begin{align*}
 C_1 &= \mathcal{O}(|\lambda|e^{-\alpha X_m}(|\lambda| + e^{-\alpha X_m})) \\
 C_2 &= \mathcal{O}(|\lambda|e^{-\alpha X_m}) \\
-C_3 &= \mathcal{O} (|\lambda| + e^{-\alpha X_m})^2) \\
-C_4 &= \mathcal{O}((|\lambda| + e^{-\alpha X_m})^2) \\
-D_1 &= \mathcal{O}(|\lambda|(|\lambda| + e^{-\alpha X_m})^2) \\
-D_2 &= \mathcal{O}((|\lambda| + e^{-\alpha X_m})^3)
+C_3 &= \mathcal{O}(e^{-\alpha X_m} (|\lambda| + e^{-\alpha X_m})(|\lambda| + e^{-\alpha_1 X_m}))  \\
+C_4 &= \mathcal{O}((|\lambda| + e^{-\alpha X_m})(|\lambda| + e^{-\alpha_1 X_m})) \\
+D_1 &= \mathcal{O}(|\lambda|(|\lambda| + e^{-\alpha X_m})(|\lambda| + e^{-\alpha_1 X_m})) \\
+D_2 &= \mathcal{O}((|\lambda| + e^{-\alpha X_m})(|\lambda| + e^{-\alpha_1 X_m})^2)
 \end{align*}
-for $\alpha$ slightly smaller than $\alpha_0$ (which is defined precisely in the proof), and $X_m = \min\{X_0, \dots, X_{n-1}\}$.
+where $X_m = \min\{X_0, \dots, X_{n-1}\}$.
 
-\item $K_1(\lambda)$ and $K_2(\lambda)$ are obtained from $K(\lambda)$ by multiplying each nonzero entry by $\mathcal{O}(|\lambda|(|\lambda| + e^{-\alpha X_m}))$ and $\mathcal{O}((|\lambda| + e^{-\alpha X_m})^2)$ (respectively). They are defined precisely in the proofs of Lemmas \ref{jumpcenteradj} and \ref{jumpadj}
+\item $K_1(\lambda)$ and $K_2(\lambda)$ are obtained from $K(\lambda)$ by multiplying each nonzero entry by $\mathcal{O}(|\lambda|(|\lambda| + e^{-\alpha X_m}))$ and $\mathcal{O}((|\lambda| + e^{-\alpha X_m})(|\lambda| + e^{-\alpha_1 X_m}))$ (respectively). They are defined precisely in the proofs of Lemmas \ref{jumpcenteradj} and \ref{jumpadj}
 \end{enumerate}
 \end{theorem}
 
@@ -981,6 +987,26 @@ By \cref{varadjsolutions}, the constant solution $\Psi^c(x) = W_0$ is the unique
 \end{proof}
 \end{lemma}
 
+The next lemma proves a useful result about the adjoint of the trichotomy projections at $x = 0$.
+
+\begin{lemma}\label{lemma:trichadjoint}
+For the trichotomy projections $\tilde{P}_+^u(0)$ and $\tilde{P}_-^s(0)$, we have
+\begin{equation}
+\begin{aligned}
+\tilde{P}_+^u(0)^* \Psi(0) &= \Psi(0) \\
+\tilde{P}_-^s(0)^* \Psi(0) &= \Psi(0)
+\end{aligned}
+\end{equation}
+\begin{proof}
+Since
+\begin{align*}
+\ker \tilde{P}_+^u(0)^* &\perp \ran \tilde{P}_+^u(0) \\
+\ran \tilde{P}_+^u(0)^* &\perp \ker \tilde{P}_+^u(0)
+\end{align*}
+and $\ker \tilde{P}_+^u(0) = T_{Q(0)} W^s(0) \oplus T_{Q(0)} W^c(0)$, $\tilde{P}_+^u(0)^*$ acts as the identity on $(T_{Q(0)} W^s(0) \oplus T_{Q(0)} W^c(0))^\perp$. Since $\Psi(0) \perp T_{Q(0)} W^s(0)$, $\Psi(0) \in \ran \tilde{P}_+^u(0)^*$, thus $\tilde{P}_+^u(0)^* \Psi(0) = \Psi(0)$. The result for $\tilde{P}_-^s(0)^*$ is similar.
+\end{proof}
+\end{lemma}
+
 To conclude this section, we use use \cref{centerprojlemma} to derive expansions which will be useful later.
 
 \begin{lemma}\label{W0projlemma}
@@ -1219,7 +1245,7 @@ We have the following inner products involving $\partial_\lambda \tilde{V}^+(0; 
 which is finite.
 \item $\langle \Psi(0), \partial_\lambda \tilde{V}^+(0; 0) \rangle = - M^c$,
 where $M^c$ is the ``center'' Melnikov-type integral
-\begin{equation}
+\begin{equation}\label{defMc}
 M^c = \int_0^\infty q(y) v^c(y) dy
 \end{equation}
 with $q(y)$ the first component of $Q(y)$ and $v^c(y)$ the first component of $V^c(y)$.
@@ -1280,12 +1306,7 @@ Thus for the inner product with $\Psi(0)$ we have
 &= \int_{\infty}^0 \langle \tilde{P}_+^u(0)^*\Psi(0), \tilde{\Phi}(0,y) B V^c(y) \rangle dy \\
 \end{align*}
 
-All that remains is to evaluate the $\tilde{P}_+^u(0)^*$. Since
-\begin{align*}
-\ker \tilde{P}_+^u(0)^* &\perp \ran \tilde{P}_+^u(0) \\
-\ran \tilde{P}_+^u(0)^* &\perp \ker \tilde{P}_+^u(0)
-\end{align*}
-and $\ker \tilde{P}_+^u(0) = T_{Q(0)} W^s(0) \oplus T_{Q(0)} W^c(0)$, $\tilde{P}_+^u(0)^*$ acts as the identity on $(T_{Q(0)} W^s(0) \oplus T_{Q(0)} W^c(0))^\perp$. Since $\Psi(0) \perp T_{Q(0)} W^s(0)$, $\Psi(0) \in \ran \tilde{P}_+^u(0)^*$, thus $\tilde{P}_+^u(0)^* \Psi(0) = \Psi(0)$. Substituting this above, we have
+By \cref{lemma:trichadjoint}, $\tilde{P}_+^u(0)^*\Psi(0) = \Psi(0)$, thus we have
 \begin{align*}
 \langle \Psi(0), Y(0) \rangle
 &= \int_{\infty}^0 \langle \Psi(0), \tilde{\Phi}(0,y) B V^c(y) \rangle dy \\
