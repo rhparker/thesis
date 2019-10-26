@@ -60,7 +60,7 @@ We can now state the main theorem of this chapter which provides a condition for
 Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and \ref{H0transversehyp}. Let $Q(x)$ be the primary pulse solution, an let $Q_n(x)$ be a periodic $n-$pulse solution constructed according to Theorem \ref{perexist} with pulse lengths $X_0, \dots, X_{n-1}$. Then there exists $\delta > 0$ with the following property. There exists a bounded, nonzero solution $V$ of \eqref{PDEeig3} for $|\lambda| < \delta$ if and only if the $(2n \times 2n)$ block matrix equation
 \begin{equation}\label{blockeq}
 \begin{pmatrix}
-K(\lambda) + C_1 K(\lambda) + K_1(\lambda) + C_2 & \lambda \tilde{A} + D_1 \\
+K(\lambda) + C_1 K(\lambda) + K_1(\lambda) + C_2 & \lambda S(\lambda) + D_1 \\
 -\lambda M^c \tilde{K}(\lambda) + C_3 K(\lambda) + K_2(\lambda) + C_4 & A - \lambda^2 MI + D_2
 \end{pmatrix}
 \begin{pmatrix} c \\ d \end{pmatrix} = 0
@@ -100,24 +100,24 @@ where
 a_i &= \langle \Psi(X_i), Q'(-X_i) \rangle
 \end{align*}
 
-\item $\tilde{A}$ is the matrix
+\item $S$ is the matrix
 \begin{align*}
-\tilde{A} &= \begin{pmatrix}
-\tilde{a}_0^+ - \tilde{a}_1^- & \tilde{a}_1^- &&& -\tilde{a}_0^+ \\
--\tilde{a}_1^+ & \tilde{a}_1^+ - \tilde{a}_2^- & \tilde{a}_2^- \\
-& -\tilde{a}_2^+ & \tilde{a}_2^+ - \tilde{a}_3^- & \tilde{a}_3^- \\ && \ddots \\
+S(\lambda) &= \begin{pmatrix}
+s_0^+ - s_1^- & s_1^- &&& -s_0^+ \\
+-s_1^+ & s_1^+ - s_2^- & s_2^- \\
+& -s_2^+ & s_2^+ - s_3^- & s_3^- \\ && \ddots \\
 \\
-\tilde{a}_0^- &&& -\tilde{a}_{n-1}^+ & \tilde{a}_{n-1}^+ - \tilde{a}_0^- 
+s_0^- &&& -s_{n-1}^+ & s_{n-1}^+ - s_0^- 
 \end{pmatrix}
 \end{align*}
 with entries
 \begin{align*}
-\tilde{a}_i^- &= e^{-\nu(\lambda)X_i} q(X_i)\\
-\tilde{a}_i^+ &= e^{\nu(\lambda)X_i} q(X_i)\\
+s_i^- &= e^{-\nu(\lambda)X_i} q(X_i)\\
+s_i^+ &= e^{\nu(\lambda)X_i} q(X_i)\\
 \end{align*}
-where $q(x)$ is the first component of the primary pulse solution $Q(x)$. $\tilde{A}$ has uniform bound
+where $q(x)$ is the first component of the primary pulse solution $Q(x)$. $S$ has uniform bound
 \begin{align*}
-\tilde{A} &= \mathcal{O}( e^{-\alpha X_m})
+S(\lambda) &= \mathcal{O}( e^{-\alpha X_m})
 \end{align*}
 
 \item $M$ and $M^c$ are the Melnikov-type integrals

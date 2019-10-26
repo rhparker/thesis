@@ -1138,15 +1138,18 @@ where $\theta \in I_\rho$. This involves the following steps.
 	\end{equation*}
 	Thus for $\theta \in I_\rho$, the RHS of \eqref{thetastareq2} is contained in the domain of $g^{-1}$, and so we solve for $\theta^*$ to get
 	\begin{equation}\label{solvethetastar}
-	\theta^* = g^{-1}\left( e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1}  e^{ \frac{1}{\rho} \theta } \sin \theta \right)
+	\theta^* = g^{-1}\left( e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1} e^{ \frac{1}{\rho} \theta } \sin \theta \right)
 	\end{equation}
-	It follows that $\theta^*(\theta) \in I_\rho$, which ensures that we cannot overlap the region parameterized by a different $b_0^0$ by varying $\theta$. Since $g(0) = 0$, it follows that $\theta^*(0) = 0$, thus $b_0^*(m_0, 0) = b_0^0$. $b_1^*(m_1, 0) = b_1^0$ by definition.
+	Since $\theta^*(\theta) \in I_\rho$, this ensures that we cannot overlap the region parameterized by a different $b_0^0$ by varying $\theta$. 
+
+	\item Finally, we will show what happens at $\theta = 0$. Since $g(0) = 0$, $\theta^*(0) = 0$, thus $b_0^*(m_0, 0) = b_0^0$. $b_1^*(m_1, 0) = b_1^0$ by definition.
+
 \end{enumerate}
 
-\item For each $m_1$, equations \eqref{thetaparam1} and \eqref{solvethetastar} give us a smooth parameterization in $\theta$. We will now show that the pieces match up at their endpoints. 
+\item For each $m_1$, equations \eqref{thetaparam1} and \eqref{solvethetastar} give us a smooth parameterization in $\theta$. We will now show that the pieces match up at their endpoints.  
 
 \begin{enumerate}
-	\item Show that the pieces which do not involve the pitchfork bifurcation match up. Let $m_1 \geq 1$, so that we avoid the pitchfork bifurcation point $p_0^*$. Let $(b^*_0(0, \theta), b^*_1(m_1, \theta))$ and $(\tilde{b}^*_0(0, \theta), \tilde{b}^*_1(m_1 + 1, \theta))$ parameterize adjacent pieces. For the second component,
+	\item Show that the pieces which do not involve the pitchfork bifurcation match up. Let $m_1 \geq 1$, so that we avoid the pitchfork bifurcation point $p_0^*$. Let $(b^*_0(0, \theta), b^*_1(m_1, \theta))$ and $(\tilde{b}^*_0(0, \theta), \tilde{b}^*_1(m_1 + 1, \theta))$ parameterize adjacent pieces. For the second components,
 	\begin{align*}
 	b_1^*(m_1, \theta_\rho^-) &= e^{ -\frac{1}{\rho}(m_1 \pi + \arctan \rho) }
 	\end{align*}
@@ -1156,7 +1159,7 @@ where $\theta \in I_\rho$. This involves the following steps.
 	&= e^{ -\frac{1}{\rho}((m_1+1) \pi - (\pi - \arctan \rho)) } \\
 	&= e^{ -\frac{1}{\rho}(m_1 \pi + \arctan \rho) }
 	\end{align*}
-	Thus the second components match. For the first component, let $b_0^*(0, \theta) = e^{ \frac{1}{\rho} \theta_0^*(\theta) }$ and $\tilde{b}_0^*(0, \theta) = e^{ \frac{1}{\rho} \tilde{\theta}_0^*(\theta) }$. From \eqref{solvethetastar}, $\theta_0^*$ and $\tilde{\theta}_0^*$ are given by
+	Thus the second components match at $p^*_{m_1}$. For the first components, let $b_0^*(0, \theta) = e^{ \frac{1}{\rho} \theta_0^*(\theta) }$ and $\tilde{b}_0^*(0, \theta) = e^{ \frac{1}{\rho} \tilde{\theta}_0^*(\theta) }$. From \eqref{solvethetastar}, $\theta_0^*$ and $\tilde{\theta}_0^*$ are given by
 	\begin{align*}
 	\theta_0^* &= g^{-1}\left( e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1}  e^{ -\frac{1}{\rho} \arctan \rho } \sin(-\arctan \rho) \right)
 	\end{align*}

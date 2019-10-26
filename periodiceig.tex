@@ -8,114 +8,97 @@
 
 \section{Proof of eigenvalue location theorems}
 
-In Theorem \ref{locateeigtheorem}, we solve the block matrix equation from Theorem \ref{blockmatrixtheorem} to locate the PDE eigenvalues $\lambda$ for $|\lambda| < \delta$, where $\delta$ is given in Theorem \ref{blockmatrixtheorem}. We prove the theorem below in a series of lemmas. 
+Let $Q_n(x)$ be a periodic n-pulse with length parameters $\{ b_0(r), \dots, b_{n-1}(r)\}$. In this section, we prove Theorem \ref{locateeigtheorem}, in which we solve the block matrix equation from Theorem \ref{blockmatrixtheorem} to locate the PDE eigenvalues $\lambda$ for $|\lambda| < \delta$. Throughout this section, we assume that the essential spectrum eigenvalues are ``out of the way''. 
+
+We proceed as follows. Let $\{ 0, \lambda_*^1(r), \dots, \lambda_*^{n-1}(r) \}$ be the eigenvalues of $A$, where we have made the dependence on the scaling parameter $r$ explicit. Using the expressions for $a_j(r)$ from \cref{lemma:ajparam}, rescale the matrix $A$ by taking $a_j(r) = r \tilde{a}(r)$. Thus we have $A = r \tilde{A}$. $\tilde{A}$ is the same matrix as $A$ with the entries $a_j$ replaced by $\tilde{a}_j$. For $j = 1,\dots, n-1$, let 
+\[
+\lambda_*^j(r) = r \tilde{\lambda}_*^j(r)
+\] 
+Then the eigenvalues of $\tilde{A}$ are $\{ 0, \tilde{\lambda}_*^1(r), \dots, \tilde{\lambda}_*^{n-1}(r) \}$. We expect to find interaction eigenvalues near $\pm \sqrt{\tilde{\lambda}_*^j(r)/M}$.
+
+We expect that the first nonzero essential spectrum eigenvalue will be located at $c \pi i/X$. To ensure that all of the essential spectrum eigenvalues are ``out of the way'', we will choose $r_0$ sufficiently small so that
+\[
+\max_{j = 1, \dots, n-1}
+\left| \sqrt{\frac{\lambda_*^j(r)}{M}} \right| \leq \frac{c}{4 X}
+\]
+In terms of the scaling parameter alone, we have chosen $r_0$ sufficiently small so that
+\begin{equation}\label{nobubblecondgen}
+\max_{j = 1, \dots, n-1} \left| \sqrt{\frac{\tilde{\lambda}_*^j(r)}{M}}\right|r_0^{1/2} \leq \frac{1}{4} \frac{c}{\left( n |\log r_0| + |\log( b_0(0) \cdots b_{n-1}(0) |\right)}
+\end{equation}
+As $r_0 \rightarrow 0$, the LHS of \cref{nobubblecondgen} goes to 0 faster than the RHS, thus we can always find such an $r_0$.
+
+We now prove the theorem below in a series of lemmas. The basic strategy is as follows. To find the interaction eigenvalues, we solve the top row of the block matrix equation for $c$, then plug it into the bottom row. We do the reverse for the essential spectrum eigenvalues. The condition \cref{nobubblecondgen} provides sufficient bounds on the inverses of the appropriate matrices so that this is possible.
 
 \subsection{Rescaling}
 
-First, we adopt the same scaling and parameterization as in the existence problem. Recall from Theorem \ref{perexist} that a periodic $n-$pulse $Q_np(x)$ is specified by a scaling parameter $r \in \mathcal{R}$ and $n$ length parameters $b_j$, which depend on $r$ as well as a phase parameter $\theta$ and a baseline length parameter $b_j^0$.
-
-In the next lemma, we rewrite the terms in the block matrix equation \eqref{blockeq} from Theorem \ref{blockmatrixtheorem} using this parameterization.
+Before we can solve the block matrix equation, we will rescale the problem by adopting the same scaling and parameterization as in the existence problem. In the next lemma, we rewrite the terms in the block matrix equation \eqref{blockeq} from Theorem \ref{blockmatrixtheorem} using this parameterization. In addition, to simplify the analysis, we make the substitution $\lambda = \nu^{-1}(\mu)$.
 
 % block matrix reparameterization
 \begin{lemma}\label{reparam}
-Using the scaling and parameterization above, the block matrix equation from Theorem \ref{blockmatrixtheorem} takes the form
+The block matrix equation from Theorem \ref{blockmatrixtheorem} takes the form
 \begin{equation}\label{blockeq2}
 \begin{pmatrix}
-K(\lambda) + C_1 K(\lambda) + K_1(\lambda) & D_1 \\
-C_2 K(\lambda) + K_2(\lambda) & r \tilde{A} - \lambda^2 MI + D_2
+K(\mu) + C_1 K(\mu) + K_1(\mu) + C_2 & c \mu S(\mu) + D_1 \\
+-c \mu M^c \tilde{K}(\mu) + C_3 K(\mu) + K_2(\lambda) + C_4 & r \tilde{A} - c^2 \mu^2 MI + D_2
 \end{pmatrix}
-\begin{pmatrix}c \\ d \end{pmatrix} 
-= 0
+\begin{pmatrix} c \\ d \end{pmatrix} = 0
 \end{equation}
-$\tilde{A}$ has the same form as the matrix $A$ from Theorem \ref{blockmatrixtheorem}, except the entries $a_j$ replaced by $\tilde{a}_j$, where
-\begin{align}\label{tildea}
-\tilde{a}_j 
-&= (-1)^{-\rho \log r / \pi} s_0 e^{\alpha \phi/\beta} \left( \beta b_j \cos\left( -\rho \log b_j \right) - \alpha b_j \sin \left( -\rho \log b_j  \right) \right) + \mathcal{O}(r^{\gamma/2\alpha})
-\end{align}
-The eigenvalues of $A$ are given by $\{0, \tilde{\mu_1}, \dots, \tilde{\mu}_{n-1} \}$, where $r \tilde{\mu}_j = \mu_j$ and $\mu_j$ is an eigenvalue of $A$.
-
-The remainder terms have bounds
+where $\mu = \nu(\lambda)$ and $\tilde{A} = r^{-1} A$. The remainder terms have bounds
 \begin{align*}
-C_1 &= \mathcal{O}\left(r^{\tilde{\gamma}/2}(|\lambda| + r^{1/2})\right) \\
-D_1 &= \mathcal{O}\left((|\lambda| + r^{1/2})^2\right) \\
-C_2 &= \mathcal{O}\left(r^{\tilde{\gamma}/2}(|\lambda| + r^{1/2})^2\right) \\
-D_2 &= \mathcal{O}\left((|\lambda| + r^{1/2})^3\right)
+S(\mu) = \mathcal{O}(|\mu|r^{\tau/2})
+C_1 &= \mathcal{O}(|\mu|r^{\tau/2}(|\mu| + r^{\tau/2})) \\
+C_2 &= \mathcal{O}(|\mu|r^{\tau/2}) \\
+C_3 &= \mathcal{O}(r^{\tau/2} (|\mu| + r^{\tau/2})(|\mu| + r^{1/2}))  \\
+C_4 &= \mathcal{O}((|\mu| + r^{\tau/2})(|\mu| + r^{1/2})) \\
+D_1 &= \mathcal{O}(|\mu|(|\mu| + r^{\tau/2})(|\mu| + r^{1/2})) \\
+D_2 &= \mathcal{O}((|\mu| + r^{\tau/2})(|\mu| + r^{1/2})^2)
 \end{align*}
-where $0 < \tilde{\gamma} < 1$. The matrices $K_1(\lambda)$ and $K_2(\lambda)$ are perturbations of the nonzero entries of $K(\lambda)$ by $\mathcal{O}(|\lambda| + r^{1/2})$.
-
-Finally the domain half-length $X$ is given by
-\begin{align}\label{Xscaled}
-X &= \frac{1}{2\alpha} (n |\log r| + |\log (b_0\cdots b_{n-1})| ) - \frac{n \phi}{2 \beta}
-\end{align}
+where $0 < \tau < 1$ (FOR NOW). $K_1(\mu)$ and $K_2(\mu)$ are obtained from $K(\mu)$ by multiplying each nonzero entry by $\mathcal{O}(|\mu|(|\mu| + r^{\tau/2}))$ and $\mathcal{O}((|\mu| + r^{\tau/2})(|\mu| + r^{1/2}))$ (respectively). 
 
 \begin{proof}
-From the discussion following Lemma \ref{IPform}, 
-\begin{align*}
-r &= e^{-\alpha(2 X^* + \phi/\beta)} \\
-b_j &= e^{-2 \alpha(X_j - X^*)} && j = 0, \dots, n-1
-\end{align*}
-where $X^* \leq X_m$. In terms of $b_j$ and $r$,
-\begin{align*}
-X^* &= -\frac{1}{2\alpha}\log r - \alpha \frac{\phi}{\beta} \\
-X_j &= -\frac{1}{2\alpha}\log(b_j r) - \frac{\phi}{2 \beta} 
-\end{align*}
-In particular,
-\begin{align*}
-e^{-2 \alpha X_m} &\leq e^{-2 \alpha X^*} \leq C r \\
-e^{-2 \alpha X_j} &= e^{\phi \alpha/\beta} _j r \\
-\end{align*}
+Let $\lambda = \nu^{-1}(\mu)$. As in \cref{sec:blockdet},
+\[
+\nu^{-1}(\mu) = c \mu + \mathcal{O}(\mu^3)
+\]
+Making this substutition, the block matrix equation \cref{blockeq} becomes
+\begin{equation*}
+\begin{pmatrix}
+K(\mu) + C_1 K(\mu) + K_1(\mu) + C_2 & c \mu S(\mu) + D_1 \\
+-c \mu M^c \tilde{K}(\mu) + C_3 K(\mu) + K_2(\lambda) + C_4 & A - c^2 \mu^2 MI + D_2
+\end{pmatrix}
+\begin{pmatrix} c \\ d \end{pmatrix} = 0
+\end{equation*}
+Absorbing the $\mathcal{O}(\mu^3)$ terms from the substitution into the remainder matrices, the remainder matrices have the same bounds as those from the orginal block matrix equation, with $\lambda$ replaced with $\mu$. 
 
-First, we rewrite the matrix $A$ using this scaling. From Lemma 6.1 in \cite{Sandstede1998},
-\begin{align*}\label{IPpsiQprime}
-\langle \Psi(-x), Q'(x) \rangle
-&= s_0 e^{-2 \alpha x}\left( \beta \cos(2 \beta x + \phi) - \alpha \sin(2 \beta x + \phi)\right) + \mathcal{O}(e^{-(2 \alpha + \gamma) x}
-\end{align*}
-where $s_0 > 0$ and $\gamma$ are the same as in Lemma \ref{IPform}. Thus for the coefficients $a_j$ of $A$, we have
+Now we rescale the system. From the scaling used in the existence problem,
+\[
+e^{-\alpha_1 X_m} = C r^{1/2} 
+\]
+Recall that $\alpha = \alpha_1 - \eta$, and let 
+\[
+\tau = \frac{\alpha}{\alpha_1} = \frac{\alpha_1 - \eta}{\alpha_1}
+\]
+Then we have
 \begin{align*}
-a_j &= \langle \Psi(-X_j), Q'(X_j) \rangle \\
-&= s_0 e^{-2 \alpha X_j}\left( \beta \cos(2 \beta X_j + \phi) - \alpha \sin(2 \beta X_j + \phi)\right) + \mathcal{O}(e^{-(2 \alpha + \gamma) X_j}) \\
-&= s_0 e^{\alpha \phi/\beta} r b_j \left( \beta \cos\left( -\frac{\beta}{\alpha} \log(b_j r) \right) - \alpha \sin \left( -\frac{\beta}{\alpha} \log(b_j r) \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha} b_j^{1 + \gamma/2\alpha}) \\
-&= s_0 e^{\alpha \phi/\beta} r b_j \left( \beta \cos\left( -\rho \log(b_j r) \right) - \alpha \sin \left( -\rho \log(b_j r) \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha})
+e^{-\alpha X_m} &= \left( e^{-\alpha_1 X_m} \right)^{\alpha/\alpha_1} \\
+&= r^{\tau / 2}
 \end{align*}
-since $b_j \in (0, 1]$. Since $r \in \mathcal{R}$, $r = \exp\left(-\frac{m \pi}{\rho}\right)$ for some nonnegative integer $m$, this becomes 
-\begin{align*}
-a_j &= s_0 e^{\alpha \phi/\beta} r b_j \left( \beta \cos\left( m \pi -\rho \log b_j \right) - \alpha \sin \left( m \pi -\rho \log b_j \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha}) \\
-&= (-1)^m s_0 e^{\alpha \phi/\beta} r b_j \left( \beta \cos\left(-\rho \log b_j \right) - \alpha \sin \left(-\rho \log b_j \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha})
-\end{align*}
-To scale $r$ out of this, let $a_j = r \tilde{a}_j$, where
-\begin{align*}
-\tilde{a}_j 
-&= (-1)^m s_0 e^{\alpha \phi/\beta} \left( \beta b_j \cos\left( -\rho \log b_j \right) - \alpha b_j \sin \left( -\rho \log b_j  \right) \right) + \mathcal{O}(r^{\gamma/2\alpha})
-\end{align*}
-Finally, we solve for $m$ in terms of $r$ to get $(-1)^{-\rho \log r / \pi}$. Substituting this in, we obtain
-\begin{align*}
-\tilde{a}_j 
-&= (-1)^{-\rho \log r / \pi} s_0 e^{\alpha \phi/\beta} \left( \beta b_j \cos\left( -\rho \log b_j \right) - \alpha b_j \sin \left( -\rho \log b_j  \right) \right) + \mathcal{O}(r^{\gamma/2\alpha})
-\end{align*}
-Thus we have $A = r \tilde{A}$, where $\tilde{A}$ is the same matrix as $A$ with $a_j$ replaced with $\tilde{a}_j$. The matrices $\tilde{A}$ and $A$ are both symmetric, thus the eigenvalues of $\tilde{A}$ are real, and $(1,1,\dots,1)^T$ is an eigenvector of $\tilde{A}$ with eigenvalue 0. Furthermore, $\tilde{\mu}$ is an eigenvalue of $\tilde{A}$ if and only if $\mu = r \tilde{\mu}$ is an eigenvalue of $A$.
-
-Since
-\begin{align*}
-e^{-\alpha X_m} &= C r^{1/2} \\
-e^{-(\alpha - \eta) X_m} &= C r^{\tilde{\gamma}/2}
-\end{align*}
-where $0 < \tilde{\gamma} < 1$, the remainder terms in Theorem \ref{blockmatrixtheorem} have the bounds given above. In addition, $K_1(\lambda)$ and $K_2(\lambda)$ are perturbations of the nonzero entries of $K(\lambda)$ by $\mathcal{O}(|\lambda| + r^{1/2})$.
-
-Finally, the domain half-length $X$ is given by
-\begin{align*}
-X &= \sum_{j=0}^{n-1} X_j \\
-&= -\sum_{j=0}^{n-1} \frac{1}{2\alpha}\log(b_j r) - \frac{n \phi}{2 \beta}\\
-&= -\frac{1}{2\alpha} \log\left( r^n \prod_{j=0}^{n-1} b_j \right) - \frac{n \phi}{2 \beta} \\
-&= \frac{1}{2\alpha} (n |\log r| + |\log (b_0\cdots b_{n-1})| ) - \frac{n \phi}{2 \beta}
-\end{align*}
+Making these substitutions, we obtain the bounds in the statement of the lemma.
 \end{proof}
 \end{lemma}
 
-\subsection{Characterization of \texorpdfstring{$K(\lambda)$}{K} }
+Let
+\[
+\mu_*^j(r) = \sqrt{\frac{\lambda_*^j(r)}{M c^2}} =  r^{1/2}
+\sqrt{\frac{\tilde{\lambda}_*^j(r)}{M c^2}} 
+\]
+and let $\mu_*^j = r^{1/2} \tilde{\mu}_*^j$. After the change of variable to $\mu$, we expect to find the interaction eigenvalues near $\pm \mu_*^j(r)$.
 
-We will first find the interaction eigenvalues, which we expect to occur near where $A - \lambda^2 M I$ is singular. In order to do this, we will need to invert $K(\lambda)$ away from the points where $K(\lambda)$ is singular.
+\subsection{Characterization of \texorpdfstring{$K(\mu)$}{K} }
 
-In this section, we characterize the matrix $K(\lambda)$. First, we prove the following general result about the determinant of a periodic, bi-diagonal matrix.
+In order to find the interaction eigenvalues, we will solve the first row of the block matrix equation for $c$. The key step in doing this is inverting the matrix $K(\mu)$, which we can do as long as it is nonsingular. 
+
+The first step is to prove the following general result about the determinant of a periodic, bi-diagonal matrix.
 
 % bidiagonal determinant
 \begin{lemma}\label{bidiag}
@@ -134,7 +117,6 @@ Then
 \begin{equation}
 \det{A} = \prod_{k = 1}^n a_k + (-1)^n \prod_{k = 1}^{n-1} b_k
 \end{equation}
-
 \begin{proof}
 Expanding by minors using the last column, we have
 \begin{align*}
@@ -160,310 +142,147 @@ since both of the matrices on the RHS are triangular.
 \end{proof}
 \end{lemma}
 
-As a corollary, we can compute the determinant of $K(\lambda)$.
+As a corollary, we can compute the determinant of $K(\mu)$.
 % determinant of K(\lambda)
 \begin{corollary}\label{detKcorr}
-For the matrix $K(\lambda)$ defined in Theorem \ref{blockmatrixtheorem}, we have 
+For the matrix $K(\mu)$, 
+\begin{enumerate}[(i)]
+\item 
 \begin{equation}\label{detK}
-\det K = e^{-\nu(\lambda)X} - e^{\nu(\lambda)X} = -2 \sinh (\nu(\lambda) X)
+\det K(\mu) = e^{-\mu X} - e^{\mu X} = -2 \sinh (\mu X)
 \end{equation}
-where $X = X_0 + X_1 + \dots + X_{n-1}$ is half the length of the periodic domain. $\det K(\lambda) = 0$ if and only if $\nu(\lambda) = i n \pi/X$ for $n \in Z$. 
+where $X = X_0 + X_1 + \dots + X_{n-1}$ is half the length of the periodic domain. 
+\item $\det K(\mu = 0$ if and only if 
+\begin{align*}
+\mu &= \frac{n \pi i}{X} && n \in Z.
+\end{align*} 
+\end{enumerate}
 \begin{proof}
 Since $K(\lambda)$ is a periodic, bi-diagonal matrix, by Lemma \ref{bidiag} we have
 \begin{align*}
-\det K(\lambda) &= \prod_{k = 0}^{n-1} e^{-\nu(\lambda)X_k} + (-1)^{n-1} \prod_{k = 1}^n (-e^{\nu(\lambda)X_k}) \\
-&= e^{-\nu(\lambda)(X_0 + X_1 + \dots X_{n-1})} + (-1)^{n-1} (-1)^n e^{\nu(\lambda)(X_0 + X_1 + \dots X_{n-1})} \\
-&= e^{-\nu(\lambda)X} - e^{\nu(\lambda)X} \\
-&= -2 \sinh (\nu(\lambda)X)
+\det K(\mu) &= \prod_{k = 0}^{n-1} e^{-\mu X_k} + (-1)^{n-1} \prod_{k = 1}^n (-e^{\mu X_k}) \\
+&= e^{-\mu(X_0 + X_1 + \dots X_{n-1})} + (-1)^{n-1} (-1)^n e^{\mu(X_0 + X_1 + \dots X_{n-1})} \\
+&= e^{-\mu X} - e^{\mu X} \\
+&= -2 \sinh (\mu X)
 \end{align*}
-It follows that $\det K(\lambda) = 0$ if and only if $\nu(\lambda) = i n \pi/X$ for $n \in Z$.
+Part (ii) follows immediately.
 \end{proof}
 \end{corollary}
 
-Corollary \ref{detKcorr} tells us that that $K(\lambda)$ is singular if and only if $\nu(\lambda) = i n \pi/X$ for $n \in Z$. In the next lemma, we determine values of $\lambda$ for which $K(\lambda)$ is singular. 
-
-% lambda for which K(lambda) is singular
-\begin{lemma}\label{Ksingularlemma}
-For sufficiently small $n/X$, $K(\lambda)$ is singular at $\lambda = \pm \lambda^K(X,n)$, where
-\begin{equation}\label{lambdaK}
-\lambda^K(X,n)
-= c \frac{n \pi i }{X} + \mathcal{O}\left( \frac{n}{X} \right)^3
-\end{equation} 
-$\lambda^K(X,n)$ is purely imaginary, $\lambda^K(X, 0) = 0$, and $\lambda^K(X, -n) = -\lambda^K(X, n)$.
-\begin{proof}
-To find the values of $\lambda$ where $K(\lambda)$ is singular, we need to solve $\nu(\lambda) = n \pi i/X$ for sufficiently small $n \in \Z$. We know $\nu(0) = 0$, so we only need to do this for nonzero $n$.
-
-Let $G(\lambda, r) = \nu(\lambda) - r$. Then $G(0, 0) = 0$ and $D_\lambda G(0, 0) = \nu'(0) = 1/c$, which is nonzero by Hypothesis \ref{c0nonzero}. Using the IFT, we can solve for $\lambda$ in terms of $r$ for $r$ near 0. In other words, there exists a function $\lambda(r)$ such that $\lambda(0) = 0$ and $G(\lambda(r), r) = 0$ for sufficiently small $r$. Thus, for sufficiently small $r$, $\nu(\lambda(r)) = r$. By Lemma \ref{nulambdalemma}, $\nu(-\lambda(r)) = -\nu(\lambda(r)) = -r$, thus by uniqueness of the IFT solution, $\lambda(-r) = -\lambda(r)$, i.e. $\lambda(r)$ is an odd function. We also have from the IFT 
-
-\begin{align*}
-\lambda'(r) &= -\frac{1}{\partial_\lambda G(\lambda(r), r) } \partial_r G(\lambda(r), r) \\
-&= \frac{1}{\partial_\lambda \nu(\lambda) } 
-\end{align*}
-which, at $\lambda = 0$, is $\lambda'(r) = c$. Expanding $\lambda(r)$ in a Taylor series about $r = 0$ and using the fact that $\lambda(r)$ is an odd function, we have
-\begin{align*}
-\lambda(r) &= \lambda(0) + \lambda'(0) r + \mathcal{O}(|r|^2) \\
-&= c r + \mathcal{O}(|r|^3)
-\end{align*}
-
-For $n/X$ sufficiently small, take $r = n \pi i / X$. Let 
-\[
-\lambda^K(X, n) = \lambda\left( \frac{n \pi i}{X} \right)
-\]
-Then $\nu(\lambda^K(X, n)) = n \pi i / X$, which implies $\det K(\lambda^K(X, n)) = 0$. We have the expansion
-\begin{align*}
-\lambda^K(X,n)
-&= c \frac{n \pi i }{X} + \mathcal{O}(n/X)^3 \\
-\end{align*} 
-
-Since $\lambda(r)$ is an odd function, $\lambda^K(X,-n) = -\lambda^K(X,n)$. Finally, since for $\lambda$ pure imaginary, $\nu(\lambda)$ is also pure imaginary, $\lambda(X,n)$ is pure imaginary.
-\end{proof}
-\end{lemma}
-
-Before we continue, we note the following estimate for the norm of $K(\lambda)$.
-\begin{equation}\label{Klambdanorm}
-||K(\lambda)|| \leq n ||K(\lambda)||_{\text{max}} = C e^{|\text{Re }\nu(\lambda)|X_{n-1}}
-\end{equation}
-
-In the next lemma, we derive an expression for the inverse of $K(\lambda)$ (when it is nonsingular).
+In the next lemma, we derive an expression for the inverse of $K(\mu)$ (when it is nonsingular).
 
 % lemma : inverse of K(lambda)
 \begin{lemma}\label{Kinvlemma}
-When $\det K(\lambda) \neq 0$,
+If $\det K(\mu) \neq 0$,
 \begin{equation}\label{Klambdainv}
-K(\lambda)^{-1} = \frac{1}{\det K(\lambda)} \tilde{K}(\lambda)
+K(\mu)^{-1} = \frac{1}{\det K(\mu} \tilde{K}(\mu)
 \end{equation}
 where
 \begin{align}\label{tildeK}
-\tilde{K}&(\lambda) = \\
+\tilde{K}&(\mu) = \\
 &\begin{pmatrix}
-e^{-\nu(\lambda)(X_2+\dots+X_{n-1}+X_0)} & e^{-\nu(\lambda)(-X_2-\dots-X_{n-1}-X_0)} &
-e^{-\nu(\lambda)(X_2-\dots-X_{n-1}-X_0)} & \dots & e^{-\nu(\lambda)(X_2+\dots+X_{n-1}-X_0)}  \\ 
-e^{-\nu(\lambda)(X_3+\dots+X_0-X_1)} & e^{-\nu(\lambda)(X_3+\dots+X_0+X_1)} &
-e^{-\nu(\lambda)(-X_3-\dots-X_0-X_1)} & \dots & e^{-\nu(\lambda)(X_3+\dots-X_0-X_1)} \\ 
+e^{-\mu(X_2+\dots+X_{n-1}+X_0)} & e^{-\mu(-X_2-\dots-X_{n-1}-X_0)} &
+e^{-\mu(X_2-\dots-X_{n-1}-X_0)} & \dots & e^{-\mu(X_2+\dots+X_{n-1}-X_0)}  \\ 
+e^{-\mu(X_3+\dots+X_0-X_1)} & e^{-\mu(X_3+\dots+X_0+X_1)} &
+e^{-\mu(-X_3-\dots-X_0-X_1)} & \dots & e^{-\mu(X_3+\dots-X_0-X_1)} \\ 
 & \ddots & \ddots \\
-e^{-\nu(\lambda)(-X_1-X_2 -\dots-X_{n-1})} & e^{-\nu(\lambda)(X_1-X_2 -\dots-X_{n-1})} &
-e^{-\nu(\lambda)(X_1+X_2 -\dots-X_{n-1})} & \dots & e^{-\nu(\lambda)(X_1+X_2+\dots+X_{n-1})}  \nonumber 
+e^{-\mu(-X_1-X_2 -\dots-X_{n-1})} & e^{-\mu(X_1-X_2 -\dots-X_{n-1})} &
+e^{-\mu(X_1+X_2 -\dots-X_{n-1})} & \dots & e^{-\mu(X_1+X_2+\dots+X_{n-1})}  \nonumber 
 \end{pmatrix}
 \end{align}
 and we have the bound
 \begin{equation}\label{Klambdainvnorm}
-||K(\lambda)^{-1}|| \leq C \frac{e^{|\text{Re }\nu(\lambda)|X }}{| \det K(\lambda) |}
+||K(\mu)^{-1}|| \leq C \frac{e^{|\text{Re }\mu|X }}{| \det K(\mu) |}
 \end{equation}
 
 \begin{proof}
-This can be verified directly. Note that each row is essentially a cyclic permutation of the previous row. Everything is shifted one place to the right, but a different index omitted in each row; row $k$ omits index $k$ (which is taken $\mod n$, so row $n$ omits the index 0). For row $j$, we can verify by matrix multiplication that
+This can be verified directly. Note that each row is essentially a cyclic permutation of the previous row. Everything is shifted one place to the right, but a different index omitted in each row; for example, row $k$ omits index $k$ (this is taken $\text{mod } n$, which means that row $n$ omits the index 0). For row $j$, we can verify by matrix multiplication that
 \begin{align*}
-[K(\lambda)\tilde{K}(\lambda)]_{jj} &= e^{-\nu(\lambda)(X_0 + \dots + X_{n-1})} - e^{\nu(\lambda)(X_0 + \dots + X_{n-1})} = \det K(\lambda) \\
+[K(\lambda)\tilde{K}(\lambda)]_{jj} &= e^{-\mu(X_0 + \dots + X_{n-1})} - e^{\mu(X_0 + \dots + X_{n-1})} = \det K(\lambda) \\
 [K(\lambda)\tilde{K}(\lambda)]_{jk} &= 0 && j \neq k
 \end{align*}
-where $\det(K(\lambda))$ is given in Corollary \ref{detKcorr}. The same holds for the product $\tilde{K}(\lambda)K(\lambda)$.
+where $\det(K(\mu))$ is given in Corollary \ref{detKcorr}. The result immediately follows. Since every entry in $\tilde{K}(\lambda)$ is bounded by $e^{|\text{Re }\mu|X }$, we have the bound \cref{Klambdainvnorm}.
 \end{proof}
 \end{lemma}
 
-Before we continue, we recall that we need to make sure the roots of $\det A - \lambda^2 M I$ and $\det K(\lambda)$ do not get too close. To ensure that, we will from now on assume that the $\epsilon-$ball condition holds, which is given in Definition \ref{epsilonballs}. Note that the factor of $1/4$ in the $\epsilon-$ball condition ensures that the $\epsilon-$balls do not overlap. Lemma \ref{epsilonballlemma} which guarantees that the $\epsilon-$ball condition is always satisfied for sufficiently small $r$. We prove that lemma in the next section
-
-\subsection{Proof of Lemma \ref{epsilonballlemma}}
-
-The nonzero roots of $\det A - \lambda^2 M I$ are of the form $\pm r^{1/2} \sqrt{\tilde{\mu}_j/M}$, where $\tilde{\mu}_j$ is one of the nonzero eigenvalues of $\tilde{A}$. These roots come in pairs which are symmetric about the origin. Although we only have to consider the case when these roots are purely imaginary, we do not know in advance which ones these will be, so we consider the worst case scenario where all the roots are purely imaginary. Let $a = \max_j\{| \sqrt{\tilde{\mu}_j/M}|\}$. We will show that for sufficiently small $r$, 
-\[
-|\lambda^K(X,1)| - a r^{1/2} > \frac{\epsilon}{X}
-\]
-Since $X > 0$, this is equivalent to
-\[
-(|\lambda^K(X,1)| - a r^{1/2})X  > \epsilon
-\]
-This implies that any purely imaginary interaction eigenvalues will be located between 0 and $\pm \lambda^K(X,1)$. Recall from Lemma \ref{Ksingularlemma} that
-\[
-\lambda^K(X,1)
-= c \frac{\pi i }{X} + \mathcal{O}(1/X)^3 
-\]
-Thus we have
+Next, we obtain a lower bound for $\det K(\lambda)$. Recall that we are looking for interaction eigenvalues near $\pm \mu_*^j(r)$. Let 
 \begin{align*}
-(|\lambda^K(X,1)| - a r^{1/2})X &= \left( |c| \frac{\pi}{X} + \mathcal{O}(1/X)^3 - a r^{1/2} \right)X \\
-&= |c| \pi + \mathcal{O}(1/X)^2 - a r^{1/2} X \\
-&= |c| \pi \left(1 + \mathcal{O}(1/X)^2 - \tilde{a} r^{1/2} X\right)
+R_{\min} &= \min\{ |\tilde{\mu}_*^1(0)|, \dots, |\tilde{\mu}_*^{n-1}(0)| \} \\
+R_{\max} &= \max \{ |\tilde{\mu}_*^1(0)|, \dots, |\tilde{\mu}_*^{n-1}(0)| \}
 \end{align*}
-where $\tilde{a} = a / |c| \pi$. From Lemma \ref{reparam}, $X$ is given in terms of $r$ and $b_j$ by
-\[
-\frac{1}{2\alpha} (n |\log r| + |\log (b_0 \cdots b_{n-1})| ) + \tilde{C}
-\]
-Substituting this in, we have
-\begin{align*}
-(|&\lambda^K(X,1)| - a r^{1/2})X \\
-&= C \left(1 - \tilde{a} r^{1/2}(n |\log r| + |\log (b_0 \cdots b_{n-1})| + \tilde{C}) + \mathcal{O}\left( \frac{1}{n |\log r| + |\log (b_0 \cdots b_{n-1})| + \tilde{C}} \right) \right)
-\end{align*}
-where $C$ is a positive constant. As $r \rightarrow 0$, $b_j \rightarrow b_j^0$, which are constants. Thus as $r \rightarrow 0$, the quantity in parentheses on the RHS approaches 1. 
+Then we can only consider $\mu$ with $\frac{1}{2} r^{1/2}R_{\min} \leq |\mu| \leq 2 r^{1/2} R_{\max}$. By the condition \cref{nobubblecondgen}, for $r \leq r_0$, $2 r^{1/2} R_{\max} \leq 1/2X$. Thus we are only considering $\mu$ which satisfy the condition
+\begin{equation}\label{mucondition}
+\frac{1}{2} r^{1/2}R_{\min} \leq |\mu| \leq 2 r^{1/2} R_{\max} \leq \frac{1}{2X}
+\end{equation}
+We note that $K(\mu)$ is invertible for all $\mu$ satisfying \cref{mucondition}. In the following lemma, we derive a lower bound for $\det K(\mu)$.  
 
-Thus there exists $r(b^0) > 0$ such that for $r \in \mathcal{R}$ with $r \leq r(b^0)$, $(|\lambda^K(X,1)| - a r^{1/2})X > r^{1/4}$. Since $\epsilon = r^{1/4}/X$, the result follows upon multiplication by $X$.
-
-\subsection{Bounds on \texorpdfstring{$K(\lambda)^{-1}$}{inverse of K} }
-
-In this section, we obtain a bound for $K(\lambda)^{-1}$. This bound hold as long as we are sufficiently far from the points where $K(\lambda)$ is singular, which we guarantee by taking the $\epsilon-$ball condition. First, we obtain lower bounds for $\det K(\lambda)$. 
-
-% bounds for Det K
 \begin{lemma}\label{detKlemma}
-We have the following lower bounds for $\det K(\lambda)$.
-\begin{enumerate}[(i)]
-\item If $|\text{Re }\nu(\lambda)| \geq 1/X$, 
-\begin{equation}\label{detKbound1}
-|\det K(\lambda)| \geq \sqrt{2} e^{|\text{Re }\nu(\lambda)X|}
-\end{equation}
-\item If the $\epsilon-$ball condition holds and $|\lambda| \geq C r^{1/2}$,
-\begin{equation}\label{detKbound2}
-|\det K(\lambda)|\geq C \min\{ X r^{1/2}, r^{1/4} \}
-\end{equation}
-\end{enumerate}
-
+For $\mu$ satisfying \cref{mucondition} and sufficiently small $r$,
+\[
+|\det K(\mu)| \geq C r^{1/2}X
+\]
 \begin{proof}
-First, we take the case (i) where $|\text{Re }\nu(\lambda)| \geq 1/X$. For convenience, let $\nu(\lambda)X = a + bi$, so $|a| \geq 1$. Expanding $|\sinh(a + b i)|^2$ gives us
+Since $|\mu| \leq X/2$, $|\mu X| \leq 1/2$, thus we can expand $\sinh(\mu X)$ in a Taylor series about $0$ to get
 \begin{align*}
-|\sinh(a + b i)|^2 
-&= |\sinh a \cosh b i + \cosh a \sin b i|^2 \\
-&= |\sinh a \cos b + i \cosh a \sin b |^2 \\
-&= \sinh^2 a \cos^2 b + \cosh^2 a \sin^2 b \\
-&= \sinh^2 a \cos^2 b + \sinh^2 a \sin^2 b 
-+ \cosh^2 a \sin^2 b - \sinh^2 a \sin^2 b \\
-&= \sinh^2 a (\cos^2 b + \sin^2 b) 
-+ \sin^2 b( \cosh^2 a - \sinh^2 a) \\
-&= \sinh^2 a + \sin^2 b
+\det K(\mu) &= \sinh(\mu X) = \mu X + \mathcal{O}(\mu X)^3
 \end{align*}
-In this case,
-\begin{align*}
-|\sinh(\nu(\lambda) X)|^2 &= |\sinh(a + b i)|^2 \\
-&\geq \sinh^2 a \\
-&= \frac{1}{4}\left( e^{2a} + e^{-2a} - 2 \right) \\
-&\geq \frac{1}{4}\left( e^{2|a|} - 2 \right)
-\end{align*}
-For $|a| \geq 1$, we have
-\begin{align*}
-e^{2|a|} - 2 - \frac{e^{2|a|}}{2} 
-&= \frac{e^{2|a|}}{2} - 2 \\
-&= \frac{e^2}{2} - 2 > 0
-\end{align*}
-Thus $e^{2|a|} - 2 \geq \frac{e^{2|a|}}{2}$ and we conclude
-\begin{align*}
-|\sinh(\nu(\lambda) X)|^2 \geq \frac{e^{2|a|}}{2} \\
-|\sinh(\nu(\lambda) X)| \geq \frac{e^{|a|}}{\sqrt{2}}
-\end{align*}
-from which it follows that if $|\text{Re } \nu(\lambda)| \geq 1/X$,
-\begin{align*}
-|\det K(\lambda)| &= 2 |\sinh(\nu(\lambda) X)|
-\geq \sqrt{2} e^{|\text{Re }\nu(\lambda)X|}
-\end{align*}
-
-Next, we consider the case (ii). Assume the $\epsilon-$ball condition holds. There are two cases to consider. First, suppose $|\lambda| \leq \lambda^K(X,1)/2$. Since $\epsilon \leq 1/4X$, the $\epsilon$ criterion is automatically satisfied. Expanding $\sinh( \nu(\lambda) X)$ in a Taylor series about $\lambda = 0$, and recalling that $\nu(0) = 0$, we get
-\begin{align*}
-\sinh(\nu(\lambda + \xi) X) &= \frac{1}{c}X\xi + \mathcal{O}((X \xi)^3)
-\end{align*}
-Since $|\lambda| \geq C r^{1/2}$, we have $C_1 r^{1/2} < \xi < |c| \pi C_2/X$, thus for this case,
-\begin{align*}
-|\det K(\lambda)| &= 2 |\sinh(\nu(\lambda) X)| \\
-& \geq C r^{1/2}X
-\end{align*}
-
-For the second case suppose $|\lambda| \geq \lambda^K(X,1)/2$. Since the points $\lambda^K(X,k)$ are spaced apart on the imaginary axis by approximtely $k \pi/X$, and $\epsilon \leq 1/4X$, there is enough room between the points for us to work. We want this bound to hold for when $|\text{Re } \nu(\lambda)| < 1/X$. 
-
-Once again, let $\nu(\lambda) X = a + b i$. Then, using the same expansion for $|\sinh(a + b i)|^2$ as above, we have
-\begin{align*}
-|\sinh(\nu(\lambda) X)|^2 
-&= \sinh^2 a + \sin^2 b \\
-&\geq \sin^2 b \\
-&= \sin^2 (\text{Im }\nu(\lambda)X)
-\end{align*}
-from which it follows that
-\begin{align*}
-|\det K(\lambda)| = 2 |\sinh(\nu(\lambda) X)| \geq 2|\sin(\text{Im }\nu(\lambda)X)|
-\end{align*}
-
-For $k/X$ suffienctly small, $\lambda^K(X, k)$ is defined by Lemma \ref{Ksingularlemma}. Since $\nu(\lambda)$ is smooth in $\lambda$, from Lemma \ref{nulambdalemma} we have the Taylor series expansion for $\nu'(\lambda)$
+Since we also have the lower bound $|\mu| \geq r^{1/2}R_{\min}$, we can find a constant $C$ (depending only on $R_{\min}$) so that for sufficiently small $r$ we have
 \[
-\nu'(\lambda) = \frac{1}{c} + \mathcal{O}(|\lambda|^2)
-\]
-Expand $\nu(\lambda)$ in a Taylor series about $\lambda^K(X, k)$ to get
-\begin{align*}
-\nu\left( \lambda^K(X, k) + \xi \right) &= \nu( \lambda(X, k) ) + \nu'(\lambda(X, k)\xi
-+ \mathcal{O}(\xi^2) \\
-&= \frac{k \pi i}{X} + \left( \frac{1}{c} + \mathcal{O}(|\lambda(X, k)|^2) \right) \xi
-+ \mathcal{O}(\xi^2) \\
-&= \frac{k \pi i}{X} \frac{1}{c}\xi \left( 1 + \mathcal{O} \left(\frac{k}{X}\right)^2 \right) + \mathcal{O}(\xi^2)
-\end{align*}
-Since the $\epsilon-$ball condition holds,
-\[
-\text{Im } \xi \geq \epsilon = \frac{r^{1/4}}{X}
-\]
-Thus as long as $\xi$ is not so large that we are closer to a different $\lambda^K(X, k)$,
-\begin{align*}
-|\text{Im } \nu\left( \lambda^K(X, k) + \xi \right)X - k \pi| \geq C r^{1/4}
-\end{align*}
-from which it follows that
-\[
-|\det K(\lambda)| \geq C \min\{ X r^{1/2}, r^{1/4} \}
+|\det K(\mu)| \geq C r^{1/2}X
 \]
 \end{proof}
 \end{lemma}
 
-In the final lemma of this section, we obtain bounds on $K(\lambda)^{-1}$ as well as the products $K_1(\lambda)K(\lambda)^{-1}$ and $K_2(\lambda)K(\lambda)^{-1}$. Note that the lemma requires us to take $|\lambda| \geq C r^{1/2}$. This will not turn out to be a problem, since we will use this lemma to locate a finite number of interaction eigenvalues, all of which are of order $\mathcal{O}(r^{1/2})$.
+In the final lemma of this section, we obtain a bounds on $K(\mu)^{-1}$ as well as certain products involving $K(\mu)^{-1}$.
 
 % lemma : bounds on K
 \begin{lemma}\label{Kinvboundslemma}
-Choose $\lambda \in \C$ such that $|\lambda| \geq C r^{1/2}$ and the $\epsilon-$ball condition holds. Then we have the following bounds.
-\begin{enumerate}[(i)]
-\item 
+For $\mu$ satisfying \cref{mucondition},
 \begin{equation}\label{Kinvbound}
-||K(\lambda)^{-1}|| \leq C \max \left\{ r^{-1/4}, \frac{r^{-1/2}}{X} \right\} \\
+||K(\mu)^{-1}|| \leq C \frac{r^{-1/2}}{X}
 \end{equation}
+\begin{enumerate}
 \item 
 \begin{align}
-||K_1(\lambda)K(\lambda)^{-1}|| &\leq C (|\lambda| + r^{1/2}) \max \left\{ r^{-1/4}, \frac{r^{-1/2}}{X} \right\} \label{K1Kinvbound} \\
-||K_2(\lambda)K(\lambda)^{-1}|| &\leq C (|\lambda| + r^{1/2}) \max \left\{ r^{-1/4}, \frac{r^{-1/2}}{X} \right\} \label{K2Kinvbound}
+||K_1(\mu)K(\mu)^{-1}|| &\leq C \frac{r^{-1/2}}{X} |\mu|(|\mu| + r^{\tau/2}) \label{K1Kinvbound} \\
+||K_2(\mu)K(\mu)^{-1}|| &\leq C \frac{r^{-1/2}}{X} |\mu|(|\mu| + r^{\tau/2})(|\mu| + r^{1/2}) \label{K2Kinvbound} \\
+||\mu \tilde{K}(\mu)K(\mu)^{-1}|| &\leq C \frac{r^{-1/2}}{X} |\mu| \label{K2Kinvbound} \\
 \end{align}
 \end{enumerate}
-
 \begin{proof}
-For the bound on $|K(\lambda)^{-1}|$, if $\text{Re }\nu(\lambda)|X \geq 1/X$, we have from Lemma \ref{detKlemma}
+From Lemma \ref{Kinvlemma} and Lemma \ref{detKlemma},
 \begin{align*}
-||K(\lambda)^{-1}|| &\leq C \frac{e^{|\text{Re }\nu(\lambda)|X }}{| \det K(\lambda) |} \leq C \frac{e^{|\text{Re }\nu(\lambda)|X }}{e^{|\text{Re }\nu(\lambda)X|}} = C 
+||K(\mu)^{-1}|| \leq C \frac{e^{|\text{Re }\mu|X }}{| \det K(\mu) |} \leq C \frac{r^{1/2}}{X} e^{|\text{Re }\mu|X }
 \end{align*}
+By \cref{mucondition},
+\[
+e^{|\text{Re }\mu|X } \leq e^{1/2} = C
+\]
+thus we have the bound \cref{Kinvbound}.
 
-If $\text{Re }\nu(\lambda)|X \leq 1/X$, then we have from Lemma \ref{detKlemma}
+For the bound on $K_1(\mu)K(\mu)^{-1}$, we use equation for $K(\mu)^{-1}$ from Lemma \ref{Kinvlemma} and the form of $K_1(\mu)$ from the proof of Lemma \ref{jumpcenteradj}. Combining these with the bound \cref{Kinvbound} and the estimate $\gamma_{ij} = \mathcal{O}(|\mu|(|\mu| + r^{\tau/2}))$, we have the estimate
 \begin{align*}
-||K(\lambda)^{-1}|| &\leq C \frac{e^{|\text{Re }\nu(\lambda)|X }}{| \det K(\lambda) |} \\
-& \leq C \frac{1}{\min \{ r^{1/4}, X r^{1/2} \}} \\
-& \leq C \max \left\{ r^{-1/4}, \frac{r^{-1/2}}{X} \right\}
+||K_1(\mu)K(\mu)^{-1}|| &\leq 
+C ||K(\mu)^{-1}|| \max \{|\gamma|_{ij}\} \\
+&\leq C \frac{r^{-1/2}}{X} |\mu|(|\mu| + r^{\tau/2})
 \end{align*}
-This gives us the overall bound
-\begin{align*}
-||K(\lambda)^{-1}|| &\leq C \max \left\{ r^{-1/4}, \frac{r^{-1/2}}{X} \right\}
-\end{align*}
-
-For $K_1(\lambda)K(\lambda)^{-1}$, using the equation for $K(\lambda)^{-1}$ from Lemma \ref{Kinvlemma} and the form of $K_1(\lambda)$ from the proof of Lemma \ref{jumpcenteradj},
-\begin{align*}
-||K_1(\lambda)K(\lambda)^{-1}|| &\leq 
-C \frac{e^{|\text{Re }\nu(\lambda)|X}}{|\det K(\lambda)|} \max {|\gamma|_{ij}} \\
-&\leq C \max \left\{ r^{-1/4}, \frac{r^{-1/2}}{X} \right\} \max {|\gamma|_{ij}}
-\end{align*}
-where we used the bounds we obtained from the first part of this lemma for the two cases where $\text{Re }\nu(\lambda)|X \geq 1/X$ and $\text{Re }\nu(\lambda)|X \leq 1/X$. The constants $\gamma_{ij}$ are the coefficients of $K_1(\lambda)$ from the proof of Lemma \ref{jumpcenteradj}. Since $\gamma_{ij} = \mathcal{O}(|\lambda| + r^{\tilde{\gamma}/2})$, we conclude
-\begin{align*}
-||K_1(\lambda)K(\lambda)^{-1}|| &\leq C (|\lambda| + r^{\tilde{\gamma}/2}) \max \left\{ r^{-1/4}, \frac{r^{-1/2}}{X} \right\}
-\end{align*}
-Since $K_2(\lambda)$ is a similar perturbation of $K(\lambda)$, we have a similar bound for $||K_2(\lambda)K(\lambda)^{-1}||$.
+The estimate for $||K_2(\mu)K(\mu)^{-1}||$ is similarly obtained using the bounds on the entries of $K_2(\mu)$. The estimate for $||\mu \tilde{K}(\mu)K(\mu)^{-1}||$ is similar.
 \end{proof}
 \end{lemma}
 
 \subsection{Interaction Eigenvalues}
 
-In this section, we find the interaction eigenvalues, which come from the second line of the block matrix equation from Theorem \ref{blockmatrixtheorem}. To do this, we solve the first line of the block matrix equation \eqref{blockeq} for $c$ and plug it into the second line of the block matrix. We expect the interaction eigenvalues to be close to the points where $A - \lambda^2 M I$ is singular. From Lemma \ref{reparam}, $A = r \tilde{A}$, thus it makes sense to take the scaling
+We can now use the results from the previous section to find the interaction eigenvalues. To do this, we take the scaling
 \[
-\lambda = r^{1/2}\tilde{\lambda}
+\mu = r^{1/2}\tilde{\mu}
 \]
-
 In the following lemma, we derive an equation we can solve to find the interaction eigenvalues.
 
 % equation for d
 \begin{lemma}\label{deqlemma}
-For sufficiently small $r$, the interaction eigenvalues are given by $\lambda = r^{1/2} \tilde{\lambda}$, where the $\tilde{\lambda}$ are the values for which the equation
+For sufficiently small $r$, the interaction eigenvalues are the values of $\tilde{\mu}$ for which the equation
 \begin{equation}\label{eqford}
-(\tilde{A} - \tilde{\lambda}^2 MI + \tilde{D}_3)d = 0
+(\tilde{A} - \tilde{\mu}^2 c^2 M I + \tilde{D}_3)d = 0
 \end{equation}
 has a nontrivial solution. The remainder term $\tilde{D}_3$ has bound
 \begin{equation}\label{tildeD3bound}
@@ -471,43 +290,35 @@ has a nontrivial solution. The remainder term $\tilde{D}_3$ has bound
 \end{equation}
 
 \begin{proof}
-First, we solve the top line of the block matrix equation \eqref{blockeq} for $c$. For $\lambda \neq \lambda^K(X, n)$, $K(\lambda)$ is invertible, and we can write the top line of \eqref{blockeq} as
+First, we solve the top line of the block matrix equation \eqref{blockeq} for $c$. By the condition \cref{mucondition}, $K(\mu)$ is invertible, and we can write the top line of \eqref{blockeq} as
 \begin{align*}
-(I + C_1 + K_1(\lambda)K(\lambda)^{-1}) K(\lambda) c = -D_1 d
+(I + C_1 + K_1(\mu)K(\mu)^{-1} + C_2 K(\mu)^{-1} ) K(\mu) c = -(c \mu S(\mu) + D_1) d
 \end{align*}
-Using the scaling $\lambda = \mathcal{O}(r^{1/2})$ and the bounds from Lemma \ref{Kinvboundslemma}
+Taking $\mu = \mathcal{O}(r^{1/2})$ and using the bounds from \cref{reparam} and \cref{Kinvboundslemma}, we have the bound
 \begin{align*}
-||K_1(\lambda)K(\lambda)^{-1}|| &\leq C (|\lambda| + r^{1/2})\max \left\{ r^{-1/4}, \frac{r^{-1/2}}{X} \right\} \\
-&\leq C \max \left\{ r^{1/4}, \frac{1}{X} \right\} \\
-&\leq C \max \left\{ r^{1/4}, \frac{1}{n |\log r| + |\log (b_0 \cdots b_{n-1})| ) } \right\}
+||C_1 + K_1(\mu)K(\mu)^{-1} C_2 K(\mu)^{-1}|| &\leq C\left( r^{\tau/2} r^{1/2} + \frac{r^{\tau/2}}{X} \right)
 \end{align*}
-where we use the expression for $X$ from Lemma \ref{reparam}. Combining this with the bound for $C_1$ (which is stronger, so is subsumed by the bound on $||K_1(\lambda)K(\lambda)^{-1}||$), we have the bound
+Since $X = \mathcal{O}(|\log r|)$, $r^{\tau/2}/X \rightarrow 0$ as $r \rightarrow 0$. Thus for sufficiently small $r$, $I + C_1 + K_1(\mu)K(\mu)^{-1} + C_2 K(\mu)^{-1}$ is invertible. Let $S_1 = (I + C_1 + K_1(\mu)K(\mu)^{-1} + C_2 K(\mu)^{-1})^{-1}$. Then we can solve for $c$ to get
 \[
-||C_1 + K_1(\lambda)K(\lambda)^{-1}|| \leq C \max \left\{ r^{1/4}, \frac{1}{n |\log r| + |\log (b_0 \cdots b_{n-1})| } \right\}
+c = -K(\mu)^{-1} S_1(c \mu S(\mu) + D_1) d
 \]
-Since the RHS goes to 0 as $r \rightarrow 0$, $I + C_1 + K_1(\lambda)K(\lambda)^{-1}$ is invertible for sufficiently small $r$. Let $C_3 = (I + C_1 + K_1(\lambda)K(\lambda)^{-1})^{-1}$. Then we can solve for $c$ to get
-\[
-c = -K(\lambda)^{-1} C_3 D_1 d
-\]
-
 Plugging this into the second line of \eqref{blockeq}, we get the folowing equation for $d$.
-\begin{align*}
-(C_2 K(\lambda) + K_2(\lambda))c + (r\tilde{A} - r \tilde{\lambda}^2 MI + D_2)d &= 0 \\
-(r\tilde{A} - r \tilde{\lambda}^2 MI + D_2)d - (C_2 K(\lambda) + K_2(\lambda))K(\lambda)^{-1} C_3 D_1 &= 0 \\
-(r\tilde{A} - r \tilde{\lambda}^2 MI + D_2)d - (C_2 + K_2(\lambda)K(\lambda)^{-1}) C_3 D_1 &= 0 \\
-\end{align*}
+\begin{align}\label{eqford1}
+(r \tilde{A} - r \tilde{\mu}^2 c^2 MI + D_2)d - 
+(-c \mu M^c \tilde{K}(\mu) + C_3 K(\mu) + K_2(\lambda) + C_4)K(\mu)^{-1} S_1(c \mu S(\mu) + D_1) d  &= 0 \\
+\end{align}
 Let 
 \[
-D_3 = D_2 - C_2 C_3 D_1 - K_2(\lambda) K(\lambda)^{-1} C_3 D_1
+\tilde{D} = D_2 -
+(-c \mu M^c \tilde{K}(\mu) + C_3 K(\mu) + K_2(\mu) + C_4)K(\mu)^{-1} S_1(c \mu S(\mu) + D_1)
 \]
-be the remainder term, so that the equation for $d$ becomes
-\[
-(r\tilde{A} - r \tilde{\lambda}^2 MI + D_3)d = 0
-\]
-Using bounds from Lemma \ref{reparam} and Lemma \ref{Kinvboundslemma} together with the scaling $\lambda = \mathcal{O}(r^{1/2})$, we have the following bound for $D_3$
+be the remainder term, so that \cref{eqford1} becomes
+\begin{equation}\label{eqford2}
+(r\tilde{A} - r \tilde{\mu}^2 c^2  MI + \tilde{D})d = 0
+\end{equation}
+Using the scaling $\mu = \mathcal{O}(r^{1/2})$ together with all the bounds we have obtained, we have
 \begin{align*}
-||D_3|| &\leq C \left( (|\lambda| + r^{1/2})^3 + r^{\tilde{\gamma}/2}(|\lambda| + r^{1/2})^4 + (|\lambda| + r^{1/2})^3 \right) \\
-&\leq C r^{3/2}
+||\tilde{D}|| &\leq C \left( \right)
 \end{align*}
 Dividing by $r$, we get the equation 
 \[

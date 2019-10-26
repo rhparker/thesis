@@ -782,7 +782,7 @@ The remainder term $R^c_i(c, d)$ is analytic in $\lambda$ and linear in $(c, d)$
 
 The jump conditions can be written in matrix form as
 \begin{equation}\label{matrixjumpc}
-(K(\lambda) + C_1 K(\lambda) + K_1(\lambda) + C_2) c + (\lambda \tilde{A} + D_1) d = 0.
+(K(\lambda) + C_1 K(\lambda) + K_1(\lambda) + C_2) c + (\lambda S(\lambda) + D_1) d = 0.
 \end{equation}
 $K(\lambda)$ is the matrix
 \begin{align*}
@@ -795,24 +795,24 @@ e^{-\nu(\lambda)X_1} & & & & & -e^{\nu(\lambda)X_0} \\
 & & & & -e^{\nu(\lambda)X_{n-1}} & e^{-\nu(\lambda)X_0}
 \end{pmatrix}
 \end{align*}
-$\tilde{A}$ is the matrix
+$S(\lambda)$ is the matrix
 \begin{align*}
-\tilde{A} &= \begin{pmatrix}
-\tilde{a}_0^+ - \tilde{a}_1^- & \tilde{a}_1^- &&& -\tilde{a}_0^+ \\
--\tilde{a}_1^+ & \tilde{a}_1^+ - \tilde{a}_2^- & \tilde{a}_2^- \\
-& -\tilde{a}_2^+ & \tilde{a}_2^+ - \tilde{a}_3^- & \tilde{a}_3^- \\ && \ddots \\
+S(\lambda) &= \begin{pmatrix}
+s_0^+ - s_1^- & s_1^- &&& -s_0^+ \\
+-s_1^+ & s_1^+ - s_2^- & s_2^- \\
+& -s_2^+ & s_2^+ - s_3^- & s_3^- \\ && \ddots \\
 \\
-\tilde{a}_0^- &&& -\tilde{a}_{n-1}^+ & \tilde{a}_{n-1}^+ - \tilde{a}_0^- 
+s_0^- &&& -s_{n-1}^+ & s_{n-1}^+ - s_0^- 
 \end{pmatrix}
 \end{align*}
 with entries
 \begin{align*}
-\tilde{a}_i^- &= e^{-\nu(\lambda)X_i} q(X_i)\\
-\tilde{a}_i^+ &= e^{\nu(\lambda)X_i} q(X_i)\\
+s_i^- &= e^{-\nu(\lambda)X_i} q(X_i)\\
+s_i^+ &= e^{\nu(\lambda)X_i} q(X_i)\\
 \end{align*}
 where $q(x)$ is the first component of the primary pulse solution $Q(x)$. The matrices have uniform bounds
 \begin{align*}
-\tilde{A} &= \mathcal{O}(e^{-\alpha X_m}) \\
+S &= \mathcal{O}(e^{-\alpha X_m}) \\
 C_1 &= \mathcal{O}(|\lambda|e^{-\alpha X_m}(|\lambda| + e^{-\alpha X_m})) \\
 C_2 &= \mathcal{O}(|\lambda|e^{-\alpha X_m}) \\
 D_1 &= \mathcal{O}(|\lambda|(|\lambda| + e^{-\alpha X_m})(|\lambda| + e^{-\alpha_1 X_m}))
@@ -1033,24 +1033,24 @@ which has uniform bound
 C_2 = \mathcal{O}(|\lambda|e^{-\alpha X_m})
 \]
 
-\item For the terms involving $D$, we place the leading order terms from the center jump expression into a matrix $\lambda \tilde{A}$, where
+\item For the terms involving $D$, we place the leading order terms from the center jump expression into a matrix $\lambda S(\lambda)$, where
 \begin{align*}
-\tilde{A} &= \begin{pmatrix}
-\tilde{a}_0^+ - \tilde{a}_1^- & \tilde{a}_1^- &&& -\tilde{a}_0^+ \\
--\tilde{a}_1^+ & \tilde{a}_1^+ - \tilde{a}_2^- & \tilde{a}_2^- \\
-& -\tilde{a}_2^+ & \tilde{a}_2^+ - \tilde{a}_3^- & \tilde{a}_3^- \\ && \ddots \\
+S(\lambda) &= \begin{pmatrix}
+s_0^+ - s_1^- & s_1^- &&& -s_0^+ \\
+-s_1^+ & s_1^+ - s_2^- & s_2^- \\
+& -s_2^+ & s_2^+ - s_3^- & s_3^- \\ && \ddots \\
 \\
-\tilde{a}_0^- &&& -\tilde{a}_{n-1}^+ & \tilde{a}_{n-1}^+ - \tilde{a}_0^- 
+s_0^- &&& -s_{n-1}^+ & s_{n-1}^+ - s_0^- 
 \end{pmatrix}
 \end{align*}
 with entries
 \begin{align*}
-\tilde{a}_i^- &= e^{-\nu(\lambda)X_i} q(X_i)\\
-\tilde{a}_i^+ &= e^{\nu(\lambda)X_i} q(X_i)\\
+s_i^- &= e^{-\nu(\lambda)X_i} q(X_i)\\
+s_i^+ &= e^{\nu(\lambda)X_i} q(X_i)\\
 \end{align*}
-where $q(x)$ is the first component of the primary pulse $Q(x)$. Since $Q(X_i) = \mathcal{O}(e^{-\alpha_1 X_i})$ and $|\nu(\lambda)| \leq \eta$, $\tilde{A}$ has uniform bound
+where $q(x)$ is the first component of the primary pulse $Q(x)$. Since $Q(X_i) = \mathcal{O}(e^{-\alpha_1 X_i})$ and $|\nu(\lambda)| \leq \eta$, $S$ has uniform bound
 \[
-\tilde{A} = \mathcal{O}(e^{-\alpha X_m})
+S(\lambda) = \mathcal{O}(e^{-\alpha X_m})
 \]
 Let $D_1$ be the matrix we get from the terms involving $d$ in the remainder $R^c(\lambda)_i(c, d)$. Then $D_1$ has uniform bound
 \begin{align*}
@@ -1060,7 +1060,7 @@ D_1 &= \mathcal{O}(|\lambda|(|\lambda| + e^{-\alpha X_m})(|\lambda| + e^{-\alpha
 
 Combining everything, the center jump condition can be written in matrix form as
 \[
-(K(\lambda) + C_1 K(\lambda) + K_1(\lambda) + C_2) c + (\lambda \tilde{A} + D_1) d = 0
+(K(\lambda) + C_1 K(\lambda) + K_1(\lambda) + C_2) c + (\lambda S(\lambda) + D_1) d = 0
 \]
 \end{proof}
 \end{lemma}
