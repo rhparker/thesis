@@ -144,8 +144,6 @@ where $X_m = \min\{X_0, \dots, X_{n-1}\}$.
 
 We expect to find eigenvalues near where the two leading order blocks, $A - \lambda^2 MI$ and $K(\lambda)$, are singular. As in \cref{chapter:kdv5homoclinic}, points where $A - \lambda^2 MI$ is singular give us the interaction eigenvalues as well as two kernel eigenvalues. $K(\lambda)$ is singular for a discrete set of points on the imaginary axis. These are the periodic analogue to the essential spectrum in the $n$-homoclinic case. Although they are technically still point spectrum, we will refer to them as essential spectrum eigenvalues to distinguish them from the interaction eigenvalues.
 
-We also note that although the expressions for the remainder matrices in \cref{blockmatrixtheorem} seem tediously detailed, this will be useful for the proof of results in a later section.
-
 \section{Interaction eigenvalues of periodic 2-pulses}
 
 We will now use Theorem \ref{blockmatrixtheorem} to locate the interaction eigenvalues of \eqref{PDEeig3}. First we consider the case of the periodic 2-pulse. Although the computation is tedious, we can compute the determinant of \cref{blockeq} exactly. 
@@ -160,73 +158,62 @@ WE WILL STATE (AND PROVE AT THE END) THE FOLLOWING THEOREMS HERE.
 
 \section{Eigenvalues of periodic multi-pulses}
 
-In this section, we generalize the results to periodic multi-pulses. Since computing the determinant of \cref{blockeq} is unfeasible for $n \geq 3$, this will require a different approach. First, we note that the matrix $A$ from Theorem \ref{blockmatrixtheorem} is symmetric, thus its eigenvalues are real. $A$ has an eigenvalues of 0 corresponding to eigenvector $(1, 1, \dots, 1)^T$. In the next hypothesis, we assume that the eigenvalues of $A$ distinct. 
+In this section, we generalize the results to periodic multi-pulses. Since computing the determinant of \cref{blockeq} is unfeasible for $n \geq 3$, this will require a different approach. First, we note that the matrix $A$ from Theorem \ref{blockmatrixtheorem} is symmetric, thus its eigenvalues are real. $A$ has an eigenvalues of 0 corresponding to eigenvector $(1, 1, \dots, 1)^T$. Let $A = r \tilde{A}(r)$, and let $(0, \ell_1(r), \dots, \ell_{n-1}(r))$ be the eigenvalues of $\tilde{A}(r)$. In the next hypothesis, we assume that the eigenvalues are distinct.
 
 \begin{hypothesis}\label{Adistincteigs}
-The eigenvalues of $A$ are given by $(0, \mu_1, \dots, \mu_{n-1})$, all of which are distinct.
+For $r = 0$, the eigenvalues $(0, \ell_1(0), \dots, \ell_{n-1}(0))$ of $\tilde{A}(0)$ are distinct.
 \end{hypothesis}
+This hypothesis implies that $\ell_j(0) \neq 0$ for $j = 1, \dots, n-1$.
 
-\noi This is not true in general. For example, if $n \geq 3$ and all the terms $a_i$ in $A$ are identical, $A$ is a circulant matrix, and it is not hard to show that $A$ will have some eigenvalues of algebraic multiplicity 2.
+\begin{remark}
+\cref{Adistincteigs} is not true in general. For example, if $n \geq 3$ and all the terms $\tilde{a}_i$ in $\tilde{A}$ are identical, then $\tilde{A}$ is a circulant matrix, and it is not hard to show that $\tilde{A}$ will have some eigenvalues of algebraic multiplicity 2.
+\end{remark}
 
-We expect to find eigenvalues near where the leading order matrices $K(\lambda)$ and $A - \lambda^2 MI$ are singular. This happens at the following values of $\lambda$. 
-\begin{itemize}
-	\item $A - \lambda^2 M I$ is singular for $\lambda = 0$ (algebraic multiplicity 2) and $\lambda \in \{ \pm \sqrt{\mu_1/M}, \dots, \pm \sqrt{\mu_{n-1}/M}\}$. The interaction eigenvalues will be located near these points.	In terms of the scaling parameter $r$, the interaction eigenvalues will be order $\mathcal{O}(r^{1/2})$.
+As with the periodic 2-pulse, we expect to find interaction eigenvalues near $\pm \sqrt{\ell_j/M}$
+and essential spectrum eigenvalues near $c \frac{k \pi i }{X}$ for integer $k$. As in \cref{theorem:2peigscase1}, we will set up the problem so that the essential spectrum eigenvalues are out of the way of the interaction eigenvalues.
 
-	\item $K(\lambda)$ is singular at $\lambda = \pm \lambda^K(X,k)$ for integer $k$, where $\lambda(X, 0) = 0$ (algebraic multiplicity 1) and
-	\begin{align}\label{lambdaXkapprox}
-	\lambda^K(X,k) \approx c \frac{k \pi i }{X} 
-	\end{align}
-	The essential spectrum eigenvalues will be close to these points. Using equation \cref{Xdomain}, in terms of the scaling parameter $r$, $\lambda^K(X,k) = \mathcal{O}(1/\log|r|)$. Since \cref{blockmatrixtheorem} only holds for $|\lambda| < \delta$, we will restrict our analysis to $|\lambda^K(X,k)| < \delta$.
-\end{itemize}  
-
-For the analysis to work, we need to ensure that nonzero singular points of the two leading order matrices are sufficiently isolated from each other. To that end, we take the following definition.
-
-\begin{definition}\label{epsilonballs}
-A periodic $n-$pulse $Q_n$ parameterized as in Theorem \ref{perexist} satisfies the \emph{$\epsilon-$ball condition} if the two sets of points 
-\begin{itemize}
-\item $S_1 = \{ \pm \sqrt{\mu_1/M}, \dots, \pm \sqrt{\mu_{n-1}/M} \}$
-\item $S_2 = \{ \lambda^K(X,k) : k \in \Z \text{ and } |\lambda^K(X,k)| < \delta \}$
-\end{itemize}
-are separated by at least $\epsilon$, where
-\[
-\epsilon = \frac{r^{1/2}}{X^{1/2}} = \mathcal{O} \left( \frac{r^{1/2}}{|\log r| } \right)
-\]
-\end{definition}
-
-The following lemma states that this condition can always be satisfied by taking $r$ sufficiently small
-
-\begin{lemma}\label{epsilonballlemma}
-Choose baseline length parameters $b^0 = \{ b_0^0, \dots, b_{n-1}^0 \}$ and phase parameter $\theta$ and use them to construct a periodic multi-pulse according to \cref{perexist}. Then there exists $r(b^0, \theta) \leq r_0$ such that for $r \leq r(b, \theta)$, the $\epsilon-$ball condition is satisfied.
-\end{lemma} 
-
-Although we can always choose sufficiently small $r$ so that the $\epsilon$-ball condition is satisfied, this definition. The proof of Lemma \ref{epsilonballlemma} is constructive and guarantees that for all sufficiently small $r$, any purely imaginary interaction eigenvalues will be smaller in magnitude than all nonzero essential spectrum eigenvalues. In the previous section, we discussed Krein bubbles in the periodic 2-pulse, which occur when an essential spectrum eigenvalue passes through an interaction eigenvalue. We would like our theory to handle the case where such a passage has occurred.
-
-With this taken care of, we have the following theorem, which we can to locate the eigenvalues of \eqref{PDEeig3} near the origin.
+In the following theorem, we can locate the eigenvalues of \eqref{PDEeig3} near the origin.
 
 % eigenvalue location theorem
 
 \begin{theorem}\label{locateeigtheorem}
-Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, \ref{H0transversehyp}, \ref{Melnikov2hyp}, and \ref{Adistincteigs}. Let $Q_n(x)$ be a periodic $n-$pulse solution constructed according to Theorem \ref{perexist} with scaling parameter $r \leq r_0$. Let $\delta > 0$ be defined as in Theorem \ref{blockmatrixtheorem}. Then the following are true.
+Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, \ref{H0transversehyp}, \ref{Melnikov2hyp}, and \ref{Adistincteigs}. Let $Q_n(x)$ be a periodic $n-$pulse solution constructed according to Theorem \ref{perexist} with length parameters $\{ b_0(r), \dots, b_{n-1}(r)\}$. Let $\delta > 0$ and $M$ be as in Theorem \ref{blockmatrixtheorem}. Let $A$ be the matrix in the lower right block of \cref{blockeq}, and take $A = r \tilde{A}(r)$, where we have made the dependence on $r$ explicit. Let $(0, \ell_1(r), \dots, \ell_{n-1}(r))$ be the distinct eigenvalues of $\tilde{A}(r)$. Let
+\begin{equation}
+R_{\max} = \max_{j = 1, \dots, n-1} |\ell_j(0) |
+\end{equation}
+and choose $r_0$ sufficiently small so that
+\begin{equation}\label{nobubblecondgen}
+\sqrt{\frac{R_{\max}}{M}} r_0^{1/2} \leq \frac{1}{4} \frac{c}{\left( n |\log r_0| + |\log( b_0(0) \cdots b_{n-1}(0) | \right) }
+\end{equation}
+Then the following are true.
 
 \begin{enumerate}[(i)]
 
-\item There is an eigenvalue at 0 with (at minimum) geometric multiplicity 2 and algebraic multiplicity 3. The corresponding eigenfunctions are the kernel eigenfunction $\partial_x Q_n(x)$ from translation invariance; its generalized kernel eigenfunction $\partial_C Q_n(x)$; and a third kernel eigenfunction $V_n^c(x)$ which is bounded but does not decay exponentially.
+\item There is an eigenvalue at 0 with (at minimum) geometric multiplicity 2 and algebraic multiplicity 3. The corresponding eigenfunctions are the kernel eigenfunction $\partial_x Q_n(x)$ from translation invariance; its generalized kernel eigenfunction $\partial_C Q_n(x)$; and a third kernel eigenfunction $V_n^c(x)$ which is bounded.
 
-\item There exists $r_1 \leq r_0$ such that for every $r \leq r_1$ for which the $\epsilon-$ball condition is satisfied, there are $n - 1$ pairs of interaction eigenvalues given by $\lambda = \pm \lambda^{\text{int}}_j(r)$ for $j = 1, \dots, n-1$, where
+\item There exists $r_1 \leq r_0$ such that for every $r \leq r_1$, there are $n - 1$ pairs of nonzero interaction eigenvalues given by 
 \begin{align*}
-\lambda^{\text{int}}_j(r) = \sqrt{\frac{\mu_j}{M}} + \mathcal{O}(r^{3/4})
+\lambda &= \pm \lambda^{\text{int}}_j(r) && j = 1, \dots, n-1,
 \end{align*}
-These interaction eigenvalue pairs are either real or purely imaginary, and by Hamiltonian symmetry, the remainder term cannot move them off of the real or imaginary axis.
+where
+\begin{align*}
+\lambda^{\text{int}}_j(r) = \sqrt{\frac{\ell_j(0)}{M}}r^{1/2} + \mathcal{O}\left( \frac{r^{1/2}}{|\log r|}\right)
+\end{align*}
+The interaction eigenvalue pairs are either real or purely imaginary.
 
-\item There exists $r_2 \leq r_1$ such that for every $r \leq r_2$ for which the $\epsilon-$ball condition is satisfied, there are pairs of purely imaginary essential spectrum eigenvalues given by $\lambda = \pm \lambda^{ess}(X,k; r)$ for every positive integer $k$ with $\frac{c \pi k}{X} < \delta$, where
+\item Choose any positive integer $N$ such that 
+\[
+\frac{N c \pi}{n |\log r_0| + |\log b_0(0)\cdots b_{n-1}(0)| } < \delta
+\]
+Then there exists $r_2 \leq r_1$ such that for every $r \leq r_2$, there are $N$ pairs of nonzero, 	purely imaginary essential spectrum eigenvalues given by 
+\begin{align*}
+\lambda &= \pm \lambda_m^{\text{ess}}(r) && m = 1, \dots, N
+\end{align*}
+where
 \begin{equation}\label{lambdaess}
-\lambda^{ess}(X, k; r) = c \frac{k \pi i }{X} \left( 1 + \mathcal{O}\left( \frac{1}{X} \right)\right) + \mathcal{O}\left( \frac{r^{1/2}}{X} \right)
+\lambda^{\text{ess}}_m(r) = c \frac{m \pi i }{X} + \mathcal{O}\left( \frac{1}{|\log r|^2} \right)
 \end{equation}
-In terms of the parameters $r$ and the $b_j$, these are located at approximately
-\begin{equation}\label{lambdaessr}
-\lambda^{ess}(k; r) = C \frac{k \pi i }{n |\log r| + |\log (b_0 b_1 \cdots b_{n-1})|}  \left( 1 + \mathcal{O}\left( \frac{1}{n |\log r|} \right)\right) + \mathcal{O}\left( \frac{r^{1/2}}{n |\log r|} \right)
-\end{equation}
-The remainder terms cannot move these off of the imaginary axis.
+where $X = \mathcal{O}(|\log r|)$.
 
 \item For sufficiently small $r$, we have the following two eigenvalue counts.
 \begin{itemize}
@@ -235,11 +222,14 @@ The remainder terms cannot move these off of the imaginary axis.
 	\item There are exactly $2n + 2 k_M + 1$ eigenvalues inside the circle of radius $\tilde{\delta}$ (which may be slightly smaller than $\delta$) in the complex plane, where $k_M$ is the largest positive integer $k$ such that $\lambda^K(k,X) < \tilde{\delta}$. 
 \end{itemize}
 
-If the $\epsilon-$ball condition is satisfied, there are no eigenvalues inside the circle of radius $\tilde{\delta}$ other than the ones already accounted for.
 \end{enumerate}
 \end{theorem}
 
-THIS THEOREM AND PROOF NEEDS TO BE REVISED SINCE I CHANGED THE DEFINITION OF THE EPSILON BALL AS A RESULT OF THE KREIN BUBBLE NUMERICS.
+\begin{remark}
+In terms of the domain length parameter $X$, the condition \cref{nobubblecondgen} states that $r_0$ is sufficiently small so that
+\[
+\sqrt{\frac{R_{\max}}{M}} r_0^{1/2} \leq \frac{c}{4 X}
+\end{remark}
 
 From \cref{locateeigtheorem}(ii), the interaction eigenvalue pattern is determined by the signs of the eigenvalues $\mu_j$. In general, there is no easy way to determine these signs. However, if we take one of the baseline length parameters $b_j^0$ to be small compared to the others, the matrix $A$ is approximately tri-diagonal, in which case we can use a similar argument to \cite[Theorem 3(iv)]{Sandstede1998} to determine the interaction eigenvalue pattern. Since we are on a periodic domain, we can without loss of generality take $b_{n-1}^0$ to be the small parameter. Recall from \cref{perexist} that the other baseline length parameters are given by
 \begin{align*}
@@ -271,6 +261,8 @@ If $M < 0$, these are reversed.
 \end{theorem} 
 
 We note that since we took $b_{n-1}^0$ small, the parity of $m_{n-1}$ is irrelevant to the eigenvalue pattern. In the following sections, we provide proofs for these results.
+
+*****
 
 \section{Proof of \cref{nulambdalemma} }
 
