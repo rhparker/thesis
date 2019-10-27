@@ -215,20 +215,23 @@ where
 \end{equation}
 where $X = \mathcal{O}(|\log r|)$.
 
-\item For sufficiently small $r$, we have the following two eigenvalue counts.
+\item We have the following two eigenvalue counts.
 \begin{itemize}
-	\item There exists a small radius $\xi$ (which excludes the interaction eigenvalues and essential spectrum eigenvalues) such that there are exactly 3 eigenvalues inside the circle of radius $\xi$ in the complex plane. These must be the three eigenvalues from part (i).
-
-	\item There are exactly $2n + 2 k_M + 1$ eigenvalues inside the circle of radius $\tilde{\delta}$ (which may be slightly smaller than $\delta$) in the complex plane, where $k_M$ is the largest positive integer $k$ such that $\lambda^K(k,X) < \tilde{\delta}$. 
+	\item Let $r_2$ correspond to the integer $N+1$ in part (ii). Then there exists $r_3 \leq \min\{r_1, r_2\}$ such that there are exactly $2n + 2 N + 1$ eigenvalues inside the circle $|\lambda| = c \xi$, where
+	\[
+	\xi = \frac{\pi}{X}\left( N + \frac{1}{2} \right)
+	\]
+	\item There exists a small radius $\xi^*$ (which excludes the nonzero interaction eigenvalues and essential spectrum eigenvalues) such that there are exactly 3 eigenvalues inside the circle of radius $\xi$ in the complex plane. These must be the three eigenvalues from part (i).
 \end{itemize}
-
 \end{enumerate}
+
 \end{theorem}
 
 \begin{remark}
 In terms of the domain length parameter $X$, the condition \cref{nobubblecondgen} states that $r_0$ is sufficiently small so that
 \[
 \sqrt{\frac{R_{\max}}{M}} r_0^{1/2} \leq \frac{c}{4 X}
+\]
 \end{remark}
 
 From \cref{locateeigtheorem}(ii), the interaction eigenvalue pattern is determined by the signs of the eigenvalues $\mu_j$. In general, there is no easy way to determine these signs. However, if we take one of the baseline length parameters $b_j^0$ to be small compared to the others, the matrix $A$ is approximately tri-diagonal, in which case we can use a similar argument to \cite[Theorem 3(iv)]{Sandstede1998} to determine the interaction eigenvalue pattern. Since we are on a periodic domain, we can without loss of generality take $b_{n-1}^0$ to be the small parameter. Recall from \cref{perexist} that the other baseline length parameters are given by

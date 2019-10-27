@@ -603,108 +603,51 @@ Finally, we will count the eigenvalues in a small ball around the 0.
 \begin{lemma}\label{eigcount2}
 Let 
 \begin{equation}\label{xiradius}
-\xi = \min\left\{ \frac{\pi}{2X}, \frac{r^{1/2}\sqrt{\tilde{\mu}_m/M} }{2} \right\} = 
-\min\left\{ \frac{\pi}{2 C( n |\log X| + |\log(b_1\cdots b_{n-1}|)}, \frac{r^{1/2} \sqrt{\tilde{\mu}_m/M}}{2} \right\} 
+\xi = \frac{1}{2}r^{1/2} \sqrt{\frac{R_{\min}}{M}}
 \end{equation}
-where $\tilde{\mu}_m = \min \{ |\tilde{\mu_1}|, \dots, |\tilde{\mu}_{n-1}| \}$. Then for sufficiently small $r$, there are exactly 3 eigenvalues inside the circle of radius $\xi$ in the complex plane.
-
-\begin{proof}
-For $|\lambda| = \xi$, $K(\lambda)$ is invertible. We look for nontrivial solutions to \eqref{blockeq}, which, as in the previous lemma, we rewrite as \eqref{blockeq2}.
-
-To bound $K_1(\lambda)K(\lambda)^{-1}$, we follow the proof of Lemma \ref{Kinvboundslemma}. By our choice of $\xi$, the $\epsilon$ criterion in that lemma is automatically satisfied. Replacing the condition that $|\lambda| \geq C r^{1/2}$ with $|\lambda| = \delta$, we have the bound
-\begin{align*}
-||K_1(\lambda)K(\lambda)^{-1}|| &\leq C( \xi + r^{1/2})\max\left\{ r^{-1/4}, \frac{1}{\xi X} \right\} \\
-&\leq C r^{1/2} \max\left\{ r^{-1/4}, \frac{1}{\xi X} \right\} \\
-&\leq C r^{1/2} \max\left\{ r^{-1/4}, 1, \frac{r^{-1/2}}{X} \right\} \\
-&\leq C \max\left\{ r^{1/4}, \frac{1}{X} \right\} \\
-&\leq C \max\left\{ r^{1/4}, \frac{1}{n|\log r| + |\log(b_1 \cdots b_{n-1})| } \right\} 
-\end{align*}
-where we used the expression for $X$ from Lemma \ref{reparam}. Since the bound for $C_1$ is stronger than this, for sufficiently small $r$, $I + C_1 + K_1(\lambda)K(\lambda)^{-1}$ is invertible. Let $C_3 = (I + C_1 + K_1(\lambda)K(\lambda)^{-1})$. As in the previous lemma, multiply the top row of \eqref{blockeq2} by $C_3$ to get \eqref{blockeq3}. Then finding a nontrivial soluton to \eqref{blockeq3} is equivalent to solving $E(\lambda) = 0$, where 
-\begin{equation}
-E(\lambda) = \det 
-\begin{pmatrix}
-K(\lambda) & C_3 D_1 \\
-C_2 K(\lambda) + K_2(\lambda) & A - \lambda^2 MI + D_2
-\end{pmatrix}
-\end{equation}
-
-As in the previous lemma, since $K(\lambda)$ and $A - \lambda^2 M I$ are invertible for $|\lambda| = \xi$, we use a standard determinant identity to write $E(\lambda)$ as 
-\begin{align*}
-E(\lambda)
-&= \det(K(\lambda))\det(A - \lambda^2 MI)\det(I + R(\lambda))
-\end{align*}
 where
 \[
-R(\lambda) = 
-(A - \lambda^2 MI)^{-1}(D_2 - (C_2 + K_2(\lambda)K(\lambda)^{-1})C_3 D_1)
+R_{\min} = \min_{j = 1, \dots, n-1} |\ell_j(0) |
 \]
+Then there exists $r_4 \leq r_0$ such that for $r \leq r_4$, there are exactly 3 eigenvalues inside the circle of radius $\xi$ in the complex plane.
 
-First, we bound $(D_2 - (C_2 + K_2(\lambda)K(\lambda)^{-1})C_3 D_1)$. Since $K_2(\lambda)$ is of the same form as $K_1(\lambda)$, we can use the bound for $K_1(\lambda)K(\lambda)^{-1}$ here.
-\begin{align*}
-||(D_2 &- (C_2 + K_2(\lambda)K(\lambda)^{-1})C_3 D_1)|| \\
-&\leq C \left( (\xi + r^{1/2})^3 + (\xi + r^{1/2})^2 \left( r^{\tilde{\gamma}/2}(\xi + r^{1/2})^2 + \max\left\{ r^{1/4}, \frac{1}{n|\log r| + |\log(b_1 \cdots b_{n-1})| } \right\} \right) \right) \\
-&\leq C \left( r^{3/2} + r \left( r^{1 + \tilde{\gamma}/2} + \max\left\{ r^{1/4}, \frac{1}{n|\log r| + |\log(b_1 \cdots b_{n-1})| } \right\} \right) \right) \\
-&\leq C r \max\left\{ r^{1/4}, \frac{1}{n|\log r| + |\log(b_1 \cdots b_{n-1})| } \right\} 
-\end{align*}
+\begin{proof}
+The argument is almost identical to the previous lemma. Since we are close to 0, we do not need to change variables to $\mu$. For this choice of $\xi$, the radius $\xi$ and the nonzero eigenvalues $r^{1/2}\ell_j(r)$ of $A$ scale together, thus there will always be exactly 2 zeros of $A - \lambda^2 M I$ inside the circle of radius $\xi$. Since $r \leq r_0$, by \cref{nobubblecondgen}, the only zero of $K(\lambda)$ inside the circle is the single root at $\lambda = 0$. Thus $K(\lambda)(A - \lambda^2 M I)$ has exactly three roots inside the circle. We will again use Rouch\'e's theorem so show that these are the only roots.
 
-For a bound on $(A - \lambda^2 MI)^{-1}$, we use Lemma \ref{Ainvboundlemma}. The bound depends on $\xi$. If $\xi = \frac{\pi}{2X}$, we can go ahead and use the bound \eqref{Ainvbound1} from Lemma \ref{Ainvboundlemma}, which is
+For $|\lambda| = \xi$, $K(\lambda)$ is invertible, and the inverse has lower bound
 \[
-||(A - \lambda^2 MI)^{-1}|| \leq C X^{n+1} r^{(n-1)/4}
+\| K(\lambda)^{-1}\| \leq C \frac{r^{1/2}}{X}
 \]
-
-If $\xi = \frac{\tilde{\mu}_m r^{1/2}}{2}$, then we need to compute a new bound. For $\det(A - \lambda^2 MI)$, we can adapt the proof of Lemma \ref{detAboundlemma} to get
+For $(A - \lambda^2 M I)$, when $|\lambda| = \xi$, $\lambda$ is at least $\xi$ from all $2n$ roots of $\det(A - \lambda^2 M I)$. Thus, following the proofs of Lemma \ref{detAboundlemma} and Lemma \ref{Ainvboundlemma}, we have
 \[
-|\det(A - \lambda^2 MI)| \leq C \xi^2 (\xi + r^{1/2})^{n-1} r^{(n-1)/2}
+\| (A - \lambda^2 M I)^{-1} \| \leq C \frac{ r^{2(n-1)}}{\xi^{2n}} 
 \]
-Using this in the proof of Lemma \ref{Ainvboundlemma}, we get
+As in the previous lemma, for sufficiently small $r$ less than $r_0$, the block matrix equation \cref{blockeq2} has a nontrivial solution if and only if 
 \begin{align*}
-||(A - \lambda^2 MI)^{-1}|| &\leq C \frac{(r + \xi^2)^{n-1}}{\xi^2 (\xi + r^{1/2})^{n-1} r^{(n-1)/2}} \\
-&= C \frac{r^{n-1}}{r \: r^{(n-1)/2} r^{(n-1)/2}} \\
-&= \frac{C}{r} 
+E(\lambda) &= \det(K(\lambda))\det(A - \lambda^2 MI)\det(I + R(\lambda)) = 0
 \end{align*}
-
-Combining all of these, we can get a bound on $R(\lambda)$. If $\xi = \frac{\pi}{2X}$, then
+where the remainder term $R(\lambda)$ has bound
 \begin{align*}
-||R(\lambda)|| &\leq C X^{n+1} r^{(n-1)/4} r \max\left\{ r^{1/4}, \frac{1}{n|\log r| + |\log(b_1 \cdots b_{n-1})| } \right\} \\
-&\leq C r^{1/2} (r^{1/4} X)^{n+1} \max\left\{ r^{1/4}, \frac{1}{n|\log r| + C_b } \right\} \\
-&\leq C r^{1/2} \left(r^{1/4}(n|\log r| + |\log(b_1 \cdots b_{n-1})|)\right)^{n+1} \max\left\{ r^{1/4}, \frac{1}{n|\log r| + |\log(b_1 \cdots b_{n-1})| } \right\}
+\| R(\lambda) \| &\leq C \| (A - \lambda^2 MI)^{-1}(S_4 - S_3 K(
+\mu)^{-1} S_2) \| \\
+&\leq C \left( \frac{r^{2(n-1)}}{\xi^{2n}} r \left( r^{\tau/2} + \frac{1}{|\log r| } \right) \right) \\
+&\leq C r^{n-1}
 \end{align*}
-
-This can be made arbitrarily small by taking $r$ sufficiently small. If $\xi = \frac{\tilde{\mu}_m r^{1/2}}{2}$, then 
-\begin{align*}
-||R(\lambda)|| &\leq \frac{C}{r} r \max\left\{ r^{1/4}, \frac{1}{n|\log r| + |\log(b_1 \cdots b_{n-1})|} \right\} \\
-&= C \max\left\{ r^{1/4}, \frac{1}{n|\log r| + |\log(b_1 \cdots b_{n-1})|} \right\} 
-\end{align*}
-This can also be made arbitrarily small. Choose $r_3$ sufficiently small so that for $r \leq r_3$,
+As in the previous lemma, we can choose $r_4 \leq r_0$ so that for all $r \leq r_4$, 
 \[
-||R(\lambda)||_{max} \leq \frac{1}{3n}
-\] 
-so that $\text{Tr}(R(\lambda)) \leq 1/3$. From a standard expansion of the determinant, 
-\begin{align*}
-\det(I + R(\lambda)) &= 1 + \text{Tr}(R(\lambda)) + \mathcal{O}\left(\frac{1}{9n^2} \right) \\
-&= 1 + p
-\end{align*}
-where $0 < |p| < 1$. Thus we have
-\begin{align*}
-E(\lambda) &= \det(K(\lambda))\det(A - \lambda^2 MI)\det(I + R(\lambda)) \\
-&= \det(K(\lambda))\det(A - \lambda^2 MI)(1 + p) \\
-&= \det(K(\lambda))\det(A - \lambda^2 MI) + p \det(K(\lambda))\det(A - \lambda^2 MI)
-\end{align*}
-
-Since $|p| < 1$, by Rouch\'e's Theorem, $E(\lambda)$ and $\det(K(\lambda))\det(A - \lambda^2 MI)$ have the same number of zeros (counting multiplicty) inside the circle $|\lambda| = \xi$. By our choice of $\xi$, $\det(K(\lambda))\det(A - \lambda^2 MI)$ has exactly 3 zeros inside $|\lambda| = \xi$, all of which occur at $\lambda = 0$. We conclude that $\tilde{E}(\lambda)$ (and thus $E(\lambda)$) has exactly 3 zeros inside $|\lambda| = \xi$.\\
+\det(I + R(\lambda)) = 1 + \epsilon(r),
+\]
+where $|\epsilon(r)| < 1$. Thus we can write $E(\lambda)$ as
+\begin{equation}
+E(\lambda^2) = \det(K(\lambda^2))\det(A - \lambda^2 MI) + \epsilon(r) \det(K(\lambda^2))\det(A - \lambda^2 MI)
+\end{equation}
+As in the previous lemma, by Rouch\'e's Theorem, $E(\lambda)$ and $\det(K(\lambda))\det(A - \lambda^2 MI)$ have the same number of zeros (counting multiplicty) inside the circle $|\lambda| = \xi$. As discussed above, $\det(K(\lambda))\det(A - \lambda^2 MI)$, and thus $E(\lambda)$, has exactly 3 zeros inside the circle $|\lambda| = \xi$.
 \end{proof}
 \end{lemma}
 
 \subsection{Proof of Theorem \ref{locateeigtheorem}}
 
-For part (i), it follows from \eqref{Arelations} that $Q_{np}'(x)$ is an eigenfunction with eigenvalue 0 and $T_{np}(x)$ is a generalized eigenfunction with eigenvalue 0 corresponding to $Q_{np}'(x)$. By Hypothesis \ref{Melnikov2hyp}, this Jordan chain cannot continue. By Lemma \ref{varadjsolutions}, there is another eigenfunction $V^c(x)$ with eigenvalue 0; this eigenfunction is bounded but does not decay to 0. Although Lemma \ref{varadjsolutions} states this for $A(Q(x))$, i.e. the linearization about the primary pulse, the same argument holds for $A(Q_{np}(x))$, since it only depends on the rest state.
-
-Part (ii) follows from Lemma \eqref{inteigslemma} and part (iii) follows from Lemma \ref{essspeclemma}. Part (iv) follows from Lemmas \ref{eigcount} and \ref{eigcount2}. Using these lemmas, a complete account of the eigenvalues inside $|\lambda| = \delta$ is as follows.
-\begin{enumerate}
-	\item At $\lambda = 0$, there is an eigenvalue with algebraic multiplicity 3. The eigenfunctions are those from part (i).
-	\item There are $2n - 2$ interaction eigenvalues, which come in pairs $\pm \lambda$. Each pair is real or purely imaginary.
-	\item There $2 k_M$ purely imaginary ``essential spectrum'' eigenvalues, which also come in pairs.
-\end{enumerate}
+For part (i), $\partial_x Q_n(x)$ is an eigenfunction with eigenvalue 0, $\partial_c Q_n(x)$ is a generalized eigenfunction with eigenvalue 0 corresponding to $\partial_x Q_n(x)$. By Hypothesis \ref{Melnikov2hyp}, this Jordan chain cannot continue.
 
 \subsection{Proof of Theorem \ref{inteigsparity}}
 
