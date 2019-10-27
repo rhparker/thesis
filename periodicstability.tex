@@ -144,7 +144,7 @@ where $X_m = \min\{X_0, \dots, X_{n-1}\}$.
 
 We expect to find eigenvalues near where the two leading order blocks, $A - \lambda^2 MI$ and $K(\lambda)$, are singular. As in \cref{chapter:kdv5homoclinic}, points where $A - \lambda^2 MI$ is singular give us the interaction eigenvalues as well as two kernel eigenvalues. $K(\lambda)$ is singular for a discrete set of points on the imaginary axis. These are the periodic analogue to the essential spectrum in the $n$-homoclinic case. Although they are technically still point spectrum, we will refer to them as essential spectrum eigenvalues to distinguish them from the interaction eigenvalues.
 
-\section{Interaction eigenvalues of periodic 2-pulses}
+\section{Eigenvalues of periodic 2-pulses}
 
 We will now use Theorem \ref{blockmatrixtheorem} to locate the interaction eigenvalues of \eqref{PDEeig3}. First we consider the case of the periodic 2-pulse. Although the computation is tedious, we can compute the determinant of \cref{blockeq} exactly. 
 
@@ -234,38 +234,7 @@ In terms of the domain length parameter $X$, the condition \cref{nobubblecondgen
 \]
 \end{remark}
 
-From \cref{locateeigtheorem}(ii), the interaction eigenvalue pattern is determined by the signs of the eigenvalues $\mu_j$. In general, there is no easy way to determine these signs. However, if we take one of the baseline length parameters $b_j^0$ to be small compared to the others, the matrix $A$ is approximately tri-diagonal, in which case we can use a similar argument to \cite[Theorem 3(iv)]{Sandstede1998} to determine the interaction eigenvalue pattern. Since we are on a periodic domain, we can without loss of generality take $b_{n-1}^0$ to be the small parameter. Recall from \cref{perexist} that the other baseline length parameters are given by
-\begin{align*}
-b_j^0 &= e^{-\frac{1}{\rho}m_j \pi} && j = 0, \dots, n-2
-\end{align*}
-for nonnegative integers $m_j$. The following theorem gives conditions under which the interaction eigenvalue pattern is determines by the parity of the integers $m_0, \dots, m_{n-2}$.
-
-\begin{theorem}\label{inteigsparity}
-Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, \ref{H0transversehyp}, \ref{Melnikov2hyp}, and \ref{Adistincteigs}. Let $r_1$ and $b^*$ be as in Theorem \ref{unifperexist}. Choose
-\begin{itemize}
-\item An integer $n \geq 2$ 
-\item A sequence of $n-1$ baseline length parameters $b_0^0, \dots, b_{n-2}^0$, where 
-\[
-b_j^0 = \exp\left(-\frac{1}{\rho}m_j \pi\right) \in \mathcal{B}
-\]
-and the $m_j$ are nonnegative integers.
-\item Any phase parameter $\theta$.
-\end{itemize}
-
-Then there exists $\tilde{r_1} \leq r_1$ and $\tilde{b}^* \leq b^*$ such that for any $r \leq \tilde{r}_1$ and $b_{n-1}^0 \leq \tilde{b}^*$, we have the following result. 
-
-Let $n_{\text{even}}$ be the number of even $\{m_0, \dots, m_{n-2}\}$ and $n_{\text{odd}}$ be the number of odd $\{m_0, \dots, m_{n-2}\}$. 
-
-\begin{itemize}
-\item There are $n_{\text{odd}}$ pairs of purely imaginary interaction eigenvalues.
-\item There are $n_{\text{odd}}$ pairs of real of interaction eigenvalues.
-\end{itemize}
-If $M < 0$, these are reversed.
-\end{theorem} 
-
-We note that since we took $b_{n-1}^0$ small, the parity of $m_{n-1}$ is irrelevant to the eigenvalue pattern. In the following sections, we provide proofs for these results.
-
-*****
+From \cref{locateeigtheorem}(ii), the interaction eigenvalue pattern is determined by the signs of the eigenvalues $\mu_j$. Although we are able to do this for the 2-periodic pulse, there is in general no easy way to determine these signs. If one of the baseline length parameters $b_j^0$ is small compared to the others, the matrix $A$ is approximately the tri-diagonal matrix in \cite[Theorem 2]{Sandstede1998}. In principle, we can use then use a similar argument to \cite[Theorem 3(iv)]{Sandstede1998} to determine the interaction eigenvalue pattern in terms of the parity of the integers $m_j$.
 
 \section{Proof of \cref{nulambdalemma} }
 
@@ -342,7 +311,9 @@ W_0'(0) = \frac{1}{c} \left( 0, -c_3, 0, -c_5, 0, \dots, 0, -c_{2m-1}, 0, 1, 0\r
 \]
 that is orthogonal to $W_0$.
 
-\section{Piecewise Formulation}
+\section{Proof of Theorem \ref{blockmatrixtheorem} }
+
+\subsection{Piecewise formulation}
 
 In this section, we write the eigenvalue problem \cref{PDEeig3} in a piecewise form similar to \cite{Sandstede1998} and what we did in \cref{sec:kdvRpiecewise}. Let $Q_n(x)$ be a periodic $n$-pulse solution to \eqref{genODE} constructed according to Theorem \ref{perexist}. From Theorem \ref{perexist}, we can write $Q_n(x)$ piecewise as
 \begin{equation}\label{Qnppiece}
@@ -476,7 +447,7 @@ To get the estimate (v), we substitute these into \cref{defDid} and use estimate
 \end{proof}
 \end{lemma}
 
-\section{Gap and conjugation Lemmas}
+\subsection{Gap and conjugation Lemmas}
 
 In this section, we state and prove the gap and conjugation lemmas. We will use the conjugation lemma to simplify the system of equations \cref{eigsystem}. The statements and notation of these lemmas are very similar to those in \cite{Zumbrun2009}, except we allow the parameter vector $\Lambda$ to live in a Banach space rather than in a subset of $\C^m$. The proofs follow those in \cite{Zumbrun2009}, but are given in much more detail. In addition, the proof of the conjugation lemma is used to prove a corollary. First, we state and prove the gap lemma.
 
@@ -757,7 +728,7 @@ Z'(x) = -A_-(\Lambda)^* Z(x)
 \end{proof}
 \end{corollary}
 
-\section{Conjugation of system}
+\subsection{Conjugation of system}
 
 In this section, we apply the conjugation lemma to the system of equations \cref{eigsystem}. This simplifies the system by applying a change of coordinates that transforms the linear operator $A(Q(x); \lambda)$ into a constant coefficient matrix. For all $\lambda$, $A(Q(x); \lambda)$ decays exponentially to the constant-coefficient matrix $A(\lambda)$. Specifically, we have the exponential decay rate
 \[
@@ -903,7 +874,7 @@ and the jump conditions \eqref{jumpxi} become
 \end{aligned}
 \end{equation}
 
-\section{Exponential Trichotomy}
+\subsection{Exponential trichotomy}
 
 Since $A(\lambda)$ is a constant coefficient matrix, we know exactly how solutions $Z' = A(\lambda)Z$ evolve. Let $E^{u/s/c}(0)$ be the stable, unstable, and center eigenspaces of $A(0)$. $E^s(0)$ and $E^u(0)$ are $m$-dimensional, and $E^c(0)$ is 1-dimensional. For $|\lambda| < \delta$, let $E^{u/s/c}(\lambda)$ be the corresponding eigenspaces of $A(\lambda)$, which have the same dimensions as $E^{u/s/c}(0)$ since $\lambda$ is small. In particular, 
 \[
@@ -1048,7 +1019,7 @@ where in the last line we used Lemma \ref{centerprojlemma}. For (v), since the b
 \end{proof}
 \end{lemma}
 
-\section{Solutions in center subspace}
+\subsection{Solutions in center subspace}
 
 The constant-coefficient ODE
 \[

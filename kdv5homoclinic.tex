@@ -80,9 +80,9 @@ V'(x) = (DF(Q_n(x)) + \lambda B )V(x)
 \]
 where $B$ is a $2m\times 2m$ matrix of the same form as \cref{DefB}. The relevant Melnikov integral is
 \[
-M = \int_{-\infty}^\infty \langle \Psi(x), B \frac{d}{dx} Q(x) \rangle  dx = \int_{-\infty}^\infty q'(x)^2 dx > 0
+M = \int_{-\infty}^\infty \langle \Psi(x), B \frac{d}{dx} Q(x) \rangle  dx = \int_{-\infty}^\infty (\partial_x q(x))^2 dx > 0
 \]
-since the last component of $\Psi(x)$ is $q'(x)$ by \cref{psiform}. Thus Hypotheses 3.5 in \cite{SandstedeStrut} is satisfied. The result follows from \cite[Theorem 3.6]{SandstedeStrut}. Since $\calE''(q_n)$ is self-adjoint, its eigenvalues are real. Part (iii) follows from \cite[Theorem 2]{Sandstede1998}, which follow from \cite{Sandstede1993}.
+since the last component of $\Psi(x)$ is $\partial_x (x)$ by \cref{psiform}. Thus Hypotheses 3.5 in \cite{SandstedeStrut} is satisfied. The result follows from \cite[Theorem 3.6]{SandstedeStrut}. Since $\calE''(q_n)$ is self-adjoint, its eigenvalues are real. Part (iii) follows from \cite[Theorem 2]{Sandstede1998}, which follow from \cite{Sandstede1993}.
 \end{proof}
 \end{theorem}
 
@@ -173,9 +173,9 @@ Since $V_\eta(0) = Q'(0)$ and $\Psi_\eta(0) = \Psi(0)$, we can decompose $\R^{2m
 The following theorem, which is almost identical to \cite[Theorem 2]{Sandstede1998}, allows us to locate the interaction eigenvalues of the eigenvalue problem \eqref{weightedeig} in the exponentially weighted space.
 
 \begin{theorem}\label{expwtstabtheorem}
-Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, \ref{H0transversehyp}, and \ref{Melnikov2hyp}. Let $Q_n(x)$ be an $n$-pulse traveling wave solution to \cref{genODE} constructed as in \cref{multipulseexistR} with pulse lengths $X_1, \dots, X_{n-1}$. Choose an exponential weight $\eta$ with $0 < \eta < \alpha_0$. Then there exists $\delta > 0$ with the following property. There exists a bounded, nonzero solution $V$ of the weighted eigenvalue problem \eqref{weightedeig} with weight $\eta$ for $|\lambda| < \delta$ if and only if $\det S(\lambda) = 0$, where
+Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, \ref{H0transversehyp}, and \ref{Melnikov2hyp}. Let $Q_n(x)$ be an $n$-pulse traveling wave solution to \cref{genODE} constructed as in \cref{multipulseexistR} with pulse lengths $X_1, \dots, X_{n-1}$. Choose an exponential weight $\eta$ with $0 < \eta < \alpha_0$ and choose any $\alpha$  with $\alpha < \alpha_0$. Then there exists $\delta > 0$ with the following property. There exists a bounded, nonzero solution $V$ of the weighted eigenvalue problem \eqref{weightedeig} with weight $\eta$ for $|\lambda| < \delta$ if and only if $E(\lambda) = 0$, where
 \[
-S(\lambda) = A_\eta - \lambda^2 M I + R(\lambda).
+E(\lambda) = \det \left( A_\eta - \lambda^2 M I + R(\lambda) \right).
 \]
 $A_\eta$ is the tri-diagonal matrix
 \begin{equation}\label{Aeta}
@@ -207,12 +207,16 @@ Assume the same hypotheses as in \cref{expwtstabtheorem}. Let $Q_n(x)$ be an $n$
 \[
 b_j = \exp\left(-\frac{\pi \alpha_0}{\beta_0}m_j \right)
 \]
-for nonnegative integers $m_j$. Let $\{ \mu_1, \dots, \mu_{n-1}, 0 \}$ be the eigenvalues of $A_0$, which are real and distinct. Then for $X_m$ sufficiently large, there are $(n-1)$ pairs of interaction eigenvalues close to 0 which are given by
-\begin{equation*}
-\lambda_j^\pm = \pm \sqrt{\frac{\mu_j}{M}} + 
-\mathcal{O}\left (e^{-(\alpha - \eta)/2) X_m} \right),
-\end{equation*}
-for $j = 1,\dots,n-1$. If $M > 0$, the interaction eigenvalues come in the following configuration.
+for nonnegative integers $m_j$. Let $A_0(r)$ be the matrix $A_0$ from \cref{expwtstabtheorem}, where we have made the dependence on the scaling parameter $r$ explicit. Write $A_0(r) = r \tilde{A}_0(r)$. Let $\{ \tilde{\mu}_1, \dots, \tilde{\mu}_{n-1}, 0 \}$ be the eigenvalues of $\tilde{A}_0(0)$, which are real. Then for $X_m$ sufficiently large, there are $(n-1)$ pairs of interaction eigenvalues close to 0 which are given by
+\begin{equation}\label{hominteigs}
+\lambda_j^\pm = \pm \sqrt{\frac{\tilde{\mu}_j(0)}{M}} r^{1/2} + 
+\mathcal{O}\left( r^{\gamma/2} \right),
+\end{equation}
+for $j = 1,\dots,n-1$, where
+\[
+\gamma = \frac{\alpha_0 - \eta}{\alpha_0}
+\]
+If $M > 0$, the interaction eigenvalues come in the following configuration.
 \begin{enumerate}
 	\item For each $m_j$ even, there is an interaction eigenvalue with positive real part. Thus if at least one $m_j$ is even, $Q_n(x)$ is unstable.
 	\item For each $m_j$ odd, there is a pair of eigenvalues which is purely imaginary to leading order. If all $m_j$ are odd, all interaction eigenvalues are purely imaginary to leading order. We can conclude nothing about stability in this case.
@@ -268,7 +272,7 @@ Since $Q_n(x)$ was constructed according to \cref{multipulseexistR}, $Q(n)$ can 
 \[
 Q_i^\pm(x) = Q(x) + \tilde{Q}_i^\pm(x)
 \]
-and we have bounds on the remainder terms $\tilde{Q}_i^\pm(x)$ from \cref{multipulseexistR}. As in \cite{Sandstede1998}, we will use a piecewise ansatz for the eigenfunction $V(x)$. However, if we use the ansatz \cite[(3.5)]{Sandstede1998}, that will lead to the a Melnikov integral $\int_{-\infty}^\infty q(x) q'(x) dx$, which is zero. To avoid this, we use the ansatz
+and we have bounds on the remainder terms $\tilde{Q}_i^\pm(x)$ from \cref{multipulseexistR}. As in \cite{Sandstede1998}, we will use a piecewise ansatz for the eigenfunction $V(x)$. However, if we use the ansatz \cite[(3.5)]{Sandstede1998}, that will lead to the a Melnikov integral $\int_{-\infty}^\infty q(x)\partial_x q(x) dx$, which is zero. To avoid this, we use the ansatz
 \begin{equation}\label{weightedansatz}
 V_i^\pm(x) = d_i (e^{\eta x} Q_n'(x) + \lambda e^{\eta x} \partial_c Q_n(x)) + W_i^\pm(x)
 \end{equation}
@@ -463,65 +467,22 @@ Repeat this $n-2$ more times to get the result.
 
 \section{Proof of \cref{corr:eiglocR}}
 
-Since the eigenvalues of $A_\eta$ are the same as those of $A_0$, the first step is to characterize the eigenvalues of $A_0$. We note that $0$ is an eigenvalue of $A$ with eigenvector $(1, 1, \dots, 1)^T$. The entries $a_j$ of $A_0$ are given by 
-\begin{equation*}
-a_j(r) = \langle \Psi(X_j), Q'(-X_j) \rangle
-\end{equation*}
-where we have made the dependence on $r$ explicit.
-Using \cref{nhompeaks} for the lengths $X_j$ and \cite[Lemma 6.1(iii)]{Sandstede1998} for the inner product $\langle \Psi(X_j), Q'(-X_j) \rangle$, we have, 
-\begin{align*}
-a_j(r) &= \langle \Psi(X_j), Q'(-X_j) \rangle \\
-&= -s_0 e^{\alpha_0 \phi/\beta_0} r b_j(r) \left( \beta_0 \cos\left( -\frac{\beta_0}{\alpha_0} \log(b_j(r) r) \right) - \alpha_0 \sin \left( -\frac{\beta_0}{\alpha_0} \log(b_j(r) r) \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha} b_j^{1 + \gamma/2\alpha_0}) \\
-\end{align*}
-where $s_0 > 0$, $\gamma > 0$ is a constant, and $\hi$ is a constant. Since $r \in \mathcal{R}$ and $|b_j| \leq 1$, we can simplify the log terms and the remainder term to get
-\begin{align*}
-a_j(r) &= -s_0 e^{\alpha_0 \phi/\beta_0} r b_j(r) \left( \beta_0 \cos\left( -\frac{\beta_0}{\alpha_0} \log b_j(r) \right) - \alpha_0 \sin \left( -\frac{\beta_0}{\alpha_0} \log b_j(r) \right) + \mathcal{O}(r^{1+\gamma/2\alpha}) \\
-\end{align*}
-which we write as
-\[
-a_j(r) = r \left( \tilde{a}_j(r) + \mathcal{O}\left(r^{\gamma/2\alpha}\right) \right) 
-\]
-When $r = 0$,
-\[
-b_j(0) = b_j^0 = \exp\left(-\frac{\pi \alpha_0}{\beta_0}m_j \right)
-\]
-thus
-\[
-\tilde{a}_j(0) = -s_0 e^{\alpha_0 \phi/\beta_0} \beta_0 \cos(m_j \pi) &= -(-1)^{m_j} s_0 \beta_0 e^{\alpha_0 \phi/\beta_0}
-\]
-We can then scale out $r$ from $A_0$ and write the matrix $A_0$ as
-\[
-A_0 = r (\tilde{A}_0 + \tilde{A}_1(r) + 
-\mathcal{O}(r^{\gamma/2\alpha}))
-\]
-where $\tilde{A}_0$ is the matrix $A_0$ with the $a_j$ replaced by $\tilde{a}_j(0)$ and $\tilde{A}_1(r) \rightarrow 0$ as $r \rightarrow 0$.
-
-In the next lemma, we find the eigenvalues of $\tilde{A}_0$.
-
-\begin{lemma}
-\begin{proof}
-Taking $\eta = 0$ in \cref{Aeta} and replacing $a_j$ with $\tilde{a}_j$,
-\begin{equation}\label{tildeA0}
-\tilde{A}_0 = \begin{pmatrix}
--\tilde{a}_1(0) & \tilde{a}_1(0) \\
-\tilde{a}_1(0) & -\tilde{a}_2(0) - \tilde{a}_1(0) & \tilde{a}_2(0) \\
-& \tilde{a}_2(0) & -\tilde{a}_3(0) - \tilde{a}_2(0) & \tilde{a}_3(0) \\
-&& \ddots & \ddots \\
-& & & \tilde{a}_{n-1}(0) & -\tilde{a}_{n-1}(0) 
-\end{pmatrix}
-\end{equation}
-
-\end{proof}
-\end{lemma}
-By Lemma 5.4 of \cite{Sandstede1998} (noting that $\tilde{A}_0$ is the matrix $-A_0$ in that lemma),
-\begin{enumerate}[(i)]
-\item $\tilde{A}_0$ has $n_+$ negative eigenvalues (counting multiplicity)
-\item $\tilde{A}_0$ has $n_-$ positive eigenvalues (counting multiplicity)
+This is a straightforward adaptation of \cite[Theorem 3(iv)]{Sandstede1998}. We note the following differences main between this case and \cite{Sandstede1998}.
+\begin{enumerate}
+	\item The matrix $A$ in \cite{Sandstede1998} in is replaced by $A_\eta$. By \cref{lemma:Aetaconj}, $A_\eta$ is conjugate to $A_0$, thus it hsas the same eigenvalues as $A_0$. Since $A_0$ is symmetric, its eigenvalues are real. $A_0$ is the same as the matrix $A$ in \cite[Theorem 2]{Sandstede1998}, with $\tilde{a}_j = -a_j$.
+	\item $\lambda$ is replaced by $\lambda^2$.
 \end{enumerate}
-\end{proof}
-\end{lemma}
 
-DEFERRED FOR NOW. The proof should be a straightforward adaptation of \cite[Theorem 3(iv)]{Sandstede1998}, and is almost identical to what we did for the suspension bridge and DNLS.
+Following the proof of \cite[Theorem 3]{Sandstede1998}, we can write the matrix $A_0$ as
+\[
+A_0 = r\left( \tilde{A}_0 + \tilde{A}_1(r) + \mathcal{O}(r^\gamma)\right)
+\]
+where $\gamma > 0$ and $\tilde{A}_1(r) \rightarrow 0$ as $r \rightarrow 0$. The eigenvalues of $\tilde{A}(0)$ are then given, as in \cite[p.462]{Sandstede1998}  by
+\begin{align*}
+\mu_j &= (-1)^{m_j} s_0 \beta_0 e^{\phi_0/2 \beta_0} && j = 1, \dots n-1 \\
+\mu_n &= 0
+\end{align*}
+It follows as in \cite{Sandstede1998} that for sufficiently small $r$, $E(\lambda) = 0$ has a solution near $M \lambda_j^2 = r \mu_j$ for $j = 1, \dots, n-1$. Thus for sufficiently small $r$, $E(\lambda) = 0$ has solution near $\lambda_j^\pm = \pm r^{1/2} \sqrt{\mu_j/M}$. For $M > 0$, if $m_j$ is even, then the corresponding $\lambda_j$ are real (to leading order), and if $m_j$ is odd, then the corresponding $\lambda_j$ are on the imaginary axis (to leading order). If any $m_j$ is odd, then one of the eigenvalues $\lambda_j^\pm$ has postive real part. If all the $m_j$ are even, then all of the interaction eigenvalues are, to leading order, on the imaginary axis. Since the system is no longer Hamiltonian due to the expeonential weight, we can not use a symmetry argument to say anything more. The remainder estimate comes from using $e^{-\alpha X_m} = \mathcal{O}(r^{1/2})$ with the remainder term in \cref{expwtstabtheorem}.
 
 \iffulldocument\else
 	\bibliographystyle{amsalpha}

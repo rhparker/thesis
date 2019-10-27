@@ -6,7 +6,7 @@
 	\chapter{KdV5}
 \fi
 
-\section{Proof of eigenvalue location theorems}
+\section{Proof of Theorem \ref{locateeigtheorem}}
 
 Let $Q_n(x)$ be a periodic n-pulse with length parameters $\{ b_0(r), \dots, b_{n-1}(r)\}$, and assume all of the hypotheses in the statement of Theorem \ref{locateeigtheorem}. Let $r_0$ be sufficiently small so that \cref{nobubblecondgen} is satisfied. Since the LHS of \cref{nobubblecondgen} scales like $r_0^{1/2}$ and the RHS scales like $1/|\log r_0|$, such an $r_0$ can always be found. We will always take $r \leq r_0$.
 
@@ -648,102 +648,6 @@ As in the previous lemma, by Rouch\'e's Theorem, $E(\lambda)$ and $\det(K(\lambd
 \subsection{Proof of Theorem \ref{locateeigtheorem}}
 
 For part (i), $\partial_x Q_n(x)$ is an eigenfunction with eigenvalue 0, $\partial_c Q_n(x)$ is a generalized eigenfunction with eigenvalue 0 corresponding to $\partial_x Q_n(x)$. By Hypothesis \ref{Melnikov2hyp}, this Jordan chain cannot continue.
-
-\subsection{Proof of Theorem \ref{inteigsparity}}
-
-Let $r_1$ and $b^*$ be as in Theorem \ref{unifperexist}. Let $\tilde{A}_0$ be the tri-diagonal, symmetric matrix 
-\begin{align*}
-\tilde{A}_0 &= \begin{pmatrix}
--\tilde{a}_0 & \tilde{a}_0 \\
-\tilde{a}_0 & -\tilde{a}_0 - \tilde{a}_1 &  \tilde{a}_1 \\
-& \tilde{a}_1 & -\tilde{a}_1 - \tilde{a}_2 &  \tilde{a}_2 \\
-& & \ddots & & \ddots \\
-& & & & & \tilde{a}_{n-2} & -\tilde{a}_{n-2} \\
-\end{pmatrix}
-\end{align*}
-which is obtained from the matrix $\tilde{A}$ by taking $\tilde{a}_{n-1} = 0$. The matrix $\tilde{A}_0$ is symmetric, so its eigenvalues are real, and $(1, 1, \dots, 1)^T$ is an eigenvector of $\tilde{A}_0$ with eigenvalue 0. Let $0, \mu^0_1, \dots, \mu^0_{n-1}$ be the eigenvalues of $\tilde{A}_0$. Let $n_+$ be the number of positive $\tilde{a}_j$ and $n_i = n - n_+ - 1$ be the number of negative $\tilde{a}_j$. By Lemma 5.4 of \cite{Sandstede1998} (noting that $\tilde{A}_0$ is the matrix $-A_0$ in that lemma),
-\begin{enumerate}[(i)]
-\item $\tilde{A}_0$ has $n_+$ negative eigenvalues (counting multiplicity)
-\item $\tilde{A}_0$ has $n_-$ positive eigenvalues (counting multiplicity)
-\end{enumerate}
-
-For $\tilde{a}_{n-1}$ small, $\tilde{A}$ is a small perturbation of $\tilde{A}_0$. Since characteristic polynomials are smooth functions of matrix entries, the eigenvalues of a matrix are also smooth functions of the matrix entries. In particular, the eigenvalues of $\tilde{A}$ depend smoothly on $\tilde{a}_{n-1}$, and as $\tilde{a}_{n-1}$ approaches 0, the eigenvalues of $\tilde{A}$ approach those of $\tilde{A}_0$. In particular, as $\tilde{a}_{n-1}$ is increased from 0, the eigenvalues of $\tilde{A}$ can only change sign by crossing through 0. Thus for sufficiently small $\tilde{a}_{n-1}$, the signs of the eigenvalues of $\tilde{A}$ are determined by the signs of the $n-1$ matrix elements $\tilde{a}_0, \dots, \tilde{a}_{n-2}$. We will now obtain this result in terms of $r$ and the baseline length parameters used to contruct the periodic $n-$pulse.
-
-From the proof of Lemma \eqref{reparam}, $\tilde{a}_j$ is given by
-\begin{align}\label{tildeaj2}
-\tilde{a}_j
-&= (-1)^{-\rho \log r / \pi} s_0 e^{\alpha \phi/\beta} \left( \beta b_j(r; m_j, \theta) \cos\left( -\rho \log b_j(r; m_j, \theta) \right) - \alpha b_j(r; m_j, \theta) \sin \left( -\rho \log b_j(r; m_j, \theta) \right) \right)
-\end{align}
-As $r \rightarrow 0$, $b_j(r; m_j, \theta) \rightarrow b_j^*(m_j, \theta)$ by Theorem \ref{perexist}. As $m_{n-1} \rightarrow \infty$, $b_j^*(m_j, \theta) \rightarrow b_j^0$ by Lemma \ref{thetaparamlemma}. Finally, since $b_{n-1}^0 = \exp\left(-\frac{m_{n-1} \pi}{\rho}\right)$, $b_{n-1}(r; m_{n-1}, \theta) \rightarrow 0$ (and so $\tilde{a}_{n-1} \rightarrow 0$) as $(r, m_{n-1}) \rightarrow (0, \infty)$. Thus we can find a positive integer $M_1$ and $\tilde{r}_1 \leq r_1$ such that for all $m_{n-1} \geq M_1$ and $r \leq \tilde{r}_1$, 
-\begin{enumerate}[(i)]
-	\item $\tilde{a}_{n-1}$ is sufficiently small so that the eigenvalues of $\tilde{A}$ have the same sign as those of $\tilde{A}_0$.
-	\item For $j = 0, \dots, n-2$ and for all $\theta \in [-\arctan \rho, \pi - \arctan \rho)$,
-	\begin{equation}\label{bjunif}
-	b_j(r; m_j, \theta) = b_j^0 e^{ -\frac{1}{\rho} \theta^*_j(r, m_{n-1}) } = e^{ -\frac{1}{\rho}(m_j \pi + \theta^*_j(r, m_{n-1})) } 
-	\end{equation}
-	where $|\theta^*_j(r, m_{n-1})| < \arctan \rho$.
-\end{enumerate}
-
-We can now determine the signs of the $\tilde{a}_j$ for $j = 0, \dots, n-2$. Since
-\begin{align*}
-\cos\left( -\rho \log b_j(r; m_j, \theta) \right) 
-&= \cos\left( -\rho \log e^{ -\frac{1}{\rho}(m_j \pi + \theta^*_j(r, m_{n-1})) } \right) \\
-&= \cos\left( m_j \pi + \theta^*_j(r, m_{n-1})\right) \\
-&= (-1)^{m_j} \cos \theta^*_j(r, m_{n-1})
-\end{align*}
-and
-\begin{align*}
-\sin\left( -\rho \log b_j(r; m_j, \theta) \right) 
-&= \sin\left( m_j \pi + \theta^*_j(r, m_{n-1})\right) \\
-&= (-1)^{m_j} \sin \theta^*_j(r, m_{n-1})
-\end{align*}
-upon substituting \eqref{bjunif} into equation \eqref{tildeaj2} we obtain
-\begin{align*}
-\tilde{a}_j 
-&= (-1)^{-\rho \log r / \pi} (-1)^{m_j} s_0 e^{\alpha \phi/\beta} b_j^0 e^{ -\frac{1}{\rho} \theta^*_j(r, m_{n-1}) } \left( \beta \cos\theta^*_j(r, m_{n-1}) - \alpha \sin \theta^*_j(r, m_{n-1}) \right) \\
-&= (-1)^{m + m_j} \left[ s_0 \alpha e^{\alpha \phi/\beta} b_j^0 e^{ -\frac{1}{\rho} \theta^*_j(r, m_{n-1}) } \cos\theta^*_j(r, m_{n-1}) \right] \left( \rho - \tan \theta^*_j(r, m_{n-1}) \right)
-\end{align*}
-where we have let $r \in \mathcal{R}$ as $r = e^{-\frac{1}{\rho}m \pi}$ for some nonnegative integer $m$. The term in brackets is always positive since $|\theta^*_j(r, m_{n-1})| < \arctan \rho$. Thus the sign of $\tilde{a}_j(0)$ is completely determined by the term $(-1)^{m + m_j}$, and we have
-\begin{align*}
-\tilde{a}_j(0) &> 0 && \text{if } m + m_j \text{ is even} \\
-\tilde{a}_j(0) &< 0 && \text{if } m + m_j \text{ is odd}
-\end{align*}
-From this, it follows that if $m$ is even,
-\begin{enumerate}[(i)]
-\item $\tilde{A}_0$ has $n_{\text{even}}$ negative eigenvalues (counting multiplicity)
-\item $\tilde{A}_0$ has $n_{\text{odd}}$ positive eigenvalues (counting multiplicity)
-\end{enumerate}
-This is reversed if $m$ is odd. The result follows from equation \eqref{inteigsformula} from Lemma \ref{inteigslemma}, where we note the dependence on the sign of $M$. The condition that $m_{n-1} \geq M_1$ is equivalent to $b_{n-1}^0 \leq \tilde{b}^*$ for some $\tilde{b}^* \leq b^*$.
-
-\subsection{Interaction Eigenvalues: Specific Cases}
-
-There are specific cases in which we can compute the eigenvalues of $\tilde{A}$ in terms of the $\tilde{a}_j$.
-
-Recall that the $\tilde{a}_j$ are given by
-\begin{align*}
-\tilde{a}_j(r)
-&= (-1)^{-\rho \log r / \pi} s_0 e^{\alpha \phi/\beta} \left( \beta b_j(r; m_j; \theta) \cos\left( -\rho \log b_j(r; m_j; \theta) \right) - \alpha b_j(r; m_j; \theta) \sin \left( -\rho \log b_j(r; m_j; \theta)  \right) \right) + \mathcal{O}(r^{\gamma/2\alpha})
-\end{align*}
-
-First, we consider the case when $n = 2$. In that case, the eigenvalues of $\tilde{A}$ are $\{0, \tilde{a} \}$, where
-\begin{align*}
-\tilde{a} = \tilde{a}_0 + \tilde{a}_1
-\end{align*}
-For a symmetric 2-periodic pulse, $m_0 = m_1 = 0$ (recall that one of them must be 0). Then by Theorem \ref{2pulsebifurcation}, for sufficiently small $r$ we have symmetric solutions with equal length parameters $b_0(\theta) = b_1(\theta) = e^{-\theta/\rho}$. These length parameters do not depend on $r$. Thus we have
-\begin{align*}
-\tilde{a}_0(r) = \tilde{a}_1(r)  
-&= (-1)^{-\rho \log r / \pi} s_0 e^{\alpha \phi/\beta} e^{-\theta/\rho} \left( \beta \cos \theta - \alpha \sin \theta \right) + \mathcal{O}(r^{\gamma/2\alpha}) \\
-&= (-1)^{-\rho \log r / \pi}  \frac{s_0 e^{\alpha \phi/\beta} }{\alpha}  e^{-\theta/\rho} \left( \rho \cos \theta - \sin \theta \right) + \mathcal{O}(r^{\gamma/2\alpha})
-\end{align*}
-
-For $r = 0$, $\tilde{a}(0) = 0$ at the pitchfork bifurcation point $\theta = p^*(0)$. 
-
-
-
-*****
-
-For small $r$, we should be able to argue that $\tilde{a}_j(r) = 0$ at the pitchfork bifurcation point $p_0(r)$. Thus there is a pitchfork bifurcation in the integration eigenvalues at $\theta = p_0(r)$, in which the interaction eigenvalues collide at the origin and switch from a real pair to a purely imaginary pair or vice versa. 
-
 
 \iffulldocument\else
 	\bibliographystyle{amsalpha}

@@ -51,7 +51,11 @@ This is proved as part (i) of \cref{lemma:tildea0char} below.
 We can now state the main theorem of the section, which locates the eigenvalues of the linearization of the PDE \cref{genPDE} about $Q_2(x)$.
 
 \begin{theorem}\label{theorem:2peigscase1}
-Let $Q_2(x)$ be a periodic 2-pulse with length parameters $b_0(r)$ and $b_1(r)$. Let $\delta > 0$ and $M$ be as in Theorem \ref{blockmatrixtheorem}. Let $a_0(r)$, and $a_1(r)$ be the coefficients of the matrix $A$ in \ref{blockmatrixtheorem}, where we have made the dependence on $r$ explicit. Let $a(r) = a_0(r) + a_1(r)$, and take $a(r) = r \tilde{a}(r)$. Choose $r_0$ sufficiently small so that 
+Let $Q_2(x)$ be a periodic 2-pulse constructed using \cref{perexist} with baseline length parameters
+\[
+b_0^0 = \exp\left(-\frac{m_0 \pi}{\rho}\right), \quad b_1^0 = \exp\left(-\frac{m_1 \pi}{\rho}\right),
+\] 
+where $m_0 \in \{ 0, 1\}$, phase parameter $\theta$, and length parameters $b_0(r)$ and $b_1(r)$. Let $\delta > 0$ and $M$ be as in Theorem \ref{blockmatrixtheorem}. Let $a_0(r)$, and $a_1(r)$ be the coefficients of the matrix $A$ in \ref{blockmatrixtheorem}, where we have made the dependence on $r$ explicit. Let $a(r) = a_0(r) + a_1(r)$, and take $a(r) = r \tilde{a}(r)$. Choose $r_0$ sufficiently small so that 
 \begin{equation}\label{nobubblecond}
 \left| \sqrt{\frac{2 \tilde{a}(0)}{M}}\right|r_0^{1/2} \leq \frac{1}{2} \frac{c}{\left( 2 |\log r_0| + |\log( b_0(0) b_1(0) |\right)}
 \end{equation}
@@ -59,13 +63,13 @@ Let $Q_2(x)$ be a periodic 2-pulse with length parameters $b_0(r)$ and $b_1(r)$.
 \begin{enumerate}[(i)]
 \item Choose any positive integer $N$ such that
 \[
-\frac{N c \pi}{2 |\log r_0| + |\log b_0 b_1| } < \delta
+\frac{N c \pi}{2 |\log r_0| + |\log b_0(0) b_1(0)| } < \delta
 \]
 Then there exists $r_1 \leq r_0$ such that for all $r\leq r_1$, there are $2N$ nonzero essential spectrum eigenvalues $\lambda = \{ \pm \lambda_m^{\text{ess}} : m = 1, \dots, N\}$, where
 \[
-\lambda_m^{\text{ess}}(r) = c \frac{m \pi i}{X}\left[1 + \mathcal{O}\left( \frac{1}{|\log r|}\left( r^{1/2} + \frac{1}{|\log r|} \right) \right) \right] + \mathcal{O}\left( \frac{1}{|\log r|}\left( r^{1/2} + \frac{1}{|\log r|} \right) \right)
+\lambda_m^{\text{ess}}(r) = c \frac{m \pi i}{X}+  \mathcal{O}\left( \frac{1}{|\log r|^2} \right)
 \]
-is on the imaginary axis. 
+is on the imaginary axis and $X = \mathcal{O}(|\log r|)$
 
 \item If $\tilde{a}(0) \neq 0$, then the following are true.
 \begin{enumerate}
@@ -75,7 +79,7 @@ is on the imaginary axis.
 	\begin{align*}
 	\lambda^{\text{int}} = \pm \left( \sqrt{-\frac{2 a(r)}{M}} + \mathcal{O}( r ) \right)
 	\end{align*}
-	PUT HERE THE THING ABOUT HOW WE DETERMINE WHICH IS WHICH.
+	If $M > 0$, then these are real if $m_0 = 0$ and purely imaginary if $m_0 = 1$. (This is reversed if $M < 0)$. 
 \end{enumerate}
 \item DEGENERATE CASE HERE.
 
@@ -122,7 +126,7 @@ Let $Q_2(x)$ be a periodic 2-pulse with length parameters $b_0(r)$ and $b_1(r)$.
 \item $\lambda_1 = c \frac{\pi}{X}$.
 \item $\lambda_* = \sqrt{\frac{2 a(r) }{M}}$
 \item $X^* = \frac{c \pi}{\lambda_*}$
-\item $R_0 = \frac{4 M^c q(X_0)}{M}$, where $q(x)$ is the first component of the primary pulse $Q(x)$.
+\item $R_0 = \frac{M^c q(X_0)}{M}$, where $q(x)$ is the first component of the primary pulse $Q(x)$.
 \item $R = \lambda_*^2 R_0 \frac{X_0}{X}$
 \end{itemize}
 
@@ -244,8 +248,8 @@ where the the coefficients $t^j_k$ have bounds given by \cref{Gimatrixbounds}. W
 \begin{equation}\label{2detB1}
 \begin{aligned}
 \det &B(\lambda, r) = \sinh(\nu(\lambda)X)\left(-2 \lambda^2 M (2a + \lambda^2 M) +  \mathcal{O}( (r^{1/2} + |\lambda|)^5 )\right) \\
-&-4\lambda^4 q(X_0) M M^c \left( \sinh(\nu(\lambda)(2 X_0 + X_1)) - 3 \sinh(\nu(\lambda)X_1)  \right) \\
-&-4\lambda^4 q(X_1) M M^c \left( \sinh(\nu(\lambda)(2 X_1 + X_0)) - 3 \sinh(\nu(\lambda)X_0)  \right) \\
+&-\lambda^4 q(X_0) M M^c \left( \sinh(\nu(\lambda)(2 X_0 + X_1)) - 3 \sinh(\nu(\lambda)X_1)  \right) \\
+&-\lambda^4 q(X_1) M M^c \left( \sinh(\nu(\lambda)(2 X_1 + X_0)) - 3 \sinh(\nu(\lambda)X_0)  \right) \\
 &+ \mathcal{O}( (r^{1/2} + |\lambda|)^6) 
 \end{aligned}
 \end{equation}
@@ -264,7 +268,7 @@ since $|\cosh(\nu(\lambda)X_0)|\leq C$ by Lemma \ref{lemma:expnubound}. Doing th
 \begin{equation*}
 \begin{aligned}
 \det &B(\lambda, r) = \left(-2 \lambda^2 M (2a + \lambda^2 M) + \mathcal{O}( (r^{1/2} + |\lambda|)^5 )\right) \sinh(\nu(\lambda)X) \\
-&-16 M M^c \lambda^4 ( q(X_0) \sinh(\nu(\lambda)X_0) + q(X_1) \sinh(\nu(\lambda)X_1) ) \cosh(\nu(\lambda)X)  \\
+&-4 M M^c \lambda^4 ( q(X_0) \sinh(\nu(\lambda)X_0) + q(X_1) \sinh(\nu(\lambda)X_1) ) \cosh(\nu(\lambda)X)  \\
 &+ \mathcal{O}( (r^{1/2} + |\lambda|)^6) 
 \end{aligned}
 \end{equation*}
@@ -279,7 +283,7 @@ Substituting this into \cref{2detBeq} and simplifying, we obtain the equation
 \begin{equation}\label{2detBeqmu}
 \begin{aligned}
 \det &B(\mu, r) = \left(-2 c^2 \mu^2 M (2a + c^2 \mu^2 M) +  \mathcal{O}( (r^{1/2} + |\mu|)^5 )\right) \sinh(\mu X) \\
-&-16 p_1 M M^c c^4 \mu^4 ( q(X_0) \sinh(\mu X_0) + q(X_1) \sinh(\mu X_1) ) \cosh(\mu X)  \\
+&-4 p_1 M M^c c^4 \mu^4 ( q(X_0) \sinh(\mu X_0) + q(X_1) \sinh(\mu X_1) ) \cosh(\mu X)  \\
 &+ \mathcal{O}( (r^{1/2} + |\mu|)^6) 
 \end{aligned}
 \end{equation}
@@ -639,14 +643,14 @@ We start with \cref{2detBint1}. Since we are looking for nonzero eigenvalues of 
 \begin{equation}\label{KreinB1}
 \begin{aligned}
 0 &= \left( (2a(r) + c^2 \mu^2 M) +  \mathcal{O}( r^{3/2} )\right) \sinh(\mu X) \\
-&+ 8 c^2 \mu^2 M^c ( q(X_0) \sinh(\mu X_0) + q(X_1) \sinh(\mu X_1) ) \cosh(\mu X) + \mathcal{O}( r^2 ) 
+&+ 2 c^2 \mu^2 M^c ( q(X_0) \sinh(\mu X_0) + q(X_1) \sinh(\mu X_1) ) \cosh(\mu X) + \mathcal{O}( r^2 ) 
 \end{aligned}
 \end{equation}
 Dividing by $M c^2$ and using \cref{kreinmustar}, this becomes
 \begin{equation}\label{KreinB2}
 \begin{aligned}
 0 &= \left( (\mu - \mu_*(r) i)( \mu + \mu_*(r) i) +  \mathcal{O}( r^{3/2} )\right) \sinh(\mu X) \\
-&+\frac{8 M^c}{M} \mu^2 ( q(X_0)\sinh(\mu X_0) + q(X_1) \sinh(\mu X_1) ) \cosh(\mu X) + \mathcal{O}( r^2 ) 
+&+\frac{2 M^c}{M} \mu^2 ( q(X_0)\sinh(\mu X_0) + q(X_1) \sinh(\mu X_1) ) \cosh(\mu X) + \mathcal{O}( r^2 ) 
 \end{aligned}
 \end{equation}
 
@@ -672,7 +676,7 @@ Substituting all of these into \cref{KreinB2} and dividing by $-1$, we obtain th
 \begin{equation}\label{KreinB3}
 \begin{aligned}
 0 &= \left( h ( h + 2 \mu_*(r) i) +  \mathcal{O}( r^{3/2} )\right) \left( (s i + h)X + \mathcal{O}\left( (si+h)^3 X^3 \right)  \right) \\
-&+\frac{8 M^c}{M} ( h + \mu_*(r) i)^2 ( q(X_0)\sinh(\mu X_0) + q(X_1) \sinh(\mu X_1) ) \left( 1 + \mathcal{O}\left( (s i +h)^2 X^2 \right) \right) + \mathcal{O}( r^2 )
+&+\frac{2 M^c}{M} ( h + \mu_*(r) i)^2 ( q(X_0)\sinh(\mu X_0) + q(X_1) \sinh(\mu X_1) ) \left( 1 + \mathcal{O}\left( (s i +h)^2 X^2 \right) \right) + \mathcal{O}( r^2 )
 \end{aligned}
 \end{equation}
 
@@ -706,7 +710,7 @@ Substituting all of these into \cref{KreinB3} and dividing by $r^{3/2}$, we obta
 \begin{equation}\label{KreinB4}
 \begin{aligned}
 0 &= \left( \tilde{h} ( \tilde{h} + 2 \tilde{\mu}_*(r) i) +  \mathcal{O}( r^{1/2} )\right) \left( (\tilde{s}i + \tilde{h})X + \mathcal{O}\left( (\tilde{s}i+\tilde{h})^3 r X^3 \right)  \right) \\
-&+\frac{8 M^c}{M} ( \tilde{h} + \tilde{\mu}_*(r) i)^2 \left( \tilde{q}(X_0) (\tilde{h} + \tilde{\mu}_*(r)i )r^{1/2} X_0 + \mathcal{O}(r^{1/2 + \eta}) + \mathcal{O}(r^{3/2} (\tilde{h} + \tilde{\mu}_*(r))^3 X^3)) \right) \left( 1 + \mathcal{O}\left( (\tilde{s}i+\tilde{h})^2 r X^2 \right) \right) \\
+&+\frac{2 M^c}{M} ( \tilde{h} + \tilde{\mu}_*(r) i)^2 \left( \tilde{q}(X_0) (\tilde{h} + \tilde{\mu}_*(r)i )r^{1/2} X_0 + \mathcal{O}(r^{1/2 + \eta}) + \mathcal{O}(r^{3/2} (\tilde{h} + \tilde{\mu}_*(r))^3 X^3)) \right) \left( 1 + \mathcal{O}\left( (\tilde{s}i+\tilde{h})^2 r X^2 \right) \right) \\
 &+ \mathcal{O}( r^{1/2} ) 
 \end{aligned}
 \end{equation}
@@ -728,7 +732,7 @@ where the factor of $2$ is $\tilde{s}$ is for convenience later. Substituting th
 \begin{aligned}
 &\left( \frac{X_0^{1/2}}{X^{1/2}} h_0 \left( r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + 2 \tilde{\mu}_*(r) i\right) + \mathcal{O}( r^{1/4} ) \right) 
 \left( \frac{X_0^{1/2}}{X^{1/2}}(2 s_0 i + h_0) X + \mathcal{O}\left( \left( 2 s_0 i + h_0 \right)^3 r^{3/2} X_0^{3/2} X^{3/2} \right) \right) \\
-&+\frac{8 M^c}{M} \left( r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r) i\right)^2 \left( \tilde{q}(X_0) \left(r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r)i \right) X_0 + \mathcal{O}(r^{\eta}) \right.\\
+&+\frac{2 M^c}{M} \left( r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r) i\right)^2 \left( \tilde{q}(X_0) \left(r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r)i \right) X_0 + \mathcal{O}(r^{\eta}) \right.\\
 &+ \left. \mathcal{O} \left (r X^3 \left(r^{1/4} \frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r)\right)^3 \right) \right) \left( 1 + \mathcal{O}\left( \left(2 s_0 i + h_0\right)^2 r^{3/2} X_0 X \right) \right) + \mathcal{O}(1) = 0
 \end{aligned}
 \end{equation}
@@ -737,7 +741,7 @@ Rearranging the top line, we get
 \begin{aligned}
 &\left( X_0 h_0 \left( r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + 2 \tilde{\mu}_*(r) i\right) + \mathcal{O}\left( r^{1/4} X_0^{1/2} X^{1/2} \right) \right) 
 \left( 2 s_0 i + h_0 + \mathcal{O}\left( \left( 2 s_0 i + h_0 \right)^3 r^{3/2} X_0 X \right) \right) \\
-&+\frac{8 M^c}{M} \left( r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r) i\right)^2 \left( \tilde{q}(X_0) \left(r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r)i \right) X_0 + \mathcal{O}(r^{\eta}) \right.\\
+&+\frac{2 M^c}{M} \left( r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r) i\right)^2 \left( \tilde{q}(X_0) \left(r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r)i \right) X_0 + \mathcal{O}(r^{\eta}) \right.\\
 &+ \left. \mathcal{O} \left (r X^3 \left(r^{1/4} \frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r)\right)^3 \right) \right) \left( 1 + \mathcal{O}\left( \left(2 s_0 i + h_0\right)^2 r^{3/2} X_0 X \right) \right) + \mathcal{O}(1) = 0
 \end{aligned}
 \end{equation*}
@@ -746,14 +750,14 @@ and divide by $X_0$ to get
 \begin{aligned}
 &\left( h_0 \left( r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + 2 \tilde{\mu}_*(r) i\right) + \mathcal{O}\left( r^{1/4} \frac{X^{1/2}}{X_0^{1/2}} \right) \right) 
 \left( 2 s_0 i + h_0 + \mathcal{O}\left( \left( 2 s_0 i + h_0 \right)^3 r^{3/2} X_0 X \right) \right) \\
-&+\frac{8 p_1}{M^c} \left( r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r) i\right)^2 \left( \tilde{q}(X_0) \left(r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r)i \right) + \mathcal{O}\left(\frac{r^{\eta}}{X_0} \right) \right.\\
+&+\frac{2 p_1}{M^c} \left( r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r) i\right)^2 \left( \tilde{q}(X_0) \left(r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r)i \right) + \mathcal{O}\left(\frac{r^{\eta}}{X_0} \right) \right.\\
 &+ \left. \mathcal{O} \left (r X^3 \left(r^{1/4} \frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r)\right)^3 \right) \right) \left( 1 + \mathcal{O}\left( \left(2 s_0 i + h_0\right)^2 r^{3/2} X_0 X \right) \right) + \mathcal{O}\left(\frac{1}{X_0}\right) = 0
 \end{aligned}
 \end{equation*}
 Since $X = \mathcal{O}(|\log r|)$ and $X_1 = \mathcal{O}(|\log r|)$, this is of the form $G(h_0, s_0, r) = 0$. Since $r^{a}(|\log r|)^b \rightarrow 0$ as $r \rightarrow 0$ for any positive powers $a$ and $b$, 
 \begin{equation}\label{BsimpleG0}
 \begin{aligned}
-G(h_0, s_0, 0) &= h_0 (2 \mu_*(0) i)(2 s_0 i + h_0) + \frac{8 M^c \tilde{q}(X_0)}{M}(\mu_*(0) i)^3 
+G(h_0, s_0, 0) &= h_0 (2 \mu_*(0) i)(2 s_0 i + h_0) + \frac{2 M^c \tilde{q}(X_0)}{M}(\mu_*(0) i)^3 
 \end{aligned}
 \end{equation}
 To solve $G(h_0, s_0, 0) = 0$, divide by $2 \mu_*(0) i$ to get the quadratic equation
@@ -762,7 +766,7 @@ h_0^2 + 2 s_0 i h_0 - R_0 = 0
 \end{equation}
 where 
 \[
-R_0 = \frac{4 M^c q(X_0)}{M}\mu^*(0)^2
+R_0 = \frac{M^c q(X_0)}{M}\mu^*(0)^2
 \]
 Then \cref{Bquadeq1} has solution
 \begin{equation}\label{Bquadsol}
