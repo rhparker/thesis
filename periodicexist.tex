@@ -1097,7 +1097,11 @@ e^{ \frac{1}{\rho}\theta^* } \sin\left( \theta^* \right) &= \left[ e^{ -\frac{1}
 \end{align}
 where $\theta \in I_\rho$. This involves the following steps.
 \begin{enumerate}
-	\item Let $g(\theta) = e^{ \frac{1}{\rho} \theta } \sin(\theta)$. Then we can rewrite equation \eqref{thetastareq} as
+	\item Let 
+	\[
+	g(\theta) = e^{ \frac{1}{\rho} \theta } \sin(\theta)
+	\]
+	Then we can rewrite equation \eqref{thetastareq} as
 	\begin{align}\label{thetastareq2}
 	g(\theta^*) &= e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1} g(\theta)
 	\end{align}
@@ -1112,7 +1116,10 @@ where $\theta \in I_\rho$. This involves the following steps.
 	&= e^{ -\frac{1}{\rho} \arctan \rho } \left(\cos\frac{1}{\sqrt{1 + \rho^2}} - \frac{1}{\rho} \frac{\rho}{\sqrt{1 + \rho^2}}\right) = 0
 	\end{align*}
 	Similarly, at the right endpoint of $I_\rho$, $g'(\theta_\rho^+) = 0$.
+
 	The only critical point of $g'(\theta)$ on $I_\rho$ is a local maximum at $\theta = \arctan \rho$. Since $g'(\theta) > 0$ on the interior of $I_\rho$ and is zero at the endpoints, it follows that $g(\theta)$ is strictly increasing on $I_\rho$.
+
+	Furthermore, we can easily show that the only zero of $g(\theta)$ on $I_\rho$ is as $\theta = 0$.
 	
 	\item It follows that the range of $g$ on $I_\rho$ is determined by the values of $g$ at the endpoints on $I_\rho$, thus for $\theta \in I_\rho$,
 	\begin{equation}\label{grange}
@@ -1122,11 +1129,15 @@ where $\theta \in I_\rho$. This involves the following steps.
 	\begin{equation}\label{defT}
 	T = \frac{\rho}{\sqrt{1+\rho^2}}e^{-\frac{1}{\rho}\arctan \rho}
 	\end{equation}
-	Since $g$ is strictly increasing on $I_\rho$, $g$ is invertible on $[-T, e^{\frac{1}{\rho}\pi} T]$ and $g^{-1}: [-T, e^{\frac{1}{\rho}\pi} T] \rightarrow I_\rho$ is strictly increasing, with $g^{-1}(-T) = \theta_\rho^-$ and $g^{-1}(e^{\frac{1}{\rho}\pi} T) = \theta_\rho^+$.
+	Since $g$ is strictly increasing on $I_\rho$, $g$ is invertible on $[-T, e^{\frac{1}{\rho}\pi} T]$ and $g^{-1}: [-T, e^{\frac{1}{\rho}\pi} T] \rightarrow I_\rho$ is strictly increasing, with $g^{-1}(-T) = \theta_\rho^-$ and $g^{-1}(e^{\frac{1}{\rho}\pi} T) = \theta_\rho^+$. Since $g(0) = 0$, $g^{-1}(0) = 0$.
 
-	\item It follows from \eqref{grange} that the RHS of \eqref{thetastareq2} has bounds
+	\item Let
+	\[
+	t(\theta, m_1) = e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1} g(\theta)
+	\]
+	be the RHS of \eqref{thetastareq2}. It follows from \eqref{grange}
 	\begin{equation}\label{RHSbounds}
-	e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1} g(\theta) \in
+	t(\theta, m_1) \in
 	\begin{cases}
 	[-e^{-\frac{1}{\rho}m_1 \pi} T, e^{-\frac{1}{\rho}(m_1 - 1) \pi} T] & m_1 \text{ even }\\
 	[-e^{-\frac{1}{\rho}(m_1 - 1) \pi} T, e^{-\frac{1}{\rho}m_1 \pi} T] & m_1 \text{ odd }
@@ -1134,13 +1145,19 @@ where $\theta \in I_\rho$. This involves the following steps.
 	\end{equation}
 	Since $m_1 \geq 1$, 
 	\begin{equation*}
-	e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1} g(\theta) \in [-T, e^{\frac{1}{\rho}\pi} T]
+	t(\theta, m_1) \in [-T, e^{-\frac{1}{\rho}\pi} T]
 	\end{equation*}
 	Thus for $\theta \in I_\rho$, the RHS of \eqref{thetastareq2} is contained in the domain of $g^{-1}$, and so we solve for $\theta^*$ to get
 	\begin{equation}\label{solvethetastar}
 	\theta^* = g^{-1}\left( e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1} e^{ \frac{1}{\rho} \theta } \sin \theta \right)
 	\end{equation}
 	Since $\theta^*(\theta) \in I_\rho$, this ensures that we cannot overlap the region parameterized by a different $b_0^0$ by varying $\theta$. 
+
+	Furthermore, if $m_1 = 1$ and $\theta = \pi - \arctan \rho$, then $t(\theta, m_1) = -T$. For all $m_1$ and $\theta \in I_\rho$ other than this,
+	\[
+	t(\theta, m_1) \in \left(-T, e^{-\frac{1}{\rho}\pi} T\right]
+	\]
+	Since $g^{-1}$ is strictly increasing and $g(0) = 0$, this implies that $|\theta^*(\theta, m_1) \leq |\theta|$, with equality when $m_1 = 1$ and $\theta = \pi - \arctan \rho$ and strict inequality otherwise.
 
 	\item Finally, we will show what happens at $\theta = 0$. Since $g(0) = 0$, $\theta^*(0) = 0$, thus $b_0^*(m_0, 0) = b_0^0$. $b_1^*(m_1, 0) = b_1^0$ by definition.
 

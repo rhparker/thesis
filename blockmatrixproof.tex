@@ -1401,6 +1401,55 @@ Theorem \ref{blockmatrixtheorem} combines the jump matrix formulas from Lemma \r
 M = \int_{-\infty}^\infty \langle \Psi(y), H(y) \rangle dy = \int_{-\infty}^\infty q(y) \partial_c q(y) dy
 \end{align*}
 
+\subsection{Proof of Theorem \ref{blockmatrixtheorem2}}
+
+First, we show that the condition \cref{simplecondition} allows us to simplfiy the analysis.
+
+\begin{lemma}\label{lemma:expnubound}
+Let $|\lambda| < \delta$. If there exist constants $R_1 > 0$ and $R_2 > 0$ such that 
+\begin{equation}\label{R1cond}
+n|\log r|\:r^{1/2} \leq R_1
+\end{equation}
+and
+\begin{equation}\label{R2cond}
+|\Re \lambda| \leq R_2 r^{1/2}
+\end{equation}
+then we have the bound
+\begin{equation}\label{expnubound}
+\left|e^{\nu(\lambda)x}\right| \leq C 
+\end{equation}
+for any $x$ with $|x| \leq X$. The constant $C$ only depends on $R_1$, $R_2$, and $\delta$.
+\begin{proof}
+Since $X = \mathcal{O}(n|\log r|)$, condition \cref{R1cond} implies that 
+\begin{equation}\label{rXbound}
+r^{1/2} \leq C_1 R_1 \frac{1}{X} 
+\end{equation}
+where the constant $C_1$ does not depend on $r$. Let $\lambda = a + bi$. Combining \cref{rXbound} with \cref{R2cond}, we have
+\begin{equation}\label{realabound}
+|a| \leq C_1 R_1 R_2 \frac{1}{X} 
+\end{equation}
+
+Since $|\lambda| \leq \delta$, $|a|, |b| \leq \delta$ as well. From Lemma \ref{nulambdalemma},
+\begin{align*}
+\nu(\lambda) &= \frac{1}{c}\lambda + \mathcal{O}(\lambda^3) \\
+&= \frac{a}{c} + i \frac{b}{c} + \mathcal{O}\left( a(a^2 + \delta^2) \right) + i \mathcal{O}\left( a(b^2 + \delta^2) \right)
+\end{align*}
+where we split the remainder up into real and imaginary parts. Thus we have
+\begin{align}\label{nulambdaX}
+\nu(\lambda)X &= \frac{a}{c}X + i \frac{b}{c}X + \mathcal{O}\left( a(a^2 + \delta^2) X\right) + i \mathcal{O}\left( a(b^2 + \delta^2) X\right)
+\end{align}
+When we evaluate $|\exp{(\nu(\lambda)X)}|$, the two imaginary terms in \cref{nulambdaX} do not contribute. Using \cref{realabound}, since $|a| \leq \delta$,
+\begin{align*}
+\left| \frac{a}{c}X + \mathcal{O}\left( a(a^2 + \delta^2) X \right) \right| &\leq \frac{1}{c}C_1 R_1 R_2 (1 + \mathcal{O}(\delta^2)) \leq C
+\end{align*}
+where the constant $C$ only depends on $\delta$, $R_1$, and $R_2$. Thus we have the bound \cref{expnubound}. The same bound holds for $|x| \leq X$.
+\end{proof}
+\end{lemma}
+
+The proof of Theorem \ref{blockmatrixtheorem2} is identical to that of Theorem \ref{blockmatrixtheorem} except we can use Lemma \ref{nulambdaX} to bound all terms of the form $e^{\pm \nu(\lambda)X_j}$ in the analysis by a constant rather than by $e^{\eta X_j}$. In particular, this means that no special care is needed to track remainder terms involving the terms $e^{\pm \nu(\lambda)X_j}$. The result is the simplified block matrix equation \cref{blockeq2}. As another concesquence, the remainder terms will only involve $e^{-\alpha_1 X_m}$; there will be no bounds with a slower decay rate. 
+
+Finally, we use the parameterization in Theorem \ref{perexist}. From that parameterization, $e^{-\alpha X_m} = \mathcal{O}(r^{1/2})$. In the proof of \ref{blockmatrixtheorem}, we require $^{-\alpha X_m} < \delta$, which is equivalent to requiring $r^{1/2} < \delta$. We also write the remainder matrices in terms of the scaling parameter $r$.
+
 \iffulldocument\else
 	\bibliographystyle{amsalpha}
 	\bibliography{thesis.bib}
