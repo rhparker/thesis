@@ -369,6 +369,14 @@ In addition, we have the following improved bound for $Z_2(\lambda)$.
 \begin{equation}\label{Z2bound2}
 \| Z_2(\lambda)(a,b,c,\tilde{c},d) \| \leq C\left(|b| + e^{\eta X_* }|c| + e^{-\alpha X_*}|\lambda||d| + |D_i||d| \right)
 \end{equation}
+and the following piecewise bounds for $Z_2(\lambda)_i^-(x)$
+\begin{equation}\label{Z2piecewise}
+\begin{aligned}
+\| Z_2(\lambda)_i^-(a,b,c,\tilde{c},d)(x) \| \leq C\left(|b| + e^{\eta (X_{i-1} + x) }|c| + e^{-\alpha X_*}|\lambda||d| + |D_i||d| \right) \\
+\| Z_2(\lambda)_i^+(a,b,c,\tilde{c},d)(x) \| \leq C\left(|b| + e^{\eta (X_i - x) }|c| + e^{-\alpha X_*}|\lambda||d| + |D_i||d|\right) 
+\end{aligned}
+\end{equation}
+
 \begin{proof}
 Apply the projection $P^c(\lambda)$ on $E^c(
 \lambda)$ to \eqref{Dideq0}, and write the resulting equation as
@@ -437,7 +445,7 @@ Using the bound $A_1$ for $\tilde{c}$ on the RHS and the bound for $\tilde{L}_3$
 \begin{align}\label{ciexp1}
 \tilde{c_i} &= \lambda q(X_i) (d_{i+1} - d_i ) + C_2(\lambda)_i(b, c, d)
 \end{align}
-where $C_2$ has the bound \cref{C2bound}. Finally, we substitute $A_1$ from Lemma \ref{Zinv1} and \cref{ciexp1} for $\tilde{c}$ into $Z_1$ from Lemma \ref{Zinv0} to get the improved bound \cref{Z2bound2} for $Z_2(\lambda)$, where we used the bound $|D_i| \leq C e^{\alpha_1 X_*}$.
+where $C_2$ has the bound \cref{C2bound}. Finally, we substitute $A_1$ from Lemma \ref{Zinv1} and \cref{ciexp1} for $\tilde{c}$ into $Z_1$ from Lemma \ref{Zinv0} to get the improved bound \cref{Z2bound2} for $Z_2(\lambda)$, where we used the bound $|D_i| \leq C e^{\alpha_1 X_*}$. The piecewise bounds \cref{Z2piecewise} are obtained by plugging the improved uniform bound \cref{Z2bound}, \cref{A1bound}, and \cref{ciexp1} into the fixed point equations \cref{Zfpeq}.
 \end{proof}
 \end{lemma}
 
@@ -586,63 +594,70 @@ y_i^+ - y_i^- \end{pmatrix} + L_4(\lambda)_i(b, c, d) = 0
 To get a bound on $L_4$, we will bound the individual terms involved. 
 
 \begin{enumerate}
-\item For the $a_i$ terms, we substitute $A_1$ from Lemma \ref{Zinv1} and use the bound \eqref{A1bound} to get
+\item For the $a_i$ terms, we use the bound \eqref{A1bound} from Lemma \ref{Zinv1} and the exponential dichotomy bounds to get
 \begin{align*}
 |P_-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) a_{i-1}^-| 
-&\leq C \left( e^{-2 \alpha X_{i-1}} (|b_{i-1}^+| + |b_i^-| + |c_{i-1}| + |\lambda^2||d|) + e^{- \alpha X_{i-1}} |D_{i-1}||d| \right)\\
+&\leq C e^{-\alpha X_*} \left( e^{-\alpha X_*} |b|  + e^{-\alpha_1 X_*}(|c| + |\lambda|^2 |d|) + |D_i||d| \right)\\
 |P_+(0; \lambda) \Phi^u(0, X_i; \lambda) a_i^+| 
-&\leq C \left( e^{-2 \alpha X_i} (|b_i^+| + |b_{i+1}^-| + |c_i| + |\lambda|^2|d|) + e^{-\alpha X_i}|D_i||d| \right)
+&\leq C e^{-\alpha X_*} \left( e^{-\alpha X_*} |b|  + e^{-\alpha_1 X_*}(|c| + |\lambda|^2 |d|) + |D_i||d| \right)
 \end{align*}
 
-\item For the $b_i$ and $c_i$ terms, since the conjugation operators $P_\pm(x; \lambda)$ and eigenprojections $P_0^{s/u}(\lambda)$ are smooth in $\lambda$, we have
+\item For the $b_i$, since the conjugation operators $P_\pm(x; \lambda)$ and eigenprojections $P_0^{s/u}(\lambda)$ are smooth in $\lambda$, we have
 \begin{align*}
-|(P_-(0; \lambda) &- P_-(0; 0))b_i^- + P_-(0; \lambda)(P_0^u(\lambda) - P_0^u(0))b_i^-| \leq C |\lambda| |b_i^-|
+|(P_-(0; \lambda) &- P_-(0; 0))b_i^- + P_-(0; \lambda)(P_0^u(\lambda) - P_0^u(0))b_i^-| \leq C |\lambda| |b|
 \end{align*}
-The $b_i^+$ is similar. For the $c_i$ terms, we  have
-\begin{align*}
-|(P_-(0; \lambda) &- P_-(0; 0)) P_0^c(0) e^{\nu(\lambda) X_{i-1}} c_{i-1} + P_-(0; \lambda) (P_0^c(\lambda) - P_0^c(0)) e^{\nu(\lambda) X_{i-1}} c_{i-1} | \leq C|\lambda||e^{\nu(\lambda) X_{i-1}} c_{i-1}|
-\end{align*}
-and
-\begin{align*}
-|(P_+(0; \lambda) &- P_+(0; 0))P_0^c(0) e^{-\nu(\lambda)X_i} c_i + P_+(0; \lambda) (P_0^c(\lambda) - P_0^c(0)) e^{-\nu(\lambda)X_i} c_i| \leq C |\lambda||e^{-\nu(\lambda)X_i} c_i|
-\end{align*}
+The $b_i^+$ term is similar. 
 
-\item For the $\tilde{c}_i$ terms, we use the expression for $\tilde{c}_i$ from Lemma \ref{lemma:tildec1} and the bounds on $C_2$ from that lemma, to get
+\item For the $c_i$ terms, similarly to the $b_i$ terms, we have
+\begin{align*}
+|(P_-(0; \lambda) &- P_-(0; 0)) P_0^c(0) e^{\nu(\lambda) X_{i-1}} c_{i-1} + P_-(0; \lambda) (P_0^c(\lambda) - P_0^c(0)) e^{\nu(\lambda) X_{i-1}} c_{i-1} | \leq C |\lambda||e^{\nu(\lambda) X_{i-1}} c_{i-1} |
+\end{align*}
+The term involving $c_i$ is similar.
+
+\item The $\tilde{c}_i$ terms are also handled  similarly to the $b_i$. We use the expression for $\tilde{c}_i$ from Lemma \ref{lemma:tildec1} and the bound on $C_2$ to get
 \begin{align*}
 |(P_+&(0; \lambda) - P_+(0; 0))P_0^c(0) e^{-\nu(\lambda)X_i} \tilde{c}_i + P_+(0; \lambda) (P_0^c(\lambda) - P_0^c(0)) e^{-\nu(\lambda)X_i} \tilde{c}_i| \\
-&\leq C |\lambda| e^{-|\nu(\lambda)|X_i} |\lambda| e^{-\alpha X_i} \left( |b_i^+| + |b_{i+1}^-| + |c_i| + |d| \right) \\
-&\leq C |\lambda|^2 e^{-(\alpha - \eta)X_i} \left( |b_i^+| + |b_{i+1}^-| + |c_i| + |d| \right) 
+&\leq C |\lambda|^2 e^{\eta X_*} \left( e^{-\alpha X_*} |b| +  e^{-\alpha_1 X_*}(|c| + |\lambda|^2 |d| ) + |D_i||d| \right) \\
+&\leq C |\lambda|^2 \left( e^{-(\alpha - \eta) X_*} |b| +  e^{-\alpha X_*}(|c| + |d|) \right) 
 \end{align*}
-and 
-\begin{align*}
-|(P_-&(0; \lambda) - P_-(0; 0)) P_0^c(0) e^{\nu(\lambda) X_{i-1}} \tilde{c}_{i-1} + P_-(0; \lambda) (P_0^c(\lambda) - P_0^c(0)) e^{\nu(\lambda) X_{i-1}} \tilde{c}_{i-1} | \\
-&\leq C |\lambda|^2 e^{-(\alpha - \eta)X_i} \left( |b_{i-1}^+| + |b_i^-| + |c_{i-1}| + |d| \right) 
-\end{align*}
+The term involving $\tilde{c}_{i-1}$ is similar.
 
-\item The bound on the integral terms is determined by the integrals involving the center subspace, since the other integrals will have stronger bounds. For the integrals involving $Z$, we use the bound on $Z_2$ from Lemma \ref{lemma:tildec1} and the bound on $G_i^\pm$ from Lemma \ref{stabestimateslemma} to get
+\begin{equation}\label{Z2piecewise}
+\begin{aligned}
+\| Z_2(\lambda)_i^-(a,b,c,\tilde{c},d)(x) \| \leq C\left(|b| + e^{\eta (X_{i-1} + x) }|c| + e^{-\alpha X_*}|\lambda||d| + |D_i||d| \right) \\
+\| Z_2(\lambda)_i^+(a,b,c,\tilde{c},d)(x) \| \leq C\left(|b| + e^{\eta (X_i - x) }|c| + e^{-\alpha X_*}|\lambda||d| + |D_i||d|\right) 
+\end{aligned}
+\end{equation}
+
+\item The bound on the integral terms is determined by the integrals involving the center subspace, since the other integrals will have stronger bounds. For the integrals involving $Z$, we use the bound on $G_i^\pm$ from Lemma \ref{stabestimateslemma} to get
 \begin{align*}
 &\left| P_i^+(0; \lambda) \int_{X_i}^0 \Phi^c(0, y; \lambda) P_+(y; \lambda)^{-1} G_i^+(y) P_+(y; \lambda) Z_i^+(y) dy \right| \\
-&\leq C \| Z_i^+(y) \| \int_0^{X_i} e^{\eta y} \left( e^{-\alpha_1 X_i} e^{-\alpha_1(X_i - y) } + e^{-2 \alpha_1 X_{i-1}} e^{-\alpha_1 y} \right) dy \\
-&\leq C \| Z_i^+(y) \| \left( e^{-\alpha X_i} \int_0^{X_i} e^{-\alpha_1(X_i - y) } dy + e^{-2 \alpha_1 X_{i-1}} \int_0^{X_i} e^{-(\alpha_1 - \eta) y}dy \right) \\
-&\leq C e^{-\alpha X_m} (|b| + |e^{-\nu(\lambda)X_i} c_i| + |c_i| + e^{-\alpha X_i}|\lambda||d| + |D_i||d|)
+&\leq C \int_0^{X_i} e^{\eta y} \left( e^{-\alpha_1 X_i} e^{-\alpha_1(X_i - y) } + e^{-2 \alpha_1 X_{i-1}} e^{-\alpha_1 y} \right) | Z_i^+(y) | dy \\
 \end{align*}
-Similarly,
+For the first integral, we use the piecewise bound on $Z_2$ from Lemma \ref{lemma:tildec1} to get
 \begin{align*}
-&\left| \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_-(y; \lambda)^{-1} G_i^-(y) P_-(y; \lambda)Z_i^-(y) dy \right| \\
-&\leq C e^{-\alpha X_m} (|b| + |e^{-\nu(\lambda)X_i} c_i| + |c_i| + e^{-\alpha X_i}|\lambda||d| + |D_i||d|)
+\int_0^{X_i} &e^{\eta y} e^{-\alpha_1 X_i} e^{-\alpha_1(X_i - y) } dy \\
+&\leq C \left( \left( |b| + e^{-\alpha X_*}|\lambda||d| + |D_i||d|\right) \int_0^{X_i} e^{\eta y} e^{-\alpha_1 X_i} e^{-\alpha_1(X_i - y) } dy + |c| \int_0^{X_i} e^{\eta y} e^{-\alpha_1 X_i} e^{-(\alpha_1 - \eta) (X_i - y) } dy \right) \\
+&\leq C e^{-\alpha X_*}\left( |b| + |c| + e^{-\alpha X_*}|\lambda||d| + |D_i||d|\right) 
 \end{align*}
+For the second integral, we use the uniform bound on $Z_2$ from Lemma \ref{lemma:tildec1} to get
+\begin{align*}
+\int_0^{X_i} &e^{\eta y} e^{-2 \alpha_1 X_{i-1}} e^{-\alpha_1 y} | Z_i^+(y) | dy \\
+&\leq C\left(|b| + |c| + e^{-\alpha X_*}|\lambda||d| + |D_i||d|\right) e^{-2 \alpha_1 X_*} e^{\eta X_*} \int_0^{X_i} e^{-(\alpha_1 - \eta) y} dy \\
+&\leq C e^{-\alpha X_*}\left( |b| + |c| + e^{-\alpha X_*}|\lambda||d| + |D_i||d|\right) 
+\end{align*}
+The other integral term is similar.
 
-\item For the integrals not involving $Z$, we have
+\item For the integrals involving $\tilde{H}_i^\pm$, we have
 \begin{align*}
-\left| \lambda^2 d_i P_-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_-(y; \lambda)^{-1} \tilde{H}_i^-(y) dy \right| &\leq C |\lambda|^2 |d| \int_{-X_{i-1}}^0 e^{-\eta y} e^{\alpha_1 y} dy \\
-&\leq C |\lambda|^2 |d|
+\left| \lambda^2 d_i P_-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_-(y; \lambda)^{-1} \tilde{H}_i^-(y) dy \right| &\leq C |\lambda|^2 |d| \int_{-X_{i-1}}^0 e^{-\eta y} e^{\alpha_1 y} dy \leq C |\lambda|^2 |d|
 \end{align*}
 We could obtain a better bound, but it is not necessary. The other term is similar.
 \end{enumerate}
 
-Combining all of these individual bounds together, using the fact that $D_i = \mathcal{O}(e^{-\alpha_1 X_m})$, and simplifying, we obtain the bound for $L_4(\lambda)_i(b, c, d)$.
+Combining all of these individual bounds together, using the bound $|D_i| \leq C e^{-\alpha_1 X_*})$, and simplifying, we obtain the bound for $L_4(\lambda)(b, c, d)$.
 \begin{align*}
-L_4(\lambda)_i&(b, c, d) \leq 
+L_4(\lambda)(b, c, d) \leq 
 C\Big( (|\lambda| + e^{-\alpha X_m})|b|  
 + e^{-\alpha X_m}(|c_{i-1}| + |c_i|) \\
 &+ (|\lambda| + e^{-\alpha X_m})(|e^{\nu(\lambda)X_{i-1}} c_{i-1}| + |e^{-\nu(\lambda)X_i} c_i|) + (|\lambda| + e^{-\alpha X_m})^2 |d|  \Big) 

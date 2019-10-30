@@ -574,7 +574,7 @@ Before we continue, we define the following constants, which we will use through
 	where $X_m = \min\{X_0, \dots, X_{n-1}\}$.
 \end{enumerate}
 
-To conclude this section, we will collect estimates on the terms involved in \eqref{eigsystem} in the following lemma.
+To conclude this section, we will collect estimates on the terms involved in \eqref{eigsystem} in the following two lemmas.
 
 \begin{lemma}\label{stabestimateslemma}
 Let $\Delta H_i^\pm(x) = \tilde{H}_i^\pm(x) - H(x)$. Then we have the following estimates
@@ -605,6 +605,42 @@ Similarly,
 (Q_i^+)'(X_i)' &= Q'(-X_i) + Q'(X_i) + \mathcal{O}(e^{-\alpha_1 X_i}e^{-\alpha_1 X_m})
 \end{align*}
 To get the estimate (v), we substitute these into \cref{defDid} and use estimate (i) for $\partial_c Q_i^\pm(x)$.
+\end{proof}
+\end{lemma}
+
+In the next lemma, we give an estimate for terms of the form $e^{\pm \nu(\lambda) X_j}$, which will show up in our analysis. This requires placing an upper bound one magnitude of $\lambda$.
+
+\begin{lemma}\label{lemma:expnlbound}
+For any periodic parameterization $(b_0, \dots, b_{n-1}, \theta)$, let $r_*$ be as in Theorem \ref{perexist}. Then for any $N > 0$ and $\delta > 0$, there exists a constant $R_N$ such that if $|\lambda| < \delta$ and $|\lambda| < N/|\log r|$,
+\begin{align}\label{expnlbound}
+|e^{\nu(\lambda)X_j (r; m_j, \theta)}| \leq R_N && j = 0, \dots, n-1
+\end{align}
+\begin{proof}
+Using the expression \cref{Xj} from \cref{perexist},
+\begin{align}\label{Xjmag}
+|X_j(r; m_j, \theta)| &\leq \frac{1}{2 \alpha_0} |\log r| + \frac{\pi}{2\beta_0} |b_j(r; m_j, \theta)| + |L_0| && j = 0, \dots, n-1,
+\end{align}
+For all $r \leq r_^*$ and $\theta$, the functions $b_j(r; m_j, \theta)$ are smooth in $r$ and satisfy bound $|b_j(r; m_j, \theta)| \leq m_j + 1$. Let $m_{\max} = \max\{ m_0, \dots, m_{n-1}\}$. Then we have the uniform bound
+\[
+|b_j(r; m_j, \theta)| \leq m_{\max} + 1
+\]
+Combining this with \cref{Xjmag}, we have the uniform bound
+\begin{align}\label{Xjmag2}
+|X_j(r; m_j, \theta)| &\leq \frac{1}{2 \alpha_0} |\log r| + \frac{\pi}{2\beta_0} (m_{\max} + 1) + |L_0| && j = 0, \dots, n-1,
+\end{align}
+For $\lambda$ with $|\lambda| \leq N/|\log r|$ and $|\lambda| < \delta$, it follows from \cref{nulambdalemma} that
+\begin{align*}
+|\nu(\lambda)| &\leq \frac{1}{c}|\lambda| + C |\lambda|^3 \\
+&\leq \frac{N}{c |\log r|} + C \frac{N}{|\log r|}\delta^2
+\end{align*}
+Combining this with \cref{Xjmag2}, we have
+\begin{align*}
+|\nu(\lambda) X_j(r; m_j, \theta)| &\leq  N \left( \frac{1}{c} + C \delta^2 \right)\left( \frac{1}{2 \alpha_0} + \frac{1}{|\log r|} \left( \frac{\pi}{2\beta_0} (m_{\max} + 1) + |L_0| \right) \right)
+\end{align*}
+which is bounded for all $r \leq r_*$. Thus we conclude that there exists a constant $R_N$ depending on $N$ such that for all $j = 0, \dots, n-1,$
+\[
+|e^{\nu(\lambda)X_j(r; m_j, \theta)}| \leq R_N
+\]
 \end{proof}
 \end{lemma}
 
@@ -1051,7 +1087,7 @@ be the evolution of the constant-coefficient ODE
 \[
 Z' = A(\lambda) Z
 \]
-and let $\Phi^{u/s/c}(x, y; \lambda) = \Phi(x, y; \lambda)P^{u/s/c}(\lambda)$ be the evolutions on the respective eigenspaces. For $|\lambda| < \delta$, $|\nu(\lambda)| < \eta$, and we have bounds
+and let $\Phi^{u/s/c}(x, y; \lambda) = \Phi(x, y; \lambda)P^{u/s/c}(\lambda)$ be the evolutions on the respective eigenspaces. For $|\lambda| < \delta$, $|\nu(\lambda)| < \eta$, and we have 
 \begin{equation}\label{Zevolbounds}
 \begin{aligned}
 |\Phi^s(x, y; \lambda)| &\leq C e^{-\alpha(x - y)} \\
