@@ -6,24 +6,15 @@
 	\chapter{KdV5}
 \fi
 
-A periodic multi-pulse is a multi-modal solution $q_n(x)$ to \cref{eqODE} on a periodic domain. Heuristically, we construct a periodic multi-pulse by gluing together multiple copies of the primary pulse end-to-end in a loop as shown in \cref{fig:permultipulse}.
-\begin{figure}
-\label{fig:permultipulse}
-\includegraphics[width=10cm]{periodic/multipulseperiodic}
-\caption{Periodic $n-$pulse solution.}
-\end{figure}
+\section{Proof of existence theorems}
 
-\section{Overview of problem}
-
-From a spatial dynamics perspective, a periodic multi-pulse is a multi-loop periodic orbit which remains close to the primary homoclinic orbit $Q(x)$. A periodic $n$-pulse can be described by $n$ pulse distances $\{X_0, \dots, X_{n-1} \}$, where the distance between consecutive pulses in the loop is $2 X_j$. The period of the orbit is $2X$, where $X = X_0 + \dots + X_{n-1}$. A periodic $n$-pulse requires one more length parameter than an $n$-homoclinic orbit, since we need one more connection to ``close the loop''. In this chapter, we will prove the existence of periodic multi-pulses.
-
-To prove existence of $n-$periodic solutions, we will use Lin's method. Rather than looking for a periodic $n$-pulse $U(x)$ as a piecewise perturbation of the primary pulse solution $Q(x)$, we adapt the method in \cite{Sandstede1997} and take the piecewise ansatz
+We will construct periodic multi-pulses using Lin's method. Rather than looking for a periodic $n$-pulse $U(x)$ as a piecewise perturbation of the primary pulse solution $Q(x)$, we adapt the method in \cite{Sandstede1997} and take the piecewise ansatz
 \[
 U_i^\pm(x) = Q^\pm(x; \beta_i^\pm) + V_i^\pm(x)
 \]
 where the functions $Q^\pm(x; \beta_i^\pm)$ paramaterize the stable and unstable manifolds $W^s(0)$ and $W^u(0)$ near $Q(0)$, and $V_i^\pm$ is a small remainder term. In other words, we use the small parameters $\beta_i^\pm$ to break the homoclinic orbit $Q(x)$. We will then use Lin's method to glue the pieces together. We will show that we can find a unique piecewise solution $U_i^\pm$ which generically has $n$ jumps at $x = 0$. These jumps must occur in the direction of $\Psi(0)$. We will derive expressions for these $n$ jumps. A periodic multi-pulse solution exists if and only if these $n$ jumps are all 0.
 
-\section{Piecewise ansatz}
+\subsection{Piecewise ansatz}
 
 First, we write $W^u(0)$ and $W^s(0)$ as graphs over their tangent spaces near $Q(0)$. Following \cite{Sandstede1997}, we can parameterize the unstable and stable manifolds near $Q(0)$ by the smooth functions $Q^-(\gamma, \beta^-)$ and $Q^+(\gamma, \beta^+)$, where $\gamma \in \R$, $\beta^\pm \in Y^\pm$ and these functions are chosen so that $Q^+(\gamma, 0) - Q^-(\gamma, 0) \in \R \Psi(0)$. Note that $Q^+(0, 0) = Q^-(0, 0) = Q(0)$. We will always take $\gamma = 0$. Using this parameterization, let
 \begin{equation}\label{defQpm}
@@ -53,100 +44,10 @@ Since we are looking for a continuous solution $U(x)$, we require the functions 
 U_i^+(X_i) - U_{i+1}^-(-X_i) &= 0 \label{exsystem2} \\
 U_i^+(0) - U_i^-(0) &= 0 \label{exsystem3}
 \end{align}
-where $i = 0, \dots, n-1$. Equation \cref{exsystem2} is a matching condition at the pulse tails, and equation \cref{exsystem3} is a matching condition at the pulse peaks. 
+where $i = 0, \dots, n-1$. Equation \cref{exsystem2} is a matching condition at the pulse tails, and equation \cref{exsystem3} is a matching condition at the pulse peaks.
 
-\section{Existence Theorem}\label{sec:perexistence}
 
-Physically, a periodic $n$-pulse is best described in terms of the $n$ pulse distances $\{X_0, \dots, X_{n-1} \}$, as shown in \cref{fig:permultipulse}. From a mathematical perspective, an alternative parameterization is more convenient. Rather than parameterizing a periodic $n$-pulse by its pulse distances, we will adopt a parameterization with a built-in scaling parameter. This parameterization is an adaptation of that in \cite{SandstedeStrut} to the periodic case. More details are given in \cref{sec:rescale}, but a summary is given here.
-
-Let $\rho = \beta_0 / \alpha_0$. Similar to \cite{SandstedeStrut}, define the two sets
-\begin{align}
-\mathcal{R} &= \left\{ \exp\left(-\frac{2 k \pi}{\rho}\right) : k \in \N_0 \right\} \cup \{ 0 \}  \\
-\mathcal{B} &= \left\{ \exp\left(-\frac{m \pi}{\rho}\right) : m \in \N_0 \right\} \label{setB}
-\end{align}
-We note that $\mathcal{R}$ is a complete metric space. We will describe a periodic multi-pulse using the following four sets of parameters. 
-
-\begin{enumerate}[(i)]
-\item A integer $n \geq 2$, which is the number of pulses.
-\item A scaling parameter $r \in \mathcal{R}$.
-\item A sequence of $n$ baseline length parameters $b^0 = \{ b_0^0, \dots, b_{n-1}^0 \}$, where $b_j^0 \in \mathcal{B}$.
-\item A phase parameter $\theta \in [-\arctan \rho, \pi - \arctan \rho)$.
-\end{enumerate}
-
-\noi This is the same as in \cite{SandstedeStrut,Sandstede1998} except for the addition of a phase parameter. The interval $[-\arctan \rho, \pi - \arctan \rho)$ for the phase parameter seems a little strange, but is chosen so that $\theta = 0$ corresponds the the baseline length parameters $b^0$. The pulse distances $X_i$ are determined by these parameters. For small $r$, the choice of scaling parameter $r = \exp\left(-\frac{2 k \pi}{\rho}\right)$ and baseline length parameter $b_j^0 = \exp\left(-\frac{ m \pi}{\rho}\right)$ corresponds to a pulse length of
-\[
-X_j \approx \frac{\pi}{2 b_0}(2 k + m) + L_0
-\]
-where $L_0$ is a constant. The phase parameter $\theta$ does not contribute significantly for small $r$.
-
-The next theorem uses this parameterization to prove the existence of periodic multi-pulse solutions to \eqref{genODE}. The requirement that the scaling parameter $r$ be sufficiently small means that the individual pulses must be well-separated. 
-
-[PUT A NICE PICTURE HERE. INCLUDE PITCHFORK TO EXPLAIN RESTRICTION THAT WE HAVE TO MAKE IN THE THEOREM WHICH SEEMS STRANGE].
-
-\begin{theorem}[Existence of $n$-periodic solutions]\label{perexist}
-Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and \ref{H0transversehyp}. Let $Q(x)$ be the transversely constructed, symmetric primary pulse solution to \eqref{genODE} from \cref{Qexistshyp}. Choose
-\begin{itemize}
-\item An integer $n \geq 2$ 
-\item A sequence of $n$ baseline length parameters $b^0 = \{ b_0^0, \dots, b_{n-1}^0 \}$, where 
-\[
-b_j^0 = \exp\left(-\frac{m_j \pi}{\rho}\right) \in \mathcal{B}
-\] 
-and at least one of the $m_j$ is 0 or 1. Without loss of generality, take $b_{n-1}^0 \leq b_j^0$ (equivalently, $m_{n-1} \geq m_j$) for all other $j$.
-\item A phase parameter $\theta \in [-\arctan \rho, \pi - \arctan \rho)$.
-\end{itemize}
-with the restriction that for $j = 0, \dots, n-2$, neither of the following is true.
-\begin{itemize}
-\item $m_j = m_{n-1}$ and $\theta = -\arctan \rho$
-\item $m_j = m_{n-1} - 1$ and $\theta = \pi-\arctan \rho$
-\end{itemize}
-This restriction is necessary to avoid a bifurcation point. 
-
-Then there exists $r_0 > 0$ such that
-\begin{enumerate}[(i)]
-
-\item For any $r \in \mathcal{R}$ with $r < r_0$, there exists an $n$-periodic solution $U(x)$ to \eqref{genODE} which can be written in the piecewise form \eqref{Upiecewise}. Estimates for the individual pieces are given below in Lemma \ref{solvewithjumps}.
-
-\item This solution is specified by $n$ length parameters $b_j(r; m_j, \theta)$, where $b_j(0; m_j, 0) = b_j^0$. Details on this parameterization are given in Lemma \ref{thetaparamlemma}.
-
-\item The $n$ pulses in $U(x)$ are separated by distances $2 X_0, \dots, 2 X_{n-1}$, where 
-\begin{equation}\label{Xj}
-X_j = -\frac{1}{2\alpha_0}\log(b_j(r; m_j, \theta) r) - \frac{\phi}{2 \beta_0} 
-\end{equation}
-and $\phi$ is a constant.
-
-\item The periodic domain has length $2X$, where $X = X_0 + \dots + X_{n-1}$ and is given by
-\begin{align}\label{Xdomain}
-X = \frac{1}{2\alpha_0} \left(n |\log r| + |\log(b_0(r; m_0, \theta) \cdots b_{n-1}(r; m_{n-1}, \theta))| \right) - \frac{n \phi}{2 \beta_0}
-\end{align}
-
-\end{enumerate}
-\end{theorem}
-
-\begin{remark}
-\cref{perexist} gives an existence result only for a specific choice of baseline length parameters and phase parameters. The result holds as long as the scaling parameter $r$ is sufficiently small. The solution is unique up to ``rotating'' around the periodic domain. For a periodic 2-pulse, for example, swapping the baseline length parameters $b_0^0$ and $b_1^1$ gives the same solution.
-\end{remark}
-
-The next theorem gives a uniform existence result.
-If one of the baseline length parameters $b_j^0$ is small (i.e. one of the pulse distances $X_j$ is large), the periodic $n$-pulse ``looks like'' the $n$-pulse on the real line. Without loss of generality, as we did in \cref{perexist}, since we are on a periodic domain, we will choose $b_{n-1}^0$ to be small. In the next theorem, we will choose only the first $n-1$ baseline length parameters; we will allow the final baseline length parameter and the phase parameter to vary. 
-
-\begin{theorem}\label{unifperexist}
-Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and \ref{H0transversehyp}. Let $Q(x)$ be a transversely constructed, symmetric primary pulse solution to \eqref{genODE}. Choose
-\begin{itemize}
-\item An integer $n \geq 2$ 
-\item A sequence of $n-1$ baseline length parameters $b_0^0, \dots, b_{n-2}^0$, where $b_j^0 \in \mathcal{B}$ and at least one of the $b_j^0$ is 1.
-\end{itemize}
-Then there exists $r_1 > 0$ and $b^* \in \mathcal{B}$ such that for any $r \in \mathcal{R}$ with $r < r_1$, $b_{n-1}^0 \in \mathcal{B}$ with $b_{n-1}^0 \leq b^*$, and $\theta \in [-\arctan \rho, \pi - \arctan \rho)$, there exists a unique $n$-periodic solution $U(x)$ to \eqref{genODE}. This solution is the same as the one from Theorem \ref{perexist}.
-\end{theorem}
-
-Finally, we show that for the the family of periodic 2-pulses, solutions with unequal pulse distances bifurcate from solutions with equal pulse distances in a series of pitchfork bifurcations.
-
-\begin{theorem}\label{2pulsebifurcation}
-Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and \ref{H0transversehyp}. Let $Q(x)$ be a transversely constructed, symmetric primary pulse solution to \eqref{genODE}. Then for sufficiently small $r$, asymmetric 2-periodic solutions bifurcate from symmetric 2-periodic solutions in a series of pitchfork bifurcations. The locations of these pitchforks are given below in \cref{pitchpersist}.
-\end{theorem}
-
-We will prove these results in the following sections.
-
-\section{Exponential Dichotomy}
+\subsection{Exponential Dichotomy}
 
 Let $\Phi_\pm(x, y; \beta^\pm)$ be the family of evolution operators for the ODEs
 \begin{align}\label{qpmODEs}
@@ -215,7 +116,7 @@ This follows from Lemma 1.1 and Lemma 2.1 in \cite{Sandstede1993}.
 \end{proof}
 \end{lemma}
 
-\section{Fixed Point Formulation}
+\subsection{Fixed Point Formulation}
 
 In this section, we formulate equation \eqref{exsystem1} as a fixed point problem. First, we plug in the piecewise ansatz \eqref{Upiecewise} into \eqref{genODE}. For $i = 0, \dots, n-1$, we have 
 \begin{align*}
@@ -257,7 +158,7 @@ Finally, define the exponentially weighted norms
 \end{equation}
 Let $K_{X, \pm}$ be the Banach spaces of continuous functions on $[0, X]$ and $[-X, 0]$ equipped with these norms. Let $B_{X, \pm}(\rho)$ be the ball of radius $\rho$ about $0$ in these spaces.
 
-\section{Inversion}
+\subsection{Inversion}
 
 As in \cite{SandstedeStrut}, we will solve for the remainder functions $V_i^\pm$ and initial conditions $\beta_i^\pm$ in a series of lemmas. First, we will solve equation \cref{exsystem1} for the $V_i^\pm(x)$ in terms of the initial conditions $a_i^\pm$. Note that $V_i^+(x)$ only depends on $a_i^+$ and $V_i^-(x)$ only depends on $a_{i-1}^-$.
 
@@ -645,7 +546,7 @@ V_{i+1}^-(-X_i) = Q^+(X_i; \beta_i^+) + \mathcal{O}(e^{-2 \alpha X_i})
 \end{proof}
 \end{lemma}
 
-\section{Jump in adjoint direction}
+\subsection{Jump in adjoint direction}
 
 Finally, we will look at equation \eqref{PZmatch}. This equation will give us jump conditions in the direction of the adjoint solution $\Psi(0)$. We will show that, as in \cite{Sandstede1998} and \cite{SandstedeStrut}, this condition is only satisfied for certain values of the lengths $X_i$. The jump conditions are given by
 \begin{align}\label{PZmatch2}
@@ -761,7 +662,7 @@ By \cite[p. 2093]{SandstedeStrut}, since we have a conservative system by \cref{
 If $n = 1$, which represents a periodic orbit close to the primary homoclinic orbit $Q(x)$, there is only a single jump condition which is therefore automatically satisfied. Thus $1$-periodic pulses exist for sufficiently large $X_0$.
 \end{remark}
 
-\section{Scaling and change of variables}\label{sec:rescale}
+\subsection{Scaling and change of variables}\label{sec:rescale}
 
 At this point, we will introduce a change of variables with a built-in scaling parameter so that we can parameterize periodic multi-pulses as in \cref{sec:perexistence}. This follows Section 6 of \cite{Sandstede1998}. First, we derive an expression for the inner product in \ref{jumpcond2}.
 
@@ -872,7 +773,7 @@ H(b_0, b_1) = b_0 \sin \left( -\rho \log b_0 \right) - b_1 \sin \left( -\rho \lo
 \end{equation}
 In the next section we will characterize the zero set of the equations \cref{defH}. 
 
-\section{Characterization of zero set of $H$}
+\subsection{Characterization of zero set of $H$}
 
 In this section, we will show that the zero set of $H$ contains a sequence of pitchfork bifurcations. The parameterization in \cref{sec:perexistence} will follow naturally from the structure of the zero set of $H$.
 
@@ -1326,7 +1227,7 @@ which is strictly contained in $[-T,e^{\frac{1}{\rho}\pi}T]$. In this case, $\ep
 
 Now that we have our parameterization for $r = 0$, we would like to use it to solve \eqref{Geq} for small $r$. When we perturb $r$ away from 0, we will generically lose the pitchfork bifurcation structure. In addition, since this relies on the implicit function theorem, we will not be able to perturb $r$ at the pitchfork bifurcation points. In the next two sections, we prove the existence theorems for periodic multi-pulses. After that, we will show that in the special case of the 2-periodic pulse, the entire bifurcation structure of $H$ persists for small $r$.
 
-\section{Proof of Theorem \ref{perexist}}
+\subsection{Proof of Theorem \ref{perexist}}
 
 By Lemma \ref{diagonalG}, a periodic $n-$pulse exists if and only if the $n-1$ jump conditions
 \begin{align}\label{Geq2}
@@ -1384,7 +1285,7 @@ we have $b_j(0; m_j, \theta) = b_j^*(m_j, \theta)$. Since we have satisfied the 
 
 Uniqueness comes from the fact that the solution families $(b_j^*(m_0, \theta), b_{n-1}^*(m_{n-1}, \theta))$ from Lemma \eqref{thetaparamlemma} only overlap at the endpoints. We are avoiding that overlap by taking $\theta$ in the half-open interval $[-\arctan \rho, \pi - \arctan \rho)$. We remark that uniqueness in the periodic case is only up to ``rotations'' around the periodic domain.
 
-\section{Proof of Theorem \ref{unifperexist}}
+\subsection{Proof of Theorem \ref{unifperexist}}
 
 We parameterize the zero set of $H$ as in Lemma \ref{thetaparamlemma}, but this time we take $m_{n-1}$ and $\theta$ to be additional parameters. The baseline length parameters $\{ b_0^0, \dots, b_{n-2}^0 \}$ with corresponding nonnegative integers $m_j$ are fixed. Let $m = \max\{ m_0, \dots, m_{n-2} \}$. For each $b_{n-1}$ with $\geq m$ and $\theta \in [-\arctan \rho, \pi - \arctan \rho)$, let
 \begin{align}
@@ -1482,7 +1383,7 @@ G(b(r, b_{n-1}, \theta), b_{n-1}, \theta, r) = 0
 \]
 By uniqueness, all solutions obtained this way must be identical to the solutions obtained from Theorem \ref{perexist} using the corresponding set of parameters.
 
-\section{2-periodic pulse}
+\subsection{2-periodic pulse}
 
 In the special case of the 2-periodic pulse, we will be able to provide the complete bifurcation structure for sufficiently small $r$. For the 2-periodic pulse, we only have to solve the single jump equation
 \begin{equation}\label{2pulsedefG}
