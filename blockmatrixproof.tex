@@ -668,7 +668,7 @@ The jumps in the direction of $\Psi^c(0)$ are given by
 \end{equation}
 The remainder term $R^c_i(c, d)$ is analytic in $\lambda$ and linear in $(c, d)$ and has bound \cref{centerR} given below in the proof. The jump conditions can be written in matrix form as
 \begin{equation}\label{matrixjumpc}
-(K(\lambda) C_1) c + (\lambda S(\lambda) + D_1) d = 0.
+(K(\lambda) C_1) c + (\lambda K_1(\lambda) + D_1) d = 0.
 \end{equation}
 $K(\lambda)$ is the matrix
 \begin{align*}
@@ -681,9 +681,9 @@ e^{-\nu(\lambda)X_1} & & & & & -e^{\nu(\lambda)X_0} \\
 & & & & -e^{\nu(\lambda)X_{n-1}} & e^{-\nu(\lambda)X_0}
 \end{pmatrix}
 \end{align*}
-$S(\lambda)$ is the matrix
+$K_1(\lambda)$ is the matrix
 \begin{align*}
-S(\lambda) &= \begin{pmatrix}
+K_1(\lambda) &= \begin{pmatrix}
 s_0^+ - s_1^- & s_1^- &&& -s_0^+ \\
 -s_1^+ & s_1^+ - s_2^- & s_2^- \\
 & -s_2^+ & s_2^+ - s_3^- & s_3^- \\ && \ddots \\
@@ -698,7 +698,7 @@ s_i^+ &= e^{\nu(\lambda)X_i} q(X_i)\\
 \end{align*}
 where $q(x)$ is the first component of the primary pulse solution $Q(x)$. The matrices have uniform bounds
 \begin{align}\label{centerjumprem}
-|S(\lambda)| &\leq C r^{1/2} \\
+|K_1(\lambda)| &\leq C r^{1/2} \\
 |C_1| &\leq C |\lambda|(|\lambda| + r^{1/2}) \\
 |D_1| &\leq C |\lambda|(|\lambda| + r^{1/2})^2
 \end{align}
@@ -827,9 +827,9 @@ e^{-\nu(\lambda)X_1} & & & & & -e^{\nu(\lambda)X_0} \\
 & & & & -e^{\nu(\lambda)X_{n-1}} & e^{-\nu(\lambda)X_0}
 \end{pmatrix}
 \end{align*}
-and $c = (c_1, \dots, c_{n-1}, c_0)^T$. The leading order terms involving $d$ are given by $\lambda S(\lambda) d$, where $d = (d_1, \dots, d_{n-1}, d_0)^T$ and 
+and $c = (c_1, \dots, c_{n-1}, c_0)^T$. The leading order terms involving $d$ are given by $\lambda K_1(\lambda) d$, where $d = (d_1, \dots, d_{n-1}, d_0)^T$ and 
 \begin{align*}
-S(\lambda) &= \begin{pmatrix}
+K_1(\lambda) &= \begin{pmatrix}
 s_0^+ - s_1^- & s_1^- &&& -s_0^+ \\
 -s_1^+ & s_1^+ - s_2^- & s_2^- \\
 & -s_2^+ & s_2^+ - s_3^- & s_3^- \\ && \ddots \\

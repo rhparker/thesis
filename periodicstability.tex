@@ -83,125 +83,9 @@ A(Q_n(x); \lambda) = A(Q_n(x)) + \lambda B
 \end{equation}
 Let $A(\lambda) = A(0; \lambda)$. For $\lambda = 0$, the asymptotic matrix $A(0)$ has a simple eigenvalue at 0. The next lemma states that for small $\lambda$, $A(0)$ has a simple eigenvalue $\nu(\lambda)$ near 0.
 
-% nu(lambda) lemma
-
-\begin{lemma}\label{nulambdalemma}
-There exists $\delta_0 > 0$ such that for $|\lambda| < \delta_0$, the $A(\lambda)$ has a simple eigenvalue $\nu(\lambda)$. $\nu(\lambda)$ is smooth in $\lambda$, $\nu(0) = 0$, $\nu'(0) = 1/c$, and for $|\lambda| < \delta_0$,
-\begin{equation}\label{nulambda}
-\nu(\lambda) = \frac{1}{c} \lambda + \mathcal{O}(|\lambda|^3)
-\end{equation}
-In addition,
-\begin{enumerate}[(i)]
-\item $\nu(-\lambda) = -\nu(\lambda)$, i.e. $\nu(\lambda)$ is an odd function.
-\item If $\lambda$ is pure imaginary, $\nu(\lambda)$ is also pure imaginary.
-\item The corresponding eigenvector to $\nu(\lambda)$ is $V_0(\lambda)$ which is smooth in $\lambda$ and has Taylor expansion
-\begin{equation}\label{V0expansion}
-V_0(\lambda) = V_0 + \lambda V_0'(0) + \mathcal{O}(\lambda^2),
-\end{equation}
-where $V_0'(0) = (0, 1/c^2, 0, \dots, 0)^T$. Furthermore, $V_0(-\lambda) = R V_0(\lambda)$, where $R$ is the standard reversor operator.
-\end{enumerate}
-
-Similarly, the matrix $-A(\lambda)^*$ has an eigenvalue $-\overline{\nu(\lambda)}$ with corresponding eigenvector $W_0(\overline{\lambda})$, both of which are smooth in $\overline{\lambda}$. $W_0(\overline{\lambda})$ has Taylor expansion
-\begin{equation}\label{W0expansion}
-W_0(\lambda) = W_0 + \overline{\lambda} W'(0) + \mathcal{O}(\overline{\lambda}^2),
-\end{equation}
-where 
-\begin{equation}\label{W0prime}
-W_0'(0) = \frac{1}{c} \left( 0, -c_3, 0, -c_5, 0, \dots, 0, -c_{2m-1}, 0, 1, 0\right)^T
-\end{equation}
-and symmetry property $W_0(-\overline{\lambda}) = R W_0(\overline{\lambda})$.
-\end{lemma}
-
 \section{Block matrix theorem}
 
-We can now state the main theorem of this chapter which provides a condition for $\lambda$ to be an eigenvalue of \eqref{PDEeig3}. This theorem is analogous to \cite[Theorem 2]{Sandstede1998}, where the matrix $A$ replaced by a block matrix.
 
-% block matrix theorem
-\begin{theorem}\label{blockmatrixtheorem}
-Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and \ref{H0transversehyp}. Let $Q(x)$ be the primary pulse solution, and let $Q_n(x)$ be a periodic $n-$pulse solution with pulse lengths $X_0, \dots, X_{n-1}$. 
-
-STATE THE THINGS CORRECTLY AND WITH LAMBDA ASSUMPTION.
-
-Then there exists $\delta > 0$ with the following property. There exists a bounded, nonzero solution $V$ of \eqref{PDEeig3} for $|\lambda| < \delta$ if and only if the $(2n \times 2n)$ block matrix equation
-\begin{equation}\label{blockeq}
-\begin{pmatrix}
-K(\lambda) + C_1 & \lambda S(\lambda) + D_1 \\
--\lambda M^c K^+(\lambda) C_2 & A - \lambda^2 MI + D_2
-\end{pmatrix}
-\begin{pmatrix} c \\ d \end{pmatrix} = 0
-\end{equation}
-has a nontrivial solution. The individual terms in the block matrix are as follows.
-
-\begin{enumerate}
-\item $K(\lambda)$ is the banded matrix
-\begin{equation}
-K(\lambda) = 
-\begin{pmatrix}
-e^{-\nu(\lambda)X_1} & & & & & -e^{\nu(\lambda)X_0} \\
--e^{\nu(\lambda)X_1} & e^{-\nu(\lambda)X_2} \\
-& -e^{\nu(\lambda)X_2} & e^{-\nu(\lambda)X_3} \\
-& \ddots & \ddots & &&  \\
-& & & & -e^{\nu(\lambda)X_{n-1}} & e^{-\nu(\lambda)X_0} 
-\end{pmatrix}
-\end{equation}
-where $\nu(\lambda)$ is defined in Lemma \ref{nulambdalemma}. $K^+(\lambda)$ is the same matrix with all terms positive.
-
-\item $A$ is the symmetric banded matrix
-\begin{align}\label{Asymm}
-A &= \begin{pmatrix}
--a_0 -a_1 & a_0 + a_1 \\
-a_0 + a_1 & -a_0 - a_1
-\end{pmatrix} && n = 2 \\
-A &= \begin{pmatrix}
--a_{n-1} - a_0 & a_0 & & &  & a_{n-1}\\
-a_0 & -a_0 - a_1 &  a_1 \\
-& a_1 & -a_1 - a_2 &  a_2 \\
-& \ddots & \ddots & \ddots \\
-a_{n-1} & & & & a_{n-2} & -a_{n-2} - a_{n-1} \\
-\end{pmatrix} && n > 2 \nonumber
-\end{align}
-where
-\begin{align*}
-a_i &= \langle \Psi(X_i), Q'(-X_i) \rangle
-\end{align*}
-
-\item $S$ is the matrix
-\begin{align*}
-S(\lambda) &= \begin{pmatrix}
-s_0^+ - s_1^- & s_1^- &&& -s_0^+ \\
--s_1^+ & s_1^+ - s_2^- & s_2^- \\
-& -s_2^+ & s_2^+ - s_3^- & s_3^- \\ && \ddots \\
-\\
-s_0^- &&& -s_{n-1}^+ & s_{n-1}^+ - s_0^- 
-\end{pmatrix}
-\end{align*}
-with entries
-\begin{align*}
-s_i^- &= e^{-\nu(\lambda)X_i} q(X_i)\\
-s_i^+ &= e^{\nu(\lambda)X_i} q(X_i)\\
-\end{align*}
-where $q(x)$ is the first component of the primary pulse solution $Q(x)$. $S$ has uniform bound
-\begin{align*}
-|S(\lambda)| &\leq C r^{1/2} \\
-\end{align*}
-
-\item $M$ and $M^c$ are the Melnikov-type integrals
-\begin{align*}
-M &= \int_{-\infty}^\infty q(y) \partial_c q(y) dy \\
-M^c &= \int_{0}^\infty q(y) v^c(y) dy
-\end{align*}
-where $v^c(y)$ is the first component of $V^c(y)$, which is defined in \cref{varadjsolutions}.
-
-\item The remaining terms are remainder matrices which are analytic in $\lambda$ and have uniform bounds
-\begin{align*}
-|C_1| &\leq C |\lambda|(|\lambda| + r^{1/2}) \\
-|D_1| &\leq C |\lambda|(|\lambda| + r^{1/2})^2 \\
-|C_2| &\leq C (|\lambda| + r^{1/2})^2 \\
-|D_2| &\leq C (|\lambda| + r^{1/2})^3 
-\end{align*}
-
-\end{enumerate}
-\end{theorem}
 
 
 We expect to find eigenvalues near where the two leading order blocks, $A - \lambda^2 MI$ and $K(\lambda)$, are singular. As in \cref{chapter:kdv5homoclinic}, points where $A - \lambda^2 MI$ is singular give us the interaction eigenvalues as well as two kernel eigenvalues. $K(\lambda)$ is singular for a discrete set of points on the imaginary axis. These are the periodic analogue to the essential spectrum in the $n$-homoclinic case. Although they are technically still point spectrum, we will refer to them as essential spectrum eigenvalues to distinguish them from the interaction eigenvalues.
@@ -302,6 +186,36 @@ From \cref{locateeigtheorem}(ii), the interaction eigenvalue pattern is determin
 
 \section{Proof of \cref{nulambdalemma} }
 
+% nu(lambda) lemma
+
+\begin{lemma}\label{nulambdalemma}
+There exists $\delta_0 > 0$ such that for $|\lambda| < \delta_0$, the $A(\lambda)$ has a simple eigenvalue $\nu(\lambda)$. $\nu(\lambda)$ is smooth in $\lambda$, $\nu(0) = 0$, $\nu'(0) = 1/c$, and for $|\lambda| < \delta_0$,
+\begin{equation}\label{nulambda}
+\nu(\lambda) = \frac{1}{c} \lambda + \mathcal{O}(|\lambda|^3)
+\end{equation}
+In addition,
+\begin{enumerate}[(i)]
+\item $\nu(-\lambda) = -\nu(\lambda)$, i.e. $\nu(\lambda)$ is an odd function.
+\item If $\lambda$ is pure imaginary, $\nu(\lambda)$ is also pure imaginary.
+\item The corresponding eigenvector to $\nu(\lambda)$ is $V_0(\lambda)$ which is smooth in $\lambda$ and has Taylor expansion
+\begin{equation}\label{V0expansion}
+V_0(\lambda) = V_0 + \lambda V_0'(0) + \mathcal{O}(\lambda^2),
+\end{equation}
+where $V_0'(0) = (0, 1/c^2, 0, \dots, 0)^T$. Furthermore, $V_0(-\lambda) = R V_0(\lambda)$, where $R$ is the standard reversor operator.
+\end{enumerate}
+
+Similarly, the matrix $-A(\lambda)^*$ has an eigenvalue $-\overline{\nu(\lambda)}$ with corresponding eigenvector $W_0(\overline{\lambda})$, both of which are smooth in $\overline{\lambda}$. $W_0(\overline{\lambda})$ has Taylor expansion
+\begin{equation}\label{W0expansion}
+W_0(\lambda) = W_0 + \overline{\lambda} W'(0) + \mathcal{O}(\overline{\lambda}^2),
+\end{equation}
+where 
+\begin{equation}\label{W0prime}
+W_0'(0) = \frac{1}{c} \left( 0, -c_3, 0, -c_5, 0, \dots, 0, -c_{2m-1}, 0, 1, 0\right)^T
+\end{equation}
+and symmetry property $W_0(-\overline{\lambda}) = R W_0(\overline{\lambda})$.
+
+\begin{proof}
+
 Using \eqref{defAphi} and \eqref{fpartials0},
 \begin{equation}\label{Alambdaform}
 A(\lambda) = 
@@ -374,6 +288,8 @@ which has a solution
 W_0'(0) = \frac{1}{c} \left( 0, -c_3, 0, -c_5, 0, \dots, 0, -c_{2m-1}, 0, 1, 0\right)^T
 \]
 that is orthogonal to $W_0$.
+
+\end{proof}
 
 \section{Proof of Theorem \ref{blockmatrixtheorem} }
 
