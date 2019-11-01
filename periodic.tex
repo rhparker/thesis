@@ -49,7 +49,7 @@ For $n \geq 2$, a \emph{periodic parameterization} of a periodic $n$-pulse is a 
 \item at least one of the $m_j \in \{0, 1\}$.
 \item $m_{n-1} \geq m_j$ for $j = 0, \dots, n-2$.
 \end{enumerate}
-\item $\theta \in [-p^*, \pi - p^*)$.
+\item $\theta \in (\pi + -p^*, p^*]$.
 \end{enumerate}
 \end{definition}
 The selection of $m_{n-1}$ as the largest of the $m_j$ is made only for notational convenience and to allow the parameterization to be unique. Since we are on a periodic domain, there is no loss of generality. The physical pulse distances $X_j$ are determined by these parameters and by the scaling parameter $r$. This works as follows. If $r = \exp\left(-\frac{2 k \pi}{\rho}\right)$, then
@@ -57,20 +57,20 @@ The selection of $m_{n-1}$ as the largest of the $m_j$ is made only for notation
 X_j &= \frac{1}{2 \beta_0}\big( (2 k + m_j)\pi + \theta^*(\theta; m_{n-1} - m_j)\big) + L_0 + \mathcal{O}(r) \\
 X_{n-1} &= \frac{1}{2 \beta_0}\big( (2 k + m_{n-1})\pi + \theta \big) + L_0
 \end{align*}
-where $L_0$ is a constant. The functions $\theta^*(\theta; m): [-p^*, \pi - p^*] \rightarrow \R$ are defined for all nonnegative integers $m$, are continuous in $\theta$, and have the following properties.
+where $L_0$ is a constant. The functions $\theta^*(\theta; m): [-\pi + p^*, p^*] \rightarrow \R$ are defined for all nonnegative integers $m$, are continuous in $\theta$, and have the following properties.
 \begin{enumerate}[(i)]
 \item $\theta^*(0; m) = 0 \text{ for all } m$
 \item $|\theta^*(\theta; m)| \leq |\theta|$
 \item $|\theta^*(\theta; m)| \leq C \exp\left(-\frac{m \pi}{\rho} \right)$
 \item $\theta^*(\theta; 0) = \theta $
-\item $\theta^*(-p^*; m) = \theta^*(\pi-p^*; m-1)$ for $m \geq 1$
+\item $\theta^*(p^*; m) = \theta^*(-\pi+p^*; m+1)$ for $m \geq 1$
 \end{enumerate}
-The last property is a matching condition which ``links up'' the parameterizations corresponding to different $m_j$. These properties, together with the restriction of $\theta$ to the half-open interval $\theta \in [-p^*, \pi - p^*)$, guarantee that each periodic parameterization corresponds to a unique periodic multi-pulse (up to cyclic permutations of the $m_j$; see \cref{remark:cyclicperm} below). The proof that the functions $\theta^*(\theta; m)$ exist and have these properties is given in Lemma \ref{thetaparamlemma} below. [A PICTURE WOULD DO WELL HERE.]
+The last property is a matching condition which ``links up'' the parameterizations corresponding to different $m_j$. These properties, together with the restriction of $\theta$ to the half-open interval $\theta \in (\pi + -p^*, p^*]$, guarantee that each periodic parameterization corresponds to a unique periodic multi-pulse (up to cyclic permutations of the $m_j$; see \cref{remark:cyclicperm} below). The proof that the functions $\theta^*(\theta; m)$ exist and have these properties is given in Lemma \ref{thetaparamlemma} below. [A PICTURE WOULD DO WELL HERE.]
 
 We can now state the main theorem of this section, which gives conditions for the existence of periodic multi-pulses. The requirement that the scaling parameter $r$ be sufficiently small means that the individual pulses must be well-separated. 
 
 \begin{theorem}[Existence of $n$-periodic solutions]\label{perexist}
-Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and \ref{H0transversehyp}. Let $Q(x)$ be the transversely constructed, symmetric primary pulse solution to \eqref{genODE} from Hypothesis \ref{Qexistshyp}. For any periodic parameterization $(m_0, \dots, m_{n-1}, \theta)$ with $\theta \notin \{-p^*, \pi - p^* \}$, there exists $r_* = r^*(m_0, \dots, m_{n-1}, \theta) \in \mathcal{R}$ with $r_* > 0$ such that for any $r \in \mathcal{R}$ with $r \leq r_*$:
+Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and \ref{H0transversehyp}. Let $Q(x)$ be the transversely constructed, symmetric primary pulse solution to \eqref{genODE} from Hypothesis \ref{Qexistshyp}. For any periodic parameterization $(m_0, \dots, m_{n-1}, \theta)$ with $\theta \notin \{-\pi + p^*, p^* \}$, there exists $r_* = r^*(m_0, \dots, m_{n-1}, \theta) \in \mathcal{R}$ with $r_* > 0$ such that for any $r \in \mathcal{R}$ with $r \leq r_*$:
 \begin{enumerate}[(i)]
 	\item There exists a periodic $n$-pulse solution $Q_n(x) = Q_n(x; m_0, \dots, m_{n-1}, \theta, r)$ to \eqref{genODE}.
 
@@ -98,7 +98,7 @@ Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and 
 The periodic $n$-pulses constructed in \cref{perexist} are unique up to ``rotation'' of the integers $(m_0, \dots, m_{n-1})$ in the periodic parameterization. For example, $(m_0, m_1, m_2, \theta)$, $(m_2, m_0, m_1, \theta)$, and $(m_1, m_2, m_0, \theta)$ all give the same solution.
 \end{remark}
 
-The condition that $\theta \notin \{-p^*, \pi - p^*) \}$ in \cref{perexist} is used to avoid any bifurcation points which may arise in the construction. For periodic 2-pulses, we can use a symmetry argument to give a complete bifurcation picture. In the next theorem, we state an existence result for periodic 2-pulses and show that asymmetric solutions bifurcate from symmetric solutions in a series of pitchfork bifurcations. We note that for the symmetric periodic 2-pulses we are using a different parameterization than in \cref{perexist}.
+The condition that $\theta \notin \{-\pi + p^*, p^*) \}$ in \cref{perexist} is used to avoid any bifurcation points which may arise in the construction. For periodic 2-pulses, we can use a symmetry argument to give a complete bifurcation picture. In the next theorem, we state an existence result for periodic 2-pulses and show that asymmetric solutions bifurcate from symmetric solutions in a series of pitchfork bifurcations. We note that for the symmetric periodic 2-pulses we are using a different parameterization than in \cref{perexist}.
 
 \begin{theorem}\label{2pulsebifurcation}
 Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and \ref{H0transversehyp}. Let $Q(x)$ be a transversely constructed, symmetric primary pulse solution to \eqref{genODE}.
@@ -109,7 +109,7 @@ There exists $r_* \in \mathcal{R}$ with $r_* > 0$ such that for all $r \leq r_*$
 	\begin{equation*}
 		\tilde{X}_0(r, s_0) = \tilde{X}_1(r, s_0) = \frac{1}{2 \alpha_0} |\log r| + \frac{\pi}{2\beta_0} (m_0 + s_0) + L_0.
 	\end{equation*}
-	\item There exists a family of asymmetric periodic 2-pulses $Q_2(x; m_0, s_1, r)$ with distances $X_1 > X_0$ parameterized by $s_1 \in [-p^*, \infty)$. The distances $X_j$ are given by
+	\item There exists a family of asymmetric periodic 2-pulses $Q_2(x; m_0, s_1, r)$ with distances $X_1 > X_0$ parameterized by $s_1 \in [\pi + p^*, \infty)$. The distances $X_j$ are given by
 	\begin{equation*}
 	\begin{aligned}
 		X_0(r, s_1) &= \frac{1}{2 \alpha_0} |\log r| + \frac{\pi}{2\beta_0} b_0(r; m_0, s_1) + L_0 \\
@@ -120,9 +120,9 @@ There exists $r_* \in \mathcal{R}$ with $r_* > 0$ such that for all $r \leq r_*$
 	\[
 	b_0(0; m_0, s_1) = m_0 \pi + \theta^*(\theta; m_1 + 1),
 	\]
-	where $m_1$ is the largest nonnegative integer for which $s_1 = m_1 \pi + \theta$, with $\theta \in [-p^*, \pi - p^*)$. 
+	where $m_1$ is the largest nonnegative integer for which $s_1 = m_1 \pi + \theta$, with $\theta \in [-\pi + p^*, p^*)$. 
 
-	\item The two families meet at a pitchfork bifurcation. In terms of the two parameterizations, this occurs when $s_0 = p^*(r)$ and $s_1 = -p^*$. The bifurcation point $p^*(r)$ is smooth in $r$, and
+	\item The two families meet at a pitchfork bifurcation. In terms of the two parameterizations, this occurs when $s_0 = p^*(r)$ and $s_1 = -\pi + p^*$. The bifurcation point $p^*(r)$ is smooth in $r$, and
 	\[
 	p^*(r)\rightarrow \arctan \rho \text{ as }r \rightarrow 0.
 	\]
@@ -305,7 +305,7 @@ Let $r_*$ be as in Theorem \ref{2pulsebifurcation}. Then for any $r \leq r_*$:
 	\end{aligned}
 	\end{equation}
 	These are reversed for $m_0 = 1$.
-	\item For an asymmetric periodic 2-pulse $Q_2(x; m_0, s_1, r)$, $a = r \tilde{a}(r; m_0, s_1)$, where $\tilde{a}(r; m_0, s_1)$ is smooth in $r$. For all $s_1 > -p^*$,
+	\item For an asymmetric periodic 2-pulse $Q_2(x; m_0, s_1, r)$, $a = r \tilde{a}(r; m_0, s_1)$, where $\tilde{a}(r; m_0, s_1)$ is smooth in $r$. For all $s_1 > -\pi + p^*$,
 	\begin{equation}
 	\begin{aligned}
 	\tilde{a}(0; m_0, s_1) &> 0 && \text{if }m_0 = 0 \\
@@ -334,7 +334,7 @@ First, we will consider the case where the interaction eigenvalues are ``out of 
 We will state the result separately for asymmetric and symmetric periodic 2-pulses. First, we locate the eigenvalues for asymmetric 2-pulses. As long as $r$ is chosen sufficiently small, the interaction eigenvalue pattern is determined by the parameter $m_0$, and the essential spectrum eigenvalues do not interfere.
 
 \begin{theorem}\label{theorem:2peigsassym}
-Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, \ref{H0transversehyp}, \ref{Melnikov2hyp}. Let $r_*$ be as in \cref{2pulsebifurcation}. Let $\tilde{a}(r)$ be as in \cref{lemma:chara}. Choose any integer $N > 0$, and let $\delta(N,r)$ be as in Theorem \ref{blockmatrixtheorem}. Then for every $m_0 \in \{0, 1\}$ and $s_1 > -p^*$ there exists $r_1 = r_1(m_0, s_1, N) \leq r_*$ with the following property. For any $r \leq r_1$, the following hold regarding the spectrum associated with the asymmetric periodic 2-pulse $Q_2(x; m_0, s_1, r)$.
+Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, \ref{H0transversehyp}, \ref{Melnikov2hyp}. Let $r_*$ be as in \cref{2pulsebifurcation}. Let $\tilde{a}(r)$ be as in \cref{lemma:chara}. Choose any integer $N > 0$, and let $\delta(N,r)$ be as in Theorem \ref{blockmatrixtheorem}. Then for every $m_0 \in \{0, 1\}$ and $s_1 > -\pi + p^*$ there exists $r_1 = r_1(m_0, s_1, N) \leq r_*$ with the following property. For any $r \leq r_1$, the following hold regarding the spectrum associated with the asymmetric periodic 2-pulse $Q_2(x; m_0, s_1, r)$.
 
 \begin{enumerate}[(i)]
 \item There is an eigenvalue at 0 with algebraic multiplicity 3.
@@ -434,7 +434,7 @@ For $|t| \leq 1$, the eigenvalues $\lambda_{1,2}(t)$ are, to leading order, loca
 We can state an analogue to \cref{theorem:2peigsassym} for periodic multi-pulses. For $n \geq 3$, it is not feasible to compute the determinant of the block matrix. To obtain a result, we will place an additional condition on the matrix $A$. We start with the following lemma, which in some ways is analogous to \cref{lemma:chara} but provides much less information.
 
 \begin{lemma}\label{lemma:charmatrixA}
-For any periodic parameterization $(m_0, \dots, m_{n-1}, \theta)$ with $\theta \notin \{-p^*, \pi - p^* \}$, let $r_* = r^*(m_0, \dots, m_{n-1}, \theta)$ be as in \cref{perexist}. Let $A$ be the matrix from \cref{blockmatrixtheorem}. Then for all $r \leq r_*$,
+For any periodic parameterization $(m_0, \dots, m_{n-1}, \theta)$ with $\theta \notin \{-\pi + p^*, p^* \}$, let $r_* = r^*(m_0, \dots, m_{n-1}, \theta)$ be as in \cref{perexist}. Let $A$ be the matrix from \cref{blockmatrixtheorem}. Then for all $r \leq r_*$,
 \[
 A = r \tilde{A}(r)
 \]
@@ -455,7 +455,7 @@ This hypothesis implies that $\tilde{A}(0)$ has a one-dimensional kernel. The ei
 We can now state the following theorem. As we did in \cref{theorem:2peigsassym}, we will always choose $r$ sufficiently small so that the essential spectrum does not interfere.
 
 \begin{theorem}\label{theorem:multieigs}
-Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, \ref{H0transversehyp}, \ref{Melnikov2hyp}. Let $\tilde{A}(r)$ be as in \cref{lemma:charmatrixA}. Let $(m_0, \dots, m_{n-1}, \theta)$, with $\theta \notin \{-p^*, \pi - p^* \}$, be a periodic parameterization for which \cref{Adistincteigs} holds, and let $\{ 0, \ell_1(0), \dots, \ell_{n-1}(0)\}$ be the distinct eigenvalues of $\tilde{A}(0)$. 
+Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, \ref{H0transversehyp}, \ref{Melnikov2hyp}. Let $\tilde{A}(r)$ be as in \cref{lemma:charmatrixA}. Let $(m_0, \dots, m_{n-1}, \theta)$, with $\theta \notin \{-\pi + p^*, p^* \}$, be a periodic parameterization for which \cref{Adistincteigs} holds, and let $\{ 0, \ell_1(0), \dots, \ell_{n-1}(0)\}$ be the distinct eigenvalues of $\tilde{A}(0)$. 
 
 Let $r_* = r_*(m_0, \dots, m_{n-1}, \theta)$ be as in \cref{perexist}. Choose any integer $N > 0$, and let $\delta(N,r)$ be as in Theorem \ref{blockmatrixtheorem}. Then there exists $r_1 = r_1(m_0, \dots, m_{n-1}, \theta, N) \leq r_*$ with the following property. For any $r \leq r_1$, the following hold regarding the spectrum associated with periodic multi-pulse $Q_2(x; m_0, \dots, m_{n-1}, \theta, r)$.
 
