@@ -1128,6 +1128,125 @@ Theorem \ref{blockmatrixtheorem} combines the jump matrix formulas from Lemma \r
 M = \int_{-\infty}^\infty \langle \Psi(y), H(y) \rangle dy = \int_{-\infty}^\infty q(y) \partial_c q(y) dy
 \end{align*}
 
+\subsection{Characterization of matrix $A$}
+
+Before we conclude this section, we will prove some results based on \cref{blockmatrixtheorem}. In this section, we will characterize the matrix $A$ in the lower left block of the block matrix \cref{blockmatrix}. 
+
+WRITE THIS IN TERMS OF $m_j$ AND CHECK SIGN.
+\begin{lemma}\label{lemma:ajparam}
+For $r \leq r_*$, the terms $a_j$ in the block matrix equation \cref{blockmatrix} have the form
+\[
+a_j = r \tilde{a}^j(r), where
+\]
+\begin{equation}\label{ajparam}
+\tilde{a}_j(r) = s_0 e^{\alpha_0 \phi/\beta_0} b_j \left( \beta \cos\left(-\rho \log b_j \right) - \alpha \sin \left(-\rho \log b_j \right) \right) + \mathcal{O}(r^{\gamma/2\alpha_0})
+\end{equation}
+
+\begin{proof}
+From \cite[Lemma 6.1]{Sandstede1998},
+\begin{align*}\label{IPpsiQprime}
+\langle \Psi(-x), Q'(x) \rangle
+&= s_0 e^{-2 \alpha_0 x}\left( \beta_0 \cos(2 \beta_0 x + \phi) - \alpha_0 \sin(2 \beta_0 x + \phi)\right) + \mathcal{O}(e^{-(2 \alpha_0 + \gamma) x}
+\end{align*}
+where $s_0 > 0$ and $\gamma$ are the same as in Lemma \ref{IPform}. Thus we have
+\begin{align*}
+a_j(r) &= \langle \Psi(-X_j), Q'(X_j) \rangle \\
+&= s_0 e^{-2 \alpha_0 X_j}\left( \beta_0 \cos(2 \beta_0 X_j + \phi) - \alpha_0 \sin(2 \beta_0 X_j + \phi)\right) + \mathcal{O}(e^{-(2 \alpha_0 + \gamma_0) X_j}) \\
+&= s_0 e^{\alpha_0 \phi/\beta_0} r b_j \left( \beta_0 \cos\left( -\frac{\beta_0}{\alpha_0} \log(b_j r) \right) - \alpha_0 \sin \left( -\frac{\beta_0}{\alpha_0} \log(b_j r) \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha_0} b_j^{1 + \gamma/2\alpha_0}) \\
+&= s_0 e^{\alpha_0 \phi/\beta_0} r b_j \left( \beta_0 \cos\left( -\rho \log(b_j r) \right) - \alpha_0 \sin \left( -\rho \log(b_j r) \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha_0})
+\end{align*}
+since $b_j \in (0, 1]$. Since $r \in \mathcal{R}$, $r = \exp\left(-\frac{2 m \pi}{\rho}\right)$ for some nonnegative integer $m$, this becomes 
+\begin{align*}
+a_j(r) &= s_0 e^{\alpha_0 \phi/\beta_0} r b_j \left( \beta_0 \cos\left( 2 m \pi -\rho \log b_j \right) - \alpha_0 \sin \left( 2 m \pi -\rho \log b_j \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha_0}) \\
+&= s_0 e^{\alpha_0 \phi/\beta_0} r b_j \left( \beta_0 \cos\left(-\rho \log b_j \right) - \alpha_0 \sin \left(-\rho \log b_j \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha_0})
+\end{align*}
+\end{proof}
+\end{lemma}
+
+We can now characterize the matrix $A$.
+
+\begin{lemma}\label{lemma:Aform}
+For $r \leq r_*$, the matrix $A$ in \cref{blockmatrix} has the form
+\begin{equation}\label{deftildeA}
+A = r \tilde{A}(r)
+\end{equation}
+where $\tilde{A}(r) = \tilde{A}(r; m_0, \dots, m_{n-1}, \theta)$ is symmetric and smooth in $r$. $\tilde{A}(r)$ has an eigenvalue of 0 corresponding to eigenvector $(1, 1, \dots, 1)^T$. The remaining eigenvalues $\ell_1(r), \dots, \ell_{n-1}(r) \}$ of $\tilde{A}(r)$ are real and are smooth in $r$.
+\begin{proof}
+By \cref{lemma:ajparam}, we can scale out $r$ from each of the terms $a_j = r \tilde{a}_j(r)$ in \cref{blockmatrix} to obtain \cref{deftildeA}. Since all of the $\tilde{a}_j(r)$ are smooth in $r$, $\tilde{A}$ is as well. Since $A$ is symmetric, $\tilde{A}(r)$ is also symmetric, thus its eigenvalues are real. The kernel eigenvector can be verified directly since all rows of $\tilde{A}$ sum to 0.
+\end{proof}
+\end{lemma}
+
+\subsection{Center eigenfunction}
+
+Recall that when $\lambda = 0$, equation \cref{PDEeigsystemper2} has a solution $\partial_x Q_n(x)$. 
+In this section, we will show that under certain conditions, there is another solution to equation \cref{PDEeigsystemper2} when $\lambda = 0$.
+
+\begin{lemma}\label{lemma:centereigenfn1}
+If the kernel of the operator $\calL(q_n)$ on $H^{2m}_{\text{per}}[-X,X]$ is simple, there exists a function $V_n^c(x)$ which satisfies
+\begin{align*}
+[V_n^c]'(x) &= A(Q_n(x))V_n^c(x) \\
+V_n^c(-X) &= V_n^c(X)
+\end{align*}
+\begin{proof}
+Consider the equation
+\begin{equation}\label{Lqn1}
+\calL(q_n) v = 1
+\end{equation}
+posed on $H^{2m}_{\text{per}}[-X,X]$. Since both $q_n$ and the constant function $1$ are in $H^{2m}_{\text{per}}[-X,X]$, this is well-defined. The operator $\calL(q_n)$ is self-adjoint, and $\partial_x q_n \in \ker \calL(q_n)$. Integrating by parts and noting that the boundary term cancels due to the periodic boundary conditions,
+\[
+\langle \partial_x q_n(x), 1 \rangle_{H^{2m}_{\text{per}}[-X,X]} = 0
+\]
+Assuming that the kernel of $\calL(q_n)$ is simple, it follows from follows from the Fredholm alternative that \cref{Lqn1} has a solution $v(x) \in {H^{2m}_{\text{per}}[-X,X]}$. Let
+\[
+V_n^c = \left( v(x), \partial_x v(x), \dots, \partial_x^{2m-1}(x), 1 \right)
+\]
+Then $V_n^c(-X) = V_n^c(X)$, and from the definition of $A(Q_n(x))$, $[V_n^c]'(x) = A(Q_n(x))V_n^c(x)$.
+\end{proof}
+\end{lemma}
+
+For \cref{lemma:centereigenfn} to hold, we need a condition for when $\calL{q_n}$ has a simple kernel. Using a spatial dynamics formulation, the eigenvalue problem $\calL{q_n}v = \lambda v$ is equivalent to the first order system of ODEs 
+\begin{equation}\label{Lsystem1}
+\begin{aligned}
+V'(x) &= DF(Q_n(x))V(x) + \lambda B V(x) \\
+V(-X) &= V(X)
+\end{aligned}
+\end{equation}
+where $V(x) \in C^0(\R, R^{2m})$. When $\lambda = 0$, $\partial_x Q(x)$ is a solution. In the next lemma, we give a condition for which this is the only solution.
+
+\begin{lemma}\label{Lsystemeigs}
+If the eigenvalues of $\tilde{A}(0)$ are distinct, then the only solution to \cref{Lsystem1} when $\lambda = 0$ is $\partial_x Q(x)$.
+\begin{proof}
+Since the matrix $DF(0)$ is hyperbolic, solutions co \cref{Lsystem1} can be found using the method in \cite{Sandstede1998} adapted to periodic boundary conditions. Briefly, this works as follows. The setup is exactly the same as in \cite{Sandstede1998}, except periodic boundary conditions require one more matching condition at the tails of the pulses to ``close the loop''. Following the proof of \cite[Theorem 2]{Sandstede1998}, an eigenfunction $V(x)$ exists for sufficiently small $\lambda$ if and only if the $n$ jump conditions
+\[
+\xi_i = \langle \tilde{\Psi}(X_i), \partial_x Q(-X_i) \rangle (d_{i+1} - d_i) + \tilde{\Psi}(-X_{i-1}), \partial_x Q(X_{i-1}) \rangle (d_i - d_{i-1}) - \int_{-\infty}^\infty \langle \tilde{\Psi}(y) B \partial_x Q(y) \rangle dy + R(\lambda)_i d
+\]
+where $\tilde{\Psi}(x) = \nabla H(Q(x))$ is the unique bounded solution to the adjoint variational equation \cref{adjvareq1} and the remainder term has bound
+\[
+|R(\lambda)d| \leq C \left( e^{-3 \alpha_1 X_*} + |\lambda|(e^{-\alpha_1 X_*} + |\lambda| ) \right)
+\]
+This is analogous to \cite[(3.56)]{Sandstede1998}. Since 
+\begin{equation*}
+\langle \Psi(x), (\partial_x Q(x), 0) \rangle = \langle \tilde{Psi}(x), \partial_x Q(x) \rangle,
+\end{equation*}
+he jump conditions $\xi$ can be written in matrix form as in \cite[Theorem 2]{Sandstede1998} as
+\begin{equation}\label{Ljumps}
+E(\lambda) = \det S(\lambda) = \det( A - M_1 \lambda I + R(\lambda)) = 0
+\end{equation}
+where $A$ the same matrix as in \cref{blockmatrixtheorem} and
+\[
+M_1 = 
+\int_{-\infty}^\infty \langle \tilde{\Psi}(y) B \partial_x Q(y) \rangle dy =  
+\int_{-\infty}^\infty (\partial_y q(y))^2 dy > 0
+\]
+By \cref{lemma:tildeA}, $A = r \tilde{A}(r)$, where $\tilde{A}(r)$ is smooth in $r$ and has an eigenvalue at 0 for all $r$. If the eigenvalues of $\tilde{A}(0)$ are distinct, $\tilde{A}(0)$ has a simple eigenvalue at 0. Following the proof of \cite[Theorem 3]{Sandstede1998}, equation \cref{Ljumps} has a simple zero at 0. Since this zero must correspond to $\partial_x Q(x)$, the result follows.
+\end{proof}
+\end{lemma}
+
+We combine the two previous lemmas to get the following result.
+
+\begin{lemma}\label{lemma:centereigenfn}
+If the eigenvalues of $\tilde{A}(0)$ are distinct, then there exists a function $V_n^c(x)$ which satisfies \cref{PDEeigsystemper3} for $\lambda = 0$.
+\end{lemma}
 
 \iffulldocument\else
 	\bibliographystyle{amsalpha}

@@ -6,204 +6,33 @@
 	\chapter{KdV5}
 \fi
 
-MAY BE USEFUL
+\section{Proof of Theorem \ref{blockmatrixtheorem}}
 
-\begin{equation}\label{nobubblecond}
-\sqrt{\left| \frac{2 \tilde{a}(0)}{M}\right| } \left( |\log r| + \frac{\pi}{4 \beta_0}(s_1 + 1) + L_0 \right)r^{1/2} \leq \frac{c \pi}{4}
-\end{equation}
+\subsection{Overview of proof}
 
-****
-
-In this chapter, we look at the spectral stability of the periodic multi-pulses which we constructed in \cref{chapter:kdv5periodic}. To do this, we will adapt framework we set up in \cref{sec:genspectrum}.
-
-Let $Q(x)$ be the primary pulse solution, and let $Q_n(x)$ be periodic multi-pulse solution constructed according to Theorem \ref{perexist}. Recall that
-\[
-Q_n(x) = \left(q_n(x), \partial_x q_n(x), \dots, \partial_x^{2m-1}q_n(x) \right)^T
-\]
-We are interested in the PDE eigenvalue problem
-\begin{equation}\label{genPDEeigqn}
-\partial_x \calL(q_n) v = \lambda v
-\end{equation}
-resulting from the linearization of the original PDE about $q_n(x)$. From the construction in Theorem \ref{perexist}, $Q_n(-X) = Q_n(X)$ and $Q_n(x)$ satisfies the equation $Q_n'(x) = F(Q_n(x); c)$. It follows that $\partial_x^k q_n(-X) = \partial_x^k q_n(X)$ for $k = 0, \dots, 2m$. Thus it is natural to pose \cref{genPDEeigqn} on the space $H^{2m}_{\text{per}}[-X,X]$, where
-\[
-H^{2m}_{\text{per}}[-X,X] = \left\{ f \in H^{2m}(\R) : f^{(k)}(-X) = f^{(k)}(X) \text{ for } k = 0, \dots, 2m \right\} 
-\]
-The norm on this space has the same form as the norm on $H^{2m}$ with the integrals restricted to $[-X, X]$. 
-
-As in \cref{sec:genspectrum}, we will write the eigenvalue problem as a first order system of ODEs. This time, however, we impose an additional periodic boundary condition. Thus we will consider the problem
-\begin{equation}\label{PDEeigsystemper}
-V'(x) = A(Q_n(x))V(x) + \lambda B V(x),
-\end{equation}
-where $V(x) \in C^0_{\text{per}}[-X,X]$. This is equivalent to the pair of equations
-\begin{equation}\label{PDEeigsystemper2}
-\begin{aligned}
-V'(x) &= A(Q_n(x))V(x) + \lambda B V(x) \\
-V(-X) &= V(X)
-\end{aligned}
-\end{equation}
-for $V(x) \in C^0(\R)$.
-
-We will use Lin's method to construct eigenfunctions $V(x)$ as piecewise perturbations of the kernel eigenfunctions $\partial_x Q_n(x)$ and $\partial_c Q_n(x)$. We will make this specific in the next section. As long as the individual pulses are well-separated, Lin's method produces a unique function $V(x)$ which solves \cref{PDEeigsystemper2} but which generically has $n$ jumps. These $n$ jumps are in the two-dimensional space spanned by $\Psi(0)$ and $\Psi^c(0)$, which gives us $2n$ jump conditions. Finding the eigenvalues amounts to solving the $2n$ jump conditions. As in \cite[Theorem 2]{Sandstede1998}, we will write these jump conditions in matrix form. In this case, we will have a $2n \times 2n$ block matrix where the diagonal blocks represent, to leading order, interaction eigenvalues and essential spectrum eigenvalues. We will then use this block matrix equation to actually locate these eigenvalues, first for the periodic 2-pulse and then for general periodic multi-pulses.
-
-\section{Setup of problem}
-
-First, we charcterize the kernel eigenfunctions. When $\lambda = 0$, it follows from \cref{sec:HamPDE} and the definitions of $A(Q_n(x))$ and $B$ that 
+When $\lambda = 0$, it follows from \cref{sec:HamPDE} and the definitions of $A(Q_n(x))$ and $B$ that 
 \begin{equation}\label{PDEeigkernel}
 \begin{aligned}
 {[\partial_x Q_n]}'(x) &= A(Q_n(x))\partial_x Q_n(x) \\
-{[\partial_c Q_n]}'(x) &= A(Q_n(x))\partial_c Q_n(x) + \lambda B \partial_x Q_n(x) \\
+{[\partial_c Q_n]}'(x) &= A(Q_n(x))\partial_c Q_n(x) + \lambda B \partial_x Q_n(x).
 \end{aligned}
 \end{equation}
-By the construction of $Q_n(x)$ in Theorem \ref{perexist}, both $\partial_x Q_n(x)$ and $\partial_c Q_n(x)$ satisfy the periodic boundary conditions.
+Both of these kernel eigenfunctions satisfy the periodic boundary conditions. We will use Lin's method to construct solutions $V(x)$ to \cref{PDEeigsystemper3} as piecewise perturbations of the kernel eigenfunctions $\partial_x Q_n(x)$ and $\partial_c Q_n(x)$. As long as the individual pulses in $Q_n(x)$ are well-separated, Lin's method produces a unique function $V(x)$ which solves \cref{PDEeigsystemper3} but which generically has $n$ jumps. These $n$ jumps are in the two-dimensional space spanned by $\Psi(0)$ and $\Psi^c(0)$, which gives us $2n$ jump conditions. Finding the eigenvalues amounts to solving the $2n$ jump conditions. As in \cite[Theorem 2]{Sandstede1998}, we will write these jump conditions in matrix form as a $2n \times 2n$ block matrix.
 
-In the next lemma, we show that there is an additional kernel eigenfunction which corresponds to $V^c(x)$.
+\subsection{Proof of \cref{nulambdalemmasimple}}
 
-\begin{lemma}\label{lemma:centereigenfn}
-There exists a function $V_n^c(x)$ which satisfies
-\begin{align*}
-[V_n^c]'(x) &= A(Q_n(x))V_n^c(x) \\
-V_n^c(-X) &= V_n^c(X)
-\end{align*}
-\begin{proof}
-Consider the equation
-\begin{equation}\label{Lqn1}
-\calL(q_n) v = 1
-\end{equation}
-posed on $H^{2m}_{\text{per}}[-X,X]$. Since both $q_n$ and the constant function 1 are in $H^{2m}_{\text{per}}[-X,X]$, this is well-defined. The operator $\calL(q_n)$ is self-adjoint and has kernel spanned by $\partial_x q_n$. We can show that
-\[
-\langle \partial_x q_n(x), 1 \rangle_{H^{2m}_{\text{per}}[-X,X]} = 0
-\]
-by integrating by parts; the boundary term cancels due to the periodic boundary conditions. Since $1 \perp \ker \calL(q_n)$, it follows from the Fredholm alternative that \cref{Lqn1} has a solution $v(x) \in {H^{2m}_{\text{per}}[-X,X]}$. Let
-\[
-V_n^c = \left( v(x), \partial_x v(x), \dots, \partial_x^{2m-1}(x), 1 \right)
-\]
-Then $V_n^c(-X) = V_n^c(X)$, and from the definition of $A(Q_n(x))$, $[V_n^c]'(x) = A(Q_n(x))V_n^c(x)$.
-\end{proof}
-\end{lemma}
- 
-Next, we rewrite the eigenvalue problem \cref{PDEeigsystemper} as
-\begin{equation}\label{PDEeig3}
-V' = A(Q_n(x); \lambda)V 
-\end{equation} 
-where 
-\begin{equation}
-A(Q_n(x); \lambda) = A(Q_n(x)) + \lambda B
-\end{equation}
-Let $A(\lambda) = A(0; \lambda)$. For $\lambda = 0$, the asymptotic matrix $A(0)$ has a simple eigenvalue at 0. The next lemma states that for small $\lambda$, $A(0)$ has a simple eigenvalue $\nu(\lambda)$ near 0.
-
-\section{Block matrix theorem}
-
-
-
-
-We expect to find eigenvalues near where the two leading order blocks, $A - \lambda^2 MI$ and $K(\lambda)$, are singular. As in \cref{chapter:kdv5homoclinic}, points where $A - \lambda^2 MI$ is singular give us the interaction eigenvalues as well as two kernel eigenvalues. $K(\lambda)$ is singular for a discrete set of points on the imaginary axis. These are the periodic analogue to the essential spectrum in the $n$-homoclinic case. Although they are technically still point spectrum, we will refer to them as essential spectrum eigenvalues to distinguish them from the interaction eigenvalues.
-
-\section{Eigenvalues of periodic 2-pulses}
-
-We will now use Theorem \ref{blockmatrixtheorem} to locate the interaction eigenvalues of \eqref{PDEeig3}. First we consider the case of the periodic 2-pulse. Although the computation is tedious, we can compute the determinant of \cref{blockeq} exactly. 
-
-WE WILL STATE (AND PROVE AT THE END) THE FOLLOWING THEOREMS HERE.
-\begin{enumerate}
-\item Find interaction eigenvalues if not in a Krein bubble.
-\item Find essential spectrum eigenvalues if not in a Krein bubble.
-\item Find the Krein bubble
-\item Demonstrate the eigenvalue bifurcation for periodic 2-pulses with equal period and show that it follows the pitchfork bifurcation structure from the previous chapter.
-\end{enumerate}
-
-\section{Eigenvalues of periodic multi-pulses}
-
-In this section, we generalize the results to periodic multi-pulses. Since computing the determinant of \cref{blockeq} is unfeasible for $n \geq 3$, this will require a different approach. First, we note that the matrix $A$ from Theorem \ref{blockmatrixtheorem} is symmetric, thus its eigenvalues are real. $A$ has an eigenvalues of 0 corresponding to eigenvector $(1, 1, \dots, 1)^T$. Let $A = r \tilde{A}(r)$, and let $(0, \ell_1(r), \dots, \ell_{n-1}(r))$ be the eigenvalues of $\tilde{A}(r)$. In the next hypothesis, we assume that the eigenvalues are distinct.
-
-\begin{hypothesis}\label{Adistincteigs}
-For $r = 0$, the eigenvalues $(0, \ell_1(0), \dots, \ell_{n-1}(0))$ of $\tilde{A}(0)$ are distinct.
-\end{hypothesis}
-This hypothesis implies that $\ell_j(0) \neq 0$ for $j = 1, \dots, n-1$.
-
-\begin{remark}
-\cref{Adistincteigs} is not true in general. For example, if $n \geq 3$ and all the terms $\tilde{a}_i$ in $\tilde{A}$ are identical, then $\tilde{A}$ is a circulant matrix, and it is not hard to show that $\tilde{A}$ will have some eigenvalues of algebraic multiplicity 2.
-\end{remark}
-
-As with the periodic 2-pulse, we expect to find interaction eigenvalues near $\pm \sqrt{\ell_j/M}$
-and essential spectrum eigenvalues near $c \frac{k \pi i }{X}$ for integer $k$. As in \cref{theorem:2peigscase1}, we will set up the problem so that the essential spectrum eigenvalues are out of the way of the interaction eigenvalues.
-
-In the following theorem, we can locate the eigenvalues of \eqref{PDEeig3} near the origin.
-
-% eigenvalue location theorem
-
-\begin{theorem}\label{locateeigtheorem}
-Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, \ref{H0transversehyp}, \ref{Melnikov2hyp}, and \ref{Adistincteigs}. Choose $n \geq 2$, baseline length parameters $\{b_0^0, \dots b_{n-1}^0\}$ and phase parameter $\theta$. Let $Q_n(x; r)$ be the family of periodic multi-pulse solutions corresponding to our choice of parameters, where $r \in \mathcal{R}$ with $r \leq r_*$. Let $\{ b_0(r), \dots, b_{n-1}(r)\}$ be the length parameters associated with $Q_n(x; r)$.
-
-Let $\delta > 0$ and $M$ be as in Theorem \ref{blockmatrixtheorem2}. Let $A$ be the matrix in the lower right block of \cref{blockeq2}, and take $A = r \tilde{A}(r)$, where we have made the dependence on $r$ explicit. Let $(0, \ell_1(r), \dots, \ell_{n-1}(r))$ be the distinct eigenvalues of $\tilde{A}(r)$. Let
-\begin{equation}
-R_{\max} = \max_{j = 1, \dots, n-1} |\ell_j(0) |
-\end{equation}
-and choose $r_0$ sufficiently small so that
-\begin{equation}\label{nobubblecondgen}
-\sqrt{\frac{R_{\max}}{M}} r_0^{1/2} \leq \frac{1}{4} \frac{c}{\left( n |\log r_0| + |\log( b_0(0) \cdots b_{n-1}(0) | \right) }
-\end{equation}
-Then the following are true.
-
-\begin{enumerate}[(i)]
-
-\item There is an eigenvalue at 0 with (at minimum) geometric multiplicity 2 and algebraic multiplicity 3. The corresponding eigenfunctions are the kernel eigenfunction $\partial_x Q_n(x)$ from translation invariance; its generalized kernel eigenfunction $\partial_C Q_n(x)$; and a third kernel eigenfunction $V_n^c(x)$ which is bounded.
-
-\item There exists $r_1 \leq r_0$ such that for every $r \leq r_1$, there are $n - 1$ pairs of nonzero interaction eigenvalues given by 
-\begin{align*}
-\lambda &= \pm \lambda^{\text{int}}_j(r) && j = 1, \dots, n-1,
-\end{align*}
-where
-\begin{align*}
-\lambda^{\text{int}}_j(r) = \sqrt{\frac{\ell_j(0)}{M}}r^{1/2} + \mathcal{O}\left( \frac{r^{1/2}}{|\log r|}\right)
-\end{align*}
-The interaction eigenvalue pairs are either real or purely imaginary.
-
-\item Choose any positive integer $N$ such that 
-\[
-\frac{N c \pi}{n |\log r_0| + |\log b_0(0)\cdots b_{n-1}(0)| } < \delta
-\]
-Then there exists $r_2 \leq r_1$ such that for every $r \leq r_2$, there are $N$ pairs of nonzero, 	purely imaginary essential spectrum eigenvalues given by 
-\begin{align*}
-\lambda &= \pm \lambda_m^{\text{ess}}(r) && m = 1, \dots, N
-\end{align*}
-where
-\begin{equation}\label{lambdaess}
-\lambda^{\text{ess}}_m(r) = c \frac{m \pi i }{X} + \mathcal{O}\left( \frac{1}{|\log r|^2} \right)
-\end{equation}
-where $X = \mathcal{O}(|\log r|)$.
-
-\item We have the following two eigenvalue counts.
-\begin{itemize}
-	\item Let $r_2$ correspond to the integer $N+1$ in part (ii). Then there exists $r_3 \leq \min\{r_1, r_2\}$ such that there are exactly $2n + 2 N + 1$ eigenvalues inside the circle $|\lambda| = c \xi$, where
-	\[
-	\xi = \frac{\pi}{X}\left( N + \frac{1}{2} \right)
-	\]
-	\item There exists a small radius $\xi^*$ (which excludes the nonzero interaction eigenvalues and essential spectrum eigenvalues) such that there are exactly 3 eigenvalues inside the circle of radius $\xi$ in the complex plane. These must be the three eigenvalues from part (i).
-\end{itemize}
-\end{enumerate}
-
-\end{theorem}
-
-\begin{remark}
-In terms of the domain length parameter $X$, the condition \cref{nobubblecondgen} states that $r_0$ is sufficiently small so that
-\[
-\sqrt{\frac{R_{\max}}{M}} r_0^{1/2} \leq \frac{c}{4 X}
-\]
-\end{remark}
-
-
-
-\section{Proof of \cref{nulambdalemma} }
+In this section, we locate the eigenvalue of $A(\lambda)$ which is close to 0 and characterize its eigenvector. We do the same for the adjoint $-A(\lambda)^*$.
 
 % nu(lambda) lemma
 
 \begin{lemma}\label{nulambdalemma}
-There exists $\delta_0 > 0$ such that for $|\lambda| < \delta_0$, the $A(\lambda)$ has a simple eigenvalue $\nu(\lambda)$. $\nu(\lambda)$ is smooth in $\lambda$, $\nu(0) = 0$, $\nu'(0) = 1/c$, and for $|\lambda| < \delta_0$,
+There exists $\delta_0 > 0$ such that for $|\lambda| < \delta_0$, the matrix $A(\lambda)$ has a simple eigenvalue $\nu(\lambda)$. $\nu(\lambda)$ is smooth in $\lambda$, $\nu(0) = 0$, $\nu'(0) = 1/c$, and for $|\lambda| < \delta_0$,
 \begin{equation}\label{nulambda}
 \nu(\lambda) = \frac{1}{c} \lambda + \mathcal{O}(|\lambda|^3)
 \end{equation}
 In addition,
 \begin{enumerate}[(i)]
-\item $\nu(-\lambda) = -\nu(\lambda)$, i.e. $\nu(\lambda)$ is an odd function.
+\item $\nu(-\lambda) = -\nu(\lambda)$.
 \item If $\lambda$ is pure imaginary, $\nu(\lambda)$ is also pure imaginary.
 \item The corresponding eigenvector to $\nu(\lambda)$ is $V_0(\lambda)$ which is smooth in $\lambda$ and has Taylor expansion
 \begin{equation}\label{V0expansion}
@@ -299,8 +128,6 @@ that is orthogonal to $W_0$.
 
 \end{proof}
 \end{lemma}
-
-\section{Proof of Theorem \ref{blockmatrixtheorem} }
 
 \subsection{Piecewise formulation}
 

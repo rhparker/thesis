@@ -8,85 +8,97 @@
 
 \section{Proof of Theorem \ref{locateeigtheorem}}
 
-Let $Q_n(x)$ be a periodic n-pulse with length parameters $\{ b_0(r), \dots, b_{n-1}(r)\}$, and assume all of the hypotheses in the statement of Theorem \ref{locateeigtheorem}. Let $r_0$ be sufficiently small so that \cref{nobubblecondgen} is satisfied. Since the LHS of \cref{nobubblecondgen} scales like $r_0^{1/2}$ and the RHS scales like $1/|\log r_0|$, such an $r_0$ can always be found. We will always take $r \leq r_0$.
-
-Rearranging \cref{nobubblecondgen}, there exists a constant $R_1$ such that $n|\log r_1|\:r_1^{1/2} \leq R_1$. Furthermore, we will only need to consider eigenvalues $|\lambda|$ with real part smaller than $2 r^{1/2} \sqrt{R_{\max}/M}$, thus there exists a constant $R_2$ for which $|\Re \lambda| < R_2 r^{1/2}$. Since these conditions are satisfied, we can use the form of the block matrix in Theorem \ref{blockmatrixtheorem2}.
-
-The outline of the proof is as follows. To find the interaction eigenvalues, we will solve the first line of the block matrix equation \cref{blockeq2} for $c$ and substitute the result into the second line. To find the essential spectrum eigenvalues, we will solve the second line of the block matrix equation \cref{blockeq2} for $d$ and substitute the result into the first line. These steps require inverting the matrices $K(\lambda)$ and $A - \lambda^2 M I$; the condition \cref{nobubblecondgen} assures that this can be done and gives us sufficient bounds on their inverses. For the eigenvalue counts, we will use Rouch\'e's theorem on an appropriate circle around the origin in the complex plane.
-
-\subsection{Rescaling and simplification}
-
-We will start with the simplified block matrix equation \cref{blockeq2} from Theorem \ref{blockmatrixtheorem2}. In the next lemma, we simplify further by combining the off-diagonal blocks into a single remainder term, making the change of variables $\lambda = \nu^{-1}(\mu)$ to eliminate the $\nu(\lambda)$ terms, and rescaling the matrix $A$.
-
-% block matrix reparameterization
-\begin{lemma}\label{reparam}
-The block matrix equation \cref{blockeq2} simplifies to
-\begin{equation}\label{blockeq3}
-\begin{pmatrix}
-K(\lambda) + S_1 & S_2 \\
-S_3 & r \tilde{A} - \mu^2 c^2 M I + S_4
-\end{pmatrix}
-\begin{pmatrix} c \\ d \end{pmatrix} = 0
+In this section, we prove Theorem \ref{locateeigtheorem}, which locates the eigenvalues associated with a perioidic multi-pulse. The outline of the proof is as follows. First, as in the 2-pulse case, we simplify the problem by making the change of variables $\mu = \nu(\lambda)$. We will then place an upper bound on the scaling parameter $r$ so that the essential spectrum is ``out of the way'' of the interaction eigenvalues. Next, we note that the condition $E(\lambda) = \det S(\lambda) = 0$ is equivalent to the equation
+\begin{equation}\label{Slambdaeq}
+S(\lambda)\begin{pmatrix}c\\d\end{pmatrix} = 0
 \end{equation}
-where $\mu = \nu(\lambda)$ and $\tilde{A} = r^{-1} A$. The remainder terms have bounds
-\begin{equation}\label{remSbounds}
+having a nontrivial solution. To find the interaction eigenvalues, we will solve the first line of the block matrix equation \cref{Slambdaeq} for $c$ and substitute the result into the second line. To find the essential spectrum eigenvalues, we will solve the second line of the block matrix equation \cref{Slambdaeq} for $d$ and substitute the result into the first line. These steps require inverting the matrices $K(\lambda)$ and $A - \lambda^2 M I$; the upper bound on $r$ assures that this can be done and gives us sufficient bounds on their inverses. For the eigenvalue counts, we will use Rouch\'e's theorem on an appropriate circle around the origin in the complex plane.
+
+Let $r_*$ be as in Theorem \ref{perexist}. Choose any periodic parameteriation $(m_0, \dots, m_{n-1}, \theta)$, and let $Q_n(x; r) = Q_n(x; m_0, \dots, m_{n-1}, \theta, r)$ be the corresponding family of asymmetric periodic $n$-pulses. Choose any positive integer $N$, and let $\delta(N,r)$ be as in Theorem \ref{blockmatrixtheorem}. Let $\{ 0, \ell_1(r), \dots, \ell_{n-1}(r) \}$ be the eigenvalues of $\tilde{A}(r)$, which are distinct by Hypothesis \ref{Adistincteigs}. Finally, let
+\[
+\ell_{\max}(r) = \max_{j = 1, \dots, n-1}|\ell_j(r)|
+\]
+and
+\[
+\ell_{\min}(r) = \min_{j = 1, \dots, n-1}|\ell_j(r)|
+\]
+
+\subsection{Simplification and change of variables}
+
+First, we simplify the block matrix equation \cref{blockeq}. Using Lemma \ref{lemma:expnubound}, the entries in $K^+(\lambda)$ can be bounded by a constant, while the entries in $K_1(\lambda)$ are $\mathcal{O}(r^{1/2})$. We also take $A = r \tilde{A}(r)$ as i Lemma \ref{lemma:Aform}. Making these substitutions, the block matrix \cref{blockeq} simplifies to 
+\begin{equation}\label{blockeq2}
+S(\lambda) = \begin{pmatrix}
+K(\lambda) + C_1 & D_1 \\
+C_2 & r \tilde{A}(r) - \lambda^2 M I + D_2
+\end{pmatrix}
+\end{equation}
+where the remainder matrices have bounds
+\begin{equation*}
 \begin{aligned}
-S_1 &= \mathcal{O}(|\mu|(|\mu| + r^{1/2})) \\
-S_2 &= \mathcal{O}(|\mu|(|\mu| + r^{1/2})) \\
-S_3 &= \mathcal{O}(|\mu| + r^{1/2}) \\
-S_4 &= \mathcal{O}((|\mu| + r^{1/2})^3) 
+C_1 &= \mathcal{O}(|\lambda|(|\lambda| + r^{1/2})) \\
+D_1 &= \mathcal{O}(|\lambda|(|\lambda| + r^{1/2})) \\
+C_2 &= \mathcal{O}(|\lambda| + r^{1/2}) \\
+D_2 &= \mathcal{O}((|\lambda| + r^{1/2})^3) 
 \end{aligned}
+\end{equation*}
+
+Next, as in the 2-pulse case, we make the change of variables $\mu = \nu(\lambda)$. Since
+\begin{equation}\label{lambdamu2}
+\lambda = \nu^{-1}(\mu) = c \mu + \mathcal{O}(\mu^3),
 \end{equation}
-\begin{proof}
-First, we simplify the remainder matrices. Using \cref{lemma:expnubound}, we can bound all of the terms of the form $e^{\pm \nu(\lambda)X_j}$ in $S(\lambda)$ and $\tilde{K}(\lambda)$ by a constant. Thus we have $S(\lambda) = \mathcal{O}(r^{1/2})$ and $\tilde{K}(\lambda) = \mathcal{O}(1)$. Using these bounds to combine the off-diagonal matrices into a single remainder matrix, equation \cref{blockeq2} becomes
-\begin{equation}\label{blockeqred}
-\begin{pmatrix}
-K(\lambda) + S_1 & S_2 \\
-S_3 & A - \lambda^2 MI + S_4
+equation \cref{blockeq2} becomes
+\begin{equation}\label{blockeq2}
+S(\mu) = \begin{pmatrix}
+K(\mu) + C_1 & D_1 \\
+C_2 & r \tilde{A}(r) - \mu^2 c^2 M I + D_2
 \end{pmatrix}
-\begin{pmatrix} c \\ d \end{pmatrix} = 0
 \end{equation}
-and the remainder matrices $S_j$ have the bounds
-\begin{equation}\label{remSlambdabounds}
+Incorporating the higher order terms from \cref{lambdamu2} into the remainder matrices, we have the bounds
+\begin{equation*}\label{remSbounds}
 \begin{aligned}
-S_1 &= \mathcal{O}(|\lambda|(|\lambda| + r^{1/2})) \\
-S_2 &= \mathcal{O}(|\lambda|(|\lambda| + r^{1/2})) \\
-S_3 &= \mathcal{O}(|\lambda| + r^{1/2}) \\
-S_4 &= \mathcal{O}((|\lambda| + r^{1/2})^3) 
+C_1 &= \mathcal{O}(|\mu|(|\mu| + r^{1/2})) \\
+D_1 &= \mathcal{O}(|\mu|(|\mu| + r^{1/2})) \\
+C_2 &= \mathcal{O}(|\mu| + r^{1/2}) \\
+D_2 &= \mathcal{O}((|\mu| + r^{1/2})^3) 
 \end{aligned}
-\end{equation}
+\end{equation*}
 
-Next, let $\lambda = \nu^{-1}(\mu)$. As in \cref{sec:blockdet},
-\begin{equation}\label{munusub1}
-\nu^{-1}(\mu) = c \mu + \mathcal{O}(\mu^3)
-\end{equation}
-Making this substutition and absorbing the $\mathcal{O}(\mu^3)$ terms from \cref{munusub1} into the remainder matrices, the block matrix equation becomes
-\begin{equation}\label{blockeqred1}
-\begin{pmatrix}
-K(\lambda) + S_1 & S_2 \\
-S_3 & A - \mu^2 c^2 M I + S_4
-\end{pmatrix}
-\begin{pmatrix} c \\ d \end{pmatrix} = 0
-\end{equation}
-The remainder matrices have the bounds \cref{remSbounds}, which are the same as \cref{remSlambdabounds} with $\lambda$ replaced with $\mu$.
-
-Finally, using \cref{lemma:ajparam}, each term $a_j$ in the matrix $A$ is of the form $a_j = r \tilde{a}_j$, thus we can write the matrix $A$ as $A = r \tilde{A}$. Making this last substitution, we obtain equation \cref{blockeq3}.
-\end{proof}
-\end{lemma}
-
-Now that we have made the change of variables, let
+Finally, let
 \[
 \tilde{\mu}_*^j(r) = \sqrt{\frac{\ell_j(r)}{M c^2}}
 \]
-and let $\mu_*^j(r) = r^{1/2} \tilde{\mu}_*^j(r)$. Our first task is to find the interaction eigenvalues, which we expect to find near $\pm \mu_*^j(r)$. To do this, we will consider $\mu$ with
-\begin{equation}\label{mucondition}
-\frac{1}{2} \min_{j = 1, \dots, n-1}\tilde{\mu}_*^j(0) r^{1/2} \leq |\mu| \leq 2 \max_{j = 1, \dots, n-1}\tilde{\mu}_*^j(0) r^{1/2} \leq \frac{1}{2X}
+We expect to find the interaction eigenvalues near $\mu_*^j(r) = r^{1/2} \tilde{\mu}_*^j(r)$.
+
+\subsection{Restriction of scaling parameter}
+
+As in 2-pulse case, we will place an upper bound on $r$ so that the essential spectrum eigenvalues do not interfere with the interaction eigenvalues. To do this, we will choose $r_0 \leq r_*$ sufficiently small so that for all $r \leq r_0$,
+\begin{equation}\label{nobubble}
+\sqrt{\frac{\ell_{\max}(r)}{|M| c^2 }} r^{1/2}  \leq \frac{\pi}{4 X(r)},
 \end{equation}
-where the last inequality comes from \cref{nobubblecondgen} and the choice of $r \leq r_0$.
+where $X(r)$ is the domain size. Precisely, since
+\[
+X(r) \leq \frac{1}{\alpha_0} n |\log r| + \frac{1}{2\beta_0} \sum_{j = 0}^{n-1} (m_j + 1)\pi + n L_0, 
+\]
+choose $r_0 \leq r_*$ such that
+\begin{align}\label{nobubblecond}
+\sqrt{\frac{\ell_{\max}(r)}{|M|c^2}} r^{1/2} \left( \frac{1}{\alpha_0} n |\log r| + \frac{1}{2\beta_0} \sum_{j = 0}^{n-1} (m_j + 1)\pi + n L_0 \right) \leq \frac{\pi}{4}
+\end{align}
+for all $r \leq r_0$. Since $r^{1/2}|\log r| \rightarrow 0$ as $r \rightarrow 0$ and $\ell_{\max}(r)$ is bounded, we can always find such a $r_0$. This guarantees that \cref{nobubble} is satisfied. For the rest of this section, we will take $r \leq r_0$. 
 
-\subsection{Characterization of $K$}
+\subsection{Interaction eigenvalues}
 
-In this section, we will bound the inverse of $K(\mu)$, which is always nonsingular by the condition \cref{mucondition}. The first step is to prove the following general result about the determinant of a periodic, bi-diagonal matrix.
+Our first task is to find the interaction eigenvalues, which we expect to find near $\mu_*^j(r) = r^{1/2} \tilde{\mu}_*^j(r)$. Let
+\begin{equation}\label{muminmax}
+\mu_{\min} = \sqrt{\frac{\ell_{\min}(r)}{|M| c^2 }}, \quad
+\mu_{\max} = \sqrt{\frac{\ell_{\max}(r)}{|M| c^2 }} 
+\end{equation}
+In this section, we will consider $\mu$ with
+\begin{equation}\label{mucondition}
+\frac{1}{2} \mu_{\min} r^{1/2} \leq |\mu| \leq 2 \mu_{\max} r^{1/2} \leq \frac{1}{2X}
+\end{equation}
+where the last inequality comes from \cref{nobubblecondgen}.
+
+First, we will bound the inverse of $K(\mu)$, which is always nonsingular by the condition \cref{mucondition}. The first step is to prove the following general result about the determinant of a periodic, bi-diagonal matrix.
 
 % bidiagonal determinant
 \begin{lemma}\label{bidiag}
@@ -218,9 +230,7 @@ By \cref{mucondition}, $e^{|\text{Re }\mu|X } \leq e^{1/2} = C$, thus we have th
 \end{proof}
 \end{lemma}
 
-\subsection{Interaction Eigenvalues}
-
-We can now use the results from the previous section to find the interaction eigenvalues. We will always assume $\mu$ satisfies \cref{mucondition}. To do this, we take the scaling
+We can now use these results to find the interaction eigenvalues. We will always assume $\mu$ satisfies \cref{mucondition}. To do this, we take the scaling
 \[
 \mu = r^{1/2}\tilde{\mu}
 \]
@@ -334,14 +344,14 @@ By Hamiltonian symmetry, these are real or purely imaginary.
 \end{proof}
 \end{lemma}
 
-\subsection{Characterization of $A$ }
+\subsection{Essential spectrum eigenvalues}
 
 We will now find the nonzero essential spectrum eigenvalues, which we expect to occur near the points $m \pi i/X$ for integer $m$. Let $N$ be as in the statement of \cref{locateeigtheorem}. Since the smallest nonzero essential spectrum eigenvalue is close to $\pi i/X$ and we are not considering essential spectrum eigenvalues larger than $N \pi i/X$, in this section we will consider $\mu$ with
 \begin{equation}\label{mucondess}
 \frac{1}{X} \leq |\mu| \leq \frac{(N+1)\pi}{X}
 \end{equation}
 
-The first step is to invert the matrix $A - \mu^2 c^2 M I$. We will start by proving  a lower bound the determinant of $A - \mu^2 c^2 M I$. 
+The first step is to invert the matrix $A - \mu^2 c^2 M I$. We will start by proving a lower bound the determinant of $A - \mu^2 c^2 M I$. 
 
 % lemma : bound on det
 \begin{lemma}\label{detAboundlemma}
@@ -388,9 +398,7 @@ By \cref{mucondess} and the last inequality of \cref{mucondition}, $|\mu| \geq C
 \end{proof}
 \end{lemma}
 
-\subsection{Essential spectrum eigenvalues}
-
-To find the essential spectrum eigenvalues, we solve the second line of of the block matrix equation \eqref{blockeq3} for $d$ and plug it into the first line. We will always assume that \cref{mucondess} holds. In the next lemma, we derive an equation we can solve to obtain the essential spectrum eigenvalues.
+We will now use these results to find the essential spectrum eigenvalues. To do this, we will solve the second line of of the block matrix equation \eqref{blockeq3} for $d$ and plug it into the first line. We will always assume that \cref{mucondess} holds. In the next lemma, we derive an equation we can solve to obtain the essential spectrum eigenvalues.
 
 % lemma : equation for c
 \begin{lemma}\label{ceqlemma}
@@ -640,7 +648,7 @@ As in the previous lemma, by Rouch\'e's Theorem, $E(\lambda)$ and $\det(K(\lambd
 
 \subsection{Proof of Theorem \ref{locateeigtheorem}}
 
-For part (i), $\partial_x Q_n(x)$ is an eigenfunction with eigenvalue 0, $\partial_c Q_n(x)$ is a generalized eigenfunction with eigenvalue 0 corresponding to $\partial_x Q_n(x)$. By Hypothesis \ref{Melnikov2hyp}, this Jordan chain cannot continue.
+For part (i), $\partial_x Q_n(x)$ is an eigenfunction with eigenvalue 0, $\partial_c Q_n(x)$ is a generalized eigenfunction with eigenvalue 0 corresponding to $\partial_x Q_n(x)$. By Hypothesis \ref{Adistincteigs} and Lemma \ref{lemma:centereigenfn}, there is a third eigenvalue at 0 with eigenfunction $V_n^c(x)$.
 
 \iffulldocument\else
 	\bibliographystyle{amsalpha}
