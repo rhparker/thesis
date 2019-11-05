@@ -1165,7 +1165,7 @@ a_j(r) &= s_0 e^{\alpha_0 \phi/\beta_0} r b_j \left( \beta_0 \cos\left( 2 m \pi 
 
 We can now characterize the matrix $A$.
 
-\begin{lemma}\label{lemma:Aform}
+\begin{lemma}\label{lemma:tildeA}
 For $r \leq r_*$, the matrix $A$ in \cref{blockmatrix} has the form
 \begin{equation}\label{deftildeA}
 A = r \tilde{A}(r)
@@ -1214,21 +1214,21 @@ V(-X) &= V(X)
 where $V(x) \in C^0(\R, R^{2m})$. When $\lambda = 0$, $\partial_x Q(x)$ is a solution. In the next lemma, we give a condition for which this is the only solution.
 
 \begin{lemma}\label{Lsystemeigs}
-If the eigenvalues of $\tilde{A}(0)$ are distinct, then the only solution to \cref{Lsystem1} when $\lambda = 0$ is $\partial_x Q(x)$.
+If the eigenvalues of $\tilde{A}(0)$ are distinct, then for sufficiently small $r$, the only solution to \cref{Lsystem1} when $\lambda = 0$ is $\partial_x Q(x)$.
 \begin{proof}
-Since the matrix $DF(0)$ is hyperbolic, solutions co \cref{Lsystem1} can be found using the method in \cite{Sandstede1998} adapted to periodic boundary conditions. Briefly, this works as follows. The setup is exactly the same as in \cite{Sandstede1998}, except periodic boundary conditions require one more matching condition at the tails of the pulses to ``close the loop''. Following the proof of \cite[Theorem 2]{Sandstede1998}, an eigenfunction $V(x)$ exists for sufficiently small $\lambda$ if and only if the $n$ jump conditions
+Since the matrix $DF(0)$ is hyperbolic, solutions to \cref{Lsystem1} can be found using the method in \cite{Sandstede1998} adapted to periodic boundary conditions. Briefly, this works as follows. The setup is exactly the same as in \cite{Sandstede1998}, except periodic boundary conditions require one more matching condition at the tails of the pulses to ``close the loop''. Following the proof of \cite[Theorem 2]{Sandstede1998}, an eigenfunction $V(x)$ exists for sufficiently small $\lambda$ if and only if the $n$ jump conditions
 \[
 \xi_i = \langle \tilde{\Psi}(X_i), \partial_x Q(-X_i) \rangle (d_{i+1} - d_i) + \tilde{\Psi}(-X_{i-1}), \partial_x Q(X_{i-1}) \rangle (d_i - d_{i-1}) - \int_{-\infty}^\infty \langle \tilde{\Psi}(y) B \partial_x Q(y) \rangle dy + R(\lambda)_i d
 \]
-where $\tilde{\Psi}(x) = \nabla H(Q(x))$ is the unique bounded solution to the adjoint variational equation \cref{adjvareq1} and the remainder term has bound
+are satisfied, where $\tilde{\Psi}(x) = \nabla H(Q(x))$ is the unique bounded solution to the adjoint variational equation \cref{adjvareq1} and the remainder term has bound
 \[
 |R(\lambda)d| \leq C \left( e^{-3 \alpha_1 X_*} + |\lambda|(e^{-\alpha_1 X_*} + |\lambda| ) \right)
 \]
 This is analogous to \cite[(3.56)]{Sandstede1998}. Since 
 \begin{equation*}
-\langle \Psi(x), (\partial_x Q(x), 0) \rangle = \langle \tilde{Psi}(x), \partial_x Q(x) \rangle,
+\langle \Psi(x), (\partial_x Q(x), 0) \rangle = \langle \tilde{\Psi}(x), \partial_x Q(x) \rangle,
 \end{equation*}
-he jump conditions $\xi$ can be written in matrix form as in \cite[Theorem 2]{Sandstede1998} as
+the jump conditions  can be written in matrix form as in \cite[Theorem 2]{Sandstede1998} as
 \begin{equation}\label{Ljumps}
 E(\lambda) = \det S(\lambda) = \det( A - M_1 \lambda I + R(\lambda)) = 0
 \end{equation}
@@ -1236,16 +1236,16 @@ where $A$ the same matrix as in \cref{blockmatrixtheorem} and
 \[
 M_1 = 
 \int_{-\infty}^\infty \langle \tilde{\Psi}(y) B \partial_x Q(y) \rangle dy =  
-\int_{-\infty}^\infty (\partial_y q(y))^2 dy > 0
+\int_{-\infty}^\infty [\partial_y q(y)]^2 dy > 0
 \]
-By \cref{lemma:tildeA}, $A = r \tilde{A}(r)$, where $\tilde{A}(r)$ is smooth in $r$ and has an eigenvalue at 0 for all $r$. If the eigenvalues of $\tilde{A}(0)$ are distinct, $\tilde{A}(0)$ has a simple eigenvalue at 0. Following the proof of \cite[Theorem 3]{Sandstede1998}, equation \cref{Ljumps} has a simple zero at 0. Since this zero must correspond to $\partial_x Q(x)$, the result follows.
+By \cref{lemma:tildeA}, $A = r \tilde{A}(r)$, where $\tilde{A}(r)$ is smooth in $r$ and has an eigenvalue at 0 for all $r$. If the eigenvalues of $\tilde{A}(0)$ are distinct, $\tilde{A}(0)$ has a simple eigenvalue at 0. Following the proof of \cite[Theorem 3]{Sandstede1998}, for sufficiently small $r$, equation \cref{Ljumps} has a simple zero at 0. Since this zero must correspond to $\partial_x Q_n(x)$, the result follows.
 \end{proof}
 \end{lemma}
 
 We combine the two previous lemmas to get the following result.
 
 \begin{lemma}\label{lemma:centereigenfn}
-If the eigenvalues of $\tilde{A}(0)$ are distinct, then there exists a function $V_n^c(x)$ which satisfies \cref{PDEeigsystemper3} for $\lambda = 0$.
+If the eigenvalues of $\tilde{A}(0)$ are distinct, then for sufficiently small $r$ there exists a function $V_n^c(x)$ which satisfies \cref{PDEeigsystemper3} for $\lambda = 0$.
 \end{lemma}
 
 \iffulldocument\else

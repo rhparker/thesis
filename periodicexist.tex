@@ -1037,103 +1037,7 @@ This bound is uniform in $\theta$.
 \end{proof}
 \end{lemma}
 
-In the final lemma of this section, we obtain bounds on the partial derivative $H_{b_0} (b_0, b_1)$ on the zero set of $H$, where this set is parameterized according to Lemma \ref{thetaparamlemma}. This will be used to attain a uniform existence result.
-
-% derivative bounds
-
-\begin{lemma}\label{Hderivboundslemma}
-Fix $m_0 \in \N_0$. For each integer $m_1$ with $m_1 > m_0$, let $(b_0^*(m_0, \theta), b_1^*(m_1, \theta))$ be the parameterization of the appropriate piece of the zero set of $H$ according to Lemma \ref{thetaparam}. Then we have the following bounds.
-\begin{enumerate}[(i)]
-\item There exists $\eta > 0$ such that for all $m_1 \geq m_0 + 2$ and all $\theta$,
-\begin{align}\label{Hderivbound}
-| H_{b_0}(b_0^*(m_0, \theta), b_1^*(m_1, \theta)) | &\geq \eta
-\end{align}
-\item If $m_1 = m_0 + 1$, for any $\delta > 0$ there exists $\eta(\delta) > 0$ depending on $\delta$ such that
-\begin{align}\label{Hderivbound2}
-| H_{b_0}(b_0^*(m_0, \theta), b_1^*(m_1, \theta)) | &\geq \eta(\delta)
-\end{align}
-for all $\theta \in [\theta_\rho^-, \theta_\rho^+ - \delta]$,
-\end{enumerate}
-
-\begin{proof}
-By \cref{thetaparamlemma}, these bounds will only depend on the difference $m_1 - m_0$, thus we only have to consider the case $m_0 = 0$. The partial derivative of $H(b_0, b_1)$ with respect to $b_0$ is
-\begin{align}\label{Hb0}
-H_{b_0} (b_0, b_1) = \sin(-\rho \log b_0) - \rho \cos(-\rho \log b_0)
-\end{align}
-Evaluating this at $(b_0, b_1) = (b_0^*(0, \theta), b_1^*(m_1, \theta))$, where
-\begin{align}\label{b0starexp}
-b_0^*(0, \theta) &= e^{\frac{1}{\rho} \theta_0^*(\theta) }
-\end{align}
-we have
-\begin{align*}
-H_{b_0}(b_0^*(0, \theta), b_1^*(m_1, \theta)) &= \sin\left(-\rho \log e^{\frac{1}{\rho}(\theta_0^*(\theta))} \right) - \rho \cos\left(-\rho \log e^{\frac{1}{\rho}(\theta_0^*(\theta))} \right) \\
-&= -\left( \sin \theta_0^*(\theta) + \rho \cos \theta_0^*(\theta) \right)
-\end{align*}
-From \cref{thetaparamlemma}, this is smooth in $\theta$ and is 0 if and only if $\theta_0^*(\theta)$ is one of the pitchfork bifurcation points $p_k^*$. To prove our bounds, we will show that for both of the cases we consider, $\theta_0^*(\theta)$ is bounded away from these bifurcation points.  
-
-Recall from the proof of \cref{thetaparamlemma} that we found $\theta_0^*$ by solving
-\begin{equation*}
-\theta_0^* = g^{-1}\left( e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1} g(\theta) \right),
-\end{equation*}
-where 
-\[
-g(\theta) = e^{ \frac{1}{\rho} \theta } \sin \theta.
-\]
-From \cref{thetaparamlemma}, $g^{-1}$ is strictly increasing on its domain $[-T,e^{\frac{1}{\rho}\pi}T]$, where
-\begin{equation*}
-T = \frac{\rho}{\sqrt{1+\rho^2}}e^{-\frac{1}{\rho}\arctan \rho}
-\end{equation*}
-At the endpoints of its domain, $g^{-1}(-T) = \theta_\rho^-$ and $g^{-1}(e^{\frac{1}{\rho}\pi}T) = \theta_\rho^+$. 
-
-Suppose that $e^{-\frac{1}{\rho} m_1 \pi } (-1)^{m_1} g(\theta)$ lies strictly inside these endpoints. Then since $g^{-1}$ is strictly increasing, there exists $\epsilon > 0$ such that
-\begin{equation}\label{thetastarboundeps}
-\theta_0^*(\theta) \in [\theta_\rho^- + \epsilon, \theta_\rho^+ - \epsilon]
-\end{equation}
-Using this bound together with \eqref{b0starexp},
-\begin{align*}
-b_0^*(m_0, \theta) 
-&\in \left[e^{\frac{1}{\rho}(\theta_\rho^- + \epsilon) }, e^{\frac{1}{\rho}(\theta_\rho^+ - \epsilon) }\right] \\
-&= \left[ e^{-\frac{1}{\rho} \arctan \rho} e^{\frac{1}{\rho}\epsilon}, e^{\frac{1}{\rho} (\pi - \arctan \rho)} e^{-\frac{1}{\rho} \epsilon}\right] \\
-&= \left[ e^{\frac{1}{\rho}\epsilon} p_0^*, e^{-\frac{1}{\rho} \epsilon} p_{-1}^* \right]
-\end{align*}
-which is strictly between two consecutive pitchfork bifurcation points. Since $\theta_0^*(\theta)$ is bounded away from these bifurcation points, we conclude that there exists $\eta > 0$ (which depends on $\epsilon$) such that
-\[
-|H_{b_0} (b_0^*(m_0, \theta), b_1^*(m_1, \theta))| \geq \eta
-\]
-
-To complete the proof, all we need to do is show that for the two cases we consider, $e^{-\frac{1}{\rho} m_1 \pi } (-1)^{m_1} g(\theta)$ is strictly contained in $[-T,e^{\frac{1}{\rho}\pi}T]$. For part (i), for $m_1 \geq 2$ and all $\theta$, it follows from \eqref{RHSbounds} that
-\begin{align}\label{RHSboundgeq2}
-e^{ -\frac{1}{\rho} m_1 \pi } (-1)^{m_1} g(\theta) \in [-e^{ -\frac{1}{\rho} \pi } T, e^{ -\frac{1}{\rho} \pi } T]
-\end{align}
-which is strictly contained in $[-T,e^{\frac{1}{\rho}\pi}T]$. Since this does not depend on either $m_1$ or $\theta$, $\epsilon$, and thus $\eta$, will not depend on them either.
-
-For part (ii), we will need to exclude a small neighborhood of the pitchfork bifurcation point, which occurs when $\theta = \theta_\rho^+$. Choose any $\delta > 0$, and let 
-\[
-I_\rho(\delta) = [-\theta_\rho^-, \theta_\rho^+ - \delta]
-\]
-Since $g(\theta)$ is strictly increasing on $I_\rho$, for $\theta \in I_\rho(\delta)$,
-\begin{align*}
--e^{ -\frac{1}{\rho} \pi } g(\theta) &\geq 
- -e^{ -\frac{1}{\rho} \pi } e^{ \frac{1}{\rho}(\pi - \arctan \rho - \delta) } \sin(\pi - \arctan \rho - \delta) \\
-&= -e^{-\frac{1}{\rho}\delta} e^{-\frac{1}{\rho}\arctan\rho}\sin(\arctan \rho - \delta) \\
-&\geq -e^{-\frac{1}{\rho}\delta} e^{-\frac{1}{\rho}\arctan\rho}\sin(\arctan \rho)
-\end{align*}
-since $0 < \arctan \rho < \pi/2$. Evaluating $\sin(\arctan\rho)$ and simplifying, we have
-\begin{align*}
--e^{ -\frac{1}{\rho} \pi } g(\theta)
-&\geq -e^{-\frac{1}{\rho}\delta} e^{-\frac{1}{\rho}\arctan\rho}\frac{\rho}{\sqrt{1 + \rho^2}} \\
-&= -e^{-\frac{1}{\rho}\delta} T
-\end{align*}
-Evaluating the other endpoint, we conclude that
-\[
--e^{ -\frac{1}{\rho} \pi } g(\theta)
-\in [-e^{-\frac{1}{\rho}\delta} T, e^{-\frac{1}{\rho}\pi}T]
-\]
-which is strictly contained in $[-T,e^{\frac{1}{\rho}\pi}T]$. In this case, $\epsilon$ depends on $\delta$, thus $\eta$ will as well.
-\end{proof}
-\end{lemma}
-
-Now that we have our parameterization for $r = 0$, we would like to use it to solve \eqref{Geq} for small $r$. When we perturb $r$ away from 0, we will generically lose the pitchfork bifurcation structure. In addition, since this relies on the implicit function theorem, we will not be able to perturb $r$ at the pitchfork bifurcation points. In the next two sections, we prove the existence theorems for periodic multi-pulses. After that, we will show that in the special case of the 2-periodic pulse, the entire bifurcation structure of $H$ persists for small $r$.
+Now that we have our parameterization for $r = 0$, we would like to use it to solve \eqref{Geq} for small $r$. When we perturb $r$ away from 0, we will generically lose the pitchfork bifurcation structure. In addition, since this relies on the implicit function theorem, we will not be able to perturb $r$ at the pitchfork bifurcation points. In the next sections, we prove the existence theorem for periodic multi-pulses. After that, we will show that in the special case of the 2-periodic pulse, the entire bifurcation structure of $H$ persists for sufficiently small $r$.
 
 \subsection{Proof of Theorem \ref{perexist}}
 
@@ -1151,7 +1055,7 @@ For $n \geq 2$, a \emph{periodic parameterization} of a periodic $n$-pulse is a 
 \item at least one of the $m_j \in \{0, 1\}$.
 \item $m_{n-1} \geq m_j$ for $j = 0, \dots, n-2$.
 \end{enumerate}
-\item $\theta \in (\pi + -p^*, p^*]$.
+\item $\theta \in (-\pi + p^*, p^*]$.
 \end{enumerate}
 \end{definition}
 The selection of $m_{n-1}$ as the largest of the $m_j$ is made for notational convenience and to allow the parameterization to be unique. Using Lemma \ref{thetaparamlemma}, let
@@ -1270,17 +1174,17 @@ where for the last equality we used \eqref{xiswapX}. Similarly, $\xi_1(X_0, X_1)
 \end{proof}
 \end{lemma}
 
-In the next lemma, we show that the pitchfork bifurcations persists on the diagonal for sufficiently small $r$.
+In the next lemma, we show that the pitchfork bifurcations persists on the diagonal for sufficiently small $r$. Since for a periodic parameterization of a periodic 2-pulse we require $m_0 \in \{0, 1\}$, we only have to show this result for two pitchfork bifurcations.
 
 % lemma :Persistence of pitchfork
 
 \begin{lemma}\label{pitchpersist}
-For $k \in \Z$ there exists $r_2 > 0$ (depending on $k$) and a unique smooth function $b_k^*: \mathcal{R} \cap [0, r_2] \rightarrow \R$ such that $G(b_0, b_1, r)$ has a non-degenerate pitchfork bifurcation at $(b_k^*(r),b_k^*(r))$, and 
+There exists $r_2 > 0$ such that for $m_0 \in \{0, 1\}$ and $r \leq r_2$, there is a non-degenerate pitchfork bifurcation in the zero set of $G(b_0, b_1, r)$ at $(b_{m_0}^*(r),b_{m_0}^*(r))$, and 
 \begin{equation*}
-b_k^*(r) \rightarrow b_k^* \text{ as } r \rightarrow 0
+b_{m_0}^*(r) \rightarrow b_{m_0}^* \text{ as } r \rightarrow 0
 \end{equation*}
 \begin{proof}
-For simplicity, take $k = 0$. The same argument works for all other $k$. In Lemma \ref{pitchforkH}, we showed that a pitchfork bifurcation occurs in the zero set of $H(b_0, b_1)$ at $(b_0^*, b_0^*)$. As in Lemma \ref{pitchforkH}, we make the change of coordinates $(b_0, b_1) \mapsto (x, y)$, so that $(0, b^*)$ is a pitchfork bifurcation point of $G(x, y, 0)$. By Lemma \ref{Gsymm}, we have the symmetry 
+For simplicity, take $m_0 = 0$. The proof is identical for $m_0 =1$. In Lemma \ref{pitchforkH}, we showed that a pitchfork bifurcation occurs in the zero set of $H(b_0, b_1)$ at $(b_0^*, b_0^*)$. As in Lemma \ref{pitchforkH}, we make the change of coordinates $(b_0, b_1) \mapsto (x, y)$, so that $(0, b_0^*)$ is a pitchfork bifurcation point of $G(x, y, 0)$. By Lemma \ref{Gsymm}, we have the symmetry 
 \[
 G(-x, y, r) = -G(x, y, r)
 \]
@@ -1304,17 +1208,12 @@ Let $b_0^*(r) = y^*(0, r)$. Then there is a pitchfork bifurcation at $(b_0^*(r),
 \end{proof} 
 \end{lemma}
 
-Let $p_k^*(r) = -\rho \log(b_k^*(r)) - k \pi$. Then
-\begin{equation}
-p_k^*(r) \rightarrow p^* \text{ as }r \rightarrow 0
-\end{equation}
-
-In Lemma \ref{Gsymm}, we showed that for sufficiently small $r$, $G(b_0, b_0, r) = 0$, so the zero set of $G$ contains the diagonal. In the next lemma, we show that the arms of the pitchfork also persist for sufficiently small $r$. It suffices to show this when $m = 0$, i.e. for the pitchfork at $(b_0^*(r), b_0^*(r))$. By symmetry, we also only need to show it for the lower arm. 
+In Lemma \ref{Gsymm}, we showed that for sufficiently small $r$, $G(b_0, b_0, r) = 0$, so the zero set of $G$ contains the diagonal. In the next lemma, we show that the arms of the pitchfork also persist for sufficiently small $r$. As in the previous lemma, we only need to consider two pitchforks corresponding to $m_0 = 0$ and $m_0 = 1$. By symmetry, we also only need to show it for the lower arm. 
 
 \begin{lemma}\label{armpersists}
-Choose any $\delta > 0$. Then there exists $r_3 < 0$ such that for $r < r_3$, the portion of the zero set of $G(b_0, b_1, r)$ corresponding to lower arm of the pitchfork at $(b_0^*(r), b_0^*(r))$ is parameterized by
+Choose any $\delta > 0$. Then there exists $r_3 > 0$ such that for $m_0 \in \{0, 1\}$ and $r \leq r_3$, the portion of the zero set of $G(b_0, b_1, r)$ corresponding to lower arm of the pitchfork at $(b_{m_0}^*(r), b_{m_0}^*(r))$ is parameterized by
 \begin{align*}
-(b_0, b_1) = (\tilde{b}_0(s; r), \tilde{b}_1(s, r)) && s \in [p^* + \delta, \infty)
+(b_0, b_1) = (\tilde{b}_0(s; m_0, r), \tilde{b}_1(s)) && s \in [p^* + \delta, \infty)
 \end{align*}
 where
 \begin{align}\label{tildeb1}
@@ -1322,24 +1221,29 @@ where
 \end{align}
 
 \begin{proof}
-For $r = 0$, we use the parameterization from Lemma \ref{thetaparamlemma}. Take $m_0 = 0$. For every positive integer $m_1$ with $m_1 \geq 1$, as in Lemma \ref{thetaparamlemma}, let
+For simplicity, take $m_0 = 0$. The proof is identical for $m_0 = 1$. For every positive integer $m_1$ with $m_1 \geq 1$, using the parameterization in Lemma \ref{thetaparamlemma}, let
 \begin{equation}\label{thetaparam}
 \begin{aligned}
-b_0( 0, m_1, \theta) &= \exp\left[ -\frac{1}{\rho}\theta^*(\theta, m_1 - m_0) \right] \\
-b_1( 0, m_1, \theta) &= \exp\left[ -\frac{1}{\rho}(m_1 \pi + \theta) \right]
+b_0( m_1, \theta) &= \exp\left[ -\frac{1}{\rho}\theta^*(\theta, m_1 - m_0) \right] \\
+b_1( m_1, \theta) &= \exp\left[ -\frac{1}{\rho}(m_1 \pi + \theta) \right]
 \end{aligned}
 \end{equation}
-Since these families connect together at their endpoints, define $\tilde{b}_1(s)$ by \cref{tideb1}. For any $s > p^*$, let $m(s)$ be the largest integer $m$ such that $m \pi \leq s - p^*$, and let $\theta(s) = s - (m(s) + 1)\pi$. Then we define
-\[
-\tilde{b}_0(s) = b_0(0, m(s)+1, \theta)
-\]
+Since these families connect together at their endpoints, define $\tilde{b}_1(s)$ by \cref{tildeb1}. For any $s_1 > p^*$, let
+\begin{equation}
+\begin{aligned}
+m(s) &= \lceil \frac{s - p^*}{\pi} \rceil \\
+\theta(s) &= s - m(s) \pi
+\end{aligned}
+\end{equation}
+Then we define $\tilde{b}_0(s)$ by
+\begin{equation}\label{tildeb0}
+\tilde{b}_0(s) = b_0(m(s), \theta(s)).
+\end{equation}
 Thus the continuous curve 
 \begin{align*}
 (b_0, b_1) &= (\tilde{b}_0(s), \tilde{b}_1(s)) && s > p^*
 \end{align*}
-parameterizes the lower arm of the pitchfork corresponding to $m_0 = 0$ when $r = 0$. We will show that this curve persists for small $r$.
-
-For $\delta > 0$, let $X$ be the Banach space
+parameterizes the lower arm of the pitchfork corresponding to $m_0 = 0$ when $r = 0$. We will show that this curve persists for small $r$. For $\delta > 0$, let $X$ be the Banach space
 \[
 X = C_b([p^* + \delta, \infty, \R)
 \]
@@ -1369,13 +1273,31 @@ For $b(s) \in X$ and $s \in [p^* + \delta, \infty)$,
 \end{align*}
 Since we are taking $\|y\| \rightarrow 0$, $|y(s)| \rightarrow 0$ for each $s \in [p^* + \delta, \infty)$. Thus for each $s$, the RHS tends to 0 as $\|y\| \rightarrow 0$ by the definition of the partial derivative on $\R$. Since $G$ is smooth and both $b(s)$ and $\tilde{b}(s)$ are bounded, the RHS above is uniformly bounded in $s$. The result follows by taking the supremum over all $s \in [p^* + \delta, \infty)$.
 
-By Lemma \ref{Hderivboundslemma}, there exists $\eta > 0$ (depending on $\delta$) such that for all $s \geq p^* + \delta$,
+By Lemma \ref{pitchforkH}, the derivative $G_{b_0}(b_0, b_1, 0) = H_{b_0}(b_0, b_1) = 0$ if and only if $(b_0, b_1)$ is one of the pitchfork bifurcation points. By construction and the parameterization in \cref{thetaparamlemma}, the curve $(\tilde{b}_0(s), \tilde{b}_1(s))$ only hits one of these points when $s = p^*$. 
+
+Recall from the parameterization \cref{thetaparam} that 
+\[
+b_0( 0, m_1, \theta) = \exp\left[ -\frac{1}{\rho}\theta^*(\theta, m_1 - m_0) \right] \\
+\]
+If $\theta^*(\theta, m_1 - m_0) = 0$, then $G_{b_0}(b_0( 0, m_1, \theta), b_1( 0, m_1, \theta), 0) = -\rho$. By the bound on $\theta^*(\theta; m)$ from Lemma \ref{thetaparamlemma} and the continuity of $G_{b_0}(b_0, b_1, 0)$, there exists a positive integer $K$ such that for all $m_1 \geq K$,
+\[
+|G_{b_0}(b_0( 0, m_1, \theta), b_1( 0, m_1, \theta), 0)| \geq \frac{\rho}{2} 
+\]
+Thus by the definitions of $\tilde{b}_0(s)$ and $\tilde{b}_1(s)$, for all $s \geq K \pi$,
+\[
+|G_{b_0}(\tilde{b}_0(s), \tilde{b}_1(s), 0)| \geq \frac{\rho}{2} 
+\]
+Since the curve $(\tilde{b}_0(s), \tilde{b}_1(s)$ is continuous, $G_{b_0}(b_0, b_1, 0)$ is continuous,  and $G_{b_0}(\tilde{b}_0(s), \tilde{b}_1(s), 0) = 0$ only at the $s = p^*$, there exists $\eta = \eta(\delta)$ such that for $s \in [p^* + \delta, K \pi]$,
+\[
+|G_{b_0}(\tilde{b}_0(s), \tilde{b}_1(s), 0)| \geq \eta
+\]
+Combining these, for all $s \geq p^* + \delta$,
 \begin{align*}
-|G_{b_0}( \tilde{b}_0(s), \tilde{b}_1(s), 0)| \geq \eta 
+|G_{b_0}( \tilde{b}_0(s), \tilde{b}_1(s), 0)| \geq \min\{ \eta, \rho/2\}.  
 \end{align*}
 This implies that the Fr\'echet derivative $D_{b_0} \tilde{G}(\tilde{b}_0, 0)$ is invertible, and the inverse has bound
 \[
-[D_{b_0} \tilde{G}(\tilde{b}_0, 0)]^{-1} \leq \frac{1}{\eta}
+[D_{b_0} \tilde{G}(\tilde{b}_0, 0)]^{-1} \leq \frac{1}{\min\{ \eta, \rho/2\}}
 \]
 Thus $D_{b_0} \tilde{G}(\tilde{b}_0, 0)$ is a Banach space isomorphism. Using the implit function theorem for Banach spaces, there exists $r_3 > 0$ and a unique smooth function $b: \mathcal{R} \rightarrow X$ with $b(0) = \tilde{b}_0$ such that for all $r \leq r_3$, $\tilde{G}(b(r), r) = 0$. Using the definition of $\tilde{G}$, for all $r \leq r_3$ and $s \in [p^* + \delta, \infty)$,
 \begin{align*}
@@ -1385,12 +1307,12 @@ Taking $\tilde{b}_0(s; r) = [b(r)](s)$, the result follows.
 \end{proof}
 \end{lemma} 
 
-In the final lemma, we show that for sufficiently small $r$, the lower arm of the pitchfork connects to the pitchfork bifurcation point. This will extend the parameterization in Lemma \ref{armpersists} to $s \in [0, M \pi]$.
+In the final lemma, we show that for sufficiently small $r$, the lower arm of the pitchfork connects to the pitchfork bifurcation point. This will extend the parameterization in Lemma \ref{armpersists} to $s \in [p^*, \infty)$.
 
 \begin{lemma}\label{pitchforkconnects}
-There exists $r_4 > 0$ such that for $r \leq r_4$, the lower arm of the pitchfork at $(b_0^*(r), b_0^*(r))$ is parameterized by
+There exists $r_4 > 0$ such that for $m_0 \in \{0, 1\}$ and $r \leq r_4$, the lower arm of the pitchfork at $(b_{m_0}^*(r), b_{m_0}^*(r))$ is parameterized by
 \begin{align*}
-(b_0, b_1) = (\tilde{b}_0(s; r), \tilde{b}_1(s)) && s \in [p^*, \infty)
+(b_0, b_1) = (\tilde{b}_0(s; m_0, r), \tilde{b}_1(s)) && s \in [p^*, \infty)
 \end{align*}
 where
 \begin{align*}
@@ -1398,37 +1320,30 @@ where
 \end{align*}
 and 
 \begin{align*}
-(\tilde{b}_0(p^*; r), \tilde{b}_1(p^*)) = (b_0^*(r), b_0^*(r))
+(\tilde{b}_0(p^*; m_0, r), \tilde{b}_1(p^*)) = (b_{m_0}^*(r), b_{m_0}^*(r))
 \end{align*}
 
 \begin{proof}
-To make everything easier, we will change variables as in Lemma \ref{pitchforkH} so that the pitchfork bifurcation takes place on the $x$ axis. As in that lemma, let 
+For simplicity, take $m_0 = 0$. The proof is identical for $m_0 = 1$. To make everything easier, we will change variables as in Lemma \ref{pitchforkH} so that the pitchfork bifurcation takes place on the $x$ axis. As in that lemma, let 
 \begin{align*}
 x &= \frac{1}{2}(b_1 - b_0) \\
 y &= \frac{1}{2}(b_1 + b_0)
 \end{align*}
-When $r = 0$, there is a pitchfork bifurcation at $(b_0^*, 0)$. Then there exists $y_1 > 0$ such that the lower arm of the pitchfork is parameterized in the $(x,y)$ coordinate system by 
+Let $r_2$ be as in Lemma \ref{pitchpersist}. Then there is a unique nondegenerate pitchfork bifurcation at $(b_0^*(r), 0)$. Furthermore, there exists $y_1 \geq 0$ such that for $r \leq r_2$, the lower arm of the pitchfork is uniquely parameterized by
 \begin{align*}
-(x, y) &= (x_0^*(y), y) && y \in [0, y_1]
+(x, y) &= (x_0(y, r), y) && y \in [0, y_1]
 \end{align*}
-where $x_0^*(0) = b_0^*$. 
+with $x_0(0, r) = b_0^*(r)$.
 
-In Lemma \ref{pitchpersist}, we showed that this pitchfork bifurcation persists for small $r$. Specifically, there exists $r_2 > 0$ and $y_2$ with $0 < y_2 \leq y_1$ such that for all $r < r_2$, there is a pitchfork bifurcation at $(0, b_0^*(r))$, and the lower arm of the pitchfork is uniquely parameterized by
+Take $\delta = y_1/2$ and let $r_3$ be as in Lemma \ref{armpersists}. Converting the parameterization to the $(x, y)$ coordinate system for $r \leq r_3$, the lower arm of the pitchfork is uniquely parameterized by 
 \begin{align*}
-(x, y) &= (x_0(y, r), y) && y \in [0, y_2]
-\end{align*}
-with $x_0(0, r) = b_0^*(r)$ and $x_0(y, 0) = x_0^*(y)$. 
-
-Take $\delta = y_2/2$ in Lemma \ref{armpersists}. Converting the parameterization to the $(x, y)$ coordinate system, there exists $r_3 > 0$ such that the lower arm of the pitchfork on the interval $[y_2/2, y_2]$ is uniquely parameterized by 
-\begin{align*}
-(x, y) &= (x_1(y, r), y) && y \in \left[\frac{y_2}{2}, y_2\right]
+(x, y) &= (x_1(y, r), y) && y \in \left[\frac{y_1}{2}, \infty \right)
 \end{align*}
 
-Let $r_4 = \min\{ r_2, r_3 \}$. Then by uniqueness of the two parameterizations, for $r \leq r_4$,
+Let $r_4 = \min\{ r_2, r_3 \}$. Then by the uniqueness of the two parameterizations, for $r \leq r_4$,
 \begin{align*}
-x_1(y, r), y) &= x_0(y, r), y) && y \in \left[\frac{y_2}{2}, y_2\right]
+(x_1(y, r), y) &= (x_0(y, r), y) && y \in \left[\frac{y_1}{2}, y_1\right]
 \end{align*}
-
 Since the two parameterizations overlap on an interval, we conclude that for $r \leq r_4$, the lower arm of the pitchfork connects to the pitchfork bifurcation point. Returning to the $(b_0, b_1)$ coordinate system, we can extend the parameterization in the previous lemma all the way to the pitchfork bifurcation point, which occurs when $s = p^*$.
 
 \end{proof}
@@ -1436,7 +1351,14 @@ Since the two parameterizations overlap on an interval, we conclude that for $r 
 
 \subsection{Proof of Theorem \ref{2pulsebifurcation}}
 
-Symmetric solutions with $b_0 = b_1$ exist by Lemma \ref{Gsymm}. By Lemma \ref{pitchforkconnects}, a pitchfork bifurcation point occurs on the diagonal at $(p_0(r), p_0(r))$. At this point, asymmetric solutions bifurcate from symmetric solutions.
+Symmetric solutions with $b_0 = b_1$ exist by Lemma \ref{Gsymm}. To paramaterize these, for $m_0 \in \{0, 1\}$ and $s_0 \in [0, \pi)$, let
+\[
+b_0(m_0, s_0) = b_2(m_0, s_0) = 
+\exp\left[ -\frac{1}{\rho}(m_0 \pi + s_0) \right]
+\]
+Then the pulse distances are given by \cref{2psymmdist}. 
+
+By Lemma \ref{pitchforkconnects}, for $m_0 = 0$, a pitchfork bifurcation point occurs on the diagonal at $(p_0^*(r), p_0^*(r))$. Similarly, for $m_0 = 1$, a pitchfork bifurcation point occurs on the diagonal at $(p_1^*(r), p_1^*(r))$. 
 
 \iffulldocument\else
 	\bibliographystyle{amsalpha}
