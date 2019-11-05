@@ -117,14 +117,20 @@ There exists $r_* \in \mathcal{R}$ with $r_* > 0$ such that for all $r \leq r_*$
 	\end{aligned}
 	\end{equation}
 	where $t_0(r; m_0, s_1)$ is smooth in $r$, continuous in $t_1$, and $t_0(0; m_0, k \pi) = m_0$ for all nonnegative integers $k$. Furthermore,
-	\[
-	t_0(0; m_0, s_1) = m_0 \pi + \theta^*(\theta(s_1); m(s_1) - m_0 + 1),
-	\]
-	where $m(s)$ be the largest integer $m$ such that $m \pi \leq s - p^*$ and $\theta(s) = s - (m(s) + 1)\pi$.
+	\begin{align}\label{deft0}
+	t_0(0; m_0, s_1) = m_0 \pi + \theta^*(\theta(s_1); m(s_1) - m_0),
+	\end{align}
+	where
+	\begin{equation*}
+	\begin{aligned}
+	m(s) &= \lceil \frac{s - p^*}{\pi} \rceil \\
+	\theta(s) &= s - m(s) \pi
+	\end{aligned}
+	\end{equation*}
 
-	\item The two families meet at a pitchfork bifurcation. In terms of the two parameterizations, this occurs when $s_0 = p^*(r)$ and $s_1 = -\pi + p^*$. The bifurcation point $p^*(r)$ is smooth in $r$, and
+	\item The two families meet at a pitchfork bifurcation. In terms of the two parameterizations, this occurs when $s_0 = p^*(m_0; r)$ and $s_1 = p^*$. The bifurcation points $p^*(m_0; r)$ are smooth in $r$, and
 	\[
-	p^*(r)\rightarrow \arctan \rho \text{ as }r \rightarrow 0.
+	p^*(m_0; r) \rightarrow \arctan \rho \text{ as }r \rightarrow 0.
 	\]
 \end{enumerate}
 \end{theorem}

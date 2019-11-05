@@ -1110,7 +1110,7 @@ X_j &= -\frac{1}{2\alpha}\log(b_j(r) r) - \frac{\phi}{2 \beta} \\
 \end{align*}
 where we define $L_0 = \frac{\phi}{2 \beta}$. For $j = 0, \dots, n-2$, define $t_j(r; m_j, \theta): \mathcal{R} \rightarrow \R$ by
 \begin{equation}\label{deftj}
-t_j(r; m_j, m_{n-1}, \theta) = -\rho \frac{1}{\rho}\log b_j(r)
+t_j(r; m_j, m_{n-1}, \theta) = -\rho \log b_j(r)
 \end{equation}
 The functions $t_j(r; m_j, m_{n-1}, \theta)$ are smooth in $r$, and from \cref{thetaparammulti}, 
 \[
@@ -1351,14 +1351,30 @@ Since the two parameterizations overlap on an interval, we conclude that for $r 
 
 \subsection{Proof of Theorem \ref{2pulsebifurcation}}
 
-Symmetric solutions with $b_0 = b_1$ exist by Lemma \ref{Gsymm}. To paramaterize these, for $m_0 \in \{0, 1\}$ and $s_0 \in [0, \pi)$, let
+Let $r_* = r_4$, where $r_4$ is defined in \cref{pitchforkconnects}. Symmetric solutions with $b_0 = b_1$ exist by Lemma \ref{Gsymm}. To paramaterize these, for $m_0 \in \{0, 1\}$ and $s_0 \in [0, \pi)$, let
 \[
-b_0(m_0, s_0) = b_2(m_0, s_0) = 
+b_0(m_0, s_0) = b_1(m_0, s_0) = 
 \exp\left[ -\frac{1}{\rho}(m_0 \pi + s_0) \right]
 \]
-Then the pulse distances are given by \cref{2psymmdist}. 
+Then the pulse distances are given by \cref{2psymmdist}. By Lemma \ref{pitchpersist}, for $r \leq r_*$ and $m_0 \in \{0,1\}$, pitchfork bifurcations occurs on the diagonal at $(b_{m_0}^*(r), b_{m_0}^*(r))$, where $b_{m_0}^*(r) \rightarrow b_{m_0}^*$ as $r \rightarrow 0$. For $m_0 = 0$, let $p_0^*(r) = -\rho \log(b_0^*(r))$. Then the pitchfork bifurcation occurs at $s_0 = p^*(0; r)$, and $p^*(0; r) \rightarrow p^*$ as $r \rightarrow 0$. A similar result holds for $m_0 = 1$.
 
-By Lemma \ref{pitchforkconnects}, for $m_0 = 0$, a pitchfork bifurcation point occurs on the diagonal at $(p_0^*(r), p_0^*(r))$. Similarly, for $m_0 = 1$, a pitchfork bifurcation point occurs on the diagonal at $(p_1^*(r), p_1^*(r))$. 
+For asymmetric 2-pulses, taking $s = s_1$ in Lemma \ref{pitchforkconnects}, for $r \leq r_4$, the lower arms of the two pitchforks are parameterized by
+\begin{align*}
+(b_0, b_1) = (\tilde{b}_0(s_1; m_0, r), \tilde{b}_1(s_1)) && s_1 \in [p^*, \infty)
+\end{align*}
+where $\tilde{b}_0$ and $\tilde{b}_1$ are defined in the statement of the lemma. From the definition of $\tilde{b}_1$, 
+\begin{align*}
+X_1(r, s_1) &= \frac{1}{2 \alpha_0} |\log r| + \frac{1}{2\beta_0} s_1 + L_0.
+\end{align*}
+Let 
+\[
+t_0(r; m_0, s_1) = -\rho \log\left( \tilde{b}_0(s_1; m_0, r) \right)
+\]
+Then 
+\begin{align*}
+X_0(r, s_1) &= \frac{1}{2 \alpha_0} |\log r| + \frac{\pi}{2\beta_0} t_0(r; m_0, s_1) + L_0
+\end{align*}
+and $t_0(r; m_0, s_1)$ is smooth in $r$, continuous in $s_1$, and has the properties given in the statement of the theorem. Finally, from Lemma \ref{pitchforkconnects}, the pitchfork bifurcation point is reached when $s_1 = p^*$.
 
 \iffulldocument\else
 	\bibliographystyle{amsalpha}

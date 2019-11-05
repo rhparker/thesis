@@ -1132,14 +1132,17 @@ M = \int_{-\infty}^\infty \langle \Psi(y), H(y) \rangle dy = \int_{-\infty}^\inf
 
 Before we conclude this section, we will prove some results based on \cref{blockmatrixtheorem}. In this section, we will characterize the matrix $A$ in the lower left block of the block matrix \cref{blockmatrix}. 
 
-WRITE THIS IN TERMS OF $m_j$ AND CHECK SIGN.
 \begin{lemma}\label{lemma:ajparam}
 For $r \leq r_*$, the terms $a_j$ in the block matrix equation \cref{blockmatrix} have the form
 \[
 a_j = r \tilde{a}^j(r), where
 \]
 \begin{equation}\label{ajparam}
-\tilde{a}_j(r) = s_0 e^{\alpha_0 \phi/\beta_0} b_j \left( \beta \cos\left(-\rho \log b_j \right) - \alpha \sin \left(-\rho \log b_j \right) \right) + \mathcal{O}(r^{\gamma/2\alpha_0})
+\tilde{a}_j(r) = -s_0 e^{\alpha_0 \phi/\beta_0} b_j \left( \beta \cos\left(-\rho \log b_j \right) - \alpha \sin \left(-\rho \log b_j \right) \right) + \mathcal{O}(r^{\gamma/2\alpha_0})
+\end{equation}
+and
+\begin{equation}\label{bj2}
+b_j = e^{-2 \alpha (X_j - X^*)}
 \end{equation}
 
 \begin{proof}
@@ -1148,18 +1151,19 @@ From \cite[Lemma 6.1]{Sandstede1998},
 \langle \Psi(-x), Q'(x) \rangle
 &= s_0 e^{-2 \alpha_0 x}\left( \beta_0 \cos(2 \beta_0 x + \phi) - \alpha_0 \sin(2 \beta_0 x + \phi)\right) + \mathcal{O}(e^{-(2 \alpha_0 + \gamma) x}
 \end{align*}
-where $s_0 > 0$ and $\gamma$ are the same as in Lemma \ref{IPform}. Thus we have
+where $s_0 > 0$ and $\gamma$ are the same as in Lemma \ref{IPform}. From the proof of Lemma \ref{jumpadj}, $\langle \Psi(X_j), Q'(-X_j) \rangle = - \langle \Psi(-X_j), Q'(X_j) \rangle$. Using equation \cref{Xjscale} for $X_j$, we have
 \begin{align*}
-a_j(r) &= \langle \Psi(-X_j), Q'(X_j) \rangle \\
-&= s_0 e^{-2 \alpha_0 X_j}\left( \beta_0 \cos(2 \beta_0 X_j + \phi) - \alpha_0 \sin(2 \beta_0 X_j + \phi)\right) + \mathcal{O}(e^{-(2 \alpha_0 + \gamma_0) X_j}) \\
-&= s_0 e^{\alpha_0 \phi/\beta_0} r b_j \left( \beta_0 \cos\left( -\frac{\beta_0}{\alpha_0} \log(b_j r) \right) - \alpha_0 \sin \left( -\frac{\beta_0}{\alpha_0} \log(b_j r) \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha_0} b_j^{1 + \gamma/2\alpha_0}) \\
-&= s_0 e^{\alpha_0 \phi/\beta_0} r b_j \left( \beta_0 \cos\left( -\rho \log(b_j r) \right) - \alpha_0 \sin \left( -\rho \log(b_j r) \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha_0})
+a_j(r) &= \langle \Psi(X_j), Q'(-X_j) \rangle = -\Psi(-X_j), Q'(X_j) \rangle \\
+&= -s_0 e^{-2 \alpha_0 X_j}\left( \beta_0 \cos(2 \beta_0 X_j + \phi) - \alpha_0 \sin(2 \beta_0 X_j + \phi)\right) + \mathcal{O}(e^{-(2 \alpha_0 + \gamma_0) X_j}) \\
+&= -s_0 e^{\alpha_0 \phi/\beta_0} r b_j \left( \beta_0 \cos\left( -\frac{\beta_0}{\alpha_0} \log(b_j r) \right) - \alpha_0 \sin \left( -\frac{\beta_0}{\alpha_0} \log(b_j r) \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha_0} b_j^{1 + \gamma/2\alpha_0}) \\
+&= -s_0 e^{\alpha_0 \phi/\beta_0} r b_j \left( \beta_0 \cos\left( -\rho \log(b_j r) \right) - \alpha_0 \sin \left( -\rho \log(b_j r) \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha_0})
 \end{align*}
 since $b_j \in (0, 1]$. Since $r \in \mathcal{R}$, $r = \exp\left(-\frac{2 m \pi}{\rho}\right)$ for some nonnegative integer $m$, this becomes 
 \begin{align*}
-a_j(r) &= s_0 e^{\alpha_0 \phi/\beta_0} r b_j \left( \beta_0 \cos\left( 2 m \pi -\rho \log b_j \right) - \alpha_0 \sin \left( 2 m \pi -\rho \log b_j \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha_0}) \\
-&= s_0 e^{\alpha_0 \phi/\beta_0} r b_j \left( \beta_0 \cos\left(-\rho \log b_j \right) - \alpha_0 \sin \left(-\rho \log b_j \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha_0})
+a_j(r) &= -s_0 e^{\alpha_0 \phi/\beta_0} r b_j \left( \beta_0 \cos\left( 2 m \pi -\rho \log b_j \right) - \alpha_0 \sin \left( 2 m \pi -\rho \log b_j \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha_0}) \\
+&= -s_0 e^{\alpha_0 \phi/\beta_0} r b_j \left( \beta_0 \cos\left(-\rho \log b_j \right) - \alpha_0 \sin \left(-\rho \log b_j \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha_0})
 \end{align*}
+The result follows from letting $a_j(r) = r \tilde{a}_j(r)$.
 \end{proof}
 \end{lemma}
 
