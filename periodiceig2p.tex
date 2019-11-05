@@ -1,0 +1,437 @@
+\documentclass[thesis.tex]{subfiles}
+
+\begin{document}
+
+\iffulldocument\else
+	\chapter{KdV5}
+\fi
+
+\section{Proof of stability theorems for periodic 2-pulse}
+
+\subsection{Proof of Corollary \ref{2blockmatrix}}
+
+In this section, we will compute the determinant of the block matrix $S(\lambda)$ from \cref{blockmatrixtheorem} for the periodic 2-pulse. The computation is tedious, but it can be done with the aid of Mathematica. Choose a positive integer $N$, and let $\delta(r, N)$ be as in \cref{blockmatrixtheorem}. In particular, we note that $\delta(r,N) \leq N/|\log r|$. 
+
+To compute the determinant, we write the block matrix $S(\lambda)$ as $S(\lambda) = S_1(\lambda) + S_2(\lambda)$, where the leading order terms are given by
+\begin{align*}
+S_1&(\lambda) = \\
+&\begin{pmatrix}
+\begin{pmatrix}
+e^{-\nu(\lambda)X_1} & -e^{\nu(\lambda)X_0} \\
+-e^{\nu(\lambda)X_1} & e^{-\nu(\lambda)X_0} 
+\end{pmatrix} &
+2 \lambda \begin{pmatrix}
+-e^{-\nu(\lambda)X_1} q(X_1) + e^{\nu(\lambda)X_0} q(X_1) & e^{-\nu(\lambda)X_1} q(X_1) - e^{\nu(\lambda)X_0} q(X_1) \\ e^{-\nu(\lambda)X_0} q(X_1) - e^{\nu(\lambda)X_1} q(X_1) & -e^{-\nu(\lambda)X_0} q(X_1) + e^{\nu(\lambda)X_1} q(X_1)
+\end{pmatrix} \\
+-M^c \lambda
+\begin{pmatrix}
+e^{-\nu(\lambda)X_1} & e^{\nu(\lambda)X_0} \\
+e^{\nu(\lambda)X_1} & e^{-\nu(\lambda)X_0} 
+\end{pmatrix} &
+\begin{pmatrix}
+-a - \lambda^2 M & a \\
+a & -a - \lambda^2 M
+\end{pmatrix}
+\end{pmatrix}
+\end{align*}
+where
+\[
+a = \langle \Psi(X_0), Q'(-X_0) \rangle + \langle \Psi(X_1), Q'(-X_1) \rangle
+\]
+and the remainder terms are in $S_2(\lambda)$, which is the block matrix 
+\[
+S_2(\lambda) = \begin{pmatrix}
+C_1 & D_1 \\ C_2 & D_2
+\end{pmatrix}
+\]
+
+We use Mathematica to evaluate the determinant. To do ths, we carefully track each remainder term in each remainder matrix in $S_2(\lambda)$ and use Lemma \ref{lemma:expnubound} to bound terms of the form $e^{\pm \nu(\lambda)X_j}$. Doing this and simplifying, we have
+\begin{equation}\label{2detB1}
+\begin{aligned}
+\det S(&\lambda) = \sinh(\nu(\lambda)X)\left(-2 \lambda^2 M (2a + \lambda^2 M) +  \mathcal{O}( (r^{1/2} + |\lambda|)^5 \right) \\
+&-\lambda^4 q(X_0) M M^c \left( \sinh(\nu(\lambda)(2 X_0 + X_1)) - 3 \sinh(\nu(\lambda)X_1)  \right) \\
+&-\lambda^4 q(X_1) M M^c \left( \sinh(\nu(\lambda)(2 X_1 + X_0)) - 3 \sinh(\nu(\lambda)X_0)  \right) \\
+&+ \mathcal{O}( (r^{1/2} + |\lambda|)^6) 
+\end{aligned}
+\end{equation}
+Using standard hyperbolic trigonometric identities, we can show that 
+\begin{align*}
+\sinh(2 x + y) - 3 \sinh(y) &= 4 \cosh(x + y)\sinh(x) 
+-2 \sinh(x+y)\cosh(x) 
+\end{align*}
+Using this with the second line of \cref{2detB1}, 
+\begin{align*}
+\lambda^4 &q(X_0) \left( \sinh(\nu(\lambda)(2 X_0 + X_1)) - 3 \sinh(\nu(\lambda)X_1)  \right) \\
+&= 4 \lambda^4 q(X_0) \cosh(\nu(\lambda)X)\sinh(\nu(\lambda)X_0) - 3 \lambda^4 q(X_0) \sinh(\nu(\lambda)X)\cosh(\nu(\lambda)X_0) \\
+&= 4 \lambda^4 q(X_0) \cosh(\nu(\lambda)X)\sinh(\nu(\lambda)X_0) + \sinh(\nu(\lambda)X)(\mathcal{O}(r^{1/2}|\lambda|^4))
+\end{align*}
+since $|\cosh(\nu(\lambda)X_0)|\leq C$ by Lemma \ref{lemma:expnubound}. Doing the same thing for the third line of \cref{2detB1}, substituting the results into \cref{2detB1}, and simplifying, we have
+\begin{equation}\label{2pdetSlambda}
+\begin{aligned}
+\det S(&\lambda) = \left(-2 \lambda^2 M (2a + \lambda^2 M) + R_1  \right) \sinh(\nu(\lambda)X) \\
+&-4 M M^c \lambda^4 ( q(X_0) \sinh(\nu(\lambda)X_0) + q(X_1) \sinh(\nu(\lambda)X_1) ) \cosh(\nu(\lambda)X)  + R_2
+\end{aligned}
+\end{equation}
+where the remainder terms have bounds
+\begin{align*}
+|R_1| \leq C(r^{1/2} + |\lambda|)^5 \\
+|R_2| \leq C(r^{1/2} + |\lambda|)^6
+\end{align*}
+
+\subsection{Change of variables}
+
+We can now solve equation \cref{2pdetSlambda} to find the eigenvalues $\lambda$. However, this equation involves both $\lambda$ and $\nu(\lambda)$, which is annoying. We will simplify the problem by making a change of variables. Since $\nu'(0) = 1/c$ and $\nu(0) = 0$, $\nu(\lambda)$ is invertible near 0. Let $\lambda = \nu^{-1}(\mu)$. Expanding in Taylor series about $\mu = 0$, we have
+\begin{equation}\label{2plambdamu}
+\lambda = \nu^{-1}(\mu) = c \mu + \mathcal{O}(\mu^3)
+\end{equation}
+Substituting this into \cref{2pdetSlambda} and simplifying, we obtain the equation
+\begin{equation}\label{2detBeqmu}
+\begin{aligned}
+\det S(&\mu) = \left(-2 c^2 \mu^2 M (2a + c^2 \mu^2 M) + R_1 )\right) \sinh(\mu X) \\
+&-4 M M^c c^4 \mu^4 ( q(X_0) \sinh(\mu X_0) + q(X_1) \sinh(\mu X_1) ) \cosh(\mu X) + R_2
+\end{aligned}
+\end{equation}
+Incorporating the higher order terms from \cref{2plambdamu} into the remainder terms, the bounds on the remainder terms are unchanged.
+\begin{equation}\label{muRbounds}
+\begin{aligned}
+|R_1| \leq C(r^{1/2} + |\mu|)^5 \\
+|R_2| \leq C(r^{1/2} + |\mu|)^6
+\end{aligned}
+\end{equation}
+
+\subsection{Proof of \cref{lemma:chara}}
+
+PUT THIS HERE
+
+\subsection{Asymmetric periodic 2-pulse}\label{sec:assymkernel}
+
+Let $r_*$ be as in Theorem \ref{2pulsebifurcation}. Choose $m_0 \in \{ 0, 1\}$ and any $s_1 > p^*$. For $r \leq r_*$, let $Q_2(x; r = Q_2(x; m_0, s_1, r)$ be the corresponding family of asymmetric periodic 2-pulses. Choose any positive integer $N$, and let $\delta(N,r)$ be as in Theorem \ref{blockmatrixtheorem}. Let $\tilde{a}(r) = \tilde{a}(r; m_0, s_1)$, be as in Lemma \cref{lemma:chara}. By Lemma \cref{lemma:chara}, $\tilde{a}(0) \neq 0$. Let
+\begin{equation}\label{2ptildemustar}
+\tilde{\mu}_*(r) = \sqrt{-\frac{2\tilde{a}(r)}{M c^2}}.
+\end{equation}
+Since $\tilde{a}(0) \neq 0$, $\tilde{\mu}_*(0) \neq 0$
+We expect to find a pair of interaction eigenvalues near $\mu = \pm \tilde{\mu}_*(r) r^{1/2}$. 
+
+To make sure that the essential spectrum eigenvalues are ``out of the way'' of the interaction eigenvalues, we will choose $r_0 \leq r_*$ sufficiently small so that for all $r \leq r_0$,
+\begin{equation}\label{2pnobubble}
+\left|\tilde{\mu}_*(r) \right| r^{1/2}  \leq \frac{\pi}{2 X(r)},
+\end{equation}
+where $X(r)$ is the domain size. Precisely, since
+\[
+X(r) \leq \frac{1}{2 \alpha_0} 2 |\log r| + \frac{1}{2\beta_0}\left( s_1 + 2 \pi \right) + 2 L_0, 
+\]
+choose $r_0 \leq r_*$ such that
+\begin{align}\label{2pnobubblecond}
+\left|\tilde{\mu}_*(r) \right| r^{1/2} \left( \frac{1}{\alpha_0} |\log r| + \frac{1}{2\beta_0}\left( s_1 + 2 \pi \right) + 2 L_0 \right) \leq \frac{\pi}{2}
+\end{align}
+for all $r \leq r_0$. Since $r^{1/2}|\log r| \rightarrow 0$ as $r \rightarrow 0$ and $\tilde{\mu}_*(r)$ is bounded, we can always find such a $r_0$. This guarantees that \cref{2pnobubble} is satisfied. For the rest of this section, we will take $r \leq r_0$.
+
+\subsubsection{Essential spectrum eigenvalues}
+
+In this section, we find the essential spectrum eigenvalues. Let $N_1 \leq N$ be the largest positive integer such that $N_1/|\log r| < \delta(N,r)$. Let $m$ be a nonzero integer with $|m| \leq N_1$, and let
+\begin{equation}\label{defmum}
+\mu_m = \frac{m \pi i}{X} + \frac{h}{X}
+\end{equation}
+Expanding the $\sinh(\mu_m X)$ and $\cosh(\mu_m X)$ terms in \cref{2detBeqmu} in a Taylor series about $m \pi/X$,
+\begin{align*}
+\sinh(\mu_m X) &= (-1)^m h + \mathcal{O}(h^3) \\
+\cosh(\mu_m X) &= (-1)^m + \mathcal{O}(h^2)
+\end{align*}
+By \cref{lemma:expnubound}, the $\sinh(\mu_m X_j)$ terms in \cref{2detBeqmu} are bounded by a constant. The terms involving $q(X_j)$ are $\mathcal{O}(r^{1/2})$. By \cref{2pnobubble}, $|\mu_m| \geq C r^{1/2}$ for $r \leq r_0$. Substituting these into \cref{2detBeqmu}, we have 
+\begin{equation}\label{Bess1}
+\begin{aligned}
+\det &S(h, r) = \left(-2 c^2 M  \mu_m^2 \left( 2a(r) + c^2 M \mu_m \right)^2 + \mathcal{O}( |\mu_m|)^5 \right) \left( (-1)^m h + \mathcal{O}(h^3) \right) \\
+&+ \mu_m^4 \left( (-1)^m + \mathcal{O}(h^2)\right)\mathcal{O}(r^{1/2}) + \mathcal{O}\left( |\mu_m| \right)^6 \\
+&= \left(-2 c^2 M  \mu_m^2 \left( 2a + c^2 M \mu_m \right)^2 + \mathcal{O}( |\mu_m|)^5 \right) \left( (-1)^m h + \mathcal{O}(h^3) \right) + \mathcal{O}\left( |\mu_m|^5 \right),
+\end{aligned}
+\end{equation}
+
+We want to solve $\det S(\mu, r) = 0$. Dividing by $(-1)^m$, $M c^2$, and the constants out front and using \cref{2ptildemustar}, we want to solve 
+\begin{equation}\label{Bess2}
+\begin{aligned}
+\left(\mu_m^2 (\mu_m - \tilde{\mu}_*(r)r^{1/2})(\mu_m + \tilde{\mu}_*(r)r^{1/2}) + \mathcal{O}( |\mu_m|)^5 \right) \left( h + \mathcal{O}(h^3) \right) + \mathcal{O}\left( |\mu_m|^5 \right) = 0
+\end{aligned}
+\end{equation}
+Since $\mu_m \neq 0$, divide by $\mu_m^2$ to get
+\begin{equation}\label{Bess3}
+\begin{aligned}
+\left((\mu_m - \mu_*(r))(\mu_m + \mu_*(r)) + \mathcal{O}( |\mu_m|)^3 \right) \left( h + \mathcal{O}(h^3) \right) + \mathcal{O}\left( |\mu_m|^3 \right) = 0
+\end{aligned}
+\end{equation}
+Finally, multiply by $X^2$ and substitute \cref{defmum} for $\mu_m$. Since $|m| \leq N$, $|\mu_m| \leq C N/X$, so we can simplify the remainder terms to get the equation $G_m(h, r) = 0$, where
+\begin{equation}\label{Bess4}
+\begin{aligned}
+G_m(h, r) &= (m \pi i + h - \tilde{\mu}_*(r) r^{1/2} X(m \pi i + h + \tilde{\mu}_*(r) r^{1/2} X \left( h + \mathcal{O}(h^3) \right) + \mathcal{O}\left( \frac{1}{X} \right)
+\end{aligned}
+\end{equation}
+Since $X = X(r) = \mathcal{O}(1/|\log r|)$, this becomes
+\begin{equation}\label{Bess4}
+\begin{aligned}
+G_m(h, r) &= \left( m \pi i + h + \mathcal{O}(r^{1/2}|\log r|) \right)\left(m \pi i + h + + \mathcal{O}(r^{1/2}|\log r|) \right) \left( h + \mathcal{O}(h^3) \right) + \mathcal{O}\left( \frac{1}{|\log r|} \right)
+\end{aligned}
+\end{equation}
+Since $r^{1/2}|\log r| \rightarrow 0$ as $r \rightarrow 0$,
+\begin{align*}
+G_m(0,0) &= 0 \\
+\partial_h G_m(0,0) &= -m^2 \pi^2
+\end{align*}
+For all $m$ between 1 and $N_1$, $|\partial_h G_m(0,0)| \geq \pi^2 > 0$. Thus we can use the implicit function theorem to solve for $h$ in terms of $r$ near $h = 0$. Specifically, there exists $r_2^m \leq r_0$ and a unique smooth function $h_m(r)$ with $h_m(0) = 0$ such that for all $r \leq r_2^m$, $G_m(h_m(r),r) = 0$. Expanding $h_m$ in a Taylor series about $r = 0$,
+\[
+h_m(r) = \mathcal{O}\left( \frac{1}{|\log r|} \right)
+\]
+Let $r_2 = \min\{ r_2^1, \dots, r_2^{N_1} \}$. Substituting $h_m(r)$ into \cref{defmum}, for all nonzero integers $m = 1, \dots, N_1$, there are essential spectrum eigenvalues located at
+\[
+\mu_m(r) = \frac{m \pi i}{X} + \mathcal{O}\left( \frac{1}{|\log r|^2} \right)
+\]
+Changing variables back to $\lambda$, these are located at
+\[
+\lambda_m(r) = c \frac{m \pi i}{X}\left[1 + \mathcal{O}\left( \frac{1}{|\log r|^2} \right) \right] +\mathcal{O}\left( \frac{1}{|\log r|^2} \right)
+\]
+Since $X = \mathcal{O}(|\log r|)$, this simplifies to
+\[
+\lambda_m(r) = c \frac{m \pi i}{X} +\mathcal{O}\left( \frac{1}{|\log r|^2} \right)
+\]
+
+By Hamiltonian symmetry, eigenvalues must come in quartets. Since there is nothing else above the real axis with similar magnitude, $\lambda_m(r)$ is pure imaginary and there is another essential spectrum eigenvalue $\lambda_{-m}(r) = -\lambda_m(r)$. We conclude that the nonzero essential spectrum eigenvalues are given by $\lambda = \pm \lambda_m^{\text{ess}}(r)$ for $m = 1, \dots, N_1$, where
+\[
+\lambda_m^{\text{ess}}(r) = c \frac{m \pi i}{X} + +\mathcal{O}\left( \frac{1}{|\log r|^2} \right),
+\]
+
+\subsubsection{Eigenvalues at 0}
+
+In this section, we show that there are exactly three eigenvalues at 0, and that there are no other eigenvalues within a certain distance of 0. We know that there is an eigenvalue at 0 with at least algebraic multiplicity 2, since the corresponding eigenfunctions are $\partial_x Q_2(x)$ and $\partial_c Q_2(x)$. Since $\tilde{a}(0) \neq 0$, the eigenvalues of $\tilde{A}(0)$, thus by \cref{lemma:centereigenfn}, there is a third eigenfunction $V_n^c(x)$ with eigenvalue 0. We will use Rouch\'{e}'s theorem to show that there are no more eigenfunctions in a small circle around 0. Let
+\[
+\tilde{\xi} = \frac{1}{2}|\tilde{\mu}_*(0)|
+\]
+and take $\mu$ on the circle $|\mu| = r^{1/2} \tilde{\xi}$. By \cref{2pnobubble}, $|\mu X| \leq 1/2$, thus we can expand all of the $\sinh$ and $\cosh$ terms in \cref{2detBeqmu} in a Taylor series about 0 to get
+\begin{equation*}
+\begin{aligned}
+\sinh(\mu X) &= \mu X + \mathcal{O}(\mu X^2) \\
+\cosh(\mu X) &= \mathcal{O}(1) \\
+\sinh(\mu X_j) &= \mathcal{O}(\mu X_j) = \mathcal{O}(\mu X).
+\end{aligned}
+\end{equation*}
+Using these estimates, the estimate $q(X_j) = \mathcal{O}(r^{1/2})$, and \cref{2ptildemustar}, equation \cref{2detBeqmu} simplifies to
+\begin{equation}\label{2detBeqmu3}
+\begin{aligned}
+\det S(\mu, r) &= -2 \mu^2 M (\mu - \tilde{\mu}_*(r)r^{1/2}) (\mu + \tilde{\mu}_*(r)r^{1/2}) ( \mu X + \mathcal{O}(\mu X)^3) + \mathcal{O}\left( r^{5/2}|\mu|X + |\mu|^5(r^{1/2} + |\mu|)X \right),
+\end{aligned}
+\end{equation}
+Rescale the problem by taking $\mu = r^{1/2}\tilde{\mu}$. Then equation \cref{2detBeqmu3} becomes
+\begin{equation}\label{2detBeqmu4}
+\begin{aligned}
+\det S(\tilde{\mu}, r) &= -2 \tilde{\mu}^2 M r^{5/2} (\tilde{\mu} - \tilde{\mu}_*(r)) (\tilde{\mu} + \tilde{\mu}_*(r))( \tilde{\mu} X + \mathcal{O}(\tilde{\mu}^3 r X^3) + \mathcal{O}\left( r^3 X \right)
+\end{aligned}
+\end{equation}
+By \cref{lemma:ajparam}, $\tilde{\mu}_*(r) = \tilde{\mu}_*(0) + \mathcal{O}(r^{\gamma/4 \alpha)}$, thus \cref{2detBeqmu4} becomes
+\begin{equation}\label{2detBeqmu5}
+\begin{aligned}
+\det S(\tilde{\mu}, r) &= -2 \tilde{\mu}^2 M r^{5/2} (\tilde{\mu} - \tilde{\mu}_*(0)) (\tilde{\mu} + \tilde{\mu}_*(0))( \tilde{\mu} X + \mathcal{O}(\tilde{\mu}^3 r X^3) + \mathcal{O}\left( r^{5/2} \left( r^{1/2} + r^{\gamma/4 \alpha)} \right) X \right)
+\end{aligned}
+\end{equation}
+We are looking for zeros of \cref{2detBeqmu5}. Dividing by $r^{5/2}X$ and the constants out front and using the estimate $X = \mathcal{O}(|\log r|)$, we wish to solve $G(\tilde{\mu}, r) = 0$, where
+\begin{equation}\label{2peigG}
+G(\tilde{\mu}, r) = -2 \tilde{\mu}^3 M (\tilde{\mu} - \tilde{\mu}_*(0)) (\tilde{\mu} + \tilde{\mu}_*(0)) + \mathcal{O}\left( r |\log r|^2  + r^{1/2} + r^{\gamma/4 \alpha} \right)
+\end{equation}
+In particular, we wish to show that $G(\tilde{\mu}, r)$ has exactly three zeros inside the circle of radius $\tilde{\xi}$. Let $G(\tilde{\mu}, r) = G_1(\tilde{\mu}) + G_2(\tilde{\mu}, r)$, where 
+\[
+G_1(\tilde{\mu}) = -2 \tilde{\mu}^3 M (\tilde{\mu} - \tilde{\mu}_*(0)) (\tilde{\mu} + \tilde{\mu}_*(0)),
+\]
+which is independent of $r$, and
+\[
+G_2(\tilde{\mu}, r) = \mathcal{O}\left( r |\log r|^2 + \frac{1}{|\log r|} \right).
+\]
+On the circle $|\tilde{\mu}| = \tilde{\xi}$,
+\[
+|G_1(\tilde{\mu})| \geq \frac{|M|}{16}|\tilde{\mu}_*(0)|^5
+\]
+Since $|G_2(\tilde{\mu}, r)| \rightarrow 0$ as $r \rightarrow 0$ and $\tilde{\mu}_*(0) \neq 0$, there exists $r_3 \leq r_0$ such that for $r \leq r_3$, $|G_2(\tilde{\mu}, r)| < |G_1(\tilde{\mu})|$ on the circle $|\tilde{\mu}| = \tilde{\xi}$. By Rouch\'{e}'s theorem $G(\tilde{\mu}, r)$ and $G_1(\tilde{\mu})$ have the same number of zeros (counted with multiplicity) inside the circle of radius $\tilde{\xi}$. By the choice of $\tilde{\xi}$, $G_1(\tilde{\mu})$ has exactly 3 zeros inside the circle, thus $G(\tilde{\mu}, r)$ does as well. Undoing the scaling and changing variables back to $\lambda$, for $r \leq r_2$, there are exactly three eigenvalues inside a circle of radius $\sqrt{|2\tilde{a}(0)/M|}r^{1/2}$. These must correspond to the three kernel eigenvalues discussed above.
+
+\subsubsection{Interaction eigenvalues}\label{sec:assyminteigs}
+
+In this section, we will find the interaction eigenvalues. Using the same setup and scaling as in the previous section, simplify the remainder terms in \cref{2detBeqmu4} to get
+\begin{equation}\label{2detint2}
+\begin{aligned}
+\det S(\tilde{\mu}, r) &= -2 M r^{5/2} \tilde{\mu}^3 (\tilde{\mu} - \tilde{\mu}_*(r)) (\tilde{\mu} + \tilde{\mu}_*(r)) X + \mathcal{O}\left( r^{7/2} X^3 + r^3 X \right)
+\end{aligned}
+\end{equation}
+Dividing by $r^{5/2}X$ and the constants out front and using the estimate $X = \mathcal{O}(|\log r|)$, we wish to solve $G(\tilde{\mu}, r) = 0$, where
+\begin{equation}\label{2detintG1}
+\begin{aligned}
+G(\tilde{\mu}, r) &= -2 M (\tilde{\mu} - \tilde{\mu}_*(r)) (\tilde{\mu} + \tilde{\mu}_*(r))\tilde{\mu}^3 + \mathcal{O}\left( r |\log r|^2 + r^{1/2} \right)
+\end{aligned}
+\end{equation}
+We expect to find the interaction eigenvalues near $\tilde{\mu} = \pm \tilde{\mu}_*(r)$. By symmetry, we only need to consider one of these. Let
+\[
+\tilde{\mu} = \tilde{\mu}_*(r) + \tilde{h}
+\]
+Then \cref{2detintG1} becomes
+\begin{equation}\label{2detintG2}
+\begin{aligned}
+G(\tilde{h},r) = \tilde{h} ( \tilde{h} + \tilde{\mu}_*(r))^3 (\tilde{h} + 2 \tilde{\mu}_*(r)) + \mathcal{O}\left( r |\log r|^2 + r^{1/2} \right)
+\end{aligned}
+\end{equation}
+Since $r |\log r|^2  \rightarrow 0$ as $r \rightarrow 0$,
+\begin{align*}
+G(0, 0) &= 0 \\
+\partial_{\tilde{h}} G(0, 0) &= 2 \tilde{\mu}_*(0)^4
+\end{align*}
+Since $\tilde{\mu}_*(0) \neq 0$, we can use the implicit function theorem to solve $G(\tilde{h},r) = 0$ for $\tilde{h}$ in terms of $r$ near $\tilde{h} = 0$. Specifically, there exists $r_4 \leq r_0$ and a unique smooth function $\tilde{h}(r)$ with $\tilde{h}(0) = 0$ such that for all $r \leq r_4$, $G(\tilde{h}, r) = 0$. Expanding $\tilde{h}(r)$ in a Taylor series about $r = 0$, for all $r \leq r_4$,
+\[
+\tilde{h}(r) = \mathcal{O}\left( r |\log r|^2 + r^{1/2} \right) = \mathcal{O}\left( r^{1/2} \right)
+\]
+Undoing the scaling, there is an interaction eigenvalue located at
+\begin{align*}
+\mu(r) = \sqrt{-\frac{\tilde{a}(r)}{M c^2}}r^{1/2} + \mathcal{O}\left( r \right)
+\end{align*}
+Changing variables back to $\lambda$, this is located at
+\begin{align*}
+\lambda(r) = \sqrt{-\frac{2 \tilde{a}(r)}{M}}r^{1/2} + \mathcal{O}\left( r \right)
+\end{align*}
+By Hamiltonian symmetry there is also an eigenvalue at $-\lambda(r)$. Since Hamiltonian symmetry  dicatates that eigenvalues must come in quartets, and there only two eigenvalues of this magnitude, we conclude that for $r \leq r_4$, there is a pair of interaction eigenvalues given by
+\[
+\lambda^{\text{int}}(r) = \pm \left( \sqrt{ -\frac{2 \tilde{a}(r)}{M} }r^{1/2} + \mathcal{O}\left( r \right) \right)
+\]
+which are real if $\tilde{a}(0) < 0$ and purely imaginary if $\tilde{a}(0) > 0$. By \cref{lemma:chara}, the sign of $\tilde{a}(0)$ depends only on $m_0$.
+
+\subsubsection{Eigenvalue count}
+
+Finally, we prove that we have accounted for all of the eigenvalues near 0. Let $N_1$ be as above, and let
+\[
+\xi = \left( N_1 + \frac{1}{2} \right)\pi
+\]
+Take $\mu$ on the circle $|\mu| = \xi/X$. We will use Rouch\'{e}'s theorem to show that there are no zeros of $\det S(\mu)$ inside the circle of radius $\xi$ besides the ones we have already found.
+
+Substituting \cref{2ptildemustar} into \cref{2detBeqmu} and dividing by the constants out front, we are looking to solve
+\begin{equation}\label{Gcount1}
+\begin{aligned}
+0 &= \mu^2 (\mu - \tilde{\mu}_*(r)r^{1/2}) (\mu + \tilde{\mu}_*(r)r^{1/2}) \sinh(\mu X) \\
+&\qquad +2 M^c c^2 \mu^4 ( q(X_0) \sinh(\mu X_0) + q(X_1) \sinh(\mu X_1) ) \cosh(\mu X) + R_1\sinh(\mu X) + R_2
+\end{aligned}
+\end{equation}
+This time, we rescale the problem by taking $\mu = h/X$. Making this substitution, equation \cref{Gcount1} becomes
+\begin{equation}\label{Gcount2}
+\begin{aligned}
+0 &= \left(\frac{h}{X}\right)^2 \left( \frac{h}{X} - \tilde{\mu}_*(r)r^{1/2}\right)\left(\frac{h}{X} + \tilde{\mu}_*(r)r^{1/2}\right) \sinh(h) \\
+&\qquad +2 M^c c^2 \left(\frac{h}{X}\right)^4 \left( q(X_0) \sinh\left(h \frac{X_0}{X} \right) + q(X_1) \sinh\left(h \frac{X_1}{X} \right) \right) \cosh(h) + R_1\sinh(h) + R_2
+\end{aligned}
+\end{equation}
+Multiplying by $X^4$, we wish to find the zeros of $G(h, r)$, which is given by
+\begin{equation}\label{Gcount3}
+\begin{aligned}
+G(h,r) &= h^2 \left( h - \tilde{\mu}_*(r)r^{1/2}X\right)\left(h + \tilde{\mu}_*(r)r^{1/2}X\right) \sinh(h) \\
+&\qquad +2 M^c c^2 h^4 \left( q(X_0) \sinh\left(h \frac{X_0}{X} \right) + q(X_1) \sinh\left(h \frac{X_1}{X} \right) \right) \cosh(h) + (R_1\sinh(h) + R_2)X^4
+\end{aligned}
+\end{equation}
+Write $G(h,r) = G_1(h) + G_2(h,r)$, where
+\[
+G_1(h, r) = h^2 \left( h - \tilde{\mu}_*(r)r^{1/2}X\right)\left(h + \tilde{\mu}_*(r)r^{1/2}X\right) \sinh(h)
+\]
+and
+\[
+G_2(h,r) = 2 M^c c^2 h^4 \left( q(X_0) \sinh\left(h \frac{X_0}{X} \right) + q(X_1) \sinh\left(h \frac{X_1}{X} \right) \right) \cosh(h) + (R_1\sinh(h) + R_2)X^4
+\]
+On a circle of radius $|h| = \xi$, $|\sinh h| \geq 1$. By \cref{2pnobubble}, $|h - \tilde{\mu}_*(r)r^{1/2}X|\geq \pi$. Thus on the circle $|h| = \xi$
+\[
+|G_1(h,r)| \geq \pi^2 \xi^2,
+\]
+which is independent of $r$. For $G_2(h,r)$, using $q(X_j) = \mathcal{O}(r^{1/2})$, $X = \mathcal{O}(|\log r|)$, the remainder bounds for $R_1$ and $R_2$ from \cref{muRbounds}, and the scaling $\mu = h/X$, on the circle of radius $|h| = \xi$, we have
+\[
+|G_2(h,r)| = \mathcal{O}\left( r^{1/2} + \frac{1}{|\log r|} \right)
+\]
+Since $|G_2(h,r)| \rightarrow 0$ as $r \rightarrow 0$, there exists $r_5 \leq r_0$ such that for all $r \leq r_5$, $|G_2(h,r)| < |G_1(h,r)|$ on the circle $|h| = \xi$. Thus by Rouch\'{e}'s theorem, $G(h,r)$ and $G_1(h,r)$ have the same number of zeros (counted with multiplicity) inside the circle $|h| = \xi$. By our choice of $\xi$, $G_1(h,r)$, thus $G(h,r)$, has $2 N_1 + 5$ zeros inside this circle, which correspond exactly to the 3 eigenvalues at 0, the two interaction eigenvalues, and the first $2 N_1$ nonzero essential spectrum eigenvalues. Since we have accounted for all the zeros of $G(h,r)$, we conclude that there can be no more zeros of $G(h,r)$ inside the circle $|h| = \xi$. Undoing the scaling and changing variables back to $\lambda$, we have shown that there are no other eigenvalues inside a circle with radius slightly larger than $|\lambda_{N_1}^{\text{ess}}(r)|$.
+
+\subsubsection{Proof of \cref{theorem:2peigsassym}}
+
+The proof of \cref{theorem:2peigsassym} follows from combining the results of the previous four subsections and taking $r_1 = \min\{ r_2, r_3, r_4, r_5 \}$.
+
+\subsection{Proof of \cref{2peigsym}}
+
+To prove \cref{2peigsym}, we will first show that if we are sufficiently close to the bifurcation point, there are five eigenvalues in a small ball around the origin. We will then show that when were are at the bifurcation point, those eigenvalues are actually all at the origin.
+
+\subsubsection{Count of eigenvalues near 0}
+
+From the proof of \cref{lemma:chara}, for $m_1 \in \{0, 1\}$ and $s_0 \in [0, \pi)$,
+\begin{align*}
+\tilde{a}(r) = \tilde{a}(r, s_0) &= 2 (-1)^{m_0} s_0 \alpha_0 e^{\alpha_0 \phi/\beta_0} e^{-\frac{1}{\rho}(m_0 \pi + s_0) } \left( \rho \cos s_0 - \sin s_0 \right) + \mathcal{O}\left(r^{\gamma/2\alpha_0} \right)\\
+\end{align*}
+and $\tilde{a}(0) = 0$ if and only if $s_0 = p^*$. Since $\tilde{a}(r)$ is smooth in $s_0$ and $r$, there exist $\eta > 0$ and $r_2 \leq r_*$ such that for all $r \leq r_r$ and $s_0 \in (p^* - \eta, p^* + \eta)$, 
+\begin{equation}
+\sqrt{ \left| \frac{ 2 \tilde{a}(r, s_0) }{M} \right| }  r^{1/2} \leq \frac{\pi}{2 X(r)}
+\end{equation}
+Since $X(r) = \mathcal{O}(|\log r|)$, this is always possible. Let $\xi = c \pi / 2 X(r)$, and follow the same procedure as in \cref{sec:assymkernel}. Using Rouch\'{e}'s theorem, it follows that for $r \leq r_1$ and $s_0 \in (p^* - \eta, p^* + \eta)$, there are exactly 5 zeros of $S(\lambda)$ inside the circle of radius $\xi$. We know that two of the zeros must be at $\lambda = 0$ since they correspond to the kernel eigenfunctions $\partial_x Q_2(x)$ and $\partial_c Q_2(x)$. This leaves three eigenvalues unaccounted for.
+By Hamiltonian symmetry, since eigenvalues must come in quartets, there must be a third eigenvalue at 0.
+
+\subsubsection{Eigenvalues at bifurcation point}
+Using the scaling $\mu = r^{1/2} \tilde{\mu}$ and following the same steps as in \cref{sec:assyminteigs}, we wish to solve
+\begin{equation*}
+\begin{aligned}
+0 &= -2 M (\tilde{\mu} - \tilde{\mu}_*(r)) (\tilde{\mu} + \tilde{\mu}_*(r))\tilde{\mu}^3 + \mathcal{O}\left( r |\log r|^2 + r^{1/2} \right)
+\end{aligned}
+\end{equation*}
+Since we know that there will always be two eigenvalues at 0 corresponding to $\partial_x Q_n(x)$ and $\partial_c Q_n(x)$ and we proved the existence of a third eigenvalue at 0 in the previous section, we can divide by $\tilde{\mu}^3$ and the constants out front to get 
+\begin{align*}
+0 &= (\tilde{\mu} - \tilde{\mu}_*(r)) (\tilde{\mu} + \tilde{\mu}_*(r)) + \mathcal{O}\left( r |\log r|^2 + r^{1/2} \right) \\
+&= \tilde{\mu}^2 - \tilde{\mu}_*(r)^2 + \mathcal{O}\left( r |\log r|^2 + r^{1/2} \right) \\
+&= \tilde{\mu}^2 + \frac{2\tilde{a}(r)}{M c^2} + \mathcal{O}\left( r |\log r|^2 + r^{1/2} \right) \\
+\end{align*}
+Using the expression for $\tilde{a}(r)$ from \cref{lemma:chara}, this become
+\begin{equation}\label{Gsymm1}
+0 = \tilde{\mu}^2 + \frac{2\tilde{a}(0, s_0)}{M c^2} + \mathcal{O}\left( r |\log r|^2 + r^{1/2} + r^{\gamma/2\alpha_0} \right)
+\end{equation}
+Since we are interested in what happens near $s_0 = p^*$, let $s_0 = p^* + h$. Substituting this for $s_0$ into $\tilde{a}(0, s_0)$ and expanding in a Taylor series, we have
+\begin{align*}
+\tilde{a}(0, p^* + h) &= 2 (-1)^{m_0} s_0 \alpha_0 e^{\alpha_0 \phi/\beta_0} e^{-\frac{1}{\rho}(m_0 \pi + p^*) } e^{-\frac{1}{\rho}h }\left( \rho \cos(p^* + h) - \sin(p^* + h) \right) \\
+&= 2 (-1)^{m_0} s_0 \alpha_0 e^{\alpha_0 \phi/\beta_0} e^{-\frac{1}{\rho}(m_0 \pi + p^*) }\left( 1 - \frac{1}{\rho}h + \mathcal{O}(|h|^2) \right) \left( -\frac{2}{\sqrt{1 + \rho^2} }h + \mathcal{O}(|h|^2) \right) \\
+&= -\frac{4}{\sqrt{1 + \rho^2} }(-1)^{m_0} s_0 \alpha_0 e^{\alpha_0 \phi/\beta_0} e^{-\frac{1}{\rho}(m_0 \pi + p^*) }h + \mathcal{O}(|h|^2)
+\end{align*}
+Since the coefficient of $h$ is a constant, we can write this as
+\[
+\tilde{a}(p^* + h, 0) = C_1 h + \mathcal{O}(|h|^2) 
+\]
+where $C_1 \neq 0$. Substituting this into \cref{Gsymm1}, we wish to solve the equation the equation $G(\tilde{\mu}, h, r) = 0$, where
+\begin{equation}\label{Gsymm1}
+G(\tilde{\mu}, h, r) = \tilde{\mu}^2 + \frac{2C_1}{M c^2}h + \mathcal{O}\left( |h|^2 + r |\log r|^2 + r^{1/2} + r^{\gamma/2\alpha_0} \right).
+\end{equation}
+When $r = 0$ and $h = 0$, $G(\tilde{\mu}, h, r)$ has a double root at $\tilde{\mu} = 0$. We wish to show that this double root at $\tilde{\mu} = 0$ persists for small $r$.
+
+For $\tilde{\mu}$ to be a double root, it must solve both $G(\tilde{\mu}, h, r) = 0$ and $G(\tilde{\mu}, h, r) = 0$. Define $K(\tilde{\mu}, h, r)$ by
+\begin{equation}
+K(\tilde{\mu}, h, r) = 
+\begin{pmatrix}G(\tilde{\mu}, h, r) \\ \partial_{\tilde{\mu}}G(\tilde{\mu}, h, r) \end{pmatrix} 
+= \begin{pmatrix}
+\tilde{\mu}^2 + \frac{2C_1}{M c^2}h \\
+2 \tilde{\mu}
+\end{pmatrix}
++ \mathcal{O}\left( |h|^2 + r |\log r|^2 + r^{1/2} + r^{\gamma/2\alpha_0} \right)
+\end{equation}
+When $r = 0$, $K(\tilde{\mu}, 0, 0) = 0$. The Jacobian with respect to $(\tilde{\mu}, h)$ is
+\[
+D_{(\tilde{\mu}, h)}K(\tilde{\mu}, h, r) = 
+\begin{pmatrix}
+2 \tilde{\mu} & \frac{2C_1}{M c^2} \\
+2 & 0
+\end{pmatrix}
++ \mathcal{O}\left( |h| + r |\log r|^2 + r^{1/2} + r^{\gamma/2\alpha_0} \right)
+\]
+At $(\tilde{\mu}, h) = (0,0)$, 
+\[
+D_{(\tilde{\mu}, h)}K(\tilde{\mu}, h, r)\Big|_{(0,0)} = 
+\begin{pmatrix}
+0 & \frac{2C_1}{M c^2} \\
+2 & 0
+\end{pmatrix},
+\]
+which is nonsingular since all the constants in the upper right block are nonzero. Using the implicit function theorem, we can solve for $(\tilde{\mu}, h)$ in terms of $r$ and $\tilde{\mu}$. Specifically, there exists $r_1 \leq r_2$ and a unique smooth function $(\tilde{\mu}, h)(r)$ with $(\tilde{\mu}, h)(0) = (0, 0)$ such that for all $r \leq r_1$, $K(\tilde{\mu}(r), h(r), r) = 0$. For $r \leq r_1$ and $h = h(r)$, $\tilde{\mu}(r)$ is a double root of $G(\tilde{\mu}, h, r)$. By Hamiltonian symmetry, we must have $\tilde{\mu}(r) = 0$. Expanding $h(r)$ in a Taylor series about $r$, 
+\begin{equation*}
+h(r) = \mathcal{O}\left( r |\log r|^2 + r^{1/2} + r^{\gamma/2\alpha_0} \right)
+\end{equation*}
+
+We conclude that when $s_0 = p^* + h(r)$, there are two more eigenvalues at 0. From the previous section, there are 5 zeros of $S(\lambda)$ inside a the circle of radius $\xi$. Thus when $s_0 = p^* + h(r)$, there is an eigenvalue at 0 with algebraic mutiplicty 5. Since the pitchfork bifurcation in the family of periodic 2-pulses occurs near $p^*$ at $p^*(r)$, it follows from standard PDE bifurcation theory that this quintuiple zero must occur at the pitchfork bifurcation point, i.e. $p^* + h(r) = p^*(r)$. 
+
+\iffulldocument\else
+	\bibliographystyle{amsalpha}
+	\bibliography{thesis.bib}
+\fi
+
+\end{document}
