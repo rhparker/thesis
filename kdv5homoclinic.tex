@@ -6,9 +6,8 @@
 	\chapter{The 5th order KdV equation: $n$-homoclinic solutions}
 \fi
 
-A multi-pulse is a localized, multi-modal solution $q_n(x)$ to \cref{eqODE} which resembles $n$ well-separated copies of the primary pulse $q(x)$. Heuristically, we construct a multi-pulse by gluing together multiple copies of the primary pulse end-to-end. This is shown in \cref{fig:multipulse}.
-
-\begin{figure}[H]
+A multi-pulse is a localized, multi-modal solution to \cref{eqODE} which resembles multiple, well-separated copies of the primary pulse. Heuristically, we construct a multi-pulse by gluing together multiple copies of the primary pulse end-to-end. This is shown in \cref{fig:multipulse}.
+\begin{figure}
 \includegraphics[width=12cm]{images/kdv5numerics/multipulseperiodic.eps}
 \caption{Construction of an $n$-pulse solution from the primary pulse.}
 \label{fig:multipulse}
@@ -18,39 +17,38 @@ A multi-pulse is a localized, multi-modal solution $q_n(x)$ to \cref{eqODE} whic
 
 \section{Existence of multi-pulses}\label{sec:multiexistR}
 
-An $n$-pulse $q_n$ is be characterized by $n-1$ pulse distances $\{ X_1, \dots, X_{n-1} \}$; the distance between consecutive peaks is $2 X_j$. Switching to a spatial dynamics perspective, let
+First, we look at existence. From a spatial dynamics perspective, an $n$-pulse is a $n$-loop homoclinic orbit solution $Q_n(x)$ to
+\begin{equation}\label{existgenODE1}
+U'(x) = F(U(x); c)
+\end{equation}
+which remains close to the primary homoclinic orbit $Q_n(x)$. An $n$-pulse can be described by $n-1$ pulse distances $\{X_1, \dots, X_{n-1} \}$, where the distance between consecutive copies of $Q(x)$ is $2 X_j$.
+
+From a mathematical perspective, rather than describing a $n$-pulse by its pulse distances $X_j$, we will use an alternative parameterization which more convenient and which captures the underlying geometry necessary for a multi-pulse to exist. This parameterization is almost identical to that in \cite{SandstedeStrut,Sandstede1998}.
+
+From Hypothesis \ref{hypeqhyp}, the rest state at 0 is a hyperbolic equilibrium point of \cref{existgenODE}. The linearization $DF(0; c)$ about the rest state has a quartet of eigenvalues $\pm \alpha_0 \pm \beta_0 i$, which depends on the wavespeed $c$. All other eigenvalues have real part strictly larger in magnitude than $\alpha_0$. Let
+\begin{equation*}
+\rho = \frac{\beta_0}{\alpha_0},
+\end{equation*}
+and define the set
 \begin{align*}
-Q(x) &= (q(x), \partial_x q(x), \dots, \partial_x^{2m-1}q(x))^T
+\mathcal{R} &= \left\{ \exp\left(-\frac{2 k \pi}{\rho}\right) : k \in \N_0 \right\} \cup \{ 0 \},
 \end{align*}
-be the primary homoclinic orbit. A multi-pulse is a multi-loop homoclinic orbit solution to \eqref{genODE} which stays close to $Q(x)$.  
+which is a complete metric space. We will use $r \in \mathcal{R}$ as a scaling parameter. The parameterization works as follows.
 
-Rather than using describing a multi-pulse by the pulse distances, we will use the parameterization from \cite{SandstedeStrut}, which has a built-in scaling parameter and is much simpler to work with mathematically. We will characterize an $n-$pulse solution $Q_n(x)$ using the following parameters:
-\begin{enumerate}
-\item A scaling parameter $r \in \calR$ with $r > 0$, where
-\[
-\calR = \left\{ \exp\left(-\frac{2 \pi \alpha_0}{\beta_0}m \right) : m \in \N_0 \right\}
-\]
-\item A sequence of $n-1$ baseline length parameters $\{ b_1^0, \dots, b_{n-1}^0 \}$, where 
-\[
-b_j = \exp\left(-\frac{\pi \alpha_0}{\beta_0}m_j \right)
-\]
-for $m_j \in \N_0$, and we have the additional restriction that $m_j \in \{0, 1\}$ for some $j$.
-\end{enumerate}
-
-The following theorem, which is adapted from \cite[Theorem 3.6]{SandstedeStrut}, gives an existence result for multi-pulse solutions.
+\begin{definition}\label{def:homparam}
+For $n \geq 2$, a \emph{homoclinic parameterization} of an $n$-pulse is a sequence of nonnegative integers $(m_1, \dots, m_{n-1}$, where at least one of the $m_j \in \{0, 1\}$.
+\end{definition}
+The pulse distances $X_j$ are determined from the integers $m_j$ and the scaling parameter $r$, as will be shown in the next theorem. The requirement that one of the $m_j$ must be 0 or 1 is necessary for a multi-pulse to be uniquely described by a homoclinic parameterization and a scaling parmeter $r$. The following theorem, which is adapted from \cite[Theorem 3.6]{SandstedeStrut}, gives an existence result for multi-pulse solutions.
 
 \begin{theorem}[Existence of Multi-Pulses]\label{multipulseexistR}
-Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and \ref{H0transversehyp}. There exists $\delta > 0$ such that for any $n \geq 2$ the following holds. For any sequence of baseline length parameters $\{ b_1^0, \dots, b_{n-1}^0 \}$, there exists $r_0 \in \calR$, $r_0 > 0$ with the following property.
+Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and \ref{H0transversehyp}. Let $Q(x)$ be the transversely constructed, symmetric primary pulse solution to \eqref{genODE} from Hypothesis \ref{Qexistshyp}. Then there exists $\delta > 0$ such that the following holds. For any homoclinic parameterization $(m_1, \dots, m_{n-1})$, there exists $r_* = r_*(m_1, \dots, m_{n-1}) \in \mathcal{R}$ with $r_* > 0$ such that for any $r \in \mathcal{R}$ with $r \leq r_*$:
 \begin{enumerate}[(i)]
-\item For every scaling parameter $r \in \exp\left(-\frac{2 \pi \alpha_0}{\beta_0}m \right) \in \calR$ with $0 < r \leq r_0$ there exists a unique $n$-pulse solution $Q_n$ to \cref{genODE} which resembles $n$ consecutive copies of $Q$. The distances between consecutive peaks are $2 X_j(r)$, where
-\begin{equation}\label{nhompeaks}
-X_j(r) = -\frac{1}{2 \alpha_0} \log(b_j(r)r) + \tilde{L}
-\end{equation}
-for smooth functions $b_j: \mathcal{R}\cap[0,r_0] \rightarrow \R$ with $b_j(0) = b_j^0$ and constant $\tilde{L}$. More intuitively, $X_j$ can be written as
-\[
-X_j(r) = \frac{\pi}{2 \beta_0}(2 m + m_j) + R_j(r) + \tilde{L}
-\]
-where the remainder terms $R_j(r) \rightarrow 0$ as $r \rightarrow 0$.
+\item There exists a unique $n$-pulse solution $Q_n$ to \cref{genODE} which resembles $n$ consecutive copies of $Q$. 
+\item The distances between consecutive copies of $Q(x)$ are $2 X_j(r)$, where
+\begin{align}\label{nhompeaks}
+X_j(r; m_j) &= \frac{1}{2 \alpha_0} |\log r| + \frac{1}{2\beta_0} t_j(r; m_j) + L_0 && j = 1, \dots, n-1
+\end{align}
+The $t_j(r; m_j): \mathcal{R} \rightarrow \R$ are smooth functions with $t_j(0; m_j) = m_j \pi$, and $L_0$ is a constant.
 
 \item There are exactly $n$ real eigenvalues $\lambda_j$ of $\calE''(q_n)$ with $|\lambda_j| < \delta$. These are as follows.
 \begin{enumerate}
@@ -59,22 +57,22 @@ where the remainder terms $R_j(r) \rightarrow 0$ as $r \rightarrow 0$.
 	\item There is a simple eigenvalue at 0 with corresponding eigenfunction $\partial_x Q_n$.
 \end{enumerate}
 
-\item We can write $Q_n(x)$ in piecewise form consisting of $2n$ pieces $\{ Q_j^\pm(x) : j = 1, \dots, n \}$. $Q_j^-: [-X_{j-1}, 0] \rightarrow \R^{2m}$ and $Q_j^+: [0, X_j] \rightarrow \R^{2m}$, with $X_0 = X_n = \infty$, and the pieces are joined together end-to-end as in \cite{Sandstede1998}. Each piece $Q_j^\pm(x)$ is a small perturbation of the primary pulse $Q5(x)$ of the form
+\item We can write $Q_n(x)$ in piecewise form consisting of $2n$ pieces $\{ Q_j^\pm(x) : j = 1, \dots, n \}$, where $Q_j^-: [-X_{j-1}, 0] \rightarrow \R^{2m}$ and $Q_j^+: [0, X_j] \rightarrow \R^{2m}$, with $X_0 = X_n = \infty$. The pieces are joined together end-to-end as in \cite{Sandstede1998}. Each piece $Q_j^\pm(x)$ is a small perturbation of the primary pulse $Q(x)$ of the form
 \begin{equation}\label{Qpmexpansions}
-Q_j^\pm(x) = Q(x) + \tilde{Q}_j^\pm(x)
+Q_j^\pm(x) = Q(x) + \tilde{Q}_j^\pm(x),
 \end{equation}
-where the remainder terms $\tilde{Q}_j^\pm(x)$ have estimates
+where for the remainder terms $\tilde{Q}_j^\pm(x)$ we have the estimates
 \begin{equation}\label{Qpmestimates}
 \begin{aligned}
-\|\tilde{Q}_j^\pm\| &\leq C e^{-\alpha_0 X_m} \\
-|\tilde{Q}_{j+1}^-(-X_j) - Q(X_j)| &\leq C e^{-2 \alpha_0 X_m} \\
-|\tilde{Q}_j^+(X_j) - Q(-X_j)| &\leq C e^{-2 \alpha_0 X_m} \\
+\|\tilde{Q}_j^\pm\| &\leq C e^{-\alpha_0 X_{\min}} \\
+|\tilde{Q}_{j+1}^-(-X_j) - Q(X_j)| &\leq C e^{-2 \alpha_0 X_{\min}} \\
+|\tilde{Q}_j^+(X_j) - Q(-X_j)| &\leq C e^{-2 \alpha_0 X_{\min}} \\
 \end{aligned}
 \end{equation}
 which hold in addition for derivatives of $Q$.
 \end{enumerate}
 \begin{proof}
-Parts (i) and (ii) follow from \cite{SandstedeStrut}, where $L_j(r)$ in \cite{SandstedeStrut} corresponds to $2X_j(r)$ here. We will show that the hypotheses in \cite{SandstedeStrut} are satisfied. \cref{hypeqhyp} and \cref{Hhyp} are equivalent to Hypotheses 3.1 and 3.3 in \cite{SandstedeStrut}. The eigenvalue problem $\calE''(q_n)v = \lambda v$ can be written in a first order system as
+Parts (i)-(iii) follow from \cite{SandstedeStrut}, where $L_j(r)$ in \cite{SandstedeStrut} corresponds to $2X_j(r)$ here. \cref{hypeqhyp} and \cref{Hhyp} are equivalent to Hypotheses 3.1 and 3.3 in \cite{SandstedeStrut}. The eigenvalue problem $\calE''(q_n)v = \lambda v$ can be written in a first order system as
 \[
 V'(x) = (DF(Q_n(x)) + \lambda B )V(x)
 \]
@@ -82,7 +80,7 @@ where $B$ is a $2m\times 2m$ matrix of the same form as \cref{DefB}. The relevan
 \[
 M = \int_{-\infty}^\infty \langle \Psi(x), B \frac{d}{dx} Q(x) \rangle  dx = \int_{-\infty}^\infty (\partial_x q(x))^2 dx > 0
 \]
-since the last component of $\Psi(x)$ is $\partial_x (x)$ by \cref{psiform}. Thus Hypotheses 3.5 in \cite{SandstedeStrut} is satisfied. The result follows from \cite[Theorem 3.6]{SandstedeStrut}. Since $\calE''(q_n)$ is self-adjoint, its eigenvalues are real. Part (iii) follows from \cite[Theorem 2]{Sandstede1998}, which follow from \cite{Sandstede1993}.
+since the last component of $\Psi(x)$ is $\partial_x (x)$ by \cref{psiform}. Thus Hypotheses 3.5 in \cite{SandstedeStrut} is satisfied. Since the hypotheses in \cite{SandstedeStrut} are satisfied, the result follows from \cite[Theorem 3.6]{SandstedeStrut}. Since $\calE''(q_n)$ is self-adjoint, its eigenvalues are real. Part (iv) follows from \cite[Theorem 2]{Sandstede1998}, which follow from \cite{Sandstede1993}.
 \end{proof}
 \end{theorem}
 
@@ -173,7 +171,7 @@ Since $V_\eta(0) = Q'(0)$ and $\Psi_\eta(0) = \Psi(0)$, we can decompose $\R^{2m
 The following theorem, which is almost identical to \cite[Theorem 2]{Sandstede1998}, allows us to locate the interaction eigenvalues of the eigenvalue problem \eqref{weightedeig} in the exponentially weighted space.
 
 \begin{theorem}\label{expwtstabtheorem}
-Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, \ref{H0transversehyp}, and \ref{Melnikov2hyp}. Let $Q_n(x)$ be an $n$-pulse traveling wave solution to \cref{genODE} constructed as in \cref{multipulseexistR} with pulse lengths $X_1, \dots, X_{n-1}$. Choose an exponential weight $\eta$ with $0 < \eta < \alpha_0$ and choose any $\alpha$  with $\alpha < \alpha_0$. Then there exists $\delta > 0$ with the following property. There exists a bounded, nonzero solution $V$ of the weighted eigenvalue problem \eqref{weightedeig} with weight $\eta$ for $|\lambda| < \delta$ if and only if $E(\lambda) = 0$, where
+Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, \ref{H0transversehyp}, and \ref{Melnikov2hyp}. Let $Q_n(x)$ be an $n$-pulse traveling wave solution to \cref{genODE} constructed as in \cref{multipulseexistR} with pulse distances $X_1, \dots, X_{n-1}$. Choose an exponential weight $\eta$ with $0 < \eta < \alpha_0$ and choose any $\alpha$  with $\alpha < \alpha_0$. Then there exists $\delta > 0$ with the following property. There exists a bounded, nonzero solution $V(x)$ of the weighted eigenvalue problem \eqref{weightedeig} with weight $\eta$ for $|\lambda| < \delta$ if and only if $E(\lambda) = 0$, where
 \[
 E(\lambda) = \det \left( A_\eta - \lambda^2 M I + R(\lambda) \right).
 \]
@@ -190,10 +188,10 @@ e^{2 \eta X_1} a_1 & -a_2 - a_1 & e^{-2 \eta X_2} a_2 \\
 where $a_i = \langle \Psi(X_i), Q'(-X_i) \rangle$ and $M$ is the higher order Melnikov integral defined in \cref{M2}. The eigenvalues of $A_\eta$ do not depend on $\eta$. The remainder term $R(\lambda)$ is analytic in $\lambda$ and has bound
 \begin{equation*}
 ||R(\lambda)|| \leq C 
-\left( (e^{-\alpha X_m} + |\lambda|)^2 e^{-(\alpha - \eta)X_m}  
-+ (e^{-\alpha X_m} + |\lambda| )|\lambda^2| \right)
+\left( (e^{-\alpha X_{\min}} + |\lambda|)^2 e^{-(\alpha - \eta)X_{\min}}  
++ (e^{-\alpha X_{\min}} + |\lambda| )|\lambda^2| \right)
 \end{equation*}
-where $X_m = \min\{X_1, \dots, X_{n-1}\}$.
+where $X_{\min} = \min\{X_1, \dots, X_{n-1}\}$.
 \end{theorem}
 
 \begin{remark}
@@ -203,25 +201,24 @@ Since the eigenvalues of $A_\eta$ do not depend on $\eta$, the eigenvalues of $A
 As a corollary, we can locate the interaction eigenvalues associated with $Q_n(x)$ to leading order. This gives us an instability result but does not allow us to prove stability.
 
 \begin{corollary}\label{corr:eiglocR}
-Assume the same hypotheses as in \cref{expwtstabtheorem}. Let $Q_n(x)$ be an $n$-pulse traveling wave solution to \cref{genODE} constructed as in \cref{multipulseexistR} with pulse distances $X_1, \dots, X_{n-1}$ corresponding to baseline length parameters
-\[
-b_j = \exp\left(-\frac{\pi \alpha_0}{\beta_0}m_j \right)
-\]
-for nonnegative integers $m_j$. Let $A_0(r)$ be the matrix $A_0$ from \cref{expwtstabtheorem}, where we have made the dependence on the scaling parameter $r$ explicit. Write $A_0(r) = r \tilde{A}_0(r)$. Let $\{ \tilde{\mu}_1, \dots, \tilde{\mu}_{n-1}, 0 \}$ be the eigenvalues of $\tilde{A}_0(0)$, which are real. Then for $X_m$ sufficiently large, there are $(n-1)$ pairs of interaction eigenvalues close to 0 which are given by
-\begin{equation}\label{hominteigs}
-\lambda_j^\pm = \pm \sqrt{\frac{\tilde{\mu}_j(0)}{M}} r^{1/2} + 
-\mathcal{O}\left( r^{\gamma/2} \right),
-\end{equation}
-for $j = 1,\dots,n-1$, where
+Assume the same hypotheses as in \cref{expwtstabtheorem}. Let $(m_1, \dots, m_{n-1})$ be a homoclinic parameterization. Let $r_*$ be as in Theorem \ref{multipulseexistR}, and let $Q_n(x; r)$ be the corresponding family of $n$-pulse solutions. Let $A_0 = r \tilde{A}_0(r)$ be the matrix $A_0$ from \cref{expwtstabtheorem}, and $\{ \ell_1(r), \dots, \ell_{n-1}(r), 0 \}$ be the eigenvalues of $\tilde{A}_0(r)$, which are real. Then there exists $r_1 = r_1(m_1, \dots, m_{n-1}) \leq r_*$ such that for all $r \in \mathcal{R}$ with $r \leq r_1$:
+\begin{enumerate}[(i)]
+\item There are $(n-1)$ pairs of interaction eigenvalues close to 0 which are given by
+\begin{align}\label{hominteigs}
+\lambda_j^\pm &= \pm \sqrt{ \frac{\ell_j(r)}{M}} r^{1/2} + 
+\mathcal{O}\left( r^{\frac{1 + \gamma}{2}} \right) && j = 1,\dots,n-1,
+\end{align}
+where
 \[
 \gamma = \frac{\alpha_0 - \eta}{\alpha_0}
 \]
-If $M > 0$, the interaction eigenvalues come in the following configuration.
+\item If $M > 0$, the interaction eigenvalues come in the following configuration.
 \begin{enumerate}
 	\item For each $m_j$ even, there is an interaction eigenvalue with positive real part. Thus if at least one $m_j$ is even, $Q_n(x)$ is unstable.
 	\item For each $m_j$ odd, there is a pair of eigenvalues which is purely imaginary to leading order. If all $m_j$ are odd, all interaction eigenvalues are purely imaginary to leading order. We can conclude nothing about stability in this case.
 \end{enumerate}
 These are reversed if $M < 0$
+\end{enumerate}
 \end{corollary}
 
 \begin{remark}
@@ -333,12 +330,12 @@ To use Lin's method, we will need some estimates similar to those in \cite[Lemma
 \begin{lemma}\label{lemma:weightedest}
 We have the estimates
 \begin{enumerate}[(i)]
-	\item $|G_i^\pm(x; \eta)| \leq C e^{-\alpha_0 X_m}$.
+	\item $|G_i^\pm(x; \eta)| \leq C e^{-\alpha_0 X_{\min}}$.
 	\item $|\tilde{H}_i^\pm(x)|, |H_\eta(x)| \leq C e^{-(\alpha - \eta)|x|}$.
-	\item $\|\tilde{H}_i^\pm(x) - H_\eta(x) \|  \leq C e^{-(\alpha - \eta) X_m} $.
-	\item $D_i d = ( Q'(X_i) + Q'(-X_i) )(d_{i+1} e^{-\eta X_i} - d_i e^{\eta X_i}) + \mathcal{O} \left( e^{-(\alpha - \eta) X_m}\left( |\lambda| +  e^{-\alpha X_m} \right) |d| \right)$.
+	\item $\|\tilde{H}_i^\pm(x) - H_\eta(x) \|  \leq C e^{-(\alpha - \eta) X_{\min}} $.
+	\item $D_i d = ( Q'(X_i) + Q'(-X_i) )(d_{i+1} e^{-\eta X_i} - d_i e^{\eta X_i}) + \mathcal{O} \left( e^{-(\alpha - \eta) X_{\min}}\left( |\lambda| +  e^{-\alpha X_{\min}} \right) |d| \right)$.
 \end{enumerate}
-where $X_m = \min\{X_1, \dots, X_n\}$.
+where $X_{\min} = \min\{X_1, \dots, X_n\}$.
 \begin{proof}
 Since $A(Q(x))$ is smooth in $Q(x)$, the bound (i) follows from the estimates \cref{Qpmestimates} in \cref{multipulseexistR}. By \cref{transverseint},
 \begin{equation}\label{Qcbound1}
@@ -355,7 +352,7 @@ Estimate (iv) follows from substituting the second and third estimates in \cref{
 \end{proof}
 \end{lemma}
 
-We are now in position to use Lin's method, following the proof of \cite[Theorem 2]{Sandstede1998}. The only difference is that the term $\lambda h_i^\pm$ is replaced with $\lambda^2 B \tilde{H}_i^\pm(x)$. Thus we can can easily adapt the proof of \cite[Theorem 2]{Sandstede1998} to our problem. In particular, for $X_m$ sufficiently large, the system \eqref{weightedsystem} has a unique piecewise solution $W_i^\pm(x)$. Adapting \cite[Lemma 3.6]{Sandstede1998}, the $n-1$ jumps $\xi_i$ are given by
+We are now in position to use Lin's method, following the proof of \cite[Theorem 2]{Sandstede1998}. The only difference is that the term $\lambda h_i^\pm$ is replaced with $\lambda^2 B \tilde{H}_i^\pm(x)$. Thus we can can easily adapt the proof of \cite[Theorem 2]{Sandstede1998} to our problem. In particular, for $X_{\min}$ sufficiently large, the system \eqref{weightedsystem} has a unique piecewise solution $W_i^\pm(x)$. Adapting \cite[Lemma 3.6]{Sandstede1998}, the $n-1$ jumps $\xi_i$ are given by
 \begin{align}\label{weightedjumps1}
 \xi_i &= \langle \Psi_\eta(X_i), P_0^u D_i d \rangle
 + \langle \Psi_\eta(-X_{i-1}), P_0^u D_{i-1} d \rangle
@@ -364,7 +361,7 @@ We are now in position to use Lin's method, following the proof of \cite[Theorem
 \end{align}
 The remainder term has bound
 \begin{align*}\label{weightedR1}
-|(R&(\lambda)d)_i| \leq C \left( (e^{-\alpha X_m} + |G| + |\lambda|)^2 |D| + (e^{-\alpha X_m} + |G| + ||\tilde{H}_i - H_\eta|| + |\lambda| )|\lambda^2| \right)|d|
+|(R&(\lambda)d)_i| \leq C \left( (e^{-\alpha X_{\min}} + |G| + |\lambda|)^2 |D| + (e^{-\alpha X_{\min}} + |G| + ||\tilde{H}_i - H_\eta|| + |\lambda| )|\lambda^2| \right)|d|
 \end{align*}
 
 \subsection{The Substitution}
@@ -380,13 +377,13 @@ For the terms involving $D_i$, we use the expression from \cref{lemma:weightedes
 \begin{align*}
 \langle \Psi_\eta(X_i), &P_0^u D_i d \rangle
 = \langle e^{-\eta X_i} \Psi(X_i), P_0^u( Q'(X_i) + Q'(-X_i) )(d_{i+1} e^{-\eta X_i} - d_i e^{\eta X_i}) \\
-&+ \mathcal{O} \left( e^{-(\alpha - \eta) X_m}\left( |\lambda| +  e^{-\alpha X_m} \right) |d| \right) \rangle \\
-&= \langle \Psi(X_i), Q'(-X_i) \rangle ( e^{-2 \eta X_i}d_{i+1} - d_i ) + \mathcal{O} \left( e^{-2(\alpha - \eta) X_m}\left( |\lambda| +  e^{-\alpha X_m} \right) |d| \right)
+&+ \mathcal{O} \left( e^{-(\alpha - \eta) X_{\min}}\left( |\lambda| +  e^{-\alpha X_{\min}} \right) |d| \right) \rangle \\
+&= \langle \Psi(X_i), Q'(-X_i) \rangle ( e^{-2 \eta X_i}d_{i+1} - d_i ) + \mathcal{O} \left( e^{-2(\alpha - \eta) X_{\min}}\left( |\lambda| +  e^{-\alpha X_{\min}} \right) |d| \right)
 \end{align*}
 where we used the fact $P_0^u Q'(X_i) = \mathcal{O}(e^{-\alpha X_i}$ and $P_0^u Q'(-X_i) = Q'(-X_i) + \mathcal{O}(e^{-\alpha X_i}$. For the other term,
 \begin{align*}
 \langle \Psi_\eta(-X_{i-1}), &P_0^s D_{i-1} d \rangle 
-= \langle \Psi(-X_{i-1}), Q'(X_{i-1}) \rangle (d_i - e^{2 \eta X_{i-1}} d_{i-1} ) +\mathcal{O} \left( e^{-2(\alpha - \eta) X_m}\left( |\lambda| +  e^{-\alpha X_m} \right) |d| \right)
+= \langle \Psi(-X_{i-1}), Q'(X_{i-1}) \rangle (d_i - e^{2 \eta X_{i-1}} d_{i-1} ) +\mathcal{O} \left( e^{-2(\alpha - \eta) X_{\min}}\left( |\lambda| +  e^{-\alpha X_{\min}} \right) |d| \right)
 \end{align*}
 Since $Q'(-x) = -RQ'(x)$ and $\Psi(-x) = R \Psi(x)$, where $R$ is the standard reversor operator,
 \[
@@ -395,16 +392,16 @@ Since $Q'(-x) = -RQ'(x)$ and $\Psi(-x) = R \Psi(x)$, where $R$ is the standard r
 Thus we have
 \begin{align*}
 \langle \Psi_\eta(-X_{i-1}), &P_0^s D_{i-1} d \rangle 
-= \langle -\Psi(X_{i-1}), Q'(-X_{i-1}) \rangle (d_i - e^{2 \eta X_{i-1}} d_{i-1} ) +\mathcal{O} \left( e^{-2(\alpha - \eta) X_m}\left( |\lambda| +  e^{-\alpha X_m} \right) |d| \right)
+= \langle -\Psi(X_{i-1}), Q'(-X_{i-1}) \rangle (d_i - e^{2 \eta X_{i-1}} d_{i-1} ) +\mathcal{O} \left( e^{-2(\alpha - \eta) X_{\min}}\left( |\lambda| +  e^{-\alpha X_{\min}} \right) |d| \right)
 \end{align*}
 Combining all of this, we have
 \begin{align*}
 \xi_i &= \langle \Psi(X_i), Q'(-X_i) \rangle ( e^{-2 \eta X_i}d_{i+1} - d_i ) 
 - \langle \Psi(X_{i-1}), Q'(-X_{i-1}) \rangle (d_i - e^{2 \eta X_{i-1}} d_{i-1} ) - \lambda^2 d_i M  + (R(\lambda)d)_i
 \end{align*}
-For the remainder term, we plug in the estimates from  Lemma \ref{lemma:weightedest} and the estimate $|D| = \mathcal{O}(e^{-(\alpha - \eta)X_m}|d|)$ into the remainder bound \cref{weightedRbound1}. We combine this with the remainder terms from this section to get the overall remainder bound
+For the remainder term, we plug in the estimates from  Lemma \ref{lemma:weightedest} and the estimate $|D| = \mathcal{O}(e^{-(\alpha - \eta)X_{\min}}|d|)$ into the remainder bound \cref{weightedRbound1}. We combine this with the remainder terms from this section to get the overall remainder bound
 \begin{align}\label{weightedRbound1}
-|(R(\lambda)d)_i| \leq C \left( e^{-\alpha X_m} + |\lambda|\right) \left( e^{-(\alpha - \eta)X_m} + |\lambda|  \right)^2 |d|
+|(R(\lambda)d)_i| \leq C \left( e^{-\alpha X_{\min}} + |\lambda|\right) \left( e^{-(\alpha - \eta)X_{\min}} + |\lambda|  \right)^2 |d|
 \end{align}
 
 As in \cite{Sandstede1998}, we write the jump expressions in matrix form. Let 
@@ -467,9 +464,9 @@ Repeat this $n-2$ more times to get the result.
 
 \section{Proof of \cref{corr:eiglocR}}
 
-This is a straightforward adaptation of \cite[Theorem 3(iv)]{Sandstede1998}. We note the following differences main between this case and \cite{Sandstede1998}.
+This is a straightforward adaptation of \cite[Theorem 3(iv)]{Sandstede1998}. We note the following differences between this case and \cite{Sandstede1998}.
 \begin{enumerate}
-	\item The matrix $A$ in \cite{Sandstede1998} in is replaced by $A_\eta$. By \cref{lemma:Aetaconj}, $A_\eta$ is conjugate to $A_0$, thus it hsas the same eigenvalues as $A_0$. Since $A_0$ is symmetric, its eigenvalues are real. $A_0$ is the same as the matrix $A$ in \cite[Theorem 2]{Sandstede1998}, with $\tilde{a}_j = -a_j$.
+	\item The matrix $A$ in \cite{Sandstede1998} in is replaced by $A_\eta$. By \cref{lemma:Aetaconj}, $A_\eta$ is conjugate to $A_0$, thus it has the same eigenvalues as $A_0$. Since $A_0$ is symmetric, its eigenvalues are real. $A_0$ is the same as the matrix $A$ in \cite[Theorem 2]{Sandstede1998}, with $\tilde{a}_j = -a_j$.
 	\item $\lambda$ is replaced by $\lambda^2$.
 \end{enumerate}
 
@@ -482,7 +479,7 @@ where $\gamma > 0$ and $\tilde{A}_1(r) \rightarrow 0$ as $r \rightarrow 0$. The 
 \mu_j &= (-1)^{m_j} s_0 \beta_0 e^{\phi_0/2 \beta_0} && j = 1, \dots n-1 \\
 \mu_n &= 0
 \end{align*}
-It follows as in \cite{Sandstede1998} that for sufficiently small $r$, $E(\lambda) = 0$ has a solution near $M \lambda_j^2 = r \mu_j$ for $j = 1, \dots, n-1$. Thus for sufficiently small $r$, $E(\lambda) = 0$ has solution near $\lambda_j^\pm = \pm r^{1/2} \sqrt{\mu_j/M}$. For $M > 0$, if $m_j$ is even, then the corresponding $\lambda_j$ are real (to leading order), and if $m_j$ is odd, then the corresponding $\lambda_j$ are on the imaginary axis (to leading order). If any $m_j$ is odd, then one of the eigenvalues $\lambda_j^\pm$ has postive real part. If all the $m_j$ are even, then all of the interaction eigenvalues are, to leading order, on the imaginary axis. Since the system is no longer Hamiltonian due to the expeonential weight, we can not use a symmetry argument to say anything more. The remainder estimate comes from using $e^{-\alpha X_m} = \mathcal{O}(r^{1/2})$ with the remainder term in \cref{expwtstabtheorem}.
+It follows as in \cite{Sandstede1998} that for sufficiently small $r$, $E(\lambda) = 0$ has a solution near $M \lambda_j^2 = r \mu_j$ for $j = 1, \dots, n-1$. Thus for sufficiently small $r$, $E(\lambda) = 0$ has solution near $\lambda_j^\pm = \pm r^{1/2} \sqrt{\mu_j/M}$. For $M > 0$, if $m_j$ is even, then the corresponding $\lambda_j$ are real (to leading order), and if $m_j$ is odd, then the corresponding $\lambda_j$ are on the imaginary axis (to leading order). If any $m_j$ is odd, then one of the eigenvalues $\lambda_j^\pm$ has postive real part. If all the $m_j$ are even, then all of the interaction eigenvalues are, to leading order, on the imaginary axis. Since the system is no longer Hamiltonian due to the expeonential weight, we can not use a symmetry argument to say anything more. The remainder estimate comes from using $e^{-\alpha X_{\min}} = \mathcal{O}(r^{1/2})$ with the remainder term in \cref{expwtstabtheorem}.
 
 \iffulldocument\else
 	\bibliographystyle{amsalpha}

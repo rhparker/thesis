@@ -34,16 +34,14 @@ There is also a linear relationship between the height of the single pulse peak 
 \begin{figure}
 \begin{center}
 \includegraphics[width=8cm]{images/kdv5numerics/peakheightvsc}
-\caption{Height of single pulse peak vs. wavespeed $c$.}
+\caption{Plot of height of single pulse peak vs. wavespeed $c$. Dots are data points from numerical analysis, line is least squares linear regression line.}
 \label{fig:KdV5peakht}
 \end{center}
 \end{figure}
 
 \subsection{Construction of multi-pulses}
 
-To construct a multi-pulse, we glue together multiple copies of the single pulse we constructed in the previous section. For the peak distances, we use those predicted by \cite{SandstedeStrut}. For the spatial discretizaton of \eqref{KdV5eq4} we use either Fourier spectral methods with periodic boundary conditions or Chebyshev polynomial spectral methods with Dirichlet and Neumann boundary conditions at the endpoints. Since the domain has sufficient room for the oscillatory tails to decay exponentially, it does not matter what method we use. In what follows, we use Fourier spectral methods. After the single pulses are spliced together, the multi-pulse is found using Matlab's \texttt{fsolve} function (Levenberg–Marquardt algorithm).
-
-The first six double pulse solutions are shown in \cref{fig:KdV5doublepulse}.
+To construct a multi-pulse, we glue together multiple copies of the single pulse we constructed in the previous section. For the peak distances, we use those predicted by \cite{SandstedeStrut}. For the spatial discretizaton of \eqref{KdV5eq4} we use either Fourier spectral methods with periodic boundary conditions or Chebyshev polynomial spectral methods with Dirichlet and Neumann boundary conditions at the endpoints. Since the domain has sufficient room for the oscillatory tails to decay exponentially, it does not matter what method we use. In what follows, we use Fourier spectral methods. After the single pulses are spliced together, the multi-pulse is found using Matlab's \texttt{fsolve} function (Levenberg–Marquardt algorithm). The first six double pulse solutions are shown in \cref{fig:KdV5doublepulse}.
 
 \begin{figure}
 \begin{center}
@@ -70,9 +68,10 @@ This procedure can be used to construct arbitrary multi-pulses. Several of these
 
 \subsection{Spectrum of multi-pulses}
 
-Now that we have constructed multi-pulses, we can look at their spectral stability. First, we look at double pulses. We compute the spectra of $\calE''(q_2)$ and $\partial_x \calE''(q_2)$ numerically by writing the linear operator in matrix form using differentiation matrices and computing the eigenvalues of the resulting matrix using Matlab's \texttt{eig} function. We first do this using Fourier spectral methods. \cref{fig:KdV5doublespec} shows the two spectra for the first four double pulses.
+Now that we have constructed multi-pulses, we can look at their spectral stability. For an $n$-pulse $q_n$, we compute the spectra of $\calE''(q_n)$ and $\partial_x \calE''(q_n)$ numerically by writing the linear operator in matrix form using differentiation matrices and computing the eigenvalues of the resulting matrix using Matlab's \texttt{eig} function. Since $\calE''(q_n)$ is self-adjoint, its eigenvalues will be real. For an $n$-pulse, we expect to have $n$ eigenvalues $\{ \mu_1, \dots, \mu_{n-1}, 0 \}$ close to 0. The last one is always 0 from the kernel eigenfunction $\partial_x q_n$. The remaining $n-1$ eigenvalues $\{\mu_1, \dots, \mu_{n-1}\}$ will be close to 0 but nonzero. The operator $\calE''(q_n)$ will also have $n$ negative eigenvalues which are located well away from 0; we will not be showing these in our plots. We expect that $\partial_x \calE''(q_n)$ will have $n-1$ pairs of interaction eigenvalues, which are either real or purely imaginary. Each positive eigenvalue $\mu_j$ of $\calE''(q_n)$ will correspond to a pair of real eigenvalues of $\partial_x \calE''(q_n)$, and each negative eigenvalue $\mu_j$ of $\calE''(q_n)$ will correspond to a pair of purely imaginary eigenvalues of $\partial_x \calE''(q_n)$. Furthermore, we expect that the interaction eigenvalues are related to the eigenvalues $\mu_j$ of $\calE''(q_n)$ by $\lambda_j = \pm C \sqrt{\mu_j}$ for some constant $C$.
 
-\begin{figure}[H]
+We start by looking at double pulses $q_2$. We first do this using Fourier spectral methods. \cref{fig:KdV5doublespec} shows the two spectra for the first four double pulses.
+\begin{figure}
 \begin{center}
 \begin{tabular}{cc}
 \includegraphics[width=5cm]{images/kdv5numerics/double1} &
@@ -85,12 +84,12 @@ Now that we have constructed multi-pulses, we can look at their spectral stabili
 \includegraphics[width=5cm]{images/kdv5numerics/double4spec} \\
 \end{tabular}
 \caption{Spectrum of $\calE''(q_2)$ and $\partial_x \calE
-''(q_2)$ for the first four double pulses. For each row, double pulse is shown on left and spectra are on right, with spectrum of $\partial_x \calE''(q_2)$ on the top and spectrum of $\calE''(q_2)$ on the bottom. Fourier spectral methods with $N = 1024$ grid points, $c = 10$, $L = 25$.}
+''(q_2)$ for the first four double pulses. For each row, the double pulse $q_2$ is shown on the left. The corresponding spectra are on the right; the spectrum of $\partial_x \calE''(q_2)$ near 0 is on the top and the spectrum of $\calE''(q_2)$ is on the bottom. Fourier spectral methods with $N = 1024$ grid points, $c = 10$, $L = 25$.}
 \label{fig:KdV5doublespec}
 \end{center}
 \end{figure}
 
-For the first and third double pulse, $\calE''(q_2)$ has a small, positive eigenvalue, and $\partial_x \calE''(q_2)$ has a pair of real interaction eigenvalues. For the second and fourth double pulse, $\calE''(q_2)$ has a small, negative eigenvalue. By \cite[Theorem 2.3]{Pelinovsky2007}, we expect that $\partial_x \calE''(q_2)$ has a pair of eigenvalues which are purely imaginary to leading order. We cannot see them in \cref{fig:KdV5doublespec}, however, since the essential spectrum is in the way.
+For the first and third double pulse, $\calE''(q_2)$ has a positive eigenvalue close to 0, and $\partial_x \calE''(q_2)$ has a pair of real interaction eigenvalues. For the second and fourth double pulse, $\calE''(q_2)$ has a small, negative eigenvalue. By \cite[Theorem 2.3]{Pelinovsky2007}, we expect that $\partial_x \calE''(q_2)$ has a pair of eigenvalues which are purely imaginary to leading order. We cannot see them in \cref{fig:KdV5doublespec}, however, since the essential spectrum is in the way.
 
 To locate these interaction eigenvalues, we shift to an exponentially weighted space, which will move the essential spectrum to the left but will leave the point spectrum unchanged. We can then search for these eigenvalues in the spectrum of the unweighted problem. The interaction eigenvalues for the first four double pulses are listed in \cref{table:KdV5inteigs}.
 

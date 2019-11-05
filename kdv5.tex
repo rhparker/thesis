@@ -96,7 +96,7 @@ As a first step to studying the stability of an equilibrium solution $u^*$, we w
 \begin{equation}\label{KdV5PDEevp}
 \partial_x \calE''(u^*) v = \lambda v.
 \end{equation}
-where $\calE''(u^*)$ is given in \cref{KdV5hessian}.
+where $\calE''(u^*): H^4(\R) \subset L^2(\R) \rightarrow L^2(\R)$ is given in \cref{KdV5hessian}.
 
 \section{Primary pulse solution}
 
@@ -121,14 +121,14 @@ For $c > 1/4$, multi-pulse solutions exist to \cref{KdV5eq4}. These resemble mul
 
 \section{Spectrum of multi-pulses}
 
-We now look at the spectral stability of multi-pulses. Let $q_n$ be an $n-$pulse equilibrium solution to \cref{KdV5c}. We are interested in the spectrum of $\calE''(q_n)$. It it straightforward to show that 
+We now look at the spectral stability of multi-pulses. Let $q_n$ be an $n-$pulse equilibrium solution to \cref{KdV5c}. We are interested in the spectrum of the linear operator $\partial_x \calE''(q_n): H^5(\R) \subset L^2(\R) \rightarrow L^2(\R)$, which is the set of $\lambda \in \C$ for which the operator $\partial_x \calE''(q_n) - \lambda \calI$ does not have bounded inverse. The spectrum can be divided into two parts. The essential spectrum consists of the set of all $\lambda \in \C$ for which the operator $\partial_x \calE''(q_n) - \lambda \calI$ either is not Fredholm or is Fredholm with nonzero inedx. The point spectrum is the set of all $\lambda$ for which $\partial_x \calE''(q_n) - \lambda \calI$ is Fredholm with index 0 but is not invertible. An eigenvalue is an element of the point spectrum. For KdV5, it follow from \cite[Theorem 3.1.11]{Kapitula2013} that $\partial_x \calE''(q_n) - \lambda \calI$ cannot be Fredholm with nonzero index. Thus the essential spectrum consists of all $\lambda \in \C$ for which the operator $\partial_x \calE''(q_n) - \lambda \calI$ is not Fredholm and the point spectrum consists of all $\lambda \in \C$ for which $\dim \ker(\partial_x \calE''(q_n) - \lambda \calI) > 0$.
+
+It it straightforward to show that 
 \begin{align*}
 \partial_x \calE''(q_n) (\partial_x q_n) &= 0 \\
 \partial_x \calE''(q_n) (-\partial_c q_n) &= \partial_x q_n
 \end{align*}
-Thus there is an eigenvalue at 0 with at least algebraic multiplicity 2 and geometric multiplicity 1. The kernel eigenvalue $\partial_x q_n$ is a consequence of translation invariance.
-
-For the essential spectrum, since $\partial_x \calE''(q_n)$ is exponentially asymptotic to the operator 
+Thus there is an eigenvalue at 0 with at least algebraic multiplicity 2 and geometric multiplicity 1. The kernel eigenvalue $\partial_x q_n$ is a consequence of translation invariance. For the essential spectrum, since $\partial_x \calE''(q_n)$ is exponentially asymptotic to the operator 
 \[
 \partial_x \calE''(0) = 
 \partial_x(\partial_x^4 - \partial_x^2 + c - 2 u^*),
