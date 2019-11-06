@@ -112,21 +112,18 @@ There exists $r_* \in \mathcal{R}$ with $r_* > 0$ such that for all $r \leq r_*$
 	\item There exists a family of asymmetric periodic 2-pulses $Q_2(x; m_0, s_1, r)$ with distances $X_1 > X_0$ parameterized by $s_1 \in [p^*, \infty)$. The distances $X_j$ are given by
 	\begin{equation}\label{2pasymmdist}
 	\begin{aligned}
-		X_0(r, s_1) &= \frac{1}{2 \alpha_0} |\log r| + \frac{\pi}{2\beta_0} t_0(r; m_0, s_1) + L_0 \\
+		X_0(r, m_0, s_1) &= \frac{1}{2 \alpha_0} |\log r| + \frac{1}{2\beta_0} t_0(r; m_0, s_1) + L_0 \\
 		X_1(r, s_1) &= \frac{1}{2 \alpha_0} |\log r| + \frac{1}{2\beta_0} s_1 + L_0, 
 	\end{aligned}
 	\end{equation}
 	where $t_0(r; m_0, s_1)$ is smooth in $r$, continuous in $t_1$, and $t_0(0; m_0, k \pi) = m_0$ for all nonnegative integers $k$. Furthermore,
 	\begin{align}\label{deft0}
-	t_0(0; m_0, s_1) = m_0 \pi + \theta^*(\theta(s_1); m(s_1) - m_0),
+	t_0(0; m_0, s_1) = m_0 \pi + \mathcal{O}\left(-\frac{1}{\rho} s_1 \right)
 	\end{align}
-	where
-	\begin{equation*}
-	\begin{aligned}
-	m(s) &= \lceil \frac{s - p^*}{\pi} \rceil \\
-	\theta(s) &= s - m(s) \pi
-	\end{aligned}
-	\end{equation*}
+	The periodic domain has length $2X$, where
+	\begin{equation}\label{X2pdomain}
+	X(r, m_0, s_1) = \frac{1}{2 \alpha_0} 2 |\log r| + \frac{1}{2\beta_0} \left( t_0(r; m_0, s_1) + s_1\right) + 2 L_0.
+	\end{equation}
 
 	\item The two families meet at a pitchfork bifurcation. In terms of the two parameterizations, this occurs when $s_0 = p^*(m_0; r)$ and $s_1 = p^*$. The bifurcation points $p^*(m_0; r)$ are smooth in $r$, and
 	\[
@@ -311,22 +308,27 @@ Let $r_*$ be as in Theorem \ref{2pulsebifurcation}. Then for any $r \leq r_*$:
 	\end{aligned}
 	\end{equation}
 	These are reversed for $m_0 = 1$.
-	\item For an asymmetric periodic 2-pulse $Q_2(x; m_0, s_1, r)$, $a = r \tilde{a}(r; m_0, s_1)$, where $\tilde{a}(r; m_0, s_1)$ is smooth in $r$. For all $s_1 > -\pi + p^*$,
+	\item For an asymmetric periodic 2-pulse $Q_2(x; m_0, s_1, r)$, $a = r \tilde{a}(r; m_0, s_1)$, where $\tilde{a}(r; m_0, s_1)$ is smooth in $r$ and continuous in $s_1$. For all $s_1 > -\pi + p^*$,
 	\begin{equation}
 	\begin{aligned}
-	\tilde{a}(0; m_0, s_1) &> 0 && \text{if }m_0 = 0 \\
-	\tilde{a}(0; m_0, s_1) &< 0 && \text{if }m_0 = 1
+	\tilde{a}(0; m_0, s_1) &< 0 && \text{if }m_0 = 0 \\
+	\tilde{a}(0; m_0, s_1) &> 0 && \text{if }m_0 = 1
 	\end{aligned}
 	\end{equation}
+	Furthermore,
+	\begin{equation}\label{tildeas1limit}
+	\tilde{a}(0; m_0, s_1) = \tilde{a}^*(m_0) + \mathcal{O}\left( e^{-\frac{1}{\rho}s_1} \right),
+	\end{equation}
+	where $\tilde{a}^*(m_0) < 0$ if $m_0 = 0$ and $\tilde{a}^*(m_0) > 0$ if $m_0 = 1$.
 \end{enumerate}	
 \end{lemma}
-I JUST NOTICED SOMETHING SO I NEED TO CHECK TO MAKE SURE I DON'T HAVE THIS BACKWARDS. ALSO AS OF NOW I ONLY HAVE A PROOF FOR PART (i).
+AS OF NOW I ONLY HAVE A COMPLETE PROOF FOR PART (i) AND FOR \cref{tildeas1limit}.
 
 \subsection{Non-interfering essential spectrum }
 
 First, we will consider the case where the interaction eigenvalues are ``out of the way'' of the essential spectrum eigenvalues. Since the interaction eigenvalues scale like $r^{1/2}$ and the essential spectrum eigenvalues scale like $1/|\log r|$, we can always choose $r$ sufficiently small so that this occurs. We expect that the eigenvalues will come in one of the two patterns shown in \cref{fig:2ppatterns}.
 
-\begin{figure}[H]
+\begin{figure}
 \begin{center}
 \begin{tabular}{cc}
 \includegraphics[width=5cm]{images/kdv5/2punstableeigpattern.eps} &
@@ -367,12 +369,10 @@ Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, \ref
 
 \subsection{Krein bubble}
 
-We now consider what happens when a purely imaginary interaction eigenvalues is close to an essential spectrum eigenvalue. We will show that under certain conditions, an instability bubble forms when essential spectrum eigenvalues (positive Krein signature) collide with interaction eigenvalues (negative Krein signature) on the imaginary axis. For an instability bubble to occur, an essential spectrum eigenvalue must get close to an interaction eigenvalue. From \cref{theorem:2peigsassym}, we can always choose $r$ sufficiently small so that this does not occur. In addition, it can never occur for a symmetric 2-pulse. 
+We now consider what happens when a purely imaginary interaction eigenvalue is close to an essential spectrum eigenvalue. We will show that under certain conditions, an instability bubble forms when an essential spectrum eigenvalue (positive Krein signature) collides with an interaction eigenvalue (negative Krein signature) on the imaginary axis. From \cref{theorem:2peigsassym}, we can always choose $r$ sufficiently small so that this does not occur. In addition, it can never occur for a symmetric 2-pulse. 
 
-Before we state the theorem, we will illustrate what occurs graphically. Let $\lambda_*$ be the imaginary interaction eigenvalue in the upper half-plane, and let $\lambda_1$ be the first essential spectrum eigenvalue. Let $t \in [-2, 2]$ be a dimensionless parameter which measures the distance between $\lambda_1$ and $\lambda_*$. Let $R_0$ be a parameter that depends the primary pulse and on intrinsic properties of the system. We will show that if $R_0 > 0$ (which can be checked numerically), a Krein bubble occurs.
-
-Specifically, there is a pair of eigenvalues $\lambda_{1,2}$ near $\lambda_*$ which can be parameterized by $t$. As $t$ decreases from $2$ to $-2$, a pair of purely imaginary eigenvalues collides, moves off of the imaginary axis, travels on a circle centered at $\lambda_*$, and then recombines. This is illustrated in \cref{fig:kreinbubbles}. Results from numerical analysis match this picture.
-\begin{figure}[H]
+Before we state the theorem, we will illustrate what occurs graphically. Let $\lambda_*$ be the imaginary interaction eigenvalue in the upper half-plane, and let $\lambda_1$ be the first essential spectrum eigenvalue. Let $t \in [-2, 2]$ be a dimensionless parameter which measures the distance between $\lambda_1$ and $\lambda_*$. Let $R_0$ be a parameter that depends the primary pulse and on intrinsic properties of the system. We will show that if $R_0 > 0$ (which can be checked numerically), a Krein bubble occurs. Specifically, there is a pair of eigenvalues $\lambda_{1,2}$ near $\lambda_*$ which can be parameterized by $t$. As $t$ decreases from $2$ to $-2$, a pair of purely imaginary eigenvalues collides, moves off of the imaginary axis, travels on a circle centered at $\lambda_*$, and then recombines. This is illustrated in \cref{fig:kreinbubbles}. Results from numerical analysis match this picture.
+\begin{figure}
 \begin{center}
 \begin{tabular}{ccc}
 \includegraphics[width=5cm]{images/kreinbubbles/bubble2R} &
@@ -387,31 +387,44 @@ Specifically, there is a pair of eigenvalues $\lambda_{1,2}$ near $\lambda_*$ wh
 \end{center}
 \end{figure}
 
-We will call the instability bubble a Krein bubble, since it results from the collision of two imaginary eigenvalues with opposite Krein signatures. Inside the Krein bubble, the eigenvalues $\lambda_{1,2}$ are symmetric across the imaginary axis. Outside the Krein bubble, where $\lambda_{1,2}$ are purely imaginary, there is no such symmetry; Hamiltonian symmetry tells that instead there exist eigenvalues $-\lambda_{1,2}$ which are in the lower half-plane.
+We will call the instability bubble a Krein bubble, since it results from the collision of two imaginary eigenvalues with opposite Krein signatures. Inside the Krein bubble, the eigenvalues $\lambda_{1,2}$ are symmetric across the imaginary axis. Outside the Krein bubble, where $\lambda_{1,2}$ are purely imaginary, there is no such symmetry; Hamiltonian symmetry tells us instead that there exist eigenvalues $-\lambda_{1,2}$ which are in the lower half-plane.
 
-In the following theorem, we prove that Krein bubbles occur. For simplicity, we will only consider the first Krein bubble, which occurs when an imaginary interaction eigenvalue collides with the first nonzero essential spectrum eigenvalue. Since for $s_1$ fixed, Krein bubbles do not occur for sufficiently small $r$, we need $s_1$ and $r$ to be interdependent for this to work. 
+In the following theorem, we prove that Krein bubbles occur. For simplicity, we will only consider the first Krein bubble, which occurs when an imaginary interaction eigenvalue collides with the first nonzero essential spectrum eigenvalue. The same analysis works for collisions with subsequent essential spectrum eigenvalues. To make this work, for $m_0 \in \{ 0, 1 \}$ and $s_0 > p^*$, let $Q_2(x; m_0, s_1, r)$ be the corresponding family of asymmetric periodic 2-pulses from Theorem \ref{2pulsebifurcation}. Using Theorem \ref{theorem:2peigsassym}, select whichever of $m_0 \in \{ 0, 1 \}$ will give us an interaction eigenvalue on the imaginary axis. Since for $s_1$ fixed, Krein bubbles do not occur for sufficiently small $r$, we will need $s_1$ and $r$. Using \cref{theorem:2peigsassym} as a guide, we wish to choose $s_1$ so that $c \pi/X$ is close to $\sqrt{\frac{2 \tilde{a}(r)}{M}}r^{1/2}$. The complication is that both $\tilde{a}(r)$ and $X$ depend on $s_1$ and $r$. By \cref{lemma:chara}, for small $r$ and large $s_1$, $\tilde{a}(0)$ is close to $\tilde{a}^*(m_0)$. In the next lemma, we show that we can always find an appropriate $s_1$.
 
-KREIN BUBBLE THEOREM IS HARD TO STATE AND IS A BIT ROUGH STILL. WILL BE ABLE TO EASILY QUANTIFY THE 'h.o.t.' ONCE WE FIGURE OUT HOW BEST TO STATE THIS.
+\begin{lemma}\label{lemma:s1choice}
+Let $\tilde{a}^*(m_0)$ be as in Lemma \ref{lemma:chara}, and choose $m_0 \in \{ 0, 1\}$ so that $\tilde{a}^*(m_0)/M > 0$. Let $r_*$ and $X(r, m_0, s_1)$ be as in \cref{theorem:2peigsassym}. Let
+\begin{equation}\label{tildelambdastar}
+\tilde{\lambda}_* = \sqrt{\frac{ 2 \tilde{a}^*(m_0) }{M}}
+\end{equation}
+Then there exists $r_1 \leq r_*$ such that for all $r \leq r_*$, there exists $s_1^*(r) > p^*$ such that
+\begin{equation}\label{choosesstar}
+\tilde{\lambda}_* r^{1/2} = \frac{c \pi}{X(r, m_0, s_1^*(r))}
+\end{equation}
+\end{lemma}
+
+The following theorem then characterizes the Krein bubble.
 
 \begin{theorem}\label{theorem:kreinbubbles}
-Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, \ref{H0transversehyp}, and \ref{Melnikov2hyp}. Let $r_*$ be as in \cref{theorem:2peigsassym} and $\tilde{a}(r)$ as in Lemma \ref{lemma:chara}. Let $M$ and $M^c$ be as in Theorem \ref{blockmatrixtheorem}. Choose $N = 1$ and let $\delta(r) = \delta(r,1)$ be as in \cref{blockmatrixtheorem}. Choose $m_0 \in \{0, 1\}$ so that $\tilde{a}(0)/M > 0$. Let
-\[
-\lambda_*(r) = \sqrt{\frac{ 2 \tilde{a}(r) }{M}} r^{1/2}.
-\]
-For all $r \leq r_*$, let $s_1^*(r)$ be the value of the parameter $s_1$ such that
-\[
-\lambda_*(r) = \frac{c \pi}{X(r; s_1^*(r))}
-\] 
-Let $X^*(r) = X(r; s_1^*(r))$ and $X_0^*(r) = X_0(r; s_1^*(r))$. Finally, let 
-\[
+Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, \ref{H0transversehyp}, and \ref{Melnikov2hyp}. Choose $m_0 \in \{0, 1\}$ as in Lemma \ref{choosesstar} and let $r_1$, $\tilde{\lambda}_*$, and $s^*(r)$ be as in Lemma \ref{choosesstar}. Choose $N = 1$ and let $\delta(r) = \delta(r,1)$, $M$ and $M^c$ be as in Theorem \ref{blockmatrixtheorem}. For $r \leq r_1$, let
+\begin{enumerate}[(i)]
+\item $X^*(r) = X(r, m_0, s_1^*(r))$ 
+\item $X_0^*(r) = X_0(r, m_0, s_1^*(r))$
+\item
+$
+\begin{aligned}[t]
 R_0(r) = \frac{M^c q(X_0^*(r))}{M},
-\]
-where $q(x)$ is the first component of the primary pulse $Q(x)$, and
-\[
+\end{aligned}
+$
+where $q(x)$ is the first component of the primary pulse $Q(x)$
+\item
+$
+\begin{aligned}[t]
 R(r) = \lambda_*(r)^2 R_0(r) \frac{X_0^*(r)}{X^*(r)}
-\]
+\end{aligned}
+$
+\end{enumerate}
 
-Then there exists $r_1 \leq r_*$ such that for all $r \leq r_1$, the following is true. Let $t \in [-2, 2]$. For $s_1 = s_1(r, t)$ close to $s_1^*(r)$, there exists a pair of eigenvalues located at
+Then there exists $r_2 \leq r_1$ such that for all $r \leq r_2$, the following is true. Let $t \in [-2, 2]$. For $s_1 = s_1(r, t)$ close to $s_1^*(r)$, there exists a pair of eigenvalues located at
 \begin{align*}
 \lambda_{1,2}(t) = \left( \lambda_* + t \sqrt{R(r)} \right) i \pm \sqrt{(1 - t^2)R(r)} + \text{``h.o.t.''}
 \end{align*}

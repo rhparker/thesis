@@ -99,9 +99,45 @@ Incorporating the higher order terms from \cref{2plambdamu} into the remainder t
 \end{aligned}
 \end{equation}
 
+To conclude this section, we prove that Hamiltonian symmetry applies to $\mu$ as well.
+
+\begin{lemma}\label{lemma:Hamsymmmu}
+If $\mu$ is a zero of $S(\mu)$, so are $-\mu$, $\overline{\mu}$, and $-\overline{\mu}$.
+\begin{proof}
+If $\mu$ is a zero, then $\lambda = \nu^{-1}(\mu)$ is a zero of $S(\lambda)$. By Hamiltonian symmetry, $-\lambda$, $\overline{\lambda}$, and $-\overline{\lambda}$ are also zeros of $S(\lambda)$. By \cref{nulambdalemma},
+\begin{align*}
+\nu(-\lambda) &= -\nu(\lambda) = -\mu \\
+\nu(\overline{\lambda}) &= \overline{ \nu(\lambda) } = \overline{\mu} \\
+\nu(-\overline{\lambda}) &= -\overline{ \nu(\lambda) } = -\overline{\mu},
+\end{align*}
+it follows that $-\mu$, $\overline{\mu}$, and $-\overline{\mu}$ are all zeros of $S(\mu)$.
+\end{proof}
+\end{lemma}
+
 \subsection{Proof of \cref{lemma:chara}}
 
-PUT THIS HERE
+\begin{enumerate}
+	\item Proof of part (i) is straightforward and will be filled in.
+	\item Proof of part (ii) is not complete, but numerics strongly suggests result.
+	\item Proof of \cref{tildeas1limit} is as follows.
+
+	From Lemma \ref{lemma:ajparam} and the proof of Lemma \ref{armpersists},
+	\begin{align*}
+	\tilde{a}_1(r, s_1) &= -s_0 e^{\alpha_0 \phi/\beta_0} e^{-\frac{1}{\rho}s_1} \left( \beta \cos s_1 - \alpha \sin s_1 \right) + \mathcal{O}(r^{\gamma/2\alpha_0}) \\
+	&= \mathcal{O}\left(r^{\gamma/2\alpha_0} + e^{-\frac{1}{\rho}s_1} \right)
+	\end{align*}
+	From Lemma \ref{lemma:ajparam}, the proof of Lemma \ref{armpersists}, and the bound on $\theta^*(\theta, m)$ from Lemma \ref{thetaparamlemma}, 
+	\begin{align*}
+	\tilde{a}_0(r, m_0, s_1) &= -s_0 e^{\alpha_0 \phi/\beta_0} e^{-\frac{1}{\rho}m_0} \left( \beta \cos\left(m_0 \pi + \mathcal{O}\left(e^{-\frac{1}{\rho}s_1} \right) \right) - \alpha \sin \left(m_0 \pi + \mathcal{O}\left(e^{-\frac{1}{\rho}s_1} \right) \right) \right) + \mathcal{O}\left(r^{\gamma/2\alpha_0} + e^{-\frac{1}{\rho}s_1} \right) \\
+	&= -(-1)^{m_0} s_0 \beta_0 e^{\alpha_0 \phi/\beta_0} e^{-\frac{1}{\rho}m_0} + \mathcal{O}\left(r^{\gamma/2\alpha_0} + e^{-\frac{1}{\rho}s_1} \right) \\
+	&= \tilde{a}^*(m_0) + \mathcal{O}\left(r^{\gamma/2\alpha_0} + e^{-\frac{1}{\rho}s_1} \right) \\
+	\end{align*}
+	where $\tilde{a}^*(m_0)$ is defined by
+	\[
+	\tilde{a}^*(m_0) = (-1)^{m_0 + 1} s_0 \beta_0 e^{\alpha_0 \phi/\beta_0} e^{-\frac{1}{\rho}m_0}
+	\]
+	and is negative if $m_0 = 0$ and positive if $m_0 = 1$. Equation \cref{tildeas1limit} follows by taking $r = 0$.
+\end{enumerate}
 
 \subsection{Asymmetric periodic 2-pulse}\label{sec:assymkernel}
 
@@ -395,7 +431,7 @@ G(\tilde{\mu}, h, r) = \tilde{\mu}^2 + \frac{2C_1}{M c^2}h + \mathcal{O}\left( |
 \end{equation}
 When $r = 0$ and $h = 0$, $G(\tilde{\mu}, h, r)$ has a double root at $\tilde{\mu} = 0$. We wish to show that this double root at $\tilde{\mu} = 0$ persists for small $r$.
 
-For $\tilde{\mu}$ to be a double root, it must solve both $G(\tilde{\mu}, h, r) = 0$ and $G(\tilde{\mu}, h, r) = 0$. Define $K(\tilde{\mu}, h, r)$ by
+For $\tilde{\mu}$ to be a double root, it must solve both $G(\tilde{\mu}, h, r) = 0$ and $\partial_{\tilde{\mu}} G(\tilde{\mu}, h, r) = 0$. Define $K(\tilde{\mu}, h, r)$ by
 \begin{equation}
 K(\tilde{\mu}, h, r) = 
 \begin{pmatrix}G(\tilde{\mu}, h, r) \\ \partial_{\tilde{\mu}}G(\tilde{\mu}, h, r) \end{pmatrix} 
@@ -422,12 +458,335 @@ D_{(\tilde{\mu}, h)}K(\tilde{\mu}, h, r)\Big|_{(0,0)} =
 2 & 0
 \end{pmatrix},
 \]
-which is nonsingular since all the constants in the upper right block are nonzero. Using the implicit function theorem, we can solve for $(\tilde{\mu}, h)$ in terms of $r$ and $\tilde{\mu}$. Specifically, there exists $r_1 \leq r_2$ and a unique smooth function $(\tilde{\mu}, h)(r)$ with $(\tilde{\mu}, h)(0) = (0, 0)$ such that for all $r \leq r_1$, $K(\tilde{\mu}(r), h(r), r) = 0$. For $r \leq r_1$ and $h = h(r)$, $\tilde{\mu}(r)$ is a double root of $G(\tilde{\mu}, h, r)$. By Hamiltonian symmetry, we must have $\tilde{\mu}(r) = 0$. Expanding $h(r)$ in a Taylor series about $r$, 
+which is nonsingular since all the constants in the upper right block are nonzero. Using the implicit function theorem, we can solve for $(\tilde{\mu}, h)$ in terms of $r$ for sufficiently small $r$. pecifically, there exists $r_1 \leq r_2$ and a unique smooth function $(\tilde{\mu}, h)(r)$ with $(\tilde{\mu}, h)(0) = (0, 0)$ such that for all $r \leq r_1$, $K(\tilde{\mu}(r), h(r), r) = 0$. For $r \leq r_1$ and $h = h(r)$, $\tilde{\mu}(r)$ is a double root of $G(\tilde{\mu}, h, r)$. By Hamiltonian symmetry, we must have $\tilde{\mu}(r) = 0$. Expanding $h(r)$ in a Taylor series about $r$, 
 \begin{equation*}
 h(r) = \mathcal{O}\left( r |\log r|^2 + r^{1/2} + r^{\gamma/2\alpha_0} \right)
 \end{equation*}
 
-We conclude that when $s_0 = p^* + h(r)$, there are two more eigenvalues at 0. From the previous section, there are 5 zeros of $S(\lambda)$ inside a the circle of radius $\xi$. Thus when $s_0 = p^* + h(r)$, there is an eigenvalue at 0 with algebraic mutiplicty 5. Since the pitchfork bifurcation in the family of periodic 2-pulses occurs near $p^*$ at $p^*(r)$, it follows from standard PDE bifurcation theory that this quintuiple zero must occur at the pitchfork bifurcation point, i.e. $p^* + h(r) = p^*(r)$. 
+We conclude that when $s_0 = p^* + h(r)$, there are two more eigenvalues at 0. From the previous section, there are 5 zeros of $S(\lambda)$ inside a the circle of radius $\xi$. Thus when $s_0 = p^* + h(r)$, there is an eigenvalue at 0 with algebraic mutiplicty 5. Since the pitchfork bifurcation in the family of periodic 2-pulses occurs near $p^*$ at $p^*(r)$, it follows from standard PDE bifurcation theory that this quintuiple zero must occur at the pitchfork bifurcation point, i.e. $p^* + h(r) = p^*(r)$.
+
+\section{Proof of Theorem \ref{theorem:kreinbubbles}}
+
+\subsection{Proof of \cref{lemma:s1choice}}
+
+We wish to solve
+\begin{equation}\label{solvefors1}
+\frac{c \pi}{X(r, m_0, s_1)} = \lambda^* r^{1/2}
+\end{equation}
+for $s_1$ in terms of $r$. We note that $\lambda_*$ is independent of both $r$ and $s_1$. Substituting \cref{X2pdomain} from \cref{2pulsebifurcation} and rearranging, equation \cref{solvefors1} becomes
+\begin{align*}
+\lambda_* r^{1/2} \left( \frac{1}{\alpha_0} |\log r| + \frac{1}{2\beta_0} (m_0 \pi + s_1 ) + 2 L_0 + \mathcal{O}\left(e^{-\frac{1}{\rho}s_1}\right) \right) = c \pi
+\end{align*}
+Rearranging this, we obtain the equation $g(s_1) = h(r)$, where
+\begin{align*}
+g(s_1) &= s_1 + \mathcal{O}\left(e^{-\frac{1}{\rho}s_1}\right) \\
+h(r) &= \frac{2 \beta_0 c \pi}{\lambda_*} r^{-1/2} - \frac{2 \beta_0}{\alpha_0} |\log r| - m_0 \pi - 4 \beta_0 L_0
+\end{align*}
+Differentiating $g(s_1)$ with respect to $s_1$, 
+\[
+g'(s_1) = 1 + \mathcal{O}\left(e^{-\frac{1}{\rho}s_1}\right)
+\]
+Thus there exists $R > 0$ such that for all $s_1 \geq R$, $g'(s_1) > 1/2$. For $s_1 \geq R$, $g(s_1)$ is strictly increasing, thus invertible. Since $h(r) \rightarrow \infty$ as $r \rightarrow 0$, there exists $r_1 \leq r_*$ such that for all $r \leq r_1$, we can solve for $s_1$ to get
+\[
+s_1^*(r) = g^{-1}(h(r))
+\]
+This proves \cref{lemma:s1choice}.
+
+We are interested in what happens as $\frac{c \pi}{X(r, m_0, s_1)}$ passes through $\lambda_* r^{1/2}$ as $s_1$ is varied. To do this, following the same argument as above, there exists $r_2 \leq r_1$ such that for all $r \leq r_2$, there exists a function $s_1: \mathcal{R} \times [1/2, 3/2] \rightarrow \R$ such that for all $t \in [1/2, 3/2]$,
+\begin{equation}\label{solvefors1range}
+\frac{c \pi}{X(r, m_0, s_1(r, t))} = t \left( \lambda^* r^{1/2} \right),
+\end{equation}
+$s_1(r, 1) = s_1^*(r)$, and $s_1(r, t)$ is strictly decreasing. To obtain $s_1(r, t)$, solve $g(s_1) = h(r, t)$, where $g(s_1)$ is the same as above, and
+\begin{align*}
+h(r, t) &= \frac{2 \beta_0 c \pi}{t \lambda_*} r^{-1/2} - \frac{2 \beta_0}{\alpha_0} |\log r| - m_0 \pi - 4 \beta_0 L_0
+\end{align*}
+Let $s_1^-(r) = s_1(r, 3/2)$ and $s_1^+(r) = s_1(r, 1/2)$, and let 
+\[
+I_s(r) = [s_1^-(r), s_1^+(r)]
+\]
+
+Finally, since $|e^{-\frac{1}{\rho}s_1(r, t)} \leq 1|$, substituting $s_1(r, t)$ into $g(s_1) = h(r, t)$ (and decreasing $r_2$ if necessary), there exists a constant $R_s$ such that for all $r \leq r_2$ and $t \in [1/2, 3/2]$, we have the lower bound
+\begin{equation}\label{s1starLB}
+s_1(r, t) \geq R_s r^{-1/2}
+\end{equation}
+From Lemma \ref{lemma:chara},
+\[
+\tilde{a}(0; m_0 , s_1) = \tilde{a}^*(m_0) + \mathcal{O}\left( e^{-\frac{1}{\rho}s_1} \right)
+\]
+Combining this with \cref{s1starLB}, we have
+\begin{align}\label{tildeasub}
+\tilde{a}(0; m_0 , s_1) = \tilde{a}^*(m_0) + \mathcal{O}\left( r^{1/2} \right)
+\end{align}
+for all $s_1 \in I_s(r)$. From this point forward we will take $s_1 \in I_s(r)$.
+
+\subsection{Setup}
+
+Since we will be changing variables by taking $\lambda = \nu^{-1}(\mu)$, let 
+\[
+\tilde{\mu}_* = \frac{1}{c} \tilde{\lambda_*},
+\]
+which depends on neither $r$ nor $s_1$. Let $\mu_* = \tilde{\mu}_* r^{1/2}$. We will solve $\det S(\mu) = 0$ for $\mu$ close to $\tilde{\mu}_* r^{1/2} i$, where $\det S(\mu)$ is given by \cref{2detBeqmu}.
+
+Since we are looking for nonzero eigenvalues which are order $\mu = \mathcal{O}(r^{1/2})$, dividing \cref{2detBeqmu} by $\mu^2$ and the constants out front and simplifying, we obtain the equation
+\begin{equation}\label{KreinB1}
+\begin{aligned}
+0 &= \left( (2a + c^2 \mu^2 M) + \mathcal{O}( r^{3/2} )\right) \sinh(\mu X) \\
+&+ 2 c^2 \mu^2 M^c ( q(X_0) \sinh(\mu X_0) + q(X_1) \sinh(\mu X_1) ) \cosh(\mu X) + \mathcal{O}( r^2 ) 
+\end{aligned}
+\end{equation}
+
+Since we are taking $s_1 \in I_s(r)$, it follows from \cref{tildeasub} and \cref{lemma:chara} that
+\[
+a = r \tilde{a}(r) = 
+\]
+\tilde{a}^*(m_0) + \mathcal{O}\left( r^{1/2} \right)
+
+
+
+
+
+
+
+Dividing by $M c^2$ and using \cref{kreinmustar} and $a(r) = r \tilde{a}(r)$ from Lemma \ref{lemma:chara}, equation \cref{KreinB1} becomes
+\begin{equation}\label{KreinB2}
+\begin{aligned}
+0 &= \left( (\mu - \mu_*(r) i)( \mu + \mu_*(r) i) +  \mathcal{O}( r^{3/2} )\right) \sinh(\mu X) \\
+&+\frac{2 M^c}{M} \mu^2 ( q(X_0)\sinh(\mu X_0) + q(X_1) \sinh(\mu X_1) ) \cosh(\mu X) + \mathcal{O}( r^2 ) 
+\end{aligned}
+\end{equation}
+The lengths $X$, $X_0$, and $X_1$ depend on $s_1$ and $r$, but we have suppressed that dependence for now for notational convenience. Let
+\begin{equation}\label{defmu1}
+\mu_1 = \frac{1}{X}
+\end{equation}
+
+\subsection{Parameterization}
+
+We will characterize the system using two parameters: the difference $h$ between $\mu$ and $\mu_* i$ and the distance $s$ along the imaginary axis between $\mu_* i$ and $\mu_1 i$. Note that $s$ is real. We will only consider the upper half of the complex plane; what happens in the lower half is the same by Hamiltonian symmetry. Let 
+\begin{align*}
+h &= \mu - \mu_* i \\
+s &= \mu_1 - \mu_*
+\end{align*}
+where $h \in \C$ and $s \in \R$. At the end, we will relate $s$ to the parameter $s_1$ and provide an appropriate dimensionless scaling. Our goal is derive a relationship between $s$ and $h$. In order to expand the $\sinh(\mu X)$ and $\cosh(\mu X)$ terms around $\mu_1$, we write $\mu$ as
+\begin{align*}
+\mu &= \mu - \mu_1 i + \mu_1 i \\
+&= (\mu_* - \mu_1)i + h + \mu_1 i \\
+&= \mu_1 i + s i + h
+\end{align*}
+Using these, we have the Taylor expansions
+\begin{align*}
+\sinh(\mu X) &= \sinh((\mu_1 + s i + h)X)
+= -(s i + h)X + \mathcal{O}\left( (s i +h)^3 X^3 \right) \\
+\cosh(\mu X) &= \cosh((\mu_1 + s i + h)X)
+= -1 + \mathcal{O}\left( (s i + h)^2 X^2 \right) \\
+\end{align*}
+Substituting all of these into \cref{KreinB2} and dividing by $-1$, we obtain the equation
+\begin{equation}\label{KreinB3}
+\begin{aligned}
+0 &= \left( h ( h + 2 \mu_* i) +  \mathcal{O}( r^{3/2} )\right) \left( (s i + h)X + \mathcal{O}\left( (si+h)^3 X^3 \right)  \right) \\
+&+\frac{2 M^c}{M} ( h + \mu_* i)^2 ( q(X_0)\sinh(\mu X_0) + q(X_1) \sinh(\mu X_1) ) \left( 1 + \mathcal{O}\left( (s i +h)^2 X^2 \right) \right) + \mathcal{O}( r^2 ) 
+\end{aligned}
+\end{equation}
+
+\subsection{First rescaling}
+
+Next, we will rescale our system. In fact, we will rescale it twice. While we could take the final scaling from the outset, doing it this way is more intuitive and we will be able to see where the second scaling comes from. First, we scale out a factor of $r^{1/2}$. Let
+\begin{align*}
+h &= r^{1/2} \tilde{h} \\
+s &= r^{1/2} \tilde{s} \\
+\mu_*(r) &= r^{1/2} \tilde{\mu}_*(r) \\
+q(X_0) &= r^{1/2} \tilde{q}
+\end{align*}
+We also want to scale $r^{1/2}$ out from $\sinh(\mu X_j)$ terms. Let 
+\[
+\frac{X_1}{X_0} = 1 + 2 \eta
+\]
+where $\eta > 1$. Then
+\begin{align*}
+e^{-\alpha X_1} &= e^{-(\alpha X_0)\frac{X_1}{X_0}}
+= \left( e^{-(\alpha X_0)} \right)^{1 + 2 \eta} = r^{1/2}r^{\eta}
+\end{align*}
+from which it follows that $q(X_1) = \mathcal{O}(r^{1/2}r^{\eta}$. Expanding the $c\sinh(\mu X_j)$ terms in a Taylor series about 0, which we can do since $X_j < X$, we get
+\begin{align*}
+\sinh(\mu X_j) &= \mu X_j + \mathcal{O}(\mu X_j)^3 \\
+&= r^{1/2}(\mu_*(r)i + \tilde{h})X_j + \mathcal{O}(r^{3/2} (\mu_*(r)i + \tilde{h})^3 X_j^3)
+\end{align*}
+from which it follows that
+\[
+q(X_0) \sinh(\mu X_0) + q(X_1) \sinh(\mu X_1)
+= \tilde{q}(\tilde{h} + \tilde{\mu}_*(r)i )r X_0 +  \mathcal{O}(r^{1 + \eta}) + \mathcal{O}(r^2 (\tilde{h} + \tilde{\mu}_*(r))^3 X^3))
+\]
+Substituting all of these into \cref{KreinB3} and dividing by $r^{3/2}$, we obtain the rescaled equation
+\begin{equation}\label{KreinB4}
+\begin{aligned}
+0 &= \left( \tilde{h} ( \tilde{h} + 2 \tilde{\mu}_*(r) i) +  \mathcal{O}( r^{1/2} )\right) \left( (\tilde{s}i + \tilde{h})X + \mathcal{O}\left( (\tilde{s}i+\tilde{h})^3 r X^3 \right)  \right) \\
+&+\frac{2 M^c}{M} ( \tilde{h} + \tilde{\mu}_*(r) i)^2 \left( \tilde{q}(\tilde{h} + \tilde{\mu}_*(r)i )r^{1/2} X_0 + \mathcal{O}(r^{1/2 + \eta}) + \mathcal{O}(r^{3/2} (\tilde{h} + \tilde{\mu}_*(r))^3 X^3)) \right) \left( 1 + \mathcal{O}\left( (\tilde{s}i+\tilde{h})^2 r X^2 \right) \right) \\
+&+ \mathcal{O}( r^{1/2} ) 
+\end{aligned}
+\end{equation}
+
+\subsection{Second rescaling}
+
+At this point, we are most of the way there, except for the $r^{1/2}X_0$ term on the second line. To figure out an appropriate scaling ansatz to eliminate this term, suppose that $\tilde{s}$ and $\tilde{h}$ are smaller than $\tilde{\mu}_*(r)$. Eliminating all terms involving $r$ other than the $r^{1/2}X_0$ term, we obtain an equation of the form
+\begin{equation*}
+\begin{aligned}
+\tilde{h} (\tilde{s}i + \tilde{h}) \tilde{\mu}_*(r) i X
+- C \tilde{h}^3 r^{1/2} X_0 (\tilde{\mu}_*(r))^3 = 0.
+\end{aligned}
+\end{equation*} 
+Since this is quadratic in $\tilde{h}$, it suggests that $\tilde{h} = \mathcal{O}(r^{1/4}(X_0/X)^{1/2})$. Adopting this scaling for $\tilde{h}$ and $\tilde{s}$, let
+\begin{align*}
+\tilde{h} &= r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 \\
+\tilde{s} &= 2 r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} s_0
+\end{align*}
+where the factor of $2$ is $\tilde{s}$ is for convenience later. Substituting these into \cref{KreinB4} and dividing by $r^{1/2}$, we obtain the equation
+\begin{equation}\label{KreinB5}
+\begin{aligned}
+&\left( \frac{X_0^{1/2}}{X^{1/2}} h_0 \left( r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + 2 \tilde{\mu}_*(r) i\right) + \mathcal{O}( r^{1/4} ) \right) 
+\left( \frac{X_0^{1/2}}{X^{1/2}}(2 s_0 i + h_0) X + \mathcal{O}\left( \left( 2 s_0 i + h_0 \right)^3 r^{3/2} X_0^{3/2} X^{3/2} \right) \right) \\
+&+\frac{2 M^c}{M} \left( r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r) i\right)^2 \left( \tilde{q} \left(r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r)i \right) X_0 + \mathcal{O}(r^{\eta}) \right.\\
+&+ \left. \mathcal{O} \left (r X^3 \left(r^{1/4} \frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r)\right)^3 \right) \right) \left( 1 + \mathcal{O}\left( \left(2 s_0 i + h_0\right)^2 r^{3/2} X_0 X \right) \right) + \mathcal{O}(1) = 0
+\end{aligned}
+\end{equation}
+Rearranging the top line, we get
+\begin{equation*}
+\begin{aligned}
+&\left( X_0 h_0 \left( r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + 2 \tilde{\mu}_*(r) i\right) + \mathcal{O}\left( r^{1/4} X_0^{1/2} X^{1/2} \right) \right) 
+\left( 2 s_0 i + h_0 + \mathcal{O}\left( \left( 2 s_0 i + h_0 \right)^3 r^{3/2} X_0 X \right) \right) \\
+&+\frac{2 M^c}{M} \left( r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r) i\right)^2 \left( \tilde{q}\left(r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r)i \right) X_0 + \mathcal{O}(r^{\eta}) \right.\\
+&+ \left. \mathcal{O} \left (r X^3 \left(r^{1/4} \frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r)\right)^3 \right) \right) \left( 1 + \mathcal{O}\left( \left(2 s_0 i + h_0\right)^2 r^{3/2} X_0 X \right) \right) + \mathcal{O}(1) = 0
+\end{aligned}
+\end{equation*}
+and divide by $X_0$ to get
+\begin{equation*}
+\begin{aligned}
+&\left( h_0 \left( r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + 2 \tilde{\mu}_*(r) i\right) + \mathcal{O}\left( r^{1/4} \frac{X^{1/2}}{X_0^{1/2}} \right) \right) 
+\left( 2 s_0 i + h_0 + \mathcal{O}\left( \left( 2 s_0 i + h_0 \right)^3 r^{3/2} X_0 X \right) \right) \\
+&+\frac{2 p_1}{M^c} \left( r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r) i\right)^2 \left( \tilde{q}\left(r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r)i \right) + \mathcal{O}\left(\frac{r^{\eta}}{X_0} \right) \right.\\
+&+ \left. \mathcal{O} \left (r X^3 \left(r^{1/4} \frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r)\right)^3 \right) \right) \left( 1 + \mathcal{O}\left( \left(2 s_0 i + h_0\right)^2 r^{3/2} X_0 X \right) \right) + \mathcal{O}\left(\frac{1}{X_0}\right) = 0
+\end{aligned}
+\end{equation*}
+Since $X = \mathcal{O}(|\log r|)$, $X_1 = \mathcal{O}(|\log r|)$, and $r^{a}(|\log r|)^b \rightarrow 0$ as $r \rightarrow 0$ for any positive powers $a$ and $b$, we can simplify this equation to get
+\begin{equation*}
+\begin{aligned}
+0 &= h_0 (2 \mu_*(r) i)(2 s_0 i + h_0) + \frac{2 M^c \tilde{q}}{M}(\mu_*(r) i)^3 + \mathcal{O}\left( \frac{1}{|\log r|}\right)
+\end{aligned}
+\end{equation*}
+Finally, divide by $2 \mu_*(r) i$ to get the equation $G(h_0, s_0, r) = 0$, where $G: \C \times \R \times \mathcal{R} \rightarrow \C$ is defined by
+\begin{equation}\label{BsimpleG0}
+\begin{aligned}
+G(h_0, s_0, r) &= h_0 (2 s_0 i + h_0) + \frac{M^c \tilde{q}}{M}(\mu_*(r) i)^2 + \mathcal{O}\left( \frac{1}{|\log r|}\right),
+\end{aligned}
+\end{equation}
+which simplifies to
+\begin{equation}\label{BsimpleG1}
+\begin{aligned}
+G(h_0, s_0, r) &= h_0^2 + 2 i s_0 h_0 - \tilde{R}(r) + \mathcal{O}\left( \frac{1}{|\log r|}\right),
+\end{aligned}
+\end{equation}
+where 
+\[
+\tilde{R}(r) = \frac{M^c \tilde{q} }{M} \mu^*(r)^2.
+\]
+
+\subsection{Krein bubble}
+
+To leading order, equation \cref{BsimpleG1} is a quadratic in $h_0$. When $r = 0$, equation \cref{BsimpleG1} has solution
+\begin{equation}\label{Bquadsol}
+h_0(s_0) = -s_0 i \pm \sqrt{ \tilde{R}(0) - s_0^2 }
+\end{equation}
+Assume $R_0(0) > 0$. Then $\tilde{R}(0) > 0$ as well, and for $|s_0| \leq \sqrt{\tilde{R}}$, $h_0(s_0)$ describes a circle of radius $\sqrt{\tilde{R}(0)}$ in the complex plane centered at the origin. For $|s_0| \geq \sqrt{\tilde{R}(0)}$, $h_0(s_0)$ is on the imaginary axis. Thus for $r = 0$, this is the Krein bubble!
+
+We will now show that this persists for small $r$. To do that, we will use the implicit function theorem to solve for $h_0$ in terms of $s_0$ for small $r$. Computing the derivative with respect to $h_0$ and noting that all the remainder terms vanish at 0,
+\begin{align*}
+\partial_{h_0} G(h_0, s_0, 0) 
+&= 2 ( h_0 + s_0 i)
+\end{align*}
+Plugging in $h_0(s_0)$ from \cref{Bquadsol},
+\begin{align*}
+\partial_{h_0} G(h_0(s_0), s_0, 0) 
+&= \pm \sqrt{ \tilde{R}(0) - s_0^2 }
+\end{align*}
+This is nonzero as long as $s_0 \neq \pm \sqrt{\tilde{R}}$, at which point there is a bifurcation. We will first handle what happens away from the bifurcation, and then we will deal with the bifurcation point.
+
+Choose any $\epsilon > 0$. Then on the set
+\[
+S_\epsilon = [-2 \sqrt{\tilde{R}(0)} -\sqrt{\tilde{R}(0)} - \epsilon]
+\cup [-\sqrt{\tilde{R}(0)} + \epsilon, \sqrt{\tilde{R}(0)} - \epsilon]
+\cup [\sqrt{\tilde{R}(0)} + \epsilon, 2\sqrt{\tilde{R}(0)}]
+\]
+$\partial_{h_0} G(s_0, h_0(s_0), 0)$ is bounded away from 0, with bound dependent on $\epsilon$. Thus using the uniform contraction mapping principle, we can find $r_1 \leq r_*$ such that for all $s \in S_\epsilon$, we can solve for $h_0$ in terms of $s_0$ and $r$. Specifically, there exists $r_2 \leq r_1$ and smooth functions $h_0^\pm: S_\epsilon \times \mathcal{R} \rightarrow \C$ with
+\[
+h_0^\pm(s_0, 0) = -s_0 i \pm \sqrt{ \tilde{R}(0) - s_0^2 }
+\]
+such that for all $s_0 \in S_\epsilon$ and $r \leq r_2$, $G(h_0^\pm(s_0,r),s_0,r) = 0$. Expanding in a Taylor series, for $s_0 \in S_\epsilon$,
+\[
+h_0^\pm(s_0, r) = -s_0 i \pm \sqrt{ \tilde{R}(0) - s_0^2 } + \mathcal{O}\left( \frac{1}{|\log r|} \right)
+\]
+Undoing both of our scalings, let
+\begin{align*}
+h^\pm(r) &= \frac{X_0^{1/2}}{X^{1/2}}r^{3/4} h_0^\pm(r) \\
+s &= \frac{X_0^{1/2}}{X^{1/2}}r^{3/4} s_0 \\
+\end{align*}
+
+\subsection{Bifurcation points}
+
+All that remains is to show what happens at the bifurcation points $s_0 = \pm \sqrt{\tilde{R}}$ for small $r$. We will consider the bifurcation point at $s_0 = \sqrt{\tilde{R}}$. The other one is similar. When $r = 0$ and $s_0 = \sqrt{\tilde{R}}$, $h_0 = -\sqrt{\tilde{R}}i$ is a double root of \cref{BsimpleG1}, i.e. both $G(-\sqrt{\tilde{R}}i, \sqrt{\tilde{R}}, 0) = 0$ and $\partial_{h_0} G(-\sqrt{\tilde{R}}i, \sqrt{\tilde{R}}, 0) = 0$. Define $K: \C \times \R \times \mathcal{R} \rightarrow \C^2$ by
+\begin{equation}
+K(h_0, s_0, r) = 
+\begin{pmatrix}G(h_0, s_0, r) \\ \partial_{h_0}G(h_0, s_0, r) \end{pmatrix} 
+= \begin{pmatrix}
+h_0^2 + 2 i s_0 h_0 - \tilde{R} \\
+2(h_0 + s_0 i) 
+\end{pmatrix}
++ \mathcal{O}\left( \frac{1}{|\log r|} \right)
+\end{equation}
+When $r = 0$, $K\left(-\sqrt{\tilde{R}}i, \sqrt{\tilde{R}}, 0\right) = 0$. The Jacobian with respect to $(h_0, s_0)$ is
+\[
+D_{(z, \epsilon)}K(z, \epsilon, r) = 
+\begin{pmatrix}
+2 h_0 + 2 i s_0 & 2 i s_0  \\
+2 & 2 i
+\end{pmatrix}
++ \mathcal{O}\left( \frac{1}{|\log r|} \right)
+\]
+At $(h_0, s_0, r) = \left( -\sqrt{\tilde{R}}i, \sqrt{\tilde{R}},0\right)$, 
+\[
+D_{(h_0, s_0)}K\left( -\sqrt{\tilde{R}}i, \sqrt{\tilde{R}},0\right) = 
+2 \begin{pmatrix}
+0 & \sqrt{\tilde{R}}i \\
+1 & i
+\end{pmatrix}
+\]
+which is nonsingular since the columns are linearly independent. Using the implicit function theorem, we can solve for $(h_0, s_0)$ near $(-\sqrt{\tilde{R}}i, \sqrt{\tilde{R}})$ in terms of $r$ for sufficiently small $r$. Specifically, there exists $r_2 \leq r_1$ and a unique smooth function $(h_0^-, s_0^-)(r)$ with $(h_0^-, s_0^-)(0) = (-\sqrt{\tilde{R}}i, \sqrt{\tilde{R}})$ such that for all $r \leq r_2$, $K(h_0^-(r), s_0^-(r), r) = 0$. For $r \leq r_2$ and $s_0 = s_0^-(r)$, $h_0^-(r)$ is a double root of $G(h_0, s_0, r)$. Expanding in a Taylor series, we have
+\begin{align*}
+h_0^-(r) &= -\sqrt{\tilde{R}}i + \mathcal{O}\left( \frac{1}{|\log r|} \right) \\
+s_0^-(r) &= \sqrt{\tilde{R}} + \mathcal{O}\left( \frac{1}{|\log r|} \right) \\
+\end{align*}
+
+Similarly, we can find $h_0^+(r)$ and $s_0^+(r)$ with
+\begin{align*}
+h_0^+(r) &= \sqrt{\tilde{R}}i + \mathcal{O}\left( \frac{1}{|\log r|} \right) \\
+s_0^+(r) &= -\sqrt{\tilde{R}} + \mathcal{O}\left( \frac{1}{|\log r|} \right) \\
+\end{align*}
+such that for $r \leq r_2$ and $s_0 = s_0^+(r)$, $h_0^+(r)$ is a double root of $G(h_0, s_0, r)$.
+
+\subsection{Undoing the scalings}
+
+Undoing both scalings, let 
+\begin{align*}
+h^\pm(r) &= \frac{X_0^{1/2}}{X^{1/2}}r^{3/4} h_0^\pm(r) \\
+s^\pm(r) &= \frac{X_0^{1/2}}{X^{1/2}}r^{3/4} h_0^\pm(r) \\
+\end{align*}
+Then for $r \leq r_2$, when 
+\[
+s = s^\pm(r) = \mp \frac{X_0^{1/2}}{X^{1/2}}r^{3/4} \sqrt{\tilde{R}} + \mathcal{O}\left( \frac{1}{|\log r|} \right),
+\]
+$S(\mu)$ has double zero at
+\[
+\mu^\pm(r) = \left( \mu_*(r) \pm \frac{X_0^{1/2}}{X^{1/2}}r^{3/4} \sqrt{\tilde{R}} \right)i + \mathcal{O}\left( \frac{1}{|\log r|} \right)
+\]
+By Lemma \ref{lemma:Hamsymmmu}, Hamiltonian symmetry applies to $\mu$ as well, thus the only way this is possible is if $\mu^\pm(r)$ is on the imaginary axis. 
+
 
 \iffulldocument\else
 	\bibliographystyle{amsalpha}
