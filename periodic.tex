@@ -317,9 +317,9 @@ Let $r_*$ be as in Theorem \ref{2pulsebifurcation}. Then for any $r \leq r_*$:
 	\end{equation}
 	Furthermore,
 	\begin{equation}\label{tildeas1limit}
-	\tilde{a}(0; m_0, s_1) = \tilde{a}^*(m_0) + \mathcal{O}\left( e^{-\frac{1}{\rho}s_1} \right),
+	\tilde{a}(r; m_0, s_1) = \tilde{a}^*(m_0) + \mathcal{O}\left(r^{\gamma/2\alpha_0} + e^{-\frac{1}{\rho}s_1} \right),
 	\end{equation}
-	where $\tilde{a}^*(m_0) < 0$ if $m_0 = 0$ and $\tilde{a}^*(m_0) > 0$ if $m_0 = 1$.
+	where $\gamma > 0$. $\tilde{a}^*(m_0) < 0$ if $m_0 = 0$ and $\tilde{a}^*(m_0) > 0$ if $m_0 = 1$.
 \end{enumerate}	
 \end{lemma}
 AS OF NOW I ONLY HAVE A COMPLETE PROOF FOR PART (i) AND FOR \cref{tildeas1limit}.
@@ -389,16 +389,20 @@ Before we state the theorem, we will illustrate what occurs graphically. Let $\l
 
 We will call the instability bubble a Krein bubble, since it results from the collision of two imaginary eigenvalues with opposite Krein signatures. Inside the Krein bubble, the eigenvalues $\lambda_{1,2}$ are symmetric across the imaginary axis. Outside the Krein bubble, where $\lambda_{1,2}$ are purely imaginary, there is no such symmetry; Hamiltonian symmetry tells us instead that there exist eigenvalues $-\lambda_{1,2}$ which are in the lower half-plane.
 
-In the following theorem, we prove that Krein bubbles occur. For simplicity, we will only consider the first Krein bubble, which occurs when an imaginary interaction eigenvalue collides with the first nonzero essential spectrum eigenvalue. The same analysis works for collisions with subsequent essential spectrum eigenvalues. To make this work, for $m_0 \in \{ 0, 1 \}$ and $s_0 > p^*$, let $Q_2(x; m_0, s_1, r)$ be the corresponding family of asymmetric periodic 2-pulses from Theorem \ref{2pulsebifurcation}. Using Theorem \ref{theorem:2peigsassym}, select whichever of $m_0 \in \{ 0, 1 \}$ will give us an interaction eigenvalue on the imaginary axis. Since for $s_1$ fixed, Krein bubbles do not occur for sufficiently small $r$, we will need $s_1$ and $r$. Using \cref{theorem:2peigsassym} as a guide, we wish to choose $s_1$ so that $c \pi/X$ is close to $\sqrt{\frac{2 \tilde{a}(r)}{M}}r^{1/2}$. The complication is that both $\tilde{a}(r)$ and $X$ depend on $s_1$ and $r$. By \cref{lemma:chara}, for small $r$ and large $s_1$, $\tilde{a}(0)$ is close to $\tilde{a}^*(m_0)$. In the next lemma, we show that we can always find an appropriate $s_1$.
+In the following theorem, we prove that Krein bubbles occur. For simplicity, we will only consider the first Krein bubble, which occurs when an imaginary interaction eigenvalue collides with the first nonzero essential spectrum eigenvalue. The same analysis works for collisions with subsequent essential spectrum eigenvalues. To make this work, for $m_0 \in \{ 0, 1 \}$ and $s_0 > p^*$, let $Q_2(x; m_0, s_1, r)$ be the corresponding family of asymmetric periodic 2-pulses from Theorem \ref{2pulsebifurcation}. Using Theorem \ref{theorem:2peigsassym}, select whichever of $m_0 \in \{ 0, 1 \}$ will give us an interaction eigenvalue on the imaginary axis. Since for $s_1$ fixed, Krein bubbles do not occur for sufficiently small $r$, we will need $s_1$ and $r$ to be interrelated. Using \cref{theorem:2peigsassym} as a guide, we wish to choose $s_1$ so that $c \pi/X$ is close to $\sqrt{\frac{2 \tilde{a}(r)}{M}}r^{1/2}$. The complication is that both $\tilde{a}(r)$ and $X$ depend on $s_1$. To simplify the picture, define
+\begin{equation}\label{deftildeastar}
+\tilde{a}_*(r) = \lim_{s_1 \rightarrow \infty} \tilde{a}(r; m_0, s_1),
+\end{equation}
+which exists by Lemma \ref{lemma:chara}. In the next lemma, we will show that we can find $s_1$ so that $c \pi/X$ is close to $\sqrt{\frac{2 \tilde{a}_*(r)}{M}}r^{1/2}$.
 
 \begin{lemma}\label{lemma:s1choice}
-Let $\tilde{a}^*(m_0)$ be as in Lemma \ref{lemma:chara}, and choose $m_0 \in \{ 0, 1\}$ so that $\tilde{a}^*(m_0)/M > 0$. Let $r_*$ and $X(r, m_0, s_1)$ be as in \cref{theorem:2peigsassym}. Let
+Let $\tilde{a}(r; m_0, s_1)$ be as in Lemma \ref{lemma:chara}, and choose $m_0 \in \{ 0, 1\}$ so that $\tilde{a}(0; m_0, s_1)/M > 0$. Let $r_*$ and $X(r, m_0, s_1)$ be as in \cref{theorem:2peigsassym}. Let
 \begin{equation}\label{tildelambdastar}
-\tilde{\lambda}_* = \sqrt{\frac{ 2 \tilde{a}^*(m_0) }{M}}
+\tilde{\lambda}_*(r) = \sqrt{\frac{ 2 \tilde{a}_*(r) }{M}},
 \end{equation}
-Then there exists $r_1 \leq r_*$ such that for all $r \leq r_*$, there exists $s_1^*(r) > p^*$ such that
+where $2 \tilde{a}_*(r)$ is defined in \cref{deftildeastar}. Then there exists $r_1 \leq r_*$ such that the following is true. For all $r \leq r_*$, there exists $s_1^*(r) > p^*$ such that
 \begin{equation}\label{choosesstar}
-\tilde{\lambda}_* r^{1/2} = \frac{c \pi}{X(r, m_0, s_1^*(r))}
+\tilde{\lambda}_*(r) r^{1/2} = \frac{c \pi}{X(r, m_0, s_1^*(r))}
 \end{equation}
 \end{lemma}
 

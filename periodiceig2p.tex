@@ -471,16 +471,16 @@ We conclude that when $s_0 = p^* + h(r)$, there are two more eigenvalues at 0. F
 
 We wish to solve
 \begin{equation}\label{solvefors1}
-\frac{c \pi}{X(r, m_0, s_1)} = \lambda^* r^{1/2}
+\frac{c \pi}{X(r, m_0, s_1)} = \lambda^*(r) r^{1/2}
 \end{equation}
-for $s_1$ in terms of $r$. We note that $\lambda_*$ is independent of both $r$ and $s_1$. Substituting \cref{X2pdomain} from \cref{2pulsebifurcation} and rearranging, equation \cref{solvefors1} becomes
+for $s_1$ in terms of $r$. We note that $\lambda_*(r)$ is independent of $s_1$. Substituting \cref{X2pdomain} from \cref{2pulsebifurcation} and rearranging, equation \cref{solvefors1} becomes
 \begin{align*}
-\lambda_* r^{1/2} \left( \frac{1}{\alpha_0} |\log r| + \frac{1}{2\beta_0} (m_0 \pi + s_1 ) + 2 L_0 + \mathcal{O}\left(e^{-\frac{1}{\rho}s_1}\right) \right) = c \pi
+\lambda_*(r) r^{1/2} \left( \frac{1}{\alpha_0} |\log r| + \frac{1}{2\beta_0} (m_0 \pi + s_1 ) + 2 L_0 + \mathcal{O}\left(e^{-\frac{1}{\rho}s_1}\right) \right) = c \pi
 \end{align*}
 Rearranging this, we obtain the equation $g(s_1) = h(r)$, where
 \begin{align*}
 g(s_1) &= s_1 + \mathcal{O}\left(e^{-\frac{1}{\rho}s_1}\right) \\
-h(r) &= \frac{2 \beta_0 c \pi}{\lambda_*} r^{-1/2} - \frac{2 \beta_0}{\alpha_0} |\log r| - m_0 \pi - 4 \beta_0 L_0
+h(r) &= \frac{2 \beta_0 c \pi}{\lambda_*(r)} r^{-1/2} - \frac{2 \beta_0}{\alpha_0} |\log r| - m_0 \pi - 4 \beta_0 L_0
 \end{align*}
 Differentiating $g(s_1)$ with respect to $s_1$, 
 \[
@@ -492,40 +492,66 @@ s_1^*(r) = g^{-1}(h(r))
 \]
 This proves \cref{lemma:s1choice}.
 
-We are interested in what happens as $\frac{c \pi}{X(r, m_0, s_1)}$ passes through $\lambda_* r^{1/2}$ as $s_1$ is varied. To do this, following the same argument as above, there exists $r_2 \leq r_1$ such that for all $r \leq r_2$, there exists a function $s_1: \mathcal{R} \times [1/2, 3/2] \rightarrow \R$ such that for all $t \in [1/2, 3/2]$,
-\begin{equation}\label{solvefors1range}
-\frac{c \pi}{X(r, m_0, s_1(r, t))} = t \left( \lambda^* r^{1/2} \right),
+\subsection{Variation of $s_1$}
+
+For fixed $r$, as $s_1$ is varied near $s_1^*(r)$, the point $\frac{c \pi}{X(r, m_0, s_1)} i$ will pass through the point $\lambda_*(r) r^{1/2}i$ on the imaginary axis. We will now make this precise.
+
+For $t \in [-1, 1]$, we wish to solve
+\begin{equation}\label{solvefors2}
+\frac{c \pi}{X(r, m_0, s_1)} = \left(1 + \frac{t}{2} \right)\lambda^*(r) r^{1/2}
 \end{equation}
-$s_1(r, 1) = s_1^*(r)$, and $s_1(r, t)$ is strictly decreasing. To obtain $s_1(r, t)$, solve $g(s_1) = h(r, t)$, where $g(s_1)$ is the same as above, and
+To do this, let
 \begin{align*}
-h(r, t) &= \frac{2 \beta_0 c \pi}{t \lambda_*} r^{-1/2} - \frac{2 \beta_0}{\alpha_0} |\log r| - m_0 \pi - 4 \beta_0 L_0
+h(r, t) &= \frac{2 \beta_0 c \pi}{\left( 1 + \frac{t}{2} \right) \lambda_*} r^{-1/2} - \frac{2 \beta_0}{\alpha_0} |\log r| - m_0 \pi - 4 \beta_0 L_0
 \end{align*}
-Let $s_1^-(r) = s_1(r, 3/2)$ and $s_1^+(r) = s_1(r, 1/2)$, and let 
+Following the same argument as in the previous section, there exists $r_2 \leq r_1$ such that for all $r \leq r_2$, there exists a function $s_1: \mathcal{R} \times [-1, 1] \rightarrow \R$ such that for all $t \in [-1, 1]$, $g(s_1(r, t)) = h(r, t)$, $s_1(r, 1) = s_1^*(r)$, and $s_1(r, t)$ is strictly decreasing in $t$. By construction,
+\begin{align*}
+\frac{c \pi}{X(r, m_0, s_1(r, -1))} = \frac{1}{2} \lambda^*(r) r^{1/2} \\
+\frac{c \pi}{X(r, m_0, s_1(r, 1))} = \frac{3}{2} \lambda^*(r) r^{1/2}
+\end{align*}
+Let $s_1^-(r) = s_1(r, -1)$, $s_1^+(r) = s_1(r, 1)$, and 
 \[
 I_s(r) = [s_1^-(r), s_1^+(r)]
 \]
+From this point forward we will always take $s_1 \in I_s(r)$.
 
-Finally, since $|e^{-\frac{1}{\rho}s_1(r, t)} \leq 1|$, substituting $s_1(r, t)$ into $g(s_1) = h(r, t)$ (and decreasing $r_2$ if necessary), there exists a constant $R_s$ such that for all $r \leq r_2$ and $t \in [1/2, 3/2]$, we have the lower bound
+Finally, we use this to obtain estimates which will be useful later. Since $|e^{-\frac{1}{\rho}s_1(r,t)} \leq 1|$, substituting $s_1(r, t)$ into $g(s_1) = h(r, t)$ (and decreasing $r_2$ if necessary), there exists a constant $R_s$ such that for all $r \leq r_2$ and $t \in [-1, 1]$, we have the lower bound
 \begin{equation}\label{s1starLB}
 s_1(r, t) \geq R_s r^{-1/2}
 \end{equation}
-From Lemma \ref{lemma:chara},
+Decreasing $r_2$ further, if necessary, and recalling the expression for $X_1$ from \cref{2pasymmdist}, we can guarantee that for all $r \leq r_2$, 
+\begin{equation}\label{X0X1compare}
+X_1(r, s_1) \geq 2 X_0(r, m_0, s_1)
+\end{equation}
+
+From Lemma \ref{lemma:chara} and \cref{deftildeastar},
 \[
-\tilde{a}(0; m_0 , s_1) = \tilde{a}^*(m_0) + \mathcal{O}\left( e^{-\frac{1}{\rho}s_1} \right)
+\tilde{a}(r, m_0, s_1) = \tilde{a}_*(r) + \mathcal{O}\left( e^{-\frac{1}{\rho}s_1} \right)
 \]
 Combining this with \cref{s1starLB}, we have
 \begin{align}\label{tildeasub}
-\tilde{a}(0; m_0 , s_1) = \tilde{a}^*(m_0) + \mathcal{O}\left( r^{1/2} \right)
+\tilde{a}(r; m_0, s_1) = \tilde{a}_*(r) + \mathcal{O}\left( r^{1/2} \right)
 \end{align}
-for all $s_1 \in I_s(r)$. From this point forward we will take $s_1 \in I_s(r)$.
+Let $X_0^*(r) = X_0(r, m_0, s_1^*(r))$. Then using \cref{s1starLB} with \cref{2pasymmdist}, for all $s_1 \in I_s(r)$,
+\begin{align}\label{X0sub}
+X_0(r, m_0, s_1) = X_0^*(r) + \mathcal{O}\left( r^{1/2} \right)
+\end{align}
+Expanding $q(X_0(r, m_0, s_1))$ in a Taylor series about $s_1^*(r)$, for $s_1 \in I_s(r)$,
+\begin{align}\label{qX0sub}
+q( X_0(r, m_0, s_1) ) = q(X_0^*(r)) + \mathcal{O}\left(r \right)
+\end{align}
+since $q'(X_0^*(r)) = \mathcal{O}(r)$. Finally, using \cref{X0X1compare},
+\begin{align}\label{qX1bound}
+q(X_1(r, s_1)) = \mathcal{O}(r).
+\end{align}
 
 \subsection{Setup}
 
 Since we will be changing variables by taking $\lambda = \nu^{-1}(\mu)$, let 
-\[
-\tilde{\mu}_* = \frac{1}{c} \tilde{\lambda_*},
-\]
-which depends on neither $r$ nor $s_1$. Let $\mu_* = \tilde{\mu}_* r^{1/2}$. We will solve $\det S(\mu) = 0$ for $\mu$ close to $\tilde{\mu}_* r^{1/2} i$, where $\det S(\mu)$ is given by \cref{2detBeqmu}.
+\begin{equation}\label{Kreinmustar1}
+\tilde{\mu}_*(r) = \frac{1}{c} \tilde{\lambda_*}(r),
+\end{equation}
+which does not depend on $s_1$. We will solve $\det S(\mu) = 0$ for $\mu$ close to $\tilde{\mu}_* r^{1/2} i$, where $\det S(\mu)$ is given by \cref{2detBeqmu}.
 
 Since we are looking for nonzero eigenvalues which are order $\mu = \mathcal{O}(r^{1/2})$, dividing \cref{2detBeqmu} by $\mu^2$ and the constants out front and simplifying, we obtain the equation
 \begin{equation}\label{KreinB1}
@@ -537,39 +563,39 @@ Since we are looking for nonzero eigenvalues which are order $\mu = \mathcal{O}(
 
 Since we are taking $s_1 \in I_s(r)$, it follows from \cref{tildeasub} and \cref{lemma:chara} that
 \[
-a = r \tilde{a}(r) = 
+a = r \tilde{a}(r, m_0, s_1) = r\tilde{a}_*(r) + \mathcal{O}\left( r^{3/2} \right)
 \]
-\tilde{a}^*(m_0) + \mathcal{O}\left( r^{1/2} \right)
-
-
-
-
-
-
-
-Dividing by $M c^2$ and using \cref{kreinmustar} and $a(r) = r \tilde{a}(r)$ from Lemma \ref{lemma:chara}, equation \cref{KreinB1} becomes
+Making this substitution, equation \cref{KreinB1} becomes
+\begin{equation}\label{KreinB1a}
+\begin{aligned}
+0 &= \left( (2r\tilde{a}_*(r) + c^2 \mu^2 M) + \mathcal{O}( r^{3/2} )\right) \sinh(\mu X) \\
+&+ 2 c^2 \mu^2 M^c ( q(X_0) \sinh(\mu X_0) + q(X_1) \sinh(\mu X_1) ) \cosh(\mu X) + \mathcal{O}( r^2 ) 
+\end{aligned}
+\end{equation}
+Dividing by $M c^2$ and using \cref{Kreinmustar1}, equation \cref{KreinB1a} becomes
 \begin{equation}\label{KreinB2}
 \begin{aligned}
-0 &= \left( (\mu - \mu_*(r) i)( \mu + \mu_*(r) i) +  \mathcal{O}( r^{3/2} )\right) \sinh(\mu X) \\
+0 &= \left( (\mu - \tilde{\mu}_*(r) r^{1/2} i)( \mu + \tilde{\mu}_*(r) r^{1/2} i) +  \mathcal{O}( r^{3/2} )\right) \sinh(\mu X) \\
 &+\frac{2 M^c}{M} \mu^2 ( q(X_0)\sinh(\mu X_0) + q(X_1) \sinh(\mu X_1) ) \cosh(\mu X) + \mathcal{O}( r^2 ) 
 \end{aligned}
 \end{equation}
-The lengths $X$, $X_0$, and $X_1$ depend on $s_1$ and $r$, but we have suppressed that dependence for now for notational convenience. Let
-\begin{equation}\label{defmu1}
-\mu_1 = \frac{1}{X}
-\end{equation}
+The lengths $X$, $X_0$, and $X_1$ depend on $s_1$ and $r$, but we have suppressed that dependence for now for notational convenience. 
 
 \subsection{Parameterization}
 
-We will characterize the system using two parameters: the difference $h$ between $\mu$ and $\mu_* i$ and the distance $s$ along the imaginary axis between $\mu_* i$ and $\mu_1 i$. Note that $s$ is real. We will only consider the upper half of the complex plane; what happens in the lower half is the same by Hamiltonian symmetry. Let 
+Let 
+\[
+\mu_1 = \frac{1}{X},
+\]
+which depends on both $r$ and $s_1$. We will characterize the system using two parameters: the difference $h$ between $\mu$ and $\tilde{\mu}_*(r) r^{1/2} i$ and the distance $s$ along the imaginary axis between $\tilde{\mu}_*(r) r^{1/2} i$ and $\mu_1 i$. Note that $s$ is real, $s$ depends on $s_1$, and since $s_1 \in I_s(r)$, $|s_1| \leq \frac{1}{2} \tilde{\mu}_*(r) r^{1/2}$. We will only consider the upper half of the complex plane; what happens in the lower half is the same by Hamiltonian symmetry. Let 
 \begin{align*}
-h &= \mu - \mu_* i \\
-s &= \mu_1 - \mu_*
+h &= \mu - \tilde{\mu}_*(r) r^{1/2} i \\
+s &= \mu_1 - \tilde{\mu}_*(r) r^{1/2}
 \end{align*}
-where $h \in \C$ and $s \in \R$. At the end, we will relate $s$ to the parameter $s_1$ and provide an appropriate dimensionless scaling. Our goal is derive a relationship between $s$ and $h$. In order to expand the $\sinh(\mu X)$ and $\cosh(\mu X)$ terms around $\mu_1$, we write $\mu$ as
+where $h \in \C$ and $s \in \R$. Our goal is derive a relationship between $s$ and $h$. In order to expand the $\sinh(\mu X)$ and $\cosh(\mu X)$ terms around $\mu_1$, we write $\mu$ as
 \begin{align*}
 \mu &= \mu - \mu_1 i + \mu_1 i \\
-&= (\mu_* - \mu_1)i + h + \mu_1 i \\
+&= (\tilde{\mu}_*(r) r^{1/2} - \mu_1)i + h + \mu_1 i \\
 &= \mu_1 i + s i + h
 \end{align*}
 Using these, we have the Taylor expansions
@@ -582,8 +608,8 @@ Using these, we have the Taylor expansions
 Substituting all of these into \cref{KreinB2} and dividing by $-1$, we obtain the equation
 \begin{equation}\label{KreinB3}
 \begin{aligned}
-0 &= \left( h ( h + 2 \mu_* i) +  \mathcal{O}( r^{3/2} )\right) \left( (s i + h)X + \mathcal{O}\left( (si+h)^3 X^3 \right)  \right) \\
-&+\frac{2 M^c}{M} ( h + \mu_* i)^2 ( q(X_0)\sinh(\mu X_0) + q(X_1) \sinh(\mu X_1) ) \left( 1 + \mathcal{O}\left( (s i +h)^2 X^2 \right) \right) + \mathcal{O}( r^2 ) 
+0 &= \left( h ( h + 2 \tilde{\mu}_*(r) r^{1/2} i) +  \mathcal{O}( r^{3/2} )\right) \left( (s i + h)X + \mathcal{O}\left( (si+h)^3 X^3 \right)  \right) \\
+&+\frac{2 M^c}{M} ( h + \tilde{\mu}_*(r) r^{1/2} i)^2 ( q(X_0)\sinh(\mu X_0) + q(X_1) \sinh(\mu X_1) ) \left( 1 + \mathcal{O}\left( (s i +h)^2 X^2 \right) \right) + \mathcal{O}( r^2 ) 
 \end{aligned}
 \end{equation}
 
@@ -593,35 +619,38 @@ Next, we will rescale our system. In fact, we will rescale it twice. While we co
 \begin{align*}
 h &= r^{1/2} \tilde{h} \\
 s &= r^{1/2} \tilde{s} \\
-\mu_*(r) &= r^{1/2} \tilde{\mu}_*(r) \\
-q(X_0) &= r^{1/2} \tilde{q}
+q(X_0^*(r)) &= r^{1/2} \tilde{q}
 \end{align*}
-We also want to scale $r^{1/2}$ out from $\sinh(\mu X_j)$ terms. Let 
+Using \cref{qX0sub}, $q(X_0)$ becomes
 \[
-\frac{X_1}{X_0} = 1 + 2 \eta
+q(X_0) = r^{1/2}\tilde{q} + \mathcal{O}(r)
 \]
-where $\eta > 1$. Then
-\begin{align*}
-e^{-\alpha X_1} &= e^{-(\alpha X_0)\frac{X_1}{X_0}}
-= \left( e^{-(\alpha X_0)} \right)^{1 + 2 \eta} = r^{1/2}r^{\eta}
-\end{align*}
-from which it follows that $q(X_1) = \mathcal{O}(r^{1/2}r^{\eta}$. Expanding the $c\sinh(\mu X_j)$ terms in a Taylor series about 0, which we can do since $X_j < X$, we get
+We also want to scale $r^{1/2}$ out from $\sinh(\mu X_j)$ terms. From \cref{qX1bound}, $q(X_1) = \mathcal{O}(r^r$. Expanding the $\sinh(\mu X_j)$ terms in a Taylor series about 0, which we can do since $X_j < X$, we get
 \begin{align*}
 \sinh(\mu X_j) &= \mu X_j + \mathcal{O}(\mu X_j)^3 \\
-&= r^{1/2}(\mu_*(r)i + \tilde{h})X_j + \mathcal{O}(r^{3/2} (\mu_*(r)i + \tilde{h})^3 X_j^3)
+&= r^{1/2}(\tilde{\mu}_*(r)i + \tilde{h})X_j + \mathcal{O}(r^{3/2} (\tilde{\mu}_*(r)i + \tilde{h})^3 X_j^3)
 \end{align*}
 from which it follows that
 \[
 q(X_0) \sinh(\mu X_0) + q(X_1) \sinh(\mu X_1)
-= \tilde{q}(\tilde{h} + \tilde{\mu}_*(r)i )r X_0 +  \mathcal{O}(r^{1 + \eta}) + \mathcal{O}(r^2 (\tilde{h} + \tilde{\mu}_*(r))^3 X^3))
+= \tilde{q}(\tilde{h} + \tilde{\mu}_*(r)i )r X_0 + \mathcal{O}(r^2 X^3)
+\]
+Using \cref{X0sub}, this becomes
+\[
+q(X_0) \sinh(\mu X_0) + q(X_1) \sinh(\mu X_1)
+= \tilde{q}(\tilde{h} + \tilde{\mu}_*(r)i )r X_0^*(r) + \mathcal{O}(r^{3/2} + r^2 X^3)
 \]
 Substituting all of these into \cref{KreinB3} and dividing by $r^{3/2}$, we obtain the rescaled equation
 \begin{equation}\label{KreinB4}
 \begin{aligned}
-0 &= \left( \tilde{h} ( \tilde{h} + 2 \tilde{\mu}_*(r) i) +  \mathcal{O}( r^{1/2} )\right) \left( (\tilde{s}i + \tilde{h})X + \mathcal{O}\left( (\tilde{s}i+\tilde{h})^3 r X^3 \right)  \right) \\
-&+\frac{2 M^c}{M} ( \tilde{h} + \tilde{\mu}_*(r) i)^2 \left( \tilde{q}(\tilde{h} + \tilde{\mu}_*(r)i )r^{1/2} X_0 + \mathcal{O}(r^{1/2 + \eta}) + \mathcal{O}(r^{3/2} (\tilde{h} + \tilde{\mu}_*(r))^3 X^3)) \right) \left( 1 + \mathcal{O}\left( (\tilde{s}i+\tilde{h})^2 r X^2 \right) \right) \\
-&+ \mathcal{O}( r^{1/2} ) 
+0 &= \left( \tilde{h} ( \tilde{h} + 2 \tilde{\mu}_*(r) i) +  \mathcal{O}( r^{1/2} )\right) \left( (\tilde{s}i + \tilde{h})X + \mathcal{O}\left( r X^3 \right)  \right) \\
+&+\frac{2 M^c}{M} ( \tilde{h} + \tilde{\mu}_*(r) i)^2 \left( \tilde{q}(\tilde{h} + \tilde{\mu}_*(r)i )r^{1/2} X_0^*(r) + \mathcal{O}(r + r^{3/2} X^3) \right) \left( 1 + \mathcal{O}\left( r X^2 \right) \right) \\
+&+ \mathcal{O}( r^{1/2} ).
 \end{aligned}
+\end{equation}
+Dividing by $\tilde{h} + 2 \tilde{\mu}_*(r) i)$ and simplifying the remainder terms, this becomes
+\begin{equation}\label{KreinB4a}
+0 = \left( \tilde{h} + \mathcal{O}( r^{1/2} )\right) (\tilde{s}i + \tilde{h})X  +\frac{2 M^c \tilde{q} }{M} ( \tilde{h} + \tilde{\mu}_*(r) i)^2 r^{1/2} X_0^*(r) + \mathcal{O}(r^{1/2} + r X^3) \right)
 \end{equation}
 
 \subsection{Second rescaling}
@@ -668,13 +697,13 @@ and divide by $X_0$ to get
 Since $X = \mathcal{O}(|\log r|)$, $X_1 = \mathcal{O}(|\log r|)$, and $r^{a}(|\log r|)^b \rightarrow 0$ as $r \rightarrow 0$ for any positive powers $a$ and $b$, we can simplify this equation to get
 \begin{equation*}
 \begin{aligned}
-0 &= h_0 (2 \mu_*(r) i)(2 s_0 i + h_0) + \frac{2 M^c \tilde{q}}{M}(\mu_*(r) i)^3 + \mathcal{O}\left( \frac{1}{|\log r|}\right)
+0 &= h_0 (2 \tilde{\mu}_*(r) i)(2 s_0 i + h_0) + \frac{2 M^c \tilde{q}}{M}(\tilde{\mu}_*(r) i)^3 + \mathcal{O}\left( \frac{1}{|\log r|}\right)
 \end{aligned}
 \end{equation*}
-Finally, divide by $2 \mu_*(r) i$ to get the equation $G(h_0, s_0, r) = 0$, where $G: \C \times \R \times \mathcal{R} \rightarrow \C$ is defined by
+Finally, divide by $2 \tilde{\mu}_*(r) i$ to get the equation $G(h_0, s_0, r) = 0$, where $G: \C \times \R \times \mathcal{R} \rightarrow \C$ is defined by
 \begin{equation}\label{BsimpleG0}
 \begin{aligned}
-G(h_0, s_0, r) &= h_0 (2 s_0 i + h_0) + \frac{M^c \tilde{q}}{M}(\mu_*(r) i)^2 + \mathcal{O}\left( \frac{1}{|\log r|}\right),
+G(h_0, s_0, r) &= h_0 (2 s_0 i + h_0) + \frac{M^c \tilde{q}}{M}(\tilde{\mu}_*(r) i)^2 + \mathcal{O}\left( \frac{1}{|\log r|}\right),
 \end{aligned}
 \end{equation}
 which simplifies to
@@ -685,7 +714,7 @@ G(h_0, s_0, r) &= h_0^2 + 2 i s_0 h_0 - \tilde{R}(r) + \mathcal{O}\left( \frac{1
 \end{equation}
 where 
 \[
-\tilde{R}(r) = \frac{M^c \tilde{q} }{M} \mu^*(r)^2.
+\tilde{R}(r) = \frac{M^c \tilde{q} }{M} \tilde{\mu}_*(r)^2.
 \]
 
 \subsection{Krein bubble}
