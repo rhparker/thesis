@@ -536,6 +536,11 @@ Let $X_0^*(r) = X_0(r, m_0, s_1^*(r))$. Then using \cref{s1starLB} with \cref{2p
 \begin{align}\label{X0sub}
 X_0(r, m_0, s_1) = X_0^*(r) + \mathcal{O}\left( r^{1/2} \right)
 \end{align}
+Similarly, for $s_1 \in I_s(r)$, let $\Delta s_1 = s_1^*(r) - s_1$. Then 
+\begin{align}\label{Xsub}
+X(r, m_0, s_1^*(r) + \Delta s_1) = X^*(r) + \frac{1}{2\beta_0}\Delta s_1 + \mathcal{O}\left( r^{1/2} \right)
+\end{align}
+
 Expanding $q(X_0(r, m_0, s_1))$ in a Taylor series about $s_1^*(r)$, for $s_1 \in I_s(r)$,
 \begin{align}\label{qX0sub}
 q( X_0(r, m_0, s_1) ) = q(X_0^*(r)) + \mathcal{O}\left(r \right)
@@ -581,46 +586,45 @@ Dividing by $M c^2$ and using \cref{Kreinmustar1}, equation \cref{KreinB1a} beco
 \end{equation}
 The lengths $X$, $X_0$, and $X_1$ depend on $s_1$ and $r$, but we have suppressed that dependence for now for notational convenience. 
 
-\subsection{Parameterization}
+\subsection{Parameterization and first rescaling}
 
-Let 
-\[
-\mu_1 = \frac{1}{X},
-\]
-which depends on both $r$ and $s_1$. We will characterize the system using two parameters: the difference $h$ between $\mu$ and $\tilde{\mu}_*(r) r^{1/2} i$ and the distance $s$ along the imaginary axis between $\tilde{\mu}_*(r) r^{1/2} i$ and $\mu_1 i$. Note that $s$ is real, $s$ depends on $s_1$, and since $s_1 \in I_s(r)$, $|s_1| \leq \frac{1}{2} \tilde{\mu}_*(r) r^{1/2}$. We will only consider the upper half of the complex plane; what happens in the lower half is the same by Hamiltonian symmetry. Let 
+We will characterize the system using two natural parameters: the difference $h$ between $\mu$ and $\tilde{\mu}_*(r) r^{1/2} i$, and the difference $\Delta s_1$ between the parameter $s_1$ and $s_1^*(r)$. We will only consider the upper half of the complex plane; what happens in the lower half is the same by Hamiltonian symmetry. For $s_1 \in I_s(r)$, let
 \begin{align*}
 h &= \mu - \tilde{\mu}_*(r) r^{1/2} i \\
-s &= \mu_1 - \tilde{\mu}_*(r) r^{1/2}
+\Delta s_1 &= s_1 - s_1^*(r)
 \end{align*}
-where $h \in \C$ and $s \in \R$. Our goal is derive a relationship between $s$ and $h$. In order to expand the $\sinh(\mu X)$ and $\cosh(\mu X)$ terms around $\mu_1$, we write $\mu$ as
-\begin{align*}
-\mu &= \mu - \mu_1 i + \mu_1 i \\
-&= (\tilde{\mu}_*(r) r^{1/2} - \mu_1)i + h + \mu_1 i \\
-&= \mu_1 i + s i + h
-\end{align*}
-Using these, we have the Taylor expansions
-\begin{align*}
-\sinh(\mu X) &= \sinh((\mu_1 + s i + h)X)
-= -(s i + h)X + \mathcal{O}\left( (s i +h)^3 X^3 \right) \\
-\cosh(\mu X) &= \cosh((\mu_1 + s i + h)X)
-= -1 + \mathcal{O}\left( (s i + h)^2 X^2 \right) \\
-\end{align*}
-Substituting all of these into \cref{KreinB2} and dividing by $-1$, we obtain the equation
-\begin{equation}\label{KreinB3}
-\begin{aligned}
-0 &= \left( h ( h + 2 \tilde{\mu}_*(r) r^{1/2} i) +  \mathcal{O}( r^{3/2} )\right) \left( (s i + h)X + \mathcal{O}\left( (si+h)^3 X^3 \right)  \right) \\
-&+\frac{2 M^c}{M} ( h + \tilde{\mu}_*(r) r^{1/2} i)^2 ( q(X_0)\sinh(\mu X_0) + q(X_1) \sinh(\mu X_1) ) \left( 1 + \mathcal{O}\left( (s i +h)^2 X^2 \right) \right) + \mathcal{O}( r^2 ) 
-\end{aligned}
-\end{equation}
+where $h \in \C$ and $\Delta s_1 s \in \R$. 
 
-\subsection{First rescaling}
+In order to expand the $\sinh(\mu X)$ and $\cosh(\mu X)$ terms, we use \cref{Xsub}, we write $\mu X$ as 
+\begin{align*}
+\mu X &= \mu X(r, m_0, s^*(r) + \Delta s_1) \\
+&= \left( X^*(r) + \frac{1}{2 \beta_0} \Delta s_1 + \mathcal{O}(r^{1/2}) \right)\left( \tilde{\mu}_*(r) r^{1/2} i + h\right) \\
+&= \pi i + h X^*(r) + \frac{1}{2 \beta_0} \Delta s_1 \left( \tilde{\mu}_*(r) r^{1/2} i + h\right) + \mathcal{O}\left( r^{1/2}(r^{1/2} + h) \right)
+\end{align*}
+Let 
+\[
+s = \frac{\Delta s_1}{2 \beta_0 X^*(r)}.
+\]
+Since $\tilde{\mu}_*(r) r^{1/2} = \frac{\pi}{X^*(r)}$, this simplifies to 
+\begin{align}\label{muX1}
+\mu X &= \pi i + \left( h + s \tilde{\mu}_*(r) r^{1/2} i + h s \right)X^*(r) + \mathcal{O}\left( r^{1/2}(r^{1/2} + h) \right)
+\end{align}
 
-Next, we will rescale our system. In fact, we will rescale it twice. While we could take the final scaling from the outset, doing it this way is more intuitive and we will be able to see where the second scaling comes from. First, we scale out a factor of $r^{1/2}$. Let
+Next, we scale out a factor of $r^{1/2}$. Let
 \begin{align*}
 h &= r^{1/2} \tilde{h} \\
-s &= r^{1/2} \tilde{s} \\
 q(X_0^*(r)) &= r^{1/2} \tilde{q}
 \end{align*}
+Substituting these into \cref{muX1}, we have
+\begin{align}\label{muX2}
+\mu X &= \pi i + r^{1/2} \left( \tilde{h} + s \tilde{\mu}_*(r)i + \tilde{h} s \right)X^*(r) + \mathcal{O}(\left( r \right)
+\end{align}
+Using this, we have the Taylor expansions
+\begin{align*}
+\sinh(\mu X) &= -r^{1/2} \left( \tilde{h} + s \tilde{\mu}_*(r) i + \tilde{h} s \right)X^*(r) + \mathcal{O}\left( r + r^{3/2}|\log r|^3 \right) \\
+\cosh(\mu X) &= -1 + \mathcal{O}\left( r |\log r|^2 \right) \\
+\end{align*}
+
 Using \cref{qX0sub}, $q(X_0)$ becomes
 \[
 q(X_0) = r^{1/2}\tilde{q} + \mathcal{O}(r)
@@ -630,57 +634,61 @@ We also want to scale $r^{1/2}$ out from $\sinh(\mu X_j)$ terms. From \cref{qX1b
 \sinh(\mu X_j) &= \mu X_j + \mathcal{O}(\mu X_j)^3 \\
 &= r^{1/2}(\tilde{\mu}_*(r)i + \tilde{h})X_j + \mathcal{O}(r^{3/2} (\tilde{\mu}_*(r)i + \tilde{h})^3 X_j^3)
 \end{align*}
-from which it follows that
+Since $X_j = \mathcal{O}(|\log r|)$,
 \[
 q(X_0) \sinh(\mu X_0) + q(X_1) \sinh(\mu X_1)
-= \tilde{q}(\tilde{h} + \tilde{\mu}_*(r)i )r X_0 + \mathcal{O}(r^2 X^3)
+= \tilde{q}(\tilde{h} + \tilde{\mu}_*(r)i )r X_0 + \mathcal{O}(r^2 |\log r|^3)
 \]
 Using \cref{X0sub}, this becomes
 \[
 q(X_0) \sinh(\mu X_0) + q(X_1) \sinh(\mu X_1)
-= \tilde{q}(\tilde{h} + \tilde{\mu}_*(r)i )r X_0^*(r) + \mathcal{O}(r^{3/2} + r^2 X^3)
+= \tilde{q}(\tilde{h} + \tilde{\mu}_*(r)i )r X_0^*(r) + \mathcal{O}(r^{3/2} + r^2 |\log r|^3)
 \]
-Substituting all of these into \cref{KreinB3} and dividing by $r^{3/2}$, we obtain the rescaled equation
-\begin{equation}\label{KreinB4}
+
+Substituting all of these into \cref{KreinB2} and dividing by $-1$ and $r^{3/2}$, we obtain the equation
+\begin{equation*}
 \begin{aligned}
-0 &= \left( \tilde{h} ( \tilde{h} + 2 \tilde{\mu}_*(r) i) +  \mathcal{O}( r^{1/2} )\right) \left( (\tilde{s}i + \tilde{h})X + \mathcal{O}\left( r X^3 \right)  \right) \\
-&+\frac{2 M^c}{M} ( \tilde{h} + \tilde{\mu}_*(r) i)^2 \left( \tilde{q}(\tilde{h} + \tilde{\mu}_*(r)i )r^{1/2} X_0^*(r) + \mathcal{O}(r + r^{3/2} X^3) \right) \left( 1 + \mathcal{O}\left( r X^2 \right) \right) \\
+0 &= \left( \tilde{h} ( \tilde{h} + 2 \tilde{\mu}_*(r) i) +  \mathcal{O}( r^{1/2} )\right) \left( (\tilde{h} + s \tilde{\mu}_*(r) i + \tilde{h} s)X^*(r) + \mathcal{O}\left( r^{1/2} + r|\log r|^3 \right)  \right) \\
+&+\frac{2 M^c\tilde{q}}{M} ( \tilde{h} + \tilde{\mu}_*(r) i)^2 \left( (\tilde{h} + \tilde{\mu}_*(r)i )r^{1/2} X_0^*(r) + \mathcal{O}(r + r^{3/2} |\log r|^3 ) \right) \left( 1 + \mathcal{O}\left( r |\log r|^2 \right) \right) \\
 &+ \mathcal{O}( r^{1/2} ).
 \end{aligned}
-\end{equation}
-Dividing by $\tilde{h} + 2 \tilde{\mu}_*(r) i)$ and simplifying the remainder terms, this becomes
-\begin{equation}\label{KreinB4a}
-0 = \left( \tilde{h} + \mathcal{O}( r^{1/2} )\right) (\tilde{s}i + \tilde{h})X  +\frac{2 M^c \tilde{q} }{M} ( \tilde{h} + \tilde{\mu}_*(r) i)^2 r^{1/2} X_0^*(r) + \mathcal{O}(r^{1/2} + r X^3)
-\end{equation}
+\end{equation*}
+Simplifying the remainder terms, this becomes
+\begin{equation*}\label{KreinB3}
+\begin{aligned}
+0 &= \left( \tilde{h} ( \tilde{h} + 2 \tilde{\mu}_*(r) i) + \mathcal{O}( r^{1/2} )\right) (\tilde{h} + s \tilde{\mu}_*(r) i + \tilde{h} s)X^*(r) \\
+&+\frac{2 M^c\tilde{q}}{M} ( \tilde{h} + \tilde{\mu}_*(r) i)^2 (\tilde{h} + \tilde{\mu}_*(r)i )r^{1/2} X_0^*(r) +  \mathcal{O}\left( r^{1/2} + r |\log r|^3 \right).
+\end{aligned}
+\end{equation*}
 
 \subsection{Second rescaling}
 
-At this point, we are most of the way there, except for the $r^{1/2}X_0$ term on the second line. To figure out an appropriate scaling ansatz to eliminate this term, suppose that $\tilde{s}$ and $\tilde{h}$ are smaller than $\tilde{\mu}_*(r)$. Eliminating all terms we suspect are higher order, we obtain an equation of the form
+At this point, we are most of the way there, except for the $r^{1/2}X_0^*(r)$ term on the second line. To figure out an appropriate scaling ansatz to eliminate this term, suppose that $s$ and $\tilde{h}$ are smaller than $\tilde{\mu}_*(r)$. Eliminating all terms we suspect are higher order and simplifying, we obtain an equation of the form
 \begin{equation*}
 \begin{aligned}
-\tilde{h} (\tilde{s}i + \tilde{h}) X
-+ C r^{1/2} X_0^*(r) \tilde{\mu}_*(r)^3 = 0.
+\tilde{h} (\tilde{h} + s \tilde{\mu}_*(r) i) X^*(r) + C r^{1/2} X_0^*(r) \tilde{\mu}_*(r)^2 = 0.
 \end{aligned}
 \end{equation*} 
-Since this is quadratic in $\tilde{h}$, it suggests that $\tilde{h} = C r^{1/4}(X_0^*(r)/X)^{1/2}$. Let
+Since this is quadratic in $\tilde{h}$, it suggests that $\tilde{h} = C r^{1/4}(X_0^*(r)/X^*(r))^{1/2}$. Let
 \begin{align*}
-\tilde{h} &= r^{1/4}\left(\frac{X_0^*(r)}{X}\right)^{1/2} h_0 \\
-\tilde{s} &= 2 r^{1/4}\left(\frac{X_0^*(r)}{X}\right)^{1/2} s_0
+\tilde{h} &= r^{1/4}\left(\frac{X_0^*(r)}{X^*(r)}\right)^{1/2} h_0 \\
+s \tilde{\mu}_*(r) &= 2 r^{1/4}\left(\frac{X_0^*(r)}{X^*(r)}\right)^{1/2} s_0
 \end{align*}
-where the factor of $2$ is $\tilde{s}$ is for convenience later. Substituting these into \cref{KreinB4a} and dividing by $r^{1/2}$, we obtain the equation
+where the factor of $2$ in $s \tilde{\mu}_*(r)$ is for convenience later. Substituting these into \cref{KreinB3} and simplifying the remainder terms, we obtain the equation
 \begin{align*}
-0 &= \left( r^{1/4}\left(\frac{X_0^*(r)}{X}\right)^{1/2} h_0 + \mathcal{O}( r^{1/2} )\right) r^{1/4}\left(\frac{X_0^*(r)}{X}\right)^{1/2} (2 s_0 i + h_0 )X  \\
-&+\frac{2 M^c \tilde{q} }{M} \left( r^{1/4}\left(\frac{X_0^*(r)}{X}\right)^{1/2} h_0 + \tilde{\mu}_*(r) i \right)^2 r^{1/2} X_0^*(r) + \mathcal{O}(r^{1/2} + r X^3).
+0 &= \left( 2 r^{1/4} h_0 \left(\frac{X_0^*(r)}{X^*(r)}\right)^{1/2} \tilde{\mu}_*(r) i  + \mathcal{O}( r^{1/2} )\right) r^{1/4}\left(\frac{X_0^*(r)}{X^*(r)}\right)^{1/2} \left(2 s_0 i + h_0 \right)X^*(r)  \\
+&+\frac{2 M^c \tilde{q} }{M} \left(\tilde{\mu}_*(r) i\right)^3 r^{1/2} X_0^*(r) + \mathcal{O}(r^{1/2} + r^{3/4}|\log r| + r |\log r|^3).
 \end{align*}
-Rearranging the top line and simplifying the remainder terms, this becomes
+Rearranging the top line, this becomes
 \begin{align*}
-0 &= r^{1/2} \left( X_0^*(r) h_0 + \mathcal{O}( r^{1/4} X )\right) (2 s_0 i + h_0 ) -\frac{2 M^c \tilde{q} }{M} \tilde{\mu}_*(r)^2  r^{1/2} X_0^*(r) + \mathcal{O}\left(r^{1/2} + r^{3/4} X_0^*(r) + r X^3\right).
+0 &= \left( 2 r^{1/4} h_0 X_0^*(r)^{1/2} \tilde{\mu}_*(r) i  + \mathcal{O}( r^{1/2} |\log r| )\right) r^{1/4} \left(2 s_0 i + h_0 \right) \\
+&+\frac{2 M^c \tilde{q} }{M} \left(\tilde{\mu}_*(r) i\right)^3 r^{1/2} X_0^*(r) + \mathcal{O}(r^{1/2} + r^{3/4}|\log r| + r |\log r|^3).
 \end{align*}
-Finally, divide by $r^{1/2}X_0^*(r)$ to get
+Finally, divide by $r^{1/2}X_0^*(r)$ and $2 \mu_*(r) i$to get
 \begin{align*}
-0 &= \left( h_0 + \mathcal{O}\left( r^{1/4} \frac{X}{X_0^*(r)} \right)\right) (2 s_0 i + h_0 ) -\frac{2 M^c \tilde{q} }{M} \tilde{\mu}_*(r)^2 + \mathcal{O}\left(\frac{1}{X_0^*(r)} + r^{1/4} + r \frac{X^3}{X_0^*(r)} \right).
+0 &= \left( h_0 + \mathcal{O}( r^{1/4} )\right) \left(2 s_0 i + h_0 \right) +\frac{M^c \tilde{q} }{M} \left(\tilde{\mu}_*(r) i\right)^2 + \mathcal{O}\left( \frac{1}{|\log r|} \right).
 \end{align*}
-Since $X, X_0^*(r) = \mathcal{O}(|\log r|)$, this simplifies to the equation $G(h_0, s_0, r) = 0$, where $G: \C \times \R \times \mathcal{R} \rightarrow \C$ is defined by
+This simplifies to the equation $G(h_0, s_0, r) = 0$, where $G: \C \times \R \times \mathcal{R} \rightarrow \C$ is defined by
 \begin{equation}\label{BsimpleG1}
 \begin{aligned}
 G(h_0, s_0, r) &= h_0^2 + 2 i s_0 h_0 - \tilde{R}(r) + \mathcal{O}\left( \frac{1}{|\log r|}\right),
@@ -697,7 +705,7 @@ To leading order, equation \cref{BsimpleG1} is a quadratic in $h_0$. When $r = 0
 \begin{equation}\label{Bquadsol}
 h_0(s_0) = -s_0 i \pm \sqrt{ \tilde{R}(0) - s_0^2 }
 \end{equation}
-Assume $\tilde{R}(0) > 0$. Then for $|s_0| \leq \sqrt{\tilde{R}}$, $h_0(s_0)$ describes a circle of radius $\sqrt{\tilde{R}(0)}$ in the complex plane centered at the origin. For $|s_0| \geq \sqrt{\tilde{R}(0)}$, $h_0(s_0)$ is on the imaginary axis. Thus for $r = 0$, this is the Krein bubble!
+Assume $\tilde{R}(0) > 0$. Then for $|s_0| \leq \sqrt{\tilde{R}(0)}$, $h_0(s_0)$ describes a circle of radius $\sqrt{\tilde{R}(0)}$ in the complex plane centered at the origin. For $|s_0| \geq \sqrt{\tilde{R}(0)}$, $h_0(s_0)$ is on the imaginary axis. Thus for $r = 0$, this is the Krein bubble!
 
 We will now show that this persists for small $r$. To do that, we will use the implicit function theorem to solve for $h_0$ in terms of $s_0$ for small $r$. Computing the derivative with respect to $h_0$ and noting that all the remainder terms vanish at 0,
 \begin{align*}
