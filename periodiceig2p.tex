@@ -650,80 +650,54 @@ Substituting all of these into \cref{KreinB3} and dividing by $r^{3/2}$, we obta
 \end{equation}
 Dividing by $\tilde{h} + 2 \tilde{\mu}_*(r) i)$ and simplifying the remainder terms, this becomes
 \begin{equation}\label{KreinB4a}
-0 = \left( \tilde{h} + \mathcal{O}( r^{1/2} )\right) (\tilde{s}i + \tilde{h})X  +\frac{2 M^c \tilde{q} }{M} ( \tilde{h} + \tilde{\mu}_*(r) i)^2 r^{1/2} X_0^*(r) + \mathcal{O}(r^{1/2} + r X^3) \right)
+0 = \left( \tilde{h} + \mathcal{O}( r^{1/2} )\right) (\tilde{s}i + \tilde{h})X  +\frac{2 M^c \tilde{q} }{M} ( \tilde{h} + \tilde{\mu}_*(r) i)^2 r^{1/2} X_0^*(r) + \mathcal{O}(r^{1/2} + r X^3)
 \end{equation}
 
 \subsection{Second rescaling}
 
-At this point, we are most of the way there, except for the $r^{1/2}X_0$ term on the second line. To figure out an appropriate scaling ansatz to eliminate this term, suppose that $\tilde{s}$ and $\tilde{h}$ are smaller than $\tilde{\mu}_*(r)$. Eliminating all terms involving $r$ other than the $r^{1/2}X_0$ term, we obtain an equation of the form
+At this point, we are most of the way there, except for the $r^{1/2}X_0$ term on the second line. To figure out an appropriate scaling ansatz to eliminate this term, suppose that $\tilde{s}$ and $\tilde{h}$ are smaller than $\tilde{\mu}_*(r)$. Eliminating all terms we suspect are higher order, we obtain an equation of the form
 \begin{equation*}
 \begin{aligned}
-\tilde{h} (\tilde{s}i + \tilde{h}) \tilde{\mu}_*(r) i X
-- C \tilde{h}^3 r^{1/2} X_0 (\tilde{\mu}_*(r))^3 = 0.
+\tilde{h} (\tilde{s}i + \tilde{h}) X
++ C r^{1/2} X_0^*(r) \tilde{\mu}_*(r)^3 = 0.
 \end{aligned}
 \end{equation*} 
-Since this is quadratic in $\tilde{h}$, it suggests that $\tilde{h} = \mathcal{O}(r^{1/4}(X_0/X)^{1/2})$. Adopting this scaling for $\tilde{h}$ and $\tilde{s}$, let
+Since this is quadratic in $\tilde{h}$, it suggests that $\tilde{h} = C r^{1/4}(X_0^*(r)/X)^{1/2}$. Let
 \begin{align*}
-\tilde{h} &= r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 \\
-\tilde{s} &= 2 r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} s_0
+\tilde{h} &= r^{1/4}\left(\frac{X_0^*(r)}{X}\right)^{1/2} h_0 \\
+\tilde{s} &= 2 r^{1/4}\left(\frac{X_0^*(r)}{X}\right)^{1/2} s_0
 \end{align*}
-where the factor of $2$ is $\tilde{s}$ is for convenience later. Substituting these into \cref{KreinB4} and dividing by $r^{1/2}$, we obtain the equation
-\begin{equation}\label{KreinB5}
-\begin{aligned}
-&\left( \frac{X_0^{1/2}}{X^{1/2}} h_0 \left( r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + 2 \tilde{\mu}_*(r) i\right) + \mathcal{O}( r^{1/4} ) \right) 
-\left( \frac{X_0^{1/2}}{X^{1/2}}(2 s_0 i + h_0) X + \mathcal{O}\left( \left( 2 s_0 i + h_0 \right)^3 r^{3/2} X_0^{3/2} X^{3/2} \right) \right) \\
-&+\frac{2 M^c}{M} \left( r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r) i\right)^2 \left( \tilde{q} \left(r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r)i \right) X_0 + \mathcal{O}(r^{\eta}) \right.\\
-&+ \left. \mathcal{O} \left (r X^3 \left(r^{1/4} \frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r)\right)^3 \right) \right) \left( 1 + \mathcal{O}\left( \left(2 s_0 i + h_0\right)^2 r^{3/2} X_0 X \right) \right) + \mathcal{O}(1) = 0
-\end{aligned}
-\end{equation}
-Rearranging the top line, we get
-\begin{equation*}
-\begin{aligned}
-&\left( X_0 h_0 \left( r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + 2 \tilde{\mu}_*(r) i\right) + \mathcal{O}\left( r^{1/4} X_0^{1/2} X^{1/2} \right) \right) 
-\left( 2 s_0 i + h_0 + \mathcal{O}\left( \left( 2 s_0 i + h_0 \right)^3 r^{3/2} X_0 X \right) \right) \\
-&+\frac{2 M^c}{M} \left( r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r) i\right)^2 \left( \tilde{q}\left(r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r)i \right) X_0 + \mathcal{O}(r^{\eta}) \right.\\
-&+ \left. \mathcal{O} \left (r X^3 \left(r^{1/4} \frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r)\right)^3 \right) \right) \left( 1 + \mathcal{O}\left( \left(2 s_0 i + h_0\right)^2 r^{3/2} X_0 X \right) \right) + \mathcal{O}(1) = 0
-\end{aligned}
-\end{equation*}
-and divide by $X_0$ to get
-\begin{equation*}
-\begin{aligned}
-&\left( h_0 \left( r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + 2 \tilde{\mu}_*(r) i\right) + \mathcal{O}\left( r^{1/4} \frac{X^{1/2}}{X_0^{1/2}} \right) \right) 
-\left( 2 s_0 i + h_0 + \mathcal{O}\left( \left( 2 s_0 i + h_0 \right)^3 r^{3/2} X_0 X \right) \right) \\
-&+\frac{2 p_1}{M^c} \left( r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r) i\right)^2 \left( \tilde{q}\left(r^{1/4}\frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r)i \right) + \mathcal{O}\left(\frac{r^{\eta}}{X_0} \right) \right.\\
-&+ \left. \mathcal{O} \left (r X^3 \left(r^{1/4} \frac{X_0^{1/2}}{X^{1/2}} h_0 + \tilde{\mu}_*(r)\right)^3 \right) \right) \left( 1 + \mathcal{O}\left( \left(2 s_0 i + h_0\right)^2 r^{3/2} X_0 X \right) \right) + \mathcal{O}\left(\frac{1}{X_0}\right) = 0
-\end{aligned}
-\end{equation*}
-Since $X = \mathcal{O}(|\log r|)$, $X_1 = \mathcal{O}(|\log r|)$, and $r^{a}(|\log r|)^b \rightarrow 0$ as $r \rightarrow 0$ for any positive powers $a$ and $b$, we can simplify this equation to get
-\begin{equation*}
-\begin{aligned}
-0 &= h_0 (2 \tilde{\mu}_*(r) i)(2 s_0 i + h_0) + \frac{2 M^c \tilde{q}}{M}(\tilde{\mu}_*(r) i)^3 + \mathcal{O}\left( \frac{1}{|\log r|}\right)
-\end{aligned}
-\end{equation*}
-Finally, divide by $2 \tilde{\mu}_*(r) i$ to get the equation $G(h_0, s_0, r) = 0$, where $G: \C \times \R \times \mathcal{R} \rightarrow \C$ is defined by
-\begin{equation}\label{BsimpleG0}
-\begin{aligned}
-G(h_0, s_0, r) &= h_0 (2 s_0 i + h_0) + \frac{M^c \tilde{q}}{M}(\tilde{\mu}_*(r) i)^2 + \mathcal{O}\left( \frac{1}{|\log r|}\right),
-\end{aligned}
-\end{equation}
-which simplifies to
+where the factor of $2$ is $\tilde{s}$ is for convenience later. Substituting these into \cref{KreinB4a} and dividing by $r^{1/2}$, we obtain the equation
+\begin{align*}
+0 &= \left( r^{1/4}\left(\frac{X_0^*(r)}{X}\right)^{1/2} h_0 + \mathcal{O}( r^{1/2} )\right) r^{1/4}\left(\frac{X_0^*(r)}{X}\right)^{1/2} (2 s_0 i + h_0 )X  \\
+&+\frac{2 M^c \tilde{q} }{M} \left( r^{1/4}\left(\frac{X_0^*(r)}{X}\right)^{1/2} h_0 + \tilde{\mu}_*(r) i \right)^2 r^{1/2} X_0^*(r) + \mathcal{O}(r^{1/2} + r X^3).
+\end{align*}
+Rearranging the top line and simplifying the remainder terms, this becomes
+\begin{align*}
+0 &= r^{1/2} \left( X_0^*(r) h_0 + \mathcal{O}( r^{1/4} X )\right) (2 s_0 i + h_0 ) -\frac{2 M^c \tilde{q} }{M} \tilde{\mu}_*(r)^2  r^{1/2} X_0^*(r) + \mathcal{O}\left(r^{1/2} + r^{3/4} X_0^*(r) + r X^3\right).
+\end{align*}
+Finally, divide by $r^{1/2}X_0^*(r)$ to get
+\begin{align*}
+0 &= \left( h_0 + \mathcal{O}\left( r^{1/4} \frac{X}{X_0^*(r)} \right)\right) (2 s_0 i + h_0 ) -\frac{2 M^c \tilde{q} }{M} \tilde{\mu}_*(r)^2 + \mathcal{O}\left(\frac{1}{X_0^*(r)} + r^{1/4} + r \frac{X^3}{X_0^*(r)} \right).
+\end{align*}
+Since $X, X_0^*(r) = \mathcal{O}(|\log r|)$, this simplifies to the equation $G(h_0, s_0, r) = 0$, where $G: \C \times \R \times \mathcal{R} \rightarrow \C$ is defined by
 \begin{equation}\label{BsimpleG1}
 \begin{aligned}
 G(h_0, s_0, r) &= h_0^2 + 2 i s_0 h_0 - \tilde{R}(r) + \mathcal{O}\left( \frac{1}{|\log r|}\right),
 \end{aligned}
 \end{equation}
-where 
+and
 \[
 \tilde{R}(r) = \frac{M^c \tilde{q} }{M} \tilde{\mu}_*(r)^2.
 \]
 
 \subsection{Krein bubble}
 
-To leading order, equation \cref{BsimpleG1} is a quadratic in $h_0$. When $r = 0$, equation \cref{BsimpleG1} has solution
+To leading order, equation \cref{BsimpleG1} is a quadratic in $h_0$. When $r = 0$, $G(h_0, s_0, 0) = 0$ has solution
 \begin{equation}\label{Bquadsol}
 h_0(s_0) = -s_0 i \pm \sqrt{ \tilde{R}(0) - s_0^2 }
 \end{equation}
-Assume $R_0(0) > 0$. Then $\tilde{R}(0) > 0$ as well, and for $|s_0| \leq \sqrt{\tilde{R}}$, $h_0(s_0)$ describes a circle of radius $\sqrt{\tilde{R}(0)}$ in the complex plane centered at the origin. For $|s_0| \geq \sqrt{\tilde{R}(0)}$, $h_0(s_0)$ is on the imaginary axis. Thus for $r = 0$, this is the Krein bubble!
+Assume $\tilde{R}(0) > 0$. Then for $|s_0| \leq \sqrt{\tilde{R}}$, $h_0(s_0)$ describes a circle of radius $\sqrt{\tilde{R}(0)}$ in the complex plane centered at the origin. For $|s_0| \geq \sqrt{\tilde{R}(0)}$, $h_0(s_0)$ is on the imaginary axis. Thus for $r = 0$, this is the Krein bubble!
 
 We will now show that this persists for small $r$. To do that, we will use the implicit function theorem to solve for $h_0$ in terms of $s_0$ for small $r$. Computing the derivative with respect to $h_0$ and noting that all the remainder terms vanish at 0,
 \begin{align*}
@@ -737,13 +711,14 @@ Plugging in $h_0(s_0)$ from \cref{Bquadsol},
 \end{align*}
 This is nonzero as long as $s_0 \neq \pm \sqrt{\tilde{R}}$, at which point there is a bifurcation. We will first handle what happens away from the bifurcation, and then we will deal with the bifurcation point.
 
-Choose any $\epsilon > 0$. Then on the set
-\[
-S_\epsilon = [-2 \sqrt{\tilde{R}(0)} -\sqrt{\tilde{R}(0)} - \epsilon]
-\cup [-\sqrt{\tilde{R}(0)} + \epsilon, \sqrt{\tilde{R}(0)} - \epsilon]
-\cup [\sqrt{\tilde{R}(0)} + \epsilon, 2\sqrt{\tilde{R}(0)}]
-\]
-$\partial_{h_0} G(s_0, h_0(s_0), 0)$ is bounded away from 0, with bound dependent on $\epsilon$. Thus using the uniform contraction mapping principle, we can find $r_1 \leq r_*$ such that for all $s \in S_\epsilon$, we can solve for $h_0$ in terms of $s_0$ and $r$. Specifically, there exists $r_2 \leq r_1$ and smooth functions $h_0^\pm: S_\epsilon \times \mathcal{R} \rightarrow \C$ with
+Choose any $\epsilon > 0$. Define the sets
+\begin{align*}
+S_\epsilon^{\text{ext}} &= \left[-2 \sqrt{\tilde{R}(0)} -\sqrt{\tilde{R}(0)} - \epsilon\right] \cup \left[\sqrt{\tilde{R}(0)} + \epsilon, 2\sqrt{\tilde{R}(0)}\right] \\
+S_\epsilon^{\text{int}} &= 
+\left[-\sqrt{\tilde{R}(0)} + \epsilon, \sqrt{\tilde{R}(0)} - \epsilon\right] \\
+S_\epsilon &= S_\epsilon^{\text{ext}} \cup S_\epsilon^{\text{int}}
+\end{align*}
+On the set $S_\epsilon$, $\partial_{h_0} G(s_0, h_0(s_0), 0)$ is bounded away from 0, with bound dependent on $\epsilon$. Using the uniform contraction mapping principle, there exists $r_3 \leq r_2$ (dependent on $\epsilon$) such that for $s_0 \in S_\epsilon$ and $r \leq r_3$, we can solve for $h_0$ in terms of $s_0$ and $r$. Specifically, there exist smooth functions $h_0^\pm: S_\epsilon \times \mathcal{R} \rightarrow \C$ with
 \[
 h_0^\pm(s_0, 0) = -s_0 i \pm \sqrt{ \tilde{R}(0) - s_0^2 }
 \]
@@ -753,8 +728,8 @@ h_0^\pm(s_0, r) = -s_0 i \pm \sqrt{ \tilde{R}(0) - s_0^2 } + \mathcal{O}\left( \
 \]
 Undoing both of our scalings, let
 \begin{align*}
-h^\pm(r) &= \frac{X_0^{1/2}}{X^{1/2}}r^{3/4} h_0^\pm(r) \\
-s &= \frac{X_0^{1/2}}{X^{1/2}}r^{3/4} s_0 \\
+h^\pm(r) &= \left(\frac{X_0^*(r)}{X}\right)^{1/2} r^{3/4} h_0^\pm(r) \\
+s &= \left(\frac{X_0^*(r)}{X}\right)^{1/2} s_0 \\
 \end{align*}
 
 \subsection{Bifurcation points}
