@@ -17,7 +17,7 @@ A periodic multi-pulse is a multi-modal solution to \cref{eqODE} on a periodic d
 
 In this chapter, we will start by proving the existence of periodic multi-pulses. In the process, we will exhibit a bifurcation structure for periodic 2-pulses. We will then look at their spectral stability.
 
-\section{Existence}
+\section{Existence}\label{sec:perexist}
 
 First, we will look at existence. From a spatial dynamics perspective, a periodic multi-pulse is a multi-loop periodic orbit solution $Q_n(x)$ to
 \begin{equation}\label{existgenODE}
@@ -131,7 +131,7 @@ Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and 
 \end{theorem}
 [THIS NEEDS A NICE PICTURE.]
 
-\section{Spectral stability}
+\section{Spectral stability}\label{sec:perstab}
 
 In this section, we look at the spectral stability of the periodic multi-pulses which we constructed in the previous section. To do this, we will adapt the framework we set up in \cref{sec:genspectrum}.
 
@@ -269,7 +269,7 @@ For any positive integer $N$ we choose, it follows from \cref{Xdomain} that for 
 Thus the restriction $\delta(r,N) < N/|\log r|$ in \cref{blockmatrixtheorem} will not hinder a search for the first $N$ essential spectrum eigenvalues.
 \end{remark}
 
-\section{Spectrum of periodic 2-pulse}
+\section{Spectrum of periodic 2-pulse}\label{sec:per2peig}
 
 We will first consider the simplest case, which is the periodic 2-pulse. For this case, the block matrix  $S(\lambda)$ from \cref{blockmatrixtheorem} is a $4\times4$ matrix. With the aid of Mathematica, we can compute its determinant.
 
@@ -322,8 +322,6 @@ Let $r_*$ be as in Theorem \ref{2pulsebifurcation}. Then for any $r \in \mathcal
 \end{lemma}
 AS OF NOW I ONLY HAVE A COMPLETE PROOF FOR PART (i) AND FOR \cref{tildeas1limit}.
 
-\subsection{Non-interfering essential spectrum }
-
 First, we will consider the case where the interaction eigenvalues are ``out of the way'' of the essential spectrum eigenvalues. Since the interaction eigenvalues scale like $r^{1/2}$ and the essential spectrum eigenvalues scale like $1/|\log r|$, we can always choose $r$ sufficiently small so that this is the case. We expect that the eigenvalues will come in one of the two patterns shown in \cref{fig:2ppatterns}.
 
 \begin{figure}
@@ -365,7 +363,7 @@ Next, we consider the symmetric periodic 2-pulse. As long as we are away from th
 Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, \ref{H0transversehyp}, \ref{Melnikov2hyp}. Let $r_*$ be as in \cref{2pulsebifurcation}. Then there exists $r_1 \leq r_*$ such that for all $r \in \mathcal{R}$ with $r \leq r_1$ and for $m_0 \in \{0, 1\}$, there is eigenvalue at 0 with algebraic multiplicity 5 for the symmetric periodic 2-pulse $\tilde{Q}_2(x; m_0, p^*(r), r)$.
 \end{theorem}
 
-\subsection{Krein bubble}
+\section{Krein bubble}
 
 We now consider what happens when a purely imaginary interaction eigenvalue is close to an essential spectrum eigenvalue. We will show that under certain conditions, an instability bubble forms when an essential spectrum eigenvalue (positive Krein signature) collides with an interaction eigenvalue (negative Krein signature) on the imaginary axis. From \cref{theorem:2peigsassym}, we can always choose $r$ sufficiently small so that this does not occur. In addition, it can never occur for a symmetric 2-pulse. 
 
@@ -459,7 +457,7 @@ These are bifurcation points.
 
 \end{theorem}
 
-\section{Spectrum of periodic multi-pulses}
+\section{Spectrum of periodic multi-pulses}\label{sec:pereig}
 
 We can state an analogue to \cref{theorem:2peigsassym} for periodic multi-pulses. For $n \geq 3$, it is not feasible to compute the determinant of the block matrix. To obtain a result, we will place an additional condition on the matrix $A$. We start with the following lemma, which in some ways is analogous to \cref{lemma:chara} but provides much less information.
 

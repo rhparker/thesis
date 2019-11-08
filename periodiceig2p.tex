@@ -6,9 +6,7 @@
 	\chapter{KdV5}
 \fi
 
-\section{Proof of stability theorems for periodic 2-pulse}
-
-\subsection{Proof of Corollary \ref{2blockmatrix}}
+\section{Proof of Corollary \ref{2blockmatrix}}
 
 In this section, we will compute the determinant of the block matrix $S(\lambda)$ from \cref{blockmatrixtheorem} for the periodic 2-pulse. The computation is tedious, but it can be done with the aid of Mathematica. Choose a positive integer $N$, and let $\delta(r, N)$ be as in \cref{blockmatrixtheorem}. In particular, we note that $\delta(r,N) \leq N/|\log r|$. 
 
@@ -21,7 +19,7 @@ e^{-\nu(\lambda)X_1} & -e^{\nu(\lambda)X_0} \\
 -e^{\nu(\lambda)X_1} & e^{-\nu(\lambda)X_0} 
 \end{pmatrix} &
 2 \lambda \begin{pmatrix}
--e^{-\nu(\lambda)X_1} q(X_1) + e^{\nu(\lambda)X_0} q(X_1) & e^{-\nu(\lambda)X_1} q(X_1) - e^{\nu(\lambda)X_0} q(X_1) \\ e^{-\nu(\lambda)X_0} q(X_1) - e^{\nu(\lambda)X_1} q(X_1) & -e^{-\nu(\lambda)X_0} q(X_1) + e^{\nu(\lambda)X_1} q(X_1)
+-e^{-\nu(\lambda)X_1} q(X_1) + e^{\nu(\lambda)X_0} q(X_0) & e^{-\nu(\lambda)X_1} q(X_1) - e^{\nu(\lambda)X_0} q(X_0) \\ e^{-\nu(\lambda)X_0} q(X_0) - e^{\nu(\lambda)X_1} q(X_1) & -e^{-\nu(\lambda)X_0} q(X_0) + e^{\nu(\lambda)X_1} q(X_1)
 \end{pmatrix} \\
 -M^c \lambda
 \begin{pmatrix}
@@ -78,7 +76,7 @@ where the remainder terms have bounds
 |R_2| \leq C(r^{1/2} + |\lambda|)^6
 \end{align*}
 
-\subsection{Change of variables}
+\section{Change of variables}
 
 We can now solve equation \cref{2pdetSlambda} to find the eigenvalues $\lambda$. However, this equation involves both $\lambda$ and $\nu(\lambda)$, which is annoying. We will simplify the problem by making a change of variables. Since $\nu'(0) = 1/c$ and $\nu(0) = 0$, $\nu(\lambda)$ is invertible near 0. Let $\lambda = \nu^{-1}(\mu)$. Expanding in Taylor series about $\mu = 0$, we have
 \begin{equation}\label{2plambdamu}
@@ -114,7 +112,7 @@ it follows that $-\mu$, $\overline{\mu}$, and $-\overline{\mu}$ are all zeros of
 \end{proof}
 \end{lemma}
 
-\subsection{Proof of \cref{lemma:chara}}
+\section{Proof of \cref{lemma:chara}}
 
 \begin{enumerate}
 	\item Proof of part (i) is straightforward and will be filled in.
@@ -139,7 +137,7 @@ it follows that $-\mu$, $\overline{\mu}$, and $-\overline{\mu}$ are all zeros of
 	and is negative if $m_0 = 0$ and positive if $m_0 = 1$. Equation \cref{tildeas1limit} follows by taking $r = 0$.
 \end{enumerate}
 
-\subsection{Asymmetric periodic 2-pulse}\label{sec:assymkernel}
+\section{Proof of \cref{theorem:2peigsassym}}
 
 Let $r_*$ be as in Theorem \ref{2pulsebifurcation}. Choose $m_0 \in \{ 0, 1\}$ and any $s_1 > p^*$. For $r \leq r_*$, let $Q_2(x; r = Q_2(x; m_0, s_1, r)$ be the corresponding family of asymmetric periodic 2-pulses. Choose any positive integer $N$, and let $\delta(N,r)$ be as in Theorem \ref{blockmatrixtheorem}. Let $\tilde{a}(r) = \tilde{a}(r; m_0, s_1)$, be as in Lemma \cref{lemma:chara}. By Lemma \cref{lemma:chara}, $\tilde{a}(0) \neq 0$. Let
 \begin{equation}\label{2ptildemustar}
@@ -162,7 +160,7 @@ choose $r_0 \leq r_*$ such that
 \end{align}
 for all $r \leq r_0$. Since $r^{1/2}|\log r| \rightarrow 0$ as $r \rightarrow 0$ and $\tilde{\mu}_*(r)$ is bounded, we can always find such a $r_0$. This guarantees that \cref{2pnobubble} is satisfied. For the rest of this section, we will take $r \leq r_0$.
 
-\subsubsection{Essential spectrum eigenvalues}
+\subsection{Essential spectrum eigenvalues}
 
 In this section, we find the essential spectrum eigenvalues. Let $N_1 \leq N$ be the largest positive integer such that $N_1/|\log r| < \delta(N,r)$. Let $m$ be a nonzero integer with $|m| \leq N_1$, and let
 \begin{equation}\label{defmum}
@@ -233,7 +231,7 @@ By Hamiltonian symmetry, eigenvalues must come in quartets. Since there is nothi
 \lambda_m^{\text{ess}}(r) = c \frac{m \pi i}{X} + +\mathcal{O}\left( \frac{1}{|\log r|^2} \right),
 \]
 
-\subsubsection{Eigenvalues at 0}
+\subsection{Eigenvalues at 0}
 
 In this section, we show that there are exactly three eigenvalues at 0, and that there are no other eigenvalues within a certain distance of 0. We know that there is an eigenvalue at 0 with at least algebraic multiplicity 2, since the corresponding eigenfunctions are $\partial_x Q_2(x)$ and $\partial_c Q_2(x)$. Since $\tilde{a}(0) \neq 0$, the eigenvalues of $\tilde{A}(0)$, thus by \cref{lemma:centereigenfn}, there is a third eigenfunction $V_n^c(x)$ with eigenvalue 0. We will use Rouch\'{e}'s theorem to show that there are no more eigenfunctions in a small circle around 0. Let
 \[
@@ -283,7 +281,7 @@ On the circle $|\tilde{\mu}| = \tilde{\xi}$,
 \]
 Since $|G_2(\tilde{\mu}, r)| \rightarrow 0$ as $r \rightarrow 0$ and $\tilde{\mu}_*(0) \neq 0$, there exists $r_3 \leq r_0$ such that for $r \leq r_3$, $|G_2(\tilde{\mu}, r)| < |G_1(\tilde{\mu})|$ on the circle $|\tilde{\mu}| = \tilde{\xi}$. By Rouch\'{e}'s theorem $G(\tilde{\mu}, r)$ and $G_1(\tilde{\mu})$ have the same number of zeros (counted with multiplicity) inside the circle of radius $\tilde{\xi}$. By the choice of $\tilde{\xi}$, $G_1(\tilde{\mu})$ has exactly 3 zeros inside the circle, thus $G(\tilde{\mu}, r)$ does as well. Undoing the scaling and changing variables back to $\lambda$, for $r \leq r_2$, there are exactly three eigenvalues inside a circle of radius $\sqrt{|2\tilde{a}(0)/M|}r^{1/2}$. These must correspond to the three kernel eigenvalues discussed above.
 
-\subsubsection{Interaction eigenvalues}\label{sec:assyminteigs}
+\subsection{Interaction eigenvalues}\label{sec:assyminteigs}
 
 In this section, we will find the interaction eigenvalues. Using the same setup and scaling as in the previous section, simplify the remainder terms in \cref{2detBeqmu4} to get
 \begin{equation}\label{2detint2}
@@ -330,7 +328,7 @@ By Hamiltonian symmetry there is also an eigenvalue at $-\lambda(r)$. Since Hami
 \]
 which are real if $\tilde{a}(0) < 0$ and purely imaginary if $\tilde{a}(0) > 0$. By \cref{lemma:chara}, the sign of $\tilde{a}(0)$ depends only on $m_0$.
 
-\subsubsection{Eigenvalue count}
+\subsection{Eigenvalue count}
 
 Finally, we prove that we have accounted for all of the eigenvalues near 0. Let $N_1$ be as above, and let
 \[
@@ -377,15 +375,15 @@ which is independent of $r$. For $G_2(h,r)$, using $q(X_j) = \mathcal{O}(r^{1/2}
 \]
 Since $|G_2(h,r)| \rightarrow 0$ as $r \rightarrow 0$, there exists $r_5 \leq r_0$ such that for all $r \leq r_5$, $|G_2(h,r)| < |G_1(h,r)|$ on the circle $|h| = \xi$. Thus by Rouch\'{e}'s theorem, $G(h,r)$ and $G_1(h,r)$ have the same number of zeros (counted with multiplicity) inside the circle $|h| = \xi$. By our choice of $\xi$, $G_1(h,r)$, thus $G(h,r)$, has $2 N_1 + 5$ zeros inside this circle, which correspond exactly to the 3 eigenvalues at 0, the two interaction eigenvalues, and the first $2 N_1$ nonzero essential spectrum eigenvalues. Since we have accounted for all the zeros of $G(h,r)$, we conclude that there can be no more zeros of $G(h,r)$ inside the circle $|h| = \xi$. Undoing the scaling and changing variables back to $\lambda$, we have shown that there are no other eigenvalues inside a circle with radius slightly larger than $|\lambda_{N_1}^{\text{ess}}(r)|$.
 
-\subsubsection{Proof of \cref{theorem:2peigsassym}}
+\subsection{Proof of \cref{theorem:2peigsassym}}
 
 The proof of \cref{theorem:2peigsassym} follows from combining the results of the previous four subsections and taking $r_1 = \min\{ r_2, r_3, r_4, r_5 \}$.
 
-\subsection{Proof of \cref{2peigsym}}
+\section{Proof of \cref{theorem:2peigssym}}
 
 To prove \cref{2peigsym}, we will first show that if we are sufficiently close to the bifurcation point, there are five eigenvalues in a small ball around the origin. We will then show that when were are at the bifurcation point, those eigenvalues are actually all at the origin.
 
-\subsubsection{Count of eigenvalues near 0}
+\subsection{Count of eigenvalues near 0}
 
 From the proof of \cref{lemma:chara}, for $m_1 \in \{0, 1\}$ and $s_0 \in [0, \pi)$,
 \begin{align*}
@@ -398,7 +396,7 @@ and $\tilde{a}(0) = 0$ if and only if $s_0 = p^*$. Since $\tilde{a}(r)$ is smoot
 Since $X(r) = \mathcal{O}(|\log r|)$, this is always possible. Let $\xi = c \pi / 2 X(r)$, and follow the same procedure as in \cref{sec:assymkernel}. Using Rouch\'{e}'s theorem, it follows that for $r \leq r_1$ and $s_0 \in (p^* - \eta, p^* + \eta)$, there are exactly 5 zeros of $S(\lambda)$ inside the circle of radius $\xi$. We know that two of the zeros must be at $\lambda = 0$ since they correspond to the kernel eigenfunctions $\partial_x Q_2(x)$ and $\partial_c Q_2(x)$. This leaves three eigenvalues unaccounted for.
 By Hamiltonian symmetry, since eigenvalues must come in quartets, there must be a third eigenvalue at 0.
 
-\subsubsection{Eigenvalues at bifurcation point}
+\subsection{Eigenvalues at bifurcation point}
 Using the scaling $\mu = r^{1/2} \tilde{\mu}$ and following the same steps as in \cref{sec:assyminteigs}, we wish to solve
 \begin{equation*}
 \begin{aligned}
@@ -854,7 +852,7 @@ By Hamiltonian symmetry, this must be a pair of eigenvalues which are symmetric 
 \end{align*}
 By Hamiltonian symmetry, since there are no other eigenvalues with similar magnitude above the real axis, these must both be on the imaginary axis. Also by Hamiltonian symmetry, there is a corresponding pair of imaginary eigenvalues below the real axis. We note that $\lambda^-(2\sqrt{R(r)}, r)$ is close to the original interaction eigenvalue. If we were to keep increasing $t$, $\lambda^-(t, r)$ would (to leading order) approach $\tilde{\mu}_*(r) r^{1/2}i$.
 
-\subsection{Conclusion}
+\subsection{Proof of Theorem \ref{theorem:kreinbubbles}}
 
 In the previous sections, we have located the two bifurcation points on the imaginary axis, where the Krein bubble forms and then disappears. We have found a pair of purely imaginary eigenvalues before the Krein bubble forms, and a pair of complex eigenvalues which are symmetric across the imaginary axis at the maximum width of the Krein bubble. Since the eigenvalues are smooth in the parameter $t$, we conclude that between the bifurcation points, there is a pair of complex eigenvalues with nonzero real part which is symmetric across the real axis. As $t$ varies between the bifurcation points, these eigenvalues trace out a circle of radius $\tilde{\lambda}_*(r) r^{1/2} \sqrt{ R(r)}$ centered at $\tilde{\lambda}_*(r) r^{1/2}$. Outside the bubble, there are two purely imaginary eigenvalues. The physical parameter $\Delta s_1$ is related to $t$ by
 \[

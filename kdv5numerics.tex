@@ -5,11 +5,11 @@
 	\chapter{KdV5}
 \fi
 
-\section{Numerical results}
+\section{Overview}
 
 In this section, we present numerical results for the existence and spectrum of solutions to \cref{KdV5c}. First, we construct the primary pulse solution for $c > 1/4$ using parameter continuation. We then use that  solution to construct multipulses and analyze the spectrum numerically. We perform time-stepping to see what the spectrum implies for the stability of multi-pulse solutions. Finally, we repeat these analyses for periodic multi-pulses for both small and extremely large periodic domains.
 
-\subsection{Construction of single pulse}
+\section{Construction of single pulse}
 
 We start with the construction of the primary pulse solution. For $c = 36/169 < 1/4$, an exact solution to \cref{KdV5eq4} is known \cite[(3)]{Pelinovsky2007}:
 \begin{equation}\label{KdV5exactsol}
@@ -39,7 +39,7 @@ There is also a linear relationship between the height of the single pulse peak 
 \end{center}
 \end{figure}
 
-\subsection{Construction of multi-pulses}
+\section{Construction of multi-pulses}
 
 To construct a multi-pulse, we glue together multiple copies of the single pulse we constructed in the previous section. For the peak distances, we use those predicted by \cite{SandstedeStrut}. For the spatial discretizaton of \eqref{KdV5eq4} we use either Fourier spectral methods with periodic boundary conditions or Chebyshev polynomial spectral methods with Dirichlet and Neumann boundary conditions at the endpoints. Since the domain has sufficient room for the oscillatory tails to decay exponentially, it does not matter what method we use. In what follows, we use Fourier spectral methods. After the single pulses are spliced together, the multi-pulse is found using Matlab's \texttt{fsolve} function (Levenberg–Marquardt algorithm). The first six double pulse solutions are shown in \cref{fig:KdV5doublepulse}.
 
@@ -66,7 +66,7 @@ This procedure can be used to construct arbitrary multi-pulses. Several of these
 \end{center}
 \end{figure}
 
-\subsection{Spectrum of multi-pulses}
+\section{Spectrum of multi-pulses}
 
 Now that we have constructed multi-pulses, we can look at their spectral stability. For an $n$-pulse $q_n$, we compute the spectra of $\calE''(q_n)$ and $\partial_x \calE''(q_n)$ numerically by writing the linear operator in matrix form using differentiation matrices and computing the eigenvalues of the resulting matrix using Matlab's \texttt{eig} function. Since $\calE''(q_n)$ is self-adjoint, its eigenvalues will be real. For an $n$-pulse, we expect to have $n$ eigenvalues $\{ \mu_1, \dots, \mu_{n-1}, 0 \}$ close to 0. The last one is always 0 from the kernel eigenfunction $\partial_x q_n$. The remaining $n-1$ eigenvalues $\{\mu_1, \dots, \mu_{n-1}\}$ will be close to 0 but nonzero. The operator $\calE''(q_n)$ will also have $n$ negative eigenvalues which are located well away from 0; we will not be showing these in our plots. We expect that $\partial_x \calE''(q_n)$ will have $n-1$ pairs of interaction eigenvalues, which are either real or purely imaginary. Each positive eigenvalue $\mu_j$ of $\calE''(q_n)$ will correspond to a pair of real eigenvalues of $\partial_x \calE''(q_n)$, and each negative eigenvalue $\mu_j$ of $\calE''(q_n)$ will correspond to a pair of purely imaginary eigenvalues of $\partial_x \calE''(q_n)$. Furthermore, we expect that the interaction eigenvalues are related to the eigenvalues $\mu_j$ of $\calE''(q_n)$ by $\lambda_j = \pm C \sqrt{\mu_j}$ for some constant $C$.
 
@@ -169,7 +169,7 @@ Before we continue, we note that all the eigenvalue computations thus far have r
 
 Since there is no essential spectrum in the way, it may be easier to find the interaction eigenvalues using Chebyshev polynomial spectral methods.
 
-\subsection{Time stepping}
+\section{Time stepping}
 
 In this section, we perform time-stepping of the PDE \eqref{KdV5c} starting with initial conditions which are near to the double pulse equilibrium solutions we constructed earlier. For spatial discretization we use Chebyshev spectral methods. This avoids the small-amplitude oscillatory modes which come from the purely imaginary essential spectrum in the case of periodic boundary conditions. For time-stepping, we use a Crank-Nicolson/Adams-Bashforth 2 (CNAB) IMEX scheme.
 
@@ -196,7 +196,7 @@ This phase portrait consists of alternating saddles and centers and resembles a 
 \end{equation}
 where we recall that $\pm \alpha_0 \pm \beta_0 i$ are the nonzero eigenvalues of the rest state. The phase portrait for this system is plotted in the right panel of \cref{fig:KdV5timestep}. We note the similarity between the two phase portraits.
 
-\subsection{Periodic multi-pulses}
+\section{Periodic multi-pulses}
 
 We will now consider periodic multi-pulses solutions to \cref{KdV5eq4}. A periodic multi-pulse is a multi-pulse solution to \cref{KdV5eq4} with periodic boundary conditions. In the previous section, we used Fourier spectral methods with periodic boundary conditions, so technically all of those solutions are periodic multi-pulses. However, we chose the period sufficiently large to approximate the situation on the real line but not too large to cause problems. Here we will look periodic double pulses in the two extreme cases: small period, where the interaction between two two pulses pulses is significant on both sides, and large period, where there is a collision between eigenvalues on the imaginary axis.
 

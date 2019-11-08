@@ -74,7 +74,7 @@
 
 % Information about the document
 
-\title{Spectral stability of multi-pulse solutions in continuous and discrete Hamiltonian systems}
+\title{Nonlinear waves in the 5th order KdV equation}
 \author{Ross Hamilton Parker}
 \degree{Doctor of Philosophy}
 \department{The Division of Applied Mathematics}
@@ -91,17 +91,17 @@
 %% stuff specific to thesis, comment out for now
 %%
 
-% \begin{preliminaries}
+\begin{preliminaries}
 
-% \maketitle
+\maketitle
 
-% \copyrightpage
+\copyrightpage
 
-% \begin{signature}
-%   \director{Bj\"{o}rn Sandstede, Ph.D., Advisor}
-%   \reader{SECOND READER, Ph.D., Reader}
-%   \reader{THIRD READER, Ph.D., Reader}
-% \end{signature}
+\begin{signature}
+  \director{Bj\"{o}rn Sandstede, Ph.D., Advisor}
+  \reader{John Mallet-Paret, Ph.D., Reader}
+  \reader{Ryan Goh, Ph.D., Reader}
+\end{signature}
 
 % \begin{vita}\label{thesis:vita}
 %   \input{content/vita}
@@ -115,28 +115,28 @@
 %   \input{content/acknowledgments}
 % \end{acknowledgments}
 
-% Comment out the abstract for final submitted version of the dissertation
+% % Comment out the abstract for final submitted version of the dissertation
 % \begin{abstract}\label{thesis:abstract}
-  % \thispagestyle{empty}
-  % \input{content/abstract}
-  % \thispagestyle{empty}
+%   \thispagestyle{empty}
+%   \input{content/abstract}
+%   \thispagestyle{empty}
 % \end{abstract}
 
-% \begin{spacing}{1} % single-spacing for these
-%   \tableofcontents
-%   \clearpage{\pagestyle{empty}\cleardoublepage}
+\begin{spacing}{1} % single-spacing for these
+  \tableofcontents
+  \clearpage{\pagestyle{empty}\cleardoublepage}
 
-%   \footnotesize
-%   \fontsize{11.5pt}{12.5pt}\selectfont
-%   \listoftables
-%   \clearpage{\pagestyle{empty}\cleardoublepage}
+  \footnotesize
+  \fontsize{11.5pt}{12.5pt}\selectfont
+  \listoftables
+  \clearpage{\pagestyle{empty}\cleardoublepage}
 
-%   \listoffigures
-%   \clearpage{\pagestyle{empty}\cleardoublepage}
-%   \normalsize
-% \end{spacing}
+  \listoffigures
+  \clearpage{\pagestyle{empty}\cleardoublepage}
+  \normalsize
+\end{spacing}
 
-% \end{preliminaries}
+\end{preliminaries}
 
 %\pagestyle{myheadings}
 \pagestyle{plain}
@@ -145,24 +145,38 @@
 
 \mainmatter
 
-\chapter{The 5th order KdV equation: background and numerics}\label{chapter:KdV5}
+\chapter{Introduction}
+
+\chapter{Background for 5th order KdV}\label{chapter:KdV5}
 \subfile{kdv5}
+
+\chapter{Numerical results}\label{chapter:KdV5}
 \subfile{kdv5numerics}
 
-\chapter{The 5th order KdV equation: generalization}\label{chapter:kdv5general}
+\chapter{Generalization}\label{chapter:kdv5general}
 \subfile{kdv5general}
 \subfile{primarypulse}
 
-\chapter{The 5th order KdV equation: $n$-homoclinic solutions}\label{chapter:kdv5homoclinic}
+\chapter{Multi-pulse solutions}\label{chapter:kdv5homoclinic}
 \subfile{kdv5homoclinic}
 
-\chapter{The 5th order KdV equation: $n$-periodic solutions }\label{chapter:kdv5periodic}
+\chapter{Periodic multi-pulse solutions }\label{chapter:kdv5periodic}
 \subfile{periodic}
+
+\chapter{Proof of existence results for periodic multi-pulses}
 \subfile{periodicexist}
+
+\chapter{Proof of Theorem \ref{blockmatrixtheorem}}
 \subfile{blockmatrixsetup}
 \subfile{blockmatrixinv}
+
+\chapter{Proof of eigenvalue results for periodic 2-pulses}
 \subfile{periodiceig2p}
+
+\chapter{Proof of eigenvalue results for periodic $n$-pulses}
 \subfile{periodiceig}
+
+\chapter{Conclusion}
 
 % \appendix
 %    Include appendix "chapters" here.

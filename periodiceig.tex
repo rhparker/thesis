@@ -6,7 +6,7 @@
 	\chapter{KdV5}
 \fi
 
-\section{Proof of Theorem \ref{locateeigtheorem}}
+\section{Overview}
 
 In this section, we prove Theorem \ref{locateeigtheorem}, which locates the eigenvalues associated with a perioidic multi-pulse. The outline of the proof is as follows. First, as in the 2-pulse case, we simplify the problem by making the change of variables $\mu = \nu(\lambda)$. We will then place an upper bound on the scaling parameter $r$ so that the essential spectrum is ``out of the way'' of the interaction eigenvalues. Next, we note that the condition $E(\lambda) = \det S(\lambda) = 0$ is equivalent to the equation
 \begin{equation}\label{Slambdaeq}
@@ -23,7 +23,7 @@ and
 \ell_{\min}(r) = \min_{j = 1, \dots, n-1}|\ell_j(r)|
 \]
 
-\subsection{Simplification and change of variables}
+\section{Simplification and change of variables}
 
 First, we simplify the block matrix equation \cref{blockeq}. Using Lemma \ref{lemma:expnubound}, the entries in $K^+(\lambda)$ can be bounded by a constant, while the entries in $K_1(\lambda)$ are $\mathcal{O}(r^{1/2})$. We also take $A = r \tilde{A}(r)$ as i Lemma \ref{lemma:Aform}. Making these substitutions, the block matrix \cref{blockeq} simplifies to 
 \begin{equation}\label{blockeq2}
@@ -69,7 +69,7 @@ Finally, let
 \]
 We expect to find the interaction eigenvalues near $\mu_*^j(r) = r^{1/2} \tilde{\mu}_*^j(r)$.
 
-\subsection{Restriction of scaling parameter}
+\section{Restriction of scaling parameter}
 
 As in 2-pulse case, we will place an upper bound on $r$ so that the essential spectrum eigenvalues do not interfere with the interaction eigenvalues. To do this, we will choose $r_0 \leq r_*$ sufficiently small so that for all $r \leq r_0$,
 \begin{equation}\label{nobubble}
@@ -85,7 +85,7 @@ choose $r_0 \leq r_*$ such that
 \end{align}
 for all $r \leq r_0$. Since $r^{1/2}|\log r| \rightarrow 0$ as $r \rightarrow 0$ and $\ell_{\max}(r)$ is bounded, we can always find such a $r_0$. This guarantees that \cref{nobubble} is satisfied. For the rest of this section, we will take $r \leq r_0$. 
 
-\subsection{Interaction eigenvalues}
+\section{Interaction eigenvalues}
 
 Our first task is to find the interaction eigenvalues, which we expect to find near $\mu_*^j(r) = r^{1/2} \tilde{\mu}_*^j(r)$. Let
 \begin{equation}\label{muminmax}
@@ -344,7 +344,7 @@ By Hamiltonian symmetry, these are real or purely imaginary.
 \end{proof}
 \end{lemma}
 
-\subsection{Essential spectrum eigenvalues}
+\section{Essential spectrum eigenvalues}
 
 We will now find the nonzero essential spectrum eigenvalues, which we expect to occur near the points $m \pi i/X$ for integer $m$. Let $N$ be as in the statement of \cref{locateeigtheorem}. Since the smallest nonzero essential spectrum eigenvalue is close to $\pi i/X$ and we are not considering essential spectrum eigenvalues larger than $N \pi i/X$, in this section we will consider $\mu$ with
 \begin{equation}\label{mucondess}
@@ -510,7 +510,7 @@ These are pure imaginary, and the remainder terms cannot move them off of the im
 \end{proof}
 \end{lemma}
 
-\subsection{Eigenvalue counts}
+\section{Eigenvalue counts}
 
 Finally, we will perform two counts of the eigenvalues near 0 so that we can conclude that we have accounted for everything. First, we will count the eigenvalues in a large cicle around the origin in the complex plane.
 
@@ -646,9 +646,9 @@ As in the previous lemma, by Rouch\'e's Theorem, $E(\lambda)$ and $\det(K(\lambd
 \end{proof}
 \end{lemma}
 
-\subsection{Proof of Theorem \ref{locateeigtheorem}}
+\section{Proof of Theorem \ref{theorem:multieigs}}
 
-For part (i), $\partial_x Q_n(x)$ is an eigenfunction with eigenvalue 0, $\partial_c Q_n(x)$ is a generalized eigenfunction with eigenvalue 0 corresponding to $\partial_x Q_n(x)$. By Hypothesis \ref{Adistincteigs} and Lemma \ref{lemma:centereigenfn}, there is a third eigenvalue at 0 with eigenfunction $V_n^c(x)$.
+For part (i), $\partial_x Q_n(x)$ is an eigenfunction with eigenvalue 0, $\partial_c Q_n(x)$ is a generalized eigenfunction with eigenvalue 0 corresponding to $\partial_x Q_n(x)$. By Hypothesis \ref{Adistincteigs} and Lemma \ref{lemma:centereigenfn}, there is a third eigenvalue at 0 with eigenfunction $V_n^c(x)$. The remaining parts of the theorem follow from the results of the previous sections.
 
 \iffulldocument\else
 	\bibliographystyle{amsalpha}
