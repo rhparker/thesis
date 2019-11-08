@@ -705,7 +705,7 @@ To leading order, equation \cref{BsimpleG1} is a quadratic in $h_0$. When $r = 0
 \begin{equation}\label{Bquadsol}
 h_0(s_0) = -s_0 i \pm \sqrt{ \tilde{R}(0) - s_0^2 }
 \end{equation}
-Assume $\tilde{R}(0) > 0$. Then for $|s_0| \leq \sqrt{\tilde{R}(0)}$, $h_0(s_0)$ describes a circle of radius $\sqrt{\tilde{R}(0)}$ in the complex plane centered at the origin. For $|s_0| \geq \sqrt{\tilde{R}(0)}$, $h_0(s_0)$ is on the imaginary axis. Thus for $r = 0$, this is the Krein bubble!
+Assume $\tilde{R}(0) > 0$. Then for $|s_0| \leq T$, $h_0(s_0)$ describes a circle of radius $T$ in the complex plane centered at the origin. For $|s_0| \geq T$, $h_0(s_0)$ is on the imaginary axis. Thus for $r = 0$, this is the Krein bubble!
 
 We will now show that this persists for small $r$. To do that, we will use the implicit function theorem to solve for $h_0$ in terms of $s_0$ for small $r$. Computing the derivative with respect to $h_0$ and noting that all the remainder terms vanish at 0,
 \begin{align*}
@@ -717,88 +717,149 @@ Plugging in $h_0(s_0)$ from \cref{Bquadsol},
 \partial_{h_0} G(h_0(s_0), s_0, 0) 
 &= \pm \sqrt{ \tilde{R}(0) - s_0^2 }
 \end{align*}
-This is nonzero as long as $s_0 \neq \pm \sqrt{\tilde{R}}$, at which point there is a bifurcation. We will first handle what happens away from the bifurcation, and then we will deal with the bifurcation point.
+This is nonzero as long as $s_0 \neq \pm \sqrt{\tilde{R}(0)}$, at which point there is a bifurcation. For convenience, let
+\[
+T = \sqrt{\tilde{R}(0)}
+\]
+be this point. 
 
-Choose any $\epsilon > 0$. Define the sets
-\begin{align*}
-S_\epsilon^{\text{ext}} &= \left[-2 \sqrt{\tilde{R}(0)} -\sqrt{\tilde{R}(0)} - \epsilon\right] \cup \left[\sqrt{\tilde{R}(0)} + \epsilon, 2\sqrt{\tilde{R}(0)}\right] \\
-S_\epsilon^{\text{int}} &= 
-\left[-\sqrt{\tilde{R}(0)} + \epsilon, \sqrt{\tilde{R}(0)} - \epsilon\right] \\
-S_\epsilon &= S_\epsilon^{\text{ext}} \cup S_\epsilon^{\text{int}}
-\end{align*}
-On the set $S_\epsilon$, $\partial_{h_0} G(s_0, h_0(s_0), 0)$ is bounded away from 0, with bound dependent on $\epsilon$. Using the uniform contraction mapping principle, there exists $r_3 \leq r_2$ (dependent on $\epsilon$) such that for $s_0 \in S_\epsilon$ and $r \leq r_3$, we can solve for $h_0$ in terms of $s_0$ and $r$. Specifically, there exist smooth functions $h_0^\pm: S_\epsilon \times \mathcal{R} \rightarrow \C$ with
-\[
-h_0^\pm(s_0, 0) = -s_0 i \pm \sqrt{ \tilde{R}(0) - s_0^2 }
-\]
-such that for all $s_0 \in S_\epsilon$ and $r \leq r_2$, $G(h_0^\pm(s_0,r),s_0,r) = 0$. Expanding in a Taylor series, for $s_0 \in S_\epsilon$,
-\[
-h_0^\pm(s_0, r) = -s_0 i \pm \sqrt{ \tilde{R}(0) - s_0^2 } + \mathcal{O}\left( \frac{1}{|\log r|} \right)
-\]
-Undoing both of our scalings, let
-\begin{align*}
-h^\pm(r) &= \left(\frac{X_0^*(r)}{X}\right)^{1/2} r^{3/4} h_0^\pm(r) \\
-s &= \left(\frac{X_0^*(r)}{X}\right)^{1/2} s_0 \\
-\end{align*}
+Since we will eventually undo all of our scalings, it follows from \cref{lemma:chara} that
+\begin{align}\label{undotildeR}
+r^{3/2} \frac{X_0^*(r)}{X_0^*(r)}\tilde{R}(0) = R_\mu(r) [r^{1/2} \tilde{\mu}_*(r)]^2 + \mathcal{O}(r^{3/2}r^{\gamma/2 \alpha_0})
+\end{align}
+where
+\begin{equation}\label{defRr}
+R(r) = \frac{M^c q(X_0^*(r)) X_0^*(r)}{M X_0^*(r)}
+\end{equation}
 
 \subsection{Bifurcation points}
 
-All that remains is to show what happens at the bifurcation points $s_0 = \pm \sqrt{\tilde{R}}$ for small $r$. We will consider the bifurcation point at $s_0 = \sqrt{\tilde{R}}$. The other one is similar. When $r = 0$ and $s_0 = \sqrt{\tilde{R}}$, $h_0 = -\sqrt{\tilde{R}}i$ is a double root of \cref{BsimpleG1}, i.e. both $G(-\sqrt{\tilde{R}}i, \sqrt{\tilde{R}}, 0) = 0$ and $\partial_{h_0} G(-\sqrt{\tilde{R}}i, \sqrt{\tilde{R}}, 0) = 0$. Define $K: \C \times \R \times \mathcal{R} \rightarrow \C^2$ by
+First, we will find the two bifurcation points and show that they occur on the imaginary axis. When $r = 0$ and $s_0 = T$, $h_0 = -T i$ is a double root of \cref{BsimpleG1}, i.e. both $G(-T i, T, 0) = 0$ and $\partial_{h_0} G(-Ti, T, 0) = 0$. Define $K: \C \times \R \times \mathcal{R} \rightarrow \C^2$ by
 \begin{equation}
 K(h_0, s_0, r) = 
 \begin{pmatrix}G(h_0, s_0, r) \\ \partial_{h_0}G(h_0, s_0, r) \end{pmatrix} 
 = \begin{pmatrix}
-h_0^2 + 2 i s_0 h_0 - \tilde{R} \\
+h_0^2 + 2 i s_0 h_0 - \tilde{R}(0) \\
 2(h_0 + s_0 i) 
 \end{pmatrix}
 + \mathcal{O}\left( \frac{1}{|\log r|} \right)
 \end{equation}
-When $r = 0$, $K\left(-\sqrt{\tilde{R}}i, \sqrt{\tilde{R}}, 0\right) = 0$. The Jacobian with respect to $(h_0, s_0)$ is
+When $r = 0$, $K\left(-Ti, T, 0\right) = 0$. The Jacobian with respect to $(h_0, s_0)$ is
 \[
-D_{(z, \epsilon)}K(z, \epsilon, r) = 
+D_{(h_0, s_0)}K(h_0, s_0, r) = 
 \begin{pmatrix}
 2 h_0 + 2 i s_0 & 2 i s_0  \\
 2 & 2 i
 \end{pmatrix}
 + \mathcal{O}\left( \frac{1}{|\log r|} \right)
 \]
-At $(h_0, s_0, r) = \left( -\sqrt{\tilde{R}}i, \sqrt{\tilde{R}},0\right)$, 
+At $(h_0, s_0, r) = \left( -Ti, T,0\right)$, 
 \[
-D_{(h_0, s_0)}K\left( -\sqrt{\tilde{R}}i, \sqrt{\tilde{R}},0\right) = 
+D_{(h_0, s_0)}K\left( -Ti, T,0\right) = 
 2 \begin{pmatrix}
-0 & \sqrt{\tilde{R}}i \\
+0 & Ti \\
 1 & i
 \end{pmatrix}
 \]
-which is nonsingular since the columns are linearly independent. Using the implicit function theorem, we can solve for $(h_0, s_0)$ near $(-\sqrt{\tilde{R}}i, \sqrt{\tilde{R}})$ in terms of $r$ for sufficiently small $r$. Specifically, there exists $r_2 \leq r_1$ and a unique smooth function $(h_0^-, s_0^-)(r)$ with $(h_0^-, s_0^-)(0) = (-\sqrt{\tilde{R}}i, \sqrt{\tilde{R}})$ such that for all $r \leq r_2$, $K(h_0^-(r), s_0^-(r), r) = 0$. For $r \leq r_2$ and $s_0 = s_0^-(r)$, $h_0^-(r)$ is a double root of $G(h_0, s_0, r)$. Expanding in a Taylor series, we have
+which is nonsingular since the columns are linearly independent. Using the implicit function theorem, we can solve for $(h_0, s_0)$ near $(-Ti, T)$ in terms of $r$ for sufficiently small $r$. Specifically, there exists $r_3 \leq r_2$ and a unique smooth function $(h_1, s_1)(r)$ with $(h_1, s_1)(0) = (-Ti, T)$ such that for all $r \leq r_2$, $K(h_1(r), s_1(r), r) = 0$. For $r \leq r_2$ and $s_0 = s_1(r)$, $h_1(r)$ is a double root of $G$. Expanding in a Taylor series, we have
 \begin{align*}
-h_0^-(r) &= -\sqrt{\tilde{R}}i + \mathcal{O}\left( \frac{1}{|\log r|} \right) \\
-s_0^-(r) &= \sqrt{\tilde{R}} + \mathcal{O}\left( \frac{1}{|\log r|} \right) \\
+h_1(r) &= -T i + \mathcal{O}\left( \frac{1}{|\log r|} \right) \\
+s_1(r) &= T + \mathcal{O}\left( \frac{1}{|\log r|} \right)
 \end{align*}
 
-Similarly, we can find $h_0^+(r)$ and $s_0^+(r)$ with
+Similarly, for the other bifurcation point, we can find $h_2(r)$ and $s_2(r)$ with
 \begin{align*}
-h_0^+(r) &= \sqrt{\tilde{R}}i + \mathcal{O}\left( \frac{1}{|\log r|} \right) \\
-s_0^+(r) &= -\sqrt{\tilde{R}} + \mathcal{O}\left( \frac{1}{|\log r|} \right) \\
+h_2(r) &= T i + \mathcal{O}\left( \frac{1}{|\log r|} \right) \\
+s_2(r) &= -T + \mathcal{O}\left( \frac{1}{|\log r|} \right) \\
 \end{align*}
-such that for $r \leq r_2$ and $s_0 = s_0^+(r)$, $h_0^+(r)$ is a double root of $G(h_0, s_0, r)$.
+such that for $r \leq r_3$ and $s_0 = s_2(r)$, $h_2(r)$ is a double root of $G$.
 
-\subsection{Undoing the scalings}
-
-Undoing both scalings, let 
+Undoing the scalings, the lower bifurcation point occurs at
 \begin{align*}
-h^\pm(r) &= \frac{X_0^{1/2}}{X^{1/2}}r^{3/4} h_0^\pm(r) \\
-s^\pm(r) &= \frac{X_0^{1/2}}{X^{1/2}}r^{3/4} h_0^\pm(r) \\
+\mu_b^-(r) &= \tilde{\mu}_*(r) r^{1/2} i - \left(\frac{X_0^*(r)}{X^*(r) }\right)^{1/2} r^{3/4} h_1(r) \\
+&= \tilde{\mu}_*(r) r^{1/2} i - \sqrt{R(r)} \tilde{\mu}_*(r) r^{1/2}i + \mathcal{O}\left( r^{3/4} \left( \frac{1}{|\log r|} + r^{\gamma/4\alpha_0} \right) \right) \\
+&= \tilde{\mu}_*(r) r^{1/2} i \left( 1 - \sqrt{R(r)}\right) + \mathcal{O}\left( \frac{r^{3/4}}{|\log r|} \right) 
 \end{align*}
-Then for $r \leq r_2$, when 
+Changing variables back to $\lambda$ by taking $\lambda = \nu^{-1}(\mu)$, we finally have for the lower bifurcation point 
+\begin{align*}
+\lambda_b^-(r) &= \tilde{\lambda}_*(r) r^{1/2} i \left( 1 - \sqrt{R(r)}\right) + \mathcal{O}\left( \frac{r^{3/4}}{|\log r|} \right) 
+\end{align*}
+Since this is a double zero of $S(\lambda)$, by Hamiltonian symmetry, the only way this is possible is if this is on the imaginary axis.
+\begin{align*}
+\lambda_b^-(r) &= \tilde{\lambda}_*(r) r^{1/2} i \left( 1 - \sqrt{R(r)}\right) + \mathcal{O}\left( \frac{r^{3/4}}{|\log r|} \right) 
+\end{align*}
+Undoing the scaling for $s$ and letting 
 \[
-s = s^\pm(r) = \mp \frac{X_0^{1/2}}{X^{1/2}}r^{3/4} \sqrt{\tilde{R}} + \mathcal{O}\left( \frac{1}{|\log r|} \right),
-\]
-$S(\mu)$ has double zero at
-\[
-\mu^\pm(r) = \left( \mu_*(r) \pm \frac{X_0^{1/2}}{X^{1/2}}r^{3/4} \sqrt{\tilde{R}} \right)i + \mathcal{O}\left( \frac{1}{|\log r|} \right)
-\]
-By Lemma \ref{lemma:Hamsymmmu}, Hamiltonian symmetry applies to $\mu$ as well, thus the only way this is possible is if $\mu^\pm(r)$ is on the imaginary axis. 
+t = \frac{1}{2},
+\] 
+the lower bifurcation point occurs when $t = t_b^-$, where
+\begin{align*}
+t_b^-(r) &= \sqrt{R(r)} + \mathcal{O}\left( \frac{r^{1/4}}{|\log r|} \right)
+\end{align*}
 
+Similarly, the upper bifurcation point occurs on the imaginary axis at $\lambda = \lambda_b^+(r)$ when $t = t_b^+(r)$, where
+\begin{align*}
+\lambda_b^+(r) &= \tilde{\lambda}_*(r) r^{1/2} i \left( 1 + \sqrt{R(r)}\right) + \mathcal{O}\left( \frac{r^{3/4}}{|\log r|} \right) \\
+t_b^+(r) &= -\sqrt{R(r)} + \mathcal{O}\left( \frac{r^{1/4}}{|\log r|} \right)
+\end{align*}
+
+\subsection{Away from bifurcation point}
+
+Now that we have located the bifurcation point, we will look at what happens away from this point. This is a straightforward contraction mapping argument. Choose any $\epsilon > 0$, which represents how far we will stay away from the two bifurcation points. Define the sets
+\begin{align*}
+S_\epsilon^{\text{ext}} &= \left[-2 T, -T - \epsilon\right] \cup \left[T + \epsilon, 2T\right] \\
+S_\epsilon^{\text{int}} &= 
+\left[-T + \epsilon, T - \epsilon\right] \\
+S_\epsilon &= S_\epsilon^{\text{ext}} \cup S_\epsilon^{\text{int}}
+\end{align*}
+For $s_0 \in S_\epsilon$, $\partial_{h_0} G(s_0, h_0(s_0), 0)$ is bounded away from 0, with bound dependent on $\epsilon$. Using the uniform contraction mapping principle, there exists $r_4 \leq r_3$ (dependent on $\epsilon$) such that for $s_0 \in S_\epsilon$ and $r \leq r_4$, we can solve for $h_0$ in terms of $s_0$ and $r$. Specifically, there exist smooth functions $h_0^\pm: S_\epsilon \times \mathcal{R} \rightarrow \C$ with
+\[
+h_0^\pm(s_0, 0) = -s_0 i \pm \sqrt{ T - s_0^2 }
+\]
+such that for all $s_0 \in S_\epsilon$ and $r \leq r_2$, $G(h_0^\pm(s_0,r),s_0,r) = 0$. Expanding in a Taylor series, for $s_0 \in S_\epsilon$,
+\[
+h_0^\pm(s_0, r) = -s_0 i \pm \sqrt{ T - s_0^2 } + \mathcal{O}\left( \frac{1}{|\log r|} \right)
+\]
+
+Undoing both of our scalings, let
+\begin{align*}
+h^\pm(r) &= \left(\frac{X_0^*(r)}{X^*(r) }\right)^{1/2} r^{3/4} h_0^\pm(r).
+\end{align*}
+Then
+\begin{align*}
+\left(\frac{X_0^*(r)}{X^*(r) }\right)^{1/2} r^{3/4} s_0 = \frac{1}{2} \tilde{\mu}_*(r) r^{1/2} s.
+\end{align*}
+Using \cref{undotildeR} and \cref{defRr}, $h^\pm(r)$ becomes
+\begin{align*}
+h^\pm(s, r) &= \tilde{\mu}_*(r) r^{1/2} \left( \frac{1}{2}  s i \pm \sqrt{ R(r) - \left(\frac{1}{2} s\right)^2 } \right) + \mathcal{O}\left(\frac{r^{3/4}}{|\log r|} \right)
+\end{align*}
+Substituting this into the equation $\mu = \tilde{\mu}_*(r) r^{1/2} i + h$, we have
+\begin{align*}
+\mu^\pm(s, r) &= \tilde{\mu}_*(r) r^{1/2} \left( i + \frac{1}{2}  s i \pm \sqrt{ R(r) - \left(\frac{1}{2} s\right)^2 } \right) + \mathcal{O}\left(\frac{r^{3/4}}{|\log r|} \right)
+\end{align*}
+where $R(r)$ is defined in \cref{defRr}. Finally, changing variables back to $\lambda$ and taking $t = \frac{1}{2}s$, this becomes
+\begin{align}\label{lambdabubble}
+\lambda^\pm(t, r) &= \tilde{\lambda}_*(r) r^{1/2} \left( i + t i \pm \sqrt{ R(r) - t^2 } \right) + \mathcal{O}\left(\frac{r^{3/4}}{|\log r|} \right)
+\end{align}
+
+For $r \leq r_3$, this solution holds for all $t \in [-2\sqrt{R(r)}, 2\sqrt{R(r)}]$ except for small neighborhoods of $s = \pm \sqrt{R(r)}$, whose sizes depend on the choice of $\epsilon$ above and $r$.
+
+To conclude the argument, we evaluate \cref{lambdabubble} at $t = 0$, which corresponds to the maximum width of the bubble, and $t = \pm \sqrt{2 R(r)}$, which is before and after the bubble occurs. For $t = 0$, 
+\begin{align*}
+\lambda^\pm(0, r) &= \tilde{\lambda}_*(r) r^{1/2}\left(  i \pm \sqrt{ R(r)} \right)  + \mathcal{O}\left( \frac{r^{3/4}}{|\log r|} \right)
+\end{align*}
+By Hamiltonian symmetry, this must be a pair of eigenvalues which are symmetric across the imaginary axis. For $t = 2 \sqrt{R(r)}$, there are two solutions
+\begin{align*}
+\lambda^\pm(2 \sqrt{R(r)}, r) &= \tilde{\mu}_*(r) r^{1/2}i + (2 \pm \sqrt{3}) \sqrt{ R(r)}i + \mathcal{O}\left(\frac{r^{3/4}}{|\log r|} \right)
+\end{align*}
+By Hamiltonian symmetry, since there are no other eigenvalues with similar magnitude above the real axis, these must both be on the imaginary axis. Also by Hamiltonian symmetry, there is a corresponding pair of imaginary eigenvalues below the real axis. We note that $\lambda^-(2\sqrt{R(r)}, r)$ is close to the original interaction eigenvalue. If we were to keep increasing $t$, $\lambda^-(t, r)$ would (to leading order) approach $\tilde{\mu}_*(r) r^{1/2}i$.
+
+\subsection{Conclusion}
+
+In the previous sections, we have located the two bifurcation points on the imaginary axis, where the Krein bubble forms and then disappears. We have found a pair of purely imaginary eigenvalues before the Krein bubble forms, and a pair of complex eigenvalues which are symmetric across the imaginary axis at the maximum width of the Krein bubble. Since the eigenvalues are smooth in the parameter $t$, we conclude that between the bifurcation points, there is a pair of complex eigenvalues with nonzero real part which is symmetric across the real axis. As $t$ varies between the bifurcation points, these eigenvalues trace out a circle of radius $\tilde{\lambda}_*(r) r^{1/2} \sqrt{ R(r)}$ centered at $\tilde{\lambda}_*(r) r^{1/2}$. Outside the bubble, there are two purely imaginary eigenvalues. The physical parameter $\Delta s_1$ is related to $t$ by
+\[
+\Delta s_1 = 4 \beta_0 X^*(r) t
+\]
 
 \iffulldocument\else
 	\bibliographystyle{amsalpha}
