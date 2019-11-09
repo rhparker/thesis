@@ -427,7 +427,11 @@ If $v^c(x)$ is the first component of $V^c(x)$, $v^c$ is a formal solution to $\
 \[
 V^c(x) = (v^c(x), \partial_x v^c(x), \dots, \partial_x^{2m-1}v^c(x), 1 ),
 \]
-this provides a convenient way of computing $V^c(x)$ numerically.
+this provides a convenient way of computing $V^c(x)$ numerically. We also note that since $v^c(x)$ is not in $H^{2m}(\R)$, $v^c(x)$ is not an eigenfunction of \cref{genPDEeig}.
+\end{remark}
+
+\begin{remark}\label{remark:psinotation}
+We note that for convenience we have used the notation $Q(x)$ and $\Psi(x)$ in both \cref{sec:primarypulse} and \cref{sec:genspectrum} to denote the primary pulse and the localized solution to the adjoint variational equation. Since we will be considering the existence and the stability problem separately, this should not cause confusion. In addition, the inner products $\langle \Psi(x), Q(y) \rangle$ and $\langle \Psi(x), Q'(y) \rangle$ are the same.
 \end{remark}
 
 Using Lemma \ref{nondegenlemma} and Lemma \ref{varadjsolutions}, we can decompose $\R^{2m+1}$ as  

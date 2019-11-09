@@ -1207,17 +1207,13 @@ If the eigenvalues of $\tilde{A}(0)$ are distinct, then for sufficiently small $
 \begin{proof}
 Since the matrix $DF(0)$ is hyperbolic, solutions to \cref{Lsystem1} can be found using the method in \cite{Sandstede1998} adapted to periodic boundary conditions. Briefly, this works as follows. The setup is exactly the same as in \cite{Sandstede1998}, except periodic boundary conditions require one more matching condition at the tails of the pulses to ``close the loop''. Following the proof of \cite[Theorem 2]{Sandstede1998}, an eigenfunction $V(x)$ exists for sufficiently small $\lambda$ if and only if the $n$ jump conditions
 \[
-\xi_i = \langle \tilde{\Psi}(X_i), \partial_x Q(-X_i) \rangle (d_{i+1} - d_i) + \tilde{\Psi}(-X_{i-1}), \partial_x Q(X_{i-1}) \rangle (d_i - d_{i-1}) - \int_{-\infty}^\infty \langle \tilde{\Psi}(y) B \partial_x Q(y) \rangle dy + R(\lambda)_i d
+\xi_i = \langle \Psi(X_i), \partial_x Q(-X_i) \rangle (d_{i+1} - d_i) + \Psi(-X_{i-1}), \partial_x Q(X_{i-1}) \rangle (d_i - d_{i-1}) - \int_{-\infty}^\infty \langle \Psi(y) B \partial_x Q(y) \rangle dy + R(\lambda)_i d,
 \]
-are satisfied, where $\tilde{\Psi}(x) = \nabla H(Q(x))$ is the unique bounded solution to the adjoint variational equation \cref{adjvareq1} and the remainder term has bound
+where $\tilde{\Psi}(x) = \nabla H(Q(x))$ is the unique bounded solution to the adjoint variational equation \cref{adjvareq1} and the remainder term has bound
 \[
 |R(\lambda)d| \leq C \left( e^{-3 \alpha X_*} + |\lambda|(e^{-\alpha X_*} + |\lambda| ) \right)
 \]
-This is analogous to \cite[(3.56)]{Sandstede1998}. Since 
-\begin{equation*}
-\langle \Psi(x), (\partial_x Q(x), 0) \rangle = \langle \tilde{\Psi}(x), \partial_x Q(x) \rangle,
-\end{equation*}
-the jump conditions  can be written in matrix form as in \cite[Theorem 2]{Sandstede1998} as
+This is analogous to \cite[(3.56)]{Sandstede1998}. By Remark \ref{remark:psinotation}, the inner product $\langle \Psi(x), \partial_x Q(y) \rangle$ are the same for the existence and the stability problem, therefore the jump conditions can be written in matrix form as in \cite[Theorem 2]{Sandstede1998} as
 \begin{equation}\label{Ljumps}
 E(\lambda) = \det S(\lambda) = \det( A - M_1 \lambda I + R(\lambda)) = 0
 \end{equation}
