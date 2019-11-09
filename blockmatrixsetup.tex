@@ -679,7 +679,7 @@ To get the estimate (v), we substitute these into \cref{defDid} and use estimate
 In the next lemma, we give an estimate for terms of the form $e^{\pm \nu(\lambda) X_j}$, which will show up in our analysis. In order to get a uniform estimate, we will place an upper bound on the  magnitude of $\lambda$. Although we can perform our analysis without doing this, this additional condition allows the form of the block matrix in Theorem \cref{blockmatrixtheorem} to relatively simple. 
 
 \begin{lemma}\label{lemma:expnubound}
-Choose any $N > 0$ and $\delta > 0$. Then there exists a constant $R = R(N, \delta)$ such that if $|\lambda| < \delta$ and $|\lambda| < N/|\log r|$,
+Choose any $N > 0$ and $\delta > 0$. Then there exists a constant $R_N = R(N, \delta)$ such that if $|\lambda| < \delta$ and $|\lambda| < N/|\log r|$,
 \begin{align}\label{expnubound}
 \left|e^{\nu(\lambda)X_j} \right| \leq R && j = 0, \dots, n-1
 \end{align}
@@ -705,7 +705,7 @@ Combining this with \cref{Xjmag2}, we have
 \begin{align*}
 |\nu(\lambda) X_j(r; m_j, \theta)| &\leq  N \left( \frac{1}{c} + C \delta^2 \right)\left( \frac{1}{2 \alpha_0} + \frac{1}{|\log r|} \left( \frac{\pi}{2\beta_0} (m_{\max} + 1) + |L_0| \right) \right)
 \end{align*}
-which is bounded for all $r \leq r_*$. Thus we conclude that there exists a constant $R$ depending on $N$ and $\delta$ such that the uniform bound \cref{expnubound} holds.
+which is bounded for all $r \leq r_*$. Thus we conclude that there exists a constant $R_N$ depending on $N$ and $\delta$ such that the uniform bound \cref{expnubound} holds.
 \end{proof}
 \end{lemma}
 
