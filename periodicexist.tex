@@ -8,11 +8,11 @@
 
 \section{Overview}
 
-We will construct periodic multi-pulses using Lin's method. Rather than looking for a periodic $n$-pulse $U(x)$ as a piecewise perturbation of the primary pulse solution $Q(x)$, we adapt the method in \cite{Sandstede1997} and take the piecewise ansatz
+We will construct periodic multi-pulses using Lin's method. This is an adaptation of the technique in \cite{Sandstede1997}. Rather than constructing a periodic $n$-pulse $U(x)$ as a piecewise perturbation of the primary pulse solution $Q(x)$, we take a piecewise ansatz
 \[
-U_i^\pm(x) = Q^\pm(x; \beta_i^\pm) + V_i^\pm(x)
+U_i^\pm(x) = Q^\pm(x; \beta_i^\pm) + V_i^\pm(x),
 \]
-where the functions $Q^\pm(x; \beta_i^\pm)$ paramaterize the stable and unstable manifolds $W^s(0)$ and $W^u(0)$ near $Q(0)$, and $V_i^\pm$ is a small remainder term. In other words, we use the small parameters $\beta_i^\pm$ to break the homoclinic orbit $Q(x)$. We will then use Lin's method to glue the pieces together. We will show that we can find a unique piecewise solution $U_i^\pm$ which generically has $n$ jumps at $x = 0$. These jumps must occur in the direction of $\Psi(0)$. We will derive expressions for these $n$ jumps. A periodic multi-pulse solution exists if and only if these $n$ jumps are all 0.
+where the functions $Q^\pm(x; \beta_i^\pm)$ paramaterize the stable and unstable manifolds $W^s(0)$ and $W^u(0)$ near $Q(0)$, and $V_i^\pm$ is a small remainder term. The domains of the functions $U_i^\pm(x)$ will be specified below. In other words, we use the small parameters $\beta_i^\pm$ to break the homoclinic orbit $Q(x)$, and then use Lin's method to glue the pieces together. We will show that we can find a unique piecewise solution $U_i^\pm$ which generically has $n$ jumps in the direction of $\Psi(0)$. We will derive expressions for these $n$ jumps. A periodic multi-pulse solution exists if and only if these $n$ jumps are all 0.
 
 \section{Piecewise ansatz}
 
@@ -25,33 +25,31 @@ Q^+(x; \beta^-) && x \geq 0
 \end{equation}
 be the unique solutions to \eqref{genODE} on $\R^\pm$ with initial conditions $Q^\pm(0, \beta^\pm)$ at $x = 0$. Since the initial conditions lie on the unstable and stable manifolds (respectively), the functions \cref{defQpm} decay exponentially (in the appropriate direction) with rate $\alpha_0$.
 
-We will look for a $n-$periodic solution $U$ to \eqref{genODE} which is piecewise of the form
+We will look for a $n-$periodic solution $U(n)$ to \eqref{genODE} which is piecewise of the form
 \begin{equation}\label{Upiecewise}
 \begin{aligned}
 U_i^-(x) &= Q^-(x; \beta_i^-) + V_i^-(x) && x \in [-X_{i-1}, 0] \\
 U_i^+(x) &= Q^+(x; \beta_i^+) + V_i^+(x) && x \in [0, X_i]
 \end{aligned}
 \end{equation}
-for $i = 0, \dots, n-1$, where $U_i^-: [-X_{i-1}, 0] \rightarrow \R$ and $U_i^+: [0, X_i]$ are continuous, and the subscripts $i$ are taken $\mod n$ since we are on a periodic domain. The periodic $n-$pulse $U(x)$, once constructed, will consist of these $2n$ pieces spiced together end-to-end. Essentially, we are parameterizing $U$ in terms of $2n$ constants $\beta_i^\pm$, representing initial conditions on the unstable and stable manifolds, and $2n$ remainder functions $V_i^\pm(x)$. Since the initial conditions of $Q^\pm(x; \beta_i^\pm)$ are in $\R Q'(0) \oplus Y^\pm$, we are free to choose $V_i^\pm(x)$ with initial conditions
+for $i = 0, \dots, n-1$, where $U_i^-: [-X_{i-1}, 0] \rightarrow \R$ and $U_i^+: [0, X_i] \rightarrow \R$ are continuous, and the subscripts $i$ are taken $\Mod n$ since we are on a periodic domain. Essentially, we are describing $U$ by $2n$ constants $\beta_i^\pm$, representing initial conditions on the unstable and stable manifolds, and $2n$ remainder functions $V_i^\pm(x)$. Since the initial conditions of $Q^\pm(x; \beta_i^\pm)$ are in $\R Q'(0) \oplus Y^\pm$, we are free to choose $V_i^\pm(x)$ with initial conditions
 \begin{align*}
 V_i^-(0) &\in \R \Psi(0) \oplus Y^- \\
 V_i^+(0) &\in \R \Psi(0) \oplus Y^+
 \end{align*}
-
-Since we are looking for a continuous solution $U(x)$, we require the functions $U_i^\pm(x)$ to match at each of the $2n$ boundaries between intervals. Thus we need to solve the following system of equations.
+Since a perioidic must be continuous, in order to construct a periodic $n$-pulse, we must join the $2n$ pieces $U_i^\pm(x)$ end-to-end in a loop. Thus we need to solve the following system of equations for $i = 0, \dots, n-1$.
 \begin{align}
-(U_i^\pm)' - F(U_i^\pm) &= 0 \label{exsystem1} \\
+(U_i^\pm(x))' - F(U_i^\pm(x)) &= 0 \label{exsystem1} \\
 U_i^+(X_i) - U_{i+1}^-(-X_i) &= 0 \label{exsystem2} \\
 U_i^+(0) - U_i^-(0) &= 0 \label{exsystem3}
 \end{align}
-where $i = 0, \dots, n-1$. Equation \cref{exsystem2} is a matching condition at the pulse tails, and equation \cref{exsystem3} is a matching condition at the pulse peaks.
+Equation \cref{exsystem2} is a matching condition at the pulse tails, and equation \cref{exsystem3} is a matching condition at the pulse centers.
 
-
-\section{Exponential Dichotomy}
+\section{Exponential Dichotomy}\label{sec:existdichot}
 
 Let $\Phi_\pm(x, y; \beta^\pm)$ be the family of evolution operators for the ODEs
 \begin{align}\label{qpmODEs}
-(V^\pm)' &= D F(Q^\pm(x, \beta^\pm)(x)) V^\pm && x \in \R^\pm
+(V^\pm(x))' &= D F\left(Q^\pm(x, \beta^\pm)\right) V^\pm(x) && x \in \R^\pm
 \end{align}
 By \cref{hypeqhyp}, $DF(0)$ is hyperbolic, and $|\Re \nu| \geq \alpha_0$ for all eigenvalues $\nu$ of $DF(0)$. Choose any $\alpha$ slightly smaller than $\alpha_0$. 
 
@@ -454,7 +452,7 @@ We have found a unique solution to \eqref{exsystem1} and \eqref{exsystem2} such 
 % bounds in this lemma
 
 \begin{lemma}\label{solvewithjumps}
-There exist $\delta, \rho > 0$ such that for $|X_i| > 1/\delta$, $i = 0, \dots, n-1$, there are unique solutions
+There exists $X^* > 0$ such that for $|X_i| \geq X^*$, $i = 0, \dots, n-1$, there are unique solutions
 \begin{equation*}
 \begin{aligned}
 U_i^-(x) &= Q^-(x; \beta_i^-) + V_i^-(x) && x \in [-X_{i-1}, 0] \\
@@ -464,7 +462,7 @@ U_i^+(x) &= Q^+(x; \beta_i^+) + V_i^+(x) && x \in [0, X_i]
 to the system of equations
 \begin{equation}\label{systemwithjumpZ}
 \begin{aligned}
-(U_i^\pm)' - F(U_i^\pm) &= 0 \\
+(U_i^\pm(x))' - F(U_i^\pm(x)) &= 0 \\
 U_i^+(X_i) - U_{i+1}^-(-X_i) &= 0 \\
 U_i^+(0) - U_i^-(0) &\in \R \Psi(0)
 \end{aligned}
@@ -494,9 +492,7 @@ V_{i+1}^-(-X_i) &= Q^+(X_i; \beta_i^+) + \mathcal{O}(e^{-2 \alpha X_i})
 \end{equation}
 \end{enumerate}
 \begin{proof}
-Since both $Q^-(0; \beta_i^-)$ and $Q(0)$ are in $W^u(0)$, the first estimate in \eqref{Qpmbounds} follows from smooth dependence on initial conditions, the estimate \eqref{betaest} in Lemma \ref{solveforbeta},  and the decay rate on the unstable manifold as $x \rightarrow -\infty$. The estimate for $|Q^+(x; \beta_i^+ - Q(x)|$ is similar.
-
-The estimates \eqref{Vpmbounds} follow from the estimates \eqref{Vest} and \eqref{aest} from Lemmas \ref{solveforV} and \ref{solvefora}, together with the definitions of the exponentially weighted norms \eqref{expwtnorm}.
+Since both $Q^-(0; \beta_i^-)$ and $Q(0)$ are in $W^u(0)$, the first estimate in \eqref{Qpmbounds} follows from smooth dependence on initial conditions, the estimate \eqref{betaest} in Lemma \ref{solveforbeta},  and the decay rate on the unstable manifold as $x \rightarrow -\infty$. The estimate for $|Q^+(x; \beta_i^+) - Q(x)|$ is similar. The estimates \eqref{Vpmbounds} follow from the estimates \eqref{Vest} and \eqref{aest} from Lemmas \ref{solveforV} and \ref{solvefora}, together with the definitions of the exponentially weighted norms \eqref{expwtnorm}.
 
 For the estimates \eqref{VQpm}, recall that in Lemma \ref{solvefora}, we solved
 \[
@@ -659,12 +655,12 @@ By \cite[p. 2093]{SandstedeStrut}, since we have a conservative system by \cref{
 \end{lemma}
 
 \begin{remark}
-If $n = 1$, which represents a periodic orbit close to the primary homoclinic orbit $Q(x)$, there is only a single jump condition which is therefore automatically satisfied. Thus $1$-periodic pulses exist for sufficiently large $X_0$.
+If $n = 1$, which represents a periodic orbit close to the primary homoclinic orbit $Q(x)$, there is only a single jump condition. By \cref{jumplemma2}, this is automatically satisfied, thus periodic 1-pulses exist for sufficiently large $X_0$.
 \end{remark}
 
 \section{Scaling and change of variables}\label{sec:rescale}
 
-At this point, we will introduce a change of variables with a built-in scaling parameter so that we can parameterize periodic multi-pulses as in \cref{sec:perexistence}. This follows Section 6 of \cite{Sandstede1998}. First, we derive an expression for the inner product in \ref{jumpcond2}.
+At this point, following \cite[Section 6]{Sandstede1998}, we will introduce a change of variables with a built-in scaling parameter. First, we derive an expression for the inner product in \cref{jumpcond2}.
 
 % lemma : expression for inner product
 
@@ -672,29 +668,29 @@ At this point, we will introduce a change of variables with a built-in scaling p
 For $x > 0$ sufficiently large,
 \begin{equation}\label{IPalphabeta}
 \langle \Psi(-x), Q(x) \rangle
-= s_0 e^{-2 \alpha_0 x} \sin(2 \beta_0 x + \phi) + \mathcal{O}(e^{-(2 \alpha_0 + \gamma) x})
+= p_0 e^{-2 \alpha x} \sin(2 \beta_0 x + \phi) + \mathcal{O}(e^{-(2 \alpha + \gamma) x})
 \end{equation}
-where $0 < \gamma \leq 1$, $s_0 > 0$, and $\phi$ are constants.
+where $0 < \gamma \leq 1$, $p_0 > 0$, and $\phi$ are constants, $\beta_0$ is defined in \cref{hypeqhyp}, and $\alpha$ was chosen in \cref{sec:existdichot}.
 \begin{proof}
-This is \cite[Lemma 6.1(i)]{Sandstede1998}. We do not have a parameter $\mu$, so the $\mu$-dependent terms in \cite[Lemma 6.1(i)]{Sandstede1998} are constant. We will always take $\gamma \leq 1$.
+This is \cite[Lemma 6.1(i)]{Sandstede1998}, with $s_0$ renamed to $p_0$. We do not have a parameter $\mu$, so the $\mu$-dependent terms in \cite[Lemma 6.1(i)]{Sandstede1998} are constant and $\beta(\mu) = \beta_0$. We will always take $\gamma \leq 1$.
 \end{proof}
 \end{lemma}
 
-We will now perform the change of variables. For convenience, since the ratio $\beta_0/\alpha_0$ recurs frequently, define
+We will now perform the change of variables. Since the ratio $\beta_0/\alpha$ recurs frequently, define
 \begin{equation}\label{defrho}
-\rho = \frac{\beta_0}{\alpha_0}
+\rho = \frac{\beta_0}{\alpha}
 \end{equation}
 As in \cite{Sandstede1998,SandstedeStrut}, define the set
 \begin{align}
 \mathcal{R} &= \left\{ \exp\left(-\frac{2 \pi m}{\rho}\right) : m \in \N_0 \right\} \cup \{ 0 \}  \\
 \end{align}
-Since $\mathcal{R}$ is closed and bounded, is is compact, thus complete. For $r \in \mathcal{R}$, let
+Since $\mathcal{R}$ is closed and bounded, it is compact, thus complete. For $r \in \mathcal{R}$, let
 \begin{equation}\label{Xstar}
-X^* = -\frac{1}{2\alpha}\log r - \frac{\phi}{2\beta}
+X^* = -\frac{1}{2\alpha}\log r - \frac{\phi}{2\beta_0}
 \end{equation}
 so that
 \begin{equation}
-r = e^{-\alpha(2X^* + \phi/\beta)}
+r = e^{-\alpha(2X^* + \phi/\beta_0)}
 \end{equation}
 The quantity $r$ will be a scaling parameter for the system. Choose the lengths $X_0, \dots, X_{n-1}$ so that $X_j \geq X^*$ for $j = 0, \dots, n-1$. Since Lemma \ref{solvewithjumps} requires $X_j$ to be sufficiently large, this is not a restriction. For $j = 0, \dots n-1$, let
 \begin{equation}\label{bjscale}
@@ -702,7 +698,7 @@ b_j = e^{-2 \alpha (X_j - X^*)}
 \end{equation}
 The quantities $b_j$ are length parameters for the system. In terms of $r$ and $b_j$,
 \begin{equation}\label{Xjscale}
-X_j = -\frac{1}{2\alpha}\log(b_j r) - \frac{\phi}{2 \beta}
+X_j = -\frac{1}{2\alpha}\log(b_j r) - \frac{\phi}{2 \beta_0}
 \end{equation}
 
 In the next lemma, we rewrite the system \eqref{jumpcond2} using this scaling and change of variables. 
@@ -712,19 +708,19 @@ In the next lemma, we rewrite the system \eqref{jumpcond2} using this scaling an
 \begin{lemma}\label{jumplemma3}
 A periodic multi-pulse solution exists if and only if for $i = 0, \dots, n-2$
 \begin{equation}\label{jumpcond3}
-\tilde{G}_i(b_0, \dots, b_{n-1}, r) = b_i \sin \left( -\rho \log b_i \right) - b_{i-1} \sin \left( -\rho \log b_{i-1} \right) + \mathcal{O}(r^{\gamma / 2 \alpha}) = 0 \\
+b_i \sin \left( -\rho \log b_i \right) - b_{i-1} \sin \left( -\rho \log b_{i-1} \right) + \mathcal{O}(r^{\gamma / 2 \alpha}) = 0
 \end{equation}
 where $r \in \mathcal{R}$. All derivatives of the remainder term with respect to $b_i$ are also $\mathcal{O}(r^{\gamma / 2 \alpha})$. 
 \begin{proof}
 For $i = 0, \dots, n-2$, substitute \eqref{IPalphabeta} from Lemma \ref{IPform} into \eqref{jumpcond2} from Lemma \ref{jumplemma2} to get
 \begin{align}\label{diff1}
-s_0 e^{-2 \alpha X_i} \sin(2 \beta X_i + \phi) - s_0 e^{-2 \alpha X_{i-1}} \sin(2 \beta X_{i-1} + \phi) + \mathcal{O}(e^{-(2 \alpha + \gamma) X_m})
+p_0 e^{-2 \alpha X_i} \sin(2 \beta_0 X_i + \phi) - p_0 e^{-2 \alpha X_{i-1}} \sin(2 \beta_0 X_{i-1} + \phi) + \mathcal{O}(e^{-(2 \alpha + \gamma) X^*})
 \end{align}
-where $X_m = \min\{X_0, \dots, X_{n-1} \}$. Since $0 < \gamma \leq 1$, the remainder term here includes the remainder term $R_i$ from Lemma \ref{jumplemma2}, which is $\mathcal{O}(e^{-3 \alpha X_m})$. Substituting \eqref{Xjscale} and \eqref{bjscale} into \eqref{diff1} and noting that $X^* \leq X_m$, we have
+where $X^*$ is defined in \cref{Xstar}. Since $0 < \gamma \leq 1$, the remainder term here includes the remainder term $R_i$ from Lemma \ref{jumplemma2}, which is $\mathcal{O}(e^{-3 \alpha X_m})$. Substituting \eqref{Xjscale} and \eqref{bjscale} into \eqref{diff1}, we have
 \begin{align}\label{diff2}
-s_0 e^{\alpha \phi / \beta } b_i r \sin \left( - \rho \log (b_i r) \right) - s_0 e^{\alpha \phi / \beta } b_{i-1} r \sin \left( -\rho \log (b_{i-1} r) \right) + \mathcal{O}(r^{1 + \gamma / 2 \alpha}) &= 0
+p_0 e^{\alpha \phi / \beta_0 } b_i r \sin \left( - \rho \log (b_i r) \right) - p_0 e^{\alpha \phi / \beta_0 } b_{i-1} r \sin \left( -\rho \log (b_{i-1} r) \right) + \mathcal{O}(r^{1 + \gamma / 2 \alpha}) &= 0
 \end{align}
-Divide both sides by $r > 0$ and the constant $s_0 e^{\alpha \phi / \beta }$ to get
+Divide both sides by $r > 0$ and constant $p_0 e^{\alpha \phi / \beta_0 }$ to get
 \begin{align}\label{diff3}
 b_i \sin \left( -\rho \log (b_i r) \right) -  b_{i-1} \sin \left( -\rho \log (b_{i-1} r) \right) + \mathcal{O}(r^{\gamma / 2 \alpha}) &= 0 \\
 \end{align} 
@@ -755,7 +751,13 @@ G_i(b_1, \dots, b_{n-1}, r) = b_i \sin \left( -\rho \log b_i \right) - b_{n-1} \
 \end{equation}
 
 \begin{proof}
-Let \begin{equation}\label{Gidef}
+For $i = 0, \dots, n-2$, let 
+\[
+\tilde{G}_i(b_1, \dots, b_{n-1}, r) =
+b_i \sin \left( -\rho \log b_i \right) - b_{i-1} \sin \left( -\rho \log b_{i-1} \right) + \mathcal{O}(r^{\gamma / 2 \alpha})
+\]
+and define
+\begin{equation}\label{Gidef}
 G_i(b_1, \dots, b_{n-1}, r) = \sum_{j = 0}^i \tilde{G}_i(b_1, \dots, b_{n-1}, r)
 \end{equation}
 After canceling terms, we obtain the system \eqref{Geq}. Since \eqref{Geq} is a linear combination of \eqref{jumpcond3}, the two systems are equivalent. Since the remainder terms of the $\tilde{G}_i$ are all the same order, the remainder terms of the $G_i$ are also all of that order.
@@ -763,20 +765,17 @@ After canceling terms, we obtain the system \eqref{Geq}. Since \eqref{Geq} is a 
 \end{lemma}
 
 \begin{remark}
-In \cref{diagonalG}, we rewrote \cref{jumpcond3} so that equation $j$ inolves $b_j$ and $b_{n-1}$. Since we are on a periodic domain, that choice was arbitrary. We chose the final length parameter $b_{n-1}$ for notational convenience.
+In \cref{diagonalG}, we rewrote \cref{jumpcond3} so that equation $j$ inolves $b_j$ and $b_{n-1}$. Since we are on a periodic domain, that choice was arbitrary. We selected the final length parameter $b_{n-1}$ as the ``common parameter'' for notational convenience.
 \end{remark}
 
-When $r = 0$, the equations \eqref{Geq} all have the same form, so for now we will only look at one of them. Let
+When $r = 0$, the equations \eqref{Geq} all have the same form, so we will start by looking at only one of them. In addition, for the periodic 2-pulse, we only have one equation. Let
 \begin{equation}\label{defH}
 H(b_0, b_1) = b_0 \sin \left( -\rho \log b_0 \right) - b_1 \sin \left( -\rho \log b_1 \right)
 \end{equation}
-In the next section we will characterize the zero set of the equations \cref{defH}. 
 
-\section{Bifurcation structure}
+\section{Bifurcation structure of $H$}
 
-In this section, we will show that the zero set of $H$ contains a sequence of pitchfork bifurcations. We will then develop a parameterization which follows naturally from the structure of the zero set of $H$.
-
-First, we note that $H$ is antisymmetric in its two arguments, i.e. $H(b_1, b_0) = -H(b_0, b_1)$. Since the zero set of $H$ is symmetric with respect to the diagonal, the diagonal $b_0 = b_1$ is in the zero set of $H$. We also have some off-diagonal solutions, for example when $b_j = \exp\left(-\frac{m_j \pi}{\rho}\right)$ for different integers $m_j$. \cref{fig:Fzeronumeric} shows a plot using Matlab of the zero set of $H$, which suggests that this set comprises continuous curves which bifurcate from the diagonal in a sequence of pitchfork bifurcations.
+In this section, we will show that the zero set of $H(b_0, b_1)$ contains a sequence of pitchfork bifurcations along the diagonal. First, we note that $H$ is antisymmetric in its two arguments, i.e. $H(b_1, b_0) = -H(b_0, b_1)$. Since the zero set of $H$ is symmetric with respect to the diagonal, the diagonal $b_0 = b_1$ is in the zero set of $H$. We also have some off-diagonal solutions, for example when $b_j = \exp\left(-\frac{m_j \pi}{\rho}\right)$ for different integers $m_j$. \cref{fig:Fzeronumeric} shows a plot using Matlab of the zero set of $H$, which suggests that this set comprises continuous curves which bifurcate from the diagonal in a sequence of pitchfork bifurcations.
 
 \begin{figure}
 \includegraphics[width=10cm]{periodic/zeroset5}
@@ -895,7 +894,9 @@ Since the above change of coordinates is a rotation by $\pi/4$, we conclude that
 \end{proof}
 \end{lemma}
 
-Now that we have located the pitchfork bifurcations, we will find a natural parameterization for the zero set of $H(b_0, b_1)$. Since the zero set is symmetric across the diagonal we only need to consider the case where $b_0 \geq b_1$. The parameterization works as follows. Choose any two nonnegative integers $m_1 \geq m_0$. Then the point
+\section{Parameterization of zero set of $H$}
+
+Now that we have located the pitchfork bifurcations, we will devise a natural parameterization for the zero set of $H(b_0, b_1)$. Since the zero set is symmetric across the diagonal we only need to consider the case where $b_0 \geq b_1$. The parameterization works as follows. Choose any two nonnegative integers $m_1 \geq m_0$. Then the point
 \[
 (b_0, b_1) = \left( e^{\frac{-m_0 \pi}{\rho}}, e^{\frac{-m_1 \pi}{\rho}}\right)
 \]
@@ -955,9 +956,9 @@ g(\theta) &= e^{-\frac{1}{\rho}\theta}\sin \theta  \\
 t(m) &= e^{-\frac{1}{\rho}m \pi} (-1)^m
 \end{align*}
 
-\item For $m = 0$, $t(0) = 0$, thus $\theta^*(\theta, 0) = \theta$.
+\item For $m = 0$, $t(0) = 1$, thus $\theta^*(\theta, 0) = \theta$.
 
-\item For $m \geq 1$, we will characterize the function $g(\theta)$, which we do in the following steps.
+\item Now consider $m \geq 1$. We start by characterizing the function $g(\theta)$, which we do in the following steps.
 \begin{enumerate}
 	\item First, we show that $g(\theta)$ is strictly increasing on $I$. The derivative of $g$ is 
 	\begin{equation}\label{gprime}
@@ -1037,7 +1038,7 @@ This bound is uniform in $\theta$.
 \end{proof}
 \end{lemma}
 
-Now that we have our parameterization for $r = 0$, we would like to use it to solve \eqref{Geq} for small $r$. When we perturb $r$ away from 0, we will generically lose the pitchfork bifurcation structure. In addition, since this relies on the implicit function theorem, we will not be able to perturb $r$ at the pitchfork bifurcation points. In the next sections, we prove the existence theorem for periodic multi-pulses. After that, we will show that in the special case of the 2-periodic pulse, the entire bifurcation structure of $H$ persists for sufficiently small $r$.
+Now that we have our parameterization for $r = 0$, we would like to use it to solve \eqref{Geq} for small $r$. When we perturb $r$ away from 0, we will generically lose the pitchfork bifurcation structure. In addition, since this relies on the implicit function theorem, we will not be able to use the implicit function theorem at the pitchfork bifurcation points. In the next section, we prove the existence theorem for periodic multi-pulses. After that, we will show that in the special case of the periodic 2-pulse, the entire bifurcation structure of $H$ persists for sufficiently small $r$.
 
 \section{Proof of Theorem \ref{perexist}}
 
@@ -1045,7 +1046,7 @@ By Lemma \ref{diagonalG}, a periodic $n-$pulse exists if and only if the $n-1$ j
 \begin{align}\label{Geq2}
 G_j(b_0, \dots, b_{n-1}, r) = b_j \sin \left( -\rho \log b_j \right) - b_{n-1} \sin \left( -\rho \log b_{n-1} \right) + \mathcal{O}(r^{\gamma / 2 \alpha}) &= 0 && j = 0, \dots, n-2
 \end{align}
-are satisfied. For $r = 0$, $G_j(b_0, \dots, b_{n-1}, 0) = H(b_j, b_{n-1})$ for each $j$. Since each equation is of the same form with $b_{n-1}$ appearing in all of them, we can parameterize our solution using \cref{thetaparamlemma}. First, we make the following definition.
+are satisfied. For $r = 0$, $G_j(b_0, \dots, b_{n-1}, 0) = H(b_j, b_{n-1})$ for each $j$. Since each equation is of the same form, with $b_{n-1}$ appearing in all of them, we can parameterize our solution using \cref{thetaparamlemma}. First, we make the following definition.
 
 \begin{definition}
 For $n \geq 2$, a \emph{periodic parameterization} of a periodic $n$-pulse is a sequence of parameters $(m_0, \dots, m_{n-1}, \theta)$, where
@@ -1065,10 +1066,10 @@ b_j( m_j, m_{n-1}, \theta) &= \exp\left[ -\frac{1}{\rho}(m_j \pi + \theta^*(\the
 b_{n-1}( m_{n-1}, \theta) &= \exp\left[ -\frac{1}{\rho}(m_{n-1} \pi + \theta) \right]
 \end{aligned}
 \end{equation}
-From Lemma \ref{thetaparamlemma}, for $j = 0, \dots, n-2$,
-\[
-H(b_j( m_j, m_{n-1}, \theta), b_{n-1}( m_{n-1}, \theta) ) = 0
-\]
+From Lemma \ref{thetaparamlemma},
+\begin{align*}
+H(b_j( m_j, m_{n-1}, \theta), b_{n-1}( m_{n-1}, \theta) ) &= 0 && j = 0, \dots, n-2
+\end{align*}
 Let
 \[
 b^* = (b_0( m_0, m_{n-1}, \theta), \dots, b_{n-2}( m_{n-2}, m_{n-1}, \theta) ) \in \R^{n-1}
@@ -1095,11 +1096,9 @@ Evaluating these at $r = 0$ and $b = b^*$, the Jacobian matrix $D_b G(b^*,0)$ is
 &= \sin \left( -\rho \log b_j(m_j, \theta) \right) - \rho \cos \left( -\rho \log b_j(m_j, \theta) \right)
 \end{align*}
 
-We can use the implicit function theorem as long these partial derivatives are all nonzero. From Lemma \ref{pitchforkH}, $\partial_{b_j} G_j(b, 0) = 0$ if and only if $b_j = b_k^*$, where $b_k^*$ is one of the pitchfork bifurcation points in the zero set of $H$. To avoid this, by Lemma \ref{thetaparamlemma}, it suffices to exclude $\theta \in \{ -\pi + p^*, p^* \}$, as in the statement of the theorem.
+We can use the implicit function theorem as long these partial derivatives are all nonzero. From Lemma \ref{pitchforkH}, $\partial_{b_j} G_j(b, 0) = 0$ if and only if $b_j = b_k^*$, where $b_k^*$ is one of the pitchfork bifurcation points in the zero set of $H$. To avoid this, by Lemma \ref{thetaparamlemma}, it suffices to exclude $\theta \in \{ -\pi + p^*, p^* \}$, which we do in the statement of the theorem.
 
-Thus, for sufficiently small $r$, we can use the implicit function theorem to solve for $b$ in terms of $r$ near $b^*$. Specifically, there exists $r_* > 0$ and a smooth function $b: \mathcal{R} \cap [0, r_*] \rightarrow \R^{n-1}$ such that $b(0) = b^*$ and $G(b(r),r) = 0$. 
-
-Write $b$ in terms of its component functions as
+Thus, for sufficiently small $r$, we can use the implicit function theorem to solve for $b$ in terms of $r$ near $b^*$. Specifically, there exists $r_* > 0$ and a smooth function $b: \mathcal{R} \cap [0, r_*] \rightarrow \R^{n-1}$ such that $b(0) = b^*$ and $G(b(r),r) = 0$. Write $b$ in terms of its component functions as
 \[
 b(r) = \left( b_0(r), \dots, b_{n-2}(r) \right)
 \]
@@ -1188,7 +1187,7 @@ For simplicity, take $m_0 = 0$. The proof is identical for $m_0 =1$. In Lemma \r
 \[
 G(-x, y, r) = -G(x, y, r)
 \]
-in this coordinate system, which is the required symmetry for a pitchfork bifurcation to occur. In addition, this implies that $G(0, y, r) = 0$ for all $y$. We now prove the existence of a pitchfork bifurcation along this line. 
+in this coordinate system, which is the required symmetry for a pitchfork bifurcation to occur. In addition, this implies that $G(0, y, r) = 0$ for all $y$. We now prove the existence of a pitchfork bifurcation along this line. While this is a standard result from bifurcation theory, we present the proof below for completeness. 
 
 Since a necessary condition for a pitchfork to occur is $G_x(x, y, r) = 0$, we will look at the system
 \begin{equation*}
@@ -1204,7 +1203,7 @@ which always has a solution when $x = 0$. We will show that a pitchfork bifurcat
 
 All that remains is to show that $G_{xy}$ and $G_{xxx}$ are nonzero at $(0, y^*(0, r), r)$. From Lemma \ref{pitchforkH}, $G_{xy}(0, b_0^*, 0) = c_1^0 \neq 0$. Since $G_{xy}$ and $y^*$ are smooth, $G_{xy}(0, y^*(0, r), r) \rightarrow c_1^0 \text{ as } r \rightarrow 0$. Thus, reducing $r_2$ if necessary, $G_{xy}(0, y^*(0, r), r) \neq 0$ for all $r < r_2$. Similarly, from Lemma \ref{pitchforkH}, $G_{xxx}(0, p^*) = c_2^0 \neq 0$. By the same argument, we conclude that $G_{xxx}(0, y^*(0, r), r) \neq 0$ for $r < r_2$.
 
-Let $b_0^*(r) = y^*(0, r)$. Then there is a pitchfork bifurcation at $(b_0^*(r), b_0^*(r))$, and $b_0^*(r) \rightarrow b_0^*$ as $r \rightarrow 0$.
+Let $b_0^*(r) = y^*(0, r)$. Changing back to the original $(b_0, b_1)$ coordinates, there is a pitchfork bifurcation at $(b_0^*(r), b_0^*(r))$, and $b_0^*(r) \rightarrow b_0^*$ as $r \rightarrow 0$.
 \end{proof} 
 \end{lemma}
 

@@ -8,6 +8,8 @@
 
 \section{Overview of proof}
 
+As in \cite{Sandstede1998}, we will use Lin's method to construct eigenfunctions $V(x)$ to \cref{PDEeigsystemper2}. We will take a piecewise linear combination of kernel eigenfunctions as our ansatz, and then join these together with small remainder functions. Specifically, we proceed in the following manner.
+
 When $\lambda = 0$, it follows from \cref{sec:HamPDE} and the definitions of $A(Q_n(x))$ and $B$ that 
 \begin{equation}\label{PDEeigkernel}
 \begin{aligned}
@@ -15,11 +17,78 @@ When $\lambda = 0$, it follows from \cref{sec:HamPDE} and the definitions of $A(
 {[\partial_c Q_n]}'(x) &= A(Q_n(x))\partial_c Q_n(x) + \lambda B \partial_x Q_n(x).
 \end{aligned}
 \end{equation}
-Both of these kernel eigenfunctions satisfy the periodic boundary conditions. We will use Lin's method to construct solutions $V(x)$ to \cref{PDEeigsystemper3} as piecewise perturbations of the kernel eigenfunctions $\partial_x Q_n(x)$ and $\partial_c Q_n(x)$. As long as the individual pulses in $Q_n(x)$ are well-separated, Lin's method produces a unique function $V(x)$ which solves \cref{PDEeigsystemper3} but which generically has $n$ jumps. These $n$ jumps are in the two-dimensional space spanned by $\Psi(0)$ and $\Psi^c(0)$, which gives us $2n$ jump conditions. Finding the eigenvalues amounts to solving the $2n$ jump conditions. As in \cite[Theorem 2]{Sandstede1998}, we will write these jump conditions in matrix form as a $2n \times 2n$ block matrix.
+A key difference between our case and that considered in \cite{Sandstede1998} is that there are two generalized eigenfunctions in the kernel instead of one. Both of these kernel eigenfunctions satisfy the periodic boundary conditions. We will construct solutions $V(x)$ to \cref{PDEeigsystemper3} which are, to leading order, piecewise linear combinations of the kernel eigenfunctions $\partial_x Q_n(x)$ and $\partial_c Q_n(x)$. As long as the individual pulses in $Q_n(x)$ are well-separated, Lin's method produces a unique function $V(x)$ which solves \cref{PDEeigsystemper3} but which generically has $n$ jumps. These $n$ jumps are in the two-dimensional space spanned by $\Psi(0)$ and $\Psi^c(0)$, which gives us $2n$ jump conditions. (This is in contrast to \cite{Sandstede1998}, the jumps are in the one-dimensional space spanned by $\Psi(0)$). Finding the eigenvalues amounts to solving the $2n$ jump conditions.
+
+\section{Piecewise formulation}
+
+In this section, we write the eigenvalue problem \cref{PDEeigsystemper3} in a piecewise form similar to \cite{Sandstede1998}. Let $Q_n(x)$ be a periodic $n$-pulse solution to \eqref{genODE} constructed according to Theorem \ref{perexist}. From Theorem \ref{perexist} and Lemma \ref{solvewithjumps}, we can write $Q_n(x)$ piecewise as
+\begin{equation}\label{Qnppiece}
+\begin{aligned}
+Q_i^-(x) &= Q^-(x; \beta_i^-) + \tilde{Q}_i^-(x) && x \in [-X_{i-1}, 0] \\
+Q_i^+(x) &= Q^+(x; \beta_i^+) + \tilde{Q}_i^+(x) && x \in [0, X_i]
+\end{aligned}
+\end{equation}
+where $Q_i^-: [-X_{i-1}, 0] \rightarrow \R$ and $Q_i^+: [0, X_i]$ and the pieces are joined together end-to-end in a loop. (Note that we are using $\tilde{Q}_i^-(x)$ in place of $V_i^\pm(x) in Lemma \ref{solvewithjumps}$).
+
+To exploit the relations \eqref{PDEeigkernel}, we take the following piecewise ansatz for the eigenfunction $V(x)$
+\begin{equation}\label{Vpiecewise}
+\begin{aligned}
+V_i^-(x) &= d_i (\partial_x Q_i^-(x) + \lambda \partial_c Q_i^-(x)) + W_i^-(x) && x \in [-X_{i-1}, 0] \\
+V_i^+(x) &= d_i (\partial_x Q_i^+(x) + \lambda \partial_x Q_i^+(x)) + W_i^+(x) && x \in [0, X_i] 
+\end{aligned}
+\end{equation}
+where $d_i \in \C$ are constants, $W_i^-(x) \in C([-X_{i-1}, 0], \C)$, and $W_i^+(x) \in C([0, X_i], \C)$. Substituting this ansatz into \cref{PDEeigsystemper3} and simplifying, we obtain the following equation for $W_i^\pm(x)$.
+\begin{equation}\label{Wipm1}
+(W_i^\pm)'(x) = A(Q_i^\pm(x); \lambda) W_i^\pm(x) + d_i \lambda^2 B (\partial_c Q_i^\pm(x))
+\end{equation}
+Since $A(Q(x))$ is smooth in $Q(x)$, let 
+\begin{align*}
+G_i^\pm(x) = A(Q_i^\pm(x)) - A(Q(x))
+\end{align*}
+Finally, let
+\begin{align*}
+\tilde{H}_i^\pm(x) &= \partial_c Q_i^\pm(x) \\ 
+H(x) &= \partial_c Q(x)
+\end{align*}
+Using these, equation \eqref{Wipm1} simplifies to
+\begin{align}\label{Wipm2}
+(W_i^\pm)'(x) &= A(Q(x); \lambda) W_i^\pm(x) + G_i^\pm(x) W_i^\pm(x) + d_i \lambda^2 \tilde{H}_i^\pm(x)
+\end{align}
+
+For the eigenfunction $V(x)$ must be continuous, the $2n$ pieces $V_i^\pm(x)$ must also be joined together end-to-end in a loop. In other words, $n$ matching conditions at $x = \pm X_i$ and $n$ matching conditions at $x = 0$ must be satisfied. Thus to obtain an eigenfunction $V(x)$, the functions $W_i^\pm(x)$ must solve the system of equations
+\begin{equation}\label{eigsystem0}
+\begin{aligned}
+(W_i^\pm)'(x) &= A(Q(x); \lambda) W_i^\pm(x) + G_i^\pm(x) W_i^\pm(x) + d_i \lambda^2 \tilde{H}_i^\pm(x) \\
+W_i^+(X_i) - W_{i+1}^-(-X_i) &= D_i d && i = 0, \dots, n-1 \\
+W_i^-(0) &= W_i^+(0) && i = 0, \dots, n-1  \\
+\end{aligned}
+\end{equation}
+where
+\begin{align}\label{defDid}
+D_i d &= d_{i+1}[\partial_x Q_{i+1}^-(-X_i) + \lambda \partial_c Q_{i+1}^-(-X_i)]
+- d_i [ \partial_x Q_i^+(X_i) + \lambda \partial_c Q_i^+(X_i) ] \\
+\end{align}
+As in \cite{Sandstede1998}, we will not be able to find a solution to this system for arbitrary $\lambda$. Thus will consider instead the system
+\begin{equation}\label{eigsystem}
+\begin{aligned}
+(W_i^\pm)'(x) &= A(Q(x); \lambda) W_i^\pm(x) + G_i^\pm(x) W_i^\pm(x) + d_i \lambda^2 \tilde{H}_i^\pm(x) \\
+W_i^+(X_i) - W_{i+1}^-(-X_i) &= D_i d && i = 0, \dots, n-1 \\
+W_i^\pm(0) &\in \R \Psi(0) \oplus \R \Psi^c(0) \oplus Y^+ \oplus Y^- && i = 0, \dots, n-1  \\
+W_i^+(0) - W_i^-(0) &\in \R \Psi(0) \oplus \R \Psi^c(0) && i = 0, \dots, n-1 
+\end{aligned}
+\end{equation}
+where the third equation in \cref{eigsystem0} is relaxed to the requirement that the jumps $W_i^+(0) - W_i^-(0)$ can only be in the directions of $\Psi^c(0)$ and $\Psi(0)$. We do not need to include a component in $Q'(0)$ in the third equation since that is handled by the term $d_i (Q_i^\pm)'(x)$ in the ansatz \eqref{Vpiecewise}. A solution to \eqref{eigsystem} solves \eqref{PDEeig3} if and only if the $n$ jumps at $x = 0$ in the direction of $\Psi(0) \oplus \R \Psi^c(0)$ are 0, i.e.  
+\begin{equation}\label{jumpxi}
+\begin{aligned}
+\xi_i &= \langle \Psi(0), W_i^+(0) - W_i^-(0) \rangle = 0  \\
+\xi_i^c &= \langle \Psi^c(0), W_i^+(0) - W_i^-(0) \rangle = 0 
+\end{aligned}
+\end{equation}
+for $i = 0, \dots, n-1$.
 
 \section{Eigenvalues of background state}
 
-In this section, we locate the eigenvalue of $A(\lambda)$ which is close to 0 and characterize its eigenvector. We do the same for the adjoint $-A(\lambda)^*$.
+Before we can solve the system \cref{eigsystem} and derive the jump conditions \cref{jumpxi}, we will need a result regarding the eigenvalues and eigenvectors of the constant matrix $A(\lambda)$.
 
 % nu(lambda) lemma
 
@@ -127,184 +196,9 @@ that is orthogonal to $W_0$.
 \end{proof}
 \end{lemma}
 
-\section{Piecewise formulation}
-
-In this section, we write the eigenvalue problem \cref{PDEeig3} in a piecewise form similar to \cite{Sandstede1998} and what we did in \cref{sec:kdvRpiecewise}. Let $Q_n(x)$ be a periodic $n$-pulse solution to \eqref{genODE} constructed according to Theorem \ref{perexist}. From Theorem \ref{perexist}, we can write $Q_n(x)$ piecewise as
-\begin{equation}\label{Qnppiece}
-\begin{aligned}
-Q_i^-(x) &= Q^-(x; \beta_i^-) + \tilde{Q}_i^-(x) && x \in [-X_{i-1}, 0] \\
-Q_i^+(x) &= Q^+(x; \beta_i^+) + \tilde{Q}_i^+(x) && x \in [0, X_i]
-\end{aligned}
-\end{equation}
-where $Q_i^-: [-X_{i-1}, 0] \rightarrow \R$ and $Q_i^+: [0, X_i]$. We note that this is different notation than used in \cref{chapter:kdv5periodic}
-
-Similarly to \eqref{Qprimevarsol} and \eqref{Qcvarsol}, we have
-\begin{equation}\label{Arelations}
-\begin{aligned}
-(\partial_x Q_n(x))' &= A(Q_n(x)) (\partial_x Q_n(x)) \\
-(\partial_c Q_n(x))' &= A(Q_n(x)) (\partial_c Q_n(x)) + B (\partial_x Q_n(x)) 
-\end{aligned}
-\end{equation}
-To exploit the relations \eqref{Arelations}, we take the following piecewise ansatz for the eigenfunction $V(x)$
-\begin{equation}\label{Vpiecewise}
-\begin{aligned}
-V_i^-(x) &= d_i (\partial_x Q_i^-(x) + \lambda \partial_c Q_i^-(x)) + W_i^-(x) && x \in [-X_{i-1}, 0] \\
-V_i^+(x) &= d_i (\partial_x Q_i^+(x) + \lambda \partial_x Q_i^+(x)) + W_i^+(x) && x \in [0, X_i] 
-\end{aligned}
-\end{equation}
-where $d_i \in \C$ are constants. Substituting this ansatz into \eqref{PDEeig3} and simplifying, we obtain the following equation for $W_i^\pm(x)$.
-\begin{equation}\label{Wipm1}
-(W_i^\pm)'(x) = A(Q_i^\pm(x); \lambda) W_i^\pm(x) + d_i \lambda^2 B (\partial_c Q_i^\pm(x))
-\end{equation}
-Since $A(Q(x))$ is smooth in $Q(x)$, let 
-\begin{align*}
-G_i^\pm(x) = A(Q_i^\pm(x)) - A(Q(x))
-\end{align*}
-Finally, let
-\begin{align*}
-\tilde{H}_i^\pm(x) &= \partial_c Q_i^\pm(x) \\ 
-H(x) &= \partial_c Q(x)
-\end{align*}
-Using these, equation \eqref{Wipm1} simplifies to
-\begin{align}\label{Wipm2}
-(W_i^\pm)'(x) &= A(Q(x); \lambda) W_i^\pm(x) + G_i^\pm(x) W_i^\pm(x) + d_i \lambda^2 \tilde{H}_i^\pm(x)
-\end{align}
-
-In order to have a solution to \eqref{PDEeig3}, the eigenfunction $V(x)$ must be continuous. In other words, the $n$ jumps at $\pm X_i$ and the $n$ jumps at $0$ must be 0. Thus an eigenfunction must solve the system of equations
-\begin{align*}
-(W_i^\pm)'(x) &= A(Q(x); \lambda) W_i^\pm(x) + G_i^\pm(x) W_i^\pm(x) + d_i \lambda^2 \tilde{H}_i^\pm(x) \\
-W_i^+(X_i) - W_{i+1}^-(-X_i) &= D_i d && i = 0, \dots, n-1 \\
-W_i^-(0) &= W_i^+(0) && i = 0, \dots, n-1  \\
-\end{align*}
-where
-\begin{align}\label{defDid}
-D_i d &= d_{i+1}[\partial_x Q_{i+1}^-(-X_i) + \lambda \partial_c Q_{i+1}^-(-X_i)]
-- d_i [ \partial_x Q_i^+(X_i) + \lambda \partial_c Q_i^+(X_i) ] \\
-\end{align}
-
-As in \cite{Sandstede1998}, we will not be able to find a solution to this system for arbitrary $\lambda$. Thus we will instead consider the system
-\begin{equation}\label{eigsystem}
-\begin{aligned}
-(W_i^\pm)'(x) &= A(Q(x); \lambda) W_i^\pm(x) + G_i^\pm(x) W_i^\pm(x) + d_i \lambda^2 \tilde{H}_i^\pm(x) \\
-W_i^+(X_i) - W_{i+1}^-(-X_i) &= D_i d && i = 0, \dots, n-1 \\
-W_i^\pm(0) &\in \R \Psi(0) \oplus \R \Psi^c(0) \oplus Y^+ \oplus Y^- && i = 0, \dots, n-1  \\
-W_i^+(0) - W_i^-(0) &\in \R \Psi(0) \oplus \R \Psi^c(0) && i = 0, \dots, n-1 
-\end{aligned}
-\end{equation}
-where the center matching condition $W_i^-(0) = W_i^+(0)$is relaxed to the requirement that the jumps $W_i^+(0) - W_i^-(0)$ can only be in the directions of $\Psi^c(0)$ and $\Psi(0)$. We do not need to include a component in $Q'(0)$ in the third equation since that is handled by the term $d_i (Q_i^\pm)'(x)$ in the ansatz \eqref{Vpiecewise}. A solution to \eqref{eigsystem} solves \eqref{PDEeig3} if and only if the $n$ jumps at $x = 0$ in the direction of $\Psi(0) \oplus \R \Psi^c(0)$ are 0, i.e.  
-\begin{equation}\label{jumpxi}
-\begin{aligned}
-\xi_i &= \langle \Psi(0), W_i^+(0) - W_i^-(0) \rangle = 0  \\
-\xi_i^c &= \langle \Psi^c(0), W_i^+(0) - W_i^-(0) \rangle = 0 
-\end{aligned}
-\end{equation}
-for $i = 0, \dots, n-1$.
-
-Before we continue, we define the following constants, which we will use throughout. By Lemma \ref{eigA0lemma}, $A(0)$ has a simple eigenvalue at 0, a quartet of eigenvalues $\pm \alpha_0 \pm \beta_0 i$, and for all other eigenvalues $\nu$ of $A(0)$, $|\Re \nu| > \alpha_0$. 
-
-\begin{enumerate}
-	\item Choose $\alpha_1$ slightly smaller than $\alpha_0$.
-
-	\item Choose any $\eta > 0$ such that $2 \eta < \alpha_1$.
-
-	\item Let
-	\begin{align*}
-	\alpha &= \alpha_1 - \eta \\
-	\tau &= \frac{\alpha}{\alpha_1}
-	\end{align*}
-	By our choice of $\eta$
-	\[
-	\frac{1}{2} < \tau < 1
-	\]
-
-	\item Choose $\delta$ sufficiently small so that for all $|\lambda| < \delta$
-	\begin{enumerate}
-		\item $|\nu(\lambda)| < \eta$, where $\nu(\lambda)$ defined in Lemma \ref{nulambdalemma}.
-
-		\item The real part of any other eigenvalue of $A(\lambda)$ lies outside the interval $[-\alpha, \alpha]$. This is possible since the eigenvalues of $A(\lambda)$ are smooth functions of $\lambda$.
-	\end{enumerate}
-	As we proceed we may need to decrease $\delta$. 
-
-	\item Choose $X_m$ sufficiently large so that
-	\begin{equation}
-	e^{-(\alpha - \eta) X_m} < \delta
-	\end{equation}
-	where $X_m = \min\{X_0, \dots, X_{n-1}\}$.
-\end{enumerate}
-
-To conclude this section, we will collect estimates on the terms involved in \eqref{eigsystem} in the following two lemmas.
-
-\begin{lemma}\label{stabestimateslemma}
-Let $\Delta H_i^\pm(x) = \tilde{H}_i^\pm(x) - H(x)$. Then we have the following estimates
-\begin{enumerate}[(i)]
-\item $|H(x)|, |\tilde{H}_i^\pm(x)| \leq C e^{-\alpha_1 |x|}$
-\item $|\Delta H_i^-(x)| \leq C e^{-\alpha_1 X_{i-1}} e^{-\alpha_1(X_{i-1} + x) } + e^{-2 \alpha_1 X_i} e^{\alpha_1 x}$
-\item $|\Delta H_i^+(x)| \leq C e^{-\alpha_1 X_i} e^{-\alpha_1(X_i - x) } + e^{-2 \alpha_1 X_{i-1}} e^{-\alpha_1 x}$
-\item $||\Delta H_i^\pm|| \leq C(e^{-\alpha_1 X_i} + e^{-\alpha_1 X_{i-1}} )$
-\item $|G_i^-(x)| \leq C e^{-\alpha_0 X_{i-1}} e^{-\alpha_0(X_{i-1} + x) } + e^{-2 \alpha_0 X_i} e^{\alpha_0 x}$
-\item $|G_i^+(x)| \leq C e^{-\alpha_0 X_i} e^{-\alpha_0(X_i - x) } + e^{-2 \alpha_0 X_{i-1}} e^{-\alpha_0 x}$
-\item $||G|| \leq C e^{-\alpha_1 X_m}$
-\item $D_i d = ( Q'(X_i) + Q'(-X_i))(d_{i+1} - d_i ) + \mathcal{O} ( e^{-\alpha_1 X_i} (e^{-\alpha_1 X_m} + |\lambda| )$
-\end{enumerate}
-\begin{proof}
-Recall that $H(x) = \partial_c Q(x)$ and $\tilde{H}(x) = \partial_c Q_i^\pm(x)$. For (i), by Theorem \ref{transverseint}, $H(x)$ is exponentially localized for any $\alpha_1 < \alpha_0$. The result for $\tilde{H}(x)$ is a straightforward adaptation of Theorem \ref{transverseint}. The bounds (ii) and (iii) follow from an adaptation of Lemma \ref{solvewithjumps} to derivative with respect to $c$. The bound (iv) follows from (ii) and (iii). Since $A(Q(x))$ is smooth in $Q(x)$, the bounds (v), (vi), and (vii) come from Lemma \ref{solvewithjumps}. For the estimate (viii), we use \eqref{VQpm} in Lemma \ref{solvewithjumps} and \eqref{Vpiecewise} (with $\tilde{Q}$ in place of $V$) to get
-\begin{align*}
-Q_{i+1}^-(-X_i) &= Q^-(-X_i; \beta_{i+1}^-) + \tilde{Q}_{i+1}^-(-X_i) \\
-&= Q^-(-X_i; \beta_{i+1} ^-) + Q^+(X_i; \beta_i^+) + \mathcal{O}(e^{-2 \alpha_1 X_i}) \\
-&= Q(-X_i) + Q(X_i) 
-+ \mathcal{O}(e^{-\alpha_1 X_i}(e^{-\alpha_1 X_{i-1}}+e^{-\alpha_1 X_i}+e^{-\alpha_1 X_{i+1}}))
-\end{align*}
-We note that $\alpha_1$ corresponds to $\alpha$ in that lemma. Since the bounds \ref{solvewithjumps} also apply to derivatives with respect to $x$, we have
-\begin{align*}
-(Q_{i+1}^-)'(-X_i) &= Q'(-X_i) + Q'(X_i) + \mathcal{O}(e^{-\alpha_1 X_i}e^{-\alpha_1 X_m})
-\end{align*}
-Similarly,
-\begin{align*}
-(Q_i^+)'(X_i)' &= Q'(-X_i) + Q'(X_i) + \mathcal{O}(e^{-\alpha_1 X_i}e^{-\alpha_1 X_m})
-\end{align*}
-To get the estimate (v), we substitute these into \cref{defDid} and use estimate (i) for $\partial_c Q_i^\pm(x)$.
-\end{proof}
-\end{lemma}
-
-In the next lemma, we give an estimate for terms of the form $e^{\pm \nu(\lambda) X_j}$, which will show up in our analysis. This requires placing an upper bound one magnitude of $\lambda$.
-
-\begin{lemma}\label{lemma:expnubound}
-For any periodic parameterization $(b_0, \dots, b_{n-1}, \theta)$, let $r_*$ be as in Theorem \ref{perexist}. Then for any $N > 0$ and $\delta > 0$, there exists a constant $R_N$ such that if $|\lambda| < \delta$ and $|\lambda| < N/|\log r|$,
-\begin{align}\label{expnlbound}
-|e^{\nu(\lambda)X_j (r; m_j, \theta)}| \leq R_N && j = 0, \dots, n-1
-\end{align}
-\begin{proof}
-Using the expression \cref{Xj} from \cref{perexist},
-\begin{align}\label{Xjmag}
-|X_j(r; m_j, \theta)| &\leq \frac{1}{2 \alpha_0} |\log r| + \frac{\pi}{2\beta_0} |b_j(r; m_j, \theta)| + |L_0| && j = 0, \dots, n-1,
-\end{align}
-For all $r \leq r_*$ and $\theta$, the functions $b_j(r; m_j, \theta)$ are smooth in $r$ and satisfy bound $|b_j(r; m_j, \theta)| \leq m_j + 1$. Let $m_{\max} = \max\{ m_0, \dots, m_{n-1}\}$. Then we have the uniform bound
-\[
-|b_j(r; m_j, \theta)| \leq m_{\max} + 1
-\]
-Combining this with \cref{Xjmag}, we have the uniform bound
-\begin{align}\label{Xjmag2}
-|X_j(r; m_j, \theta)| &\leq \frac{1}{2 \alpha_0} |\log r| + \frac{\pi}{2\beta_0} (m_{\max} + 1) + |L_0| && j = 0, \dots, n-1,
-\end{align}
-For $\lambda$ with $|\lambda| \leq N/|\log r|$ and $|\lambda| < \delta$, it follows from \cref{nulambdalemma} that
-\begin{align*}
-|\nu(\lambda)| &\leq \frac{1}{c}|\lambda| + C |\lambda|^3 \\
-&\leq \frac{N}{c |\log r|} + C \frac{N}{|\log r|}\delta^2
-\end{align*}
-Combining this with \cref{Xjmag2}, we have
-\begin{align*}
-|\nu(\lambda) X_j(r; m_j, \theta)| &\leq  N \left( \frac{1}{c} + C \delta^2 \right)\left( \frac{1}{2 \alpha_0} + \frac{1}{|\log r|} \left( \frac{\pi}{2\beta_0} (m_{\max} + 1) + |L_0| \right) \right)
-\end{align*}
-which is bounded for all $r \leq r_*$. Thus we conclude that there exists a constant $R_N$ depending on $N$ such that for all $j = 0, \dots, n-1,$
-\[
-|e^{\nu(\lambda)X_j(r; m_j, \theta)}| \leq R_N
-\]
-\end{proof}
-\end{lemma}
-
 \section{Gap and conjugation Lemmas}
 
-In this section, we state and prove the gap and conjugation lemmas. We will use the conjugation lemma to simplify the system of equations \cref{eigsystem}. The statements and notation of these lemmas are very similar to those in \cite{Zumbrun2009}, except we allow the parameter vector $\Lambda$ to live in a Banach space rather than in a subset of $\C^m$. The proofs follow those in \cite{Zumbrun2009}, but are given in much more detail. In addition, the proof of the conjugation lemma is used to prove a corollary. First, we state and prove the gap lemma.
+In this section, we state and prove the gap and conjugation lemmas. We will use the conjugation lemma to simplify the system of equations \cref{eigsystem} by converting $A(Q(x); \lambda)$ in to a constant coefficient matrix. The statements and notation of these lemmas are similar to those in \cite{Zumbrun2009}, except we allow the parameter vector $\Lambda$ to live in an arbitraty Banach space rather than in a subset of $\C^m$. The proofs follow those in \cite{Zumbrun2009}, but are given in much more detail. In addition, the proof of the conjugation lemma is used to prove a corollary. First, we state and prove the gap lemma.
 
 % Gap lemma
 \begin{lemma}[Gap Lemma]\label{gaplemma}
@@ -585,29 +479,29 @@ Z'(x) = -A_-(\Lambda)^* Z(x)
 
 \section{Conjugation of system}
 
-In this section, we apply the conjugation lemma to the system of equations \cref{eigsystem}. This simplifies the system by applying a change of coordinates that transforms the linear operator $A(Q(x); \lambda)$ into a constant coefficient matrix. For all $\lambda$, $A(Q(x); \lambda)$ decays exponentially to the constant-coefficient matrix $A(\lambda)$. Specifically, we have the exponential decay rate
+In this section, we apply the conjugation lemma to the system of equations \cref{eigsystem}. This greatly simplifies the system by applying a change of coordinates that transforms the matrix $A(Q(x); \lambda)$ into the constant coefficient matrix $A(\lambda)$. For all $\lambda$, $A(Q(x); \lambda)$ decays exponentially to the constant-coefficient matrix $A(\lambda)$. Specifically, we have the exponential decay rate
 \[
 |A(Q(x); \lambda) - A(\lambda)| \leq C e^{-\alpha_0 |x|}
 \]
 
-Using the conjugation lemma on $\R^+$ with $\Lambda = \lambda$ and $\Lambda_0 = 0$, there exists $\delta_1 > 0$ and an invertible linear transformation 
+Using the conjugation lemma on $\R^+$ with $\Lambda = \lambda$ and $\Lambda_0 = 0$, there exists $\delta_2 > 0$ and an invertible linear transformation 
 \[
 P_+(x; \lambda) = I + \Theta_+(x; \Lambda)
 \]
-such that for all $|\lambda| < \delta_1$, the change of coordinates $W_i^+ = P_+(x; \lambda) Z_i^+$ conjugates \eqref{Wipm2} into the equation
+such that for all $|\lambda| < \delta_2$, the change of coordinates $W_i^+ = P_+(x; \lambda) Z_i^+$ conjugates \eqref{Wipm2} into the equation
 \begin{align*}\label{Zplus1}
 (Z_i^+)'(x) &= A(\lambda) Z_i^+(x) + P_+(x; \lambda)^{-1} G_i^+(x) P_+(x; \lambda) Z_i^+(x) + d_i \lambda^2 P_+(x; \lambda)^{-1} \tilde{H}_i^+
 (x)
 \end{align*}
-Furthermore, the conjugation operator $P_+(x; \lambda)$ has the form
+Note that we have only done this for the equations involving $W_i^+$. Furthermore, the conjugation operator $P_+(x; \lambda)$ has the form
 \begin{equation}\label{projTheta}
-P_+(x; \lambda) = I + \Theta_+(x; \lambda)
+P_+(x; \lambda) = I + \Theta_+(x; \lambda).
 \end{equation}
-where $\Theta_+(x; \lambda)$ has the uniform decay rate
+$\Theta_+(x; \lambda)$ has the uniform decay rate
 \begin{equation}\label{Thetadecay}
-|\Theta_+(x; \lambda)| \leq C e^{-\alpha_1 |x|} \\
+|\Theta_+(x; \lambda)| \leq C e^{-\alpha |x|} \\
 \end{equation}
-which also applies to derivatives with respect to $x$ and $\lambda$ (though with a different constant out front).
+where $\alpha$ is slighly less than $\alpha_0$, and is the same $\alpha$ we chose in \cref{sec:existdichot}. From the conjugation lemma, these bounds also apply to derivatives with respect to $x$ and $\lambda$ (though with a different constant out front).
 
 For the conjugation on $R^-$, rather than applying the conjugation lemma again on $R^-$, we will use the symmetries of our system to define the conjugation operator on $\R^-$ in terms of the conjugation operator on $\R^+$. We do this in a series of lemmas. First we prove a symmetry relation for $A(Q(x); \lambda)$.
 
@@ -640,7 +534,6 @@ DF(Q(x)) & \begin{pmatrix} 0 \\ \vdots \\ 0 \\ 1 \end{pmatrix} \\
 \end{pmatrix} \\ 
 &= A(Q(x); \lambda)
 \end{align*}
-
 For part (ii), for $x \in \R^-$,
 \begin{align*}
 \frac{d}{dx} &\left[ R_{2m+1} V(-x) \right] = -R_{2m+1} V'(-x) \\
@@ -729,6 +622,93 @@ and the jump conditions \eqref{jumpxi} become
 \end{aligned}
 \end{equation}
 
+\section{Constants and estimates}
+
+In this section, we will define a few constants which we will use throughout the rest of the analysis. We will also provide estimates on terms which will arise when we solve \cref{eigsystem}.
+
+Recall from Lemma \ref{eigA0lemma} that $A(0)$ has a simple eigenvalue at 0, a quartet of eigenvalues $\pm \alpha_0 \pm \beta_0 i$, and for all other eigenvalues $\nu$ of $A(0)$, $|\Re \nu| > \alpha_0$. Let $(b_0, \dots, b_{n-1}, \theta)$ be any periodic parameterization, and let $r_* = r_*(b_0, \dots, b_{n-1}, \theta)$ be as in Theorem \ref{perexist}. 
+
+\begin{enumerate}
+	\item Let $\alpha$ be as chosen in \cref{sec:existdichot}, and recall that $\alpha$	is slightly less than $\alpha_0$. Let $\tilde{\alpha} = \alpha/2$.
+
+	\item Choose $\delta \leq \min{\delta_1, \delta_2}$ sufficiently small so that for all $|\lambda| < \delta$
+	\begin{enumerate}
+		\item $|\nu(\lambda)| < \delta$, where $\nu(\lambda)$ defined in Lemma \ref{nulambdalemma}.
+
+		\item The real part of any other eigenvalue of $A(\lambda)$ lies strictly outside the interval $[-\tilde{\alpha}, \tilde{\alpha}]$. This is possible since the eigenvalues of $A(\lambda)$ are smooth in $\lambda$.
+	\end{enumerate}
+	As we proceed we may need to decrease $\delta$. 
+
+	\item Choose $r_0 \leq r_*$ such that $r_0^{1/2} \leq \delta$. If we decrease $\delta$, $r_0$ will also decrease so that this is still satisfied.
+\end{enumerate}
+
+To conclude this section, we will collect estimates on the terms involved in \eqref{eigsystem} in the following two lemmas.
+
+\begin{lemma}\label{stabestimateslemma}
+Let $\Delta H_i^\pm(x) = \tilde{H}_i^\pm(x) - H(x)$. Then we have the following estimates
+\begin{enumerate}[(i)]
+\item $|H(x)|, |\tilde{H}_i^\pm(x)| \leq C e^{-\alpha |x|}$
+\item $|\Delta H_i^-(x)| \leq C e^{-\alpha X_{i-1}} e^{-\alpha(X_{i-1} + x) } + e^{-2 \alpha X_i} e^{\alpha x}$
+\item $|\Delta H_i^+(x)| \leq C e^{-\alpha X_i} e^{-\alpha(X_i - x) } + e^{-2 \alpha X_{i-1}} e^{-\alpha x}$
+\item $||\Delta H_i^\pm|| \leq C(e^{-\alpha X_i} + e^{-\alpha X_{i-1}} )$
+\item $|G_i^-(x)| \leq C e^{-\alpha X_{i-1}} e^{-\alpha(X_{i-1} + x) } + e^{-2 \alpha X_i} e^{\alpha x}$
+\item $|G_i^+(x)| \leq C e^{-\alpha X_i} e^{-\alpha_0(X_i - x) } + e^{-2 \alpha X_{i-1}} e^{-\alpha x}$
+\item $\|G\| \leq C e^{-\alpha X_m}$
+\item $D_i d = ( Q'(X_i) + Q'(-X_i))(d_{i+1} - d_i ) + \mathcal{O} ( e^{-\alpha X_i} (e^{-\alpha X_m} + |\lambda| )$
+\end{enumerate}
+\begin{proof}
+Recall that $H(x) = \partial_c Q(x)$ and $\tilde{H}(x) = \partial_c Q_i^\pm(x)$. For (i), by Theorem \ref{transverseint}, $H(x)$ is exponentially localized for any $\alpha_0 - \epsilon$, which is satisfied by $\alpha$. The result for $\tilde{H}(x)$ is a straightforward adaptation of Theorem \ref{transverseint}. The bounds (ii) and (iii) follow from an adaptation of Lemma \ref{solvewithjumps} to derivative with respect to $c$. The bound (iv) follows from (ii) and (iii). Since $A(Q(x))$ is smooth in $Q(x)$, the bounds (v), (vi), and (vii) come from Lemma \ref{solvewithjumps}. For the estimate (viii), we use \eqref{VQpm} in Lemma \ref{solvewithjumps} and \eqref{Vpiecewise} (with $\tilde{Q}$ in place of $V$) to get
+\begin{align*}
+Q_{i+1}^-(-X_i) &= Q^-(-X_i; \beta_{i+1}^-) + \tilde{Q}_{i+1}^-(-X_i) \\
+&= Q^-(-X_i; \beta_{i+1} ^-) + Q^+(X_i; \beta_i^+) + \mathcal{O}(e^{-2 \alpha X_i}) \\
+&= Q(-X_i) + Q(X_i) 
++ \mathcal{O}(e^{-\alpha X_i}(e^{-\alpha X_{i-1}}+e^{-\alpha X_i}+e^{-\alpha X_{i+1}}))
+\end{align*}
+Since the bounds \ref{solvewithjumps} also apply to derivatives with respect to $x$, 
+\begin{align*}
+(Q_{i+1}^-)'(-X_i) &= Q'(-X_i) + Q'(X_i) + \mathcal{O}(e^{-\alpha X_i}e^{-\alpha X_m})
+\end{align*}
+Similarly,
+\begin{align*}
+(Q_i^+)'(X_i)' &= Q'(-X_i) + Q'(X_i) + \mathcal{O}(e^{-\alpha X_i}e^{-\alpha X_m})
+\end{align*}
+To get the estimate (v), we substitute these into \cref{defDid} and use estimate (i) for $\partial_c Q_i^\pm(x)$.
+\end{proof}
+\end{lemma}
+
+In the next lemma, we give an estimate for terms of the form $e^{\pm \nu(\lambda) X_j}$, which will show up in our analysis. In order to get a uniform estimate, we will place an upper bound on the  magnitude of $\lambda$. Although we can perform our analysis without doing this, this additional condition allows the form of the block matrix in Theorem \cref{blockmatrixtheorem} to relatively simple. 
+
+\begin{lemma}\label{lemma:expnubound}
+Choose any $N > 0$ and $\delta > 0$. Then there exists a constant $R = R(N, \delta)$ such that if $|\lambda| < \delta$ and $|\lambda| < N/|\log r|$,
+\begin{align}\label{expnubound}
+\left|e^{\nu(\lambda)X_j} \right| \leq R && j = 0, \dots, n-1
+\end{align}
+\begin{proof}
+Using the expression \cref{Xj} from \cref{perexist},
+\begin{align}\label{Xjmag}
+|X_j(r; m_j, \theta)| &\leq \frac{1}{2 \alpha_0} |\log r| + \frac{1}{2\beta_0} |b_j(r; m_j, \theta)| + |L_0| && j = 0, \dots, n-1,
+\end{align}
+For all $r \leq r_*$ and $\theta$, the functions $b_j(r; m_j, \theta)$ are continuous in $r$ and satisfy bound $|b_j(r; m_j, \theta)| \leq (m_j + 1)\pi$. Let $m_{\max} = \max\{ m_0, \dots, m_{n-1}\}$. Then we have the uniform bound
+\[
+|b_j(r; m_j, \theta)| (\leq m_{\max} + 1)\pi
+\]
+Combining this with \cref{Xjmag}, we have the uniform bound
+\begin{align}\label{Xjmag2}
+\left|X_j(r; m_j, \theta)\right| &\leq \frac{1}{2 \alpha_0} |\log r| + \frac{\pi}{2\beta_0} (m_{\max} + 1) + |L_0| && j = 0, \dots, n-1,
+\end{align}
+For $\lambda$ with $|\lambda| \leq N/|\log r|$ and $|\lambda| < \delta$, it follows from \cref{nulambdalemma} that
+\begin{align*}
+|\nu(\lambda)| &\leq \frac{1}{c}|\lambda| + C |\lambda|^3 \\
+&\leq \frac{N}{c |\log r|} + C \frac{N}{|\log r|}\delta^2
+\end{align*}
+Combining this with \cref{Xjmag2}, we have
+\begin{align*}
+|\nu(\lambda) X_j(r; m_j, \theta)| &\leq  N \left( \frac{1}{c} + C \delta^2 \right)\left( \frac{1}{2 \alpha_0} + \frac{1}{|\log r|} \left( \frac{\pi}{2\beta_0} (m_{\max} + 1) + |L_0| \right) \right)
+\end{align*}
+which is bounded for all $r \leq r_*$. Thus we conclude that there exists a constant $R$ depending on $N$ and $\delta$ such that the uniform bound \cref{expnubound} holds.
+\end{proof}
+\end{lemma}
+
 \section{Exponential trichotomy}
 
 Since $A(\lambda)$ is a constant coefficient matrix, we know exactly how solutions $Z' = A(\lambda)Z$ evolve. Let $E^{u/s/c}(0)$ be the stable, unstable, and center eigenspaces of $A(0)$. $E^s(0)$ and $E^u(0)$ are $m$-dimensional, and $E^c(0)$ is 1-dimensional. For $|\lambda| < \delta$, let $E^{u/s/c}(\lambda)$ be the corresponding eigenspaces of $A(\lambda)$, which have the same dimensions as $E^{u/s/c}(0)$ since $\lambda$ is small. In particular, 
@@ -748,9 +728,9 @@ Z' = A(\lambda) Z
 and let $\Phi^{u/s/c}(x, y; \lambda) = \Phi(x, y; \lambda)P^{u/s/c}(\lambda)$ be the evolutions on the respective eigenspaces. For $|\lambda| < \delta$, $|\nu(\lambda)| < \eta$, and we have 
 \begin{equation}\label{Zevolbounds}
 \begin{aligned}
-|\Phi^s(x, y; \lambda)| &\leq C e^{-\alpha(x - y)} \\
-|\Phi^u(x, y; \lambda)| &\leq C e^{-\alpha(y - x)} \\
-|\Phi^c(x, y; \lambda)| &\leq C e^{\eta|x - y|} 
+|\Phi^s(x, y; \lambda)| &\leq C e^{-\tilde{\alpha}(x - y)} \\
+|\Phi^u(x, y; \lambda)| &\leq C e^{-\tilde{\alpha}(y - x)} \\
+|\Phi^c(x, y; \lambda)| &\leq C e^{\tilde{\alpha}|x - y|} 
 \end{aligned}
 \end{equation}
 This is an exponential trichotomy on $\R$. Since $E^c(\lambda)$ is one-dimensional, the center evolution $\Phi^c(x, y; \lambda)$ is given by
@@ -768,7 +748,7 @@ Let $\tilde{\Phi}(y, x)$ be the evolution operator for the variational equation.
 \tilde{\Phi}(y, x) &= P_-(y; 0) \Phi(y, x; 0) P_-(x; 0)^{-1} && x, y \leq 0
 \end{align*}
 
-Furthermore, the conjugation operator induces exponential trichotomies on $\R^\pm$ for the variational equation. The stable, unstable, and center projections for this trichotomy are given by
+Using the exponential trichotomy for the conjugated system, the conjugation operator induces exponential trichotomies on $\R^\pm$ for the variational equation. The stable, unstable, and center projections for this trichotomy are given by
 \begin{equation}\label{trichotomyprojunconj}
 \tilde{P}^{s/u/c}_\pm(x) = P_\pm(x; 0) P^{s/u/c}(0) P_\pm(x, 0)^{-1}
 \end{equation}
@@ -808,7 +788,7 @@ By \cref{varadjsolutions}, the constant solution $\Psi^c(x) = W_0$ is the unique
 \end{proof}
 \end{lemma}
 
-The next lemma proves a useful result about the adjoint of the trichotomy projections at $x = 0$.
+In the next lemma, we derive a useful result concerning the adjoint of the trichotomy projections at $x = 0$.
 
 \begin{lemma}\label{lemma:trichadjoint}
 For the trichotomy projections $\tilde{P}_+^u(0)$ and $\tilde{P}_-^s(0)$, we have
@@ -835,7 +815,7 @@ For all $U \in \R^{2m+1}$, we have the following.
 \begin{enumerate}[(i)]
 	\item $\langle W_0, P_\pm(x, 0) P^{s/u}(0) U \rangle = 0$
 	\item $\langle W_0, \Theta_\pm(x, 0) P^{s/u}(0) U \rangle = 0$
-	\item $\langle W_0(\lambda), \Theta_\pm(x, \lambda) P^{s/u}(\lambda) U \rangle  = \mathcal{O}(|\lambda|( e^{-\alpha_1 |x|} + |\lambda|)|U|)$
+	\item $\langle W_0(\lambda), \Theta_\pm(x, \lambda) P^{s/u}(\lambda) U \rangle  = \mathcal{O}(|\lambda|( e^{-\alpha |x|} + |\lambda|)|U|)$
 	\item $\langle W_0, P_\pm(0; \lambda) P^{s/u}(0) U \rangle = \mathcal{O}(|\lambda||U|)$
 	\item $P^c(0) G_i^\pm(x) U = \langle W_0, G_i^\pm(x) U\rangle = 0$
 \end{enumerate}
@@ -853,16 +833,14 @@ P^{s/u}(\lambda) = P^{s/u}(0) + \mathcal{O}(\lambda).
 \] 
 Using the Taylor series for $W_0(\lambda)$ from \cref{nulambdalemma} and the decay rates \cref{Thetadecay} for the conjugation operators,
 \begin{align*}
-\langle &W_0(\lambda), \Theta_\pm(x; \lambda) P^{s/u}(\lambda) U \rangle = \langle W_0 + \mathcal{O}(\overline{\lambda}), \Theta_\pm(x; 0) + \mathcal{O}(e^{-\alpha_1 |x|}|\lambda|))(P^{s/u}(0) + \mathcal{O}(\lambda)) U \rangle \\
+\langle &W_0(\lambda), \Theta_\pm(x; \lambda) P^{s/u}(\lambda) U \rangle = \langle W_0 + \mathcal{O}(\overline{\lambda}), \Theta_\pm(x; 0) + \mathcal{O}(e^{-\alpha |x|}|\lambda|))(P^{s/u}(0) + \mathcal{O}(\lambda)) U \rangle \\
 &= \langle W_0, (I + \Theta_\pm(x, 0))P^{s/u}(0)U \rangle +
 \mathcal{O}(|\lambda||U|) \\
 &= \langle W_0, P_\pm(x, 0)P^{s/u}(0)U \rangle +
-\mathcal{O}(|\lambda|( e^{-\alpha_1 |x|} + |\lambda|)|U|)\\
-&= \mathcal{O}(|\lambda|( e^{-\alpha_1 |x|} + |\lambda|)|U|) \\
+\mathcal{O}(|\lambda|( e^{-\alpha |x|} + |\lambda|)|U|)\\
+&= \mathcal{O}(|\lambda|( e^{-\alpha |x|} + |\lambda|)|U|) \\
 \end{align*}
-where for the last equality we used part (ii). 
-
-For (iv), we expand the conjugation operators in $\lambda$ to get
+where for the last equality we used part (ii). For (iv), we expand the conjugation operators in $\lambda$ to get
 \begin{align*}
 \langle W_0, &P_\pm(0; \lambda)P^{s/u}(\lambda) U \rangle =
 \langle W_0, (P_\pm(0; 0) + \mathcal{O}(|\lambda|))(P^{s/u}(0) + \mathcal{O}(|\lambda|)) U) \\
@@ -880,20 +858,20 @@ The constant-coefficient ODE
 \[
 Z(x)' = A(\lambda)Z(x)
 \]
-has a solution $Z(x) = V_0(\lambda)e^{\nu(\lambda)x}$. In the next lemma, we show that the ODE
+has a solution $Z(x) = V_0(\lambda)e^{\nu(\lambda)x}$. In this section, we show that the ODE
 \[
 V(x)' = A(Q(x); \lambda)V(x)
 \]
-has solutions on $\R^+$ and $\R^-$ which approach $V_0(\lambda)e^{\nu(\lambda)x}$ as $x \rightarrow \pm \infty$.
+has solutions $V^\pm(x; \lambda)$ on $\R^+$ and $\R^-$ which approach $V_0(\lambda)e^{\nu(\lambda)x}$ as $x \rightarrow \pm \infty$. We then characterize these solutions and their derivatives with respect to $\lambda$. First, we show that the solutions $V^\pm(x; \lambda)$ exist.
 
 \begin{lemma}\label{lemma:Vpm}
-For sufficiently small $|\lambda|$ and any $\alpha_1 < \alpha_0$, the equation $V' = A(Q_n(x); \lambda)V$ has solutions $V^\pm(x; \lambda)$ on $\R^\pm$ which are given by
+For sufficiently small $|\lambda|$, the equation $V' = A(Q_n(x); \lambda)V$ has solutions $V^\pm(x; \lambda)$ on $\R^\pm$ which are given by
 \begin{align}\label{Vpmlambda}
 V^\pm(x; \lambda) &= e^{\nu(\lambda)x}(V_0(\lambda) + V_1^\pm(x; \lambda)),
 \end{align}
 where
 \begin{equation}\label{Vpmdecay}
-|V_1^\pm(x; \lambda)| \leq C e^{-\alpha_1 |x|}
+|V_1^\pm(x; \lambda)| \leq C e^{-\alpha |x|}
 \end{equation}
 and we have the symmetry relationship
 \begin{equation}\label{Vpmsymmetry}
@@ -909,9 +887,7 @@ Then by the expansion \eqref{conjlemmaP} from the Conjugation Lemma,
 V^+(x; \lambda) &= e^{\nu(\lambda)x}(I + \Theta_+(x; \lambda))V_0(\lambda) \\
 &= e^{\nu(\lambda)x}( V_0(\lambda) + V_1^+(x; \lambda))
 \end{align*}
-where $V_1^+(x; \lambda) = \Theta_+(x; \lambda) V_0(\lambda)$. This is \eqref{Vpmlambda}, and the decay result \eqref{Vpmdecay} comes from the conjugation lemma.
-
-Similarly, we define 
+where $V_1^+(x; \lambda) = \Theta_+(x; \lambda) V_0(\lambda)$. This is \eqref{Vpmlambda}, and the decay result \eqref{Vpmdecay} comes from the conjugation lemma. Similarly, we define 
 \begin{align*}
 V^-(x; \lambda) &= P_-(x; \lambda) Z(x) \\
 &= RP_+(-x; -\lambda)R e^{\nu(\lambda)x} V_0(\lambda) \\
@@ -940,7 +916,7 @@ There exists a solution $V^c(x)$ to \eqref{vareq2} which is given by
 \[
 V^c(x) = V_0 + V^c_1(x)
 \]
-where $V^c_1(x) = \mathcal{O}(e^{-\alpha_1 |x|})$. In particular $V^c(x) \rightarrow V_0$ as $|x| \rightarrow \infty$. $V^c$ is symmetric with respect to the standard reversor operator $R$, i.e. $V^c(-x) = R V^c(x)$. Finally, $V^c(x) = V^\pm(x; 0)$, where $V^\pm(x; 0)$ is defined in \cref{lemma:Vpm}. 
+where $V^c_1(x) = \mathcal{O}(e^{-\alpha |x|})$. In particular $V^c(x) \rightarrow V_0$ as $|x| \rightarrow \infty$. $V^c$ is symmetric with respect to the standard reversor operator $R$, i.e. $V^c(-x) = R V^c(x)$. Finally, $V^c(x) = V^\pm(x; 0)$, where $V^\pm(x; 0)$ is defined in \cref{lemma:Vpm}. 
 
 \begin{proof}
 We employ the following dimension counting argument. Recall that $\dim W^{s/u}(0) = m$ and $\dim W^c(0) = 1$, thus $\dim W^{cs}(0) = m + 1$, and $\dim W^{cu}(0) = m + 1$. $\Psi(0) \perp T_{Q(0)}W^{cs}(0) + T_{Q(0)}W^{cu}(0)$, so $\dim T_{Q(0)}W^{cs}(0) + T_{Q(0)}W^{cu}(0) \leq 2m$. By counting dimensions, this implies that $\dim T_{Q(0)}W^{cs}(0) \cap T_{Q(0)}W^{cu}(0) = 2$. Since $\dim T_{Q(0)}W^s(0) \cap T_{Q(0)}W^s(0) = 1$ by Lemma \ref{nondegenlemma}, we conclude that there exists $Y_0 \in T_{Q(0)}W^{cs}(0) \cap T_{Q(0)}W^{cu}(0)$ which is linearly independent from $Q'(0)$, and $Y^0 \notin T_{Q(0)}W^s(0) \cap T_{Q(0)}W^s(0)$.
@@ -949,7 +925,7 @@ Using \cref{lemma:Vpm}, let
 \[
 V^\pm(x) = V^\pm(x; 0) = V_0 + V_1^\pm(x)
 \]
-where $V_1^\pm(x) = \mathcal{O}(e^{-\alpha_0 |x|})$. From the construction in \cref{lemma:Vpm},
+where $V_1^\pm(x) = \mathcal{O}(e^{-\alpha |x|})$. From the construction in \cref{lemma:Vpm},
 \[
 V^\pm(x) = P_\pm(x; 0) V_0,
 \]
@@ -1097,10 +1073,10 @@ Then it follows that
 \[
 \langle W_0, \left( B - \frac{1}{c}I \right) V^c(y) \rangle = v_0(y) - \frac{1}{c}
 \]
-By Lemma \cref{lemma:Vcexists}, $|V^c(y) - V_0|\leq Ce^{-\alpha_1 y}$. Since the first component of $V_0$ is $1/c$, $|v_0(y) - 1/c| \leq Ce^{-\alpha_1 |x|}$. Using this with the third integral of \cref{Yintegform}, 
+By Lemma \cref{lemma:Vcexists}, $|V^c(y) - V_0|\leq Ce^{-\alpha y}$. Since the first component of $V_0$ is $1/c$, $|v_0(y) - 1/c| \leq Ce^{-\alpha |x|}$. Using this with the third integral of \cref{Yintegform}, 
 \begin{align*}
 \left| \int_{-\infty}^x \langle W_0, \left( B - \frac{1}{c}I \right) V^c(y) \rangle dy \right| 
-\leq C \int_x^{\infty} e^{-\alpha_1 y} dy = C \frac{e^{-\alpha_1 x}}{\alpha_1}
+\leq C \int_x^{\infty} e^{-\alpha y} dy = C \frac{e^{-\alpha x}}{\alpha}
 \end{align*}
 which is finite for all $x$. Thus the expression \cref{Yintegform0} is valid. Evaluating this at $x = 0$, we have
 \begin{equation}\label{Yintegform0}
@@ -1137,7 +1113,7 @@ By \cref{lemma:trichadjoint}, $\tilde{P}_+^u(0)^*\Psi(0) = \Psi(0)$, thus we hav
 \end{proof}
 \end{lemma}
 
-As a corollary, we use the previous lemma to evaluate two important inner products.
+To conclude this section, as a corollary, we use the previous lemma to evaluate two important inner products.
 
 \begin{corollary}\label{lemma:VpmPsiIP}
 \begin{equation}\label{VpmIPs}
