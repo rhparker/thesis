@@ -379,11 +379,11 @@ First, we obtain a bound for $P^c(\lambda)\tilde{L}_3(\lambda)$. Since applying 
 \end{align*}
 since $W_0 R = R W_0 = W_0$. For the remaining terms, we use Lemma \ref{W0projlemma}(iii) and the bounds on the individual terms from Lemma \ref{Zinv1} to get
 \begin{align*}
-|P^c(\lambda)\tilde{L}_3&(\lambda)_i(a,b,\tilde{c},c,d)| \leq C |\lambda| e^{-\alpha_1 X_*}  \left( |a| + |b| + |c| + e^{-\alpha_1 X_*} |\lambda^2| |d| \right)
+|P^c(\lambda)\tilde{L}_3&(\lambda)_i(a,b,\tilde{c},c,d)| \leq C |\lambda| e^{-\alpha X_*}  \left( |a| + |b| + |c| + e^{-\alpha X_*} |\lambda^2| |d| \right)
 \end{align*}
 Finally, we substitute the bound $A_1$ for $|a|$, we obtain the uniform bound
 \begin{align}\label{PcL3bound}
-|P^c(\lambda)\tilde{L}_3&(\lambda)(a,b,\tilde{c},c,d)| \leq C |\lambda| e^{-\alpha_1 X_*}  \left( |b| + |c| + e^{-\alpha_1 X_*} |\lambda|^2 |d| + |D_i||d| \right)
+|P^c(\lambda)\tilde{L}_3&(\lambda)(a,b,\tilde{c},c,d)| \leq C |\lambda| e^{-\alpha X_*}  \left( |b| + |c| + e^{-\alpha X_*} |\lambda|^2 |d| + |D_i||d| \right)
 \end{align}
 
 Next, we use this with \cref{PcDid} to obtain a preliminary bound for $\tilde{c}_i$. Rearranging and expanding the conjugation operators, we have
@@ -391,24 +391,24 @@ Next, we use this with \cref{PcDid} to obtain a preliminary bound for $\tilde{c}
 2 \tilde{c}_i &=
 P^c(\lambda)D_i d - P^c(\lambda) (\Theta_+(X_i; \lambda) - \Theta_-(-X_i; \lambda))\tilde{c}_i - P^c(\lambda) \tilde{L}_3(\lambda)_i(a,b,\tilde{c},c,d),
 \end{align*}
-Since $P^c(0)D_i d = 0$, $|P^c(0)D_i d| \leq C |\lambda||e^{-\alpha_1 X_*}$. Substituting the bound for $A_1$ for $\tilde{c}_i$ and using the bound \cref{PcL3bound}, we have the uniform bound for $\tilde{c}_i$
+Since $P^c(0)D_i d = 0$, $|P^c(0)D_i d| \leq C |\lambda||e^{-\alpha X_*}$. Substituting the bound for $A_1$ for $\tilde{c}_i$ and using the bound \cref{PcL3bound}, we have the uniform bound for $\tilde{c}_i$
 \begin{equation}\label{tildecbound1}
-|\tilde{c}| \leq C |\lambda| e^{-\alpha_1 X_*}  \left( |b| + |c| + |d| \right)
+|\tilde{c}| \leq C |\lambda| e^{-\alpha X_*}  \left( |b| + |c| + |d| \right)
 \end{equation}
 
 Next, we evaluate $P^c(\lambda)D_i d$. Expanding $W_0(\lambda)$ in a Taylor series and noting that $\langle W_0, D_i d \rangle = 0$, we have 
 \begin{align*}
 P^c(&\lambda)D_i d = \langle W_0(\lambda), D_i d \rangle \\
 &= \langle W_0 + \overline{\lambda} W_0'(0) + \mathcal{O}(\overline{\lambda}^2), D_i d \rangle \\
-&= \langle W_0, D_i d \rangle + \lambda \langle W'(0), (Q'(X_i) + Q'(-X_i))(d_{i+1} - d_i ) \rangle + \mathcal{O}(e^{-\alpha_1 X_i} |\lambda|(e^{\alpha_1 X_i} + |\lambda|)|d|) \\
-&= \lambda \langle W_0(0), Q'(X_i) + Q'(-X_i) \rangle (d_{i+1} - d_i ) + \mathcal{O}(e^{-\alpha_1 X_i} |\lambda|(e^{\alpha_1 X_*} + |\lambda|)|d|) \\
-&= \lambda ( \langle W'(0), Q'(X_i) \rangle + \langle W'(0), -R Q'(X_i)\rangle )(d_{i+1} - d_i ) \rangle + \mathcal{O}(e^{-\alpha_1 X_i} |\lambda|(e^{\alpha_1 X_*} + |\lambda|)|d|)\\
-&= \lambda \left( \langle W'(0), Q'(X_i) \rangle + \langle -R W'(0), Q'(X_i)\rangle \right)(d_{i+1} - d_i ) \rangle + \mathcal{O}(e^{-\alpha_1 X_i} |\lambda|(e^{\alpha_1 X_*} + |\lambda|)|d|) \\
-&= 2 \lambda \langle W'(0), Q'(X_i) \rangle (d_{i+1} - d_i ) \rangle + \mathcal{O}(e^{-\alpha_1 X_*} |\lambda|(e^{\alpha_1 X_*} + |\lambda|)|d|)
+&= \langle W_0, D_i d \rangle + \lambda \langle W'(0), (Q'(X_i) + Q'(-X_i))(d_{i+1} - d_i ) \rangle + \mathcal{O}(e^{-\alpha X_i} |\lambda|(e^{\alpha X_i} + |\lambda|)|d|) \\
+&= \lambda \langle W_0(0), Q'(X_i) + Q'(-X_i) \rangle (d_{i+1} - d_i ) + \mathcal{O}(e^{-\alpha X_i} |\lambda|(e^{\alpha X_*} + |\lambda|)|d|) \\
+&= \lambda ( \langle W'(0), Q'(X_i) \rangle + \langle W'(0), -R Q'(X_i)\rangle )(d_{i+1} - d_i ) \rangle + \mathcal{O}(e^{-\alpha X_i} |\lambda|(e^{\alpha X_*} + |\lambda|)|d|)\\
+&= \lambda \left( \langle W'(0), Q'(X_i) \rangle + \langle -R W'(0), Q'(X_i)\rangle \right)(d_{i+1} - d_i ) \rangle + \mathcal{O}(e^{-\alpha X_i} |\lambda|(e^{\alpha X_*} + |\lambda|)|d|) \\
+&= 2 \lambda \langle W'(0), Q'(X_i) \rangle (d_{i+1} - d_i ) \rangle + \mathcal{O}(e^{-\alpha X_*} |\lambda|(e^{\alpha X_*} + |\lambda|)|d|)
 \end{align*}
 where in the last line we used the symmetry relation $W'(0) = -R \tilde{W}_0$ from Lemma \ref{nulambdalemma}. Using Lemma \ref{lemma:WprimeIP} to evaluate the inner product, this becomes
 \begin{equation}\label{PcDid2}
-P^c(\lambda)D_i d = 2 \lambda q(X_i) (d_{i+1} - d_i ) + \mathcal{O}(e^{-\alpha_1 X_*} |\lambda|(e^{\alpha_1 X_m} + |\lambda|)|d|)
+P^c(\lambda)D_i d = 2 \lambda q(X_i) (d_{i+1} - d_i ) + \mathcal{O}(e^{-\alpha X_*} |\lambda|(e^{\alpha X_m} + |\lambda|)|d|)
 \end{equation}
 
 Finally, we evaluate the term in \cref{PcDid} involving $\tilde{c}_i$. To do this, we write $\tilde{c}_i \in \C V_0(\lambda)$ as $\tilde{c}_i V_0(\lambda)$. Expanding the conjugation operators, $W_0(\lambda)$, and $V_0(\lambda)$ in a Taylor series about $\lambda = 0$, we have
@@ -423,7 +423,7 @@ since $\langle W_0, V^c(x) \rangle = \langle W_0, V_0 \rangle = 1$ for all $x$.
 
 Combining all of these, \cref{PcDid} becomes
 \begin{align*}
-2 \tilde{c_i} &= 2 \lambda q(X_i) (d_{i+1} - d_i ) + \mathcal{O}(e^{-\alpha_1 X_*} |\lambda|(e^{\alpha_1 X_*} + |\lambda|)|d|) + \mathcal{O}(|\lambda||\tilde{c}_i|) + P^c(\lambda) \tilde{L}_3(\lambda)_i(a,b,\tilde{c},c,d)
+2 \tilde{c_i} &= 2 \lambda q(X_i) (d_{i+1} - d_i ) + \mathcal{O}(e^{-\alpha X_*} |\lambda|(e^{\alpha X_*} + |\lambda|)|d|) + \mathcal{O}(|\lambda||\tilde{c}_i|) + P^c(\lambda) \tilde{L}_3(\lambda)_i(a,b,\tilde{c},c,d)
 \end{align*}
 Using the preliminary bound \cref{tildecbound1} for $\tilde{c}$ on the RHS and the bound for $\tilde{L}_3$, dividing by 2, and simplifying, we get
 \begin{align}\label{ciexp1}
@@ -778,7 +778,7 @@ The other integral is similar.
 P_-&(0; \lambda) \Phi^c(0, y; \lambda) P_-(y; \lambda) \tilde{H}_i^-(y) \\
 &= P_-(0; 0) \Phi^c(0, y; 0) P_-(y; 0) \tilde{H}_i^-(y) + \mathcal{O}(|e^{-\nu(\lambda) y}||\lambda||\tilde{H}_i^-(y)|) \\
 &= e^{-\nu(\lambda) y} P_+(0; 0) P_+(y; 0)^{-1}\tilde{H}_i^-(y) + \mathcal{O}(|e^{-\nu(\lambda) y}||\lambda||\tilde{H}_i^-(y)|)  \\
-&= e^{-\nu(\lambda) y} \tilde{H}_i^-(y) + \mathcal{O}(e^{-\eta y}|\lambda||\tilde{H}_i^-(y)|) 
+&= e^{-\nu(\lambda) y} \tilde{H}_i^-(y) + \mathcal{O}(|e^{-\nu(\lambda) y}||\lambda||\tilde{H}_i^-(y)|) 
 \end{align*}
 Since the last component of $\tilde{H}_i^\pm(y)$ is 0 for all $y$,
 \[
@@ -1023,39 +1023,20 @@ The other integral is similar. For the center integrals involving $\tilde{H}_i^\
 \end{align*}
 The other integral is similar.
 
-\item Finally, we evaluate the noncenter integral involving $Z$. To get the bound we want, as in \cite{Sandstede1998}, we will use a piecewise bound for $Z_i^\pm$. To obtain this, we substitute $Z_i^\pm$ into the RHS of the fixed point equations \cref{Zfpeq} and bound the integral as in \cref{L1boundlemma} to get
-\begin{align*}
-|Z_i^+(x)| \leq C \Big( e^{-\alpha X_*} \| Z_i^+\| + e^{-\tilde{\alpha}(X_i - x)}|a_i^+| + |b_i^+| + |c_i| + |\tilde{c}_i| + e^{-\alpha X_*}|\lambda|^2 |d| \Big)
-\end{align*}
-Substituting the bounds from Lemma \ref{Zinv2}, we have the piecewise bound
-\begin{align*}
-|Z_i^+(x)| \leq C \Big( e^{-\alpha(X_i - x)}|D_i||d| + |c_i| + (e^{-\alpha X_*} + |\lambda|)^2 |d| \Big)
-\end{align*}
-As on \cite[p. 448]{Sandstede1998}, since $DF(0)$ is hyperbolic, we can increase the decay constant $\alpha$ to $\alpha_0$ for $\Psi(x)$ to get the decay rate
+\item Finally, we evaluate the noncenter integral involving $Z$. As in \cite[p. 448]{Sandstede1998}, since $DF(0)$ is hyperbolic, we can increase the decay constant $\alpha$ to $\alpha_0$ for $\Psi(x)$ to get the decay rate
 \[
 |\Psi(x)| \leq C e^{-\alpha_0 |x|}
 \]
 The price to pay is that the constant $C$ is larger, which does not matter. Using this, the integral then becomes
 \begin{align*}
 &\left| \int_{X_i}^0 \langle \Psi(y), G_i^+(y) P_+(y; \lambda) Z_i^+(y) dy \rangle \right| \\
-&\qquad \leq C \left( \int_0^{X_i} e^{-\alpha_0 y} e^{-\alpha X_i} e^{-\alpha(X_i - y)}|Z_i^+(y)|dy + \| Z_i^+\|  \int_0^{X_i} e^{-2 \alpha X_{i-1}} e^{-\alpha y} \right) dy
+&\qquad \leq C \| Z_i^+\|  \left( \int_0^{X_i} e^{-\alpha_0 y} e^{-\alpha X_i} e^{-\alpha(X_i - y)} dy + \int_0^{X_i} e^{-2 \alpha X_{i-1}} e^{-\alpha y} \right) dy \\
+&\qquad =C \| Z_i^+\|  \left( e^{-2 \alpha X_i} \int_0^{X_i} e^{-(\alpha_0 - \alpha) y} dy + \int_0^{X_i} e^{-2 \alpha X_{i-1}} e^{-\alpha y} \right) dy \\
+&\qquad \leq C \| Z_i^+\| e^{-2 \alpha X_*}
 \end{align*}
-For the second integral, we use the uniform bound $Z_3$ to get 
+Using the bound $Z_3$, this becomes
 \begin{align*}
-\| Z_i^+\| \int_0^{X_i} e^{-2 \alpha_0 X_{i-1}} e^{-\alpha_0 y} dy &\leq C e^{-2 \alpha X_* }\left( |c_i| + (e^{-\alpha X_*} + |\lambda|)^2 |d| + |D_i||d| \right)
-\end{align*}
-For the first integral, we have
-\begin{align*}
-\int_0^{X_i} &e^{-\alpha_0 y} e^{-\alpha X_i} e^{-\alpha(X_i - y)}|Z_i^+(y)|dy \\
-&\leq e^{-2 \alpha X_i} \int_0^{X_i} e^{-(\alpha_0 - \alpha) y} e^{-\alpha_0 X_i} e^{-\alpha_0(X_i - y)}\left(  e^{-\alpha(X_i - y)}|D_i||d| + |c_i| + (e^{-\alpha_1 X_*} + |\lambda|)^2 |d| \right) dy \\
-&\leq C\left( e^{-\alpha_0 X_* }(e^{-\alpha_1 X_*} + |\lambda|)^2 |d| + |D_i||d| e^{-2 \alpha_0 X^*} \int_0^{X_i} e^{-\alpha(X_i - y)} dy +  |c_i| \int_0^{X_i} e^{-\alpha_0 y} e^{-\alpha_0 X_i} e^{-\alpha_0(X_i - y)} dy \right) \\
-&\leq C\left( e^{-\alpha_0 X_* }(e^{-\alpha_1 X_*} + |\lambda|)^2 |d| + |c_i| e^{-(\alpha_0 + \alpha_1) X_* } \int_0^{X_i} e^{-(\alpha_0 - \alpha_1) y} dy  \right) \\
-&\leq C\left( e^{-2 \alpha_1 X_* } |c_i| + e^{-\alpha_1 X_* }(e^{-\alpha_1 X_*} + |\lambda|)^2 |d| \right)
-\end{align*}
-Combining these, we have
-\begin{align*}
-&\left| \int_{X_i}^0 \langle \Psi(y), G_i^+(y) P_+(y; \lambda) Z_i^+(y) dy \rangle \right| \\
-&\qquad \leq C \left( e^{-2 \alpha_1 X_* } |c_i| + e^{-\alpha_1 X_* }(e^{-\alpha_1 X_*} + |\lambda|)^2 |d| \right)
+\left| \int_{X_i}^0 \langle \Psi(y), G_i^+(y) P_+(y; \lambda) Z_i^+(y) dy \rangle \right|\leq C \left( e^{-2 \alpha X_* } |c_i| + e^{-\alpha X_* }(e^{-\alpha X_*} + |\lambda|)^2 |d| \right)
 \end{align*}
 The other integral is similar.
 \end{enumerate}
@@ -1072,7 +1053,7 @@ M = \int_{-\infty}^\infty \langle \Psi(y), H(y) \rangle dy,
 \]
 $M^c$ is the center Melnikov integral defined in \cref{lemma:VderivIPs}, and the remainder term bound
 \begin{equation}\label{noncenterR}
-|R(\lambda)(c, d)| \leq C \left( (e^{-\alpha_1 X_*} + |\lambda|)^2 |c| + (e^{-\alpha_1 X_*} + |\lambda|)^3 |d| \right)
+|R(\lambda)(c, d)| \leq C \left( (e^{-\alpha X_*} + |\lambda|)^2 |c| + (e^{-\alpha X_*} + |\lambda|)^3 |d| \right)
 \end{equation}
 
 As in Lemma \ref{jumpcenteradj}, we will write these jump expressions in matrix form. The leading order terms involving $c$ are given by $-\lambda M^c K^+(\lambda)$, where $K^+(\lambda)$ is the same matrix ass$K(\lambda)$ in \ref{jumpcenteradj}, except all terms are positive, i.e.
@@ -1121,7 +1102,7 @@ $M$ is the higher order Melnikov integral
 M = \int_{-\infty}^\infty \langle \Psi(y), H(y) \rangle dy
 \]
 
-Let $C_2$ and $D_2$ be the matrices we get from the remainder terms involving $c$ and $d$. Since $e^{-\alpha_1 X_*} = C r^{1/2}$, $C_2$ and $D_2$ have the bounds in \cref{adjjumprem}.
+Let $C_2$ and $D_2$ be the matrices we get from the remainder terms involving $c$ and $d$. Since $e^{-\alpha X_*} = C r^{1/2}$, $C_2$ and $D_2$ have the bounds in \cref{adjjumprem}.
 \end{proof}
 \end{lemma}
 
@@ -1142,30 +1123,30 @@ For $r \leq r_*$, the terms $a_j$ in the block matrix equation \cref{blockmatrix
 a_j = r \tilde{a}^j(r), where
 \]
 \begin{equation}\label{ajparam}
-\tilde{a}_j(r) = -s_0 e^{\alpha_0 \phi/\beta_0} b_j \left( \beta \cos\left(-\rho \log b_j \right) - \alpha \sin \left(-\rho \log b_j \right) \right) + \mathcal{O}(r^{\gamma/2\alpha_0})
+\tilde{a}_j(r) = -p_0 e^{\alpha \phi/\beta_0} b_j \left( \beta \cos\left(-\rho \log b_j \right) - \alpha \sin \left(-\rho \log b_j \right) \right) + \mathcal{O}(r^{\gamma/2\alpha}),
 \end{equation}
-and
+$p_0 > 0$, and
 \begin{equation}\label{bj2}
 b_j = e^{-2 \alpha (X_j - X^*)}
 \end{equation}
 
 \begin{proof}
-From \cite[Lemma 6.1]{Sandstede1998},
+Using \cite[Lemma 6.1]{Sandstede1998} and making the same modifications as we did in Lemma \ref{IPform},
 \begin{align*}\label{IPpsiQprime}
 \langle \Psi(-x), Q'(x) \rangle
-&= s_0 e^{-2 \alpha_0 x}\left( \beta_0 \cos(2 \beta_0 x + \phi) - \alpha_0 \sin(2 \beta_0 x + \phi)\right) + \mathcal{O}(e^{-(2 \alpha_0 + \gamma) x}
+&= p_0 e^{-2 \alpha x}\left( \beta_0 \cos(2 \beta_0 x + \phi) - \alpha \sin(2 \beta_0 x + \phi)\right) + \mathcal{O}(e^{-(2 \alpha + \gamma) x}
 \end{align*}
-where $s_0 > 0$ and $\gamma$ are the same as in Lemma \ref{IPform}. From the proof of Lemma \ref{jumpadj}, $\langle \Psi(X_j), Q'(-X_j) \rangle = - \langle \Psi(-X_j), Q'(X_j) \rangle$. Using equation \cref{Xjscale} for $X_j$, we have
+where $p_0 > 0$ and $\gamma$ are the same as in Lemma \ref{IPform}. From the proof of Lemma \ref{jumpadj}, $\langle \Psi(X_j), Q'(-X_j) \rangle = - \langle \Psi(-X_j), Q'(X_j) \rangle$. Using equation \cref{Xjscale} for $X_j$, we have
 \begin{align*}
 a_j(r) &= \langle \Psi(X_j), Q'(-X_j) \rangle = -\Psi(-X_j), Q'(X_j) \rangle \\
-&= -s_0 e^{-2 \alpha_0 X_j}\left( \beta_0 \cos(2 \beta_0 X_j + \phi) - \alpha_0 \sin(2 \beta_0 X_j + \phi)\right) + \mathcal{O}(e^{-(2 \alpha_0 + \gamma_0) X_j}) \\
-&= -s_0 e^{\alpha_0 \phi/\beta_0} r b_j \left( \beta_0 \cos\left( -\frac{\beta_0}{\alpha_0} \log(b_j r) \right) - \alpha_0 \sin \left( -\frac{\beta_0}{\alpha_0} \log(b_j r) \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha_0} b_j^{1 + \gamma/2\alpha_0}) \\
-&= -s_0 e^{\alpha_0 \phi/\beta_0} r b_j \left( \beta_0 \cos\left( -\rho \log(b_j r) \right) - \alpha_0 \sin \left( -\rho \log(b_j r) \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha_0})
+&= -s_0 e^{-2 \alpha X_j}\left( \beta_0 \cos(2 \beta_0 X_j + \phi) - \alpha \sin(2 \beta_0 X_j + \phi)\right) + \mathcal{O}(e^{-(2 \alpha + \gamma_0) X_j}) \\
+&= -s_0 e^{\alpha \phi/\beta_0} r b_j \left( \beta_0 \cos\left( -\frac{\beta_0}{\alpha} \log(b_j r) \right) - \alpha \sin \left( -\frac{\beta_0}{\alpha} \log(b_j r) \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha} b_j^{1 + \gamma/2\alpha}) \\
+&= -s_0 e^{\alpha \phi/\beta_0} r b_j \left( \beta_0 \cos\left( -\rho \log(b_j r) \right) - \alpha \sin \left( -\rho \log(b_j r) \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha})
 \end{align*}
 since $b_j \in (0, 1]$. Since $r \in \mathcal{R}$, $r = \exp\left(-\frac{2 m \pi}{\rho}\right)$ for some nonnegative integer $m$, this becomes 
 \begin{align*}
-a_j(r) &= -s_0 e^{\alpha_0 \phi/\beta_0} r b_j \left( \beta_0 \cos\left( 2 m \pi -\rho \log b_j \right) - \alpha_0 \sin \left( 2 m \pi -\rho \log b_j \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha_0}) \\
-&= -s_0 e^{\alpha_0 \phi/\beta_0} r b_j \left( \beta_0 \cos\left(-\rho \log b_j \right) - \alpha_0 \sin \left(-\rho \log b_j \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha_0})
+a_j(r) &= -s_0 e^{\alpha \phi/\beta_0} r b_j \left( \beta_0 \cos\left( 2 m \pi -\rho \log b_j \right) - \alpha \sin \left( 2 m \pi -\rho \log b_j \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha}) \\
+&= -s_0 e^{\alpha \phi/\beta_0} r b_j \left( \beta_0 \cos\left(-\rho \log b_j \right) - \alpha \sin \left(-\rho \log b_j \right) \right) + \mathcal{O}(r^{1+\gamma/2\alpha})
 \end{align*}
 The result follows from letting $a_j(r) = r \tilde{a}_j(r)$.
 \end{proof}
@@ -1230,7 +1211,7 @@ Since the matrix $DF(0)$ is hyperbolic, solutions to \cref{Lsystem1} can be foun
 \]
 are satisfied, where $\tilde{\Psi}(x) = \nabla H(Q(x))$ is the unique bounded solution to the adjoint variational equation \cref{adjvareq1} and the remainder term has bound
 \[
-|R(\lambda)d| \leq C \left( e^{-3 \alpha_1 X_*} + |\lambda|(e^{-\alpha_1 X_*} + |\lambda| ) \right)
+|R(\lambda)d| \leq C \left( e^{-3 \alpha X_*} + |\lambda|(e^{-\alpha X_*} + |\lambda| ) \right)
 \]
 This is analogous to \cite[(3.56)]{Sandstede1998}. Since 
 \begin{equation*}
