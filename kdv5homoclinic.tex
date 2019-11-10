@@ -50,7 +50,7 @@ X_j(r; m_j) &= \frac{1}{2 \alpha_0} |\log r| + \frac{1}{2\beta_0} t_j(r; m_j) + 
 \end{align}
 The $t_j(r; m_j): \mathcal{R} \rightarrow \R$ are smooth functions with $t_j(0; m_j) = m_j \pi$, and $L_0$ is a constant.
 
-\item There are exactly $n$ real eigenvalues $\lambda_j$ of $\calE''(q_n)$ with $|\lambda_j| < \delta$. These are as follows.
+\item There are exactly $n$ real eigenvalues $\mu_j$ of $\calE''(q_n)$ with $|\mu_j| < \delta$. These are as follows.
 \begin{enumerate}
 	\item There are $n_{\text{odd}}$ negative eigenvalues, where $n_{\text{odd}}$ is the number of $m_j$ which are odd.
 	\item There are $n_{\text{even}}$ positive eigenvalues, where $n_{\text{even}}$ is the number of $m_j$ which are even.
@@ -74,18 +74,43 @@ which hold in addition for derivatives of $Q$.
 \begin{proof}
 Parts (i)-(iii) follow from \cite{SandstedeStrut}, where $L_j(r)$ in \cite{SandstedeStrut} corresponds to $2X_j(r)$ here. \cref{hypeqhyp} and \cref{Hhyp} are equivalent to Hypotheses 3.1 and 3.3 in \cite{SandstedeStrut}. The eigenvalue problem $\calE''(q_n)v = \lambda v$ can be written in a first order system as
 \[
-V'(x) = (DF(Q_n(x)) + \lambda B )V(x)
+V'(x) = (DF(Q_n(x)) + \mu B )V(x)
 \]
 where $B$ is a $2m\times 2m$ matrix of the same form as \cref{DefB}. The relevant Melnikov integral is
 \[
-M = \int_{-\infty}^\infty \langle \Psi(x), B \frac{d}{dx} Q(x) \rangle  dx = \int_{-\infty}^\infty (\partial_x q(x))^2 dx > 0
+M = \int_{-\infty}^\infty \langle \Psi(x), B \frac{d}{dx} Q(x) \rangle  dx = \int_{-\infty}^\infty (\partial_x q(x))^2 dx > 0m
 \]
-since the last component of $\Psi(x)$ is $\partial_x (x)$ by \cref{psiform}. Thus Hypotheses 3.5 in \cite{SandstedeStrut} is satisfied. Since the hypotheses in \cite{SandstedeStrut} are satisfied, the result follows from \cite[Theorem 3.6]{SandstedeStrut}. Since $\calE''(q_n)$ is self-adjoint, its eigenvalues are real. Part (iv) follows from \cite[Theorem 2]{Sandstede1998}, which follow from \cite{Sandstede1993}.
+since the last component of $\Psi(x)$ is $\partial_x q(x)$ by \cref{psiform}. Thus Hypotheses 3.5 in \cite{SandstedeStrut} is satisfied. Since the hypotheses in \cite{SandstedeStrut} are satisfied, the result follows from \cite[Theorem 3.6]{SandstedeStrut}. Since $\calE''(q_n)$ is self-adjoint, its eigenvalues are real. Part (iv) follows from \cite[Theorem 2]{Sandstede1998}, which follow from \cite{Sandstede1993}.
 \end{proof}
 \end{theorem}
 
+\begin{remark}\label{remark:Hessianeigs}
+It follows from \cite{Sandstede1998} that the $n$eigenvalues $\{ \mu_1, \dots, \mu_{n-1}, 0 \}$ of $\calE''(q_n)$ are the solutions to 
+\[
+\det(A - \mu M_1 I + R(\mu)) = 0
+\]
+where $A$ is the $n \times n$ symmetric, tridiagonal matrix
+\begin{equation}\label{nhomA}
+A = \begin{pmatrix}
+-a_1 & a_1 \\
+a_1 & -a_2 - a_1 & a_2 \\
+& a_2 & -a_3 - a_2 & a_3 \\
+&& \ddots & \ddots \\
+& & & a_{n-1} & -a_{n-1} 
+\end{pmatrix}
+\end{equation}
+with $a_i = \langle \Psi(X_i), Q'(-X_i) \rangle$, $M_1$ is the Melnikov integral
+\begin{equation}
+M_1 = \int_{-\infty}^\infty \left( \partial_x q(x) \right)^2 dx > 0,
+\end{equation}\label{nhomM1}
+and the remainder term $R(\mu)$ is higher order. If $\{\ell_1, \dots, \ell_{n-1}, 0\}$ are the eigenvalues of $A$, then the eigenvalues of $\calE''(q_n)$ are given by
+\begin{align*}
+\mu_j = \frac{\ell_j}{M_1} + \mathcal{O}(r^{3/2})
+\end{align*}
+\end{remark}
+
 \begin{remark}
-Although we will not make use of the eigenvalues of $\calE''(q_n(x))$ directly, the signs of these eigenvalues correspond to the parity of the integers $m_j$, which corresponds to the interaction eigenvalue pattern (see, for example, \cref{fig:KdV5multipulsespectra} \cref{fig:KdV5multipulsespectra}, and \cref{corr:eiglocR}). Numerically, it may be easier to determine the eigenvalues of $\calE''(q_n(x))$ than the integers $m_j$. 
+The signs of the eigenvalues $\mu_j$ of $\calE''(q_n)$ correspond to the parity of the integers $m_j$, which corresponds to the interaction eigenvalue pattern (see, for example, \cref{fig:KdV5multipulsespectra} \cref{fig:KdV5multipulsespectra}, and \cref{corr:eiglocR}). Numerically, it may be easier to determine the eigenvalues of $\calE''(q_n(x))$ than the integers $m_j$.
 \end{remark}
 
 \section{Spectrum of multi-pulses}\label{sec:multispecR}
@@ -221,8 +246,15 @@ These are reversed if $M < 0$
 \end{enumerate}
 \end{corollary}
 
+\begin{remark}\label{remark:eigrelation}
+It follows from \cref{remark:Hessianeigs} that the interaction eigenvalues $\{ \lambda_1\pm, \dots, \lambda_{n-1}\pm \}$ and the eigenvalues $\{ \mu_1, \dots, \mu_{n-1} \}$ of $\calE''(q_n)$ are related by
+\begin{align}\label{eigrelation}
+\lambda_j^\pm &= \pm \sqrt{ \frac{M_1}{M_c} \ell_j} && j = 1, \dots, n-1
+\end{align}
+\end{remark}
+
 \begin{remark}
-Since the problem is no longer Hamiltonian when posed in an exponentially weigted space, in the case where all the $m_j$ are odd, we cannot use Hamiltonian symmetry to conclude that the interaction eigenvalues are actually on the imaginary axis.
+Since the problem is no longer Hamiltonian when posed in an exponentially weighted space, in the case where all the $m_j$ are odd, we cannot use Hamiltonian symmetry to conclude that the interaction eigenvalues are actually on the imaginary axis.
 \end{remark}
 
 \section{Proof of Theorem \ref{expwtstabtheorem}}
