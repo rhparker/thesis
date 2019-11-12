@@ -28,7 +28,7 @@ Q_i^-(x) &= Q^-(x; \beta_i^-) + \tilde{Q}_i^-(x) && x \in [-X_{i-1}, 0] \\
 Q_i^+(x) &= Q^+(x; \beta_i^+) + \tilde{Q}_i^+(x) && x \in [0, X_i]
 \end{aligned}
 \end{equation}
-where $Q_i^-: [-X_{i-1}, 0] \rightarrow \R$ and $Q_i^+: [0, X_i]$ and the pieces are joined together end-to-end in a loop. (Note that we are using $\tilde{Q}_i^-(x)$ in place of $V_i^\pm(x) in Lemma \ref{solvewithjumps}$).
+where $Q_i^-: [-X_{i-1}, 0] \rightarrow \R$ and $Q_i^+: [0, X_i]$ and the pieces are joined together end-to-end in a loop. (Note that we are using $\tilde{Q}_i^-(x)$ in place of $V_i^\pm(x)$ in Lemma \ref{solvewithjumps}).
 
 To exploit the relations \eqref{PDEeigkernel}, we take the following piecewise ansatz for the eigenfunction $V(x)$
 \begin{equation}\label{Vpiecewise}
@@ -953,22 +953,22 @@ In the next lemma, we characterize the derivative of $V^\pm(x; \lambda)$ with re
 
 \begin{lemma}\label{lemma:Vpmderiv}
 The derivative $\partial_\lambda V^+(x; 0)$ satisfies the equation
-\begin{equation}\label{Vderivsolves}
-Y'(x) = A(Q(x)) Y(x) + B V^c(x).
-\end{equation}
+\begin{align}\label{Vderivsolves}
+Y'(x) &= A(Q(x)) Y(x) + B V^c(x) && x \in \R^+,
+\end{align}
 and $\partial_\lambda V^-(x; 0) = -R \partial_\lambda V^+(-x, 0)$. Let 
 \begin{equation}\label{deftildeV}
 V^+(x; \lambda) = e^{\nu(\lambda)x}\tilde{V}^+(x; \lambda).
 \end{equation}
-Then we have the relationship
+Then $\partial_\lambda \tilde{V}(x,0) \rightarrow V_0'(0)$ as $x \rightarrow \infty$ and
 \begin{equation}\label{VtildeVderiv}
 \partial_\lambda V^+(x; 0)
 = \partial_\lambda \tilde{V}^+(x; 0) + \frac{1}{c} x V^c(x) 
 \end{equation}
-Finally, $\partial_\lambda \tilde{V}^+(x; 0)$ satisfies the equation
-\begin{equation}\label{tildeVderivsolves}
-Y'(x) = A(Q(x)) Y(x) + \left( B - \frac{1}{c}I \right) V^c(x).
-\end{equation}
+In addition, $\partial_\lambda \tilde{V}^+(x; 0)$ satisfies the equation
+\begin{align}\label{tildeVderivsolves}
+Y'(x) &= A(Q(x)) Y(x) + \left( B - \frac{1}{c}I \right) V^c(x) && x \in \R^+.
+\end{align}
 and $\partial_\lambda \tilde{V}^-(x; 0) = -R \partial_\lambda \tilde{V}^+(-x, 0)$.
 
 \begin{proof}
@@ -997,15 +997,12 @@ At $\lambda = 0$, this is
 &= -R \partial_\lambda V^+(-x, 0)
 \end{align*}
 
-Using \cref{deftildeV} and taking the derivative with respect to $\lambda$,
+From \cref{deftildeV} and \cref{Vpmlambda}, $\tilde{V}^+(x, \lambda) \rightarrow V_0(\lambda)$ as $x \rightarrow \infty$, thus $\partial_\lambda \tilde{V}^+(x, 0) \rightarrow V_0'(0)$ as $x \rightarrow \infty$. Using \cref{deftildeV} and taking the derivative with respect to $\lambda$,
 \begin{align*}
 \partial_\lambda V^+(x; \lambda)
-&= e^{\nu(\lambda)x} \partial_\lambda \tilde{V}^+(x; \lambda) + \nu'(\lambda)x \tilde{V}^+(x; \lambda) \\
-&= e^{\nu(\lambda)x} \partial_\lambda \tilde{V}^+(x; \lambda) + \frac{1}{c} x \tilde{V}^+(x; \lambda) 
+&= e^{\nu(\lambda)x} \partial_\lambda \tilde{V}^+(x; \lambda) + \nu'(\lambda)x \tilde{V}^+(x; \lambda)
 \end{align*}
-Taking $\lambda = 0$ and noting that $\tilde{V}^+(x; 0) = V^c(x)$, we obtain \cref{VtildeVderiv}.
-
-Finally, plug in \cref{deftildeV} to \cref{Vplussolves1} to get
+Taking $\lambda = 0$ and noting that $\tilde{V}^+(x; 0) = V^c(x)$ and $\nu'(0) = 1/c$, we obtain \cref{VtildeVderiv}. Finally, plug in \cref{deftildeV} to \cref{Vplussolves1} to get
 \begin{align*}
 e^{\nu(\lambda)x} [\tilde{V}^+(x; \lambda)]' + \nu(\lambda) e^{\nu(\lambda)x} \tilde{V}^+(x; \lambda) &= 
 A(Q(x); \lambda) e^{\nu(\lambda)x} \tilde{V}^+(x; \lambda)
@@ -1035,15 +1032,26 @@ In the next lemma, we evaluate two important inner products involving $\partial_
 We have the following inner products involving $\partial_\lambda \tilde{V}^+(0; 0)$. 
 \begin{enumerate}[(i)]
 \item
-\begin{align*}
+$
+\begin{aligned}[t]
 \langle W_0, \partial_\lambda \tilde{V}^+(0; 0) \rangle
-= -\int_0^{\infty} \left(v_0(y) - \frac{1}{c}\right) dy
-\end{align*}
+= -\frac{1}{2} \tilde{M}
+\end{aligned}
+$
+where
+\begin{align}\label{defMtilde}
+\tilde{M} = \int_{-\infty}^{\infty} \left(v^c(y) - \frac{1}{c}\right) dy,
+\end{align}
 which is finite.
-\item $\langle \Psi(0), \partial_\lambda \tilde{V}^+(0; 0) \rangle = - M^c$,
-where $M^c$ is the ``center'' Melnikov-type integral
+\item 
+$
+\begin{aligned}
+\langle \Psi(0), \partial_\lambda \tilde{V}^+(0; 0) \rangle = -\frac{1}{2} M^c
+\end{aligned}
+$,
+where $M^c$ is the center Melnikov-type integral
 \begin{equation}\label{defMc}
-M^c = \int_0^\infty q(y) v^c(y) dy
+M^c = \int_{-\infty}^\infty q(y) v^c(y) dy
 \end{equation}
 with $q(y)$ the first component of $Q(y)$ and $v^c(y)$ the first component of $V^c(y)$.
 
@@ -1057,7 +1065,7 @@ Y(x) &= \tilde{\Phi}^s_+(x,0)\tilde{P}^s_+(0) Y(0)
 &+ \int_{\infty}^x \tilde{\Phi}^u(x,y)\left( B - \frac{1}{c}I \right) V^c(y) dy + \int_{\infty}^x \tilde{\Phi}^c(x,y)\left( B - \frac{1}{c}I \right) V^c(y) dy 
 \end{aligned}
 \end{equation*}
-Using \cref{centerprojlemma}, this becomes
+Since $Y(x) = \partial_\lambda \tilde{V}^+(x, 0) \rightarrow V_0'(0)$ as $x \rightarrow \infty$ and $\langle W_0, V_0'(0) \rangle = 0$, we can integrate in from infinity on the center subspace. Using \cref{centerprojlemma}, this becomes
 \begin{equation}\label{Yintegform}
 \begin{aligned}
 Y(x) &= \tilde{\Phi}^s_+(x,0)\tilde{P}^s_+(0) Y(0) 
@@ -1090,9 +1098,9 @@ For the inner product with $\Psi^c(0) = W_0$, only the center integral term surv
 \begin{align*}
 \langle W_0, Y(0) \rangle
 &= \langle W_0, V^c(0) \rangle \int_{\infty}^0 \left(v_0(y) - \frac{1}{c}\right) dy 
-= -\int_0^{\infty} \left(v_0(y) - \frac{1}{c}\right) dy 
+= -\int_0^{\infty} \left(v^c(y) - \frac{1}{c}\right) dy 
 \end{align*}
-which is finite. For the inner product with $\Psi(0)$, only the first integral term survives. First, we note that 
+which is finite. Since $v^c(y)$ is an even function, we obtain the result in part (i). For the inner product with $\Psi(0)$, only the first integral term survives. First, we note that 
 \begin{align*}
 \tilde{\Phi}^u(0,y) V^c(y) = \tilde{P}_+^u(y) \tilde{P}_+^c(y)V^c(y) = 0
 \end{align*}
@@ -1102,7 +1110,6 @@ Thus for the inner product with $\Psi(0)$ we have
 &= \int_{\infty}^0 \langle \Psi(0), \tilde{P}_+^u(0) \tilde{\Phi}(0,y) B V^c(y) \rangle dy \\
 &= \int_{\infty}^0 \langle \tilde{P}_+^u(0)^*\Psi(0), \tilde{\Phi}(0,y) B V^c(y) \rangle dy \\
 \end{align*}
-
 By \cref{lemma:trichadjoint}, $\tilde{P}_+^u(0)^*\Psi(0) = \Psi(0)$, thus we have
 \begin{align*}
 \langle \Psi(0), Y(0) \rangle
@@ -1110,6 +1117,7 @@ By \cref{lemma:trichadjoint}, $\tilde{P}_+^u(0)^*\Psi(0) = \Psi(0)$, thus we hav
 &= -\int_0^\infty \langle \Psi(y), B V^c(y) \rangle dy \\
 &=-\int_0^\infty q(y) v^c(y) dy
 \end{align*}
+Since $v^c(y)$ and $q(y)$ are both even functions, we obtain the result in part (ii).
 \end{proof}
 \end{lemma}
 
@@ -1118,39 +1126,31 @@ To conclude this section, as a corollary, we use the previous lemma to evaluate 
 \begin{corollary}\label{lemma:VpmPsiIP}
 \begin{equation}\label{VpmIPs}
 \begin{aligned}
-\langle \Psi^c(0), V^\pm(0; \lambda) \rangle &= 1 + \mathcal{O}(|\lambda|) \\
-\langle \Psi(0), V^+(0; \lambda) \rangle &= -M^c \lambda + \mathcal{O}(|\lambda|^2) \\
-\langle \Psi(0), V^-(0; \lambda) \rangle &= M^c \lambda + \mathcal{O}(|\lambda|^2)
+\langle \Psi^c(0), V^\pm(0; \lambda) \rangle &= 1 \mp \frac{1}{2} \tilde{M} + \mathcal{O}(|\lambda|^2) \\
+\langle \Psi(0), V^\pm(0; \lambda) \rangle &= \mp \frac{1}{2} M^c \lambda + \mathcal{O}(|\lambda|^2) .
 \end{aligned}
 \end{equation}
-where $p_1 = \langle \Psi(0), \partial_\lambda V^+(0; 0) \rangle$.
 \begin{proof}
 Using Lemma \ref{centersolutionslemma} and Lemma \ref{varadjsolutions}, we can expand $V^+(0; \lambda)$ in a Taylor series about $\lambda = 0$ to get
 \begin{align*}
-V^+(0; \lambda) &= V^+(0; 0) + \partial_\lambda V^+(0; 0) + \mathcal{O}(|\lambda|^2) \\
-&= V^c(0) + \partial_\lambda V^+(0; 0) \lambda + \mathcal{O}(|\lambda|^2) 
+V^+(0; \lambda) &= V^c(0) + \partial_\lambda V^+(0; 0) \lambda + \mathcal{O}(|\lambda|^2) \\
+&= V^c(0) + \partial_\lambda \tilde{V}^+(0; 0) \lambda + \mathcal{O}(|\lambda|^2), 
 \end{align*}
-For the inner product with $\Psi^c(0)$,
+since $\partial_\lambda V^+(0; 0) = \partial_\lambda \tilde{V}^+(0; 0)$. For the inner product with $\Psi^c(0)$, we use \cref{lemma:VderivIPs} to get
 \begin{align*}
-\langle \Psi^c(0), V^\pm(0; \lambda) \rangle &= 
-\langle \Psi^c(0), V^c(0) \rangle + \mathcal{O}(|\lambda|) \\
-&= 1 + \mathcal{O}(|\lambda|)
+\langle \Psi^c(0), V^+(0; \lambda) \rangle &= 
+\langle W_0, V^c(0) \rangle + \langle W_0, \partial_\lambda \tilde{V}^+(0; 0) \rangle + \mathcal{O}(|\lambda|^2) \\
+&= 1 - \frac{1}{2} \tilde{M}\lambda + \mathcal{O}(|\lambda|^2)
 \end{align*}
+The result for $\langle \Psi^c(0), V^-(0; \lambda) \rangle$ follows from the symmetry relations $\partial_\lambda \tilde{V}^-(0; 0)= -R \partial_\lambda \tilde{V}^+(0; 0)$ and $W_0 = R W_0$. 
+
 For the inner product $\langle \Psi(0), V^+(0; \lambda) \rangle$, we use \cref{lemma:VderivIPs} and \cref{VtildeVderiv} to get
 \begin{align*}
 \langle \Psi(0), V^+(0; \lambda) \rangle 
-&= \langle \Psi(0), V^c(0) \rangle + \langle \Psi(0), \partial_\lambda V^+(0; 0) \lambda \rangle + \mathcal{O}(|\lambda|^2) \\
-&= (\partial_\lambda \tilde{V}^+(0; 0)) \lambda + \mathcal{O}(|\lambda|^2) \\
-&= -M^c \lambda + \mathcal{O}(|\lambda|^2)
+&= \langle \Psi(0), V^c(0) \rangle + \langle \Psi(0), \partial_\lambda \tilde{V}^+(0; 0) \rangle \lambda  + \mathcal{O}(|\lambda|^2) \\
+&= -\frac{1}{2} M^c \lambda + \mathcal{O}(|\lambda|^2)
 \end{align*}
-For the inner product $\langle \Psi(0), V^-(0; \lambda) \rangle$, using \cref{lemma:Vpm} and \cref{lemma:VderivIPs},
-\begin{align*}
-\langle \Psi(0), V^-(0; \lambda) \rangle &= 
-\langle \Psi(0), R V^+(0; -\lambda) \rangle \\
-&= \langle R \Psi(0), -\partial_\lambda V^+(0; 0) \lambda \rangle + \mathcal{O}(|\lambda|^2) \\
-&= -\lambda \langle \Psi(0), \partial_\lambda \tilde{V}^+(0; 0) \rangle + \mathcal{O}(|\lambda|^2) \\
-&= M^c \lambda + \mathcal{O}(|\lambda|^2)
-\end{align*}
+The result for $\langle \Psi(0), V^-(0; \lambda) \rangle$ follows from symmetry as above.
 \end{proof}
 \end{corollary}
 

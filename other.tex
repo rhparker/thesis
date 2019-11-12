@@ -95,6 +95,83 @@ If all the small, nonzero eigenvalues $\{ \mu_1, \dots, \mu_{n-1} \}$ of $\calA_
 
 \section{Discrete nonlinear Schr{\"o}dinger equation}\label{sec:DNLS}
 
+The discrete nonlinear Schr{\"o}dinger equation (DNLS) is the 
+
+
+\begin{equation}\label{DNLS}
+i\dot{\psi}_n + d(\psi_{n+1} - 2 \psi_n + \psi_{n-1}) + |\psi_n|^2 \psi_n = 0,
+\end{equation}
+which is (2.12) in \cite{Kevrekidis2009}, where we have taken $\beta = -1$ and $\sigma = 1$. The parameter $d$ represents the coupling between nodes; $d > 0$ is the focusing case, and $d < 0$ the defocusing case~\cite{Kevrekidis2009}. Equation \cref{DNLS} is Hamiltonian, with energy given by (2.17) in \cite{Kevrekidis2009,pelinovsky_2011}. Of general interest in this type of lattice is the existence and stability of standing waves, which are bound state solutions of the form $\psi_n(t) = e^{i \omega t}\phi_n$~\cite{alfimov}. Making this substitution in \cref{DNLS} and simplifying, a standing wave solves the steady state equation
+\begin{equation}\label{DNLSequilib}
+d(\phi_{n+1} - 2 \phi_n + \phi_{n-1}) - \omega \phi_n + |\phi_n|^2 u_n = 0.
+\end{equation}
+From~\cite{herrmann_2011}, a symmetric, real-valued, on-site soliton solution $q_n$ exists to \cref{DNLSequilib} for all $\omega \neq 0$ and $d \geq 0$. This solution $q_n$ furthermore is differentiable in $\omega$. 
+
+We will write DNLS as a system of two real variables $u = (v, w) \in \ell^2(\Z, \R^2)$, where $v = \text{Re }\psi$ and $w = \text{Im }\psi$. In this fashion, we can write \cref{DNLS} in Hamiltonian form as
+\begin{equation}\label{DNLSrealHam}
+\dot{u}_n + J [\mathcal{H}'(u)]_n = 0,
+\end{equation}
+where $J$ is the standard skew-symmetric symplectic matrix
+\[
+J = \begin{pmatrix}0 & 1 \\ -1 & 0\end{pmatrix}
+\]
+and the Hamiltonian $\mathcal{H}: \ell^2(\Z,\R^2) \rightarrow \R$ is
+\begin{equation}\label{DNLSrealH}
+\mathcal{H}(v, w) = -\sum_{n = -\infty}^\infty 
+\left( \frac{d}{2}\left(v_n - v_{n-1}\right)^2 + \frac{d}{2}\left(w_n - w_{n-1}\right)^2 - \frac{1}{4}\left( v_n^2 + w_n^2 \right)^2 \right).
+\end{equation}
+The Hamiltonian $\mathcal{H}$ is invariant under the standard rotation group $R(\theta)$, given by
+\begin{equation}\label{Rtheta}
+R(\theta) = \begin{pmatrix}
+\cos(\theta) & \sin(\theta) \\
+-\sin(\theta)& \cos(\theta)
+\end{pmatrix},
+\end{equation}
+which has infinitesimal generator $R'(0) = J$. In addition, there is another conserved quantity, often called the norm or the power of the solution, which is given by
+\begin{equation}\label{DNLSQ}
+\mathcal{Q}(v, w) = \frac{1}{2} \sum_{n = -\infty}^\infty 
+\left( v_n^2 + w_n ^2\right).
+\end{equation}
+
+Standing waves are solutions of \cref{DNLSrealHam} of the form $R(\omega t) u$, where $u$ is independent of $t$. Substituting this into \cref{DNLSrealHam}, we obtain the equivalent system of equations
+\begin{equation}\label{DNLSequilib1}
+\mathcal{H}'(u) - \omega u = 0,
+\end{equation}
+which for DNLS is given by
+\begin{equation}\label{DNLSequilib2}
+\begin{aligned}
+d (v_{n+1} - 2 v_n + v_{n-1}) + v_n w_n^2 + v_n^3 - \omega v_n &= 0 \\
+d (w_{n+1} - 2 w_n + w_{n-1}) + v_n^2 w_n + w_n^3 - \omega w_n &= 0 \:.
+\end{aligned} 
+\end{equation}
+If $u$ is a standing wave solution, then $R(\theta) u$ is also a standing wave by symmetry. We note that the steady state system has the form
+\begin{equation}
+\mathcal{H}'(u) - \omega \mathcal{Q}'(u) = 0,
+\end{equation}
+which is the stationary equation \cite[(2.15)]{Grillakis1987}. The steady state equation \cref{DNLSequilib2} also has a conserved quantity $E$ \cite{Johansson2000}, which is given by
+\begin{equation}\label{DNLSE}
+E = 2d(v_n w_{n-1} - v_{n-1} w_n) = 2d \langle u_n, J u_{n-1} \rangle.
+\end{equation}
+By a conserved quantity in this setting we mean
+that this quantity is independent of the lattice
+index $n$.
+
+For stability analysis, the linearization of \cref{DNLSrealHam} about a standing wave solution $u^*$ 
+yields the linear operator $L(u^*)$, given by 
+\begin{equation}\label{DNLSeigproblem}
+L(u^*) = J \mathcal{H}''(u^*)  - \omega J.
+\end{equation}
+Let $u^*_n = (q_n, 0)$, where $q_n$ is the real-valued, on-site standing wave solution to \cref{DNLS}. It is straightforward to verify that
+\begin{equation}\label{DNLSkernel1}
+\begin{aligned}
+L(u^*) R'(0) u^* &= 0 \\
+L(u^*) \partial_\omega u^* &= R'(0) u^* \:.
+\end{aligned}
+\end{equation}
+Based on these statements, we have that $0$ is an
+eigenvalue with algebraic multiplicity $2$ and
+geometric multiplicity $1$ in the DNLS problem.
+
 
 
 \iffulldocument\else
