@@ -10,69 +10,48 @@
 
 In this section, we will compute the determinant of the block matrix $S(\lambda)$ from \cref{blockmatrixtheorem} for the periodic 2-pulse. The computation is tedious, but it can be done with the aid of Mathematica. Choose a positive integer $N$, and let $\delta(r, N)$ be as in \cref{blockmatrixtheorem}. In particular, we note that $\delta(r,N) \leq N/|\log r|$. 
 
-To compute the determinant, we write the block matrix $S(\lambda)$ as $S(\lambda) = S_1(\lambda) + S_2(\lambda)$, where the leading order terms are given by
-\begin{align*}
-S_1&(\lambda) = \\
-&\begin{pmatrix}
-\begin{pmatrix}
-e^{-\nu(\lambda)X_1} & -e^{\nu(\lambda)X_0} \\
--e^{\nu(\lambda)X_1} & e^{-\nu(\lambda)X_0} 
-\end{pmatrix} &
-2 \lambda \begin{pmatrix}
--e^{-\nu(\lambda)X_1} q(X_1) + e^{\nu(\lambda)X_0} q(X_0) & e^{-\nu(\lambda)X_1} q(X_1) - e^{\nu(\lambda)X_0} q(X_0) \\ e^{-\nu(\lambda)X_0} q(X_0) - e^{\nu(\lambda)X_1} q(X_1) & -e^{-\nu(\lambda)X_0} q(X_0) + e^{\nu(\lambda)X_1} q(X_1)
-\end{pmatrix} \\
--M^c \lambda
-\begin{pmatrix}
-e^{-\nu(\lambda)X_1} & e^{\nu(\lambda)X_0} \\
-e^{\nu(\lambda)X_1} & e^{-\nu(\lambda)X_0} 
-\end{pmatrix} &
+To compute the determinant, we write the block matrix $S(\lambda)$ as $S(\lambda) = S_1(\lambda) + S_2(\lambda)$, where $S_2(\lambda)$ contains the remainder matrices $C_i$ and $D_i$. Let
+\[
+a = \langle \Psi(X_0), Q'(-X_0) \rangle + \langle \Psi(X_1), Q'(-X_1) \rangle
+\]
+so that the lower right block of $S_1(\lambda)$ is
+\[
 \begin{pmatrix}
 -a - \lambda^2 M & a \\
 a & -a - \lambda^2 M
 \end{pmatrix}
-\end{pmatrix}
-\end{align*}
-where
-\[
-a = \langle \Psi(X_0), Q'(-X_0) \rangle + \langle \Psi(X_1), Q'(-X_1) \rangle
 \]
-and the remainder terms are in $S_2(\lambda)$, which is the block matrix 
-\[
-S_2(\lambda) = \begin{pmatrix}
-C_1 & D_1 \\ C_2 & D_2
-\end{pmatrix}
-\]
-
-We use Mathematica to evaluate the determinant. To do ths, we carefully track each remainder term in each remainder matrix in $S_2(\lambda)$ and use Lemma \ref{lemma:expnubound} to bound terms of the form $e^{\pm \nu(\lambda)X_j}$. Doing this and simplifying, we have
-\begin{equation}\label{2detB1}
+% \begin{align*}
+% S_1&(\lambda) = \\
+% &\begin{pmatrix}
+% \begin{pmatrix}
+% e^{-\nu(\lambda)X_1} & -e^{\nu(\lambda)X_0} \\
+% -e^{\nu(\lambda)X_1} & e^{-\nu(\lambda)X_0} 
+% \end{pmatrix} &
+% 2 \lambda \begin{pmatrix}
+% -e^{-\nu(\lambda)X_1} q(X_1) + e^{\nu(\lambda)X_0} q(X_0) & e^{-\nu(\lambda)X_1} q(X_1) - e^{\nu(\lambda)X_0} q(X_0) \\ e^{-\nu(\lambda)X_0} q(X_0) - e^{\nu(\lambda)X_1} q(X_1) & -e^{-\nu(\lambda)X_0} q(X_0) + e^{\nu(\lambda)X_1} q(X_1)
+% \end{pmatrix} \\
+% -M^c \lambda
+% \begin{pmatrix}
+% e^{-\nu(\lambda)X_1} & e^{\nu(\lambda)X_0} \\
+% e^{\nu(\lambda)X_1} & e^{-\nu(\lambda)X_0} 
+% \end{pmatrix} &
+% \begin{pmatrix}
+% -a - \lambda^2 M & a \\
+% a & -a - \lambda^2 M
+% \end{pmatrix}
+% \end{pmatrix}
+% \end{align*}
+We use Mathematica to evaluate the determinant. To do ths, we carefully track each remainder term in each remainder matrix in $S_2(\lambda)$ and use Lemma \ref{lemma:expnubound} to bound terms of the form $e^{\pm \nu(\lambda)X_j}$. Doing this and simplifying using standard hyperbolic trigonometric identities, we have
+\begin{equation*}
 \begin{aligned}
-\det S(&\lambda) = \sinh(\nu(\lambda)X)\left(-2 \lambda^2 M (2a + \lambda^2 M) +  \mathcal{O}( (r^{1/2} + |\lambda|)^5 \right) \\
-&-\lambda^4 q(X_0) M M^c \left( \sinh(\nu(\lambda)(2 X_0 + X_1)) - 3 \sinh(\nu(\lambda)X_1)  \right) \\
-&-\lambda^4 q(X_1) M M^c \left( \sinh(\nu(\lambda)(2 X_1 + X_0)) - 3 \sinh(\nu(\lambda)X_0)  \right) \\
-&+ \mathcal{O}( (r^{1/2} + |\lambda|)^6) 
+\det S(&\lambda) = -2 \lambda^2 M \Bigg[ \left( 2a + \lambda^2 M + R_1 \right)\left( \sinh(\nu(\lambda)X) + \lambda \tilde{M} \cosh( \nu(\lambda X) \right) \\
+&+ \left( 2 \lambda^2 (q(X_0) \sinh( \nu(\lambda)X_0) + q(X_0) \sinh( \nu(\lambda)X_1)) - M^c \tilde{M}^c \lambda^3 \right)\cosh(\nu(\lambda)X) \Bigg] + R_2
 \end{aligned}
-\end{equation}
-Using standard hyperbolic trigonometric identities, we can show that 
+\end{equation*}
+where the remainder terms have bounds 
 \begin{align*}
-\sinh(2 x + y) - 3 \sinh(y) &= 4 \cosh(x + y)\sinh(x) 
--2 \sinh(x+y)\cosh(x) 
-\end{align*}
-Using this with the second line of \cref{2detB1}, 
-\begin{align*}
-\lambda^4 &q(X_0) \left( \sinh(\nu(\lambda)(2 X_0 + X_1)) - 3 \sinh(\nu(\lambda)X_1)  \right) \\
-&= 4 \lambda^4 q(X_0) \cosh(\nu(\lambda)X)\sinh(\nu(\lambda)X_0) - 3 \lambda^4 q(X_0) \sinh(\nu(\lambda)X)\cosh(\nu(\lambda)X_0) \\
-&= 4 \lambda^4 q(X_0) \cosh(\nu(\lambda)X)\sinh(\nu(\lambda)X_0) + \sinh(\nu(\lambda)X)(\mathcal{O}(r^{1/2}|\lambda|^4))
-\end{align*}
-since $|\cosh(\nu(\lambda)X_0)|\leq C$ by Lemma \ref{lemma:expnubound}. Doing the same thing for the third line of \cref{2detB1}, substituting the results into \cref{2detB1}, and simplifying, we have
-\begin{equation}\label{2pdetSlambda}
-\begin{aligned}
-\det S(&\lambda) = \left(-2 \lambda^2 M (2a + \lambda^2 M) + R_1  \right) \sinh(\nu(\lambda)X) \\
-&-4 M M^c \lambda^4 ( q(X_0) \sinh(\nu(\lambda)X_0) + q(X_1) \sinh(\nu(\lambda)X_1) ) \cosh(\nu(\lambda)X)  + R_2
-\end{aligned}
-\end{equation}
-where the remainder terms have bounds
-\begin{align*}
-|R_1| \leq C(r^{1/2} + |\lambda|)^5 \\
+|R_1| \leq C(r^{1/2} + |\lambda|)^3 \\
 |R_2| \leq C(r^{1/2} + |\lambda|)^6
 \end{align*}
 

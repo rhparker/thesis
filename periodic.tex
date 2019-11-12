@@ -180,8 +180,8 @@ $S(\lambda)$ is the $(2n \times 2n)$ block matrix
 \begin{equation}\label{blockeq}
 S(\lambda) = 
 \begin{pmatrix}
-K(\lambda) + C_1 & \lambda K_1(\lambda) + D_1 \\
--\lambda M^c K^+(\lambda) C_2 & A - \lambda^2 MI + D_2
+K(\lambda) -\frac{1}{2} \lambda \tilde{M} K^+(\lambda) + C_1 & \lambda K_2(\lambda) - \lambda^2 \tilde{M}^c I + D_1 \\
+-\frac{1}{2} \lambda M^c K^+(\lambda) + C_2 & A - \lambda^2 MI + D_2
 \end{pmatrix}
 \end{equation}
 The individual terms in $S(\lambda)$ are as follows.
@@ -198,7 +198,7 @@ e^{-\nu(\lambda)X_1} & & & & & -e^{\nu(\lambda)X_0} \\
 & & & & -e^{\nu(\lambda)X_{n-1}} & e^{-\nu(\lambda)X_0} 
 \end{pmatrix}
 \end{equation}
-where $\nu(\lambda)$ is defined in Lemma \ref{nulambdalemmasimple}. $K^+(\lambda)$ is the same matrix with all terms positive.
+where $\nu(\lambda)$ is defined in Lemma \ref{nulambdalemmasimple}. $K_1(\lambda)$ is the same matrix with all terms positive.
 
 \item $A$ is the symmetric banded matrix
 \begin{align}\label{Asymm}
@@ -219,9 +219,9 @@ where
 a_i &= \langle \Psi(X_i), Q'(-X_i) \rangle
 \end{align*}
 
-\item $K_1(\lambda)$ is the matrix
+\item $K_2(\lambda)$ is the matrix
 \begin{align*}
-K_1(\lambda) &= \begin{pmatrix}
+K_2(\lambda) &= \begin{pmatrix}
 s_0^+ - s_1^- & s_1^- &&& -s_0^+ \\
 -s_1^+ & s_1^+ - s_2^- & s_2^- \\
 & -s_2^+ & s_2^+ - s_3^- & s_3^- \\ && \ddots \\
@@ -236,16 +236,18 @@ s_i^+ &= e^{\nu(\lambda)X_i} q(X_i)\\
 \end{align*}
 where $q(x)$ is the first component of the primary pulse solution $Q(x)$. 
 
-\item $M$ and $M^c$ are the Melnikov-type integrals
+\item $M$, $M^c$, $\tilde{M}$, and $\tilde{M}^c$ are  Melnikov-type integrals
 \begin{align*}
 M &= \int_{-\infty}^\infty q(y) \partial_c q(y) dy \\
-M^c &= \int_{0}^\infty q(y) v^c(y) dy
+M^c &= \int_{-\infty}^\infty q(y) v^c(y) dy \\
+\tilde{M} &= \int_{-\infty}^{\infty} \left(v^c(y) - \frac{1}{c}\right) dy \\
+\tilde{M}^c &= \int_{-\infty}^\infty \partial_c q(y) dy
 \end{align*}
-where $v^c(y)$ is the first component of $V^c(y)$, which is defined in \cref{varadjsolutions}.
+where $v^c(y)$ is the first component of $V^c(y)$, which is defined in \cref{varadjsolutions}. NUMERICS STRONGLY SUGGESTS THAT $\tilde{M}^c = -M^c$. THIS IS AMAZING.
 
 \item The remainder matrices and $K_1(\lambda)$ are analytic in $\lambda$ and have uniform bounds
 \begin{align*}
-|K_1(\lambda)| &\leq C r^{1/2} \\
+|K_2(\lambda)| &\leq C r^{1/2} \\
 |C_1| &\leq C |\lambda|(|\lambda| + r^{1/2}) \\
 |D_1| &\leq C |\lambda|(|\lambda| + r^{1/2})^2 \\
 |C_2| &\leq C (|\lambda| + r^{1/2})^2 \\
@@ -281,8 +283,8 @@ We will first consider the simplest case, which is the periodic 2-pulse. For thi
 For a periodic 2-pulse, $E(\lambda)$ from \cref{blockmatrixtheorem} is given by
 \begin{equation}\label{2detBeq}
 \begin{aligned}
-E(\lambda) &= \left(-2 \lambda^2 M (2a + \lambda^2 M) + R_1 \right) \sinh(\nu(\lambda)X) \\
-&-4 M M^c \lambda^4 ( q(X_0) \sinh(\nu(\lambda)X_0) + q(X_1) \sinh(\nu(\lambda)X_1) ) \cosh(\nu(\lambda)X)  + R_2
+E(\lambda) &= -2 \lambda^2 M \Bigg[ \left( 2a + \lambda^2 M + R_1 \right)\left( \sinh(\nu(\lambda)X) + \lambda \tilde{M} \cosh( \nu(\lambda X) \right) \\
+&+ \left( 2 \lambda^2 (q(X_0) \sinh( \nu(\lambda)X_0) + q(X_0) \sinh( \nu(\lambda)X_1)) - M^c \tilde{M}^c \lambda^3 \right)\cosh(\nu(\lambda)X) \Bigg] + R_2
 \end{aligned}
 \end{equation}
 where
@@ -291,7 +293,7 @@ a = \langle \Psi(X_0), Q'(-X_0) \rangle + \langle \Psi(X_1), Q'(-X_1) \rangle
 \end{equation}
 and the remainder terms have bounds
 \begin{align*}
-|R_1| \leq C(r^{1/2} + |\lambda|)^5 \\
+|R_1| \leq C(r^{1/2} + |\lambda|)^3 \\
 |R_2| \leq C(r^{1/2} + |\lambda|)^6
 \end{align*}
 \end{corollary}
