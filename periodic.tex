@@ -79,7 +79,7 @@ Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and 
 		X_j(r; m_j, m_{n-1},\theta) &= \frac{1}{2 \alpha_0} |\log r| + \frac{1}{2\beta_0} t_j(r; m_j,m_{n-1}, \theta) + L_0 && j = 0, \dots, n-2 \\
 		X_{n-1}(r; m_{n-1}, \theta) &= \frac{1}{2 \alpha_0} |\log r| + \frac{1}{2 \beta_0}\big( m_{n-1}\pi + \theta \big) + L_0.
 	\end{align}
-	The $t_j(r; m_j, m_{n-1}, \theta): \mathcal{R} \rightarrow \R$ are smooth functions with 
+	The $t_j(r; m_j, m_{n-1}, \theta): \mathcal{R} \rightarrow \R$ are continuous in $r$ with 
 	\[
 	t_j(0; m_j, \theta) = m_j \pi + \theta^*(\theta; m_{n-1} - m_j),
 	\]
@@ -114,7 +114,7 @@ Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and 
 		X_1(r, s_1) &= \frac{1}{2 \alpha_0} |\log r| + \frac{1}{2\beta_0} s_1 + L_0, 
 	\end{aligned}
 	\end{equation}
-	where $t_0(r; m_0, s_1)$ is smooth in $r$, continuous in $t_1$, and $t_0(0; m_0, k \pi) = m_0$ for all nonnegative integers $k$. Furthermore,
+	where $t_0(r; m_0, s_1)$ is continuous in $r$ and $t_1$, and $t_0(0; m_0, k \pi) = m_0$ for all nonnegative integers $k$. Furthermore,
 	\begin{align}\label{deft0}
 	t_0(0; m_0, s_1) = m_0 \pi + \mathcal{O}\left(-\frac{1}{\rho} s_1 \right)
 	\end{align}
@@ -123,7 +123,7 @@ Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and 
 	X(r, m_0, s_1) = \frac{1}{2 \alpha_0} 2 |\log r| + \frac{1}{2\beta_0} \left( t_0(r; m_0, s_1) + s_1\right) + 2 L_0.
 	\end{equation}
 
-	\item The two families meet at a pitchfork bifurcation. In terms of the two parameterizations, this occurs when $s_0 = p^*(m_0; r)$ and $s_1 = p^*$. The bifurcation points $p^*(m_0; r)$ are smooth in $r$, and
+	\item The two families meet at a pitchfork bifurcation. In terms of the two parameterizations, this occurs when $s_0 = p^*(m_0; r)$ and $s_1 = p^*$. The bifurcation points $p^*(m_0; r)$ are continuous in $r$, and
 	\[
 	p^*(m_0; r) \rightarrow \arctan \rho \text{ as }r \rightarrow 0.
 	\]
@@ -180,8 +180,8 @@ $S(\lambda)$ is the $(2n \times 2n)$ block matrix
 \begin{equation}\label{blockeq}
 S(\lambda) = 
 \begin{pmatrix}
-K(\lambda) -\frac{1}{2} \lambda \tilde{M} K^+(\lambda) + C_1 & \lambda K_2(\lambda) - \lambda^2 \tilde{M}^c I + D_1 \\
--\frac{1}{2} \lambda M^c K^+(\lambda) + C_2 & A - \lambda^2 MI + D_2
+K(\lambda) -\frac{1}{2} \lambda \tilde{M} K_1(\lambda) + C_1 & \lambda K_2(\lambda) - \lambda^2 \tilde{M}^c I + D_1 \\
+-\frac{1}{2} \lambda M^c K_1(\lambda) + C_2 & A - \lambda^2 MI + D_2
 \end{pmatrix}
 \end{equation}
 The individual terms in $S(\lambda)$ are as follows.
@@ -303,16 +303,13 @@ The interaction eigenvalue pattern will be determined by the quantity $a$ in \cr
 \begin{lemma}\label{lemma:chara}
 Let $r_*$ be as in Theorem \ref{2pulsebifurcation}. Then for any $r \in \mathcal{R}$ with $r \leq r_*$:
 \begin{enumerate}[(i)]
-	\item For a symmetric periodic 2-pulse $\tilde{Q}_2(x; m_0, s_0, r)$, $a = r \tilde{a}(r; m_0, s_0)$, where $\tilde{a}(r; m_0, s_0)$ is smooth in $r$. For $m_0 = 0$,
+	\item For a symmetric periodic 2-pulse $\tilde{Q}_2(x; m_0, s_0, r)$, $a = r \tilde{a}(r; m_0, s_0)$, where $\tilde{a}(r; m_0, s_0)$ is continuous in $r$. Furthermore $\tilde{a}(0; m_0, s_0) = 0$ if and only if $s_0 = p^*$. For $s_0 \neq p^*$,
 	\begin{equation}
 	\begin{aligned}
-	\tilde{a}(0; m_0, s_0) &= 0 && \text{if }s_0 = p^* \\
-	\tilde{a}(0; m_0, s_0) &> 0 && \text{if }s_0 > p^* \\
-	\tilde{a}(0; m_0, s_0) &< 0 && \text{if }s_0 < p^*
+	\text{if }s_0 &> p^*, \, \tilde{a}(0; 0, s_0) > 0 \text{ and } \tilde{a}(0; 1, s_0) < 0 \\
+	\text{if }s_0 &< p^*, \, \tilde{a}(0; 0, s_0) < 0 \text{ and } \tilde{a}(0; 1, s_0) > 0 
 	\end{aligned}
 	\end{equation}
-	These are reversed for $m_0 = 1$.
-	\item For an asymmetric periodic 2-pulse $Q_2(x; m_0, s_1, r)$, $a = r \tilde{a}(r; m_0, s_1)$, where $\tilde{a}(r; m_0, s_1)$ is smooth in $r$ and continuous in $s_1$. For all $s_1 > p^*$,
 	\begin{equation}
 	\begin{aligned}
 	\tilde{a}(0; m_0, s_1) &< 0 && \text{if }m_0 = 0 \\
@@ -411,39 +408,40 @@ where $\tilde{a}_*(r)$ is defined in \cref{deftildeastar}. Then there exists $r_
 Now that we have found the appropriate value of $s_1$, we characterize the Krein bubble in the following theorem.
 
 \begin{theorem}\label{theorem:kreinbubbles}
-Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, \ref{H0transversehyp}, and \ref{Melnikov2hyp}. Choose $m_0 \in \{0, 1\}$ as in Lemma \ref{choosesstar} and let $r_1$, $\tilde{\lambda}_*(r)$, and $s_1^*(r)$ be as in Lemma \ref{choosesstar}. Choose $N = 1$ and let $\delta(r) = \delta(r,1)$, $M$ and $M^c$ be as in Theorem \ref{blockmatrixtheorem}. For $r \in \mathcal{R}$ with $r \leq r_1$, let
+Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, \ref{H0transversehyp}, and \ref{Melnikov2hyp}. Choose $m_0 \in \{0, 1\}$ as in Lemma \ref{choosesstar} and let $r_1$, $\tilde{\lambda}_*(r)$, and $s_1^*(r)$ be as in Lemma \ref{choosesstar}. Choose $N = 1$ and let $\delta(r) = \delta(r,1)$, $M$, $M^c$, $\tilde{M}^c$ be as in Theorem \ref{blockmatrixtheorem}. For $r \in \mathcal{R}$ with $r \leq r_1$, let
 \begin{enumerate}[(i)]
-\item $X^*(r) = X(r, m_0, s_1^*(r))$ and $X_0^*(r) = X_0(r, m_0, s_1^*(r))$
+\item $X^*(r) = X(r, m_0, s_1^*(r))$
 \item
 $
 \begin{aligned}[t]
-R_0(r) = \frac{M^c q(X_0^*(r))}{M},
+R_0 = \frac{M^c \tilde{M}^c}{M}
 \end{aligned}
-$
-where $q(x)$ is the first component of the primary pulse $Q(x)$
+$\\
+NUMERICS STRONGLY SUGGESTS $M^c = -\tilde{M}^c$ SO THE SIGN OF THIS SHOULD ONLY DEPEND ON $M$, WITH $M>0$ GIVING US THE KREIN BUBBLE.
 \item
 $
 \begin{aligned}[t]
-R(r) = R_0(r) \frac{X_0^*(r)}{X^*(r)}
+R(r) = \frac{R_0}{X^*(r)} = \frac{R_0 c \pi}{\tilde{\lambda}_*(r) r^{1/2}}
 \end{aligned}
-$
+$\\
+MAY BE OFF BY A CONSTANT.
 \end{enumerate}
 
 Then there exists $r_2 \leq r_1$ such that for all $r \in \mathcal{R}$ with $r \leq r_2$, the following is true. Let $t \in \left[-2\sqrt{R(r)}, 2\sqrt{R(r)}\right]$. Then for $s_1(t,r) = s_1^*(r) + 4 \beta_0 X^*(r) t$, there exists a pair of eigenvalues located at
 \begin{align*}
-\lambda^\pm(t, r) &= \tilde{\lambda}_*(r) r^{1/2} \left( i + t i \pm \sqrt{ R(r) - t^2 } \right) + \mathcal{O}\left(\frac{r^{3/4}}{|\log r|} \right)
+\lambda^\pm(t, r) &= \tilde{\lambda}_*(r) r^{1/2} \left( i + t i \pm \sqrt{ R(r) - t^2 } \right) + \mathcal{O}\left(r^{1/2} \right)
 \end{align*}
-If $R_0(r) > 0$, these eigenvalues have the following configuration.
+If $R_0 < 0$, these eigenvalues have the following configuration.
 \begin{itemize}
 \item When
 $
 \begin{aligned}[t]
-t = t_b^\pm(r) = \pm \sqrt{R(r)} + \mathcal{O}\left( \frac{r^{1/4}}{|\log r|} \right),
+t = t_b^\pm(r) = \pm \sqrt{R(r)} + \mathcal{O}\left( \frac{1}{|\log r|} \right),
 \end{aligned}
 $
 there are eigenvalues with multiplicity 2 on the imaginary axis at 
 \begin{align*}
-\lambda_b^\pm(r) &= \tilde{\lambda}_*(r) r^{1/2} i \left( 1 \mp \sqrt{R(r)}\right) + \mathcal{O}\left( \frac{r^{3/4}}{|\log r|} \right) 
+\lambda_b^\pm(r) &= \tilde{\lambda}_*(r) r^{1/2} i \left( 1 \mp \sqrt{R(r)}\right) + \mathcal{O}\left( r^{3/2} \right) 
 \end{align*}
 These are bifurcation points.
 
@@ -453,7 +451,7 @@ These are bifurcation points.
 \item The eigenvalues $\lambda^\pm(t, r)$ trace out (to leading order) a circle of radius $\tilde{\lambda}_*(r) r^{1/2} \sqrt{ R(r)}$ centered at $\tilde{\lambda}_*(r) r^{1/2}$. 
 \item For $t = 0$,
 \begin{align*}
-\lambda^\pm(0, r) &= \tilde{\lambda}_*(r) r^{1/2}\left(  i \pm \sqrt{ R(r)} \right)  + \mathcal{O}\left( \frac{r^{3/4}}{|\log r|} \right).
+\lambda^\pm(0, r) &= \tilde{\lambda}_*(r) r^{1/2}\left(  i \pm \sqrt{ R(r)} \right)  + \mathcal{O}\left( r^{3/2} \right).
 \end{align*}
 \end{enumerate}
 
@@ -472,7 +470,7 @@ For any periodic parameterization $(m_0, \dots, m_{n-1}, \theta)$ with $\theta \
 \[
 A = r \tilde{A}(r)
 \]
-where $\tilde{A}(r) = \tilde{A}(r; m_0, \dots, m_{n-1}, \theta)$ is smooth in $r$. $\tilde{A}(r)$ has an eigenvalue of 0 corresponding to eigenvector $(1, 1, \dots, 1)^T$. 
+where $\tilde{A}(r) = \tilde{A}(r; m_0, \dots, m_{n-1}, \theta)$ is continuous in $r$. $\tilde{A}(r)$ has an eigenvalue of 0 corresponding to eigenvector $(1, 1, \dots, 1)^T$. 
 \end{lemma}
 
 Let $\{ 0, \ell_1(r), \dots, \ell_{n-1}(r) \}$ be the eigenvalues of $\tilde{A}(r)$. We will take the following hypothesis regarding these eigenvalues.
