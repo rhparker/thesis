@@ -180,25 +180,39 @@ $S(\lambda)$ is the $(2n \times 2n)$ block matrix
 \begin{equation}\label{blockeq}
 S(\lambda) = 
 \begin{pmatrix}
-K(\lambda) -\frac{1}{2} \lambda \tilde{M} K_1(\lambda) + C_1 & \lambda K_2(\lambda) - \lambda^2 \tilde{M}^c I + D_1 \\
--\frac{1}{2} \lambda M^c K_1(\lambda) + C_2 & A - \lambda^2 MI + D_2
+K(\lambda) + C_1 & \lambda K_2(\lambda) - \lambda^2 \tilde{M}^c I + D_1 \\
+-\lambda M^c K_1(\lambda) + C_2 & A - \lambda^2 MI + D_2
 \end{pmatrix}
 \end{equation}
 The individual terms in $S(\lambda)$ are as follows.
 
 \begin{enumerate}
-\item $K(\lambda)$ is the banded matrix
+\item $K(\lambda)$ is the periodic, tri-diagonal matrix
 \begin{equation}
-K(\lambda) = 
+K(\lambda) = \frac{1}{2}
 \begin{pmatrix}
-e^{-\nu(\lambda)X_1} & & & & & -e^{\nu(\lambda)X_0} \\
--e^{\nu(\lambda)X_1} & e^{-\nu(\lambda)X_2} \\
-& -e^{\nu(\lambda)X_2} & e^{-\nu(\lambda)X_3} \\
-& \ddots & \ddots & &&  \\
-& & & & -e^{\nu(\lambda)X_{n-1}} & e^{-\nu(\lambda)X_0} 
-\end{pmatrix}
+0 & e^{-2\nu(\lambda)X_1} & & & & -e^{2 \nu(\lambda)X_0} \\
+-e^{2\nu(\lambda)X_1} & 0 & e^{-2\nu(\lambda)X_2} \\
+& -e^{2 \nu(\lambda)X_2} & 0 & e^{-2\nu(\lambda)X_3} \\
+& & \ddots & \ddots & \ddots &&  \\
+&&& e^{-2\nu(\lambda)X_{n-2}} & 0 & e^{-2\nu(\lambda)X_{n-1}} \\
+e^{-2\nu(\lambda)X_0} & & & & -e^{2 \nu(\lambda)X_{n-1}} & 0
+\end{pmatrix}.
 \end{equation}
-where $\nu(\lambda)$ is defined in Lemma \ref{nulambdalemmasimple}. $K_1(\lambda)$ is the same matrix with all terms positive.
+where $\nu(\lambda)$ is defined in Lemma \ref{nulambdalemmasimple}.
+
+\item $K_1(\lambda)$ is the periodic, tri-diagonal matrix
+\begin{align}
+K_1(\lambda) = \frac{1}{4}
+\begin{pmatrix}
+2 & e^{-2\nu(\lambda)X_1} & & & & -e^{2 \nu(\lambda)X_0} \\
+e^{2\nu(\lambda)X_1} & 2 & e^{-2\nu(\lambda)X_2} \\
+& e^{2 \nu(\lambda)X_2} & 2 & e^{-2\nu(\lambda)X_3} \\
+& & \ddots & \ddots & \ddots &&  \\
+&&& e^{-2\nu(\lambda)X_{n-2}} & 2 & e^{-2\nu(\lambda)X_{n-1}} \\
+e^{-2\nu(\lambda)X_0} & & & & e^{2 \nu(\lambda)X_{n-1}} & 2
+\end{pmatrix}
+\end{align}
 
 \item $A$ is the symmetric banded matrix
 \begin{align}\label{Asymm}
@@ -222,17 +236,17 @@ a_i &= \langle \Psi(X_i), Q'(-X_i) \rangle
 \item $K_2(\lambda)$ is the matrix
 \begin{align*}
 K_2(\lambda) &= \begin{pmatrix}
-s_0^+ - s_1^- & s_1^- &&& -s_0^+ \\
--s_1^+ & s_1^+ - s_2^- & s_2^- \\
-& -s_2^+ & s_2^+ - s_3^- & s_3^- \\ && \ddots \\
+k_0^+ - k_1^- & k_1^- &&& -k_0^+ \\
+-k_1^+ & k_1^+ - k_2^- & k_2^- \\
+& -k_2^+ & k_2^+ - k_3^- & k_3^- \\ && \ddots \\
 \\
-s_0^- &&& -s_{n-1}^+ & s_{n-1}^+ - s_0^- 
+k_0^- &&& -k_{n-1}^+ & k_{n-1}^+ - k_0^- 
 \end{pmatrix}
 \end{align*}
 with entries
 \begin{align*}
-s_i^- &= e^{-\nu(\lambda)X_i} q(X_i)\\
-s_i^+ &= e^{\nu(\lambda)X_i} q(X_i)\\
+k_i^- &= e^{-\nu(\lambda)X_i} q(X_i)\\
+k_i^+ &= e^{\nu(\lambda)X_i} q(X_i),
 \end{align*}
 where $q(x)$ is the first component of the primary pulse solution $Q(x)$. 
 
@@ -240,12 +254,11 @@ where $q(x)$ is the first component of the primary pulse solution $Q(x)$.
 \begin{align*}
 M &= \int_{-\infty}^\infty q(y) \partial_c q(y) dy \\
 M^c &= \int_{-\infty}^\infty q(y) v^c(y) dy \\
-\tilde{M} &= \int_{-\infty}^{\infty} \left(v^c(y) - \frac{1}{c}\right) dy \\
 \tilde{M}^c &= \int_{-\infty}^\infty \partial_c q(y) dy
 \end{align*}
-where $v^c(y)$ is the first component of $V^c(y)$, which is defined in \cref{varadjsolutions}. NUMERICS STRONGLY SUGGESTS THAT $\tilde{M}^c = -M^c$. THIS IS AMAZING.
+where $v^c(y)$ is the first component of $V^c(y)$, which is defined in \cref{varadjsolutions}. NUMERICS STRONGLY SUGGESTS THAT $\tilde{M}^c = -M^c$.
 
-\item The remainder matrices and $K_1(\lambda)$ are analytic in $\lambda$ and have uniform bounds
+\item The remainder matrices and $K_2(\lambda)$ are analytic in $\lambda$ and have uniform bounds
 \begin{align*}
 |K_2(\lambda)| &\leq C r^{1/2} \\
 |C_1| &\leq C |\lambda|(|\lambda| + r^{1/2}) \\
