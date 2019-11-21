@@ -811,11 +811,11 @@ Taking the derivative of both sides with respect to $\lambda$, we have
 \end{align*}
 At $\lambda = 0$, this becomes
 \[
-[\partial_\lambda V^+(x; 0)] = A(Q(x)) \partial_\lambda V^+(x; 0) + B V^c(x),
+[\partial_\lambda V^+(x; 0)]' = A(Q(x)) \partial_\lambda V^+(x; 0) + B V^c(x),
 \]
 thus $\partial_\lambda V^+(x; 0)$ solves \cref{Vderivsolves}. For the symmetry relationship, we have
 \begin{align*}
-\partial_\lambda V^-(x; \lambda) &= \partial_\lambda R V^+(-x, -\lambda) \\
+\partial_\lambda V^-(x; \lambda) &= \frac{\partial}{\partial_\lambda}\left[ R V^+(-x, -\lambda)\right] \\
 &= -R \partial_\lambda V^+(-x, -\lambda)
 \end{align*}
 At $\lambda = 0$, this is
@@ -824,7 +824,7 @@ At $\lambda = 0$, this is
 &= -R \partial_\lambda V^+(-x, 0)
 \end{align*}
 
-From \cref{deftildeV} and \cref{Vpmlambda}, $\tilde{V}^+(x, \lambda) \rightarrow V_0(\lambda)$ as $x \rightarrow \infty$, thus $\partial_\lambda \tilde{V}^+(x, 0) \rightarrow V_0'(0)$ as $x \rightarrow \infty$. Using \cref{deftildeV} and taking the derivative with respect to $\lambda$,
+Define $\tilde{V}^+(x, \lambda)$ by \cref{deftildeV}. From \cref{deftildeV} and \cref{Vpmlambda}, $\tilde{V}^+(x, \lambda) \rightarrow V_0(\lambda)$ as $x \rightarrow \infty$, thus $\partial_\lambda \tilde{V}^+(x, 0) \rightarrow V_0'(0)$ as $x \rightarrow \infty$. Using \cref{deftildeV} and taking the derivative with respect to $\lambda$,
 \begin{align*}
 \partial_\lambda V^+(x; \lambda)
 &= e^{\nu(\lambda)x} \partial_\lambda \tilde{V}^+(x; \lambda) + \nu'(\lambda)x \tilde{V}^+(x; \lambda)
@@ -942,19 +942,21 @@ By \cref{lemma:trichadjoint}, $\tilde{P}_+^u(0)^*\Psi(0) = \Psi(0)$, thus we hav
 \langle \Psi(0), Y(0) \rangle
 &= \int_{\infty}^0 \langle \Psi(0), \tilde{\Phi}(0,y) B V^c(y) \rangle dy \\
 &= -\int_0^\infty \langle \Psi(y), B V^c(y) \rangle dy \\
-&=-\int_0^\infty q(y) v^c(y) dy
+&=-\int_0^\infty q(y) v^c(y) dy,
 \end{align*}
-Since $v^c(y)$ and $q(y)$ are both even functions, we obtain the result in part (ii).
+since $q(y)$ is the last component of $\Psi(y)$. Since $v^c(y)$ and $q(y)$ are both even functions, we obtain the result in part (ii).
 \end{proof}
 \end{lemma}
 
-To conclude this section, as a corollary, we use the previous lemma to evaluate two important inner products.
+To conclude this section, as a corollary, we use the previous lemma to evaluate some important inner products.
 
 \begin{corollary}\label{lemma:VpmPsiIP}
 \begin{equation}\label{VpmIPs}
 \begin{aligned}
-\langle \Psi^c(0), V^\pm(0; \lambda) \rangle &= 1 \mp \frac{1}{2} \tilde{M} + \mathcal{O}(|\lambda|^2) \\
-\langle \Psi(0), V^\pm(0; \lambda) \rangle &= \mp \frac{1}{2} M^c \lambda + \mathcal{O}(|\lambda|^2) .
+\langle \Psi^c(0), V^\pm(0; \lambda) \rangle &= 1 \mp \frac{1}{2} \tilde{M}\lambda + \mathcal{O}(|\lambda|^2) \\
+\langle \Psi(0), V^\pm(0; \lambda) \rangle &= \mp \frac{1}{2} M^c \lambda + \mathcal{O}(|\lambda|^2) \\
+\langle \Psi^c(0), V^+(0; \lambda) - V^-(0; \lambda) \rangle &= -\tilde{M}\lambda + \mathcal{O}(|\lambda|^2) \\ 
+\langle \Psi(0), V^+(0; \lambda) - V^-(0; \lambda) \rangle &= -M^c \lambda + \mathcal{O}(|\lambda|^2).
 \end{aligned}
 \end{equation}
 \begin{proof}
@@ -969,7 +971,7 @@ since $\partial_\lambda V^+(0; 0) = \partial_\lambda \tilde{V}^+(0; 0)$. For the
 \langle W_0, V^c(0) \rangle + \langle W_0, \partial_\lambda \tilde{V}^+(0; 0) \rangle + \mathcal{O}(|\lambda|^2) \\
 &= 1 - \frac{1}{2} \tilde{M}\lambda + \mathcal{O}(|\lambda|^2)
 \end{align*}
-The result for $\langle \Psi^c(0), V^-(0; \lambda) \rangle$ follows from the symmetry relations $\partial_\lambda \tilde{V}^-(0; 0)= -R \partial_\lambda \tilde{V}^+(0; 0)$ and $W_0 = R W_0$. 
+The result for $\langle \Psi^c(0), V^-(0; \lambda) \rangle$ follows from the symmetry relations $\partial_\lambda \tilde{V}^-(0; 0)= -R \partial_\lambda \tilde{V}^+(0; 0)$ and $W_0 = R W_0$. The third equation in \cref{VpmIPs} follows from combining these.
 
 For the inner product $\langle \Psi(0), V^+(0; \lambda) \rangle$, we use \cref{lemma:VderivIPs} and \cref{VtildeVderiv} to get
 \begin{align*}
@@ -977,7 +979,7 @@ For the inner product $\langle \Psi(0), V^+(0; \lambda) \rangle$, we use \cref{l
 &= \langle \Psi(0), V^c(0) \rangle + \langle \Psi(0), \partial_\lambda \tilde{V}^+(0; 0) \rangle \lambda  + \mathcal{O}(|\lambda|^2) \\
 &= -\frac{1}{2} M^c \lambda + \mathcal{O}(|\lambda|^2)
 \end{align*}
-The result for $\langle \Psi(0), V^-(0; \lambda) \rangle$ follows from symmetry as above.
+The result for $\langle \Psi(0), V^-(0; \lambda) \rangle$ follows from symmetry as above. The fourth equation in \cref{VpmIPs} follows from combining these.
 \end{proof}
 \end{corollary}
 
@@ -1025,11 +1027,11 @@ Since the eigenfunction $U(x)$ must be continuous, the $2n$ pieces $U_i^\pm(x)$ 
 \begin{equation}\label{eigsystem0}
 \begin{aligned}
 (W_i^\pm)'(x) &= A(Q(x); \lambda) W_i^\pm(x) + G_i^\pm(x) W_i^\pm(x) + c_i G_i^\pm(x)V^\pm(x; \lambda) + d_i \lambda^2 \tilde{H}_i^\pm(x) \\
-W_i^+(X_i) - W_{i+1}^-(-X_i) &= D_i d + C_i c && i = 0, \dots, n-1 \\
-W_i^+(0) - W_i^+(0) &= c_i( V^-(0; \lambda) - V^+(0; \lambda) ) && i = 0, \dots, n-1  \\
+W_i^+(X_i) - W_{i+1}^-(-X_i) &= D_i d + C_i c \\
+W_i^+(0) - W_i^+(0) &+ c_i( V^+(0; \lambda) - V^-(0; \lambda) ) = 0
 \end{aligned}
 \end{equation}
-where
+for $i = 0, \dots, n-1$, where
 \begin{align}\label{defDid}
 D_i d &= d_{i+1}[\partial_x Q_{i+1}^-(-X_i) + \lambda \partial_c Q_{i+1}^-(-X_i)]
 - d_i [ \partial_x Q_i^+(X_i) + \lambda \partial_c Q_i^+(X_i) ] \\
@@ -1042,16 +1044,16 @@ As in \cite{Sandstede1998}, we will not be able to find a solution to this syste
 \begin{equation}\label{eigsystem}
 \begin{aligned}
 (W_i^\pm)'(x) &= A(Q(x); \lambda) W_i^\pm(x) + G_i^\pm(x) W_i^\pm(x) + c_i G_i^\pm(x)V^\pm(x; \lambda) + d_i \lambda^2 \tilde{H}_i^\pm(x) \\
-W_i^+(X_i) - W_{i+1}^-(-X_i) &= D_i d + C_i c && i = 0, \dots, n-1 \\
-W_i^\pm(0) &\in \R \Psi(0) \oplus \R \Psi^c(0) \oplus Y^+ \oplus Y^- && i = 0, \dots, n-1  \\
-W_i^+(0) - W_i^-(0) &\in \R \Psi(0) \oplus \R \Psi^c(0) && i = 0, \dots, n-1 
+W_i^+(X_i) - W_{i+1}^-(-X_i) &= D_i d + C_i c \\
+W_i^\pm(0) &\in \R \Psi(0) \oplus \R \Psi^c(0) \oplus Y^+ \oplus Y^- \\
+W_i^+(0) - W_i^-(0) &\in \R \Psi(0) \oplus \R \Psi^c(0) 
 \end{aligned}
 \end{equation}
-where the third equation in \cref{eigsystem0} is relaxed to the requirement that the jumps $W_i^+(0) - W_i^-(0)$ can only be in the directions of $\Psi^c(0)$ and $\Psi(0)$. A solution to \eqref{eigsystem} solves \eqref{PDEeig3} if and only if the $n$ jumps conditions at $x = 0$ in the direction of $\Psi(0) \oplus \R \Psi^c(0)$ are satisfied, i.e.  
+for $i = 0, \dots, n-1$, where the third equation in \cref{eigsystem0} is relaxed to the requirement that the jumps $W_i^+(0) - W_i^-(0)$ can only be in the directions of $\Psi^c(0)$ and $\Psi(0)$. A solution to \eqref{eigsystem} solves \eqref{PDEeig3} if and only if the $n$ jumps conditions at $x = 0$ in the direction of $\Psi(0) \oplus \R \Psi^c(0)$ are satisfied, i.e.  
 \begin{equation}\label{jumpxi1}
 \begin{aligned}
-\xi_i &= \langle \Psi(0), W_i^+(0) - W_i^-(0) - c_i( V^+(0; \lambda) - V^-(0; \lambda) ) \rangle = 0  \\
-\xi_i^c &= \langle \Psi^c(0), W_i^+(0) - W_i^-(0) - c_i( V^+(0; \lambda) - V^-(0; \lambda) ) \rangle = 0 
+\xi_i &= \langle \Psi(0), W_i^+(0) - W_i^-(0) + c_i( V^+(0; \lambda) - V^-(0; \lambda) ) \rangle = 0  \\
+\xi_i^c &= \langle \Psi^c(0), W_i^+(0) - W_i^-(0) + c_i( V^+(0; \lambda) - V^-(0; \lambda) ) \rangle = 0 
 \end{aligned}
 \end{equation}
 for $i = 0, \dots, n-1$. 
