@@ -145,17 +145,17 @@
 
 \mainmatter
 
-\chapter{Introduction}
+\chapter{Introduction}\label{chapter:intro}
+\subfile{intro}
 
-\chapter{Background for 5th order KdV}\label{chapter:KdV5}
+\chapter{The 5th order KdV equation}\label{chapter:KdV5}
 \subfile{kdv5}
 
-\chapter{Numerical results}\label{chapter:KdV5}
+\chapter{Numerical results}\label{chapter:KdV5numerics}
 \subfile{kdv5numerics}
 
 \chapter{Generalization}\label{chapter:kdv5general}
 \subfile{kdv5general}
-\subfile{primarypulse}
 
 \chapter{Multi-pulse solutions}\label{chapter:kdv5homoclinic}
 \subfile{kdv5homoclinic}
@@ -166,6 +166,9 @@
 \chapter{Multi-pulses in other systems}\label{chapter:other}
 \subfile{other}
 
+\chapter{Proof of results from Chapter \ref{chapter:kdv5general}}
+\subfile{primarypulse}
+
 \chapter{Proof of existence results for periodic multi-pulses}
 \subfile{periodicexist}
 
@@ -175,9 +178,6 @@
 
 \chapter{Proof of eigenvalue results for periodic 2-pulses}
 \subfile{periodiceig2p}
-
-\chapter{Proof of eigenvalue results for periodic $n$-pulses}
-\subfile{periodiceig}
 
 \chapter{Conclusion}
 

@@ -99,78 +99,212 @@ The discrete nonlinear Schr{\"o}dinger equation (DNLS) is the
 \begin{equation}\label{DNLS}
 i\dot{\psi}_n + d(\psi_{n+1} - 2 \psi_n + \psi_{n-1}) + |\psi_n|^2 \psi_n = 0,
 \end{equation}
-which is (2.12) in \cite{Kevrekidis2009}, where we have taken $\beta = -1$ and $\sigma = 1$. The parameter $d$ represents the coupling between nodes; $d > 0$ is the focusing case, and $d < 0$ the defocusing case~\cite{Kevrekidis2009}. Equation \cref{DNLS} is Hamiltonian, with energy given by (2.17) in \cite{Kevrekidis2009,pelinovsky_2011}. Of general interest in this type of lattice is the existence and stability of standing waves, which are bound state solutions of the form $\psi_n(t) = e^{i \omega t}\phi_n$~\cite{alfimov}. Making this substitution in \cref{DNLS} and simplifying, a standing wave solves the steady state equation
+which is (2.12) in \cite{Kevrekidis2009}, where we have taken $\beta = -1$ and $\sigma = 1$. The parameter $d$ represents the coupling between nodes; $d > 0$ is the focusing case, and $d < 0$ the defocusing case~\cite{Kevrekidis2009}. Equation \cref{DNLS} is Hamiltonian, with energy given by (2.17) in \cite{Kevrekidis2009,pelinovsky_2011}. Of general interest is the existence and stability of standing waves, which are bound state solutions of the form $\psi_n(t) = e^{i \omega t}\phi_n$~\cite{alfimov}. Making this substitution in \cref{DNLS} and simplifying, a standing wave solves the steady state equation
 \begin{equation}\label{DNLSequilib}
 d(\phi_{n+1} - 2 \phi_n + \phi_{n-1}) - \omega \phi_n + |\phi_n|^2 u_n = 0.
 \end{equation}
-From~\cite{herrmann_2011}, a symmetric, real-valued, on-site soliton solution $q_n$ exists to \cref{DNLSequilib} for all $\omega \neq 0$ and $d \geq 0$. This solution $q_n$ furthermore is differentiable in $\omega$. 
 
-We will write DNLS as a system of two real variables $u = (v, w) \in \ell^2(\Z, \R^2)$, where $v = \text{Re }\psi$ and $w = \text{Im }\psi$. In this fashion, we can write \cref{DNLS} in Hamiltonian form as
-\begin{equation}\label{DNLSrealHam}
-\dot{u}_n + J [\mathcal{H}'(u)]_n = 0,
-\end{equation}
-where $J$ is the standard skew-symmetric symplectic matrix
+In contrast to the continuous NLS equation, the discrete NLS equation is not translation invariant. There are only two stationary soliton solutions (modulo shifting the entire solution by an integer number of lattice points): an on-site soliton, centered on a single lattice point, and an off-site soliton, centered between two lattice points. These are shown in the left panels of \cref{fig:DNLSsingle}
+\begin{figure}
+\centering
+\begin{tabular}{cc}
+\includegraphics[width=6cm]{images/other/onsite}&
+\includegraphics[width=6cm]{images/other/onsitespec} \\
+\includegraphics[width=6cm]{images/other/intersite}&
+\includegraphics[width=6cm]{images/other/intersitespec}
+\end{tabular}
+\caption{Two distinct soliton solution for DNLS together with the spectrum of the linearization about the solutions. On-site soliton (top) and inter-site soliton (bottom). Discretization with 20 lattice points, $d = 1$, $\omega = 1$.}
+\label{fig:DNLSsingle}
+\end{figure}
+The spectra of the linearization about the two soliton solutions is shown in the right panels of \cref{fig:DNLSsingle}. Since the off-site soliton is spectrally unstable, we will only consider the on-site soliton from here on. From~\cite{herrmann_2011}, a symmetric, real-valued, on-site soliton solution $q_n$ exists to \cref{DNLSequilib} for all $\omega \neq 0$ and $d \geq 0$. This solution $q_n$ furthermore is differentiable in $\omega$. 
+
+If $\phi_n$ is a solution to \cref{DNLSequilib}, then by rotational symmetry it is not hard to show that $e^{i \theta} \phi_n$ is also a solution. An $m$-pulse solution is composed of $m$ individual copies of the primary pulse $q_n$ glued together. Each copy of $q_n$ is associated with a phase angle $\theta$; since \cref{DNLSequilib} is invariant under rotation, only the differences in phase between consecutive copies of $q_n$ are important. We will characterize an $m-$pulse solution to \cref{DNLSequilib} in terms of the following parameters: 
+\begin{enumerate}[(i)]
+\item The distances $\{ N_1, \dots, N_{m-1} \}$ in lattice points between consecutive copies of $q_n$.
+\item The phase differences $\{ \Delta\theta_1, \dots, \Delta\theta_{m-1} \}$ between consecutive copies of $q_n$.
+\end{enumerate}
+
+Before we state our results, we will briefly summarize what is already known about multi-pulse solutions. Many more details can be found in \cite{Kevrekidis2009,pelinovsky_2011}. At the anti-continuum limit ($d = 0$), equation \cref{DNLSequilib} reduces to a system of decoupled algebraic equations. Any $u_n$ with $u_n \in \{ 0, \pm \sqrt{\omega}\}$ is a solution. For sufficiently small $d$, $m$-pulse solutions exist to equation \cref{DNLSequilib} for any pulse distances as long as the phase differences satisfy $\Delta \theta_i \in \{0, \pi\}$ \cite[Proposition 2.1]{Pelinovsky2005}. For sufficiently small $d$, this $m-$pulse is spectrally unstable unless all of the phase differences $\Delta \theta_i$ are $\pi$; in that case there are $m-1$ pairs of purely imaginary eigenvalues with negative Krein signature \cite[Theorem 3.6]{Pelinovsky2005}. This means that these eigendirections, although neutrally stable, are prone to instabilities when parameters (such as $d$) are varied upon collision with other eigenvalues. For any $d$ for which the $m-$pulse exists, if one or more phase differences $\Delta \theta_i$ is 0, it follows from Sturm-Liouville theory that there is at least one positive, real eigenvalue \cite{Kapitula2001a}.
+
+We use Lin's method to extend these results to regimes further from the anti-continuum limit. In effect, we are replacing the condition that $d$ is sufficiently small with the condition that the individual pulses are well separated. We have the following theorem regarding the existence of $m-$pulse solutions. For notational simplicity, we will write solutions to \cref{DNLSequilib} as $u(n)$ rather than $u_n$ as is traditional in the literature.
+
+\begin{theorem}\label{DNLSexisttheorem}
+There exists a positive integer $N_0$ (which depends on $\omega$ and $d$), with the following property. For any $m \geq 2$, pulse distances $N_i \geq N_0$, and phase differences $\Delta\theta_i \in \{0, \pi\}$, there exists a unique $m-$pulse solution $q_m(n)$ to \cref{DNLSequilib} which resembles $m$ consecutive copies of the on-site pulse $q(n)$. No other phase differences are possible.
+\end{theorem}
+
+The linearization about $q_m(n)$ has a kernel with algebraic multiplicity 2 and geometric multiplicity 1 which is a result of rotational invariance. The following theorem locates the small eigenvalues of the linearization about $q_m(n)$ resulting from interaction between consecutive copies of $q(n)$. 
+
+\begin{theorem}\label{DNLSeigtheorem}
+Let $q_m(n)$ be an $m-$pulse solution to \cref{DNLSequilib} with pulse distances $N_i$ and phase differences $\Delta\theta_i$. Assume that $M > 0$, where
 \[
-J = \begin{pmatrix}0 & 1 \\ -1 & 0\end{pmatrix}
+M = \sum_{n=-\infty}^\infty q_n \partial_\omega q_n = \partial_\omega \left( \frac{1}{2} \sum_{n=-\infty}^\infty q_n^2 \right).
 \]
-and the Hamiltonian $\mathcal{H}: \ell^2(\Z,\R^2) \rightarrow \R$ is
-\begin{equation}\label{DNLSrealH}
-\mathcal{H}(v, w) = -\sum_{n = -\infty}^\infty 
-\left( \frac{d}{2}\left(v_n - v_{n-1}\right)^2 + \frac{d}{2}\left(w_n - w_{n-1}\right)^2 - \frac{1}{4}\left( v_n^2 + w_n^2 \right)^2 \right).
-\end{equation}
-The Hamiltonian $\mathcal{H}$ is invariant under the standard rotation group $R(\theta)$, given by
-\begin{equation}\label{Rtheta}
-R(\theta) = \begin{pmatrix}
- \cos(\theta) & \sin(\theta) \\
--\sin(\theta) & \cos(\theta)
+Let $N = \frac{1}{2} \min\{ N_1, \dots, N_{m-1}\}$. Then for $N$ sufficiently large, there exist $m-1$ pairs of interaction eigenvalues $\{\pm \lambda_1, \dots, \pm \lambda_{m-1}\}$, which can be grouped as follows. There are $k_\pi$ pairs of purely imaginary eigenvalues and $k_0$ pairs of real eigenvalues, where $k_\pi$ is the number of phase differences $\Delta\theta_i$ which are $\pi$, and $k_0$ is the number of phase differences $\Delta\theta_i$ which are $0$. The $\lambda_j$ are close to 0 and are given by the following formula
+\begin{align}\label{eigsDNLS}
+\lambda_j &= \sqrt{\frac{d \mu_j}{M}} + \mathcal{O}(r^{-2N}) && j = 1, \dots, m-1,
+\end{align}
+where
+\begin{align}\label{eigr}
+r = 1 + \frac{\omega}{2 d} \left( 1 + \sqrt{1 + \frac{4 d}{\omega}} \right),
+\end{align}
+$d$ is the coupling constant and $\{ \mu_1, \dots, \mu_{m-1} \}$ are the distinct, real, nonzero eigenvalues of the symmetric, tridiagonal matrix
+\begin{align}\label{DNLSmatrixA}
+A &= \begin{pmatrix}
+-\cos(\Delta\theta_1) b_1 & \cos(\Delta\theta_1) b_1 & & &  \\
+\cos(\Delta\theta_1) b_1 & -\cos(\Delta\theta_1) b_1 - \cos(\Delta\theta_2) b_2 & \cos(\Delta\theta_2) b_2 \\
+& \ddots & \ddots \\
+& &  \cos(\Delta\theta_{m-1}) b_{m-1} & -\cos(\Delta\theta_{m-1}) b_{m-1}  \\
 \end{pmatrix},
-\end{equation}
-which has infinitesimal generator $R'(0) = J$. In addition, there is another conserved quantity, often called the norm or the power of the solution, which is given by
-\begin{equation}\label{DNLSQ}
-\mathcal{Q}(v, w) = \frac{1}{2} \sum_{n = -\infty}^\infty 
-\left( v_n^2 + w_n ^2\right).
-\end{equation}
+\end{align}
+where
+\begin{align}\label{bieq}
+b_i = \begin{cases}
+q\left(\frac{N_i}{2}\right) \left[ q\left(\frac{N_i}{2} + 1\right) - q\left(\frac{N_i}{2} - 1\right) \right] & N_i \text{ even} \\
+q\left(\frac{N_i-1}{2}\right)\left(\frac{N_i+3}{2}\right) 
+- \left(\frac{N_i+1}{2}\right)q\left(\frac{N_i-3}{2}\right) & N_i \text{ odd}
+\end{cases} \:.
+\end{align}
+\end{theorem}
 
-Standing waves are solutions of \cref{DNLSrealHam} of the form $R(\omega t) u$, where $u$ is independent of $t$. Substituting this into \cref{DNLSrealHam}, we obtain the equivalent system of equations
-\begin{equation}\label{DNLSequilib1}
-\mathcal{H}'(u) - \omega u = 0,
-\end{equation}
-which for DNLS is given by
-\begin{equation}\label{DNLSequilib2}
-\begin{aligned}
-d (v_{n+1} - 2 v_n + v_{n-1}) + v_n w_n^2 + v_n^3 - \omega v_n &= 0 \\
-d (w_{n+1} - 2 w_n + w_{n-1}) + v_n^2 w_n + w_n^3 - \omega w_n &= 0 \:.
-\end{aligned} 
-\end{equation}
-If $u$ is a standing wave solution, then $R(\theta) u$ is also a standing wave by symmetry. We note that the steady state system has the form
-\begin{equation}
-\mathcal{H}'(u) - \omega \mathcal{Q}'(u) = 0,
-\end{equation}
-which is the stationary equation \cite[(2.15)]{Grillakis1987}. The steady state equation \cref{DNLSequilib2} also has a conserved quantity $E$ \cite{Johansson2000}, which is given by
-\begin{equation}\label{DNLSE}
-E = 2d(v_n w_{n-1} - v_{n-1} w_n) = 2d \langle u_n, J u_{n-1} \rangle.
-\end{equation}
-By a conserved quantity in this setting we mean
-that this quantity is independent of the lattice
-index $n$.
+\begin{remark}
+There is strong numerical evidence that $M > 0$, i.e. the Melnikov condition is satisfied.
+\end{remark}
 
-For stability analysis, the linearization of \cref{DNLSrealHam} about a standing wave solution $u^*$ 
-yields the linear operator $L(u^*)$, given by 
-\begin{equation}\label{DNLSeigproblem}
-L(u^*) = J \mathcal{H}''(u^*)  - \omega J.
-\end{equation}
-Let $u^*_n = (q_n, 0)$, where $q_n$ is the real-valued, on-site standing wave solution to \cref{DNLS}. It is straightforward to verify that
-\begin{equation}\label{DNLSkernel1}
+\begin{remark}
+If all the nonzero eigenvalues $\mu_j$ of $A$ are larger than $\mathcal{O}(r^{-4N})$, then the formula \cref{eigsDNLS} is the sum of a leading order term and a small remainder term. A good approximation for the eigenvalues $\lambda_j$ can be obtained by computing the eigenvalues of $A$. A sufficient condition for this is $N_{\mathrm{max}} < 2 N$, where $N_{\mathrm{max}} = \frac{1}{2} \max\{ N_1, \dots, N_{m-1}\}$.
+\end{remark}
+
+\noindent In addition, we remark that if $b_1 = \dots = b_{m-1} = b$, $A = -b \mathcal{M}_1$, where the matrix $\mathcal{M}_1$ is defined in \cite[(2.84)]{Kevrekidis2009} and represents interactions between neighboring sites.
+
+We can compute the nonzero eigenvalues of \cref{DNLSmatrixA} in several special cases. In the first corollary, we consider the case where the pulse distances $N_i$ are equal.
+
+\begin{corollary}\label{DNLSeigcorr}Let $q_m(n)$ be an $m-$pulse solution to \cref{DNLSequilib} with pulse distances $N_i = 2N$ and phase differences $\Delta\theta_i$. Then the $\lambda_j$ are as follows.
+\begin{enumerate}[(i)]
+\item For $m = 2$, we have
+\begin{align}\label{2pulseeigs}
+\lambda_1 &= 
+\begin{cases}
+\sqrt{2}\nu  + \mathcal{O}(r^{-2N}) & \Delta\theta_1 = 0 \\
+\sqrt{2}\nu i + \mathcal{O}(r^{-2N}) & \Delta\theta_1 = \pi
+\end{cases} \:.
+\end{align}
+\item For $m = 3$, we have
+\begin{align}\label{3pulseequaleigs}
+\lambda_{1, 2} &= \begin{cases}
+\nu, \sqrt{3} \nu + \mathcal{O}(r^{-2N}) & (\Delta\theta_1, \Delta\theta_2) = (0, 0) \\
+3^{1/4}\nu, 3^{1/4}\nu i + \mathcal{O}(r^{-2N}) & (\Delta\theta_1, \Delta\theta_2) = (0, \pi) \\
+\nu i, \sqrt{3} \nu i + \mathcal{O}(r^{-2N}) & (\Delta\theta_1, \Delta\theta_2) = (\pi, \pi)
+\end{cases}\:.
+\end{align}
+\item For $m > 3$, if $\Delta\theta_i = \Delta\theta$ for all $i$,
+\begin{align*}
+\lambda_j = \begin{cases}
+\sqrt{2\left( \cos\frac{\pi j}{m} - 1 \right)}\nu + \mathcal{O}(r^{-2N}) & \Delta\theta = 0 \\
+\sqrt{2\left( \cos\frac{\pi j}{m} - 1 \right)}\nu i + \mathcal{O}(r^{-2N}) & \Delta\theta = \pi
+\end{cases}
+\end{align*}
+for $j = 1, \dots, m-1$.
+\end{enumerate}
+where $\nu = \sqrt{\frac{|b|d}{M}} = \mathcal{O}(r^{-N})$, and $b$ is given by equation \cref{bieq}.
+\end{corollary}
+
+In the second corollary, we give a general formula for the eigenvalues for a 3-pulse.
+
+\begin{corollary}\label{DNLSeigcorr2}
+Let $q_3(n)$ be an $3-$pulse solution to \cref{DNLSequilib} with pulse distances $N_1, N_2$ and phase differences $\Delta \theta_1, \Delta \theta_2$. Then $\lambda_1, \lambda_2$ are given by
+\begin{equation}\label{3pulseeigs}
 \begin{aligned}
-L(u^*) R'(0) u^* &= 0 \\
-L(u^*) \partial_\omega u^* &= R'(0) u^* \:.
+\lambda_{1,2} = \sqrt{\frac{d}{M}}
+&\Big( -b_1\cos\Delta\theta_1 - b_2\cos\Delta\theta_2  \\
+&\pm \sqrt{b_1^2 + b_2^2 - b_1 b_2\cos\Delta\theta_1 \cos\Delta\theta_2} \Big)^{1/2} + \mathcal{O}(r^{-2N}).
 \end{aligned}
 \end{equation}
-Based on these statements, we have that $0$ is an
-eigenvalue with algebraic multiplicity $2$ and
-geometric multiplicity $1$ in the DNLS problem.
+If $N_1 < N_2 < 2 N_1$, then, to leading order, these have magnitude
+\begin{equation}\label{3pulsemag}
+\begin{aligned}
+|\lambda_1| &= \sqrt{\frac{2 |b_1| d}{M}} = \mathcal{O}(r^{-N_1/2}) \\
+|\lambda_2| &= \sqrt{\frac{3 |b_2| d}{2 M}} = \mathcal{O}(r^{-N_2/2}) \:,
+\end{aligned}
+\end{equation}
+where $b_1$ and $b_2$ are given by equation \cref{bieq}.
+\end{corollary}
 
+To conclude, we provide numerical verification for these results. We first construct multi-pulse solutions to the steady state DNLS problem by using Matlab for parameter continuation in the coupling constant $d$ from the anti-continuum limit. We then find the eigenvalues of the linearization about this solution using Matlab's \texttt{eig} function. 
 
+First, we look at multi-pulses where the pulse distances are equal.  The left and center panels of \cref{fig:eigendecay1} show the pulse profile and eigenvalue pattern for the two double pulses (of relative phase $0$ and $\pi$). Equation \cref{2pulseeigs} from \cref{DNLSeigcorr} states that for fixed $\omega$ and $d$, the interaction eigenvalues decay as $r^{-N}$. In the right panel of \cref{fig:eigendecay1}, we plot $\log \lambda$ vs. $N$ for the two possible double pulses and construct a least-squares linear regression line. In both cases, the relative error in the slope of this line (which is predicted to be $-\log r$) is order $10^{-4}$. This result provides theoretical and numerical support to the earlier observations of~\cite{Kapitula2001a}.
+
+\begin{figure}
+\centering
+\includegraphics[width=5cm]{images/other/dnlsPP.eps}
+\includegraphics[width=5cm]{images/other/dnlsPPeig.eps}
+\includegraphics[width=5cm]{images/other/dnlsPPdecay.eps}
+\includegraphics[width=5cm]{images/other/dnlsPM.eps}
+\includegraphics[width=5cm]{images/other/dnlsPMeig.eps}
+\includegraphics[width=5cm]{images/other/dnlsPMdecay.eps}
+\caption{Solution profile (left panel), spectral plane eigenvalue pattern (center panel), and plot of $\log(\lambda)$ vs. $N$ with least squares linear regression line (right panel) for $++$ (top) and $+-$ (bottom) pulses. The symbolic notation here and 
+below follows that of~\cite{alfimov}, referring
+with a symbolic sign representation to the positive
+or negative value of the peak of the pulse.
+Parameters $\omega = 2$ and $d = 1.0$.}
+\label{fig:eigendecay1}
+\end{figure}
+
+We do the same for triple pulses with equal pulse distances in \cref{fig:eigendecay2}. Since the pulse distances are equal, both sets of interaction eigenvalues decay as $r^{-N}$ by equation \cref{3pulseequaleigs} from \cref{DNLSeigcorr}. In the right panel of \cref{fig:eigendecay2}, we plot $\log \lambda$ vs. $N$ for the three triple pulses and construct a least-squares linear regression line. In all three cases, 
+namely the in-phase (or $+++$) pulse, the 
+out-of-phase (or $+-+$) and finally the 
+intermediate/mixed phase case
+(or $++-$), the relative error of the slope of the least squares linear regression line is of order $10^{-4}$.  
+
+\begin{figure}
+\centering
+\includegraphics[width=5cm]{images/other/dnlsPPP.eps}
+\includegraphics[width=5cm]{images/other/dnlsPPPeig.eps}
+\includegraphics[width=5cm]{images/other/dnlsPPPdecay.eps}
+\includegraphics[width=5cm]{images/other/dnlsPMP.eps}
+\includegraphics[width=5cm]{images/other/dnlsPMPeig.eps}
+\includegraphics[width=5cm]{images/other/dnlsPMPdecay.eps}
+\includegraphics[width=5cm]{images/other/dnlsPPM.eps}
+\includegraphics[width=5cm]{images/other/dnlsPPMeig.eps}
+\includegraphics[width=5cm]{images/other/dnlsPPMdecay.eps}
+\caption{Solution profile (left panel), spectral plane eigenvalue pattern (center panel), and plot of $\log(\lambda)$ vs. $N$ with least squares linear regression line (right panel) for the three triple pulse cases: $+++$ (top), $+-+$ (middle), and $++-$ pulses. Parameters $\omega = 2$ and $d = 1.0$.}
+\label{fig:eigendecay2}
+\end{figure}
+
+We can also look at triple pulses with unequal pulse distances $N_1$ and $N_2$. If $N_1 < N_2 < 2 N_1$, then by \cref{DNLSeigcorr2}, there are two pairs of eigenvalues of order $r^{-N_1/2}$ and $r^{-N_2/2}$. We can similarly verify these decay rates numerically.
+
+Finally, we can compute the leading order term in equation \cref{eigsDNLS} and compare that to the numerical result. A value for $\omega$ is chosen, and the single pulse solution $q(n; \omega)$ is constructed numerically using parameter continuation from the anti-continuum limit until the desired coupling parameter $d$ is reached. The terms $b_i$ from the matrix $A$ are computed by using equation \cref{bieq} with the numerically constructed solution $q(n; \omega)$. For the derivative $\partial_\omega q(n; \omega)$, solutions $q(n; \omega + \epsilon)$ and $q(n; \omega - \epsilon)$ are constructed numerically for small $\epsilon$ by parameter continuation from the anti-continuum limit to the same value of $d$. The derivative $\partial_\omega q(n; \omega)$ is computed from these via a centered finite difference method; this is used together with $q(n; \omega)$ to calculate the Melnikov sum $M$. 
+
+First, we consider the case of equal pulse distances. We use the expressions from \cref{DNLSeigcorr} to compute the leading order term for the interaction eigenvalues, and we compare this to the results from Matlab's \texttt{eig} function. In \cref{fig:error1} we fix the inter-pulse distances and plot the log of the relative error of the eigenvalues versus the coupling parameter $d$. For intermediate values of $d$, the relative error is less than $10^{-3}$. Since the results of Theorem \cref{stabilitytheorem} are not uniform in $d$, i.e. they hold for sufficiently large $N$ once $d$ and $\omega$ are chosen, we do not expect to have a nice relationship between the error and $d$. This is furthermore complicated by the fact that additional sources of error arise from  
+numerically approximating $b_i$ and $M$. In principle, though, the method (and the asymptotic prediction) yields
+satisfactory results except for the vicinity of the 
+anti-continuum limit (where the notion of the single
+pulse is highly discrete) and the near-continuum limit
+(where the role of discreteness is too weak). 
+It is interesting to point out that at a ``middle
+ground'' between these two limits, namely around $d=0.5$,
+we observe the optimal performance of the theoretical
+prediction. 
+
+\begin{figure}
+\centering
+\includegraphics[width=7cm]{images/other/errors1.eps}
+\includegraphics[width=7cm]{images/other/errors2.eps}
+\caption{Log of relative error of eigenvalues vs. coupling parameter $d$ for double (in phase) 
+pulse $++$ ($N_1 = 10$) and triple (out-of-phase) pulse $+-+$ ($N_1 = N_2 = 8)$. $\omega = 2$ in both cases.}
+\label{fig:error1}
+\end{figure}
+
+We can also do this for triple pulses with unequal pulse distances. In this case, we use \cref{DNLSeigcorr2} to compute the eigenvalues to leading order. \cref{fig:error2} shows the log of the relative error of the eigenvalues versus the coupling parameter $d$.
+For intermediate values of $d$, the relative error is again less than $10^{-3}$. Once again this validates the relevance
+of the method especially so for the case of 
+intermediate ranges of the coupling parameter $d$.
+
+\begin{figure}
+\centering
+\includegraphics[width=7cm]{images/other/errors3.eps}
+\caption{Log of relative error of eigenvalues vs. coupling parameter $d$ for triple in-phase pulse $+++$ with unequal pulse distances ($N_1 = 8, N_2 = 6$), $\omega = 2$.}
+\label{fig:error2}
+\end{figure}
 
 \iffulldocument\else
 	\bibliographystyle{amsalpha}
