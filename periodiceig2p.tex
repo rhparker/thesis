@@ -6,42 +6,81 @@
 	\chapter{KdV5}
 \fi
 
-\section{Proof of Corollary \ref{2blockmatrix}}
+\section{Proof of Corollary \ref{corr:2blockmatrix} and Corollary \ref{corr:2perDet1}}
 
-In this section, we will compute the determinant of the block matrix $S(\lambda)$ from \cref{blockmatrixtheorem} for the periodic 2-pulse. The computation is tedious, but it can be done with the aid of Mathematica. Choose a positive integer $N$, and let $\delta(r, N)$ be as in \cref{blockmatrixtheorem}. In particular, we note that $\delta(r,N) \leq N/|\log r|$. 
+The form of $S(\lambda)$ in Corollary \ref{corr:2blockmatrix} follows from directly from Theorem \ref{blockmatrixtheorem}. Choose a positive integer $N$, and let $\delta(r, N)$ be as in \cref{blockmatrixtheorem}. In particular, we note that $\delta(r,N) \leq N/|\log r|$. Write the block matrix $S(\lambda)$ as $S(\lambda) = S_1(\lambda) + S_2(\lambda)$ as in the statement of the corollary.
 
-To compute the determinant, we write the block matrix $S(\lambda)$ as $S(\lambda) = S_1(\lambda) + S_2(\lambda)$ as in the statement of the corollary.
-
-We use Mathematica to evaluate the determinant. To do ths, we carefully track each remainder term in each remainder matrix in $S_2(\lambda)$ and use Lemma \ref{lemma:expnubound} to bound terms of the form $e^{\pm \nu(\lambda)X_j}$. Doing this, we get
-\begin{equation*}
+We use Mathematica to evaluate the determinant. To do ths, we carefully track each remainder term in each remainder matrix in $S_2(\lambda)$ and use Lemma \ref{lemma:expnubound} to bound terms of the form $e^{\pm \nu(\lambda)X_j}$. Doing this and simplifying, we have
+\begin{equation}\label{2detB1}
 \begin{aligned}
-E(&\lambda) = -\frac{1}{16} \lambda^2 \sinh(\nu(\lambda)X) \Bigg[ 4M \left( (2a + \lambda^2 M) + R_1 \right)\left( \sinh(\nu(\lambda)X) - 2 \lambda M^c \tilde{M}^c \cosh( \nu(\lambda) X) \right) \\
-&- 4 a \lambda M^c \tilde{M}^c \cosh(\nu(\lambda)(X_1 - X_0)) - 2 \lambda^3 M^c \tilde{M}^c M \cosh(\nu(\lambda)X) \\
-&+\lambda^2 M^c q(X_0) \left( \lambda M^c \tilde{M}^c \sinh(\nu(\lambda)X)\sinh(\nu(\lambda)X_0) -2M \left( \sinh(\nu(\lambda)(2X_0 + X_1)) - 3 \sinh(\nu(\lambda(X_1))\right) \right) \\
-&+\lambda^2 M^c q(X_1) \left( \lambda M^c \tilde{M}^c \sinh(\nu(\lambda)X)\sinh(\nu(\lambda)X_1) -2M \left( \sinh(\nu(\lambda)(2X_1 + X_0)) - 3 \sinh(\nu(\lambda(X_0)) \right) \right)
-\Bigg] \\&+ R_2
+\det S(&\lambda) = \sinh(\nu(\lambda)X)\left(-2 \lambda^2 M (2a + \lambda^2 M) +  \mathcal{O}( (r^{1/2} + |\lambda|)^5 \right) \\
+&-\lambda^4 q(X_0) M M^c \left( \sinh(\nu(\lambda)(2 X_0 + X_1)) - 3 \sinh(\nu(\lambda)X_1)  \right) \\
+&-\lambda^4 q(X_1) M M^c \left( \sinh(\nu(\lambda)(2 X_1 + X_0)) - 3 \sinh(\nu(\lambda)X_0)  \right) \\
+&+ \mathcal{O}( (r^{1/2} + |\lambda|)^6) 
 \end{aligned}
-\end{equation*}
-where the remainder terms have bounds 
+\end{equation}
+Using standard hyperbolic trigonometric identities, we can show that 
 \begin{align*}
-|R_1| \leq C(r^{1/2} + |\lambda|)^3 \\
-|R_2| \leq C(r^{1/2} + |\lambda|)^6
-\end{align*}
-Using the hyperbolic trigonometric identity
-\begin{align*}
-\sinh(2 x + y) - 3 \sinh(y) &= 4 \cosh(x + y)\sinh(x)
+\sinh(2 x + y) - 3 \sinh(y) &= 4 \cosh(x + y)\sinh(x) 
 -2 \sinh(x+y)\cosh(x) 
 \end{align*}
-and simplifying the remainder terms, the determinant becomes
-\begin{equation*}
+Using this with the second line of \cref{2detB1}, we have
+\begin{align*}
+\lambda^4 &q(X_0) \left( \sinh(\nu(\lambda)(2 X_0 + X_1)) - 3 \sinh(\nu(\lambda)X_1)  \right) \\
+&= 4 \lambda^4 q(X_0) \cosh(\nu(\lambda)X)\sinh(\nu(\lambda)X_0) - 3 \lambda^4 q(X_0) \sinh(\nu(\lambda)X)\cosh(\nu(\lambda)X_0) \\
+&= 4 \lambda^4 q(X_0) \cosh(\nu(\lambda)X)\sinh(\nu(\lambda)X_0) + \sinh(\nu(\lambda)X)(\mathcal{O}(r^{1/2}|\lambda|^4))
+\end{align*}
+since $|\cosh(\nu(\lambda)X_0)|\leq C$ by Lemma \ref{lemma:expnubound}. Doing the same thing for the third line of \cref{2detB1}, substituting the results into \cref{2detB1}, and simplifying, we have
+\begin{equation}\label{2pdetSlambda}
 \begin{aligned}
-E(&\lambda) = -\frac{1}{16} \lambda^2 \sinh(\nu(\lambda)X) \Bigg[ 4M \left( (2a + \lambda^2 M) + R_1 \right)\left( \sinh(\nu(\lambda)X) - 2 \lambda M^c \tilde{M}^c \cosh( \nu(\lambda) X) \right) \\
-&- 4 a \lambda M^c \tilde{M}^c \cosh(\nu(\lambda)(X_1 - X_0)) - 2 \lambda^3 M^c \tilde{M}^c M \cosh(\nu(\lambda)X) \\
-&- 8\lambda^2 M M^c \cosh(\nu(\lambda)X) \left( q(X_0) \sinh(\nu(\lambda)X_0) + q(X_1) \sinh(\nu(\lambda)X_1) \right) 
-\Bigg] + R_2
+\det S(&\lambda) = \left(-2 \lambda^2 M (2a + \lambda^2 M) + R_1  \right) \sinh(\nu(\lambda)X) \\
+&-4 M M^c \lambda^4 ( q(X_0) \sinh(\nu(\lambda)X_0) + q(X_1) \sinh(\nu(\lambda)X_1) ) \cosh(\nu(\lambda)X)  + R_2
 \end{aligned}
-\end{equation*}
-where the remainder terms have the same bounds.
+\end{equation}
+where the remainder terms have bounds
+\begin{align*}
+|R_1| \leq C(r^{1/2} + |\lambda|)^5 \\
+|R_2| \leq C(r^{1/2} + |\lambda|)^6
+\end{align*}
+
+\section{Proof of \cref{lemma:chara}}
+
+For part (i), from \cref{lemma:ajparam}, Theorem \cref{2pulsebifurcation}, and the definition of $a(r)$ in \cref{2pa}, we have $a = r \tilde{a}(r; m_0, s_0)$, where
+\begin{align*}
+\tilde{a}(r; m_0, s_0) &= -2 p_0 e^{\alpha \phi/\beta_0} e^{-\frac{1}{\rho}(m_0 \pi + s_0)} \left( \beta \cos\left(m_0 \pi + s_0 \right) - \alpha \sin \left(m_0 \pi + s_0 \right) \right) + \mathcal{O}(r^{\gamma/2\alpha}) \\
+&= -2 p_0 e^{\alpha \phi/\beta_0} e^{-\frac{1}{\rho}(m_0 \pi + s_0)} (-1)^{m_0} \left( \beta \cos s_0 - \alpha \sin s_0 \right) + \mathcal{O}(r^{\gamma/2\alpha})
+\end{align*}
+As in \cref{pitchforkH}, $\tilde{a}(0; m_0, s_0) = 0$ if and only if $s_0 = p^* = \arctan \rho$. For $m_0 = 0$, since $p_0 > 0$ by \cref{lemma:ajparam}, if $s_0 < p^*$, $\tilde{a}(0; 0, s_0) < 0$ and if $s_0 > p^*$, $\tilde{a}(0; 0, s_0) > 0$. These are reversed for $m_0 = 1$.
+
+For part (ii), it again follows from \cref{lemma:ajparam}, Theorem \cref{2pulsebifurcation}, and the definition of $a(r)$ in \cref{2pa} that $a = r \tilde{a}(r; m_0, s_1)$, where
+\begin{align*}
+\tilde{a}(r; m_0, s_1) &= -p_0 e^{\alpha \phi/\beta_0} \Big[ b_0(m_0, s_1) \left( \beta \cos\left(-\rho \log b_0(m_0, s_1) \right) - \alpha \sin \left(-\rho \log b_0(m_0, s_1) \right) \right) \\
+&\qquad+ b_1(s_1) \left( \beta \cos\left(-\rho \log b_1(s_1) \right) - \alpha \sin \left(-\rho \log b_1(s_1) \right) \right) \Big]  + \mathcal{O}(r^{\gamma/2\alpha}) \\
+&= -p_0 e^{\alpha \phi/\beta_0} H_1( b_0(m_0, s_1), b_1(s_1) ) + \mathcal{O}(r^{\gamma/2\alpha}),
+\end{align*}
+where $H_1(b_0, b_1)$ is defined in \cref{perdefH1}.
+$b_1(s_1) = e^{-\frac{1}{\rho}s_1}$, and for each $m_0 \in \{ 0, 1 \}$, $b_0(m_0, s_1)$ is a continuous function which of $s_1$. The exact form of $b_0(m_0, s_1)$ is given in the proof of Lemma \ref{armpersists}. All that matters here is that $(b_0(m_0, s_1), b_1(s_1))$ is contained entirely within the zero set of $H(b_0, b_1)$, where $H(b_0, b_1)$ is defined in \cref{perdefH}. By Hypothesis \ref{Hoverlaphyp}, the two zero sets overlap only at the pitchfork bifurcation points, thus $\tilde{a}(r; m_0, s_1) = 0$ if and only if $s_1 = p^*$. By continuity in $s_1$, $\tilde{a}(r; m_0, s_1)$ must have the same sign for all $s_1 > p^*$. It only remains to determine that sign.
+
+From Lemma \ref{lemma:ajparam} and the proof of Lemma \ref{armpersists}, we can write $\tilde{a}(r; m_0, s_1)$ as 
+\[
+\tilde{a}(r; m_0, s_1) = \tilde{a}_1(r, s_1) + \tilde{a}_0(r, m_0, s_1), where
+\]
+For $\tilde{a}_1(r, s_1)$, we have 
+\begin{align*}
+\tilde{a}_1(r, s_1) &= -p_0 e^{\alpha_0 \phi/\beta_0} e^{-\frac{1}{\rho}s_1} \left( \beta \cos s_1 - \alpha \sin s_1 \right) + \mathcal{O}(r^{\gamma/2\alpha_0}) \\
+&= \mathcal{O}\left(r^{\gamma/2\alpha_0} + e^{-\frac{1}{\rho}s_1} \right)
+\end{align*}
+From Lemma \ref{lemma:ajparam}, the proof of Lemma \ref{armpersists}, and the bound on $\theta^*(\theta, m)$ from Lemma \ref{thetaparamlemma}, we have for $\tilde{a}_0(r, m_0, s_1)$
+\begin{align*}
+\tilde{a}_0(r, m_0, s_1) &= -p_0 e^{\alpha_0 \phi/\beta_0} e^{-\frac{1}{\rho}m_0} \left( \beta \cos\left(m_0 \pi + \mathcal{O}\left(e^{-\frac{1}{\rho}s_1} \right) \right) - \alpha \sin \left(m_0 \pi + \mathcal{O}\left(e^{-\frac{1}{\rho}s_1} \right) \right) \right) + \mathcal{O}\left(r^{\gamma/2\alpha_0} + e^{-\frac{1}{\rho}s_1} \right) \\
+&= -(-1)^{m_0} p_0 \beta_0 e^{\alpha_0 \phi/\beta_0} e^{-\frac{1}{\rho}m_0} + \mathcal{O}\left(r^{\gamma/2\alpha_0} + e^{-\frac{1}{\rho}s_1} \right) \\
+&= \tilde{a}^*(m_0) + \mathcal{O}\left(r^{\gamma/2\alpha_0} + e^{-\frac{1}{\rho}s_1} \right) \\
+\end{align*}
+where $\tilde{a}^*(m_0)$ is defined by
+\[
+\tilde{a}^*(m_0) = (-1)^{m_0 + 1} p_0 \beta_0 e^{\alpha_0 \phi/\beta_0} e^{-\frac{1}{\rho}m_0}
+\]
+and is negative if $m_0 = 0$ and positive if $m_0 = 1$. Equation \cref{tildeas1limit} follows by taking $r = 0$. For all $s_1 > p^*$, the sign of $\tilde{a}(r; m_0, s_1)$ is the same as the sign of $\tilde{a}^*(m_0)$ by continuity.
 
 \section{Change of variables}
 
@@ -49,19 +88,10 @@ We can now solve equation \cref{2pdetSlambda} to find the eigenvalues $\lambda$.
 \begin{equation}\label{2plambdamu}
 \lambda = \nu^{-1}(\mu) = c \mu + \mathcal{O}(\mu^3)
 \end{equation}
-Substituting this into \cref{2pdetSlambda} and simplifying, we obtain the equation
+
+Substituting this into the simplified determinant from Corollary \ref{corr:2perDet1} and simplifying, we obtain the equation
 \begin{equation}\label{2detBeqmu}
-\begin{aligned}
-\det S(&\mu) = \left(-2 c^2 \mu^2 M (2a + c^2 \mu^2 M) + R_1 )\right) \sinh(\mu X) \\
-&-4 M M^c c^4 \mu^4 ( q(X_0) \sinh(\mu X_0) + q(X_1) \sinh(\mu X_1) ) \cosh(\mu X) + R_2
-\end{aligned}
-\end{equation}
-Incorporating the higher order terms from \cref{2plambdamu} into the remainder terms, the bounds on the remainder terms are unchanged.
-\begin{equation}\label{muRbounds}
-\begin{aligned}
-|R_1| \leq C(r^{1/2} + |\mu|)^5 \\
-|R_2| \leq C(r^{1/2} + |\mu|)^6
-\end{aligned}
+\det S(\mu) = c^2 \mu^2 M \left( 2a + c^2 \mu^2 M\right)\left(1 - \cosh(2 \mu X) \right) + \mathcal{O}(|\mu| + r^{1/2})^5.
 \end{equation}
 
 To conclude this section, we prove that Hamiltonian symmetry applies to $\mu$ as well.
@@ -78,31 +108,6 @@ If $\mu$ is a zero, then $\lambda = \nu^{-1}(\mu)$ is a zero of $S(\lambda)$. By
 it follows that $-\mu$, $\overline{\mu}$, and $-\overline{\mu}$ are all zeros of $S(\mu)$.
 \end{proof}
 \end{lemma}
-
-\section{Proof of \cref{lemma:chara}}
-
-\begin{enumerate}
-	\item Proof of part (i) is straightforward and will be filled in.
-	\item Proof of part (ii) is not complete, but numerics strongly suggests result.
-	\item Proof of \cref{tildeas1limit} is as follows.
-
-	From Lemma \ref{lemma:ajparam} and the proof of Lemma \ref{armpersists},
-	\begin{align*}
-	\tilde{a}_1(r, s_1) &= -s_0 e^{\alpha_0 \phi/\beta_0} e^{-\frac{1}{\rho}s_1} \left( \beta \cos s_1 - \alpha \sin s_1 \right) + \mathcal{O}(r^{\gamma/2\alpha_0}) \\
-	&= \mathcal{O}\left(r^{\gamma/2\alpha_0} + e^{-\frac{1}{\rho}s_1} \right)
-	\end{align*}
-	From Lemma \ref{lemma:ajparam}, the proof of Lemma \ref{armpersists}, and the bound on $\theta^*(\theta, m)$ from Lemma \ref{thetaparamlemma}, 
-	\begin{align*}
-	\tilde{a}_0(r, m_0, s_1) &= -s_0 e^{\alpha_0 \phi/\beta_0} e^{-\frac{1}{\rho}m_0} \left( \beta \cos\left(m_0 \pi + \mathcal{O}\left(e^{-\frac{1}{\rho}s_1} \right) \right) - \alpha \sin \left(m_0 \pi + \mathcal{O}\left(e^{-\frac{1}{\rho}s_1} \right) \right) \right) + \mathcal{O}\left(r^{\gamma/2\alpha_0} + e^{-\frac{1}{\rho}s_1} \right) \\
-	&= -(-1)^{m_0} s_0 \beta_0 e^{\alpha_0 \phi/\beta_0} e^{-\frac{1}{\rho}m_0} + \mathcal{O}\left(r^{\gamma/2\alpha_0} + e^{-\frac{1}{\rho}s_1} \right) \\
-	&= \tilde{a}^*(m_0) + \mathcal{O}\left(r^{\gamma/2\alpha_0} + e^{-\frac{1}{\rho}s_1} \right) \\
-	\end{align*}
-	where $\tilde{a}^*(m_0)$ is defined by
-	\[
-	\tilde{a}^*(m_0) = (-1)^{m_0 + 1} s_0 \beta_0 e^{\alpha_0 \phi/\beta_0} e^{-\frac{1}{\rho}m_0}
-	\]
-	and is negative if $m_0 = 0$ and positive if $m_0 = 1$. Equation \cref{tildeas1limit} follows by taking $r = 0$.
-\end{enumerate}
 
 \section{Proof of \cref{theorem:2peigsassym}}
 
@@ -198,7 +203,7 @@ By Hamiltonian symmetry, eigenvalues must come in quartets. Since there is nothi
 \lambda_m^{\text{ess}}(r) = c \frac{m \pi i}{X} + +\mathcal{O}\left( \frac{1}{|\log r|^2} \right),
 \]
 
-\subsection{Eigenvalues at 0}
+\subsection{Eigenvalues at 0}\label{sec:eigcount0}
 
 In this section, we show that there are exactly three eigenvalues at 0, and that there are no other eigenvalues within a certain distance of 0. We know that there is an eigenvalue at 0 with at least algebraic multiplicity 2, since the corresponding eigenfunctions are $\partial_x Q_2(x)$ and $\partial_c Q_2(x)$. Since $\tilde{a}(0) \neq 0$, the eigenvalues of $\tilde{A}(0)$, thus by \cref{lemma:centereigenfn}, there is a third eigenfunction $V_n^c(x)$ with eigenvalue 0. We will use Rouch\'{e}'s theorem to show that there are no more eigenfunctions in a small circle around 0. Let
 \[
@@ -336,7 +341,7 @@ On a circle of radius $|h| = \xi$, $|\sinh h| \geq 1$. By \cref{2pnobubble}, $|h
 \[
 |G_1(h,r)| \geq \pi^2 \xi^2,
 \]
-which is independent of $r$. For $G_2(h,r)$, using $q(X_j) = \mathcal{O}(r^{1/2})$, $X = \mathcal{O}(|\log r|)$, the remainder bounds for $R_1$ and $R_2$ from \cref{muRbounds}, and the scaling $\mu = h/X$, on the circle of radius $|h| = \xi$, we have
+which is independent of $r$. For $G_2(h,r)$, using $q(X_j) = \mathcal{O}(r^{1/2})$, $X = \mathcal{O}(|\log r|)$, the remainder bounds for $R_1$ and $R_2$, and the scaling $\mu = h/X$, on the circle of radius $|h| = \xi$, we have
 \[
 |G_2(h,r)| = \mathcal{O}\left( r^{1/2} + \frac{1}{|\log r|} \right)
 \]
@@ -348,7 +353,7 @@ The proof of \cref{theorem:2peigsassym} follows from combining the results of th
 
 \section{Proof of \cref{theorem:2peigssym}}
 
-To prove \cref{2peigsym}, we will first show that if we are sufficiently close to the bifurcation point, there are five eigenvalues in a small ball around the origin. We will then show that when were are at the bifurcation point, those eigenvalues are actually all at the origin.
+To prove \cref{theorem:2peigssym}, we will first show that if we are sufficiently close to the bifurcation point, there are five eigenvalues in a small ball around the origin. We will then show that when were are at the bifurcation point, those eigenvalues are actually all at the origin.
 
 \subsection{Count of eigenvalues near 0}
 
@@ -360,7 +365,7 @@ and $\tilde{a}(0) = 0$ if and only if $s_0 = p^*$. Since $\tilde{a}(r)$ is smoot
 \begin{equation}
 \sqrt{ \left| \frac{ 2 \tilde{a}(r, s_0) }{M} \right| }  r^{1/2} \leq \frac{\pi}{2 X(r)}
 \end{equation}
-Since $X(r) = \mathcal{O}(|\log r|)$, this is always possible. Let $\xi = c \pi / 2 X(r)$, and follow the same procedure as in \cref{sec:assymkernel}. Using Rouch\'{e}'s theorem, it follows that for $r \leq r_1$ and $s_0 \in (p^* - \eta, p^* + \eta)$, there are exactly 5 zeros of $S(\lambda)$ inside the circle of radius $\xi$. We know that two of the zeros must be at $\lambda = 0$ since they correspond to the kernel eigenfunctions $\partial_x Q_2(x)$ and $\partial_c Q_2(x)$. This leaves three eigenvalues unaccounted for.
+Since $X(r) = \mathcal{O}(|\log r|)$, this is always possible. Let $\xi = c \pi / 2 X(r)$, and follow the same procedure as in \cref{sec:eigcount0}. Using Rouch\'{e}'s theorem, it follows that for $r \leq r_1$ and $s_0 \in (p^* - \eta, p^* + \eta)$, there are exactly 5 zeros of $S(\lambda)$ inside the circle of radius $\xi$. We know that two of the zeros must be at $\lambda = 0$ since they correspond to the kernel eigenfunctions $\partial_x Q_2(x)$ and $\partial_c Q_2(x)$. This leaves three eigenvalues unaccounted for.
 By Hamiltonian symmetry, since eigenvalues must come in quartets, there must be a third eigenvalue at 0.
 
 \subsection{Eigenvalues at bifurcation point}
@@ -429,402 +434,6 @@ h(r) = \mathcal{O}\left( r |\log r|^2 + r^{1/2} + r^{\gamma/2\alpha_0} \right)
 \end{equation*}
 
 We conclude that when $s_0 = p^* + h(r)$, there are two more eigenvalues at 0. From the previous section, there are 5 zeros of $S(\lambda)$ inside a the circle of radius $\xi$. Thus when $s_0 = p^* + h(r)$, there is an eigenvalue at 0 with algebraic mutiplicty 5. Since the pitchfork bifurcation in the family of periodic 2-pulses occurs near $p^*$ at $p^*(r)$, it follows from standard PDE bifurcation theory that this quintuiple zero must occur at the pitchfork bifurcation point, i.e. $p^* + h(r) = p^*(r)$.
-
-\section{Proof of Theorem \ref{theorem:kreinbubbles}}
-
-\subsection{Proof of \cref{lemma:s1choice}}
-
-We wish to solve
-\begin{equation}\label{solvefors1}
-\frac{c \pi}{X(r, m_0, s_1)} = \lambda^*(r) r^{1/2}
-\end{equation}
-for $s_1$ in terms of $r$. We note that $\lambda_*(r)$ is independent of $s_1$. Substituting \cref{X2pdomain} from \cref{2pulsebifurcation} and rearranging, equation \cref{solvefors1} becomes
-\begin{align*}
-\lambda_*(r) r^{1/2} \left( \frac{1}{\alpha_0} |\log r| + \frac{1}{2\beta_0} (m_0 \pi + s_1 ) + 2 L_0 + \mathcal{O}\left(e^{-\frac{1}{\rho}s_1}\right) \right) = c \pi
-\end{align*}
-Rearranging this, we obtain the equation $g(s_1) = h(r)$, where
-\begin{align*}
-g(s_1) &= s_1 + \mathcal{O}\left(e^{-\frac{1}{\rho}s_1}\right) \\
-h(r) &= \frac{2 \beta_0 c \pi}{\lambda_*(r)} r^{-1/2} - \frac{2 \beta_0}{\alpha_0} |\log r| - m_0 \pi - 4 \beta_0 L_0
-\end{align*}
-Differentiating $g(s_1)$ with respect to $s_1$, 
-\[
-g'(s_1) = 1 + \mathcal{O}\left(e^{-\frac{1}{\rho}s_1}\right)
-\]
-Thus there exists $R > 0$ such that for all $s_1 \geq R$, $g'(s_1) > 1/2$. For $s_1 \geq R$, $g(s_1)$ is strictly increasing, thus invertible. Since $h(r) \rightarrow \infty$ as $r \rightarrow 0$, there exists $r_1 \leq r_*$ such that for all $r \leq r_1$, we can solve for $s_1$ to get
-\[
-s_1^*(r) = g^{-1}(h(r))
-\]
-This proves \cref{lemma:s1choice}.
-
-\subsection{Variation of $s_1$}
-
-For fixed $r$, as $s_1$ is varied near $s_1^*(r)$, the point $\frac{c \pi}{X(r, m_0, s_1)} i$ will pass through the point $\lambda_*(r) r^{1/2}i$ on the imaginary axis. We will now make this precise.
-
-For $t \in [-1, 1]$, we wish to solve
-\begin{equation}\label{solvefors2}
-\frac{c \pi}{X(r, m_0, s_1)} = \left(1 + \frac{t}{2} \right)\lambda^*(r) r^{1/2}
-\end{equation}
-To do this, let
-\begin{align*}
-h(r, t) &= \frac{2 \beta_0 c \pi}{\left( 1 + \frac{t}{2} \right) \lambda_*} r^{-1/2} - \frac{2 \beta_0}{\alpha_0} |\log r| - m_0 \pi - 4 \beta_0 L_0
-\end{align*}
-Following the same argument as in the previous section, there exists $r_2 \leq r_1$ such that for all $r \leq r_2$, there exists a function $s_1: \mathcal{R} \times [-1, 1] \rightarrow \R$ such that for all $t \in [-1, 1]$, $g(s_1(r, t)) = h(r, t)$, $s_1(r, 1) = s_1^*(r)$, and $s_1(r, t)$ is strictly decreasing in $t$. By construction,
-\begin{align*}
-\frac{c \pi}{X(r, m_0, s_1(r, -1))} = \frac{1}{2} \lambda^*(r) r^{1/2} \\
-\frac{c \pi}{X(r, m_0, s_1(r, 1))} = \frac{3}{2} \lambda^*(r) r^{1/2}
-\end{align*}
-Let $s_1^-(r) = s_1(r, -1)$, $s_1^+(r) = s_1(r, 1)$, and 
-\[
-I_s(r) = [s_1^-(r), s_1^+(r)]
-\]
-From this point forward we will always take $s_1 \in I_s(r)$.
-
-Finally, we use this to obtain estimates which will be useful later. Since $|e^{-\frac{1}{\rho}s_1(r,t)} \leq 1|$, substituting $s_1(r, t)$ into $g(s_1) = h(r, t)$ (and decreasing $r_2$ if necessary), there exists a constant $R_s$ such that for all $r \leq r_2$ and $t \in [-1, 1]$, we have the lower bound
-\begin{equation}\label{s1starLB}
-s_1(r, t) \geq R_s r^{-1/2}
-\end{equation}
-Decreasing $r_2$ further, if necessary, and recalling the expression for $X_1$ from \cref{2pasymmdist}, we can guarantee that for all $r \leq r_2$, 
-\begin{equation}\label{X0X1compare}
-X_1(r, s_1) \geq 2 X_0(r, m_0, s_1)
-\end{equation}
-
-From Lemma \ref{lemma:chara} and \cref{deftildeastar},
-\[
-\tilde{a}(r, m_0, s_1) = \tilde{a}_*(r) + \mathcal{O}\left( e^{-\frac{1}{\rho}s_1} \right)
-\]
-Combining this with \cref{s1starLB}, we have
-\begin{align}\label{tildeasub}
-\tilde{a}(r; m_0, s_1) = \tilde{a}_*(r) + \mathcal{O}\left( r^{1/2} \right)
-\end{align}
-Let $X_0^*(r) = X_0(r, m_0, s_1^*(r))$. Then using \cref{s1starLB} with \cref{2pasymmdist}, for all $s_1 \in I_s(r)$,
-\begin{align}\label{X0sub}
-X_0(r, m_0, s_1) = X_0^*(r) + \mathcal{O}\left( r^{1/2} \right)
-\end{align}
-Similarly, for $s_1 \in I_s(r)$, let $\Delta s_1 = s_1^*(r) - s_1$. Then 
-\begin{align}\label{Xsub}
-X(r, m_0, s_1^*(r) + \Delta s_1) = X^*(r) + \frac{1}{2\beta_0}\Delta s_1 + \mathcal{O}\left( r^{1/2} \right)
-\end{align}
-
-Expanding $q(X_0(r, m_0, s_1))$ in a Taylor series about $s_1^*(r)$, for $s_1 \in I_s(r)$,
-\begin{align}\label{qX0sub}
-q( X_0(r, m_0, s_1) ) = q(X_0^*(r)) + \mathcal{O}\left(r \right)
-\end{align}
-since $q'(X_0^*(r)) = \mathcal{O}(r)$. Finally, using \cref{X0X1compare},
-\begin{align}\label{qX1bound}
-q(X_1(r, s_1)) = \mathcal{O}(r).
-\end{align}
-
-\subsection{Setup}
-
-Since we will be changing variables by taking $\lambda = \nu^{-1}(\mu)$, let 
-\begin{equation}\label{Kreinmustar1}
-\tilde{\mu}_*(r) = \frac{1}{c} \tilde{\lambda_*}(r),
-\end{equation}
-which does not depend on $s_1$. We will solve $\det S(\mu) = 0$ for $\mu$ close to $\tilde{\mu}_* r^{1/2} i$, where $\det S(\mu)$ is given by \cref{2detBeqmu}.
-
-Since we are looking for nonzero eigenvalues which are order $\mu = \mathcal{O}(r^{1/2})$, dividing \cref{2detBeqmu} by $\mu^2$ and the constants out front and simplifying, we obtain the equation
-\begin{equation}\label{KreinB1}
-\begin{aligned}
-0 &= \left( (2a + c^2 \mu^2 M) + \mathcal{O}( r^{3/2} )\right) \sinh(\mu X) \\
-&+ 2 c^2 \mu^2 M^c ( q(X_0) \sinh(\mu X_0) + q(X_1) \sinh(\mu X_1) ) \cosh(\mu X) + \mathcal{O}( r^2 ) 
-\end{aligned}
-\end{equation}
-
-Since we are taking $s_1 \in I_s(r)$, it follows from \cref{tildeasub} and \cref{lemma:chara} that
-\[
-a = r \tilde{a}(r, m_0, s_1) = r\tilde{a}_*(r) + \mathcal{O}\left( r^{3/2} \right)
-\]
-Making this substitution, equation \cref{KreinB1} becomes
-\begin{equation}\label{KreinB1a}
-\begin{aligned}
-0 &= \left( (2r\tilde{a}_*(r) + c^2 \mu^2 M) + \mathcal{O}( r^{3/2} )\right) \sinh(\mu X) \\
-&+ 2 c^2 \mu^2 M^c ( q(X_0) \sinh(\mu X_0) + q(X_1) \sinh(\mu X_1) ) \cosh(\mu X) + \mathcal{O}( r^2 ) 
-\end{aligned}
-\end{equation}
-Dividing by $M c^2$ and using \cref{Kreinmustar1}, equation \cref{KreinB1a} becomes
-\begin{equation}\label{KreinB2}
-\begin{aligned}
-0 &= \left( (\mu - \tilde{\mu}_*(r) r^{1/2} i)( \mu + \tilde{\mu}_*(r) r^{1/2} i) +  \mathcal{O}( r^{3/2} )\right) \sinh(\mu X) \\
-&+\frac{2 M^c}{M} \mu^2 ( q(X_0)\sinh(\mu X_0) + q(X_1) \sinh(\mu X_1) ) \cosh(\mu X) + \mathcal{O}( r^2 ) 
-\end{aligned}
-\end{equation}
-The lengths $X$, $X_0$, and $X_1$ depend on $s_1$ and $r$, but we have suppressed that dependence for now for notational convenience. 
-
-\subsection{Parameterization and first rescaling}
-
-We will characterize the system using two natural parameters: the difference $h$ between $\mu$ and $\tilde{\mu}_*(r) r^{1/2} i$, and the difference $\Delta s_1$ between the parameter $s_1$ and $s_1^*(r)$. We will only consider the upper half of the complex plane; what happens in the lower half is the same by Hamiltonian symmetry. For $s_1 \in I_s(r)$, let
-\begin{align*}
-h &= \mu - \tilde{\mu}_*(r) r^{1/2} i \\
-\Delta s_1 &= s_1 - s_1^*(r)
-\end{align*}
-where $h \in \C$ and $\Delta s_1 s \in \R$. 
-
-In order to expand the $\sinh(\mu X)$ and $\cosh(\mu X)$ terms, we use \cref{Xsub}, we write $\mu X$ as 
-\begin{align*}
-\mu X &= \mu X(r, m_0, s^*(r) + \Delta s_1) \\
-&= \left( X^*(r) + \frac{1}{2 \beta_0} \Delta s_1 + \mathcal{O}(r^{1/2}) \right)\left( \tilde{\mu}_*(r) r^{1/2} i + h\right) \\
-&= \pi i + h X^*(r) + \frac{1}{2 \beta_0} \Delta s_1 \left( \tilde{\mu}_*(r) r^{1/2} i + h\right) + \mathcal{O}\left( r^{1/2}(r^{1/2} + h) \right)
-\end{align*}
-Let 
-\[
-s = \frac{\Delta s_1}{2 \beta_0 X^*(r)}.
-\]
-Since $\tilde{\mu}_*(r) r^{1/2} = \frac{\pi}{X^*(r)}$, this simplifies to 
-\begin{align}\label{muX1}
-\mu X &= \pi i + \left( h + s \tilde{\mu}_*(r) r^{1/2} i + h s \right)X^*(r) + \mathcal{O}\left( r^{1/2}(r^{1/2} + h) \right)
-\end{align}
-
-Next, we scale out a factor of $r^{1/2}$. Let
-\begin{align*}
-h &= r^{1/2} \tilde{h} \\
-q(X_0^*(r)) &= r^{1/2} \tilde{q}
-\end{align*}
-Substituting these into \cref{muX1}, we have
-\begin{align}\label{muX2}
-\mu X &= \pi i + r^{1/2} \left( \tilde{h} + s \tilde{\mu}_*(r)i + \tilde{h} s \right)X^*(r) + \mathcal{O}(\left( r \right)
-\end{align}
-Using this, we have the Taylor expansions
-\begin{align*}
-\sinh(\mu X) &= -r^{1/2} \left( \tilde{h} + s \tilde{\mu}_*(r) i + \tilde{h} s \right)X^*(r) + \mathcal{O}\left( r + r^{3/2}|\log r|^3 \right) \\
-\cosh(\mu X) &= -1 + \mathcal{O}\left( r |\log r|^2 \right) \\
-\end{align*}
-
-Using \cref{qX0sub}, $q(X_0)$ becomes
-\[
-q(X_0) = r^{1/2}\tilde{q} + \mathcal{O}(r)
-\]
-We also want to scale $r^{1/2}$ out from $\sinh(\mu X_j)$ terms. From \cref{qX1bound}, $q(X_1) = \mathcal{O}(r)$. Expanding the $\sinh(\mu X_j)$ terms in a Taylor series about 0, which we can do since $X_j < X$, we get
-\begin{align*}
-\sinh(\mu X_j) &= \mu X_j + \mathcal{O}(\mu X_j)^3 \\
-&= r^{1/2}(\tilde{\mu}_*(r)i + \tilde{h})X_j + \mathcal{O}(r^{3/2} (\tilde{\mu}_*(r)i + \tilde{h})^3 X_j^3)
-\end{align*}
-Since $X_j = \mathcal{O}(|\log r|)$,
-\[
-q(X_0) \sinh(\mu X_0) + q(X_1) \sinh(\mu X_1)
-= \tilde{q}(\tilde{h} + \tilde{\mu}_*(r)i )r X_0 + \mathcal{O}(r^2 |\log r|^3)
-\]
-Using \cref{X0sub}, this becomes
-\[
-q(X_0) \sinh(\mu X_0) + q(X_1) \sinh(\mu X_1)
-= \tilde{q}(\tilde{h} + \tilde{\mu}_*(r)i )r X_0^*(r) + \mathcal{O}(r^{3/2} + r^2 |\log r|^3)
-\]
-
-Substituting all of these into \cref{KreinB2} and dividing by $-1$ and $r^{3/2}$, we obtain the equation
-\begin{equation*}
-\begin{aligned}
-0 &= \left( \tilde{h} ( \tilde{h} + 2 \tilde{\mu}_*(r) i) +  \mathcal{O}( r^{1/2} )\right) \left( (\tilde{h} + s \tilde{\mu}_*(r) i + \tilde{h} s)X^*(r) + \mathcal{O}\left( r^{1/2} + r|\log r|^3 \right)  \right) \\
-&+\frac{2 M^c\tilde{q}}{M} ( \tilde{h} + \tilde{\mu}_*(r) i)^2 \left( (\tilde{h} + \tilde{\mu}_*(r)i )r^{1/2} X_0^*(r) + \mathcal{O}(r + r^{3/2} |\log r|^3 ) \right) \left( 1 + \mathcal{O}\left( r |\log r|^2 \right) \right) \\
-&+ \mathcal{O}( r^{1/2} ).
-\end{aligned}
-\end{equation*}
-Simplifying the remainder terms, this becomes
-\begin{equation*}\label{KreinB3}
-\begin{aligned}
-0 &= \left( \tilde{h} ( \tilde{h} + 2 \tilde{\mu}_*(r) i) + \mathcal{O}( r^{1/2} )\right) (\tilde{h} + s \tilde{\mu}_*(r) i + \tilde{h} s)X^*(r) \\
-&+\frac{2 M^c\tilde{q}}{M} ( \tilde{h} + \tilde{\mu}_*(r) i)^2 (\tilde{h} + \tilde{\mu}_*(r)i )r^{1/2} X_0^*(r) +  \mathcal{O}\left( r^{1/2} + r |\log r|^3 \right).
-\end{aligned}
-\end{equation*}
-
-\subsection{Second rescaling}
-
-At this point, we are most of the way there, except for the $r^{1/2}X_0^*(r)$ term on the second line. To figure out an appropriate scaling ansatz to eliminate this term, suppose that $s$ and $\tilde{h}$ are smaller than $\tilde{\mu}_*(r)$. Eliminating all terms we suspect are higher order and simplifying, we obtain an equation of the form
-\begin{equation*}
-\begin{aligned}
-\tilde{h} (\tilde{h} + s \tilde{\mu}_*(r) i) X^*(r) + C r^{1/2} X_0^*(r) \tilde{\mu}_*(r)^2 = 0.
-\end{aligned}
-\end{equation*} 
-Since this is quadratic in $\tilde{h}$, it suggests that $\tilde{h} = C r^{1/4}(X_0^*(r)/X^*(r))^{1/2}$. Let
-\begin{align*}
-\tilde{h} &= r^{1/4}\left(\frac{X_0^*(r)}{X^*(r)}\right)^{1/2} h_0 \\
-s \tilde{\mu}_*(r) &= 2 r^{1/4}\left(\frac{X_0^*(r)}{X^*(r)}\right)^{1/2} s_0
-\end{align*}
-where the factor of $2$ in $s \tilde{\mu}_*(r)$ is for convenience later. Substituting these into \cref{KreinB3} and simplifying the remainder terms, we obtain the equation
-\begin{align*}
-0 &= \left( 2 r^{1/4} h_0 \left(\frac{X_0^*(r)}{X^*(r)}\right)^{1/2} \tilde{\mu}_*(r) i  + \mathcal{O}( r^{1/2} )\right) r^{1/4}\left(\frac{X_0^*(r)}{X^*(r)}\right)^{1/2} \left(2 s_0 i + h_0 \right)X^*(r)  \\
-&+\frac{2 M^c \tilde{q} }{M} \left(\tilde{\mu}_*(r) i\right)^3 r^{1/2} X_0^*(r) + \mathcal{O}(r^{1/2} + r^{3/4}|\log r| + r |\log r|^3).
-\end{align*}
-Rearranging the top line, this becomes
-\begin{align*}
-0 &= \left( 2 r^{1/4} h_0 X_0^*(r)^{1/2} \tilde{\mu}_*(r) i  + \mathcal{O}( r^{1/2} |\log r| )\right) r^{1/4} \left(2 s_0 i + h_0 \right) \\
-&+\frac{2 M^c \tilde{q} }{M} \left(\tilde{\mu}_*(r) i\right)^3 r^{1/2} X_0^*(r) + \mathcal{O}(r^{1/2} + r^{3/4}|\log r| + r |\log r|^3).
-\end{align*}
-Finally, divide by $r^{1/2}X_0^*(r)$ and $2 \mu_*(r) i$to get
-\begin{align*}
-0 &= \left( h_0 + \mathcal{O}( r^{1/4} )\right) \left(2 s_0 i + h_0 \right) +\frac{M^c \tilde{q} }{M} \left(\tilde{\mu}_*(r) i\right)^2 + \mathcal{O}\left( \frac{1}{|\log r|} \right).
-\end{align*}
-This simplifies to the equation $G(h_0, s_0, r) = 0$, where $G: \C \times \R \times \mathcal{R} \rightarrow \C$ is defined by
-\begin{equation}\label{BsimpleG1}
-\begin{aligned}
-G(h_0, s_0, r) &= h_0^2 + 2 i s_0 h_0 - \tilde{R}(r) + \mathcal{O}\left( \frac{1}{|\log r|}\right),
-\end{aligned}
-\end{equation}
-and
-\[
-\tilde{R}(r) = \frac{M^c \tilde{q} }{M} \tilde{\mu}_*(r)^2.
-\]
-
-\subsection{Krein bubble}
-
-To leading order, equation \cref{BsimpleG1} is a quadratic in $h_0$. When $r = 0$, $G(h_0, s_0, 0) = 0$ has solution
-\begin{equation}\label{Bquadsol}
-h_0(s_0) = -s_0 i \pm \sqrt{ \tilde{R}(0) - s_0^2 }
-\end{equation}
-Assume $\tilde{R}(0) > 0$. Then for $|s_0| \leq T$, $h_0(s_0)$ describes a circle of radius $T$ in the complex plane centered at the origin. For $|s_0| \geq T$, $h_0(s_0)$ is on the imaginary axis. Thus for $r = 0$, this is the Krein bubble!
-
-We will now show that this persists for small $r$. To do that, we will use the implicit function theorem to solve for $h_0$ in terms of $s_0$ for small $r$. Computing the derivative with respect to $h_0$ and noting that all the remainder terms vanish at 0,
-\begin{align*}
-\partial_{h_0} G(h_0, s_0, 0) 
-&= 2 ( h_0 + s_0 i)
-\end{align*}
-Plugging in $h_0(s_0)$ from \cref{Bquadsol},
-\begin{align*}
-\partial_{h_0} G(h_0(s_0), s_0, 0) 
-&= \pm \sqrt{ \tilde{R}(0) - s_0^2 }
-\end{align*}
-This is nonzero as long as $s_0 \neq \pm \sqrt{\tilde{R}(0)}$, at which point there is a bifurcation. For convenience, let
-\[
-T = \sqrt{\tilde{R}(0)}
-\]
-be this point. 
-
-Since we will eventually undo all of our scalings, it follows from \cref{lemma:chara} that
-\begin{align}\label{undotildeR}
-r^{3/2} \frac{X_0^*(r)}{X_0^*(r)}\tilde{R}(0) = R_\mu(r) [r^{1/2} \tilde{\mu}_*(r)]^2 + \mathcal{O}(r^{3/2}r^{\gamma/2 \alpha_0})
-\end{align}
-where
-\begin{equation}\label{defRr}
-R(r) = \frac{M^c q(X_0^*(r)) X_0^*(r)}{M X_0^*(r)}
-\end{equation}
-
-\subsection{Bifurcation points}
-
-First, we will find the two bifurcation points and show that they occur on the imaginary axis. When $r = 0$ and $s_0 = T$, $h_0 = -T i$ is a double root of \cref{BsimpleG1}, i.e. both $G(-T i, T, 0) = 0$ and $\partial_{h_0} G(-Ti, T, 0) = 0$. Define $K: \C \times \R \times \mathcal{R} \rightarrow \C^2$ by
-\begin{equation}
-K(h_0, s_0, r) = 
-\begin{pmatrix}G(h_0, s_0, r) \\ \partial_{h_0}G(h_0, s_0, r) \end{pmatrix} 
-= \begin{pmatrix}
-h_0^2 + 2 i s_0 h_0 - \tilde{R}(0) \\
-2(h_0 + s_0 i) 
-\end{pmatrix}
-+ \mathcal{O}\left( \frac{1}{|\log r|} \right)
-\end{equation}
-When $r = 0$, $K\left(-Ti, T, 0\right) = 0$. The Jacobian with respect to $(h_0, s_0)$ is
-\[
-D_{(h_0, s_0)}K(h_0, s_0, r) = 
-\begin{pmatrix}
-2 h_0 + 2 i s_0 & 2 i s_0  \\
-2 & 2 i
-\end{pmatrix}
-+ \mathcal{O}\left( \frac{1}{|\log r|} \right)
-\]
-At $(h_0, s_0, r) = \left( -Ti, T,0\right)$, 
-\[
-D_{(h_0, s_0)}K\left( -Ti, T,0\right) = 
-2 \begin{pmatrix}
-0 & Ti \\
-1 & i
-\end{pmatrix}
-\]
-which is nonsingular since the columns are linearly independent. Using the implicit function theorem, we can solve for $(h_0, s_0)$ near $(-Ti, T)$ in terms of $r$ for sufficiently small $r$. Specifically, there exists $r_3 \leq r_2$ and a unique smooth function $(h_1, s_1)(r)$ with $(h_1, s_1)(0) = (-Ti, T)$ such that for all $r \leq r_2$, $K(h_1(r), s_1(r), r) = 0$. For $r \leq r_2$ and $s_0 = s_1(r)$, $h_1(r)$ is a double root of $G$. Expanding in a Taylor series, we have
-\begin{align*}
-h_1(r) &= -T i + \mathcal{O}\left( \frac{1}{|\log r|} \right) \\
-s_1(r) &= T + \mathcal{O}\left( \frac{1}{|\log r|} \right)
-\end{align*}
-
-Similarly, for the other bifurcation point, we can find $h_2(r)$ and $s_2(r)$ with
-\begin{align*}
-h_2(r) &= T i + \mathcal{O}\left( \frac{1}{|\log r|} \right) \\
-s_2(r) &= -T + \mathcal{O}\left( \frac{1}{|\log r|} \right) \\
-\end{align*}
-such that for $r \leq r_3$ and $s_0 = s_2(r)$, $h_2(r)$ is a double root of $G$.
-
-Undoing the scalings, the lower bifurcation point occurs at
-\begin{align*}
-\mu_b^-(r) &= \tilde{\mu}_*(r) r^{1/2} i - \left(\frac{X_0^*(r)}{X^*(r) }\right)^{1/2} r^{3/4} h_1(r) \\
-&= \tilde{\mu}_*(r) r^{1/2} i - \sqrt{R(r)} \tilde{\mu}_*(r) r^{1/2}i + \mathcal{O}\left( r^{3/4} \left( \frac{1}{|\log r|} + r^{\gamma/4\alpha_0} \right) \right) \\
-&= \tilde{\mu}_*(r) r^{1/2} i \left( 1 - \sqrt{R(r)}\right) + \mathcal{O}\left( \frac{r^{3/4}}{|\log r|} \right) 
-\end{align*}
-Changing variables back to $\lambda$ by taking $\lambda = \nu^{-1}(\mu)$, we finally have for the lower bifurcation point 
-\begin{align*}
-\lambda_b^-(r) &= \tilde{\lambda}_*(r) r^{1/2} i \left( 1 - \sqrt{R(r)}\right) + \mathcal{O}\left( \frac{r^{3/4}}{|\log r|} \right) 
-\end{align*}
-Since this is a double zero of $S(\lambda)$, by Hamiltonian symmetry, the only way this is possible is if this is on the imaginary axis.
-\begin{align*}
-\lambda_b^-(r) &= \tilde{\lambda}_*(r) r^{1/2} i \left( 1 - \sqrt{R(r)}\right) + \mathcal{O}\left( \frac{r^{3/4}}{|\log r|} \right) 
-\end{align*}
-Undoing the scaling for $s$ and letting 
-\[
-t = \frac{1}{2},
-\] 
-the lower bifurcation point occurs when $t = t_b^-$, where
-\begin{align*}
-t_b^-(r) &= \sqrt{R(r)} + \mathcal{O}\left( \frac{r^{1/4}}{|\log r|} \right)
-\end{align*}
-
-Similarly, the upper bifurcation point occurs on the imaginary axis at $\lambda = \lambda_b^+(r)$ when $t = t_b^+(r)$, where
-\begin{align*}
-\lambda_b^+(r) &= \tilde{\lambda}_*(r) r^{1/2} i \left( 1 + \sqrt{R(r)}\right) + \mathcal{O}\left( \frac{r^{3/4}}{|\log r|} \right) \\
-t_b^+(r) &= -\sqrt{R(r)} + \mathcal{O}\left( \frac{r^{1/4}}{|\log r|} \right)
-\end{align*}
-
-\subsection{Away from bifurcation point}
-
-Now that we have located the bifurcation point, we will look at what happens away from this point. This is a straightforward contraction mapping argument. Choose any $\epsilon > 0$, which represents how far we will stay away from the two bifurcation points. Define the sets
-\begin{align*}
-S_\epsilon^{\text{ext}} &= \left[-2 T, -T - \epsilon\right] \cup \left[T + \epsilon, 2T\right] \\
-S_\epsilon^{\text{int}} &= 
-\left[-T + \epsilon, T - \epsilon\right] \\
-S_\epsilon &= S_\epsilon^{\text{ext}} \cup S_\epsilon^{\text{int}}
-\end{align*}
-For $s_0 \in S_\epsilon$, $\partial_{h_0} G(s_0, h_0(s_0), 0)$ is bounded away from 0, with bound dependent on $\epsilon$. Using the uniform contraction mapping principle, there exists $r_4 \leq r_3$ (dependent on $\epsilon$) such that for $s_0 \in S_\epsilon$ and $r \leq r_4$, we can solve for $h_0$ in terms of $s_0$ and $r$. Specifically, there exist smooth functions $h_0^\pm: S_\epsilon \times \mathcal{R} \rightarrow \C$ with
-\[
-h_0^\pm(s_0, 0) = -s_0 i \pm \sqrt{ T - s_0^2 }
-\]
-such that for all $s_0 \in S_\epsilon$ and $r \leq r_2$, $G(h_0^\pm(s_0,r),s_0,r) = 0$. Expanding in a Taylor series, for $s_0 \in S_\epsilon$,
-\[
-h_0^\pm(s_0, r) = -s_0 i \pm \sqrt{ T - s_0^2 } + \mathcal{O}\left( \frac{1}{|\log r|} \right)
-\]
-
-Undoing both of our scalings, let
-\begin{align*}
-h^\pm(r) &= \left(\frac{X_0^*(r)}{X^*(r) }\right)^{1/2} r^{3/4} h_0^\pm(r).
-\end{align*}
-Then
-\begin{align*}
-\left(\frac{X_0^*(r)}{X^*(r) }\right)^{1/2} r^{3/4} s_0 = \frac{1}{2} \tilde{\mu}_*(r) r^{1/2} s.
-\end{align*}
-Using \cref{undotildeR} and \cref{defRr}, $h^\pm(r)$ becomes
-\begin{align*}
-h^\pm(s, r) &= \tilde{\mu}_*(r) r^{1/2} \left( \frac{1}{2}  s i \pm \sqrt{ R(r) - \left(\frac{1}{2} s\right)^2 } \right) + \mathcal{O}\left(\frac{r^{3/4}}{|\log r|} \right)
-\end{align*}
-Substituting this into the equation $\mu = \tilde{\mu}_*(r) r^{1/2} i + h$, we have
-\begin{align*}
-\mu^\pm(s, r) &= \tilde{\mu}_*(r) r^{1/2} \left( i + \frac{1}{2}  s i \pm \sqrt{ R(r) - \left(\frac{1}{2} s\right)^2 } \right) + \mathcal{O}\left(\frac{r^{3/4}}{|\log r|} \right)
-\end{align*}
-where $R(r)$ is defined in \cref{defRr}. Finally, changing variables back to $\lambda$ and taking $t = \frac{1}{2}s$, this becomes
-\begin{align}\label{lambdabubble}
-\lambda^\pm(t, r) &= \tilde{\lambda}_*(r) r^{1/2} \left( i + t i \pm \sqrt{ R(r) - t^2 } \right) + \mathcal{O}\left(\frac{r^{3/4}}{|\log r|} \right)
-\end{align}
-
-For $r \leq r_3$, this solution holds for all $t \in [-2\sqrt{R(r)}, 2\sqrt{R(r)}]$ except for small neighborhoods of $s = \pm \sqrt{R(r)}$, whose sizes depend on the choice of $\epsilon$ above and $r$.
-
-To conclude the argument, we evaluate \cref{lambdabubble} at $t = 0$, which corresponds to the maximum width of the bubble, and $t = \pm \sqrt{2 R(r)}$, which is before and after the bubble occurs. For $t = 0$, 
-\begin{align*}
-\lambda^\pm(0, r) &= \tilde{\lambda}_*(r) r^{1/2}\left(  i \pm \sqrt{ R(r)} \right)  + \mathcal{O}\left( \frac{r^{3/4}}{|\log r|} \right)
-\end{align*}
-By Hamiltonian symmetry, this must be a pair of eigenvalues which are symmetric across the imaginary axis. For $t = 2 \sqrt{R(r)}$, there are two solutions
-\begin{align*}
-\lambda^\pm(2 \sqrt{R(r)}, r) &= \tilde{\mu}_*(r) r^{1/2}i + (2 \pm \sqrt{3}) \sqrt{ R(r)}i + \mathcal{O}\left(\frac{r^{3/4}}{|\log r|} \right)
-\end{align*}
-By Hamiltonian symmetry, since there are no other eigenvalues with similar magnitude above the real axis, these must both be on the imaginary axis. Also by Hamiltonian symmetry, there is a corresponding pair of imaginary eigenvalues below the real axis. We note that $\lambda^-(2\sqrt{R(r)}, r)$ is close to the original interaction eigenvalue. If we were to keep increasing $t$, $\lambda^-(t, r)$ would (to leading order) approach $\tilde{\mu}_*(r) r^{1/2}i$.
-
-\subsection{Proof of Theorem \ref{theorem:kreinbubbles}}
-
-In the previous sections, we have located the two bifurcation points on the imaginary axis, where the Krein bubble forms and then disappears. We have found a pair of purely imaginary eigenvalues before the Krein bubble forms, and a pair of complex eigenvalues which are symmetric across the imaginary axis at the maximum width of the Krein bubble. Since the eigenvalues are smooth in the parameter $t$, we conclude that between the bifurcation points, there is a pair of complex eigenvalues with nonzero real part which is symmetric across the real axis. As $t$ varies between the bifurcation points, these eigenvalues trace out a circle of radius $\tilde{\lambda}_*(r) r^{1/2} \sqrt{ R(r)}$ centered at $\tilde{\lambda}_*(r) r^{1/2}$. Outside the bubble, there are two purely imaginary eigenvalues. The physical parameter $\Delta s_1$ is related to $t$ by
-\[
-\Delta s_1 = 4 \beta_0 X^*(r) t
-\]
 
 \iffulldocument\else
 	\bibliographystyle{amsalpha}

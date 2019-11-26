@@ -10,7 +10,9 @@
 
 In this chapter, we will look at periodic multi-pulses, which are multi-modal solutions to \cref{eqODE} on a periodic domain. Heuristically, we construct a periodic multi-pulse by gluing together multiple copies of the primary pulse end-to-end in a loop as shown in \cref{fig:permultipulse}.
 \begin{figure}
+\begin{center}
 \includegraphics[width=10cm]{periodic/multipulseperiodic}
+\end{center}
 \caption{Periodic $n-$pulse solution.}
 \label{fig:permultipulse}
 \end{figure}
@@ -65,9 +67,9 @@ where $L_0$ is a constant. The functions $\theta^*(\theta; m): [-\pi + p^*, p^*]
 \item $\theta^*(\theta; 0) = \theta $
 \item $\theta^*(p^*; m) = \theta^*(-\pi+p^*; m+1)$ for $m \geq 1$
 \end{enumerate}
-The last property is a matching condition which ``links up'' the parameterizations corresponding to different $m_j$. These properties, together with the restriction of $\theta$ to the half-open interval $\theta \in (\pi + -p^*, p^*]$, guarantee that each periodic parameterization corresponds to a unique periodic multi-pulse (up to cyclic permutations of the $m_j$; see \cref{remark:cyclicperm} below). The proof that the functions $\theta^*(\theta; m)$ exist and have these properties is given in Lemma \ref{thetaparamlemma} below. [A PICTURE WOULD DO WELL HERE.]
+The last property is a matching condition which ``links up'' the parameterizations corresponding to different $m_j$. These properties, together with the restriction of $\theta$ to the half-open interval $\theta \in (\pi + -p^*, p^*]$, guarantee that each periodic parameterization corresponds to a unique periodic multi-pulse (up to cyclic permutations of the $m_j$; see \cref{remark:cyclicperm} below). The proof that the functions $\theta^*(\theta; m)$ exist and have these properties is given in Lemma \ref{thetaparamlemma} below. 
 
-We can now state the main theorem of this section, which gives conditions for the existence of periodic multi-pulses. The requirement that the scaling parameter $r$ be sufficiently small means that the individual pulses must be well-separated. 
+We can now state the main theorem of this section, which gives conditions for the existence of periodic multi-pulses. The requirement that the scaling parameter $r$ be sufficiently small means that the individual pulses must be well-separated. The proof is lengthy and is deferred until \cref{perexistproof}.
 
 \begin{theorem}[Existence of $n$-periodic solutions]\label{perexist}
 Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and \ref{H0transversehyp}. Let $Q(x)$ be the transversely constructed, symmetric primary pulse solution to \eqref{genODE} from Hypothesis \ref{Qexistshyp}. For any periodic parameterization $(m_0, \dots, m_{n-1}, \theta)$ with $\theta \notin \{-\pi + p^*, p^* \}$, there exists $r_* = r^*(m_0, \dots, m_{n-1}, \theta) > 0$ such that for any $r \in \mathcal{R}$ with $r \leq r_*$:
@@ -98,7 +100,18 @@ Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and 
 The periodic $n$-pulses constructed in \cref{perexist} are unique up to ``rotation'' of the integers $(m_0, \dots, m_{n-1})$ in the periodic parameterization. For example, $(m_0, m_1, m_2, \theta)$, $(m_2, m_0, m_1, \theta)$, and $(m_1, m_2, m_0, \theta)$ all give the same solution.
 \end{remark}
 
-The condition that $\theta \notin \{-\pi + p^*, p^*) \}$ in \cref{perexist} is used to avoid any bifurcation points which may arise in the construction. For periodic 2-pulses, we can use a symmetry argument to give a complete bifurcation picture. In the next theorem, we state an existence result for periodic 2-pulses and show that asymmetric solutions bifurcate from symmetric solutions in a series of pitchfork bifurcations. We note that for the symmetric periodic 2-pulses we are using a different parameterization than in \cref{perexist}.
+The condition that $\theta \notin \{-\pi + p^*, p^*) \}$ in \cref{perexist} is used to avoid any bifurcation points which may arise in the construction. For periodic 2-pulses, we can use a symmetry argument to give a complete bifurcation picture. In the next theorem, we state an existence result for periodic 2-pulses and show that asymmetric solutions bifurcate from symmetric solutions in a series of pitchfork bifurcations. This is illustrated in the left panel of \cref{fig:2pitch}. 
+\begin{figure}
+\begin{center}
+\begin{tabular}{cc}
+\includegraphics[width=8cm]{periodic/2pitchfork.eps}
+\includegraphics[width=8cm]{periodic/2pitchparam1}
+\end{tabular}
+\end{center}
+\caption[Pitchfork bifurcation structure for periodic 2-pulses]{Pitchfork bifurcation structure for periodic 2-pulses (right panel). Parameterization from \cref{2pulsebifurcation} (left panel). Symmetric periodic 2-pulses are in blue, and asymmetric periodic 2-pulses are in orange. Parameters $s_0$ and $s_1$ increase in the direction of the arrow.}
+\label{fig:2pitch}
+\end{figure} 
+We note that we are using a different parameterization than in \cref{perexist}. This parameterization is illustrated in the right panel of \cref{fig:2pitch}. The proof this theorem is at the end of \cref{perexistproof}.
 
 \begin{theorem}\label{2pulsebifurcation}
 Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and \ref{H0transversehyp}. Let $Q(x)$ be a transversely constructed, symmetric primary pulse solution to \eqref{genODE}. There exists $r_* > 0$ such that for all $r \in \mathcal{R}$ with $r \leq r_*$ and $m_0 \in \{0, 1\}$
@@ -129,7 +142,6 @@ Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and 
 	\]
 \end{enumerate}
 \end{theorem}
-[THIS NEEDS A NICE PICTURE.]
 
 \section{Spectral stability}\label{sec:perstab}
 
@@ -166,11 +178,11 @@ where $A(Q_n(x); \lambda) = A(Q_n(x)) + \lambda B$. Let $A(\lambda) = A(0; \lamb
 There exists $\delta_0 > 0$ such that for $|\lambda| < \delta_0$, the matrix $A(\lambda)$ has a simple eigenvalue $\nu(\lambda)$ near 0.
 \end{lemma}
 
-We can now state the main theorem of this section, which provides a condition for \cref{PDEeigsystemper3} to have a solution. Since the spatial dynamics formulation \cref{PDEeigsystemper3} is equivalent to the PDE eigenvalue problem, this allow us to find the eigenvalues of \cref{genPDEeigper}. This theorem is analogous to \cite[Theorem 2]{Sandstede1998}, where the matrix $S(\lambda)$ is replaced by a block matrix.
+We can now state the main theorem of this section, which provides a condition for \cref{PDEeigsystemper3} to have a solution. Since the spatial dynamics formulation \cref{PDEeigsystemper3} is equivalent to the PDE eigenvalue problem, this allow us to find the eigenvalues of \cref{genPDEeigper}. This theorem is analogous to \cite[Theorem 2]{Sandstede1998}, where the matrix $S(\lambda)$ is replaced by a block matrix. The proof is lengthly and is deferred until \cref{blockmatrixproof}.
 
 % block matrix theorem
 \begin{theorem}\label{blockmatrixtheorem}
-Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and \ref{H0transversehyp}, and \ref{Melnikov2hyp}. Let $Q(x)$ be the primary pulse solution, and let $\Psi(x)$ be the solution to the adjoint variational equation from Lemma \ref{varadjsolutions}. Choose any periodic parameterization $(m_0, \dots, m_{n-1}, \theta)$ with $\theta \neq \pm \pi$, and let $r_*$ be as in \cref{perexist}. 
+Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, and \ref{H0transversehyp}, \ref{Qclocalhyp}, and \ref{Melnikov2hyp}. Let $Q(x)$ be the primary pulse solution, and let $\Psi(x)$ be the solution to the adjoint variational equation from Lemma \ref{varadjsolutions}. Choose any periodic parameterization $(m_0, \dots, m_{n-1}, \theta)$ with $\theta \neq \pm \pi$, and let $r_*$ be as in \cref{perexist}. 
 
 Choose any positive integer $N$. Then for any $r \leq r_*$ there exists $\delta(r,N)$, where $0 < \delta(r,N) < N/|\log r|$, with the following property. There exists a bounded, nonzero solution $V(x)$ of \cref{PDEeigsystemper3} for $|\lambda| < \delta(r,N)$ if and only if
 \begin{equation}\label{blockmatrixcond}
@@ -181,38 +193,26 @@ $S(\lambda)$ is the $(2n \times 2n)$ block matrix
 S(\lambda) = 
 \begin{pmatrix}
 K(\lambda) + C_1 & \lambda K_2(\lambda) - \lambda^2 \tilde{M}^c I + D_1 \\
--\lambda M^c K_1(\lambda) + C_2 & A - \lambda^2 MI + D_2
+-\frac{1}{2} \lambda M^c K_1(\lambda) + C_2 & A - \lambda^2 MI + D_2
 \end{pmatrix}
 \end{equation}
 The individual terms in $S(\lambda)$ are as follows.
 
 \begin{enumerate}
-\item $K(\lambda)$ is the periodic, tri-diagonal matrix
-\begin{equation}
-K(\lambda) = \frac{1}{2}
+\item $K(\lambda)$ is the periodic, bi-diagonal matrix
+\begin{align*}
+K(\lambda) =  
 \begin{pmatrix}
-0 & e^{-2\nu(\lambda)X_1} & & & & -e^{2 \nu(\lambda)X_0} \\
--e^{2\nu(\lambda)X_1} & 0 & e^{-2\nu(\lambda)X_2} \\
-& -e^{2 \nu(\lambda)X_2} & 0 & e^{-2\nu(\lambda)X_3} \\
-& & \ddots & \ddots & \ddots &&  \\
-&&& e^{-2\nu(\lambda)X_{n-2}} & 0 & e^{-2\nu(\lambda)X_{n-1}} \\
-e^{-2\nu(\lambda)X_0} & & & & -e^{2 \nu(\lambda)X_{n-1}} & 0
-\end{pmatrix}.
-\end{equation}
+e^{-\nu(\lambda)X_1} & & & & & -e^{\nu(\lambda)X_0} \\
+-e^{\nu(\lambda)X_1} & e^{-\nu(\lambda)X_2} \\
+& -e^{\nu(\lambda)X_2} & e^{-\nu(\lambda)X_3} \\
+  & & \ddots & && \\
+& & & & -e^{\nu(\lambda)X_{n-1}} & e^{-\nu(\lambda)X_0}
+\end{pmatrix}
+\end{align*}
 where $\nu(\lambda)$ is defined in Lemma \ref{nulambdalemmasimple}.
 
-\item $K_1(\lambda)$ is the periodic, tri-diagonal matrix
-\begin{align}
-K_1(\lambda) = \frac{1}{4}
-\begin{pmatrix}
-2 & e^{-2\nu(\lambda)X_1} & & & & -e^{2 \nu(\lambda)X_0} \\
-e^{2\nu(\lambda)X_1} & 2 & e^{-2\nu(\lambda)X_2} \\
-& e^{2 \nu(\lambda)X_2} & 2 & e^{-2\nu(\lambda)X_3} \\
-& & \ddots & \ddots & \ddots &&  \\
-&&& e^{-2\nu(\lambda)X_{n-2}} & 2 & e^{-2\nu(\lambda)X_{n-1}} \\
-e^{-2\nu(\lambda)X_0} & & & & e^{2 \nu(\lambda)X_{n-1}} & 2
-\end{pmatrix}
-\end{align}
+\item $K_1(\lambda)$ is the same matrix as $K(\lambda)$ with all terms positive.
 
 \item $A$ is the symmetric banded matrix
 \begin{align}\label{Asymm}
@@ -286,17 +286,17 @@ Thus the restriction $\delta(r,N) < N/|\log r|$ in \cref{blockmatrixtheorem} wil
 
 \section{Spectrum of periodic 2-pulse}\label{sec:per2peig}
 
-We will first consider the simplest case, which is the periodic 2-pulse. For this case, the block matrix  $S(\lambda)$ from \cref{blockmatrixtheorem} is a $4\times4$ matrix. With the aid of Mathematica, we can compute its determinant.
+We will apply \cref{blockmatrixtheorem} to the simplest case, which is the periodic 2-pulse. All proofs from this section are in \cref{per2pproof}. The block matrix $S(\lambda)$ is a $4\times 4$ matrix, the form of which is given in the next corollary.
 
-\begin{corollary}\label{2blockmatrix}
+\begin{corollary}\label{corr:2blockmatrix}
 For a periodic 2-pulse, the block matrix \cref{blockeq} from \cref{blockmatrixtheorem} can be written as $S(\lambda) = S_1(\lambda) + S_2(\lambda)$. $S_1(\lambda)$ is the $4 \times 4$ matrix
 \begin{align}
 S&_1(\lambda) = \\
 &\begin{pmatrix}
-0 & \frac{1}{2}\left( e^{-2\nu(\lambda)X_1} - e^{2\nu(\lambda)X_0} \right) & k_0^+ - k_1^- -\tilde{M}^c \lambda^2 & -k_0^+ + k_1^- \\
- \frac{1}{2}\left( -e^{2\nu(\lambda)X_1} + e^{-2\nu(\lambda)X_0} \right) & 0 & k_0^- - k_1^+ & -k_0^- + k_1^+-\tilde{M}^c \lambda^2 \\
--\frac{1}{2} \lambda M^c & -\frac{1}{4} \lambda M^c \left( e^{-2\nu(\lambda)X_1} + e^{2\nu(\lambda)X_0} \right) &-a-\lambda^2 M_2 & a \\
--\frac{1}{4} \lambda M^c \left(e^{2\nu(\lambda)X_1} + e^{-2\nu(\lambda)X_0}\right) & -\frac{1}{2} \lambda M_c & a & -a-\lambda^2 M_2 \\
+e^{-\nu(\lambda)X_1} & -e^{\nu(\lambda)X_0} & k_0^+ - k_1^- -\tilde{M}^c \lambda^2 & -k_0^+ + k_1^- \\
+-e^{\nu(\lambda)X_1} & e^{-\nu(\lambda)X_0} & k_0^- - k_1^+ & -k_0^- + k_1^+-\tilde{M}^c \lambda^2 \\
+-\frac{1}{2}\lambda M^c e^{-\nu(\lambda)X_1} & -\frac{1}{2}\lambda M^ce^{\nu(\lambda)X_0} &-a-\lambda^2 M_2 & a \\
+-\frac{1}{2}\lambda M^c e^{\nu(\lambda)X_1} & -\frac{1}{2}\lambda M^c e^{-\nu(\lambda)X_0}  & a & -a-\lambda^2 M_2 \\
 \end{pmatrix}
 \end{align}
 where
@@ -305,27 +305,61 @@ a = \langle \Psi(X_0), Q'(-X_0) \rangle + \langle \Psi(X_1), Q'(-X_1) \rangle
 \end{equation}
 and the rest of the terms are defined in \cref{blockmatrixtheorem}. $S_2(\lambda)$ is the remainder matrix
 \[
-S_2(\lambda) = \begin{pmatrix} C_1 & D_1 \\ C_2 & D_2 \end{pmatrix},
+S_2(\lambda) = \begin{pmatrix} C_1 & D_1 \\ C_2 & D_2 \end{pmatrix}.
 \]
-where the remainder terms have the same bounds as in \cref{blockmatrixtheorem}.
+The remainder terms have the same bounds as in \cref{blockmatrixtheorem}.
+\end{corollary}
 
-The determinant of $S(\lambda)$ is given by
-\begin{equation}\label{2detBeq}
+With the aid of Mathematica, we can compute the determinant of the block matrix for the periodic 2-pulse.
+
+\begin{corollary}\label{corr:2perDet1}
+For a periodic 2-pulse, the determinant of the block matrix $S(\lambda)$ is given by
+\begin{equation*}
 \begin{aligned}
-E(&\lambda) = -\frac{1}{16} \lambda^2 \sinh(\nu(\lambda)X) \Bigg[ 4M \left( (2a + \lambda^2 M) + R_1 \right)\left( \sinh(\nu(\lambda)X) - 2 \lambda M^c \tilde{M}^c \cosh( \nu(\lambda) X) \right) \\
-&- 4 a \lambda M^c \tilde{M}^c \cosh(\nu(\lambda)(X_1 - X_0)) - 2 \lambda^3 M^c \tilde{M}^c M \cosh(\nu(\lambda)X) \\
-&- 8\lambda^2 M M^c \cosh(\nu(\lambda)X) \left( q(X_0) \sinh(\nu(\lambda)X_0) + q(X_1) \sinh(\nu(\lambda)X_1) \right) 
-\Bigg] + R_2
+\det S(&\lambda) = \left(-2 \lambda^2 M (2a + \lambda^2 M) + R_1  \right) \sinh(\nu(\lambda)X) \\
+&-4 M M^c \lambda^4 ( q(X_0) \sinh(\nu(\lambda)X_0) + q(X_1) \sinh(\nu(\lambda)X_1) ) \cosh(\nu(\lambda)X)  + R_2,
 \end{aligned}
-\end{equation}
-and the remainder terms have bounds
+\end{equation*}
+where the remainder terms have bounds
 \begin{align*}
-|R_1| \leq C(r^{1/2} + |\lambda|)^3 \\
+|R_1| \leq C(r^{1/2} + |\lambda|)^5 \\
 |R_2| \leq C(r^{1/2} + |\lambda|)^6
 \end{align*}
 \end{corollary}
 
-The interaction eigenvalue pattern will be determined by the quantity $a$ in \cref{2pa}. We characterize this in the next lemma.
+The interaction eigenvalue pattern will be determined by the quantity $a$ in \cref{2pa}. In order to characterize this, we will need to make one technical hypothesis. Define the functions $H: \R^+ \times \R^+ \rightarrow \R$ and $K: \R^+ \times \R^+ \rightarrow \R$ by 
+\begin{align}
+H(b_0, b_1) &= b_0 \sin \left( -\rho \log b_0 \right) - b_1 \sin \left( -\rho \log b_1 \right) \label{perdefH} \\
+H_1(b_0, b_1) &= b_0 \left[ \rho \cos \left( -\rho \log b_0 \right) - \sin \left( -\rho \log b_0 \right) \right] + b_1 \left[ \rho \cos \left( -\rho \log b_1 \right) - \sin \left( -\rho \log b_1 \right) \right]  \label{perdefH1} \\
+\end{align}
+Roughly speaking, the permissible pulse distances for periodic 2-pulses are determined by the zero set of $H(b_0, b_1)$. See \cref{section:bifH} for details. The value of $a$ is determined by $H_1(b_0, b_1)$ evaluated on the zero set of $H(b_0, b_1)$. We hypothesize that the zero sets of these two functions overlap only at a discrete set of points corresponding the the pitchfork bifurcation points in \cref{2pulsebifurcation}.
+
+\begin{hypothesis}\label{Hoverlaphyp}
+The zero sets of $H(b_0, b_1)$ and $H_1(b_0, b_1)$ intersect only at the discrete set of points
+\begin{align*}
+(b_0, b_1) &= (b_k^*, b_k^*) && k \in \Z
+\end{align*}
+where 
+\begin{equation*}
+b^*_k = e^{-\frac{1}{\rho} (k \pi + p^*) }
+\end{equation*}
+These are the same as the pitchfork bifurcation points from \cref{2pulsebifurcation}.
+\end{hypothesis}
+
+\begin{remark}There is strong numerical evidence that \cref{Hoverlaphyp} is true. See \cref{fig:HH1overlap} for a plot of two zero sets. Although it is likely that \cref{Hoverlaphyp} can be proved, the functions involved, while smooth, are not well-behaved, making the analysis very difficult.
+\end{remark}
+
+\begin{figure}
+\begin{center}
+\begin{tabular}{cc}
+\includegraphics[width=10cm]{images/periodic/zeroHoverlap.eps} 
+\end{tabular}
+\end{center}
+\caption{ Zero sets of $H(b_0, b_1)$ (blue) and $H_1(b_0, b_1)$ (orange). }
+\label{fig:HH1overlap}
+\end{figure}
+
+We can now characterize the quantity $a$ in \cref{2pa} from \cref{corr:2blockmatrix}.
 
 \begin{lemma}\label{lemma:chara}
 Let $r_*$ be as in Theorem \ref{2pulsebifurcation}. Then for any $r \in \mathcal{R}$ with $r \leq r_*$:
@@ -337,7 +371,9 @@ Let $r_*$ be as in Theorem \ref{2pulsebifurcation}. Then for any $r \in \mathcal
 	\text{if }s_0 &< p^*, \, \tilde{a}(0; 0, s_0) < 0 \text{ and } \tilde{a}(0; 1, s_0) > 0 
 	\end{aligned}
 	\end{equation}
-	\begin{equation}
+
+	\item For an asymmetric periodic 2-pulse $Q_2(x; m_0, s_1, r)$, $a = r \tilde{a}(r; m_0, s_1)$, where $\tilde{a}(r; m_0, s_0)$ is continuous in $r$. The sign of $\tilde{a}(r; m_0, s_0)$ is completely determined by $m_0$ as follows.
+	\begin{equation} 
 	\begin{aligned}
 	\tilde{a}(0; m_0, s_1) &< 0 && \text{if }m_0 = 0 \\
 	\tilde{a}(0; m_0, s_1) &> 0 && \text{if }m_0 = 1
@@ -350,9 +386,8 @@ Let $r_*$ be as in Theorem \ref{2pulsebifurcation}. Then for any $r \in \mathcal
 	where $\gamma > 0$. Finally, $\tilde{a}^*(m_0) < 0$ if $m_0 = 0$ and $\tilde{a}^*(m_0) > 0$ if $m_0 = 1$.
 \end{enumerate}	
 \end{lemma}
-AS OF NOW I ONLY HAVE A COMPLETE PROOF FOR PART (i) AND FOR \cref{tildeas1limit}.
 
-First, we will consider the case where the interaction eigenvalues are ``out of the way'' of the essential spectrum eigenvalues. Since the interaction eigenvalues scale like $r^{1/2}$ and the essential spectrum eigenvalues scale like $1/|\log r|$, we can always choose $r$ sufficiently small so that this is the case. We expect that the eigenvalues will come in one of the two patterns shown in \cref{fig:2ppatterns}.
+We will consider only the case where the interaction eigenvalues are ``out of the way'' of the essential spectrum eigenvalues. Since the interaction eigenvalues scale like $r^{1/2}$ and the essential spectrum eigenvalues scale like $1/|\log r|$, we can always choose $r$ sufficiently small so that this is the case. In particular, this will always avoid the Krein bubbles that we observed numerically in \cref{chapter:KdV5numerics}. We will briefly discuss the Krein bubbles in the conclusions section. We expect that the eigenvalues will come in one of the two patterns shown in \cref{fig:2ppatterns}.
 
 \begin{figure}
 \begin{center}
@@ -360,7 +395,7 @@ First, we will consider the case where the interaction eigenvalues are ``out of 
 \includegraphics[width=5cm]{images/kdv5/2punstableeigpattern.eps} &
 \includegraphics[width=5cm]{images/kdv5/2pstableeigpattern.eps} 
 \end{tabular}
-\caption{Eigenvalue patterns for periodic 2-pulse with essential spectrum out of the way. Blue dots are interaction eigenvalues, red dots are essential spectrum eigenvalues, and black X at the origin represents the three kernel eigenvalues. Left panel shows a pair of real interaction eigenvalues, and right panel shows a pair of purely imaginary interaction eigenvalues. }
+\caption{Eigenvalue patterns for periodic 2-pulse with essential spectrum out of the way. Blue dots are interaction eigenvalues, red dots are essential spectrum eigenvalues, and black X at the origin represents the three kernel eigenvalues. Left panel shows a pair of real interaction eigenvalues, and right panel shows a pair of purely imaginary interaction eigenvalues.}
 \label{fig:2ppatterns}
 \end{center}
 \end{figure}
@@ -368,7 +403,7 @@ First, we will consider the case where the interaction eigenvalues are ``out of 
 We will state the result separately for asymmetric and symmetric periodic 2-pulses. First, we locate the eigenvalues for asymmetric 2-pulses. As long as $r$ is chosen sufficiently small, the interaction eigenvalue pattern is determined by the parameter $m_0$, and the essential spectrum eigenvalues do not interfere.
 
 \begin{theorem}\label{theorem:2peigsassym}
-Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, \ref{H0transversehyp}, \ref{Melnikov2hyp}. Let $r_*$ be as in \cref{2pulsebifurcation}. Let $\tilde{a}(r)$ be as in \cref{lemma:chara}. Choose any integer $N > 0$, and let $\delta(N,r)$ be as in Theorem \ref{blockmatrixtheorem}. Then for every $m_0 \in \{0, 1\}$ and $s_1 > p^*$ there exists $r_1 = r_1(m_0, s_1, N) \leq r_*$ with the following property. For any $r \in \mathcal{R}$ with $r \leq r_1$, the following hold regarding the spectrum associated with the asymmetric periodic 2-pulse $Q_2(x; m_0, s_1, r)$.
+Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, \ref{H0transversehyp}, \ref{Qclocalhyp}, \ref{Melnikov2hyp}, and \ref{Hoverlaphyp}. Let $r_*$ be as in \cref{2pulsebifurcation}. Let $\tilde{a}(r)$ be as in \cref{lemma:chara}. Choose any integer $N > 0$, and let $\delta(N,r)$ be as in Theorem \ref{blockmatrixtheorem}. Then for every $m_0 \in \{0, 1\}$ and $s_1 > p^*$ there exists $r_1 = r_1(m_0, s_1, N) \leq r_*$ with the following property. For any $r \in \mathcal{R}$ with $r \leq r_1$, the following hold regarding the spectrum associated with the asymmetric periodic 2-pulse $Q_2(x; m_0, s_1, r)$.
 
 \begin{enumerate}[(i)]
 \item There is an eigenvalue at 0 with algebraic multiplicity 3. 
@@ -390,162 +425,25 @@ with $|\lambda^{\text{int}}(r)| < \frac{1}{2}|\lambda_1^{\text{ess}}(r)|$. If $M
 Next, we consider the symmetric periodic 2-pulse. As long as we are away from the pitchfork bifurcation points, i.e. as long as $\tilde{a}(0) \neq 0$, the results of \cref{theorem:2peigsassym} hold in the symmetric case as well; the only difference is that the eigenvalue pattern is determined by the sign of $\tilde{a}_0(0)$ rather than by $m_0$. Thus we only need to consider what happens at the pitchfork bifurcation point.
 
 \begin{theorem}\label{theorem:2peigssym}
-Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, \ref{H0transversehyp}, \ref{Melnikov2hyp}. Let $r_*$ be as in \cref{2pulsebifurcation}. Then there exists $r_1 \leq r_*$ such that for all $r \in \mathcal{R}$ with $r \leq r_1$ and for $m_0 \in \{0, 1\}$, there is eigenvalue at 0 with algebraic multiplicity 5 for the symmetric periodic 2-pulse $\tilde{Q}_2(x; m_0, p^*(r), r)$.
+Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, \ref{H0transversehyp}, \ref{Qclocalhyp}, \ref{Melnikov2hyp}, and \ref{Hoverlaphyp}. Let $r_*$ be as in \cref{2pulsebifurcation}. Then there exists $r_1 \leq r_*$ such that for all $r \in \mathcal{R}$ with $r \leq r_1$ and for $m_0 \in \{0, 1\}$, there is eigenvalue at 0 with algebraic multiplicity 5 for the symmetric periodic 2-pulse $\tilde{Q}_2(x; m_0, p^*(r), r)$.
 \end{theorem}
-
-\section{Krein bubble}
-
-We now consider what happens when a purely imaginary interaction eigenvalue is close to an essential spectrum eigenvalue. We will show that under certain conditions, an instability bubble forms when an essential spectrum eigenvalue (positive Krein signature) collides with an interaction eigenvalue (negative Krein signature) on the imaginary axis. From \cref{theorem:2peigsassym}, we can always choose $r$ sufficiently small so that this does not occur. In addition, it can never occur for a symmetric 2-pulse. 
-
-Before we state the theorem, we will illustrate what occurs graphically. Let $\lambda_*$ be the imaginary interaction eigenvalue in the upper half-plane, and let $\lambda_1$ be the first essential spectrum eigenvalue. Let $t \in [-2, 2]$ be a dimensionless parameter which measures the distance between $\lambda_1$ and $\lambda_*$. Let $R_0$ be a parameter that depends the primary pulse and on intrinsic properties of the system. We will show that if $R_0 > 0$ (which can be checked numerically), a Krein bubble occurs. Specifically, there is a pair of eigenvalues $\lambda_{1,2}$ near $\lambda_*$ which can be parameterized by $t$. As $t$ decreases from $2$ to $-2$, a pair of purely imaginary eigenvalues collides, moves off of the imaginary axis, travels on a circle centered at $\lambda_*$, and then recombines. This is illustrated in \cref{fig:kreinbubbles}. Results from numerical analysis match this picture.
-\begin{figure}
-\begin{center}
-\begin{tabular}{ccc}
-\includegraphics[width=5cm]{images/kreinbubbles/bubble2R} &
-\includegraphics[width=5cm]{images/kreinbubbles/bubble105R} &
-\includegraphics[width=5cm]{images/kreinbubbles/bubbleR} \\
-\includegraphics[width=5cm]{images/kreinbubbles/bubble095R} &
-\includegraphics[width=5cm]{images/kreinbubbles/bubble0} &
-\includegraphics[width=5cm]{images/kreinbubbles/bubbleminusR}
-\end{tabular}
-\caption{Plot of the complex plane illustrating eigenvalue collision and Krein bubble as parameter $t$ is decreased. Blue dots are the pair of eigenvalues. Red cross is the point $\lambda_* i$. Vertical line is the imaginary axis. Black dotted circle is the circle of radius $\sqrt{R}$ around $\lambda_*$ }
-\label{fig:kreinbubbles}
-\end{center}
-\end{figure}
-
-We will call the instability bubble a Krein bubble, since it results from the collision of two imaginary eigenvalues with opposite Krein signatures. Inside the Krein bubble, the eigenvalues $\lambda_{1,2}$ are symmetric across the imaginary axis. Outside the Krein bubble, where $\lambda_{1,2}$ are purely imaginary, there is no such symmetry; Hamiltonian symmetry tells us instead that there exist eigenvalues $-\lambda_{1,2}$ which are in the lower half-plane.
-
-In the following theorem, we prove that Krein bubbles occur. For simplicity, we will only consider the first Krein bubble, which occurs when an imaginary interaction eigenvalue collides with the first nonzero essential spectrum eigenvalue. The same analysis works for collisions with subsequent essential spectrum eigenvalues. To make this work, for $m_0 \in \{ 0, 1 \}$ and $s_0 > p^*$, let $Q_2(x; m_0, s_1, r)$ be the corresponding family of asymmetric periodic 2-pulses from Theorem \ref{2pulsebifurcation}. Using Theorem \ref{theorem:2peigsassym}, select whichever of $m_0 \in \{ 0, 1 \}$ will give us an interaction eigenvalue on the imaginary axis. Since for $s_1$ fixed, Krein bubbles do not occur for sufficiently small $r$, we will need $s_1$ and $r$ to be interrelated. Using \cref{theorem:2peigsassym} as a guide, we wish to choose $s_1$ so that $c \pi/X$ is close to $\sqrt{\frac{2 \tilde{a}(r)}{M}}r^{1/2}$. The complication is that both $\tilde{a}(r)$ and $X$ depend on $s_1$. To simplify the picture, define
-\begin{equation}\label{deftildeastar}
-\tilde{a}_*(r) = \lim_{s_1 \rightarrow \infty} \tilde{a}(r; m_0, s_1),
-\end{equation}
-which exists by Lemma \ref{lemma:chara} and is close to $\tilde{a}(r; m_0, s_1)$ for $s_1$ large. In the next lemma, we will show that we can find $s_1$ so that the two eigenvalues necessary for the Krein bubble to form can collide.
-
-\begin{lemma}\label{lemma:s1choice}
-Let $\tilde{a}(r; m_0, s_1)$ be as in Lemma \ref{lemma:chara}, and choose $m_0 \in \{ 0, 1\}$ so that $(-1)^{m_0}M < 0$. Let $r_*$ and $X(r, m_0, s_1)$ be as in \cref{theorem:2peigsassym}. Let
-\begin{equation}\label{tildelambdastar}
-\tilde{\lambda}_*(r) = \sqrt{\frac{ 2 \tilde{a}_*(r) }{M}},
-\end{equation}
-where $\tilde{a}_*(r)$ is defined in \cref{deftildeastar}. Then there exists $r_1 \leq r_*$ such that the following is true. For all $r \in \mathcal{R}$ with $r \leq r_1$, there exists $s_1^*(r) > p^*$ such that
-\begin{equation}\label{choosesstar}
-\tilde{\lambda}_*(r) r^{1/2} = \frac{c \pi}{X(r, m_0, s_1^*(r))}
-\end{equation}
-\end{lemma}
-
-Now that we have found the appropriate value of $s_1$, we characterize the Krein bubble in the following theorem.
-
-\begin{theorem}\label{theorem:kreinbubbles}
-Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, \ref{H0transversehyp}, and \ref{Melnikov2hyp}. Choose $m_0 \in \{0, 1\}$ as in Lemma \ref{choosesstar} and let $r_1$, $\tilde{\lambda}_*(r)$, and $s_1^*(r)$ be as in Lemma \ref{choosesstar}. Choose $N = 1$ and let $\delta(r) = \delta(r,1)$, $M$, $M^c$, $\tilde{M}^c$ be as in Theorem \ref{blockmatrixtheorem}. For $r \in \mathcal{R}$ with $r \leq r_1$, let
-\begin{enumerate}[(i)]
-\item $X^*(r) = X(r, m_0, s_1^*(r))$
-\item
-$
-\begin{aligned}[t]
-R_0 = \frac{M^c \tilde{M}^c}{M}
-\end{aligned}
-$\\
-NUMERICS STRONGLY SUGGESTS $M^c = -\tilde{M}^c$ SO THE SIGN OF THIS SHOULD ONLY DEPEND ON $M$, WITH $M>0$ GIVING US THE KREIN BUBBLE.
-\item
-$
-\begin{aligned}[t]
-R(r) = \frac{R_0}{X^*(r)} = \frac{R_0 c \pi}{\tilde{\lambda}_*(r) r^{1/2}}
-\end{aligned}
-$\\
-MAY BE OFF BY A CONSTANT.
-\end{enumerate}
-
-Then there exists $r_2 \leq r_1$ such that for all $r \in \mathcal{R}$ with $r \leq r_2$, the following is true. Let $t \in \left[-2\sqrt{R(r)}, 2\sqrt{R(r)}\right]$. Then for $s_1(t,r) = s_1^*(r) + 4 \beta_0 X^*(r) t$, there exists a pair of eigenvalues located at
-\begin{align*}
-\lambda^\pm(t, r) &= \tilde{\lambda}_*(r) r^{1/2} \left( i + t i \pm \sqrt{ R(r) - t^2 } \right) + \mathcal{O}\left(r^{1/2} \right)
-\end{align*}
-If $R_0 < 0$, these eigenvalues have the following configuration.
-\begin{itemize}
-\item When
-$
-\begin{aligned}[t]
-t = t_b^\pm(r) = \pm \sqrt{R(r)} + \mathcal{O}\left( \frac{1}{|\log r|} \right),
-\end{aligned}
-$
-there are eigenvalues with multiplicity 2 on the imaginary axis at 
-\begin{align*}
-\lambda_b^\pm(r) &= \tilde{\lambda}_*(r) r^{1/2} i \left( 1 \mp \sqrt{R(r)}\right) + \mathcal{O}\left( r^{3/2} \right) 
-\end{align*}
-These are bifurcation points.
-
-\item For $t$ between these bifurcation points, 
-\begin{enumerate}
-\item $\lambda^\pm(t, r)$ is symmetric across the imaginary axis, i.e. $\lambda^-(t, r) = -\overline{\lambda^+(t, r)}$. 
-\item The eigenvalues $\lambda^\pm(t, r)$ trace out (to leading order) a circle of radius $\tilde{\lambda}_*(r) r^{1/2} \sqrt{ R(r)}$ centered at $\tilde{\lambda}_*(r) r^{1/2}$. 
-\item For $t = 0$,
-\begin{align*}
-\lambda^\pm(0, r) &= \tilde{\lambda}_*(r) r^{1/2}\left(  i \pm \sqrt{ R(r)} \right)  + \mathcal{O}\left( r^{3/2} \right).
-\end{align*}
-\end{enumerate}
-
-\item For $t$ outside these bifurcation points, there are two purely imaginary eigenvalues. For $t \in \{ -2\sqrt{R(r)}, 2\sqrt{R(r)} \}$, one these is close to $\tilde{\lambda}_*(r) r^{1/2}$.
-
-\end{itemize}
-
-\end{theorem}
-
-\section{Spectrum of periodic multi-pulses}\label{sec:pereig}
-
-We can state an analogue to \cref{theorem:2peigsassym} for periodic multi-pulses. For $n \geq 3$, it is not feasible to compute the determinant of the block matrix. To obtain a result, we will place an additional condition on the matrix $A$. We start with the following lemma, which in some ways is analogous to \cref{lemma:chara} but provides much less information.
-
-\begin{lemma}\label{lemma:charmatrixA}
-For any periodic parameterization $(m_0, \dots, m_{n-1}, \theta)$ with $\theta \notin \{-\pi + p^*, p^* \}$, let $r_* = r^*(m_0, \dots, m_{n-1}, \theta)$ be as in \cref{perexist}. Let $A$ be the matrix from \cref{blockmatrixtheorem}. Then for all $r \in \mathcal{R}$ with $r \leq r_*$,
-\[
-A = r \tilde{A}(r)
-\]
-where $\tilde{A}(r) = \tilde{A}(r; m_0, \dots, m_{n-1}, \theta)$ is continuous in $r$. $\tilde{A}(r)$ has an eigenvalue of 0 corresponding to eigenvector $(1, 1, \dots, 1)^T$. 
-\end{lemma}
-
-Let $\{ 0, \ell_1(r), \dots, \ell_{n-1}(r) \}$ be the eigenvalues of $\tilde{A}(r)$. We will take the following hypothesis regarding these eigenvalues.
-
-\begin{hypothesis}\label{Adistincteigs}
-The eigenvalues $\{ 0, \ell_1(0), \dots, \ell_{n-1}(0)\}$ of $\tilde{A}(0)$ are distinct.
-\end{hypothesis}
-This hypothesis implies that $\tilde{A}(0)$ has a one-dimensional kernel. The eigenvalues of $\tilde{A}(0)$ only depend on the periodic parameterization $(m_0, \dots, m_{n-1}, \theta)$.
-
-\begin{remark}
-\cref{Adistincteigs} is not true in general. For example, if $n \geq 3$ and all of $m_j$ are the same, then $\tilde{A}(0)$ is a circulant matrix. It is not hard to show that $\tilde{A}(0)$ will have at least one eigenvalue of algebraic multiplicity 2.
-\end{remark}
-
-We can now state the following theorem. As we did in \cref{theorem:2peigsassym}, we will always choose $r$ sufficiently small so that the essential spectrum does not interfere.
-
-\begin{theorem}\label{theorem:multieigs}
-Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, \ref{H0transversehyp}, \ref{Melnikov2hyp}. Let $\tilde{A}(r)$ be as in \cref{lemma:charmatrixA}. Let $(m_0, \dots, m_{n-1}, \theta)$, with $\theta \notin \{-\pi + p^*, p^* \}$, be a periodic parameterization for which \cref{Adistincteigs} holds, and let $\{ 0, \ell_1(0), \dots, \ell_{n-1}(0)\}$ be the distinct eigenvalues of $\tilde{A}(0)$. 
-
-Let $r_* = r_*(m_0, \dots, m_{n-1}, \theta)$ be as in \cref{perexist}. Choose any integer $N > 0$, and let $\delta(N,r)$ be as in Theorem \ref{blockmatrixtheorem}. Then there exists $r_1 = r_1(m_0, \dots, m_{n-1}, \theta, N) \leq r_*$ with the following property. For all $r \in \mathcal{R}$ with $r \leq r_1$, the following hold regarding the spectrum associated with the periodic multi-pulse $Q_2(x; m_0, \dots, m_{n-1}, \theta, r)$.
-
-\begin{enumerate}[(i)]
-\item There is an eigenvalue at 0 with algebraic multiplicity 3.
-\item Let $N_1 \leq N$ be the largest positive integer such that $N_1/|\log r| < \delta(N,r)$. Then there are $2N_1$ nonzero essential spectrum eigenvalues $\lambda = \{ \pm \lambda_m^{\text{ess}} : m = 1, \dots, N_1 \}$, where
-\[
-\lambda_m^{\text{ess}}(r) = c \frac{m \pi i}{X}+  \mathcal{O}\left( \frac{1}{|\log r|^2} \right)
-\]
-is on the imaginary axis and $X = X(r; m_0, \dots, m_{n-1}, \theta)$ is given by \cref{Xdomain}.
-
-\item There are $n - 1$ pairs of nonzero interaction eigenvalues located at
-\begin{align*}
-\lambda &= \pm \lambda^{\text{int}}_j(r) && j = 1, \dots, n-1,
-\end{align*}
-where
-\begin{align*}
-\lambda^{\text{int}}_j(r) = \sqrt{\frac{\ell_j(0)}{M}}r^{1/2} + \mathcal{O}\left( \frac{r^{1/2}}{|\log r|}\right)
-\end{align*}
-and $|\lambda^{\text{int}}_j(r)| < \frac{1}{2}|\lambda_1^{\text{ess}}(r)|$ for all $j$. The interaction eigenvalue pairs are either real or purely imaginary.
-
-\item There are no other eigenvalues inside a circle with radius slightly larger than $|\lambda_{N_1}^{\text{ess}}(r)|$.
-
-\end{enumerate}
-\end{theorem}
-
-For the periodic 2-pulse, the interaction eigenvalue pattern is determined by the sign of the nonzero eigenvalue of $\tilde{A}(0)$; this is given by \cref{lemma:chara}. For $n \geq 3$, there is no easy way to determine these signs. If $m_{n-1}$ is very large compared to the other $m_j$, the matrix $A$ is approximately the tri-diagonal matrix in \cite[Theorem 2]{Sandstede1998}. In principle, we could use a similar argument to \cite[Theorem 3(iv)]{Sandstede1998} to determine the interaction eigenvalue pattern in terms of the parity of the integers $m_0, \dots, m_{n-2}$. This is beyond the scope of this work.
 
 \iffulldocument\else
 	\bibliographystyle{amsalpha}
 	\bibliography{thesis.bib}
 \fi
+
+\section{Spectrum of periodic multi-pulses}
+
+For the case when $n \geq 3$, it should be possible to prove an analogue to \cref{theorem:2peigsassym} in the case where the essential spectrum eigenvalues and nonzero interaction eigenvalues do not interfere with each other. Since it is too unwieldy to compute the determinant, we instead note that it follows from Theorem \ref{blockmatrixtheorem} that $\lambda$ is an eigenvalue if and only if the equation
+\[
+S(\lambda) \begin{pmatrix} c\\d \end{pmatrix} = 0
+\]
+has a nontrivial solution. Write this as the pair of equations
+\begin{align}
+(K(\lambda) + C_1)c + (\lambda K_2(\lambda) - \lambda^2 \tilde{M}^c I + D_1)d &= 0 \label{topline} \\
+(-\frac{1}{2} \lambda M^c K_1(\lambda) + C_2)c + (A - \lambda^2 MI + D_2) &= 0 \label{bottomline}
+\end{align}
+To find the interaction eigenvalues, it should be possible to invert $K(\lambda)$, solve \cref{topline} for $c$, and plug the result into \cref{bottomline}. To find the essential spectrum eigenvalues, it should be possible to invert $A - \lambda^2 MI$, solve \cref{bottomline} for $d$, and plug the result into \cref{topline}.
 
 \end{document}

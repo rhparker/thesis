@@ -66,7 +66,20 @@ We turn now to the spectral stability of multi-pulse solutions. Linearization of
 \begin{equation}\label{quadeig}
 \calI \lambda^2 - 2 c \partial_x \lambda + \calA_0(U_n) = 0,
 \end{equation}
-where $\calA_0(U_n)$ is defined in \cref{suspA0}. The essential spectrum of \cref{quadeig} is purely imaginary, symmetric across the real axis, and bounded away from 0. Thus for sufficiently well-separated pulses, any imaginary interaction eigenvalues will fall within the gap in the essential spectrum. Thus we avoid the issue we have with KdV5 where interaction eigenvalues may be buried in the essential spectrum. 
+where $\calA_0(U_n)$ is defined in \cref{suspA0}. The essential spectrum of \cref{quadeig} is given by
+\begin{equation}\label{quadess}
+\sigma_{\mathrm{ess}}(\calP_2(\lambda; U_n)) = \sigma_{\mathrm{ess}}(\calT(\lambda)) = \{\rmi r : |r| \geq \rho \},
+\end{equation}
+where $\rho > 0$ is the minimum of the function $\lambda(r) = c r + \sqrt{1 + r^4}$. The value of $\rho$ is positive for $c \in (0, \sqrt{2})$, and $\rho\to 0$ as $c\to\sqrt{2}$, as shown in \cref{fig:essspecrho}.
+\begin{figure}
+\centering
+\includegraphics[width=8cm]{images/other/essspecrho.eps}
+\caption[Essential spectrum bound for Chen-McKenna]{Minimum of purely imaginary essential spectrum $\rho$ vs. wavespeed $c$.}
+\label{fig:essspecrho}
+\end{figure}
+Since the essential spectrum is purely imaginary and bounded away from 0, spectral stability thus depends entirely on the point spectrum.
+
+For sufficiently well-separated pulses, any imaginary interaction eigenvalues will fall within this gap in the essential spectrum. Thus we avoid the issue we have with KdV5 where interaction eigenvalues may be buried in the essential spectrum. 
 
 To determine the point spectrum, we can adapt the method in \cite{Sandstede1998} as we did in \cref{chapter:kdv5homoclinic}. Since the rest state is hyperbolic, we do not need the exponential weight. Rather than do that, in \cite{kapitula2019} we determine the spectrum using a reformulation of the Krein matrix which can be used for quadratic eigenvalue problems such as \cref{quadeig}.  Briefly, the Krein matrix is meromorphic, matrix-valued function $\vK(\lambda)$ associated with an eigenvalue problem with the property that $\det\vK(\lambda)=0$ only if $\lambda$ is a polynomial eigenvalue \cite[Theorem 3.1]{kapitula2019}. Furthermore, the Krein matrix can be used to determine the Krein signature of a purely imaginary eigenvalue. To obtain the Krein matrix, we project \cref{quadeig} onto a finite-dimensional subspace. For this problem, we choose the space $S$, which defined above after \cref{suspA0}.
 
@@ -274,7 +287,7 @@ We can also look at triple pulses with unequal pulse distances $N_1$ and $N_2$. 
 
 Finally, we can compute the leading order term in equation \cref{eigsDNLS} and compare that to the numerical result. A value for $\omega$ is chosen, and the single pulse solution $q(n; \omega)$ is constructed numerically using parameter continuation from the anti-continuum limit until the desired coupling parameter $d$ is reached. The terms $b_i$ from the matrix $A$ are computed by using equation \cref{bieq} with the numerically constructed solution $q(n; \omega)$. For the derivative $\partial_\omega q(n; \omega)$, solutions $q(n; \omega + \epsilon)$ and $q(n; \omega - \epsilon)$ are constructed numerically for small $\epsilon$ by parameter continuation from the anti-continuum limit to the same value of $d$. The derivative $\partial_\omega q(n; \omega)$ is computed from these via a centered finite difference method; this is used together with $q(n; \omega)$ to calculate the Melnikov sum $M$. 
 
-First, we consider the case of equal pulse distances. We use the expressions from \cref{DNLSeigcorr} to compute the leading order term for the interaction eigenvalues, and we compare this to the results from Matlab's \texttt{eig} function. In \cref{fig:error1} we fix the inter-pulse distances and plot the log of the relative error of the eigenvalues versus the coupling parameter $d$. For intermediate values of $d$, the relative error is less than $10^{-3}$. Since the results of Theorem \cref{stabilitytheorem} are not uniform in $d$, i.e. they hold for sufficiently large $N$ once $d$ and $\omega$ are chosen, we do not expect to have a nice relationship between the error and $d$. This is furthermore complicated by the fact that additional sources of error arise from  
+First, we consider the case of equal pulse distances. We use the expressions from \cref{DNLSeigcorr} to compute the leading order term for the interaction eigenvalues, and we compare this to the results from Matlab's \texttt{eig} function. In \cref{fig:error1} we fix the inter-pulse distances and plot the log of the relative error of the eigenvalues versus the coupling parameter $d$. For intermediate values of $d$, the relative error is less than $10^{-3}$. Since the stability results are not uniform in $d$, i.e. they hold for sufficiently large $N$ once $d$ and $\omega$ are chosen, we do not expect to have a nice relationship between the error and $d$. This is furthermore complicated by the fact that additional sources of error arise from  
 numerically approximating $b_i$ and $M$. In principle, though, the method (and the asymptotic prediction) yields
 satisfactory results except for the vicinity of the 
 anti-continuum limit (where the notion of the single

@@ -773,7 +773,7 @@ When $r = 0$, the equations \eqref{Geq} all have the same form, so we will start
 H(b_0, b_1) = b_0 \sin \left( -\rho \log b_0 \right) - b_1 \sin \left( -\rho \log b_1 \right)
 \end{equation}
 
-\section{Bifurcation structure of $H$}
+\section{Bifurcation structure of $H$}\label{section:bifH}
 
 In this section, we will show that the zero set of $H(b_0, b_1)$ contains a sequence of pitchfork bifurcations along the diagonal. First, we note that $H$ is antisymmetric in its two arguments, i.e. $H(b_1, b_0) = -H(b_0, b_1)$. Since the zero set of $H$ is symmetric with respect to the diagonal, the diagonal $b_0 = b_1$ is in the zero set of $H$. We also have some off-diagonal solutions, for example when $b_j = \exp\left(-\frac{m_j \pi}{\rho}\right)$ for different integers $m_j$. \cref{fig:Fzeronumeric} shows a plot using Matlab of the zero set of $H$, which suggests that this set comprises continuous curves which bifurcate from the diagonal in a sequence of pitchfork bifurcations.
 
@@ -1385,10 +1385,6 @@ from which it follows that
 \begin{align*}
 t_0(0; m_0, s_1) = m_0 \pi + \mathcal{O}\left(-\frac{1}{\rho} s_1 \right)
 \end{align*}
-
-
-
-
 and has the properties given in the statement of the theorem. Finally, from Lemma \ref{pitchforkconnects}, the pitchfork bifurcation point is reached when $s_1 = p^*$.
 
 \iffulldocument\else

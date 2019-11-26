@@ -1,10 +1,16 @@
-\documentclass[11pt,reqno,oneside]{amsbook}
+\documentclass[11pt,reqno,oneside]{report}
 % \usepackage[pdfborder={0 0 0.5 [3 2]}]{hyperref}%
 \usepackage[left=1in,right=1in,top=1in,bottom=1.5in]{geometry}%
 
 % brown university thesis style
 \usepackage{setspace}
+\usepackage[utf8]{inputenc}
 \usepackage{buthesis}
+\usepackage{mathtools}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{mdwlist}
+\usepackage{caption}
+\usepackage{subcaption}
 
 % AMS packages
 \usepackage{amsmath}
@@ -14,9 +20,6 @@
 \usepackage{enumerate}
 \usepackage{float}
 \usepackage{subfiles}
-\usepackage{wrapfig}
-
-% \usepackage{thmtools, thm-restate}
 
 % my custom packages
 \usepackage{macros}
@@ -41,7 +44,6 @@
 \newtheorem{theorem}{Theorem}[chapter]
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{proposition}{Proposition}
 
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
@@ -49,10 +51,11 @@
 
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
-\newtheorem{hypothesis}{Hypothesis}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
 
 \numberwithin{section}{chapter}
 \numberwithin{equation}{chapter}
+\numberwithin{figure}{chapter}  
 
 \DeclareMathOperator{\spn}{span}
 \DeclareMathOperator{\ran}{ran}
@@ -70,6 +73,17 @@
 % conditional for full document
 \newif\iffulldocument
 
+%% Control the fonts and formatting used in the table of contents, list of
+%% figures, and list of tables
+
+%% Aesthetic spacing redefines that look nicer to me than the defaults.
+\usepackage[titles]{tocloft}
+\setlength{\cftbeforechapskip}{-1ex}
+\setlength{\cftbeforesecskip}{-3.5ex}
+\setlength{\cftbeforesubsecskip}{-3.5ex}
+\setlength{\cftbeforetabskip}{-3.5ex}
+\setlength{\cftbeforefigskip}{-3.5ex}
+
 \dissertation
 
 % Information about the document
@@ -78,9 +92,11 @@
 \author{Ross Hamilton Parker}
 \degree{Doctor of Philosophy}
 \department{The Division of Applied Mathematics}
-% \previousdegrees{
-% 		B.Sc., University of Massachusetts, Amherst; Amherst, MA, 2014\\ 	
-% 		M.Sc., Brown University; Providence, RI, 2015} 
+\previousdegrees{
+    B.A., Bowdoin College; Brunswick, ME, 1998\\
+    M.D., University of Pennsylvania School of Medicine; Philadelphia, PA, 2009\\
+    M.A., CUNY Hunter College; New York, NY, 2013 \\
+    M.Sc., Brown University; Providence, RI, 2015} 
 \thesismonth{December} \thesisyear{2019}
 
 \begin{document}
@@ -103,9 +119,9 @@
   \reader{Ryan Goh, Ph.D., Reader}
 \end{signature}
 
-% \begin{vita}\label{thesis:vita}
-%   \input{content/vita}
-% \end{vita}
+\begin{vita}\label{thesis:vita}
+  \input{vita}
+\end{vita}
 
 % \begin{dedication}\label{thesis:dedication}
 %   \input{content/dedication}
@@ -143,12 +159,10 @@
 
 \fulldocumenttrue
 
-\mainmatter
-
 \chapter{Introduction}\label{chapter:intro}
 \subfile{intro}
 
-\chapter{The 5th order KdV equation}\label{chapter:KdV5}
+\chapter{The fifth-order KdV equation}\label{chapter:KdV5}
 \subfile{kdv5}
 
 \chapter{Numerical results}\label{chapter:KdV5numerics}
@@ -156,6 +170,7 @@
 
 \chapter{Generalization}\label{chapter:kdv5general}
 \subfile{kdv5general}
+\subfile{primarypulse}
 
 \chapter{Multi-pulse solutions}\label{chapter:kdv5homoclinic}
 \subfile{kdv5homoclinic}
@@ -166,26 +181,23 @@
 \chapter{Multi-pulses in other systems}\label{chapter:other}
 \subfile{other}
 
-\chapter{Proof of results from Chapter \ref{chapter:kdv5general}}
-\subfile{primarypulse}
+\chapter{Conclusions and future directions}
 
-\chapter{Proof of existence results for periodic multi-pulses}
+\appendix
+
+\chapter{Proof of existence results for periodic multi-pulses}\label{perexistproof}
 \subfile{periodicexist}
 
-\chapter{Proof of Theorem \ref{blockmatrixtheorem}}
+\chapter{Proof of Theorem \ref{blockmatrixtheorem}}\label{blockmatrixproof}
 \subfile{blockmatrixsetup}
 \subfile{blockmatrixinv}
 
-\chapter{Proof of eigenvalue results for periodic 2-pulses}
+\chapter{Proof of eigenvalue results for periodic 2-pulses}\label{per2pproof}
 \subfile{periodiceig2p}
 
-\chapter{Conclusion}
-
-% \appendix
 %    Include appendix "chapters" here.
 % \include{}
 
-\backmatter
 %    Bibliographies can be prepared with BibTeX using amsplain,
 %    amsalpha, or (for "historical" overviews) natbib style.
 \bibliographystyle{amsalpha}

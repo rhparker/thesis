@@ -25,7 +25,7 @@ In addition,
 \begin{enumerate}[(i)]
 \item $\nu(-\lambda) = -\nu(\lambda)$.
 \item If $\lambda$ is pure imaginary, $\nu(\lambda)$ is also pure imaginary.
-\item The corresponding eigenvector to $\nu(\lambda)$ is $V_0(\lambda)$ which is smooth in $\lambda$ and has Taylor expansion
+\item The corresponding eigenvector to $\nu(\lambda)$ is $V_0(\lambda)$ which is smooth in $\lambda$ and has expansion
 \begin{equation}\label{V0expansion}
 V_0(\lambda) = V_0 + \lambda V_0'(0) + \mathcal{O}(\lambda^2),
 \end{equation}
@@ -954,13 +954,11 @@ To conclude this section, as a corollary, we use the previous lemma to evaluate 
 \begin{equation}\label{VpmIPs}
 \begin{aligned}
 \langle \Psi^c(0), V^\pm(0; \lambda) \rangle &= 1 \mp \frac{1}{2} \tilde{M}\lambda + \mathcal{O}(|\lambda|^2) \\
-\langle \Psi(0), V^\pm(0; \lambda) \rangle &= \mp \frac{1}{2} M^c \lambda + \mathcal{O}(|\lambda|^2) \\
-\langle \Psi^c(0), V^+(0; \lambda) - V^-(0; \lambda) \rangle &= -\tilde{M}\lambda + \mathcal{O}(|\lambda|^2) \\ 
-\langle \Psi(0), V^+(0; \lambda) - V^-(0; \lambda) \rangle &= -M^c \lambda + \mathcal{O}(|\lambda|^2).
+\langle \Psi(0), V^\pm(0; \lambda) \rangle &= \mp \frac{1}{2} M^c \lambda + \mathcal{O}(|\lambda|^2)
 \end{aligned}
 \end{equation}
 \begin{proof}
-Using Lemma \ref{centersolutionslemma} and Lemma \ref{varadjsolutions}, we can expand $V^+(0; \lambda)$ in a Taylor series about $\lambda = 0$ to get
+Using Lemma \ref{lemma:Vpm} and Lemma \ref{varadjsolutions}, we can expand $V^+(0; \lambda)$ in a Taylor series about $\lambda = 0$ to get
 \begin{align*}
 V^+(0; \lambda) &= V^c(0) + \partial_\lambda V^+(0; 0) \lambda + \mathcal{O}(|\lambda|^2) \\
 &= V^c(0) + \partial_\lambda \tilde{V}^+(0; 0) \lambda + \mathcal{O}(|\lambda|^2), 
@@ -971,7 +969,7 @@ since $\partial_\lambda V^+(0; 0) = \partial_\lambda \tilde{V}^+(0; 0)$. For the
 \langle W_0, V^c(0) \rangle + \langle W_0, \partial_\lambda \tilde{V}^+(0; 0) \rangle + \mathcal{O}(|\lambda|^2) \\
 &= 1 - \frac{1}{2} \tilde{M}\lambda + \mathcal{O}(|\lambda|^2)
 \end{align*}
-The result for $\langle \Psi^c(0), V^-(0; \lambda) \rangle$ follows from the symmetry relations $\partial_\lambda \tilde{V}^-(0; 0)= -R \partial_\lambda \tilde{V}^+(0; 0)$ and $W_0 = R W_0$. The third equation in \cref{VpmIPs} follows from combining these.
+The result for $\langle \Psi^c(0), V^-(0; \lambda) \rangle$ follows from the symmetry relations $\partial_\lambda \tilde{V}^-(0; 0)= -R \partial_\lambda \tilde{V}^+(0; 0)$ and $W_0 = R W_0$. 
 
 For the inner product $\langle \Psi(0), V^+(0; \lambda) \rangle$, we use \cref{lemma:VderivIPs} and \cref{VtildeVderiv} to get
 \begin{align*}
@@ -979,7 +977,7 @@ For the inner product $\langle \Psi(0), V^+(0; \lambda) \rangle$, we use \cref{l
 &= \langle \Psi(0), V^c(0) \rangle + \langle \Psi(0), \partial_\lambda \tilde{V}^+(0; 0) \rangle \lambda  + \mathcal{O}(|\lambda|^2) \\
 &= -\frac{1}{2} M^c \lambda + \mathcal{O}(|\lambda|^2)
 \end{align*}
-The result for $\langle \Psi(0), V^-(0; \lambda) \rangle$ follows from symmetry as above. The fourth equation in \cref{VpmIPs} follows from combining these.
+The result for $\langle \Psi(0), V^-(0; \lambda) \rangle$ follows from symmetry as above.
 \end{proof}
 \end{corollary}
 
@@ -1008,14 +1006,17 @@ We also showed above that
 To exploit the relations \eqref{PDEeigkernel} and \eqref{PDEeigcenter}, we take the following piecewise ansatz for the eigenfunction $U(x)$
 \begin{equation}\label{Vpiecewise}
 \begin{aligned}
-U_i^-(x) &= d_i (\partial_x Q_i^-(x) + \lambda \partial_c Q_i^-(x)) + c_i V^-(x; \lambda) + W_i^-(x) && x \in [-X_{i-1}, 0] \\
-U_i^+(x) &= d_i (\partial_x Q_i^+(x) + \lambda \partial_x Q_i^+(x)) + c_i V^+(x; \lambda) + W_i^+(x) && x \in [0, X_i] 
+U_i^-(x) &= d_i (\partial_x Q_i^-(x) + \lambda \partial_c Q_i^-(x)) + c_{i-1} e^{\nu(\lambda)X_{i-1} } V^-(x; \lambda) + W_i^-(x) && x \in [-X_{i-1}, 0] \\
+U_i^+(x) &= d_i (\partial_x Q_i^+(x) + \lambda \partial_x Q_i^+(x)) + c_i e^{-\nu(\lambda)X_i }V^+(x; \lambda) + W_i^+(x) && x \in [0, X_i] 
 \end{aligned}
 \end{equation}
-where $c_i, d_i \in \C$ are constants, $W_i^-(x) \in C([-X_{i-1}, 0], \C)$, and $W_i^+(x) \in C([0, X_i], \C)$. Substituting this ansatz into \cref{PDEeigsystemper3} and simplifying, we obtain the following equation for $W_i^\pm(x)$.
-\begin{align}\label{Wipm2}
-(W_i^\pm)'(x) &= A(Q(x); \lambda) W_i^\pm(x) + G_i^\pm(x) W_i^\pm(x) + c_i G_i^\pm(x)V^\pm(x; \lambda) + d_i \lambda^2 \tilde{H}_i^\pm(x),
-\end{align}
+where $c_i, d_i \in \C$ are constants, $W_i^-(x) \in C([-X_{i-1}, 0], \C)$, and $W_i^+(x) \in C([0, X_i], \C)$. Since we are on a periodic domain, all subscripts are taken $\Mod n$. In addition, we note that the $c_i$ and the factors $e^{-\nu(\lambda)X_i }$ are chosen to facilitate the matching at $\pm X_i$. Substituting this ansatz into \cref{PDEeigsystemper3} and simplifying, we obtain the following equation for $W_i^\pm(x)$.
+\begin{equation}\label{Wipm2}
+\begin{aligned}
+(W_i^-)'(x) &= A(Q(x); \lambda) W_i^-(x) + G_i^-(x) W_i^-(x) + c_{i-1} e^{\nu(\lambda)X_{i-1}} G_i^-(x)V^-(x; \lambda) + d_i \lambda^2 \tilde{H}_i^-(x) \\
+(W_i^+)'(x) &= A(Q(x); \lambda) W_i^+(x) + G_i^+(x) W_i^+(x) + c_i e^{-\nu(\lambda)X_i } G_i^+(x)V^+(x; \lambda) + d_i \lambda^2 \tilde{H}_i^+(x)
+\end{aligned}
+\end{equation}
 where
 \begin{align*}
 G_i^\pm(x) &= A(Q_i^\pm(x)) - A(Q(x)) \\
@@ -1026,9 +1027,10 @@ H(x) &= \partial_c Q(x)
 Since the eigenfunction $U(x)$ must be continuous, the $2n$ pieces $U_i^\pm(x)$ must also be joined together end-to-end in a loop. In other words, $n$ matching conditions at $x = \pm X_i$ and $n$ matching conditions at $x = 0$ must be satisfied. Thus to obtain an eigenfunction $U(x)$, the functions $W_i^\pm(x)$ must solve the system of equations
 \begin{equation}\label{eigsystem0}
 \begin{aligned}
-(W_i^\pm)'(x) &= A(Q(x); \lambda) W_i^\pm(x) + G_i^\pm(x) W_i^\pm(x) + c_i G_i^\pm(x)V^\pm(x; \lambda) + d_i \lambda^2 \tilde{H}_i^\pm(x) \\
+(W_i^-)'(x) &= A(Q(x); \lambda) W_i^-(x) + G_i^-(x) W_i^-(x) + c_{i-1} e^{\nu(\lambda)X_{i-1}} G_i^-(x)V^-(x; \lambda) + d_i \lambda^2 \tilde{H}_i^-(x) \\
+(W_i^+)'(x) &= A(Q(x); \lambda) W_i^+(x) + G_i^+(x) W_i^+(x) + c_i e^{-\nu(\lambda)X_i } G_i^+(x)V^+(x; \lambda) + d_i \lambda^2 \tilde{H}_i^+(x) \\
 W_i^+(X_i) - W_{i+1}^-(-X_i) &= D_i d + C_i c \\
-W_i^+(0) - W_i^+(0) &+ c_i( V^+(0; \lambda) - V^-(0; \lambda) ) = 0
+W_i^+(0) - W_i^+(0) &+ c_i e^{-\nu(\lambda)X_i}V^+(0; \lambda) - c_{i-1} e^{\nu(\lambda)X_i} V^-(0; \lambda) = 0
 \end{aligned}
 \end{equation}
 for $i = 0, \dots, n-1$, where
@@ -1038,43 +1040,52 @@ D_i d &= d_{i+1}[\partial_x Q_{i+1}^-(-X_i) + \lambda \partial_c Q_{i+1}^-(-X_i)
 \end{align}
 and
 \begin{align}\label{defCic}
-C_i c &= c_{i+1} V^-(-X_i; \lambda) - c_i V^+(X_i; \lambda)
+C_i c &= c_i \left( e^{\nu(\lambda) X_i} V^-(-X_i; \lambda) - e^{-\nu(\lambda) X_i} V^+(X_i; \lambda) \right)
 \end{align}
 As in \cite{Sandstede1998}, we will not be able to find a solution to this system for arbitrary $\lambda$. Thus will consider instead the system
 \begin{equation}\label{eigsystem}
 \begin{aligned}
-(W_i^\pm)'(x) &= A(Q(x); \lambda) W_i^\pm(x) + G_i^\pm(x) W_i^\pm(x) + c_i G_i^\pm(x)V^\pm(x; \lambda) + d_i \lambda^2 \tilde{H}_i^\pm(x) \\
+(W_i^-)'(x) &= A(Q(x); \lambda) W_i^-(x) + G_i^-(x) W_i^-(x) + c_{i-1} e^{\nu(\lambda)X_{i-1}} G_i^-(x)V^-(x; \lambda) + d_i \lambda^2 \tilde{H}_i^-(x) \\
+(W_i^+)'(x) &= A(Q(x); \lambda) W_i^+(x) + G_i^+(x) W_i^+(x) + c_i e^{-\nu(\lambda)X_i } G_i^+(x)V^+(x; \lambda) + d_i \lambda^2 \tilde{H}_i^+(x) \\
 W_i^+(X_i) - W_{i+1}^-(-X_i) &= D_i d + C_i c \\
 W_i^\pm(0) &\in \R \Psi(0) \oplus \R \Psi^c(0) \oplus Y^+ \oplus Y^- \\
 W_i^+(0) - W_i^-(0) &\in \R \Psi(0) \oplus \R \Psi^c(0) 
 \end{aligned}
 \end{equation}
-for $i = 0, \dots, n-1$, where the third equation in \cref{eigsystem0} is relaxed to the requirement that the jumps $W_i^+(0) - W_i^-(0)$ can only be in the directions of $\Psi^c(0)$ and $\Psi(0)$. A solution to \eqref{eigsystem} solves \eqref{PDEeig3} if and only if the $n$ jumps conditions at $x = 0$ in the direction of $\Psi(0) \oplus \R \Psi^c(0)$ are satisfied, i.e.  
+for $i = 0, \dots, n-1$, where the fourth equation in \cref{eigsystem0} is relaxed to the requirement that the jumps $W_i^+(0) - W_i^-(0)$ can only be in the directions of $\Psi^c(0)$ and $\Psi(0)$. A solution to \eqref{eigsystem} solves the PDE eigenvalue problem if and only if the $n$ jumps conditions at $x = 0$ in the direction of $\Psi(0) \oplus \R \Psi^c(0)$ are satisfied, i.e.  
 \begin{equation}\label{jumpxi1}
 \begin{aligned}
-\xi_i &= \langle \Psi(0), W_i^+(0) - W_i^-(0) + c_i( V^+(0; \lambda) - V^-(0; \lambda) ) \rangle = 0  \\
-\xi_i^c &= \langle \Psi^c(0), W_i^+(0) - W_i^-(0) + c_i( V^+(0; \lambda) - V^-(0; \lambda) ) \rangle = 0 
+\xi_i &= \langle \Psi(0), W_i^+(0) - W_i^-(0) + c_i e^{-\nu(\lambda)X_i}V^+(0; \lambda) - c_{i-1} e^{\nu(\lambda)X_i} V^-(0; \lambda) \rangle = 0  \\
+\xi_i^c &= \langle \Psi^c(0), W_i^+(0) - W_i^-(0) + c_i e^{-\nu(\lambda)X_i}V^+(0; \lambda) - c_{i-1} e^{\nu(\lambda)X_i} V^-(0; \lambda) \rangle = 0 
 \end{aligned}
 \end{equation}
 for $i = 0, \dots, n-1$. 
 
 \section{Conjugation of system}
 
-We will now apply the conjugation we derived above to the system \cref{eigsystem}. Making the substitution $W_i^\pm(x) = P_\pm(x; \lambda) Z_i^\pm(x)$, we obtain the conjugated system
-\begin{subequations}
+We will now apply the conjugation we derived above to the system \cref{eigsystem}. Making the substitution $W_i^\pm(x) = P_\pm(x; \lambda) Z_i^\pm(x)$, we obtain the equations
+\begin{equation}\label{systemZ}
+\begin{aligned}
+(Z_i^-(x))' = A(\lambda) &Z_i^-(x) + P_-(x; \lambda)^{-1} G_i^-(x) P_-(x; \lambda) Z_i^-(x)  \\
+&+ c_{i-1} e^{\nu(\lambda)X_{i-1}} P_-(x; \lambda)^{-1} G_i^-(x)V^-(x; \lambda) + \lambda^2 d_i P_-(x; \lambda)^{-1} \tilde{H}_i^-(x) \\
+(Z_i^+(x))' = A(\lambda) &Z_i^+(x) + P_+(x; \lambda)^{-1} G_i^+(x) P_+(x; \lambda) Z_i^+(x)  \\
+&+ c_i e^{-\nu(\lambda)X_i} P_+(x; \lambda)^{-1} G_i^+(x)V^+(x; \lambda) + \lambda^2 d_i P_+(x; \lambda)^{-1} \tilde{H}_i^+(x)
+\end{aligned}
+\end{equation}
+with matching conditions at tails
+\begin{equation}\label{systemmiddle}
+P_+(X_i; \lambda) Z_i^+(X_i) - P_-(-X_i; \lambda) Z_{i+1}^-(-X_i; \lambda) = D_i d + C_i c 
+\end{equation}
+and conditions at $x = 0$
 \begin{align}
-(Z_i^\pm(x))' = A(\lambda) Z_i^\pm(x) &+ P_\pm(x; \lambda)^{-1} G_i^\pm(x) P_\pm(x; \lambda) Z_i^\pm(x) \nonumber \\
-&+ c_i P_\pm(x; \lambda)^{-1} G_i^\pm(x)V^\pm(x; \lambda) + \lambda^2 d_i P_\pm(x; \lambda)^{-1} \tilde{H}_i^\pm(x) \label{systemZ} \\
-P_+(X_i; \lambda) Z_i^+(X_i) &- P_-(-X_i; \lambda) Z_{i+1}^-(-X_i; \lambda) = D_i d + C_i c \label{systemmiddle} \\
 P_\pm(0; \lambda) Z_i^\pm(0) &\in Y^+ \oplus Y^- \oplus \C \Psi(0) \oplus \C \Psi^c(0) \label{systemcenter1} \\
-P_+(0; \lambda) Z_i^+(0) - P_-(0; \lambda) Z_i^-(0) &\in \C \Psi(0) \oplus \C \Psi^c(0) \label{systemcenter2}
+P_+(0; \lambda) Z_i^+(0) - P_-(0; \lambda) Z_i^-(0) &\in \C \Psi(0) \oplus \C \Psi^c(0) \label{systemcenter2}.
 \end{align}
-\end{subequations}
-and the jump conditions become
+The jump conditions become
 \begin{equation}\label{jumpcondZ}
 \begin{aligned}
-\langle \Psi(0), P_+(0; \lambda) Z_i^+(0) - P_-(0; \lambda) Z_i^-(0) \rangle &= c_i \langle \Psi(0), V^+(0; \lambda) - V^-(0; \lambda) \rangle \\
-\langle \Psi^c(0), P_-(0; \lambda) Z_i^+(0) - P_-(0; \lambda) Z_i^-(0) \rangle &= c_i \langle \Psi^c(0), V^+(0; \lambda) - V^-(0; \lambda) \rangle 
+\xi_i &= \langle \Psi(0), P_+(0; \lambda) Z_i^+(0) - P_-(0; \lambda) Z_i^-(0) + c_i e^{-\nu(\lambda)X_i}V^+(0; \lambda) - c_{i-1} e^{\nu(\lambda)X_i} V^-(0; \lambda) \rangle = 0  \\
+\xi_i^c &= \langle \Psi^c(0), P_+(0; \lambda) Z_i^+(0) - P_-(0; \lambda) Z_i^-(0) + c_i e^{-\nu(\lambda)X_i}V^+(0; \lambda) - c_{i-1} e^{\nu(\lambda)X_i} V^-(0; \lambda) \rangle = 0 
 \end{aligned}
 \end{equation}
 
@@ -1098,41 +1109,7 @@ Recall from Lemma \ref{eigA0lemma} that $A(0)$ has a simple eigenvalue at 0, a q
 	\item Choose $r_0 \leq r_*$ such that $r_0^{1/2} \leq \delta$. If we decrease $\delta$, $r_0$ will also decrease so that this is still satisfied.
 \end{enumerate}
 
-To conclude this section, we will collect estimates on the terms involved in \eqref{eigsystem} in the following two lemmas.
-
-\begin{lemma}\label{stabestimateslemma}
-Let $\Delta H_i^\pm(x) = \tilde{H}_i^\pm(x) - H(x)$. Then we have the following estimates
-\begin{enumerate}[(i)]
-\item $|H(x)|, |\tilde{H}_i^\pm(x)| \leq C e^{-\alpha |x|}$
-\item $|\Delta H_i^-(x)| \leq C e^{-\alpha X_{i-1}} e^{-\alpha(X_{i-1} + x) } + e^{-2 \alpha X_i} e^{\alpha x}$
-\item $|\Delta H_i^+(x)| \leq C e^{-\alpha X_i} e^{-\alpha(X_i - x) } + e^{-2 \alpha X_{i-1}} e^{-\alpha x}$
-\item $||\Delta H_i^\pm|| \leq C(e^{-\alpha X_i} + e^{-\alpha X_{i-1}} )$
-\item $|G_i^-(x)| \leq C e^{-\alpha X_{i-1}} e^{-\alpha(X_{i-1} + x) } + e^{-2 \alpha X_i} e^{\alpha x}$
-\item $|G_i^+(x)| \leq C e^{-\alpha X_i} e^{-\alpha_0(X_i - x) } + e^{-2 \alpha X_{i-1}} e^{-\alpha x}$
-\item $\|G\| \leq C e^{-\alpha X_m}$
-\item $D_i d = ( Q'(X_i) + Q'(-X_i))(d_{i+1} - d_i ) + \mathcal{O} ( e^{-\alpha X_i} (e^{-\alpha X_m} + |\lambda| )$
-\end{enumerate}
-\begin{proof}
-Recall that $H(x) = \partial_c Q(x)$ and $\tilde{H}(x) = \partial_c Q_i^\pm(x)$. For (i), by Theorem \ref{transverseint}, $H(x)$ is exponentially localized for any $\alpha_0 - \epsilon$, which is satisfied by $\alpha$. The result for $\tilde{H}(x)$ is a straightforward adaptation of Theorem \ref{transverseint}. The bounds (ii) and (iii) follow from an adaptation of Lemma \ref{solvewithjumps} to derivative with respect to $c$. The bound (iv) follows from (ii) and (iii). Since $A(Q(x))$ is smooth in $Q(x)$, the bounds (v), (vi), and (vii) come from Lemma \ref{solvewithjumps}. For the estimate (viii), we use \eqref{VQpm} in Lemma \ref{solvewithjumps} and \eqref{Vpiecewise} (with $\tilde{Q}$ in place of $V$) to get
-\begin{align*}
-Q_{i+1}^-(-X_i) &= Q^-(-X_i; \beta_{i+1}^-) + \tilde{Q}_{i+1}^-(-X_i) \\
-&= Q^-(-X_i; \beta_{i+1} ^-) + Q^+(X_i; \beta_i^+) + \mathcal{O}(e^{-2 \alpha X_i}) \\
-&= Q(-X_i) + Q(X_i) 
-+ \mathcal{O}(e^{-\alpha X_i}(e^{-\alpha X_{i-1}}+e^{-\alpha X_i}+e^{-\alpha X_{i+1}}))
-\end{align*}
-Since the bounds \ref{solvewithjumps} also apply to derivatives with respect to $x$, 
-\begin{align*}
-(Q_{i+1}^-)'(-X_i) &= Q'(-X_i) + Q'(X_i) + \mathcal{O}(e^{-\alpha X_i}e^{-\alpha X_m})
-\end{align*}
-Similarly,
-\begin{align*}
-(Q_i^+)'(X_i)' &= Q'(-X_i) + Q'(X_i) + \mathcal{O}(e^{-\alpha X_i}e^{-\alpha X_m})
-\end{align*}
-To get the estimate (v), we substitute these into \cref{defDid} and use estimate (i) for $\partial_c Q_i^\pm(x)$.
-\end{proof}
-\end{lemma}
-
-In the next lemma, we give an estimate for terms of the form $e^{\pm \nu(\lambda) X_j}$, which will show up in our analysis. In order to get a uniform estimate, we will place an upper bound on the  magnitude of $\lambda$. Although we can perform our analysis without doing this, this additional condition allows the form of the block matrix in Theorem \cref{blockmatrixtheorem} to relatively simple. 
+In the next lemma, we give an estimate for terms of the form $e^{\pm \nu(\lambda) X_j}$, which will show up in our analysis. In order to get a uniform estimate, we will place an upper bound on the  magnitude of $\lambda$. Although we can perform our analysis without doing this, this additional condition allows the form of the block matrix in Theorem \cref{blockmatrixtheorem} to be relatively simple. 
 
 \begin{lemma}\label{lemma:expnubound}
 Choose any $N > 0$ and $\delta > 0$. Then there exists a constant $R_N = R(N, \delta)$ such that if $|\lambda| < \delta$ and $|\lambda| < N/|\log r|$,
@@ -1162,6 +1139,63 @@ Combining this with \cref{Xjmag2}, we have
 |\nu(\lambda) X_j(r; m_j, \theta)| &\leq  N \left( \frac{1}{c} + C \delta^2 \right)\left( \frac{1}{2 \alpha_0} + \frac{1}{|\log r|} \left( \frac{\pi}{2\beta_0} (m_{\max} + 1) + |L_0| \right) \right)
 \end{align*}
 which is bounded for all $r \leq r_*$. Thus we conclude that there exists a constant $R_N$ depending on $N$ and $\delta$ such that the uniform bound \cref{expnubound} holds.
+\end{proof}
+\end{lemma}
+
+To conclude this section, we will collect estimates on the terms involved in the conjugated system in the following lemma.
+
+\begin{lemma}\label{stabestimateslemma}
+Let $\Delta H_i^\pm(x) = \tilde{H}_i^\pm(x) - H(x)$. Then we have the following estimates
+\begin{enumerate}[(i)]
+\item $|H(x)|, |\tilde{H}_i^\pm(x)| \leq C e^{-\alpha |x|}$
+\item $|\Delta H_i^-(x)| \leq C e^{-\alpha X_{i-1}} e^{-\alpha(X_{i-1} + x) } + e^{-2 \alpha X_i} e^{\alpha x}$
+\item $|\Delta H_i^+(x)| \leq C e^{-\alpha X_i} e^{-\alpha(X_i - x) } + e^{-2 \alpha X_{i-1}} e^{-\alpha x}$
+\item $||\Delta H_i^\pm|| \leq C(e^{-\alpha X_i} + e^{-\alpha X_{i-1}} )$
+\item $|G_i^-(x)| \leq C e^{-\alpha X_{i-1}} e^{-\alpha(X_{i-1} + x) } + e^{-2 \alpha X_i} e^{\alpha x}$
+\item $|G_i^+(x)| \leq C e^{-\alpha X_i} e^{-\alpha_0(X_i - x) } + e^{-2 \alpha X_{i-1}} e^{-\alpha x}$
+\item $\|G\| \leq C e^{-\alpha X_m}$
+\item $D_i d = ( Q'(X_i) + Q'(-X_i))(d_{i+1} - d_i ) + \mathcal{O} ( e^{-\alpha X_i} (e^{-\alpha X_m} + |\lambda| )$
+\item $|C_i c| \leq C e^{-\alpha X_i} |c|$
+\end{enumerate}
+\begin{proof}
+Recall that $H(x) = \partial_c Q(x)$ and $\tilde{H}(x) = \partial_c Q_i^\pm(x)$. By \cref{Qcbound} from \cref{Qclocalhyp},
+\begin{equation}\label{Qcbound1}
+|\partial_c Q(x)| \leq C e^{-\alpha|x|}
+\end{equation}
+We can obtain the same bound for $\partial_c Q_i^\pm(x)$ using Lin's method as in \cite{SandstedeStrut,Sandstede1993}. This gives us the bounds in (i). The bounds (ii) and (iii) follow from an adaptation of Lemma \ref{solvewithjumps} to derivative with respect to $c$. The bound (iv) follows from (ii) and (iii). Since $A(Q(x))$ is smooth in $Q(x)$, the bounds (v), (vi), and (vii) come from Lemma \ref{solvewithjumps}. 
+
+For the estimate (viii), we use \eqref{VQpm} in Lemma \ref{solvewithjumps} and \eqref{Vpiecewise} (with $\tilde{Q}$ in place of $V$) to get
+\begin{align*}
+Q_{i+1}^-(-X_i) &= Q^-(-X_i; \beta_{i+1}^-) + \tilde{Q}_{i+1}^-(-X_i) \\
+&= Q^-(-X_i; \beta_{i+1} ^-) + Q^+(X_i; \beta_i^+) + \mathcal{O}(e^{-2 \alpha X_i}) \\
+&= Q(-X_i) + Q(X_i) 
++ \mathcal{O}(e^{-\alpha X_i}(e^{-\alpha X_{i-1}}+e^{-\alpha X_i}+e^{-\alpha X_{i+1}}))
+\end{align*}
+Since the bounds \ref{solvewithjumps} also apply to derivatives with respect to $x$, 
+\begin{align*}
+(Q_{i+1}^-)'(-X_i) &= Q'(-X_i) + Q'(X_i) + \mathcal{O}(e^{-\alpha X_i}e^{-\alpha X_m})
+\end{align*}
+Similarly,
+\begin{align*}
+(Q_i^+)'(X_i)' &= Q'(-X_i) + Q'(X_i) + \mathcal{O}(e^{-\alpha X_i}e^{-\alpha X_m})
+\end{align*}
+To get the estimate (viii), we substitute these into \cref{defDid} and use estimate (i) for $\partial_c Q_i^\pm(x)$.
+
+Finally, for the estimate (ix), by Lemma \ref{lemma:Vpm} we have
+\begin{align*}
+e^{\nu(\lambda) X_i} V^-(-X_i; \lambda) 
+&= e^{\nu(\lambda) X_i} e^{-\nu(\lambda) X_i}\left(V_0(\lambda) + \mathcal{O}(e^{-\alpha X_i}) \right) \\
+&= V_0(\lambda) + \mathcal{O}(e^{-\alpha X_i})
+\end{align*}
+Similarly,
+\begin{align*}
+e^{-\nu(\lambda) X_i} V^+(X_i; \lambda)
+&= V_0(\lambda) + \mathcal{O}(e^{-\alpha X_i})
+\end{align*}
+Using these, it follows that
+\[
+|C_i c| \leq C e^{-\alpha X_i} |c|
+\]
 \end{proof}
 \end{lemma}
 

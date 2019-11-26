@@ -26,16 +26,16 @@ As in \cite{Sandstede1998}, we will write \eqref{systemZ} in integrated form as 
 \begin{equation}\label{Zfpeq}
 \begin{aligned}
 Z&_i^-(x) = \Phi^s(x, -X_{i-1}; \lambda) a_{i-1}^- + \Phi^u(x, 0; \lambda) b_i^- - \Phi^c(x, -X_{i-1}; \lambda) a_{i-1}^c V_0(\lambda) \\
-&+ \int_0^x \Phi^u(x, y; \lambda)P_-(y; \lambda)^{-1} [ G_i^-(y) P_-(y; \lambda)Z_i^-(y) + c_i G_i^-(x) V^-(x; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)] dy \\
-&+ \int_{-X_{i-1}}^x \Phi^s(x, y; \lambda) P_-(y; \lambda)^{-1}[ G_i^-(y) P_-(y; \lambda)Z_i^-(y) + c_i G_i^-(x) V^-(x; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)] dy \\
-&+ \int_{-X_{i-1}}^x \Phi^c(x, y; \lambda) P_-(y; \lambda)^{-1}[ G_i^-(y) P_-(y; \lambda)Z_i^-(y) + c_i G_i^-(x) V^-(x; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)] dy  \\ 
+&+ \int_0^x \Phi^u(x, y; \lambda)P_-(y; \lambda)^{-1} [ G_i^-(y) P_-(y; \lambda)Z_i^-(y) + c_{i-1} e^{\nu(\lambda)X_{i-1}} G_i^-(y) V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)] dy \\
+&+ \int_{-X_{i-1}}^x \Phi^s(x, y; \lambda) P_-(y; \lambda)^{-1}[ G_i^-(y) P_-(y; \lambda)Z_i^-(y) + c_{i-1} e^{\nu(\lambda)X_{i-1}} G_i^-(y) V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)] dy \\
+&+ \int_{-X_{i-1}}^x \Phi^c(x, y; \lambda) P_-(y; \lambda)^{-1}[ G_i^-(y) P_-(y; \lambda)Z_i^-(y) + c_{i-1} e^{\nu(\lambda)X_{i-1}} G_i^-(y) V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)] dy  \\ 
 Z&_i^+(x) = \Phi^u(x, X_i; \lambda) a_i^+ + \Phi^s(x, 0; \lambda) b_i^+ + \Phi^c(x, X_i; \lambda) a_i^c V_0(\lambda) \\
-&+ \int_0^x \Phi^s(x, y; \lambda) P_+(y; \lambda)^{-1} [ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i G_i^+(x)V^+(x; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy \\
-&+ \int_{X_i}^x \Phi^u(x, y; \lambda) P_+(y; \lambda)^{-1} [ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i G_i^+(x)V^+(x; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy \\
-&+ \int_{X_i}^x \Phi^c(x, y; \lambda) P_+(y; \lambda)^{-1} [ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i G_i^+(x)V^+(x; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy \\
+&+ \int_0^x \Phi^s(x, y; \lambda) P_+(y; \lambda)^{-1} [ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i e^{-\nu(\lambda)X_i} G_i^-(y)V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy \\
+&+ \int_{X_i}^x \Phi^u(x, y; \lambda) P_+(y; \lambda)^{-1} [ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i e^{-\nu(\lambda)X_i} G_i^-(y)V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy \\
+&+ \int_{X_i}^x \Phi^c(x, y; \lambda) P_+(y; \lambda)^{-1} [ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i e^{-\nu(\lambda)X_i} G_i^-(y)V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy \\
 \end{aligned}
 \end{equation}
-where $i = 0, \dots, n-1$. Since the center subspace is the span of the single vector $V_0(\lambda)$, $a_i^c \in \C$. As in \cite{Sandstede1998}, we will solve the eigenvalue problem in a series of inversion steps. First, we will solve equation \eqref{systemZ} for $Z_i^\pm$. To do this, we rewrite \eqref{Zfpeq} as
+where $i = 0, \dots, n-1$. Since the center subspace is the span of the single vector $V_0(\lambda)$, $a_i^c \in \C$. As in \cite{Sandstede1998}, we will solve the eigenvalue problem in a series of inversion steps. First, we will solve \cref{systemZ} for $Z_i^\pm$. To do this, we rewrite \eqref{Zfpeq} as
 \begin{equation}\label{L1L2eq}
 [I - L_1(\lambda)]Z = L_2(\lambda)(a,b,c,d)Z
 \end{equation}
@@ -52,13 +52,13 @@ where $L_1(\lambda)$ is the linear operator consisting of the terms from the RHS
 and
 \begin{align*}
 [L_2&(\lambda)_i^-(a,b,c,d)](x) = \Phi^s(x, -X_{i-1}; \lambda) a_{i-1}^- + \Phi^u(x, 0; \lambda) b_i^- - \Phi^c(x, -X_{i-1}; \lambda) a_{i-1}^c V_0(\lambda) \\
-&+ \int_0^x \Phi^u(x, y; \lambda) P_-(y; \lambda)^{-1} [ G_i^-(x)V^-(x; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)] dy \\
-&+ \int_{-X_{i-1}}^x \Phi^s(x, y; \lambda) P_-(y; \lambda)^{-1} [G_i^-(x)V^-(x; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)] dy \\
-&+ \int_{-X_{i-1}}^x \Phi^c(x, y; \lambda) P_-(y; \lambda)^{-1}[G_i^-(x)V^-(x; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)] dy \\
+&+ \int_0^x \Phi^u(x, y; \lambda) P_-(y; \lambda)^{-1} [ c_{i-1} e^{\nu(\lambda)X_{i-1}} G_i^-(y)V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)] dy \\
+&+ \int_{-X_{i-1}}^x \Phi^s(x, y; \lambda) P_-(y; \lambda)^{-1} [c_{i-1} e^{\nu(\lambda)X_{i-1}}G_i^-(y)V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)] dy \\
+&+ \int_{-X_{i-1}}^x \Phi^c(x, y; \lambda) P_-(y; \lambda)^{-1}[c_{i-1} e^{\nu(\lambda)X_{i-1}} G_i^-(y)V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)] dy \\
 [L_2&(\lambda)_i^+(a,b,c,d)](x) = \Phi^u(x, X_i; \lambda) a_i^+ + \Phi^s(x, 0; \lambda) b_i^+ + \Phi^c(x, X_i; \lambda) a_i^c V_0(\lambda) \\
-&+ \int_0^x \Phi^s(x, y; \lambda) P_+(y; \lambda)^{-1} [G_i^+(x)V^+(x; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy \\
-&+ \int_{X_i}^x \Phi^u(x, y; \lambda) P_+(y; \lambda)^{-1} [G_i^+(x)V^+(x; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy  \\
-&+ \int_{X_i}^x \Phi^c(x, y; \lambda) P_+(y; \lambda)^{-1} [G_i^+(x)V^+(x; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy 
+&+ \int_0^x \Phi^s(x, y; \lambda) P_+(y; \lambda)^{-1} [c_i e^{-\nu(\lambda)X_i} G_i^+(y)V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy \\
+&+ \int_{X_i}^x \Phi^u(x, y; \lambda) P_+(y; \lambda)^{-1} [c_i e^{-\nu(\lambda)X_i} G_i^+(y)V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy  \\
+&+ \int_{X_i}^x \Phi^c(x, y; \lambda) P_+(y; \lambda)^{-1} [c_i e^{-\nu(\lambda)X_i} G_i^+(y)V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy 
 \end{align*}
 
 We obtain bounds for $L_1$ and $L_2$ in the next two lemmas.
@@ -75,7 +75,7 @@ The bound on $L_1$ will depend on the integral involving the center subspace, si
 &\leq C \| Z_i^-\|\int_{-X_{i-1}}^x e^{\nu(\lambda)(x - y)} \left( e^{-\alpha X_{i-1}} e^{-\alpha(X_{i-1} + y) } + e^{-2 \alpha X_i} e^{\alpha y} \right) dy \\
 &\leq C \| Z_i^-\|\left( \int_{-X_{i-1}}^x \left|e^{\nu(\lambda)(x - y)}\right| e^{-\alpha X_{i-1}} e^{-\alpha(X_{i-1} + y) } dy + \int_{-X_{i-1}}^x e^{-\tilde{\alpha} y} e^{-2\alpha X_i} e^{\alpha y} dy \right) \\
 \end{align*}
-By \cref{lemma:expnubound}, $\left|e^{\nu(\lambda)(x - y)}\right| \leq R_N$, which is a constant. Thus we have
+By \cref{lemma:expnubound}, $\left|e^{\nu(\lambda)(x - y)}\right| \leq R_N$, which is a constant depending on $N$. Thus we have
 \begin{align*}
 \Bigg| \int_{-X_{i-1}}^x &\Phi^c(x, y; \lambda) P_-(y; \lambda)^{-1} G_i^-(y) P_-(y; \lambda) Z_i^-(y) dy \Bigg| \\ 
 &\leq C \| Z_i^-\|\left( \int_{-X_{i-1}}^x e^{-\alpha X_{i-1}} e^{-\alpha(X_{i-1} + y) } dy + \int_{-X_{i-1}}^x e^{-2\alpha X_i} e^{(\alpha - \tilde{\alpha}) y} dy \right) \\
@@ -93,7 +93,7 @@ For the linear operator $L_2$, we have uniform bound
 \| L_2(\lambda) (a,b,c,d) \| \leq C\left(|a| + |b| + e^{-\alpha X_*} |c| + e^{-\alpha X_*}|\lambda|^2|d|\right)
 \end{equation}
 \begin{proof}
-For the ``minus'' pieces, since $\Phi^c(x, -X_{i-1}; \lambda) = e^{\nu(\lambda)(x + X_{i-1})}$, we can use \cref{lemma:expnlbound} to get the bound
+For the ``minus'' pieces, since $\Phi^c(x, -X_{i-1}; \lambda) = e^{\nu(\lambda)(x + X_{i-1})}$, we can use \cref{lemma:expnubound} to get the bound
 \begin{align*}
 \| \Phi^c(x, -X_{i-1}; \lambda) a_{i-1}^c V_0(\lambda) \| \leq C |e^{-\nu(\lambda)X_{i-1}}|a_{i-1}^c| \leq C |a_{i-1}^c| \leq C |a|
 \end{align*}
@@ -107,12 +107,16 @@ V^\pm(x) = e^{\nu(\lambda)x}(V_0(\lambda) + \mathcal{O}(e^{-\alpha |x| })).
 \]
 Using the bound for $G_i^\pm(x)$ from Lemma \ref{stabestimateslemma}
 \begin{align*}
-\Bigg| c_i \int_{-X_{i-1}}^x &\Phi^c(x, y; \lambda) P_-(y; \lambda)^{-1} G_i^-(y) V^-(y) dy \Bigg| \\ 
-&\leq C |c| \int_{-X_{i-1}}^x \left| e^{\nu(\lambda)(x - y)} \right| \left|e^{\nu(\lambda)(y)}\right| \left( e^{-\alpha X_{i-1}} e^{-\alpha(X_{i-1} + y) } + e^{-2 \alpha X_i} e^{\alpha y} \right) dy
+\Bigg| c_{i-1} &e^{\nu(\lambda)X_{i-1}} \int_{-X_{i-1}}^x \Phi^c(x, y; \lambda) P_-(y; \lambda)^{-1} G_i^-(y) V^-(y) dy \Bigg| \\ 
+&\leq C |c| \left| e^{\nu(\lambda)X_{i-1}} \right| \int_{-X_{i-1}}^x \left| e^{\nu(\lambda)(x - y)} \right| \left|e^{\nu(\lambda)(y)}\right| \left( e^{-\alpha X_{i-1}} e^{-\alpha(X_{i-1} + y) } + e^{-2 \alpha X_i} e^{\alpha y} \right) dy
 \end{align*}
-Using \cref{lemma:expnubound}, $\left| e^{\nu(\lambda)(x - y)} \right| \left|e^{\nu(\lambda)(y)}\right| \leq 2 R_N$, which is a constant depending on $N$. Following the same procedure as in Lemma \ref{L1boundlemma}, we thus obtain the bound
+Using \cref{lemma:expnubound}, 
+\[
+\left| e^{\nu(\lambda)X_{i-1}} \right| \left| e^{\nu(\lambda)(x - y)} \right| \left|e^{\nu(\lambda)(y)}\right| \leq R_N^3,
+\]
+which is a constant depending on $N$. Following the same procedure as in Lemma \ref{L1boundlemma}, we thus obtain the bound
 \begin{align}\label{intGVpmbound}
-\Bigg| c_i \int_{-X_{i-1}}^x &\Phi^c(x, y; \lambda) P_-(y; \lambda)^{-1} G_i^-(y) V^-(y) dy \Bigg| \leq C e^{-\alpha X_*} |c| 
+\Bigg| c_{i-1} e^{\nu(\lambda)X_{i-1}} \int_{-X_{i-1}}^x &\Phi^c(x, y; \lambda) P_-(y; \lambda)^{-1} G_i^-(y) V^-(y) dy \Bigg| \leq C e^{-\alpha X_*} |c| 
 \end{align}
 The bound for the ``plus'' piece is similar. Putting all of this together, we obtain the uniform bound \cref{L2bound}.
 \end{proof}
@@ -121,7 +125,7 @@ The bound for the ``plus'' piece is similar. Putting all of this together, we ob
 We can now solve equation \eqref{systemZ} for $Z$, which we do in the following lemma.
 
 \begin{lemma}\label{Zinv0}
-There exists an operator $Z_1: V_\lambda \times V_a \times V_b \times V_c \times V_d \rightarrow V_z$ such that $Z = Z_1(\lambda)(a,b,c,d)$ solves \eqref{systemZ}. The operator $Z_1$ is analytic in $\lambda$ and linear in $(a,b,c,d)$, and we have the uniform bound
+There exists an operator $Z_1: V_\lambda \times V_a \times V_b \times V_c \times V_d \rightarrow V_z$ such that $Z = Z_1(\lambda)(a,b,c,d)$ solves \eqref{systemZ}. The operator $Z_1$ is analytic in $\lambda$, linear in $(a,b,c,d)$, and has uniform bound
 \begin{equation}\label{Z1bound}
 \| Z_1(\lambda)(a,b,c,d) \| \leq C\left(|a| + |b| + e^{-\alpha X_*} |c| + e^{-\alpha X_*}|\lambda|^2|d|\right)
 \end{equation}
@@ -160,28 +164,28 @@ such that
 \]
 solves \eqref{systemZ} and \eqref{systemmiddle} for any $(b, c, d)$ and $\lambda$. These operator are analytic in $\lambda$ and linear in $(b, c, d)$. Bounds for $A_1$ and $Z_1$ are given by
 \begin{align}\label{A1bound}
-|A_1(\lambda)(b, c, d)| \leq C \left( e^{-\tilde{\alpha} X_*} |b|  + e^{-\alpha X_*}|\lambda|^2 |d| + |c| + |D_i||d| \right)
+|A_1(\lambda)(b, c, d)| \leq C \left( e^{-\tilde{\alpha} X_*} |b|  + e^{-\alpha X_*}|\lambda|^2 |d| + |C_i||c| + |D_i||d| \right)
 \end{align} 
 and
 \begin{equation}\label{Z2bound}
-\| Z_2(\lambda)(b,c,d) \| \leq C\left(|b| + |c| + |D_i||d| + e^{-\alpha X_*}|\lambda|^2|d|\right)
+\| Z_2(\lambda)(b,c,d) \| \leq C\left(|b| + |C_i||c| + |D_i||d| + e^{-\alpha X_*}|\lambda|^2|d|\right)
 \end{equation}
 
 \begin{proof}
 At $\pm X_i$, the fixed point equations \eqref{Zfpeq} are
 \begin{align*}
 Z_{i+1}^-&(-X_i) = a_i^- + \Phi^u(-X_i, 0; \lambda) b_{i+1}^- - a_i^c V_0(\lambda) \\ 
-&+ \int_0^{-X_i} \Phi^u(-X_i, y; \lambda) P_-(y; \lambda)^{-1} [ G_{i+1}^-(y) P_-(y; \lambda)Z_{i+1}^-(y) + c_{i+1} G_{i+1}^-(y) V^-(x; \lambda) + \lambda^2 d_{i+1} \tilde{H}_{i+1}^-(y)] dy \\
+&+ \int_0^{-X_i} \Phi^u(-X_i, y; \lambda) P_-(y; \lambda)^{-1} [ G_{i+1}^-(y) P_-(y; \lambda)Z_{i+1}^-(y) + c_i e^{\nu(\lambda)X_i} G_{i+1}^-(y) V^-(x; \lambda) + \lambda^2 d_{i+1} \tilde{H}_{i+1}^-(y)] dy \\
 Z_i^+&(X_i) = a_i^+ + \Phi^s(X_i, 0; \lambda) b_i^+ + a_i^c V_0(\lambda) \\
-&+ \int_0^{X_i} \Phi^s(X_i, y; \lambda) P_+(y; \lambda)^{-1} [ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i G_i^+(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy
+&+ \int_0^{X_i} \Phi^s(X_i, y; \lambda) P_+(y; \lambda)^{-1} [ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i e^{-\nu(\lambda)X_i} G_i^-(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy
 \end{align*}
 where we used, for example, the fact that $a_i^- \in E^s(\lambda)$ and $\Phi^s(-X_{i-1}, -X_{i-1}; \lambda)$ is the identity on $E^s(\lambda)$. Applying the appropriate conjugation operators, subtracting, and using equation \eqref{projTheta}, we obtain the equation 
 \begin{equation}\label{Dideq0}
 \begin{aligned}
 D_i &d + C_i c = (I + \Theta_+(X_i; \lambda))a_i^+ + (I + \Theta_+(X_i; \lambda))a_i^c V_0(\lambda) + P_+(X_i; \lambda)\Phi^s(X_i, 0; \lambda) b_i^+ \\
-&+ P_+(X_i; \lambda) \int_0^{X_i} \Phi^s(X_i, y; \lambda) P_+(y; \lambda)^{-1}[ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i G_i^+(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy \\
+&+ P_+(X_i; \lambda) \int_0^{X_i} \Phi^s(X_i, y; \lambda) P_+(y; \lambda)^{-1}[ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i e^{-\nu(\lambda)X_i} G_i^-(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy \\
 &- (I + \Theta_-(-X_i; \lambda))a_i^- + (I + \Theta_-(-X_i; \lambda))a_i^c V_0(\lambda) - P_-(-X_i; \lambda)\Phi^u(-X_i, 0; \lambda) b_{i+1}^- \\ 
-&- P_-(-X_i; \lambda) \int_0^{-X_i} \Phi^u(-X_i, y; \lambda) P_-(y; \lambda)^{-1}[ G_{i+1}^-(y) P_-(y; \lambda)Z_{i+1}^-(y) + c_{i+1} G_{i+1}^-(y) V^-(y; \lambda) + \lambda^2 d_{i+1} \tilde{H}_{i+1}^-(y)] dy
+&- P_-(-X_i; \lambda) \int_0^{-X_i} \Phi^u(-X_i, y; \lambda) P_-(y; \lambda)^{-1}[ G_{i+1}^-(y) P_-(y; \lambda)Z_{i+1}^-(y) + c_i e^{\nu(\lambda)X_i} G_{i+1}^-(y) V^-(y; \lambda) + \lambda^2 d_{i+1} \tilde{H}_{i+1}^-(y)] dy
 \end{aligned}
 \end{equation}
 which simplifies to
@@ -190,8 +194,8 @@ which simplifies to
 D_i &d + C_i c= a_i^+ - a_i^- + 2 a_i^c V_0(\lambda) \\
 &+ \Theta_+(X_i; \lambda)a_i^+ - \Theta_-(-X_i; \lambda)a_i^- + (\Theta_+(X_i; \lambda) + \Theta_-(-X_i; \lambda)) a_i^c V_0(\lambda)\\
 &+ P_+(X_i; \lambda)\Phi^s(X_i, 0; \lambda) b_i^+ - P_-(-X_i; \lambda)\Phi^u(-X_i, 0; \lambda) b_{i+1}^- \\
-&+ P_+(X_i; \lambda) \int_0^{X_i} \Phi^s(X_i, y; \lambda) P_+(y; \lambda)^{-1}[ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i G_i^+(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy  \\ 
-&- P_-(-X_i; \lambda) \int_0^{-X_i} \Phi^u(-X_i, y; \lambda) P_-(y; \lambda)^{-1}[ G_{i+1}^-(y) P_-(y; \lambda)Z_{i+1}^-(y) + c_{i+1} G_{i+1}^-(y) V^-(y; \lambda) + \lambda^2 d_{i+1} \tilde{H}_{i+1}^-(y)] dy
+&+ P_+(X_i; \lambda) \int_0^{X_i} \Phi^s(X_i, y; \lambda) P_+(y; \lambda)^{-1}[ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i e^{-\nu(\lambda)X_i} G_i^-(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy  \\ 
+&- P_-(-X_i; \lambda) \int_0^{-X_i} \Phi^u(-X_i, y; \lambda) P_-(y; \lambda)^{-1}[ G_{i+1}^-(y) P_-(y; \lambda)Z_{i+1}^-(y) + c_i e^{\nu(\lambda)X_i} G_{i+1}^-(y) V^-(y; \lambda) + \lambda^2 d_{i+1} \tilde{H}_{i+1}^-(y)] dy
 \end{aligned}
 \end{equation}
 This is of the form
@@ -218,19 +222,19 @@ C e^{-\alpha X_*} |a_i^c| \leq C e^{-\alpha X_*}|a|
 &\left|
 P^+(X_i; \beta_i^+, \lambda) \int_0^{X_i} \Phi^s(X_i, y; \lambda) P_+(y; \lambda)^{-1} G_i^+(y) P_+(y; \lambda) Z_i^+(y) dy \right| \\
 &\leq C \int_0^{X_i} e^{-\tilde{\alpha}(X_i - y)} |G_i^+(y)| |Z_i^+(y)| dy \\
-&\leq C \left(|a| + |b| + |c| + e^{-\alpha X_*}|\lambda|^2|d|\right) \int_0^{X_i} e^{-\tilde{\alpha}(X_i - y)} \left(e^{-\alpha(X_i - y)}e^{-\alpha X_i} + e^{-2 \alpha X_{i-1}} e^{-\alpha y} \right) dy \\
-&\leq C e^{-\alpha X_*} \left(|a| + |b| + |c| + e^{-\alpha X_*}|\lambda|^2|d|\right)
+&\leq C \left(|a| + |b| + e^{-\alpha X_*} |c| + e^{-\alpha X_*}|\lambda|^2|d|\right) \int_0^{X_i} e^{-\tilde{\alpha}(X_i - y)} \left(e^{-\alpha(X_i - y)}e^{-\alpha X_i} + e^{-2 \alpha X_{i-1}} e^{-\alpha y} \right) dy \\
+&\leq C e^{-\alpha X_*} \left(|a| + |b| + e^{-\alpha X_*} |c| + e^{-\alpha X_*}|\lambda|^2|d|\right)
 \end{align*}
 The other integral is similar.
 
-\item For the integral terms involving $\tilde{H}_i^\pm$, by \eqref{Zevolbounds} and the estimates from Lemma \ref{stabestimates}, the integral has the same bounds as the integral involving $G_i^\pm$ that we just estimated. Thus we have
+\item For the integral terms involving $\tilde{H}_i^\pm$, by \eqref{Zevolbounds} and the estimates from Lemma \ref{stabestimateslemma}, the integral has the same bounds as the integral involving $G_i^\pm$ that we just estimated. Thus we have
 \begin{align*}
 &\left|
 P_+(X_i; \lambda) \int_0^{X_i} \Phi^s(X_i, y; \lambda) P_+(X_i; \lambda)^{-1} \tilde{H}_i^+(y) dy \right| \leq C e^{-\alpha X_*} 
 \end{align*}
 The other integral is similar.
 
-\item The integral terms involving $c_i G_i^\pm(x) V^\pm(x; \lambda)$ are bounded by $C e^{-\alpha X_*} |c|$ as in \cref{intGVpmbound}. 
+\item The integral terms involving $c_{i-1} e^{\nu(\lambda) X_{i-1}} G_i^-(x) V^-(x; \lambda)$ and $c_i e^{-\nu(\lambda) X_i} G_i^+(x) V^+(x; \lambda)$ are bounded by $C e^{-\alpha X_*} |c|$ as in \cref{intGVpmbound}. 
 \end{enumerate}
 
 Putting all of these together, we have the following bound for $L_3$.
@@ -258,7 +262,7 @@ Decreasing $\delta$ if necessary, $\|J_1^{-1} L_3(\lambda)(a, 0, 0, 0)\| < 1$, t
 \[
 a = A_1(\lambda)(b, c, d) = S_i^{-1}\left(-D d - C_i c + L_3(\lambda)(0, b, c, d)\right)
 \]
-Using the bounds on $L_3$, $A_1$ has bound given by \cref{A1bound}, where we bound $C_i$ by a constant due to \cref{lemma:expnubound}. We then plug this into $Z_1$ from Lemma \ref{Zinv0} to get the operator $Z_2(\lambda)(b,c,d)$ which has bound given by \cref{Z1bound}.
+Using the bounds on $L_3$, $A_1$ has bound given by \cref{A1bound}. We then plug this into $Z_1$ from Lemma \ref{Zinv0} to get the operator $Z_2(\lambda)(b,c,d)$ which has bound given by \cref{Z1bound}.
 \end{proof}
 \end{lemma}
 
@@ -279,24 +283,12 @@ $A_2$ is linear in $(b, c, d)$, and has bound
 \end{align}
 
 \begin{proof}
-We apply the projections $P_0^{s/u}(\lambda)$ on the eigenspaces $E^{s/u}(\lambda)$ to \eqref{Dideq1}. Recall from \cref{lemma:Vpm} that
-\begin{equation}\label{Vpmestimate}
-V^\pm(\pm X_i) = e^{\pm \nu(\lambda)X_i}\left( V_0(\lambda) + \mathcal{O}(e^{-\alpha X_i}) \right).
-\end{equation}
-Since $P_0^{s/u} V_0(\lambda) = 0$ and $|e^{\pm \nu(\lambda)X_i}|\leq C$ by \cref{lemma:expnubound}, 
-\[
-|P_0^{s/u}(\lambda)V^\pm(\pm X_i)| \leq C e^{-\alpha X_*},
-\]
-from which it follows that
-\begin{equation}\label{PsuVpm}
-|P_0^{s/u} C_i c| \leq C e^{-\alpha X_*} |c|.
-\end{equation}
-When we apply the projections $P_0^{s/u}(\lambda)$, we obtain the expressions
+We apply the projections $P_0^{s/u}(\lambda)$ on the eigenspaces $E^{s/u}(\lambda)$ to \eqref{Dideq1}. Using the bound $|C_i c| \leq e^{-\alpha X_*}|c|$ from Lemma \ref{stabestimateslemma}, we obtain the expressions
 \begin{align*}
 a_i^+ &= P_0^u(\lambda) D_i d + A_2(\lambda)_i^+(b, c, d) \\
 a_i^- &= -P_0^s(\lambda) D_i d + A_2(\lambda)_i^-(b, c, d) \\
 \end{align*}
-The bound on the remainder term $A_2(\lambda)(b, c, d)$ is found by substituting the bound for $A_1$ into the bound for $L_3$, using \cref{PsuVpm}, and simplifying to get
+The bound on the remainder term $A_2(\lambda)(b, c, d)$ is found by substituting the bound for $A_1$ into the bound for $L_3$ and simplifying to get
 \begin{align*}
 |A_2&(\lambda)_i(b, c, d)| \leq C \left(e^{-\tilde{\alpha} X_*}|b| + e^{-\alpha X_*}(|c| + |\lambda|^2|d| + |D_i||d|) \right)
 \end{align*} 
@@ -363,7 +355,7 @@ In the next lemma, we derive an expression for $a_i^c$.
 \begin{lemma}\label{lemma:ac1}
 For the center initial conditions $a_i^c \in \C$, we have the expression
 \begin{align}\label{tildeciexp1}
-a_i^c &= \frac{1}{2}\left( c_{i+1} e^{-\nu(\lambda)X_i} - c_i e^{\nu(\lambda)X_i} \right) + \lambda q(X_i) (d_{i+1} - d_i ) + \tilde{A}_2(\lambda)_i(b, c, d)
+a_i^c &= \lambda q(X_i) (d_{i+1} - d_i ) + \tilde{A}_2(\lambda)_i(b, c, d)
 \end{align}
 $\tilde{A}_2$ is linear in $(b, c, d)$ and has bound
 \begin{align}\label{tildeA2bound}
@@ -383,23 +375,18 @@ where $\tilde{L}_3$ is the same as $L_3$ in Lemma \ref{Zinv1} except the terms i
 \end{align*}
 Finally, we substitute the bound $A_1$ for $|a|$ to obtain the uniform bound  
 \begin{align}\label{PcL3bound}
-|P^c(\lambda)\tilde{L}_3&(\lambda)(a,b,c,d)| \leq C |\lambda| e^{-\alpha X_*}  \left( |b| + |c| + e^{-\alpha X_*} |\lambda|^2 |d| + |D_i||d| \right).
+|P^c(\lambda)\tilde{L}_3&(\lambda)(a,b,c,d)| \leq C |\lambda| e^{-\alpha X_*}  \left( |b| + |C_i||c| + e^{-\alpha X_*} |\lambda|^2 |d| + |D_i||d| \right).
 \end{align}
-Since $P^c(0)D_i d = 0$, $|P^c(0)D_i d| \leq C |\lambda||e^{-\alpha X_*}$. Combining these, bounding $C_i$ by a constant by \cref{lemma:expnubound}, and using
+Since $P^c(0)D_i d = 0$, $|P^c(\lambda)D_i d| \leq C |\lambda|e^{-\alpha X_*}$. Combining these, using the bound on $C_i$ from Lemma \ref{stabestimateslemma}, and using
 \[
 (P_+(X_i; \lambda) + P_-(-X_i; \lambda))a_i^c V_0(\lambda) = 2 a_i^c V_0(\lambda) + \mathcal{O}(e^{-\alpha X_*}|a|)
 \]
-together with the bound $A_1$, we obtain the preliminary bound for $a_i^c$
+together with the bound for $A_1$, we obtain the preliminary bound for $a_i^c$
 \begin{equation}\label{tildecbound1}
-|a_i^c| \leq C \left( |\lambda| e^{-\alpha X_*}  \left( |b| + |d| \right) + |c| \right)
+|a_i^c| \leq C \left( |\lambda| e^{-\alpha X_*}  \left( |b| + |d| \right) + e^{-\alpha X_*} |c| \right)
 \end{equation}
 
-Next, we evaluate $P^c(\lambda)C_i c$ and $P^c(\lambda)D_i d$. Using \cref{Vpmestimate}, we have
-\begin{align}\label{PcCic}
-P^c(\lambda)C_i c = 
-c_{i+1} e^{-\nu(\lambda)X_i} - c_i e^{\nu(\lambda)X_i} + \mathcal{O}(e^{-\alpha X_*}|c|)
-\end{align}
-For $P^c(\lambda)D_i d$, we expand $W_0(\lambda)$ in a Taylor series. Since $\langle W_0, D_i d \rangle = 0$, we have 
+Next, we evaluate $P_c(\lambda) C_i c$ and $P^c(\lambda)D_i d$. Using the bound on $C_i$ from Lemma \ref{stabestimateslemma}, $|C_i c| \leq C e^{-\alpha X_*}$. To evaluate $P^c(\lambda)D_i d$, we expand $W_0(\lambda)$ in a Taylor series. Since $\langle W_0, D_i d \rangle = 0$, we have 
 \begin{align*}
 P^c(&\lambda)D_i d = \langle W_0(\lambda), D_i d \rangle \\
 &= \langle W_0 + \overline{\lambda} W_0'(0) + \mathcal{O}(\overline{\lambda}^2), D_i d \rangle \\
@@ -409,7 +396,7 @@ P^c(&\lambda)D_i d = \langle W_0(\lambda), D_i d \rangle \\
 &= \lambda \left( \langle W'(0), Q'(X_i) \rangle + \langle -R W'(0), Q'(X_i)\rangle \right)(d_{i+1} - d_i ) \rangle + \mathcal{O}(e^{-\alpha X_i} |\lambda|(e^{\alpha X_*} + |\lambda|)|d|) \\
 &= 2 \lambda \langle W'(0), Q'(X_i) \rangle (d_{i+1} - d_i ) \rangle + \mathcal{O}(e^{-\alpha X_*} |\lambda|(e^{\alpha X_*} + |\lambda|)|d|)
 \end{align*}
-where in the last line we used the symmetry relation $W'(0) = -R \tilde{W}_0$ from Lemma \ref{nulambdalemma}. Using Lemma \ref{lemma:WprimeIP} to evaluate the inner product, this becomes
+where in the last line we used the symmetry relation $W'(0) = -R W'(0)$ from Lemma \ref{nulambdalemma}. Using Lemma \ref{lemma:WprimeIP} to evaluate the inner product, this becomes
 \begin{equation}\label{PcDid2}
 P^c(\lambda)D_i d = 2 \lambda q(X_i) (d_{i+1} - d_i ) + \mathcal{O}(e^{-\alpha X_*} |\lambda|(e^{\alpha X_*} + |\lambda|)|d|)
 \end{equation}
@@ -424,7 +411,7 @@ P^c(\lambda) &(P_+(X_i; \lambda) + P_-(-X_i; \lambda))a_i^c
 \end{align*}
 since $\langle W_0, V^c(x) \rangle = \langle W_0, V_0 \rangle = 1$ for all $x$. Combining all of these, using the preliminary bound \cref{tildecbound1} for $a_i^c$, and dividing by 2, we get
 \begin{align}\label{ciexp1}
-a_i^c &= \frac{1}{2} \left( c_{i+1} e^{-\nu(\lambda)X_i} - c_i e^{\nu(\lambda)X_i} \right) + \lambda q(X_i) (d_{i+1} - d_i ) + \tilde{A}_2(\lambda)_i(b, c, d)
+a_i^c &= \lambda q(X_i) (d_{i+1} - d_i ) + \tilde{A}_2(\lambda)_i(b, c, d)
 \end{align}
 where $\tilde{A}_2$ has the bound \cref{tildeA2bound}.
 \end{proof}
@@ -462,14 +449,14 @@ Z_3: &V_\lambda \times V_c \times V_d \rightarrow V_Z
 such that $( a, b, Z ) = ( A_3(\lambda)(c, d), B_1(\lambda)(c, d), Z_3(\lambda)(c, d) )$ solves \eqref{systemZ}, \eqref{systemmiddle}, \eqref{systemcenter1}, and \eqref{systemcenter2} for any $(c, d)$. These operators are analytic in $\lambda$ and linear in $(c, d)$. Bounds for $B_1$, $A_3$, and $Z_3$ are given by
 \begin{align}
 |B_1(\lambda)(c, d)| &\leq C\Big( (|\lambda| + e^{-\alpha X_*})|c| + (|\lambda| + e^{-\alpha X_*})^2 |d| \Big) \label{B1bound} \\
-|A_3(\lambda)(b, c, d)| &\leq C \left( |c| + |\lambda|^2 |d| + |D_i||d| \right) \label{A3bound} \\
-\| Z_3(\lambda)(a,b,c,d) \| &\leq C\left(|c| + |\lambda|^2|d| + |D_i||d| \right) \label{Z3bound}
+|A_3(\lambda)(b, c, d)| &\leq C \left( e^{-\alpha X_*} |c| + |\lambda|^2 |d| + |D_i||d| \right) \label{A3bound} \\
+\| Z_3(\lambda)(a,b,c,d) \| &\leq C\left( e^{-\alpha X_*} |c| + |\lambda|^2|d| + |D_i||d| \right) \label{Z3bound}
 \end{align} 
 In addition, we can write
 \begin{align*}
 a_i^+ &= P_i^+(X_i; \lambda)^{-1} \left( P_0^u(\lambda) D_i d + A_4(\lambda)_i^+(c, d) \right) \\
 a_i^- &= -P_-(-X_i; \lambda)^{-1} \left( P_0^s(\lambda) D_i d + A_4(\lambda)_i^-(c, d) \right) \\
-a_i^c &= \frac{1}{2}\left( c_{i+1} e^{-\nu(\lambda)X_i} - c_i e^{\nu(\lambda)X_i} \right) + \lambda q(X_i)(d_{i+1} - d_i ) + \tilde{A}_4(\lambda)_i(c, d) 
+a_i^c &= \lambda q(X_i)(d_{i+1} - d_i ) + \tilde{A}_4(\lambda)_i(c, d) 
 \end{align*}
 where $A_4$ and $\tilde{A}_4$ are linear in $(c, d)$, and have bounds
 \begin{align}
@@ -482,14 +469,14 @@ where $A_4$ and $\tilde{A}_4$ are linear in $(c, d)$, and have bounds
 At $x = 0$, the fixed point equations \eqref{Zfpeq} become
 \begin{align*}
 Z_i^-(0) &= \Phi^s(0, -X_{i-1}; \lambda) a_{i-1}^- + \Phi^u(0, 0; \lambda) b_i^- -\Phi^c(0, -X_{i-1}; \lambda) a_{i-1}^c V_0(\lambda) \\
-&+ \int_{-X_{i-1}}^0 \Phi^s(0, y; \lambda)P_-(y; \lambda)^{-1} [ G_i^-(y) P_-(y; \lambda) Z_i^-(y) + c_i G_i^-(y) V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)] dy \\
-&+ \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_-(y; \lambda)^{-1} [ G_i^-(y) P_-(y; \lambda) Z_i^-(y) + c_i G_i^-(y) V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)] dy
+&+ \int_{-X_{i-1}}^0 \Phi^s(0, y; \lambda)P_-(y; \lambda)^{-1} [ G_i^-(y) P_-(y; \lambda) Z_i^-(y) + c_{i-1} e^{\nu(\lambda)X_{i-1}} G_i^-(y) V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)] dy \\
+&+ \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_-(y; \lambda)^{-1} [ G_i^-(y) P_-(y; \lambda) Z_i^-(y) + c_{i-1} e^{\nu(\lambda)X_{i-1}} G_i^-(y) V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)] dy
 \end{align*}
 and
 \begin{align*}
 Z_i^+(0) &= \Phi^u(0, X_i; \lambda) a_i^+ + \Phi^s(0, 0; \lambda) b_i^+ + \Phi^c(0, X_i; \lambda) a_i^c V_0(\lambda) \\
-&+ \int_{X_i}^0 \Phi^u(0, y; \lambda) P_+(y; \lambda)^{-1} [ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i G_i^+(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy \\
-&+ \int_{X_i}^0 \Phi^c(0, y; \lambda) P_+(y; \lambda)^{-1} [ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i G_i^+(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy \\
+&+ \int_{X_i}^0 \Phi^u(0, y; \lambda) P_+(y; \lambda)^{-1} [ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i e^{-\nu(\lambda)X_i} G_i^-(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy \\
+&+ \int_{X_i}^0 \Phi^c(0, y; \lambda) P_+(y; \lambda)^{-1} [ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i e^{-\nu(\lambda)X_i} G_i^-(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy \\
 \end{align*}
 First, recall that at $Q(0)$, the tangent spaces to the stable and unstable manifold are given by
 \begin{align*}
@@ -519,15 +506,15 @@ Using these together with equation \eqref{centerevol} for the evolution $\Phi^c$
 \begin{align*}
 Z_i^-&(0) = \Phi^s(0, -X_{i-1}; \lambda) a_{i-1}^- + x_i^- + y_i^- + (P_0^u(\lambda) - P_0^u(0))b_i^- \\
 &- P_0^c(0) e^{\nu(\lambda) X_{i-1}} a_{i-1}^c V_0(\lambda) + (P_0^c(\lambda) - P_0^c(0)) e^{\nu(\lambda) X_{i-1}} a_{i-1}^c V_0(\lambda) \\
-&+ \int_{-X_{i-1}}^0 \Phi^s(0, y; \lambda) P_-(y; \lambda)^{-1} [ G_i^-(y) P_-(y; \lambda) Z_i^-(y) + c_i G_i^-(y) V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)] dy \\
-&+ \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_-(y; \lambda)^{-1} [ G_i^-(y) P_-(y; \lambda) Z_i^-(y) + c_i G_i^-(y) V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)] dy
+&+ \int_{-X_{i-1}}^0 \Phi^s(0, y; \lambda) P_-(y; \lambda)^{-1} [ G_i^-(y) P_-(y; \lambda) Z_i^-(y) + c_{i-1} e^{\nu(\lambda)X_{i-1}} G_i^-(y) V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)] dy \\
+&+ \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_-(y; \lambda)^{-1} [ G_i^-(y) P_-(y; \lambda) Z_i^-(y) + c_{i-1} e^{\nu(\lambda)X_{i-1}} G_i^-(y) V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)] dy
 \end{align*}
 and
 \begin{align*} 
 Z_i^+&(0) = \Phi^u(0, X_i; \lambda) a_i^+ + x_i^+ + y_i^+ + (P_0^s(\lambda) - P_0^s(0)) b_i^+ \\
 &+ P_0^c(0) e^{-\nu(\lambda)X_i} a_i^c V_0(\lambda) + (P_0^c(\lambda) - P_0^c(0)) e^{-\nu(\lambda)X_i} a_i^c V_0(\lambda) \\
-&+ \int_{X_i}^0 \Phi^u(0, y; \lambda) P_+(y; \lambda)^{-1}[ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i G_i^+(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy \\
-&+ \int_{X_i}^0 \Phi^c(0, y; \lambda) P_+(y; \lambda)^{-1}[ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i G_i^+(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy 
+&+ \int_{X_i}^0 \Phi^u(0, y; \lambda) P_+(y; \lambda)^{-1}[ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i e^{-\nu(\lambda)X_i} G_i^-(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy \\
+&+ \int_{X_i}^0 \Phi^c(0, y; \lambda) P_+(y; \lambda)^{-1}[ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i e^{-\nu(\lambda)X_i} G_i^-(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy 
 \end{align*}
 Finally, we apply the conjugation operators $P_\pm(0; \lambda)$ in \eqref{centercond2}. For the terms involving $b$, and $a_i^c$, we substitute
 \[
@@ -538,16 +525,16 @@ to obtain the expressions
 P_-&(0; \lambda) Z_i^-(0) = P_-(0; 0)( x_i^- + y_i^- - P_0^c(0) e^{\nu(\lambda) X_{i-1}} a_{i-1}^c V_0(\lambda) ) \\
 &+ P_-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) a_{i-1}^- + (P_-(0; \lambda) - P_-(0; 0))b_i^- + P_-(0; \lambda)(P_0^u(\lambda) - P_0^u(0))b_i^- \\
 &- (P_-(0; \lambda) - P_-(0; 0)) P_0^c(0) e^{\nu(\lambda) X_{i-1}} a_{i-1}^c V_0(\lambda) + P_-(0; \lambda) (P_0^c(\lambda) - P_0^c(0)) e^{\nu(\lambda) X_{i-1}} a_{i-1}^c V_0(\lambda) \\
-&+ P_-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^s(0, y; \lambda) P_-(y; \lambda)^{-1} [ G_i^-(y) P_-(y; \lambda) Z_i^-(y) + c_i G_i^-(y) V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)] dy \\
-&+ P_-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_-(y; \lambda)^{-1} [ G_i^-(y) P_-(y; \lambda) Z_i^-(y) + c_i G_i^-(y) V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)] dy 
+&+ P_-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^s(0, y; \lambda) P_-(y; \lambda)^{-1} [ G_i^-(y) P_-(y; \lambda) Z_i^-(y) + c_{i-1} e^{\nu(\lambda)X_{i-1}} G_i^-(y) V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)] dy \\
+&+ P_-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_-(y; \lambda)^{-1} [ G_i^-(y) P_-(y; \lambda) Z_i^-(y) + c_{i-1} e^{\nu(\lambda)X_{i-1}} G_i^-(y) V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)] dy 
 \end{align*}
 and
 \begin{align*}
 P_+&(0; \lambda) Z_i^+(0) = P_+(0; 0)( x_i^+ + y_i^+ + P_0^c(0) e^{-\nu(\lambda)X_i} a_i^c V_0(\lambda) )\\
 &+ P_+(0; \lambda) \Phi^u(0, X_i; \lambda) a_i^+ + (P_+(0; \lambda) - P_+(0; 0)) b_i^+ + P_+(0; \lambda) (P_0^s(\lambda) - P_0^s(0)) b_i^+ \\
 &+ (P_+(0; \lambda) - P_+(0; 0))P_0^c(0) e^{-\nu(\lambda)X_i} a_i^c V_0(\lambda) + P_+(0; \lambda) (P_0^c(\lambda) - P_0^c(0)) e^{-\nu(\lambda)X_i} a_i^c V_0(\lambda) \\
-&+ P_+(0; \lambda) \int_{X_i}^0 \Phi^u(0, y; \lambda) P_+(y; \lambda)^{-1}[ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i G_i^+(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy \\
-&+ P_+(0; \lambda) \int_{X_i}^0 \Phi^c(0, y; \lambda) P_+(y; \lambda)^{-1}[ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i G_i^+(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy \\
+&+ P_+(0; \lambda) \int_{X_i}^0 \Phi^u(0, y; \lambda) P_+(y; \lambda)^{-1}[ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i e^{-\nu(\lambda)X_i} G_i^-(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy \\
+&+ P_+(0; \lambda) \int_{X_i}^0 \Phi^c(0, y; \lambda) P_+(y; \lambda)^{-1}[ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i e^{-\nu(\lambda)X_i} G_i^-(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy \\
 \end{align*}
 With this setup, the projections on $Q'(0)$ and $Y^+ \oplus Y^-$ will either eliminate or act as the identity on the terms in the first lines of $P_i^-(0; \lambda) Z_i^-(0)$ and $P_i^+(0; \lambda) Z_i^+(0)$. Applying the projections in \eqref{centercond2}, we obtain an expression of the form
 \begin{equation}\label{projxy}
@@ -565,12 +552,12 @@ To get a bound on $L_4$, we will bound the individual terms involved.
 &\leq C e^{-\tilde{\alpha} X_*} \left( e^{-\tilde{\alpha} X_*} |b|  + e^{-\alpha X_*}(|c| + |\lambda|^2 |d|) + |D_i||d| \right)
 \end{align*}
 
-\item For the $a_i^c$ terms, we use the expression from Lemma \ref{lemma:ac1} together with \cref{lemma:expnubound} and the fact that the conjugation operators are smooth in $\lambda$ to get
+\item For the $a_i^c$ terms, we use the expression from Lemma \ref{lemma:ac1} together with \cref{lemma:expnubound} and the fact that the conjugation operators and eigenprojections are smooth in $\lambda$ to get
 \begin{align*}
 |(P_+&(0; \lambda) - P_+(0; 0))P_0^c(0) e^{-\nu(\lambda)X_i} a_i^c V(0)
 \lambda) + P_+(0; \lambda) (P_0^c(\lambda) - P_0^c(0)) e^{-\nu(\lambda)X_i} a_i^c V(0)
 \lambda)| \\
-&\leq C |\lambda| \left(  e^{-\alpha X_*} \left( |b| + |d| \right) + |c| \right) 
+&\leq C |\lambda| \left( |\lambda| e^{-\alpha X_*} \left( |b| + |d| \right) + (|\lambda| + e^{-\alpha X_*})|c| \right) 
 \end{align*}
 The term involving $a_{i-1}^c V_0(\lambda)$ is similar. 
 
@@ -593,7 +580,7 @@ The other integral term is similar.
 \end{align*}
 We could obtain a better bound, but it is not necessary. The other term is similar.
 
-\item The integrals involving $G_i^\pm(x) V^\pm(x)$ are the same as those in \cref{L2boundlemma}, where we take $x = 0$, and are thus bounded by $C e^{-\alpha X_*} |c|$.
+\item The integrals involving $G_i^\pm(x) V^\pm(x)$ are the same as those in \cref{L2boundlemma} with $x = 0$, and are thus bounded by $C e^{-\alpha X_*} |c|$.
 \end{enumerate}
 
 Combining all of these individual bounds, recalling that $\alpha = 2 \tilde{\alpha}$, using the estimate $|D_i| \leq C e^{-\alpha X_*})$, and simplifying, we obtain the uniform bound for $L_4(\lambda)(b, c, d)$.
@@ -640,7 +627,7 @@ The bound on $B_1$ is given by the bound on $L_4$.
 \begin{align*}
 |B_1(\lambda)(c, d)| \leq C\Big( (|\lambda| + e^{-\alpha X_*})|c| + (|\lambda| + e^{-\alpha X_*})^2 |d| \Big) 
 \end{align*}
-We now plug $B_1$ into all of the previous bounds. Plugging $B_1$ into the bound \eqref{A1bound} for $A_1$, we get $A_3$ with bound given by \cref{A3bound}. Plugging $B_1$ into the bound $Z_2$, we get $Z_3$ with bound given by \cref{Z3bound}. Plugging $B_1$ into the bound \eqref{A2bound} for $A_2$, we get $A_4$ with bound \cref{A4bound}. Finally, we plug in $B_1$ into the bound for $\tilde{A}_2$ to get $\tilde{A}_4$ with bound \cref{tildeA4bound}.
+We now plug $B_1$ into all of the previous bounds, using in addition the bound on $C_i c$ from Lemma \ref{stabestimateslemma}. Plugging $B_1$ into the bound \eqref{A1bound} for $A_1$, we get $A_3$ with bound given by \cref{A3bound}. Plugging $B_1$ into the bound $Z_2$, we get $Z_3$ with bound given by \cref{Z3bound}. Plugging $B_1$ into the bound \eqref{A2bound} for $A_2$, we get $A_4$ with bound \cref{A4bound}. Finally, we plug in $B_1$ into the bound for $\tilde{A}_2$ to get $\tilde{A}_4$ with bound \cref{tildeA4bound}.
 \end{proof}
 \end{lemma}
 
@@ -653,8 +640,8 @@ Up to this point, we have solved uniquely for $Z$, $a$, $b$, and $g$. We will no
 The jumps in the direction of $\Psi^c(0)$ are given by
 \begin{equation}\label{xic}
 \begin{aligned}
-\xi^c_i &= \frac{1}{2} \left( c_{i+1} e^{-2 \nu(\lambda)X_i} - c_{i-1} e^{2 \nu(\lambda)X_{i-1}} \right) + e^{-\nu(\lambda)X_i} \lambda q(X_i) (d_{i+1} - d_i )  + e^{\nu(\lambda)X_{i-1}} \lambda q(X_{i-1}) (d_i - d_{i-1} ) \\
-&\qquad - \lambda^2 \tilde{M}^c d_i + R^c(\lambda)_i(c, d)
+\xi^c_i &= e^{-\nu(\lambda)X_i} c_i - e^{\nu(\lambda)X_i} c_{i-1} + e^{-\nu(\lambda)X_i} \lambda q(X_i) (d_{i+1} - d_i ) + e^{\nu(\lambda)X_{i-1}} \lambda q(X_{i-1}) (d_i - d_{i-1} ) \\
+&\qquad- \lambda^2 \tilde{M}^c d_i + R^c(\lambda)_i(c, d)
 \end{aligned}
 \end{equation}
 where
@@ -667,15 +654,14 @@ The remainder term $R^c_i(c, d)$ is analytic in $\lambda$ and linear in $(c, d)$
 \end{equation}
 $K(\lambda)$ is the matrix
 \begin{align*}
-K(\lambda) = \frac{1}{2}
+K(\lambda) =  
 \begin{pmatrix}
-0 & e^{-2\nu(\lambda)X_1} & & & & -e^{2 \nu(\lambda)X_0} \\
--e^{2\nu(\lambda)X_1} & 0 & e^{-2\nu(\lambda)X_2} \\
-& -e^{2 \nu(\lambda)X_2} & 0 & e^{-2\nu(\lambda)X_3} \\
-& & \ddots & \ddots & \ddots &&  \\
-&&& e^{-2\nu(\lambda)X_{n-2}} & 0 & e^{-2\nu(\lambda)X_{n-1}} \\
-e^{-2\nu(\lambda)X_0} & & & & -e^{2 \nu(\lambda)X_{n-1}} & 0
-\end{pmatrix}.
+e^{-\nu(\lambda)X_1} & & & & & -e^{\nu(\lambda)X_0} \\
+-e^{\nu(\lambda)X_1} & e^{-\nu(\lambda)X_2} \\
+& -e^{\nu(\lambda)X_2} & e^{-\nu(\lambda)X_3} \\
+  & & \ddots & && \\
+& & & & -e^{\nu(\lambda)X_{n-1}} & e^{-\nu(\lambda)X_0}
+\end{pmatrix}
 \end{align*}
 $K_2(\lambda)$ is the matrix
 \begin{align*}
@@ -702,25 +688,26 @@ where $q(x)$ is the first component of the primary pulse solution $Q(x)$. The ma
 \begin{proof}
 We want to solve the center jump condition, which we recall is given by
 \[
-\langle \Psi^c(0), P_-(0; \lambda) Z_i^+(0) - P_-(0; \lambda) Z_i^-(0) \rangle + c_i \langle \Psi^c(0), V^+(0; \lambda) - V^-(0; \lambda) \rangle 
+\xi_i^c = 
+\langle \Psi^c(0), P_+(0; \lambda) Z_i^+(0) - P_-(0; \lambda) Z_i^-(0) + c_i e^{-\nu(\lambda)X_i}V^+(0; \lambda) - c_{i-1} e^{\nu(\lambda)X_i} V^-(0; \lambda) \rangle 
 \]
 From \cref{lemma:VpmPsiIP},
 \begin{align}\label{centerVjump}
-c_i \langle \Psi^c(0), V^+(0; \lambda) - V^-(0; \lambda) \rangle &= -\tilde{M} \lambda c_i + \mathcal{O}(|\lambda|^2 |c| )
+\langle \Psi^c(0), c_i e^{-\nu(\lambda)X_i}V^+(0; \lambda) - c_{i-1} e^{\nu(\lambda)X_i} V^-(0; \lambda) \rangle &= e^{-\nu(\lambda)X_i}c_i  - e^{\nu(\lambda)X_i}c_{i-1} + \mathcal{O}(|\lambda| |c| ),
 \end{align}
-The terms $P_i^\pm(0; \lambda) Z_i^\pm(0)$ are given by
+where we used Lemma \ref{lemma:expnubound} to bound $e^{\pm\nu(\lambda)X_i}$ in the remainder term by a constant. The terms $P_i^\pm(0; \lambda) Z_i^\pm(0)$ are given by
 \begin{align*}
 P_-&(0; \lambda) Z_i^-(0) = P_-(0; 0) b_i^- - P_-(0; \lambda) e^{\nu(\lambda) X_{i-1}} a_{i-1}^c V_0(\lambda) \\
 &+ P_-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) a_{i-1}^- + (P_-(0; \lambda) - P_-(0; 0))b_i^- + P_-(0; \lambda)(P_0^u(\lambda) - P_0^u(0))b_i^- \\
-&+ P_-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^s(0, y; \lambda) P_-(y; \lambda)^{-1} [ G_i^-(y) P_-(y; \lambda) Z_i^-(y) + c_i G_i^-(y) V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)] dy \\
-&+ P_-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_-(y; \lambda)^{-1} [ G_i^-(y) P_-(y; \lambda) Z_i^-(y) + c_i G_i^-(y) V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)] dy
+&+ P_-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^s(0, y; \lambda) P_-(y; \lambda)^{-1} [ G_i^-(y) P_-(y; \lambda) Z_i^-(y) + c_{i-1} e^{\nu(\lambda)X_{i-1}} G_i^-(y) V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)] dy \\
+&+ P_-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_-(y; \lambda)^{-1} [ G_i^-(y) P_-(y; \lambda) Z_i^-(y) + c_{i-1} e^{\nu(\lambda)X_{i-1}} G_i^-(y) V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)] dy
 \end{align*}
 and
 \begin{align*}
 P_+&(0; \lambda) Z_i^+(0) = P_+(0; 0) b_i^+ + P_+(0; \lambda) e^{-\nu(\lambda)X_i} a_i^c V_0(\lambda) \\
 &+ P_+(0; \lambda) \Phi^u(0, X_i; \lambda) a_i^+ + (P_+(0; \lambda) - P_+(0; 0)) b_i^+ + P_+(0; \lambda) (P_0^s(\lambda) - P_0^s(0)) b_i^+ \\
-&+ P_+(0; \lambda) \int_{X_i}^0 \Phi^u(0, y; \lambda) P_+(y; \lambda)^{-1} [ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i G_i^+(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy \\
-&+ P_+(0; \lambda) \int_{X_i}^0 \Phi^c(0, y; \lambda) P_+(y; \lambda)^{-1} [ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i G_i^+(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy 
+&+ P_+(0; \lambda) \int_{X_i}^0 \Phi^u(0, y; \lambda) P_+(y; \lambda)^{-1} [ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i e^{-\nu(\lambda)X_i} G_i^-(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy \\
+&+ P_+(0; \lambda) \int_{X_i}^0 \Phi^c(0, y; \lambda) P_+(y; \lambda)^{-1} [ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i e^{-\nu(\lambda)X_i} G_i^-(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy 
 \end{align*}
 
 The leading order terms involve $a_i^c$ and the center integral. 
@@ -729,23 +716,12 @@ The leading order terms involve $a_i^c$ and the center integral.
 \item For the terms involving $a_i^c$, using the expression from Lemma \ref{lemma:ac1}, \cref{lemma:VpmPsiIP}, and \cref{lemma:expnubound} we have
 \begin{align*}
 \langle W_0, &P_+(0; \lambda) e^{-\nu(\lambda)X_i} a_i^c V_0(\lambda) \rangle = e^{-\nu(\lambda)X_i} a_i^c \langle W_0, V^+(0; \lambda) \rangle \\
-&= e^{-\nu(\lambda)X_i} a_i^c \left( 1 - \frac{1}{2} \tilde{M} \lambda \right) \\
-&= \frac{1}{2}e^{-\nu(\lambda)X_i} \left( c_{i+1} e^{-\nu(\lambda)X_i} - c_i e^{\nu(\lambda)X_i} \right)\left( 1 - \frac{1}{2} \tilde{M} \lambda \right) + e^{-\nu(\lambda)X_i} \lambda q(X_i) (d_{i+1} - d_i ) \\
-&\qquad +\mathcal{O}\left( (|\lambda| + e^{-\alpha X_*})|c| + |\lambda| e^{-\alpha X_*}(|\lambda| + e^{-\alpha X_*}) |d|) \right)\\
-&= \frac{1}{2} \left( c_{i+1} e^{-2 \nu(\lambda)X_i} - c_i \right)\left( 1 - \frac{1}{2} \tilde{M} \lambda \right) + e^{-\nu(\lambda)X_i} \lambda q(X_i) (d_{i+1} - d_i ) \\
-& \qquad+ \mathcal{O}\left( (|\lambda| + e^{-\alpha X_*})|c| + |\lambda| e^{-\alpha X_*}(|\lambda| + e^{-\alpha X_*}) |d|) \right)
+&= e^{-\nu(\lambda)X_i} \lambda q(X_i) (d_{i+1} - d_i ) + \mathcal{O}\left( (|\lambda| + e^{-\alpha X_*})|c| + |\lambda| e^{-\alpha X_*}(|\lambda| + e^{-\alpha X_*}) |d|) \right)
 \end{align*}
 Similarly, 
 \begin{align*}
 \langle \Psi^c(0), &P_-(0; \lambda) e^{\nu(\lambda) X_{i-1}} a_{i-1}^c \rangle \\
-&= \frac{1}{2}\left( c_i - c_{i-1} e^{2 \nu(\lambda)X_{i-1}} \right)\left( 1 - \frac{1}{2} \tilde{M} \lambda \right) + e^{\nu(\lambda)X_{i-1}} \lambda q(X_{i-1}) (d_i - d_{i-1} ) \\
-&\qquad +\mathcal{O}\left( (|\lambda| + e^{-\alpha X_*})|c| + |\lambda| e^{-\alpha X_*}(|\lambda| + e^{-\alpha X_*}) |d|) \right)
-\end{align*}
-Adding these together and simplifying the remainder terms, this becomes
-\begin{align*}
-\langle W_0, &P_+(0; \lambda) e^{-\nu(\lambda)X_i} a_i^c \rangle + \langle \Psi^c(0), P_-(0; \lambda) e^{\nu(\lambda) X_{i-1}} a_{i-1}^c \rangle \\
-&= \frac{1}{2} \left( c_{i+1} e^{-2 \nu(\lambda)X_i} - c_{i-1} e^{2 \nu(\lambda)X_{i-1}} \right) + e^{-\nu(\lambda)X_{i-1}} \lambda q(X_i) (d_{i+1} - d_i )  + e^{\nu(\lambda)X_i} \lambda q(X_{i-1}) (d_i - d_{i-1} ) \\
-&\qquad + \mathcal{O}\left( (|\lambda| + e^{-\alpha X_*})|c| + |\lambda| e^{-\alpha X_*}(|\lambda| + e^{-\alpha X_*}) |d|) \right)
+&= e^{\nu(\lambda)X_{i-1}} \lambda q(X_{i-1}) (d_i - d_{i-1} ) +\mathcal{O}\left( (|\lambda| + e^{-\alpha X_*})|c| + |\lambda| e^{-\alpha X_*}(|\lambda| + e^{-\alpha X_*}) |d|) \right)
 \end{align*}
 
 \item For the center integral involving $\tilde{H}_i^\pm$, 
@@ -833,8 +809,7 @@ From Lemma \ref{centerprojlemma},
 The remaining integral has the same bound as for the center integral involving $Z$. For the noncenter integral involving $\tilde{H}_i^\pm$, 
 \begin{align*}
 \langle W_0, 
-&P_+(0; \lambda) \int_{X_i}^0 \Phi^u(0, y; \lambda) \lambda^2 d_i P_+(y; \lambda)^{-1} \tilde{H}_i^+(y) dy 
-= \\
+&P_+(0; \lambda) \int_{X_i}^0 \Phi^u(0, y; \lambda) \lambda^2 d_i P_+(y; \lambda)^{-1} \tilde{H}_i^+(y) dy\\
 &= \lambda^2 d_i \langle W_0, \int_{X_i}^0 P_+(0; 0) \Phi^u(0, y; 0) P_+(y; 0)^{-1} B \partial_c Q(y) dy \rangle + \mathcal{O}(|\lambda|^3 |d| ) \\
 &= \lambda^2 d_i \int_{X_i}^0 \langle W_0, \tilde{\Phi}^u(0, y)  B \partial_c Q(y) \rangle dy + \mathcal{O}(|\lambda|^3 |d| ) \\
 &= \mathcal{O}(|\lambda|^3 |d| ) 
@@ -842,10 +817,10 @@ The remaining integral has the same bound as for the center integral involving $
 The other integral is similar. The bound for the noncenter integral involving $G_i^\pm(x) V^\pm(x)$ is stronger than the bound for the center integral involving $G_i^\pm(x) V^\pm(x)$, thus is subsumed by that bound.
 \end{enumerate}
 
-We will now put this all together to obtain the center jump expressions. Since we have remainder terms of order $\mathcal{O}(e^{-\alpha X_*} + |\lambda|)|c|$, the term \cref{centerVjump} will also be a remainder term since it is of the same order. The center jump expressions are given by
+We put this all together to obtain the center jump expressions, which are given by
 \begin{align*}
-\xi^c_i &= \frac{1}{2} \left( c_{i+1} e^{-2 \nu(\lambda)X_i} - c_{i-1} e^{2 \nu(\lambda)X_{i-1}} \right) + e^{-\nu(\lambda)X_i} \lambda q(X_i) (d_{i+1} - d_i )  + e^{\nu(\lambda)X_{i-1}} \lambda q(X_{i-1}) (d_i - d_{i-1} ) \\
-&\qquad - \lambda^2 \tilde{M}^c d_i + R^c(\lambda)_i(c, d)
+\xi^c_i &= e^{-\nu(\lambda)X_i} c_i - e^{\nu(\lambda)X_i} c_{i-1} + e^{-\nu(\lambda)X_i} \lambda q(X_i) (d_{i+1} - d_i ) + e^{\nu(\lambda)X_{i-1}} \lambda q(X_{i-1}) (d_i - d_{i-1} ) \\
+&\qquad- \lambda^2 \tilde{M}^c d_i + R^c(\lambda)_i(c, d)
 \end{align*}
 where
 \[
@@ -858,16 +833,15 @@ and the remainder term $R^c_i(c, d)$ has uniform bound
 \end{aligned}
 \end{equation}
 
-Finally, we write this in matrix form. The leading order terms involving $c$ are given by $K(\lambda)c$, which is the periodic tri-diagonal matrix
+Finally, we write this in matrix form. The leading order terms involving $c$ are given by $K(\lambda)c$, where $K(\lambda)$ is the periodic, bi-diagonal matrix
 \begin{align*}
-K(\lambda) = \frac{1}{2}
+K(\lambda) =  
 \begin{pmatrix}
-0 & e^{-2\nu(\lambda)X_1} & & & & -e^{2 \nu(\lambda)X_0} \\
--e^{2\nu(\lambda)X_1} & 0 & e^{-2\nu(\lambda)X_2} \\
-& -e^{2 \nu(\lambda)X_2} & 0 & e^{-2\nu(\lambda)X_3} \\
-& & \ddots & \ddots & \ddots &&  \\
-&&& e^{-2\nu(\lambda)X_{n-2}} & 0 & e^{-2\nu(\lambda)X_{n-1}} \\
-e^{-2\nu(\lambda)X_0} & & & & -e^{2 \nu(\lambda)X_{n-1}} & 0
+e^{-\nu(\lambda)X_1} & & & & & -e^{\nu(\lambda)X_0} \\
+-e^{\nu(\lambda)X_1} & e^{-\nu(\lambda)X_2} \\
+& -e^{\nu(\lambda)X_2} & e^{-\nu(\lambda)X_3} \\
+  & & \ddots & && \\
+& & & & -e^{\nu(\lambda)X_{n-1}} & e^{-\nu(\lambda)X_0}
 \end{pmatrix}
 \end{align*}
 and $c = (c_1, \dots, c_{n-1}, c_0)^T$.
@@ -901,7 +875,7 @@ The jumps in the direction of $\Psi(0)$ are given by
 \begin{equation}\label{jumpPsi0}
 \begin{aligned}
 \xi_i = \langle \Psi&(X_i), Q'(-X_i) \rangle (d_{i+1} - d_i ) + \langle \Psi(-X_{i-1}), Q'(X_{i-1}) \rangle (d_i - d_{i-1} ) \\
-&-\frac{1}{4} M^c \lambda \left(c_{i+1} e^{-2 \nu(\lambda)X_i} + 2 c_i + c_{i-1} e^{2 \nu(\lambda)X_i} \right)
+&-\frac{1}{2}M^c\left( e^{-\nu(\lambda)X_i}c_i + e^{\nu(\lambda)X_i}c_{i-1}\right)
 - \lambda^2 d_i M + R_i(\lambda)(c, d)
 \end{aligned}
 \end{equation}
@@ -911,7 +885,7 @@ M = \int_{-\infty}^\infty \langle \Psi(y), B H(y) \rangle dy
 \end{equation}
 and $M^c$ is the center Melnikov integral defined in \cref{lemma:VderivIPs}. The remainder term $R(\lambda)(c, d)$ is analytic in $\lambda$, linear in $(c, d)$, and has bound given by \cref{noncenterR} in the proof below. The jump conditions can be written in matrix form as
 \begin{equation}\label{Psimatrix}
-\left(-\lambda M^c K_1(\lambda) + C_2 \right)c + (A - \lambda^2 M I + D_2)d = 0.
+\left(-\frac{1}{2} \lambda M^c K_1(\lambda) + C_2 \right)c + (A - \lambda^2 M I + D_2)d = 0.
 \end{equation}
 The matrix $A$ is given by
 \begin{align*}
@@ -933,14 +907,13 @@ a_i &= \langle \Psi(X_i), Q'(-X_i) \rangle \\
 \end{align*}
 The matrix $K_1(\lambda)$ is given by
 \begin{align*}
-K_1(\lambda) = \frac{1}{4}
+K_1(\lambda) =  
 \begin{pmatrix}
-2 & e^{-2\nu(\lambda)X_1} & & & & e^{2 \nu(\lambda)X_0} \\
-e^{2\nu(\lambda)X_1} & 2 & e^{-2\nu(\lambda)X_2} \\
-& e^{2 \nu(\lambda)X_2} & 2 & e^{-2\nu(\lambda)X_3} \\
-& & \ddots & \ddots & \ddots &&  \\
-&&& e^{-2\nu(\lambda)X_{n-2}} & 2 & e^{-2\nu(\lambda)X_{n-1}} \\
-e^{-2\nu(\lambda)X_0} & & & & e^{2 \nu(\lambda)X_{n-1}} & 2
+e^{-\nu(\lambda)X_1} & & & & & e^{\nu(\lambda)X_0} \\
+e^{\nu(\lambda)X_1} & e^{-\nu(\lambda)X_2} \\
+& e^{\nu(\lambda)X_2} & e^{-\nu(\lambda)X_3} \\
+ & & \ddots & &&   \\
+& & & & e^{\nu(\lambda)X_{n-1}} & e^{\nu(\lambda)X_0}
 \end{pmatrix}
 \end{align*}
 The remainder matrices have uniform bounds
@@ -952,30 +925,31 @@ The remainder matrices have uniform bounds
 \begin{proof}
 We want to solve the decaying adjoint jump condition, which we recall is given by
 \[
-\langle \Psi(0), P_-(0; \lambda) Z_i^+(0) - P_-(0; \lambda) Z_i^-(0) \rangle - c_i \langle \Psi^c(0), V^+(0; \lambda) - V^-(0; \lambda) \rangle 
+\xi_i = 
+\langle \Psi(0), P_+(0; \lambda) Z_i^+(0) - P_-(0; \lambda) Z_i^-(0) + c_i e^{-\nu(\lambda)X_i}V^+(0; \lambda) - c_{i-1} e^{\nu(\lambda)X_i} V^-(0; \lambda) \rangle 
 \]
 From \cref{lemma:VpmPsiIP},
 \begin{align}\label{PsiVpmjump}
-\langle \Psi^c(0), &V^+(0; \lambda) - V^-(0; \lambda) \rangle = -M^c \lambda + \mathcal{O}(|\lambda|^2)
+\langle \Psi^c(0), c_i e^{-\nu(\lambda)X_i}V^+(0; \lambda) - c_{i-1} e^{\nu(\lambda)X_i} V^-(0; \lambda)  \rangle &= -\frac{1}{2}M^c\left( e^{-\nu(\lambda)X_i}c_i + e^{\nu(\lambda)X_i}c_{i-1}\right) + \mathcal{O}(|\lambda|^2 |c| ),
 \end{align}
-The terms $P_\pm(0; \lambda) Z_i^\pm(0)$ are given by
+where we used Lemma \ref{lemma:expnubound} to bound $e^{\pm\nu(\lambda)X_i}$ in the remainder term by a constant. The terms $P_\pm(0; \lambda) Z_i^\pm(0)$ are given by
 \begin{align*}
 P_-&(0; \lambda) Z_i^-(0) = P_-(0; 0) b_i^- - P_-(0; \lambda) e^{\nu(\lambda) X_{i-1}} a^c_{i-1}V_0(\lambda) \\
 &+ P_-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) a_{i-1}^- + (P_-(0; \lambda) - P_-(0; 0))b_i^- + P_-(0; \lambda)(P_0^u(\lambda) - P_0^u(0))b_i^- \\
-&+ P_-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^s(0, y; \lambda) P_-(y; \lambda)^{-1} [ G_i^-(y) P_-(y; \lambda) Z_i^-(y) + c_i G_i^-(y) V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)]dy \\
-&+ P_-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_-(y; \lambda)^{-1} [ G_i^-(y) P_-(y; \lambda) Z_i^-(y) + c_i G_i^-(y) V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)] dy
+&+ P_-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^s(0, y; \lambda) P_-(y; \lambda)^{-1} [ G_i^-(y) P_-(y; \lambda) Z_i^-(y) + c_{i-1} e^{\nu(\lambda)X_{i-1}} G_i^-(y) V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)]dy \\
+&+ P_-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_-(y; \lambda)^{-1} [ G_i^-(y) P_-(y; \lambda) Z_i^-(y) + c_{i-1} e^{\nu(\lambda)X_{i-1}} G_i^-(y) V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)] dy
 \end{align*}
 and
 \begin{align*}
 P_+&(0; \lambda) Z_i^+(0) = P_+(0; 0) b_i^+ + P_+(0; \lambda) e^{-\nu(\lambda)X_i} a^c_i V_0(\lambda) \\
 &+ P_+(0; \lambda) \Phi^u(0, X_i; \lambda) a_i^+ + (P_+(0; \lambda) - P_+(0; 0)) b_i^+ + P_+(0; \lambda) (P_0^s(\lambda) - P_0^s(0)) b_i^+ \\
-&+ P_+(0; \lambda) \int_{X_i}^0 \Phi^u(0, y; \lambda) P_+(y; \lambda)^{-1} [ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i G_i^+(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy \\
-&+ P_+(0; \lambda) \int_{X_i}^0 \Phi^c(0, y; \lambda) P_+(y; \lambda)^{-1} [ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i G_i^+(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy \\
+&+ P_+(0; \lambda) \int_{X_i}^0 \Phi^u(0, y; \lambda) P_+(y; \lambda)^{-1} [ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i e^{-\nu(\lambda)X_i} G_i^-(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy \\
+&+ P_+(0; \lambda) \int_{X_i}^0 \Phi^c(0, y; \lambda) P_+(y; \lambda)^{-1} [ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i e^{-\nu(\lambda)X_i} G_i^-(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy \\
 \end{align*}
 As in Lemma \ref{jumpcenteradj}, we begin by computing the leading order terms.
 
 \begin{enumerate}
-\item The non-center integral will give us the higher order Melnikov integral. For the piece on $\R^-$ we use the uniform estimate $\tilde{H}_i^-(y) = H(y) + \mathcal{O}(e^{-\alpha X_*})$ from Lemma \ref{stabestimates} to get
+\item The non-center integral will give us the higher order Melnikov integral. For the piece on $\R^-$ we use the uniform estimate $\tilde{H}_i^-(y) = H(y) + \mathcal{O}(e^{-\alpha X_*})$ from Lemma \ref{stabestimateslemma} to get
 \begin{align*}
 &\langle \Psi(0), P_-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^s(0, y; \lambda) P_-(y; \lambda)^{-1} \tilde{H}_i^-(y) dy \rangle \\
 &= \int_{-X_{i-1}}^0 \langle \Psi(0), P_-(0; 0), \Phi^s(0, y; 0) P_-(y; 0)^{-1} H(y) \rangle dy + \mathcal{O}(|\lambda| + {e^{-\alpha X_*}}) \\
@@ -1006,7 +980,7 @@ The piece on $\R^+$ is similar, and gives us the other half of the Melnikov inte
 +\mathcal{O}\left( |\lambda|e^{-\alpha X_{i-1}}(e^{-\alpha X_{i-1}}|d| + |A_4(\lambda)_{i-1}^-(c, d)|) \right) \\
 &= -\langle \Psi(-X_{i-1}), P_0^s(0) D_{i-1} d \rangle +\mathcal{O}\left( |\lambda|e^{-\alpha X_{i-1}}(e^{-\alpha X_{i-1}}|d| + |A_4(\lambda)_{i-1}^-(c, d)|) \right)
 \end{align*}
-where in the last line we used \cref{lemma:trichadjoint}. For the leading order term, we substitute the expression for $D_{i-1}d$ from Lemma \ref{stabestimates} to get 
+where in the last line we used \cref{lemma:trichadjoint}. For the leading order term, we substitute the expression for $D_{i-1}d$ from Lemma \ref{stabestimateslemma} to get 
 \begin{align*}
 \langle \Psi(-&X_{i-1}), P_0^s(0) D_{i-1} d \rangle \\
 &= \langle \Psi(-X_{i-1}), P_0^s(0)( Q'(-X_{i-1}) + Q'(X_{i-1})) \rangle (d_i - d_{i-1} ) + \mathcal{O}(e^{-2 \alpha X_*}(|\lambda| + e^{-\alpha X_*})|d|) \\
@@ -1039,29 +1013,19 @@ Similarly, for the $a_i^+$ term, we have
 &+ \mathcal{O} \left( |\lambda|e^{-\alpha X_*}(|\lambda| + e^{-\alpha X_*})|c| + e^{-2 \alpha X_*} (|\lambda| + e^{-\alpha X_*}) |d| ) \right)
 \end{align*}
 
-\item For the terms involving $a_i^c$, using the expression from Lemma \ref{Zinv2} and \cref{lemma:VpmPsiIP}, we have
-\begin{align*}
-\langle \Psi(0), &P_+(0; \lambda) e^{-\nu(\lambda)X_i} a_i^c \rangle = e^{-\nu(\lambda)X_i} a_i^c \langle \Psi(0), V^+(0; \lambda) \rangle \\
-&= e^{-\nu(\lambda)X_i} a_i^c \left( -\frac{1}{2} M^c \lambda \right) \\
-&= -\frac{1}{2} M^c \lambda \left( \frac{1}{2}e^{-\nu(\lambda)X_i} \left( c_{i+1} e^{-\nu(\lambda)X_i} - c_i e^{\nu(\lambda)X_i} \right)\right) \\
-&\qquad + \mathcal{O}\left( |\lambda|(|\lambda| + e^{-\alpha X_*})|c| + |\lambda| (|\lambda| + e^{-\alpha X_*})^2 |d|) \right)\\
-&= -\frac{1}{4} M^c \lambda \left( c_{i+1} e^{-2 \nu(\lambda)X_i} - c_i \right) + \mathcal{O}\left( |\lambda|(|\lambda| + e^{-\alpha X_*})|c| + |\lambda| (|\lambda| + e^{-\alpha X_*})^2 |d|) \right)
-\end{align*}
-where for the remainder terms we used $\langle \Psi(0), V^\pm(0, \lambda) \rangle = \mathcal{O}(|\lambda|)$. Similarly, again using \cref{lemma:VpmPsiIP},
-\begin{align*}
-\langle \Phi(0), &P_-(0; \lambda) e^{\nu(\lambda) X_{i-1}} a_{i-1}^c \rangle = e^{\nu(\lambda)X_i} a_{i-1}^c \langle \Psi(0), V^-(0; \lambda) \rangle \\
-&= \frac{1}{4} M^c \lambda \left( c_i - c_{i-1} e^{2 \nu(\lambda)X_i} \right) + \mathcal{O}\left( |\lambda|(|\lambda| + e^{-\alpha X_*})|c| + |\lambda| (|\lambda| + e^{-\alpha X_*})^2 |d|) \right)
-\end{align*}
-Adding these together,
-\begin{align}\label{Psiaic}
-\langle \Psi(0), &P_+(0; \lambda) e^{-\nu(\lambda)X_i} a_i^c \rangle + \langle \Psi(0), P_-(0; \lambda) e^{\nu(\lambda) X_{i-1}} a_{i-1}^c \rangle \\
-&= \frac{1}{4} M^c \lambda \left( - c_{i+1} e^{-2 \nu(\lambda)X_i} + 2 c_i - c_{i-1} e^{2 \nu(\lambda)X_i} \right) + \mathcal{O}\left( |\lambda|(|\lambda| + e^{-\alpha X_*})|c| + |\lambda| (|\lambda| + e^{-\alpha X_*})^2 |d|) \right)
-\end{align}
 \end{enumerate}
 
 The remaining terms will be higher order. As in the previous lemma, we will bound these in turn.
 
 \begin{enumerate}
+
+\item For the terms involving $a_i^c$, using the expression from Lemma \ref{Zinv2} for $a_i^c$ together with \cref{lemma:VpmPsiIP}, and using Lemma \ref{lemma:expnubound} to bound terms of the form $e^{\pm \nu(\lambda)X_i}$ by a constant, we have
+, we have
+\begin{align*}
+|\langle \Psi(0), P_+(0; \lambda) e^{-\nu(\lambda)X_i} a_i^c \rangle| &\leq C \left( |\lambda|(|\lambda| + e^{-\alpha X_*})|c| + |\lambda| (|\lambda| + e^{-\alpha X_*})^2 |d|) \right)
+\end{align*}
+The other term is similar.
+
 \item For the terms involving $b$, we first note that the terms $P_-(0) b_i^-$ and $P_+(0)b_i^+$ will vanish when we take the inner product with $\Psi(0)$. For the remaining terms, we substitute the estimate for $B_1$ from Lemma \ref{Zinv2}.
 \begin{align*}
 &|\langle \Psi(0), (P_-(0; \lambda) - P_-(0; 0))b_i^- + P_-(0; \lambda)(P_0^u(\lambda) - P_0^u(0))b_i^- \rangle | \\
@@ -1098,10 +1062,10 @@ Using the bound $Z_3$, this becomes
 The other integral is similar. The bound on the noncenter integral term involving $G_i^\pm(x) V^\pm(x) c_i$ is the same as the corresponding center integral term.
 \end{enumerate}
 
-Putting this all together and noting that the $c_i$ term changes signs when we add \cref{PsiVpmjump} and \cref{Psiaic}, we have the jump expressions
+Putting this all together, we have the jump expressions
 \begin{align*}
 \xi_i = \langle \Psi&(X_i), Q'(-X_i) \rangle (d_{i+1} - d_i ) + \langle \Psi(-X_{i-1}), Q'(X_{i-1}) \rangle (d_i - d_{i-1} ) \\
-&-\frac{1}{4} M^c \lambda \left(c_{i+1} e^{-2 \nu(\lambda)X_i} + 2 c_i + c_{i-1} e^{2 \nu(\lambda)X_i} \right)
+&-\frac{1}{2}M^c\left( e^{-\nu(\lambda)X_i}c_i + e^{\nu(\lambda)X_i}c_{i-1}\right)
 - \lambda^2 d_i M + R_i(\lambda)(c, d)
 \end{align*}
 where $M$ is the higher order Melnikov integral
@@ -1113,18 +1077,18 @@ $M^c$ is the center Melnikov integral defined in \cref{lemma:VderivIPs}, and the
 |R(\lambda)(c, d)| \leq C \left( (e^{-\alpha X_*} + |\lambda|)^2 |c| + (e^{-\alpha X_*} + |\lambda|)^3 |d| \right)
 \end{equation}
 
-As in Lemma \ref{jumpcenteradj}, we will write these jump expressions in matrix form. The leading order terms involving $c$ are given by the matrix $-\lambda M^c K_1(\lambda)c$, which is the periodic tri-diagonal matrix
+As in Lemma \ref{jumpcenteradj}, we will write these jump expressions in matrix form. The leading order terms involving $c$ are given by the matrix $-\frac{1}{2}\lambda M^c K_1(\lambda)c$, where $K_1(\lambda)$ is the periodic, bi-diagonal matrix
 \begin{align*}
-K_1(\lambda) = \frac{1}{4}
+K_1(\lambda) =  
 \begin{pmatrix}
-2 & e^{-2\nu(\lambda)X_1} & & & & e^{2 \nu(\lambda)X_0} \\
-e^{2\nu(\lambda)X_1} & 2 & e^{-2\nu(\lambda)X_2} \\
-& e^{2 \nu(\lambda)X_2} & 2 & e^{-2\nu(\lambda)X_3} \\
-& & \ddots & \ddots & \ddots &&  \\
-&&& e^{-2\nu(\lambda)X_{n-2}} & 2 & e^{-2\nu(\lambda)X_{n-1}} \\
-e^{-2\nu(\lambda)X_0} & & & & e^{2 \nu(\lambda)X_{n-1}} & 2
+e^{-\nu(\lambda)X_1} & & & & & e^{\nu(\lambda)X_0} \\
+e^{\nu(\lambda)X_1} & e^{-\nu(\lambda)X_2} \\
+& e^{\nu(\lambda)X_2} & e^{-\nu(\lambda)X_3} \\
+ & & \ddots & &&   \\
+& & & & e^{\nu(\lambda)X_{n-1}} & e^{\nu(\lambda)X_0}
 \end{pmatrix}
 \end{align*}
+We note that $K_1(\lambda)$ is the same matrix as $K(\lambda)$ in the previous lemma with all terms positive.
 
 For the terms involving $d$. Let
 \[
@@ -1160,13 +1124,14 @@ M = \int_{-\infty}^\infty \langle \Psi(y), H(y) \rangle dy = \int_{-\infty}^\inf
 
 \section{Characterization of matrix $A$}
 
-Before we conclude this section, we will prove some results based on \cref{blockmatrixtheorem}. In this section, we will characterize the matrix $A$ in the lower left block of the block matrix \cref{blockmatrix}. 
+Before we conclude this section, we will prove some results based on \cref{blockmatrixtheorem}. In this section, we will characterize the matrix $A$ in the lower left block of the block matrix \cref{blockeq}. 
 
 \begin{lemma}\label{lemma:ajparam}
-For $r \leq r_*$, the terms $a_j$ in the block matrix equation \cref{blockmatrix} have the form
+For $r \leq r_*$, the terms $a_j$ in the block matrix equation \cref{blockeq} have the form
 \[
-a_j = r \tilde{a}^j(r), where
+a_j = r \tilde{a}^j(r),
 \]
+where
 \begin{equation}\label{ajparam}
 \tilde{a}_j(r) = -p_0 e^{\alpha \phi/\beta_0} b_j \left( \beta \cos\left(-\rho \log b_j \right) - \alpha \sin \left(-\rho \log b_j \right) \right) + \mathcal{O}(r^{\gamma/2\alpha}),
 \end{equation}
@@ -1200,13 +1165,13 @@ The result follows from letting $a_j(r) = r \tilde{a}_j(r)$.
 We can now characterize the matrix $A$.
 
 \begin{lemma}\label{lemma:tildeA}
-For $r \leq r_*$, the matrix $A$ in \cref{blockmatrix} has the form
+For $r \leq r_*$, the matrix $A$ in \cref{blockeq} has the form
 \begin{equation}\label{deftildeA}
 A = r \tilde{A}(r)
 \end{equation}
 where $\tilde{A}(r) = \tilde{A}(r; m_0, \dots, m_{n-1}, \theta)$ is symmetric and smooth in $r$. $\tilde{A}(r)$ has an eigenvalue of 0 corresponding to eigenvector $(1, 1, \dots, 1)^T$. The remaining eigenvalues $\ell_1(r), \dots, \ell_{n-1}(r) \}$ of $\tilde{A}(r)$ are real and are smooth in $r$.
 \begin{proof}
-By \cref{lemma:ajparam}, we can scale out $r$ from each of the terms $a_j = r \tilde{a}_j(r)$ in \cref{blockmatrix} to obtain \cref{deftildeA}. Since all of the $\tilde{a}_j(r)$ are smooth in $r$, $\tilde{A}$ is as well. Since $A$ is symmetric, $\tilde{A}(r)$ is also symmetric, thus its eigenvalues are real. The kernel eigenvector can be verified directly since all rows of $\tilde{A}$ sum to 0.
+By \cref{lemma:ajparam}, we can scale out $r$ from each of the terms $a_j = r \tilde{a}_j(r)$ in \cref{blockeq} to obtain \cref{deftildeA}. Since all of the $\tilde{a}_j(r)$ are smooth in $r$, $\tilde{A}$ is as well. Since $A$ is symmetric, $\tilde{A}(r)$ is also symmetric, thus its eigenvalues are real. The kernel eigenvector can be verified directly since all rows of $\tilde{A}$ sum to 0.
 \end{proof}
 \end{lemma}
 

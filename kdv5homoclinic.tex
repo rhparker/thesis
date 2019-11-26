@@ -8,7 +8,9 @@
 
 A multi-pulse is a localized, multi-modal solution to \cref{eqODE} which resembles multiple, well-separated copies of the primary pulse. Heuristically, we construct a multi-pulse by gluing together multiple copies of the primary pulse end-to-end. This is shown in \cref{fig:multipulse}.
 \begin{figure}
+\begin{center}
 \includegraphics[width=12cm]{images/kdv5numerics/multipulseperiodic.eps}
+\end{center}
 \caption{Construction of an $n$-pulse solution from the primary pulse.}
 \label{fig:multipulse}
 \end{figure}
@@ -110,7 +112,7 @@ and the remainder term $R(\mu)$ is higher order. If $\{\ell_1, \dots, \ell_{n-1}
 \end{remark}
 
 \begin{remark}
-The signs of the eigenvalues $\mu_j$ of $\calE''(q_n)$ correspond to the parity of the integers $m_j$, which corresponds to the interaction eigenvalue pattern (see, for example, \cref{fig:KdV5multipulsespectra} \cref{fig:KdV5multipulsespectra}, and \cref{corr:eiglocR}). Numerically, it may be easier to determine the eigenvalues of $\calE''(q_n(x))$ than the integers $m_j$.
+The signs of the eigenvalues $\mu_j$ of $\calE''(q_n)$ correspond to the parity of the integers $m_j$, which corresponds to the interaction eigenvalue pattern (see, for example, \cref{fig:KdV5doublespec} and \cref{fig:KdV5multipulsespectra}). Numerically, it may be easier to determine the eigenvalues of $\calE''(q_n(x))$ than the integers $m_j$.
 \end{remark}
 
 \section{Spectrum of multi-pulses}\label{sec:multispecR}
@@ -122,13 +124,13 @@ First, we look at the essential spectrum. Since any traveling wave solution we a
 (\partial_x \calL_c''(0) - \lambda )v(x) = 
 (\partial_x^{2m+1} + c_{2m-1} \partial_x^{2m-1} + \dots + c_3 \partial_x^3 + c \partial_x - \lambda )v(x) = 0
 \]
-Using \cite[(3.1.20)]{Kapitula2013}, the essential spectrum is given by the curve
+By \cite[(3.1.20)]{Kapitula2013}, the essential spectrum is given by the curve
 \begin{align}\label{essspecR}
 \lambda(k) &= \{ (ik)^{2m+1} + c_{2m-1} (ik)^{2m-1} + \dots + c_3 (ik)^3 + c (ik) : k \in \R \}
 \end{align}
 which is purely imaginary since all powers of $i$ are odd. Thus the essential spectrum is a subset of the imaginary axis. Furthermore, replacing $k$ with $-k$ in \cref{essspecR}, the essential spectrum is symmetric about the real axis. In many cases, such as KdV5, the essential spectrum is the entire imaginary axis, although that is not necessarily the case.
 
-We now turn to the point spectrum. By \ref{eigA0lemma}, $A(0)$ has an eigenvalue at 0. Since $A(0)$ is not hyperbolic, we cannot directly apply the results of \cite{Sandstede1998}. To get around this, we will rewrite the eigenvalue problem in an exponentially weighted space so that the asymptotic matrix becomes hyperbolic. We can then adapt \cite[Theorem 2]{Sandstede1998}. This will allow us to extend the result of \cite[Theorem 2.3]{Pelinovsky2007} to multi-pulses. In particular, we will be able to give an instability criterion. However, since the system is no longer Hamiltonian in an exponentially weighted space, we will only be able to show that eigenvalues are purely imaginary to leading order.
+We now turn to the point spectrum. By \cref{eigA0lemma}, $A(0)$ has an eigenvalue at 0. Since $A(0)$ is not hyperbolic, we cannot directly apply the results of \cite{Sandstede1998}. To get around this, we will rewrite the eigenvalue problem in an exponentially weighted space so that the asymptotic matrix becomes hyperbolic. We can then adapt \cite[Theorem 2]{Sandstede1998}. This will allow us to extend the result of \cite[Theorem 2.3]{Pelinovsky2007} to multi-pulses. In particular, we will be able to give an instability criterion. However, since the system is no longer Hamiltonian in an exponentially weighted space, we will only be able to show that eigenvalues are purely imaginary to leading order.
 
 \subsection{Exponentially weighted space}\label{sec:expwtR}
 
@@ -170,7 +172,7 @@ where $\tilde{V}(x) \in C^0(\R, \R^{2m+1})$ and we have
 \end{aligned}
 \end{equation}
 
-The matrix $A(q_n(x)) + \eta I$ is exponentially asymptotic to the constant coefficient matrix $A(0) + \eta I$. The eigenvalues of $A(0) + \eta I$ are shifted to the right by $\eta$, and the corresponding eigenvectors are unchanged. Using \ref{eigA0lemma}, $A(0) + \eta I$ is hyperbolic with $\Re|\nu| > \eta$ for all eigenvalues $\nu$. The equilibrium at $U = 0$ thus has a $(2m+1)$-dimensional unstable manifold and a $2m$-dimensional stable manifold. We will now be able to adapt the results of \cite{Sandstede1998}. 
+The matrix $A(q_n(x)) + \eta I$ is exponentially asymptotic to the constant coefficient matrix $A(0) + \eta I$. The eigenvalues of $A(0) + \eta I$ are shifted to the right by $\eta$, and the corresponding eigenvectors are unchanged. Using \cref{eigA0lemma}, $A(0) + \eta I$ is hyperbolic with $\Re|\nu| > \eta$ for all eigenvalues $\nu$. The equilibrium at $U = 0$ thus has a $(2m+1)$-dimensional unstable manifold and a $2m$-dimensional stable manifold. We will now be able to adapt the results of \cite{Sandstede1998}. 
 
 As in \cite{Sandstede1998}, we can decompose the tangent spaces of the stable and unstable manifolds at $Q(0)$ of the equilibrium at 0 as
 \begin{equation}\label{Tetadecomp}
@@ -184,19 +186,17 @@ The weighted variational equation and adjoint variational equation are
 V' &= (A(Q(x)) + \eta I)V \label{weightedvareq} \\
 W' &= -(A(Q(x)) + \eta I)^* W \label{weightedadjvareq}
 \end{align}
-Since $Q'(x)$ and $\Psi(x)$ are solutions to the unweighted variational equation \cref{vareq2} and unweighted adjoint variational equation \cref{adjvareq2} (respectively), $V_\eta(x) = e^{\eta x}Q'(x)$ and $\Psi_\eta(x) = e^{-\eta x}\Psi(x)$ are solutions to \cref{weightedvareq} and \cref{weightedadjvareq} (respectively). By our choice of $\eta$, both of these solutions are exponentially localized. They are the unique bounded solutions (up to scalar multiple) to \cref{weightedvareq} and \cref{weightedadjvareq}. We note that while $e^{\eta x} V^c(x)$ and $e^{-\eta x}\Psi^c(x)$ formally solve \cref{weightedvareq} and \cref{weightedadjvareq}, they are not bounded. 
-
-Since $V_\eta(0) = Q'(0)$ and $\Psi_\eta(0) = \Psi(0)$, we can decompose $\R^{2m+1}$ as
+Since $Q'(x)$ and $\Psi(x)$ are solutions to the unweighted variational equation \cref{vareq2} and unweighted adjoint variational equation \cref{adjvareq2} (respectively), $V_\eta(x) = e^{\eta x}Q'(x)$ and $\Psi_\eta(x) = e^{-\eta x}\Psi(x)$ are solutions to \cref{weightedvareq} and \cref{weightedadjvareq} (respectively). By our choice of $\eta$, both of these solutions are exponentially localized. They are the unique bounded solutions (up to scalar multiple) to \cref{weightedvareq} and \cref{weightedadjvareq}. We note that while $e^{-\eta x}\Psi^c(x)$ formally solves \cref{weightedadjvareq}, it is not bounded. Since $V_\eta(0) = Q'(0)$ and $\Psi_\eta(0) = \Psi(0)$, we can decompose $\R^{2m+1}$ as
 \[
 \R^{2m+1} = \R Q'(0) \oplus Y_\eta^+ \oplus Y_\eta^- \oplus \R \Psi(0)
 \]
 
 \subsection{Location of interaction eigenvalues}
 
-The following theorem, which is almost identical to \cite[Theorem 2]{Sandstede1998}, allows us to locate the interaction eigenvalues of the eigenvalue problem \eqref{weightedeig} in the exponentially weighted space.
+The following theorem, which is almost identical to \cite[Theorem 2]{Sandstede1998}, allows us to locate the interaction eigenvalues of the eigenvalue problem \eqref{weightedeig} in the exponentially weighted space. The proof of this theorem and the following corollary are deferred until the end of the chapter.
 
 \begin{theorem}\label{expwtstabtheorem}
-Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, \ref{H0transversehyp}, and \ref{Melnikov2hyp}. Let $Q_n(x)$ be an $n$-pulse traveling wave solution to \cref{genODE} constructed as in \cref{multipulseexistR} with pulse distances $X_1, \dots, X_{n-1}$. Choose an exponential weight $\eta$ with $0 < \eta < \alpha_0$ and choose any $\alpha$  with $\alpha < \alpha_0$. Then there exists $\delta > 0$ with the following property. There exists a bounded, nonzero solution $V(x)$ of the weighted eigenvalue problem \eqref{weightedeig} with weight $\eta$ for $|\lambda| < \delta$ if and only if $E(\lambda) = 0$, where
+Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, \ref{H0transversehyp}, \ref{Qclocalhyp}, and \ref{Melnikov2hyp}. Let $Q_n(x)$ be an $n$-pulse traveling wave solution to \cref{genODE} constructed as in \cref{multipulseexistR} with pulse distances $X_1, \dots, X_{n-1}$. Choose an exponential weight $\eta$ with $0 < \eta < \alpha_0$ and choose any $\alpha$  with $\alpha < \alpha_0$. Then there exists $\delta > 0$ with the following property. There exists a bounded, nonzero solution $V(x)$ of the weighted eigenvalue problem \eqref{weightedeig} with weight $\eta$ for $|\lambda| < \delta$ if and only if $E(\lambda) = 0$, where
 \[
 E(\lambda) = \det \left( A_\eta - \lambda^2 M I + R(\lambda) \right).
 \]
@@ -210,7 +210,11 @@ e^{2 \eta X_1} a_1 & -a_2 - a_1 & e^{-2 \eta X_2} a_2 \\
 & & & e^{2 \eta X_{n-1}} a_{n-1} & -a_{n-1} 
 \end{pmatrix}
 \end{equation}
-where $a_i = \langle \Psi(X_i), Q'(-X_i) \rangle$ and $M$ is the higher order Melnikov integral defined in \cref{M2}. The eigenvalues of $A_\eta$ do not depend on $\eta$. The remainder term $R(\lambda)$ is analytic in $\lambda$ and has bound
+where $a_i = \langle \Psi(X_i), Q'(-X_i) \rangle$ and $M$ is the higher order Melnikov integral
+\begin{equation*}
+M = \int_{-\infty}^\infty q(x) q_c(x) dx.
+\end{equation*}
+The eigenvalues of $A_\eta$ do not depend on $\eta$. The remainder term $R(\lambda)$ is analytic in $\lambda$ and has bound
 \begin{equation*}
 ||R(\lambda)|| \leq C 
 \left( (e^{-\alpha X_{\min}} + |\lambda|)^2 e^{-(\alpha - \eta)X_{\min}}  
@@ -220,20 +224,20 @@ where $X_{\min} = \min\{X_1, \dots, X_{n-1}\}$.
 \end{theorem}
 
 \begin{remark}
-Since the eigenvalues of $A_\eta$ do not depend on $\eta$, the eigenvalues of $A_\eta$ are the same as those of $A_0$, which is the matrix $A$ in \cite[(2.8)]{Sandstede1998}.
+Since the eigenvalues of $A_\eta$ do not depend on $\eta$, the eigenvalues of $A_\eta$ are the same as those of $A_0$, which is the matrix $A$ in \cite[Theorem 2]{Sandstede1998}.
 \end{remark}
 
 As a corollary, we can locate the interaction eigenvalues associated with $Q_n(x)$ to leading order. This gives us an instability result but does not allow us to prove stability.
 
 \begin{corollary}\label{corr:eiglocR}
-Assume the same hypotheses as in \cref{expwtstabtheorem}. Let $(m_1, \dots, m_{n-1})$ be a homoclinic parameterization. Let $r_*$ be as in Theorem \ref{multipulseexistR}, and let $Q_n(x; r)$ be the corresponding family of $n$-pulse solutions. Let $A_0 = r \tilde{A}_0(r)$ be the matrix $A_0$ from \cref{expwtstabtheorem}, and $\{ \ell_1(r), \dots, \ell_{n-1}(r), 0 \}$ be the eigenvalues of $\tilde{A}_0(r)$, which are real. Then there exists $r_1 = r_1(m_1, \dots, m_{n-1}) \leq r_*$ such that for all $r \in \mathcal{R}$ with $r \leq r_1$:
+Assume the same hypotheses as in \cref{expwtstabtheorem}. Let $(m_1, \dots, m_{n-1})$ be a homoclinic parameterization. Let $r_*$ be as in Theorem \ref{multipulseexistR}, and let $Q_n(x; r)$ be the corresponding family of $n$-pulse solutions. Let $A_0 = A_0(r)$ be the matrix defined in \cref{Aeta}, and let $\{ \ell_1(r), \dots, \ell_{n-1}(r), 0 \}$ be the eigenvalues of $A_0(r)$, which are real. Then there exists $r_1 = r_1(m_1, \dots, m_{n-1}) \leq r_*$ such that for all $r \in \mathcal{R}$ with $r \leq r_1$:
 \begin{enumerate}[(i)]
 \item There are $(n-1)$ pairs of interaction eigenvalues close to 0 which are given by
 \begin{align}\label{hominteigs}
-\lambda_j^\pm &= \pm \sqrt{ \frac{\ell_j(r)}{M}} r^{1/2} + 
+\lambda_j^\pm &= \pm \sqrt{ \frac{\ell_j(r)}{M}} + 
 \mathcal{O}\left( r^{\frac{1 + \gamma}{2}} \right) && j = 1,\dots,n-1,
 \end{align}
-where
+where $\ell_j(r) = \mathcal{O}(r)$ and
 \[
 \gamma = \frac{\alpha_0 - \eta}{\alpha_0}
 \]
@@ -247,10 +251,11 @@ These are reversed if $M < 0$
 \end{corollary}
 
 \begin{remark}\label{remark:eigrelation}
-It follows from \cref{remark:Hessianeigs} that the interaction eigenvalues $\{ \lambda_1\pm, \dots, \lambda_{n-1}\pm \}$ and the eigenvalues $\{ \mu_1, \dots, \mu_{n-1} \}$ of $\calE''(q_n)$ are related by
+It follows from \cref{remark:Hessianeigs} that the interaction eigenvalues $\{ \lambda_1^\pm, \dots, \lambda_{n-1}^\pm \}$ and the eigenvalues $\{ \mu_1, \dots, \mu_{n-1} \}$ of $\calE''(q_n)$ are related, to leading order, by
 \begin{align}\label{eigrelation}
-\lambda_j^\pm &= \pm \sqrt{ \frac{M_1}{M_c} \ell_j} && j = 1, \dots, n-1
+\lambda_j^\pm &= \pm \sqrt{ \frac{M_1}{M} \ell_j} && j = 1, \dots, n-1,
 \end{align}
+where $M_1$ is defined in \cref{nhomM1}.
 \end{remark}
 
 \begin{remark}
@@ -356,7 +361,7 @@ are satisfied.
 
 \subsection{Lin's method}
 
-To use Lin's method, we will need some estimates similar to those in \cite[Lemma 3.1]{Sandstede1998}. Choose any $\alpha$ with $0 < \alpha < \alpha_0$. We need to do this since the estimate for $\partial_c Q(x)$ in \cref{transverseint} only holds with decay rate $\alpha_0 - \epsilon$ for any $\epsilon > 0$. Then we have the following estimates.
+To use Lin's method, we will need some estimates similar to those in \cite[Lemma 3.1]{Sandstede1998}. Choose any $\alpha$ with $0 < \alpha < \alpha_0$. Then we have the following estimates.
 
 % estimates lemma
 \begin{lemma}\label{lemma:weightedest}
@@ -369,11 +374,11 @@ We have the estimates
 \end{enumerate}
 where $X_{\min} = \min\{X_1, \dots, X_n\}$.
 \begin{proof}
-Since $A(Q(x))$ is smooth in $Q(x)$, the bound (i) follows from the estimates \cref{Qpmestimates} in \cref{multipulseexistR}. By \cref{transverseint},
+Since $A(Q(x))$ is smooth in $Q(x)$, the bound (i) follows from the estimates \cref{Qpmestimates} in \cref{multipulseexistR}. By \cref{Qcbound} from \cref{Qclocalhyp},
 \begin{equation}\label{Qcbound1}
 |\partial_c Q(x)| \leq C e^{-\alpha|x|}
 \end{equation}
-Using the same technique as in the proof of \ref{transverseint}, we can obtain the same bound for $\partial_c Q_i^\pm(x)$. Estimate (ii) follows from \cref{Qcbound1} together with the definitions of $H(x)$ and $\tilde{H}_i^\pm(x)$. Estimate (iii) follows from \cref{Qcbound1} together with the estimates from \cref{multipulseexistR}. For estimate (iv), we first write $D_i d$ as
+We can obtain the same bound for $\partial_c Q_i^\pm(x)$ using Lin's method as in \cite{SandstedeStrut,Sandstede1993}. Estimate (ii) follows from \cref{Qcbound1} together with the definitions of $H(x)$ and $\tilde{H}_i^\pm(x)$. Estimate (iii) follows from \cref{Qcbound1} together with the estimates from \cref{multipulseexistR}. For estimate (iv), we first write $D_i d$ as
 \begin{align*}
 D_i d &= d_{i+1} e^{-\eta X_i}[ Q_n'(-X_i) + \lambda \partial_c Q_n(-X_i)] 
 - d_i e^{\eta X_i}[ Q_n'(X_i) + \lambda \partial_c Q_n(X_i)]  \\
@@ -460,7 +465,7 @@ and the remainder matrix $R(\lambda)$ has the bound \cref{weightedRbound1}. A no
 Finally, we prove that the eigenvalues of $A_\eta$ do not depend on $\eta$. To do that, we show that $A_\eta$ is conjugate to $A_0$.
 
 \begin{lemma}\label{lemma:Aetaconj}
-There exists an invertible matrix $T(\eta)$ such that $T(\eta)^-1 A_\eta T(\eta) = A_0$.
+There exists an invertible matrix $T(\eta)$ such that $T(\eta)^{-1} A_\eta T(\eta) = A_0$.
 \begin{proof}
 Let 
 \[
