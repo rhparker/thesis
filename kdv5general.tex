@@ -6,7 +6,7 @@
 	\chapter{Generalization}
 \fi
 
-In this chapter, we write our problem in a general form, for which KdV5 will be a special case. First, we formulate the problem as a Hamiltonian PDE with certain symmetries. We then look for traveling wave solutions, which satisfy a related nonlinear in a moving reference frame. In particular, we are interested in pulses, which are localized traveling waves. To do this, we shift to a spatial dynamics perspective, in which pulses are homoclinic orbits. We discuss the existence of a primary pulse solution, which is a single, symmetric homoclinic orbit. We will use this framework to consider the existence and spectrum of multi-pulses in \cref{chapter:kdv5homoclinic} and periodic multi-pulses in \cref{chapter:kdv5periodic}. All proofs will be deferred until the end of this chapter.
+In this chapter, we write our problem in a general form, for which KdV5 will be a special case. First, we formulate the problem as a Hamiltonian PDE with certain symmetries. We then look for traveling wave solutions, which satisfy a related nonlinear ODE in a moving reference frame. In particular, we are interested in pulses, which are localized traveling waves. To do this, we shift to a spatial dynamics perspective, in which pulses are homoclinic orbits. We discuss the existence of a primary pulse solution, which is a single, symmetric homoclinic orbit. We then set up the framework for the existence and the spectral stability problem. We will use this framework to study multi-pulses in \cref{chapter:kdv5homoclinic} and periodic multi-pulses in \cref{chapter:kdv5periodic}. All proofs will be deferred until the end of this chapter.
 
 \section{Hamiltonian PDE}\label{sec:HamPDE}
 
@@ -98,12 +98,12 @@ There exists an open interval $(c_1, c_2) \subset \R$ and a $C^1$ map $c \mapsto
 Furthermore, $\partial_x \phi_c \neq 0$.
 \end{hypothesis}
 
-We are interested in the stability of these traveling wave solutions. As a first step in stability analysis, we will look at the spectrum of the linearization of the PDE \cref{genPDE} about a traveling wave. For $c \in (c_1, c_2)$, let $\phi_c$ be a solution to \cref{eqODE}, which is a traveling wave solution to \cref{genPDE}. Then the linearization of the PDE \cref{genPDE} about $\phi_c$ is the linear operator $\partial_x \calL(\phi_c)$ defined by
+We are interested in the stability of these traveling wave solutions. As a first step in stability analysis, we will look at the spectrum of the linearization of the PDE \cref{genPDE} about a traveling wave. For $c \in (c_1, c_2)$, let $\phi_c$ be a solution to \cref{eqODE}, which is a traveling wave solution to \cref{genPDE}. Then the linearization of the PDE \cref{genPDE} about $\phi_c$ is the linear operator $\partial_x \calL(\phi_c)$, where $\calL(\phi_c)$ is defined by
 \begin{equation}\label{PDElinearization}
-\partial_x \calL(\phi_c) = 
-\partial_x (\calE''(\phi_c) + c )
+\calL(\phi_c) = 
+\calE''(\phi_c) + c
 \end{equation}
-where $\calE''(\phi_c)$ is the Hessian of the energy $\calE(\phi_c)$. Both $\calE''(\phi_c)$ and $\calL(\phi_c)$ are self-adjoint. Since $\phi_c$ is a traveling wave, using \cref{Eprimesymm} and \cref{eqODE}, we have
+and $\calE''(\phi_c)$ is the Hessian of the energy $\calE(\phi_c)$. Both $\calE''(\phi_c)$ and $\calL(\phi_c)$ are self-adjoint. Since $\phi_c$ is a traveling wave, using \cref{Eprimesymm} and \cref{eqODE}, we have
 \begin{align}\label{TeqODE}
 \calE'(T(s)\phi_c) + c T(s)\phi_c = T(s)[\calE'(\phi_c) + c \phi_c] = 0.
 \end{align}
@@ -261,7 +261,7 @@ We can now prove the existence of homoclinic orbits $Q(x; c)$ for $c$ near $c_0$
 Assume \cref{Hhyp} and \cref{H0transversehyp}. There exists $\delta > 0$ such that for $c \in (c_0 - \delta, c_0 + \delta)$, the stable and unstable manifolds $W^s(0; c)$ and $W^u(0; c)$ have a one-dimensional transverse intersection in $H^{-1}(0; c)$ which is a homoclinic orbit $Q(x; c)$. The map $c \rightarrow Q(x; c)$ is smooth.
 \end{theorem}
 
-Since the derivative $\partial_c Q(x; c)$ will be important in our analysis, we take the following additional hypothesis.
+Theorem \ref{transverseint} implies that Hypothesis \ref{cintervalhyp} is satisfied. Since the derivative $\partial_c Q(x; c)$ will be important in our analysis, we take the following additional hypothesis, which states that $\partial_c Q(x; c)$ is exponentially localized.
 
 \begin{hypothesis}\label{Qclocalhyp}
 Let $\delta >0$ be as in \cref{transverseint}. Then for any $\epsilon > 0$, there exists $\delta_1 > 0$ with $\delta_1 < \delta$ such that for $c \in (c_0 - \delta_1, c_0 + \delta_1)$,
@@ -375,7 +375,7 @@ P_{\ker A(0)} = \langle W_0, \cdot \rangle V_0
 \end{enumerate} 
 \end{lemma}
 
-\noi Since $A(0)$ is not hyperbolic, the results of \cite{Sandstede1998} do not apply. For multi-pulse solutions, we will get around this problem in \cref{chapter:kdv5homoclinic} by using an exponentially weighted space; this make the analysis very similar to that in \cite{Sandstede1998} but only provides limited results. In \cref{chapter:kdv5periodic}, we will look at the spectrum of periodic multi-pulse solutions. The analysis is more difficult, since it involves a one-dimensional center manifold, but we will be able to obtain more results. The remainder of this section is setup material which is common to both cases.
+\noi Since $A(0)$ is not hyperbolic, the results of \cite{Sandstede1998} do not apply. For multi-pulse solutions, we will get around this problem in \cref{chapter:kdv5homoclinic} by using an exponentially weighted space; this makes the analysis very similar to that in \cite{Sandstede1998} but only provides limited results. In \cref{chapter:kdv5periodic}, we will look at the spectrum of periodic multi-pulse solutions. The analysis is more difficult, since it involves a one-dimensional center manifold, but we will be able to obtain more results. The remainder of this section contains material which is common to both cases.
 
 Let $W^s(0)$, $W^u(0)$, and $W^c(0)$ be the stable, unstable, and center manifolds of the equilibrium at 0. By reversibility, $\dim W^s(0) = m$ and $\dim W^u(0) = m$. The center manifold $W^c(0)$ is one-dimensional.
 

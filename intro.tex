@@ -48,9 +48,9 @@ where $a$ is an arbitrary constant. The KdV equation also has another class of e
 
 Since solitary waves maintain their shape as they propagate at a constant velocity, they are equilibrium solutions to an approprate nonlinear PDE when written in a co-moving frame. For KdV, for example, a solitary wave with wavespeed $c$ is a solution to the third order ODE 
 \begin{equation}\label{KdV3equilib}
-\partial_x^3 \phi - c \partial_x \phi - 6 \phi \partial_x \phi = 0
+\partial_x^3 \phi - c \partial_x \phi - 6 \phi \partial_x \phi = 0.
 \end{equation}
-Since solitary waves are also localized, we can integrate equation \cref{KdV3equilib} once to get the second order ODE
+Since solitary waves are localized, we can integrate equation \cref{KdV3equilib} once to get the second order ODE
 \begin{equation}\label{KdV3eq}
 \partial_x^2 \phi - c \phi - 3 \phi^2 = 0
 \end{equation}
@@ -63,7 +63,7 @@ An alternative perspective on solitary waves comes from spatial dynamics, where 
 v \\ c u + 3 u^3
 \end{pmatrix}
 \end{equation}
-The origin is a hyperbolic saddle equilibrium with eigenvalues $\pm \sqrt{c}$. A solitary wave is a homoclinic orbit connecting the unstable and stable manifolds of this saddle. The cnoidal solutions are periodic orbits lying inside the homoclinic orbit.
+The origin is a hyperbolic saddle equilibrium point with eigenvalues $\pm \sqrt{c}$. A solitary wave is a homoclinic orbit connecting the unstable and stable manifolds of this saddle. The cnoidal solutions are periodic orbits lying inside the homoclinic orbit.
 
 Since the spatial dynamics of solitary wave solutions to KdV evolve in a two-dimensional phase space, they are constrained by the geometry of the plane. In particular, multi-pulse solitary waves, which correspond to multi-loop homoclinic orbits, cannot exist. Multi-pulses require a higher dimensional phase space in which to evolve, which in turn requires a higher dimensional ODE. A prototypical equation which exhibits multi-pulse solitary waves is the 5th order KdV equation (KdV5). When written in a co-moving frame with speed $c$, one form of KdV5 is
 \begin{equation}\label{introKdV5}
@@ -73,22 +73,22 @@ Localized, equilibrium solutions satisfy the fourth order ODE
 \begin{equation}\label{introKdV5eq}
 u_{xxxx} - u_{xx} + c u - u^2 = 0.
 \end{equation}
-Since the spatial dynamics of \cref{introKdV5eq} evolve in a four-dimensional space, a much greater diversity of solutions is possible than with KdV. In particular, multi-pulse homoclinic orbits are possible.
+Since the spatial dynamics of \cref{introKdV5eq} evolve in a four-dimensional space, a much greater diversity of solutions is possible than with KdV. In particular, multi-pulse homoclinic orbits can exist.
 
 \section{Multi-pulses}
 
-A multi-pulse is a multi-modal solitary wave which resembles multiple, well-separated copies of a single solitary wave. The study of multi-pulses goes back to at least the early 1980s, where Evans, Fenichel, and Faroe proved the existence of a double pulse traveling wave in nerve axon equations \cite{Evans1982}. A summary of early results related to multi-pulses can be found in \cite[Section 1]{Sandstede1998}. Existence of multi-pulse solutions to a family of Hamiltonian equations (which includes \cref{introKdV5eq}) was shown in \cite{Buffoni1996} using dynamics on the Smale horseshoe set. 
+A multi-pulse is a multi-modal solitary wave which resembles multiple, well-separated copies of a single solitary wave. It is a true solitary wave solution, in that the entire multi-pulse solution travels as a unit with constant velocity. The study of multi-pulses goes back to at least the early 1980s, where Evans, Fenichel, and Faroe proved the existence of a double pulse traveling wave in nerve axon equations \cite{Evans1982}. A summary of early results related to multi-pulses can be found in \cite[Section 1]{Sandstede1998}. Existence of multi-pulse solutions to a family of Hamiltonian equations (which includes KdV5) was shown in \cite{Buffoni1996} using dynamics on the Smale horseshoe set. 
 
 We will instead use the spatial dynamics approach due to Lin \cite{Lin1990} and Sandstede \cite{Sandstede1993,SandstedeStrut}. From this perspective, a multi-pulse is a homoclinic orbit which makes multiple loops but which stays close to a primary homoclinic orbit. Consider the general ODE
 \begin{equation}\label{introgenODE}
 U'(x) = F(U(x))
 \end{equation}
 for $U \in \R^{2n}$, where $F$ is smooth. This equation could arise, for example, from writing 
-\cref{introKdV5eq} as a first-order system. Suppose further that 0 is a hyperbolic equilibrium for \cref{introgenODE}, and that there exists a homoclinic orbit $Q(x)$ which connects that hyperbolic equilibrium to itself. $Q(x)$ is the primary pulse solution, and lies in the intersection of the unstable manifold $W^u(0)$ and the stable manifold $W^s(0)$ of the equilibrium at 0. If equation \cref{introvareq} is derived from a PDE such as KdV or KdV5, $Q(x)$ is a solitary wave. We will assume that the primary pulse is nondegenerate, i.e. the intersection of the tangent spaces $T_{Q(x)}W^u(0)$ and $T_{Q(x)}W^s(0)$ is spanned by $Q'(x)$.
+\cref{introKdV5eq} as a first-order system. Suppose further that 0 is a hyperbolic equilibrium for \cref{introgenODE}, and that there exists a homoclinic orbit $Q(x)$ which connects that hyperbolic equilibrium to itself. We call $Q(x)$ the primary pulse solution, and it lies in the intersection of the unstable manifold $W^u(0)$ and the stable manifold $W^s(0)$ of the equilibrium at 0. If equation \cref{introvareq} is derived from a PDE such as KdV or KdV5, $Q(x)$ represents a solitary wave. We will assume that the primary pulse is nondegenerate, i.e. the intersection of the tangent spaces $T_{Q(x)}W^u(0)$ and $T_{Q(x)}W^s(0)$ is spanned by $Q'(x)$.
 
 The linearization of \cref{introgenODE} about the homoclinic orbit $Q(x)$ is the variational equation
 \begin{equation}\label{introvareq}
-V'(x) = DF(Q(x)) V(x)
+V'(x) = DF(Q(x)) V(x).
 \end{equation}
 Under the nondegeneracy assumption, $Q'(x)$ is the unique bounded solution to the variational equation, and there is a unique bounded solution $\Psi(x)$ to the adjoint variational equation
 \begin{equation}\label{introadjvareq}
@@ -107,7 +107,7 @@ Heuristically, for a double pulse to occur, a solution must ``jump'' from the st
 \label{fig:wswu}
 \end{center}
 \end{figure}
-Suppose for simplicity that $U \in \R^4$ and the eigenvalues of $DF(0)$ are a quartet $\pm \alpha \pm \beta i$. Then the stable and unstable manifolds are both two-dimensional. Furthermore, the stable and unstable manifolds ``twist'' as they approach the equilibrium at 0, and the frequency of these twists is $2 \pi / \beta$. If equation \cref{introgenODE} is derived from an ODE such as \cref{introKdV5eq}, these ``twists'' are manifested as oscillations in the exponentially decaying tail of the solitary wave. A solution can only ``jump'' from the stable manifold at $x = L$ to the unstable manifold at $x = -L$ if the manifolds have the proper alignment, which is determined by these ``twists''. Specifically, write the tangent space to the unstable manifold as $T_{Q(x)}W^u(0) = \R Q'(x) \oplus Y^-(x)$, where $Y^-(x)$ is one-dimensional. For the ``jump'' to take place, $Q'(L)$ must be perpendicular to $Y^-(-L)$ \cite{Sandstede1993,Sandstede2002}. This is shown in \cref{fig:manifoldslineup}.
+Suppose for simplicity that $U \in \R^4$ and the eigenvalues of $DF(0)$ are a quartet $\pm \alpha \pm \beta i$. Then the stable and unstable manifolds are both two-dimensional. Furthermore, the stable and unstable manifolds ``twist'' as they approach the equilibrium at 0, and the frequency of these twists is $2 \pi / \beta$. If equation \cref{introgenODE} is derived from an ODE such as \cref{introKdV5eq}, these ``twists'' are manifested as oscillations in the exponentially decaying tail of the solitary wave. A solution can only ``jump'' from the stable manifold at $x = L$ to the unstable manifold at $x = -L$ if the two manifolds have the proper alignment, which is determined by these ``twists''. Specifically, write the tangent space to the unstable manifold as $T_{Q(x)}W^u(0) = \R Q'(x) \oplus Y^-(x)$, where $Y^-(x)$ is one-dimensional. For the ``jump'' to take place, $Q'(L)$ must be perpendicular to $Y^-(-L)$ \cite{Sandstede1993,Sandstede2002}. This is shown in \cref{fig:manifoldslineup}.
 \begin{figure}
 \begin{center}
 \includegraphics[width=8cm]{images/intro/manifoldslineup}
@@ -128,20 +128,20 @@ The vectors $Q'(L)$ and $\Psi(-L)$ rotate in opposite directions with frequency 
 \label{fig:psiqrotate}
 \end{center}
 \end{figure}
-In half of the cases, $Q'(x)$ and $\Psi(-x)$ will be in the same direction, so that $\langle Q'(x), \Psi(-x) \rangle > 0$. In the other half of the cases, $Q'(x)$ and $\Psi(-x)$ will be in the opposite direction, so that $\langle Q'(x), \Psi(-x) \rangle < 0$. Since specific alignments of $Q'(L)$ and $\Psi(-L)$ are necessary for a double pulse to exist, double pulse solutions in general do not exist for all values of $L$ but only for a countable set of lengths $L$ indexed by an integer $m$ which represents the number of half-twists made by the stable and unstable manifolds \cite{SandstedeStrut}.  
+In half of the cases, $Q'(x)$ and $\Psi(-x)$ will be in the same direction, so that $\langle Q'(x), \Psi(-x) \rangle > 0$. In the other half of the cases, $Q'(x)$ and $\Psi(-x)$ will be in the opposite direction, so that $\langle Q'(x), \Psi(-x) \rangle < 0$. This suggests that there may be two distinct classes of double pulse solutions. Since specific alignments of $Q'(L)$ and $\Psi(-L)$ are necessary for a double pulse to exist, double pulse solutions in general do not exist for all values of $L$ but only for a countable set of lengths $L$ indexed by an integer $m$ which represents the number of half-twists made by the stable and unstable manifolds \cite{SandstedeStrut}.  
 
-To construct a multi-pulse, we will use a mathematical technique known as Lin's method, which is a Lyapunov-Schmidt reduction that allows us to find solutions near a known homoclinic orbit. This technique was introduced in \cite{Lin1990} and was used in \cite{Sandstede1993,SandstedeStrut} to construct multi-pulse solutions and \cite{Sandstede1998} to determine their spectral stability. Briefly, the method works as follows. For simplicity, we will state the procedure for a 2-pulse. We start with a known homoclinic orbit $Q(x)$ on $\R$. We then break the homoclinic orbit, either by varying a parameter in the system or by varying the initial conditions at $x = 0$. This yields a function $Q^-(x)$ on $\R^-$ which is contained in the unstable manifold and a function $Q^+(x)$ on $\R^+$ which is contained in the stable manifold. To construct a double pulse, we will ``reconnect'' these pieces using small remainder functions. Specifically, we will look for a double pulse solution as a piecewise function consisting of the four pieces
+To construct a multi-pulse, we will use a mathematical technique known as Lin's method, which is a Lyapunov-Schmidt reduction that allows us to find solutions near a known homoclinic orbit. This technique was introduced in \cite{Lin1990} and was used in \cite{Sandstede1993,SandstedeStrut} to construct multi-pulse solutions and \cite{Sandstede1998} to determine their spectral stability. Briefly, the method works as follows. For simplicity, we will state the procedure for a double pulse. We start with a known homoclinic orbit $Q(x)$ on $\R$. We then break the homoclinic orbit, either by varying a parameter in the system or by varying the initial conditions at $x = 0$. This yields a function $Q^-(x)$ on $\R^-$ which is contained in the unstable manifold and a function $Q^+(x)$ on $\R^+$ which is contained in the stable manifold. To construct a double pulse, we will ``reconnect'' these pieces using small remainder functions. Specifically, we will look for a double pulse solution as a piecewise function consisting of the four pieces
 \begin{align*}
 U_1^-(x) &= Q^-(x) + W_1^-(x) && x \in (-\infty, 0] \\
 U_1^+(x) &= Q^+(x) + W_1^+(x) && x \in [0, L] \\
 U_2^-(x) &= Q^-(x) + W_2^-(x) && x \in [-L, 0] \\
-U_1^+(x) &= Q^+(x) + W_1^+(x) && x \in [L, \infty).
+U_1^+(x) &= Q^+(x) + W_1^+(x) && x \in [L, \infty)
 \end{align*}
-which satisfies the matching condition at the pulse tails
+which are spliced together end-to-end. These pieces must satisfy a matching condition at the pulse tails
 \begin{equation}\label{introLin1}
 U_1^+(L) = U_2^-(-L)
 \end{equation} 
-and the two matching conditions at the pulse centers
+and two matching conditions at the pulse centers
 \begin{equation}\label{introLin2}
 \begin{aligned}
 U_1^-(0) &= U_1^+(0) \\
@@ -149,7 +149,7 @@ U_2^-(0) &= U_2^+(0)
 \end{aligned}
 \end{equation} 
 
-The remainder functions $W_i^\pm(x)$ are the ``glue'' which reconnects $Q^-(x)$ and $Q^+(x)$ to form a double pulse. Lin's method allows us to find remainder functions $W_i^\pm(x)$ such that the first matching condition \cref{introLin1} is satisfied. In general, the matching conditions \cref{introLin2} are not satisfied. However, in most cases, the ``jumps'' $U_i^-(0) - U_i^+(0)$ can only occur in a direction which is perpendicular to the tangent spaces of the stable and unstable manifolds. For equation \cref{introgenODE}, it follows from the nondegeneracy assumption that these jumps at $x = 0$ can only occur in the direction of $\Psi(0)$. Projecting the jump $U_i^-(0) - U_i^+(0)$ onto $\Psi(0)$, we obtain two jump conditions
+The remainder functions $W_i^\pm(x)$ are the ``glue'' which reconnects $Q^-(x)$ and $Q^+(x)$ to form a double pulse. Lin's method allows us to find remainder functions $W_i^\pm(x)$ such that the first matching condition \cref{introLin1} is satisfied. In general, the matching conditions \cref{introLin2} are not satisfied. However, in most cases, the ``jumps'' $U_i^-(0) - U_i^+(0)$ can only occur in a direction which is perpendicular to the tangent spaces of the stable and unstable manifolds. For equation \cref{introgenODE}, it follows from the nondegeneracy assumption that the jumps at $x = 0$ can only occur in the direction of $\Psi(0)$. Projecting the jump $U_i^-(0) - U_i^+(0)$ onto $\Psi(0)$, we obtain two jump conditions
 \begin{equation}\label{introLinJump}
 \begin{aligned}
 \xi_1 &= \langle \Psi(0), U_1^+(0) - U_1^-(0) \rangle \\
@@ -160,7 +160,7 @@ A double pulse solution exists if and only if these two jump conditions are both
 
 \section{Outline of thesis}
 
-In \cref{chapter:KdV5}, we introduce the 5th order KdV equation and discuss prior results. In \cref{chapter:KdV5numerics} we present results from numerical simulations concerning existence and spectral stability of multi-pulse solutions to KdV5. From here, we turn to analysis. In most cases, proofs of results are deferred until the end. In \cref{chapter:kdv5general}, we formulate a generalization of the problem of interest, for which KdV5 is a specific case. In \cref{chapter:kdv5homoclinic}, we discuss the existence and spectral stability of multi-pulse solutions to KdV5. In \cref{chapter:kdv5periodic}, we perform a similar analysis for multi-pulse solutions on a periodic domain. In \cref{chapter:other}, we summarize work we have done on multi-pulses in other systems. After a brief concluding chapter on future directions, the remainding proofs are presented in appendices.
+In \cref{chapter:KdV5}, we introduce the fifth order KdV equation (KdV5) and discuss prior results. In \cref{chapter:KdV5numerics} we present results from numerical simulations concerning existence and spectral stability of multi-pulse solutions to KdV5. From here, we turn to analysis. In most cases, proofs of results are deferred to appendices. In \cref{chapter:kdv5general}, we formulate a generalization of the problem of interest, for which KdV5 is a specific case. In \cref{chapter:kdv5homoclinic}, we discuss the existence and spectral stability of multi-pulse solutions to KdV5. In \cref{chapter:kdv5periodic}, we perform a similar analysis for multi-pulse solutions on a periodic domain. In \cref{chapter:other}, we summarize work we have done on multi-pulses in other systems. After a brief concluding chapter on future directions, the remainding proofs are presented in appendices.
 
 \iffulldocument\else
 	\bibliographystyle{amsalpha}

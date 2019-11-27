@@ -80,7 +80,7 @@ Linearization of the 4th order ODE \cref{KdV5eq4} about a solution $u^*(x)$ is t
 \begin{equation}\label{KdV5hessian}
 \calE''(u^*) = \partial_x^4 - \partial_x^2 + c - 2 u^* 
 \end{equation}
-where $\calE''(u^*)$ is the Hessian of the energy \cref{KdV5energy}. For the rest state $u^* = 0$, the eigenvalues of $\calE''(u^*)$ are the solutions to the fourth-order polynomial equation $\nu^4 - \nu^2 + c = 0$, which are
+where $\calE''(u^*)$ is the Hessian of the energy \cref{KdV5energy}. For the rest state $u^* = 0$, the eigenvalues of $\calE''(0)$ are the solutions to the fourth-order polynomial equation $\nu^4 - \nu^2 + c = 0$, which are
 \begin{align*}
 \nu = \pm \sqrt{ \frac{1 \pm \sqrt{1 - 4c} }{2}}.
 \end{align*}
@@ -139,7 +139,7 @@ Thus there is an eigenvalue at 0 with at least algebraic multiplicity 2 and geom
 \]
 by the Weyl essential spectrum theorem \cite[Theorem 2.2.6]{Kapitula2013} and \cite[Theorem 3.1.11]{Kapitula2013}, $\partial_x \calE''(q_n)$ and $\partial_x \calE''(0)$ have the same essential spectrum. By a straightforward calculation, the essential spectrum of $\partial_x \calE''(q_n)$ is the entire imaginary axis.
 
-All that remains is to locate the rest of the point spectrum. We expect that, as in \cite{Sandstede1998}, the $n-$pulse $q_n$ will have $n-1$ additional sets of eigenvalues near 0. We will call these interaction eigenvalues since they result from interactions between neighboring pulses. Since \cref{KdV5c} is Hamiltonian, these interaction eigenvalues must come in quartets $\{ \pm \lambda, \pm \overline{\lambda}\}$ \cite[Proposition 5.1.2]{Kapitula2013}. Thus each set of eigenvalues must come in one of the three patterns in \cref{fig:kdv5inteigpattern}.
+All that remains is to locate the rest of the point spectrum. We expect that, as in \cite{Sandstede1998}, the $n-$pulse solution $q_n$ will have $n-1$ additional sets of eigenvalues near 0. We will call these interaction eigenvalues since they result from interactions between neighboring pulses. Since \cref{KdV5c} is Hamiltonian, these interaction eigenvalues must come in quartets $\{ \pm \lambda, \pm \overline{\lambda}\}$ \cite[Proposition 5.1.2]{Kapitula2013}. Thus each set of eigenvalues must come in one of the three patterns in \cref{fig:kdv5inteigpattern}.
 
 \begin{figure}
 \begin{center}
@@ -149,9 +149,9 @@ All that remains is to locate the rest of the point spectrum. We expect that, as
 \label{fig:kdv5inteigpattern}
 \end{figure}
 
-\noi By Hamiltonian symmetry, the presence of an eigenvalue with nonzero real part implies that there is an unstable eigenvalue with positive real part. Thus the best we can hope for is neutral stability. For double pulses, there is a pair of interaction eigenvalues with is either real or purely imaginary (to leading order) with negative Krein signature \cite[Theorem 2.3]{Pelinovsky2007}. 
+\noi By Hamiltonian symmetry, the presence of an eigenvalue with nonzero real part implies that there is an unstable eigenvalue with positive real part. Thus the best we can hope for is neutral stability. For double pulses, Chugunova and Pelinovsky prove that there is a pair of interaction eigenvalues with is either real or purely imaginary (to leading order) with negative Krein signature \cite[Theorem 2.3]{Pelinovsky2007}. 
 
-The presence of the essential spectrum along the entire imaginary axis makes any purely imaginary interaction eigenvalues difficult to locate. In order to do this, we will employ two different techniques. In \cref{chapter:kdv5homoclinic}, we will use an exponentially weighted space to move the essential spectrum into the left half plane. This will allow us to obtain a result for the spectrum of multi-pulses. However, as in \cite{Pelinovsky2007}, we will only be able to prove that eigenvalues close to the imaginary axis are purely imaginary to leading order. Thus while we can obtain an instability result, we cannot obtain a stability result. In \cref{chapter:kdv5periodic}, we look at multi-pulses on a periodic domain. In this case, the essential spectrum becomes a discrete set of eigenvalues, which in makes the analysis straightforward as long as the essential spectrum eigenvalues and the interaction eigenvalues are well separated.
+The presence of the essential spectrum along the entire imaginary axis makes any purely imaginary interaction eigenvalues difficult to locate. In order to do this, we will employ two different techniques. In \cref{chapter:kdv5homoclinic}, we will use an exponentially weighted space to move the essential spectrum into the left half plane. This will allow us to obtain a result for the spectrum of multi-pulses. However, as in \cite{Pelinovsky2007}, we will only be able to prove that eigenvalues close to the imaginary axis are purely imaginary to leading order. Thus while we can obtain an instability result, we cannot obtain a stability result. In \cref{chapter:kdv5periodic}, we look at multi-pulses on a periodic domain. In this case, the essential spectrum becomes a discrete set of eigenvalues, which in makes the analysis straightforward as long as the essential spectrum eigenvalues and the interaction eigenvalues do not interfere with each other.
 
 \iffulldocument\else
 	\bibliographystyle{amsalpha}

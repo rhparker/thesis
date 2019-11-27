@@ -11,11 +11,10 @@ A multi-pulse is a localized, multi-modal solution to \cref{eqODE} which resembl
 \begin{center}
 \includegraphics[width=12cm]{images/kdv5numerics/multipulseperiodic.eps}
 \end{center}
-\caption{Construction of an $n$-pulse solution from the primary pulse.}
+\caption[Construction of an $n$-pulse solution]{Construction of an $n$-pulse solution from the primary pulse.}
 \label{fig:multipulse}
 \end{figure}
-
-\noi In this chapter, we will discuss the existence and spectral stability of multi-pulses.
+In this chapter, we will discuss the existence and spectral stability of multi-pulses.
 
 \section{Existence of multi-pulses}\label{sec:multiexistR}
 
@@ -23,9 +22,7 @@ First, we look at existence. From a spatial dynamics perspective, an $n$-pulse i
 \begin{equation}\label{existgenODE1}
 U'(x) = F(U(x); c)
 \end{equation}
-which remains close to the primary homoclinic orbit $Q_n(x)$. An $n$-pulse can be described by $n-1$ pulse distances $\{X_1, \dots, X_{n-1} \}$, where the distance between consecutive copies of $Q(x)$ is $2 X_j$.
-
-From a mathematical perspective, rather than describing a $n$-pulse by its pulse distances $X_j$, we will use an alternative parameterization which more convenient and which captures the underlying geometry necessary for a multi-pulse to exist. This parameterization is almost identical to that in \cite{SandstedeStrut,Sandstede1998}.
+which remains close to the primary homoclinic orbit $Q_n(x)$. An $n$-pulse can be described by $n-1$ pulse distances $\{X_1, \dots, X_{n-1} \}$, where the distance between consecutive copies of $Q(x)$ is $2 X_j$. From a mathematical perspective, rather than describing a $n$-pulse by its pulse distances $X_j$, we will use an alternative parameterization which more convenient and which captures the underlying geometry necessary for a multi-pulse to exist. This parameterization is almost identical to that in \cite{SandstedeStrut,Sandstede1998}.
 
 From Hypothesis \ref{hypeqhyp}, the rest state at 0 is a hyperbolic equilibrium point of \cref{existgenODE}. The linearization $DF(0; c)$ about the rest state has a quartet of eigenvalues $\pm \alpha_0 \pm \beta_0 i$, which depends on the wavespeed $c$. All other eigenvalues have real part strictly larger in magnitude than $\alpha_0$. Let
 \begin{equation*}
@@ -68,10 +65,10 @@ where for the remainder terms $\tilde{Q}_j^\pm(x)$ we have the estimates
 \begin{aligned}
 \|\tilde{Q}_j^\pm\| &\leq C e^{-\alpha_0 X_{\min}} \\
 |\tilde{Q}_{j+1}^-(-X_j) - Q(X_j)| &\leq C e^{-2 \alpha_0 X_{\min}} \\
-|\tilde{Q}_j^+(X_j) - Q(-X_j)| &\leq C e^{-2 \alpha_0 X_{\min}} \\
+|\tilde{Q}_j^+(X_j) - Q(-X_j)| &\leq C e^{-2 \alpha_0 X_{\min}},
 \end{aligned}
 \end{equation}
-which hold in addition for derivatives of $Q$.
+where $X_{\min} = \min\{X_1, \dots, X_n\}$. These estimates hold in addition for derivatives of $Q_j^\pm(x)$.
 \end{enumerate}
 \begin{proof}
 Parts (i)-(iii) follow from \cite{SandstedeStrut}, where $L_j(r)$ in \cite{SandstedeStrut} corresponds to $2X_j(r)$ here. \cref{hypeqhyp} and \cref{Hhyp} are equivalent to Hypotheses 3.1 and 3.3 in \cite{SandstedeStrut}. The eigenvalue problem $\calE''(q_n)v = \lambda v$ can be written in a first order system as
@@ -87,7 +84,7 @@ since the last component of $\Psi(x)$ is $\partial_x q(x)$ by \cref{psiform}. Th
 \end{theorem}
 
 \begin{remark}\label{remark:Hessianeigs}
-It follows from \cite{Sandstede1998} that the $n$eigenvalues $\{ \mu_1, \dots, \mu_{n-1}, 0 \}$ of $\calE''(q_n)$ are the solutions to 
+It follows from \cite{Sandstede1998} that the $n$ eigenvalues $\{ \mu_1, \dots, \mu_{n-1}, 0 \}$ of $\calE''(q_n)$ are the solutions to 
 \[
 \det(A - \mu M_1 I + R(\mu)) = 0
 \]
