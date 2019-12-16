@@ -225,7 +225,7 @@ where $q(x; c_0)$ is an even function and is an exponentially localized travelin
 Next, we address the intersection of the stable and unstable manifolds $W^s(0; c_0)$ and $W^u(0; c_0)$. By \cref{Hhyp}, $W^s(0; c_0), W^u(0; c_0) \subset H^{-1}(0; c_0)$, where $H^{-1}(0; c_0)$ is the 0-level set of $H$. We have the following lemma concerning $H^{-1}(0; c_0)$.
 
 \begin{lemma}\label{manifoldinH0}
-There exists $\delta > 0$ such that for $c \in (c_0 - \delta, c_0 + \delta)$, the zero level set $H^{-1}(0; c)$ contains a smooth $(2m-1)$-dimensional manifold $M(c)$; $M(c_0)$ contains $Q(0; c_0)$.
+There exists $\delta > 0$ such that for $c \in (c_0 - \delta, c_0 + \delta)$, the zero level set $H^{-1}(0; c)$ contains a smooth $(2m-1)$-dimensional manifold $K(c)$; $K(c_0)$ contains $Q(0; c_0)$.
 \end{lemma}
 
 We then take the following hypothesis regarding the intersection of the stable and unstable manifolds in $H^{-1}(0; c_0)$.
@@ -236,7 +236,7 @@ The stable manifold $W^s(0; c_0)$ and the unstable manifold $W^u(0; c_0)$ inters
 
 \noi By \cref{H0transversehyp} and \cref{manifoldinH0}, 
 \[
-\dim (T_{Q(0; c_0)}W^s(0; c_0) + T_{Q(0; c_0)}W^u(0; c_0)) = \dim M(c_0) = 2m-1 
+\dim (T_{Q(0; c_0)}W^s(0; c_0) + T_{Q(0; c_0)}W^u(0; c_0)) = \dim K(c_0) = 2m-1 
 \]
 Since $\dim T_{Q(0; c_0)}W^s(0; c_0) = m$ and $\dim T_{Q(0; c_0)}W^s(0; c_0) = m$, by a dimension-counting argument, $\dim T_{Q(0; c_0)}W^s(0; c_0) \cap T_{Q(0; c_0)}W^u(0; c_0) = 1$. Since $Q(x; c_0) \subset W^s(0; c_0) \cap W^u(0; c_0)$, 
 \[
@@ -384,7 +384,12 @@ Let $\tilde{Q}(x)$ be the primary pulse solution from \cref{sec:primarypulse}, a
 V'(x) = A(Q(x)) V(x) \label{vareq2} \\
 W'(x) = -A(Q(x))^* W(x) \label{adjvareq2}
 \end{align}
-where we reuse the same notation $V$ and $W$ for convenience. Since $(\partial_x \calL(q))\partial_x q = 0$ and $(\partial_x \calL(q))(-\partial_c q) = \partial_x q$, it follows that 
+where we reuse the same notation $V$ and $W$ for convenience. Since 
+\begin{align*}
+(\partial_x \calL(q))\partial_x q &= 0 \\
+(\partial_x \calL(q))(-\partial_c q) &= \partial_x q,
+\end{align*}
+it follows that 
 \begin{align}
 (\partial_x Q(x))' &= A(Q(x))(\partial_x Q(x)) \label{Qprimevarsol} \\
 (\partial_c Q(x))' &= A(Q(x))(\partial_c Q(x)) + B(\partial_x Q(x))\label{Qcvarsol}

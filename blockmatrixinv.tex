@@ -139,7 +139,7 @@ Since $e^{-\alpha X^*} = C r^{1/2} < \delta$, we have
 \|L_1(\lambda)Z\| \leq C \delta \|Z\|.
 \]
 Thus, decreasing $\delta$ if necessary, $I - L_1(\lambda)$ is invertible on $V_Z$. The inverse $(I - L_1(\lambda))^{-1}$ is analytic in $\lambda$, thus we have the solution
-\begin{equation}\label{L1L2eq}
+\begin{equation}\label{L1L2eqinv}
 Z = (I - L_1(\lambda)^{-1}L_2(\lambda)(a,b,c,d)
 \end{equation}
 The bound \eqref{Z1bound} follows from the bound \eqref{L2bound} from Lemma \ref{L2boundlemma}.
@@ -175,17 +175,21 @@ and
 At $\pm X_i$, the fixed point equations \eqref{Zfpeq} are
 \begin{align*}
 Z_{i+1}^-&(-X_i) = a_i^- + \Phi^u(-X_i, 0; \lambda) b_{i+1}^- - a_i^c V_0(\lambda) \\ 
-&+ \int_0^{-X_i} \Phi^u(-X_i, y; \lambda) P_-(y; \lambda)^{-1} [ G_{i+1}^-(y) P_-(y; \lambda)Z_{i+1}^-(y) + c_i e^{\nu(\lambda)X_i} G_{i+1}^-(y) V^-(x; \lambda) + \lambda^2 d_{i+1} \tilde{H}_{i+1}^-(y)] dy \\
+&+ \int_0^{-X_i} \Phi^u(-X_i, y; \lambda) P_-(y; \lambda)^{-1} \big[ G_{i+1}^-(y) P_-(y; \lambda)Z_{i+1}^-(y) \\
+&\qquad+ c_i e^{\nu(\lambda)X_i} G_{i+1}^-(y) V^-(x; \lambda) + \lambda^2 d_{i+1} \tilde{H}_{i+1}^-(y)\big] dy \\
 Z_i^+&(X_i) = a_i^+ + \Phi^s(X_i, 0; \lambda) b_i^+ + a_i^c V_0(\lambda) \\
-&+ \int_0^{X_i} \Phi^s(X_i, y; \lambda) P_+(y; \lambda)^{-1} [ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i e^{-\nu(\lambda)X_i} G_i^-(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy
+&+ \int_0^{X_i} \Phi^s(X_i, y; \lambda) P_+(y; \lambda)^{-1} \big[ G_i^+(y) P_+(y; \lambda) Z_i^+(y) \\
+&\qquad+ c_i e^{-\nu(\lambda)X_i} G_i^-(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)\big] dy
 \end{align*}
 where we used, for example, the fact that $a_i^- \in E^s(\lambda)$ and $\Phi^s(-X_{i-1}, -X_{i-1}; \lambda)$ is the identity on $E^s(\lambda)$. Applying the appropriate conjugation operators, subtracting, and using equation \eqref{projTheta}, we obtain the equation 
 \begin{equation}\label{Dideq0}
 \begin{aligned}
 D_i &d + C_i c = (I + \Theta_+(X_i; \lambda))a_i^+ + (I + \Theta_+(X_i; \lambda))a_i^c V_0(\lambda) + P_+(X_i; \lambda)\Phi^s(X_i, 0; \lambda) b_i^+ \\
-&+ P_+(X_i; \lambda) \int_0^{X_i} \Phi^s(X_i, y; \lambda) P_+(y; \lambda)^{-1}[ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i e^{-\nu(\lambda)X_i} G_i^-(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy \\
+&+ P_+(X_i; \lambda) \int_0^{X_i} \Phi^s(X_i, y; \lambda) P_+(y; \lambda)^{-1}\big[ G_i^+(y) P_+(y; \lambda) Z_i^+(y) \\
+&\qquad+ c_i e^{-\nu(\lambda)X_i} G_i^-(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)\big] dy \\
 &- (I + \Theta_-(-X_i; \lambda))a_i^- + (I + \Theta_-(-X_i; \lambda))a_i^c V_0(\lambda) - P_-(-X_i; \lambda)\Phi^u(-X_i, 0; \lambda) b_{i+1}^- \\ 
-&- P_-(-X_i; \lambda) \int_0^{-X_i} \Phi^u(-X_i, y; \lambda) P_-(y; \lambda)^{-1}[ G_{i+1}^-(y) P_-(y; \lambda)Z_{i+1}^-(y) + c_i e^{\nu(\lambda)X_i} G_{i+1}^-(y) V^-(y; \lambda) + \lambda^2 d_{i+1} \tilde{H}_{i+1}^-(y)] dy
+&- P_-(-X_i; \lambda) \int_0^{-X_i} \Phi^u(-X_i, y; \lambda) P_-(y; \lambda)^{-1}\big[ G_{i+1}^-(y) P_-(y; \lambda)Z_{i+1}^-(y) \\
+&\qquad+ c_i e^{\nu(\lambda)X_i} G_{i+1}^-(y) V^-(y; \lambda) + \lambda^2 d_{i+1} \tilde{H}_{i+1}^-(y)\big] dy
 \end{aligned}
 \end{equation}
 which simplifies to
@@ -194,8 +198,10 @@ which simplifies to
 D_i &d + C_i c= a_i^+ - a_i^- + 2 a_i^c V_0(\lambda) \\
 &+ \Theta_+(X_i; \lambda)a_i^+ - \Theta_-(-X_i; \lambda)a_i^- + (\Theta_+(X_i; \lambda) + \Theta_-(-X_i; \lambda)) a_i^c V_0(\lambda)\\
 &+ P_+(X_i; \lambda)\Phi^s(X_i, 0; \lambda) b_i^+ - P_-(-X_i; \lambda)\Phi^u(-X_i, 0; \lambda) b_{i+1}^- \\
-&+ P_+(X_i; \lambda) \int_0^{X_i} \Phi^s(X_i, y; \lambda) P_+(y; \lambda)^{-1}[ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i e^{-\nu(\lambda)X_i} G_i^-(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy  \\ 
-&- P_-(-X_i; \lambda) \int_0^{-X_i} \Phi^u(-X_i, y; \lambda) P_-(y; \lambda)^{-1}[ G_{i+1}^-(y) P_-(y; \lambda)Z_{i+1}^-(y) + c_i e^{\nu(\lambda)X_i} G_{i+1}^-(y) V^-(y; \lambda) + \lambda^2 d_{i+1} \tilde{H}_{i+1}^-(y)] dy
+&+ P_+(X_i; \lambda) \int_0^{X_i} \Phi^s(X_i, y; \lambda) P_+(y; \lambda)^{-1}\big[ G_i^+(y) P_+(y; \lambda) Z_i^+(y) \\
+&\qquad+ c_i e^{-\nu(\lambda)X_i} G_i^-(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)\big] dy \\ 
+&- P_-(-X_i; \lambda) \int_0^{-X_i} \Phi^u(-X_i, y; \lambda) P_-(y; \lambda)^{-1}\big[ G_{i+1}^-(y) P_-(y; \lambda)Z_{i+1}^-(y) \\
+&\qquad+ c_i e^{\nu(\lambda)X_i} G_{i+1}^-(y) V^-(y; \lambda) + \lambda^2 d_{i+1} \tilde{H}_{i+1}^-(y)\big] dy
 \end{aligned}
 \end{equation}
 This is of the form
@@ -468,13 +474,13 @@ where $A_4$ and $\tilde{A}_4$ are linear in $(c, d)$, and have bounds
 \begin{proof}
 At $x = 0$, the fixed point equations \eqref{Zfpeq} become
 \begin{align*}
-Z_i^-(0) &= \Phi^s(0, -X_{i-1}; \lambda) a_{i-1}^- + \Phi^u(0, 0; \lambda) b_i^- -\Phi^c(0, -X_{i-1}; \lambda) a_{i-1}^c V_0(\lambda) \\
+Z_i^-&(0) = \Phi^s(0, -X_{i-1}; \lambda) a_{i-1}^- + \Phi^u(0, 0; \lambda) b_i^- -\Phi^c(0, -X_{i-1}; \lambda) a_{i-1}^c V_0(\lambda) \\
 &+ \int_{-X_{i-1}}^0 \Phi^s(0, y; \lambda)P_-(y; \lambda)^{-1} [ G_i^-(y) P_-(y; \lambda) Z_i^-(y) + c_{i-1} e^{\nu(\lambda)X_{i-1}} G_i^-(y) V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)] dy \\
 &+ \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_-(y; \lambda)^{-1} [ G_i^-(y) P_-(y; \lambda) Z_i^-(y) + c_{i-1} e^{\nu(\lambda)X_{i-1}} G_i^-(y) V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)] dy
 \end{align*}
 and
 \begin{align*}
-Z_i^+(0) &= \Phi^u(0, X_i; \lambda) a_i^+ + \Phi^s(0, 0; \lambda) b_i^+ + \Phi^c(0, X_i; \lambda) a_i^c V_0(\lambda) \\
+Z_i^+&(0) = \Phi^u(0, X_i; \lambda) a_i^+ + \Phi^s(0, 0; \lambda) b_i^+ + \Phi^c(0, X_i; \lambda) a_i^c V_0(\lambda) \\
 &+ \int_{X_i}^0 \Phi^u(0, y; \lambda) P_+(y; \lambda)^{-1} [ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i e^{-\nu(\lambda)X_i} G_i^-(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy \\
 &+ \int_{X_i}^0 \Phi^c(0, y; \lambda) P_+(y; \lambda)^{-1} [ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i e^{-\nu(\lambda)X_i} G_i^-(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy \\
 \end{align*}
@@ -525,16 +531,20 @@ to obtain the expressions
 P_-&(0; \lambda) Z_i^-(0) = P_-(0; 0)( x_i^- + y_i^- - P_0^c(0) e^{\nu(\lambda) X_{i-1}} a_{i-1}^c V_0(\lambda) ) \\
 &+ P_-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) a_{i-1}^- + (P_-(0; \lambda) - P_-(0; 0))b_i^- + P_-(0; \lambda)(P_0^u(\lambda) - P_0^u(0))b_i^- \\
 &- (P_-(0; \lambda) - P_-(0; 0)) P_0^c(0) e^{\nu(\lambda) X_{i-1}} a_{i-1}^c V_0(\lambda) + P_-(0; \lambda) (P_0^c(\lambda) - P_0^c(0)) e^{\nu(\lambda) X_{i-1}} a_{i-1}^c V_0(\lambda) \\
-&+ P_-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^s(0, y; \lambda) P_-(y; \lambda)^{-1} [ G_i^-(y) P_-(y; \lambda) Z_i^-(y) + c_{i-1} e^{\nu(\lambda)X_{i-1}} G_i^-(y) V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)] dy \\
-&+ P_-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_-(y; \lambda)^{-1} [ G_i^-(y) P_-(y; \lambda) Z_i^-(y) + c_{i-1} e^{\nu(\lambda)X_{i-1}} G_i^-(y) V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)] dy 
+&+ P_-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^s(0, y; \lambda) P_-(y; \lambda)^{-1} \big[ G_i^-(y) P_-(y; \lambda) Z_i^-(y) \\
+&\qquad+ c_{i-1} e^{\nu(\lambda)X_{i-1}} G_i^-(y) V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)\big] dy \\
+&+ P_-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_-(y; \lambda)^{-1} \big[ G_i^-(y) P_-(y; \lambda) Z_i^-(y) \\
+&\qquad+ c_{i-1} e^{\nu(\lambda)X_{i-1}} G_i^-(y) V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)\big] dy 
 \end{align*}
 and
 \begin{align*}
 P_+&(0; \lambda) Z_i^+(0) = P_+(0; 0)( x_i^+ + y_i^+ + P_0^c(0) e^{-\nu(\lambda)X_i} a_i^c V_0(\lambda) )\\
 &+ P_+(0; \lambda) \Phi^u(0, X_i; \lambda) a_i^+ + (P_+(0; \lambda) - P_+(0; 0)) b_i^+ + P_+(0; \lambda) (P_0^s(\lambda) - P_0^s(0)) b_i^+ \\
 &+ (P_+(0; \lambda) - P_+(0; 0))P_0^c(0) e^{-\nu(\lambda)X_i} a_i^c V_0(\lambda) + P_+(0; \lambda) (P_0^c(\lambda) - P_0^c(0)) e^{-\nu(\lambda)X_i} a_i^c V_0(\lambda) \\
-&+ P_+(0; \lambda) \int_{X_i}^0 \Phi^u(0, y; \lambda) P_+(y; \lambda)^{-1}[ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i e^{-\nu(\lambda)X_i} G_i^-(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy \\
-&+ P_+(0; \lambda) \int_{X_i}^0 \Phi^c(0, y; \lambda) P_+(y; \lambda)^{-1}[ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i e^{-\nu(\lambda)X_i} G_i^-(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy \\
+&+ P_+(0; \lambda) \int_{X_i}^0 \Phi^u(0, y; \lambda) P_+(y; \lambda)^{-1}\big[ G_i^+(y) P_+(y; \lambda) Z_i^+(y) \\
+&\qquad+ c_i e^{-\nu(\lambda)X_i} G_i^-(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)\big] dy \\
+&+ P_+(0; \lambda) \int_{X_i}^0 \Phi^c(0, y; \lambda) P_+(y; \lambda)^{-1}\big[ G_i^+(y) P_+(y; \lambda) Z_i^+(y) \\
+&\qquad + c_i e^{-\nu(\lambda)X_i} G_i^-(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)\big] dy \\
 \end{align*}
 With this setup, the projections on $Q'(0)$ and $Y^+ \oplus Y^-$ will either eliminate or act as the identity on the terms in the first lines of $P_i^-(0; \lambda) Z_i^-(0)$ and $P_i^+(0; \lambda) Z_i^+(0)$. Applying the projections in \eqref{centercond2}, we obtain an expression of the form
 \begin{equation}\label{projxy}
@@ -699,15 +709,19 @@ where we used Lemma \ref{lemma:expnubound} to bound $e^{\pm\nu(\lambda)X_i}$ in 
 \begin{align*}
 P_-&(0; \lambda) Z_i^-(0) = P_-(0; 0) b_i^- - P_-(0; \lambda) e^{\nu(\lambda) X_{i-1}} a_{i-1}^c V_0(\lambda) \\
 &+ P_-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) a_{i-1}^- + (P_-(0; \lambda) - P_-(0; 0))b_i^- + P_-(0; \lambda)(P_0^u(\lambda) - P_0^u(0))b_i^- \\
-&+ P_-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^s(0, y; \lambda) P_-(y; \lambda)^{-1} [ G_i^-(y) P_-(y; \lambda) Z_i^-(y) + c_{i-1} e^{\nu(\lambda)X_{i-1}} G_i^-(y) V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)] dy \\
-&+ P_-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_-(y; \lambda)^{-1} [ G_i^-(y) P_-(y; \lambda) Z_i^-(y) + c_{i-1} e^{\nu(\lambda)X_{i-1}} G_i^-(y) V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)] dy
+&+ P_-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^s(0, y; \lambda) P_-(y; \lambda)^{-1} \big[ G_i^-(y) P_-(y; \lambda) Z_i^-(y) \\
+&\qquad+ c_{i-1} e^{\nu(\lambda)X_{i-1}} G_i^-(y) V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)\big] dy \\
+&+ P_-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_-(y; \lambda)^{-1} \big[ G_i^-(y) P_-(y; \lambda) Z_i^-(y) \\
+&\qquad+ c_{i-1} e^{\nu(\lambda)X_{i-1}} G_i^-(y) V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)\big] dy
 \end{align*}
 and
 \begin{align*}
 P_+&(0; \lambda) Z_i^+(0) = P_+(0; 0) b_i^+ + P_+(0; \lambda) e^{-\nu(\lambda)X_i} a_i^c V_0(\lambda) \\
 &+ P_+(0; \lambda) \Phi^u(0, X_i; \lambda) a_i^+ + (P_+(0; \lambda) - P_+(0; 0)) b_i^+ + P_+(0; \lambda) (P_0^s(\lambda) - P_0^s(0)) b_i^+ \\
-&+ P_+(0; \lambda) \int_{X_i}^0 \Phi^u(0, y; \lambda) P_+(y; \lambda)^{-1} [ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i e^{-\nu(\lambda)X_i} G_i^-(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy \\
-&+ P_+(0; \lambda) \int_{X_i}^0 \Phi^c(0, y; \lambda) P_+(y; \lambda)^{-1} [ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i e^{-\nu(\lambda)X_i} G_i^-(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy 
+&+ P_+(0; \lambda) \int_{X_i}^0 \Phi^u(0, y; \lambda) P_+(y; \lambda)^{-1} \big[ G_i^+(y) P_+(y; \lambda) Z_i^+(y) \\
+&\qquad+ c_i e^{-\nu(\lambda)X_i} G_i^-(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)\big] dy \\
+&+ P_+(0; \lambda) \int_{X_i}^0 \Phi^c(0, y; \lambda) P_+(y; \lambda)^{-1} \big[ G_i^+(y) P_+(y; \lambda) Z_i^+(y) \\
+&\qquad+ c_i e^{-\nu(\lambda)X_i} G_i^-(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)\big] dy 
 \end{align*}
 
 The leading order terms involve $a_i^c$ and the center integral. 
@@ -936,15 +950,19 @@ where we used Lemma \ref{lemma:expnubound} to bound $e^{\pm\nu(\lambda)X_i}$ in 
 \begin{align*}
 P_-&(0; \lambda) Z_i^-(0) = P_-(0; 0) b_i^- - P_-(0; \lambda) e^{\nu(\lambda) X_{i-1}} a^c_{i-1}V_0(\lambda) \\
 &+ P_-(0; \lambda) \Phi^s(0, -X_{i-1}; \lambda) a_{i-1}^- + (P_-(0; \lambda) - P_-(0; 0))b_i^- + P_-(0; \lambda)(P_0^u(\lambda) - P_0^u(0))b_i^- \\
-&+ P_-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^s(0, y; \lambda) P_-(y; \lambda)^{-1} [ G_i^-(y) P_-(y; \lambda) Z_i^-(y) + c_{i-1} e^{\nu(\lambda)X_{i-1}} G_i^-(y) V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)]dy \\
-&+ P_-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_-(y; \lambda)^{-1} [ G_i^-(y) P_-(y; \lambda) Z_i^-(y) + c_{i-1} e^{\nu(\lambda)X_{i-1}} G_i^-(y) V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)] dy
+&+ P_-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^s(0, y; \lambda) P_-(y; \lambda)^{-1} \big[ G_i^-(y) P_-(y; \lambda) Z_i^-(y) \\
+&\qquad+ c_{i-1} e^{\nu(\lambda)X_{i-1}} G_i^-(y) V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)\big]dy \\
+&+ P_-(0; \lambda) \int_{-X_{i-1}}^0 \Phi^c(0, y; \lambda) P_-(y; \lambda)^{-1} \big[ G_i^-(y) P_-(y; \lambda) Z_i^-(y) \\
+&\qquad+ c_{i-1} e^{\nu(\lambda)X_{i-1}} G_i^-(y) V^-(y; \lambda) + \lambda^2 d_i \tilde{H}_i^-(y)\big] dy
 \end{align*}
 and
 \begin{align*}
 P_+&(0; \lambda) Z_i^+(0) = P_+(0; 0) b_i^+ + P_+(0; \lambda) e^{-\nu(\lambda)X_i} a^c_i V_0(\lambda) \\
 &+ P_+(0; \lambda) \Phi^u(0, X_i; \lambda) a_i^+ + (P_+(0; \lambda) - P_+(0; 0)) b_i^+ + P_+(0; \lambda) (P_0^s(\lambda) - P_0^s(0)) b_i^+ \\
-&+ P_+(0; \lambda) \int_{X_i}^0 \Phi^u(0, y; \lambda) P_+(y; \lambda)^{-1} [ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i e^{-\nu(\lambda)X_i} G_i^-(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy \\
-&+ P_+(0; \lambda) \int_{X_i}^0 \Phi^c(0, y; \lambda) P_+(y; \lambda)^{-1} [ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i e^{-\nu(\lambda)X_i} G_i^-(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy \\
+&+ P_+(0; \lambda) \int_{X_i}^0 \Phi^u(0, y; \lambda) P_+(y; \lambda)^{-1} \big[ G_i^+(y) P_+(y; \lambda) Z_i^+(y) \\
+&\qquad+ c_i e^{-\nu(\lambda)X_i} G_i^-(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)\big] dy \\
+&+ P_+(0; \lambda) \int_{X_i}^0 \Phi^c(0, y; \lambda) P_+(y; \lambda)^{-1} \big[ G_i^+(y) P_+(y; \lambda) Z_i^+(y) \\
+&\qquad+ c_i e^{-\nu(\lambda)X_i} G_i^-(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)\big] dy \\
 \end{align*}
 As in Lemma \ref{jumpcenteradj}, we begin by computing the leading order terms.
 

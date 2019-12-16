@@ -125,7 +125,7 @@ Since $Q^\pm(x; \beta_i^\pm)$ solves \eqref{genODE} on $\R^\pm$,
 (V_i^\pm(x))' &= F\left(Q^\pm(x; \beta_i^\pm) + V_i^\pm(x) \right) - F(Q^\pm(x; \beta_i^\pm))
 \end{align*}
 Expanding the RHS in a Taylor series (using the version for Banach spaces) about $Q^\pm(x; \beta_i^\pm)$, we attain the ODE for $V_i^\pm$.
-\begin{equation}\label{Vpiecewise}
+\begin{equation}\label{Vpiecewise1}
 (V_i^\pm(x))' = DF(Q^\pm(x; \beta_i^\pm)) V_i^\pm(x) + G_i^\pm(x; \beta_i^\pm, V_i^\pm)
 \end{equation}
 where 
@@ -134,7 +134,7 @@ G_i^\pm(\beta_i^\pm, V_i^\pm)(x) = \mathcal{O}(|V_i^\pm|^2)
 \end{equation}
 This estimate is independent of the parameters $\beta_i^\pm$ since we can get a uniform bound for $Q^\pm(0, \beta_i^\pm)$ for sufficiently small $\beta_i^\pm$. As in \cite{Sandstede1997}, derivatives of $G_i^\pm$ with respect to the parameters $\beta_i^\pm$ are the same order in $V_i^\pm$.
 
-We now rewrite the piecewise differential equations \eqref{Vpiecewise} in integrated form to get the fixed point equations.
+We now rewrite the piecewise differential equations \eqref{Vpiecewise1} in integrated form to get the fixed point equations.
 \begin{equation}\label{FPequations}
 \begin{aligned}
 V_i^+(x) &= \Phi^u_+(x, X_i; \beta_i^+) a_i^+  \\
@@ -677,9 +677,9 @@ This is \cite[Lemma 6.1(i)]{Sandstede1998}, with $s_0$ renamed to $p_0$. We do n
 \end{lemma}
 
 We will now perform the change of variables. Since the ratio $\beta_0/\alpha$ recurs frequently, define
-\begin{equation}\label{defrho}
+\begin{equation*}
 \rho = \frac{\beta_0}{\alpha}
-\end{equation}
+\end{equation*}
 As in \cite{Sandstede1998,SandstedeStrut}, define the set
 \begin{align}
 \mathcal{R} &= \left\{ \exp\left(-\frac{2 \pi m}{\rho}\right) : m \in \N_0 \right\} \cup \{ 0 \}  \\
@@ -798,9 +798,9 @@ where
 b^*_k = e^{-\frac{1}{\rho} (k \pi + p^*) }
 \end{equation}
 and 
-\begin{equation}\label{pstar}
+\begin{equation*}
 p^* = \arctan \rho.
-\end{equation}
+\end{equation*}
 Locally, the arms of the pitchfork bifurcations open upwards along the diagonal.
 \begin{proof}
 The proof is a straightforward, but tedious computation. Let $b^* = e^{-\frac{1}{\rho} p^*}$. First, we determine the locations of the pitchfork bifurcations along the diagonal. A necessary condition for these to occur is that the first derivative vanishes. The partial derivative of $H$ with respect to $b_0$ is
@@ -1223,7 +1223,7 @@ where
 
 \begin{proof}
 For simplicity, take $m_0 = 0$. The proof is identical for $m_0 = 1$. For every positive integer $m_1$ with $m_1 \geq 1$, using the parameterization in Lemma \ref{thetaparamlemma}, let
-\begin{equation}\label{thetaparam}
+\begin{equation}\label{thetaparam2}
 \begin{aligned}
 b_0( m_1, \theta) &= \exp\left[ -\frac{1}{\rho}\theta^*(\theta, m_1 - m_0) \right] \\
 b_1( m_1, \theta) &= \exp\left[ -\frac{1}{\rho}(m_1 \pi + \theta) \right]

@@ -127,7 +127,7 @@ By \cite[(3.1.20)]{Kapitula2013}, the essential spectrum is given by the curve
 \end{align}
 which is purely imaginary since all powers of $i$ are odd. Thus the essential spectrum is a subset of the imaginary axis. Furthermore, replacing $k$ with $-k$ in \cref{essspecR}, the essential spectrum is symmetric about the real axis. In many cases, such as KdV5, the essential spectrum is the entire imaginary axis, although that is not necessarily the case.
 
-We now turn to the point spectrum. By \cref{eigA0lemma}, $A(0)$ has an eigenvalue at 0. Since $A(0)$ is not hyperbolic, we cannot directly apply the results of \cite{Sandstede1998}. To get around this, we will rewrite the eigenvalue problem in an exponentially weighted space so that the asymptotic matrix becomes hyperbolic. We can then adapt \cite[Theorem 2]{Sandstede1998}. This will allow us to extend the result of \cite[Theorem 2.3]{Pelinovsky2007} to multi-pulses. In particular, we will be able to give an instability criterion. However, since the system is no longer Hamiltonian in an exponentially weighted space, we will only be able to show that eigenvalues are purely imaginary to leading order.
+We now turn to the point spectrum. By \cref{eigA0lemma}, $A(0)$ has an eigenvalue at 0. Since $A(0)$ is not hyperbolic, we cannot directly apply the results of \cite{Sandstede1998}. To get around this, we will rewrite the eigenvalue problem in an exponentially weighted space so that the asymptotic matrix becomes hyperbolic. We can then adapt \cite[Theorem 2]{Sandstede1998}. This will allow us to extend the result of \cite[Theorem 2.3]{Pelinovsky2007} to multi-pulses. In particular, we will be able to give a more general instability criterion. However, since the system is no longer Hamiltonian in an exponentially weighted space, we will only be able to show that eigenvalues are purely imaginary to leading order. Thus using this method does not allow us to derive a rigorous stability criterion.
 
 \subsection{Exponentially weighted space}\label{sec:expwtR}
 
@@ -152,7 +152,7 @@ Choose any $\eta$ with $0 < \eta < \alpha_0$. Then $e^{\eta x} \partial_x q_n$ a
 \end{aligned}
 \end{equation}
 
-Next, we use spatial dynamics approach to write the weighted eigenvalue problem as a first order system. Since $\calH_\eta(q_n) v = \lambda v$ if and only if $\partial_x \calL(q_n) (e^{-\eta x} v) = \lambda (e^{-\eta x} v)$, take $V(x) = e^{-\eta x} \tilde{V}(x)$ in \cref{PDEeigsystem} to get
+Next, we use the spatial dynamics approach to write the weighted eigenvalue problem as a first order system. Since $\calH_\eta(q_n) v = \lambda v$ if and only if $\partial_x \calL(q_n) (e^{-\eta x} v) = \lambda (e^{-\eta x} v)$, take $V(x) = e^{-\eta x} \tilde{V}(x)$ in \cref{PDEeigsystem} to get
 \begin{align*}
 e^{-\eta x} \tilde{V}'(x) - \eta e^{-\eta x}\tilde{V}(x) &= A(Q_n(x))e^{-\eta x}\tilde{V}(x) + \lambda B e^{-\eta x}\tilde{V}(x) \\
 e^{-\eta x} \tilde{V}(x)' &= e^{-\eta x} [A(Q_n(x)) + \eta I + \lambda B] \tilde{V}(x)
@@ -256,7 +256,7 @@ where $M_1$ is defined in \cref{nhomM1}.
 \end{remark}
 
 \begin{remark}
-Since the problem is no longer Hamiltonian when posed in an exponentially weighted space, in the case where all the $m_j$ are odd, we cannot use Hamiltonian symmetry to conclude that the interaction eigenvalues are actually on the imaginary axis.
+Since the problem is no longer Hamiltonian when posed in an exponentially weighted space, in the case where all the $m_j$ are odd, we cannot use Hamiltonian symmetry to conclude that the interaction eigenvalues are actually on the imaginary axis. \cref{corr:eiglocR} extends the result in \cite[Theorem 2.3(iii)]{Pelinovsky2007} to arbitrary multi-pulses.
 \end{remark}
 
 \section{Proof of Theorem \ref{expwtstabtheorem}}
@@ -299,7 +299,7 @@ where $P_0^s$ and $P_0^u$ are the eigenprojections for the equilibrium at 0, whi
 
 \subsection{Piecewise formulation}\label{sec:kdvRpiecewise}
 
-Since $Q_n(x)$ was constructed according to \cref{multipulseexistR}, $Q(n)$ can be written piecewise as the $2n$ pieces $Q_i^(x)$, where
+Since $Q_n(x)$ was constructed according to \cref{multipulseexistR}, $Q(n)$ can be written piecewise as the $2n$ pieces $Q_i^\pm(x)$, where
 \[
 Q_i^\pm(x) = Q(x) + \tilde{Q}_i^\pm(x)
 \]
@@ -372,17 +372,17 @@ We have the estimates
 where $X_{\min} = \min\{X_1, \dots, X_n\}$.
 \begin{proof}
 Since $A(Q(x))$ is smooth in $Q(x)$, the bound (i) follows from the estimates \cref{Qpmestimates} in \cref{multipulseexistR}. By \cref{Qcbound} from \cref{Qclocalhyp},
-\begin{equation}\label{Qcbound1}
+\begin{equation}\label{Qcbound2}
 |\partial_c Q(x)| \leq C e^{-\alpha|x|}
 \end{equation}
-We can obtain the same bound for $\partial_c Q_i^\pm(x)$ using Lin's method as in \cite{SandstedeStrut,Sandstede1993}. Estimate (ii) follows from \cref{Qcbound1} together with the definitions of $H(x)$ and $\tilde{H}_i^\pm(x)$. Estimate (iii) follows from \cref{Qcbound1} together with the estimates from \cref{multipulseexistR}. For estimate (iv), we first write $D_i d$ as
+We can obtain the same bound for $\partial_c Q_i^\pm(x)$ using Lin's method as in \cite{SandstedeStrut,Sandstede1993}. Estimate (ii) follows from \cref{Qcbound2} together with the definitions of $H(x)$ and $\tilde{H}_i^\pm(x)$. Estimate (iii) follows from \cref{Qcbound2} together with the estimates from \cref{multipulseexistR}. For estimate (iv), we first write $D_i d$ as
 \begin{align*}
 D_i d &= d_{i+1} e^{-\eta X_i}[ Q_n'(-X_i) + \lambda \partial_c Q_n(-X_i)] 
 - d_i e^{\eta X_i}[ Q_n'(X_i) + \lambda \partial_c Q_n(X_i)]  \\
 &= d_{i+1} e^{-\eta X_i} [ Q'(-X_i) + \lambda \partial_c Q(-X_i) + (\tilde{Q}_{i+1}^-)'(-X_i) + \lambda  \partial_c \tilde{Q}_{i+1}^-(-X_i)] \\
 &- d_i e^{\eta X_i} [ Q'(X_i) + \lambda \partial_c Q(X_i) + (\tilde{Q}_i^+)'(X_i) + \lambda \partial_c \tilde{Q}_i^+(X_i)] 
 \end{align*}
-Estimate (iv) follows from substituting the second and third estimates in \cref{Qpmestimates}, which hold as well for derivatives with respect to $x$, and the bound \cref{Qcbound1}.	
+Estimate (iv) follows from substituting the second and third estimates in \cref{Qpmestimates}, which hold as well for derivatives with respect to $x$, and the bound \cref{Qcbound2}.	
 \end{proof}
 \end{lemma}
 
@@ -414,10 +414,10 @@ For the terms involving $D_i$, we use the expression from \cref{lemma:weightedes
 &+ \mathcal{O} \left( e^{-(\alpha - \eta) X_{\min}}\left( |\lambda| +  e^{-\alpha X_{\min}} \right) |d| \right) \rangle \\
 &= \langle \Psi(X_i), Q'(-X_i) \rangle ( e^{-2 \eta X_i}d_{i+1} - d_i ) + \mathcal{O} \left( e^{-2(\alpha - \eta) X_{\min}}\left( |\lambda| +  e^{-\alpha X_{\min}} \right) |d| \right)
 \end{align*}
-where we used the fact $P_0^u Q'(X_i) = \mathcal{O}(e^{-\alpha X_i}$ and $P_0^u Q'(-X_i) = Q'(-X_i) + \mathcal{O}(e^{-\alpha X_i}$. For the other term,
+where we used the fact $P_0^u Q'(X_i) = \mathcal{O}(e^{-\alpha X_i})$ and $P_0^u Q'(-X_i) = Q'(-X_i) + \mathcal{O}(e^{-\alpha X_i})$. For the other term,
 \begin{align*}
-\langle \Psi_\eta(-X_{i-1}), &P_0^s D_{i-1} d \rangle 
-= \langle \Psi(-X_{i-1}), Q'(X_{i-1}) \rangle (d_i - e^{2 \eta X_{i-1}} d_{i-1} ) +\mathcal{O} \left( e^{-2(\alpha - \eta) X_{\min}}\left( |\lambda| +  e^{-\alpha X_{\min}} \right) |d| \right)
+\langle \Psi_\eta&(-X_{i-1}), P_0^s D_{i-1} d \rangle\\
+&= \langle \Psi(-X_{i-1}), Q'(X_{i-1}) \rangle (d_i - e^{2 \eta X_{i-1}} d_{i-1} ) +\mathcal{O} \left( e^{-2(\alpha - \eta) X_{\min}}\left( |\lambda| +  e^{-\alpha X_{\min}} \right) |d| \right)
 \end{align*}
 Since $Q'(-x) = -RQ'(x)$ and $\Psi(-x) = R \Psi(x)$, where $R$ is the standard reversor operator,
 \[
@@ -425,13 +425,14 @@ Since $Q'(-x) = -RQ'(x)$ and $\Psi(-x) = R \Psi(x)$, where $R$ is the standard r
 \]
 Thus we have
 \begin{align*}
-\langle \Psi_\eta(-X_{i-1}), &P_0^s D_{i-1} d \rangle 
-= \langle -\Psi(X_{i-1}), Q'(-X_{i-1}) \rangle (d_i - e^{2 \eta X_{i-1}} d_{i-1} ) +\mathcal{O} \left( e^{-2(\alpha - \eta) X_{\min}}\left( |\lambda| +  e^{-\alpha X_{\min}} \right) |d| \right)
+\langle \Psi_\eta&(-X_{i-1}), P_0^s D_{i-1} d \rangle \\
+&= \langle -\Psi(X_{i-1}), Q'(-X_{i-1}) \rangle (d_i - e^{2 \eta X_{i-1}} d_{i-1} ) +\mathcal{O} \left( e^{-2(\alpha - \eta) X_{\min}}\left( |\lambda| +  e^{-\alpha X_{\min}} \right) |d| \right)
 \end{align*}
 Combining all of this, we have
 \begin{align*}
-\xi_i &= \langle \Psi(X_i), Q'(-X_i) \rangle ( e^{-2 \eta X_i}d_{i+1} - d_i ) 
-- \langle \Psi(X_{i-1}), Q'(-X_{i-1}) \rangle (d_i - e^{2 \eta X_{i-1}} d_{i-1} ) - \lambda^2 d_i M  + (R(\lambda)d)_i
+\xi_i = \langle \Psi(X_i), &Q'(-X_i) \rangle ( e^{-2 \eta X_i}d_{i+1} - d_i ) 
+- \langle \Psi(X_{i-1}), Q'(-X_{i-1}) \rangle (d_i - e^{2 \eta X_{i-1}} d_{i-1} ) \\
+&- \lambda^2 d_i M  + (R(\lambda)d)_i
 \end{align*}
 For the remainder term, we plug in the estimates from  Lemma \ref{lemma:weightedest} and the estimate $|D| = \mathcal{O}(e^{-(\alpha - \eta)X_{\min}}|d|)$ into the remainder bound \cref{weightedRbound1}. We combine this with the remainder terms from this section to get the overall remainder bound
 \begin{align}\label{weightedRbound1}

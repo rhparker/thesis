@@ -5,7 +5,7 @@
 	\chapter{KdV5}
 \fi
 
-In this chapter, we present numerical results for the existence and spectrum of solutions to \cref{KdV5c}. First, we construct the primary pulse solution $q(x)$for $c > 1/4$ using parameter continuation. We then use that solution to construct multipulses, and we analyze their spectrum numerically. We perform time-stepping to see what the spectrum implies for the stability of multi-pulse solutions. Finally, we repeat these analyses for multi-pulses on periodic domains. We do this for periodic multi-pulses where the two pulse distances are close in size and for periodic multi-pulses on very large periodic domains.
+In this chapter, we present numerical results for the existence and spectrum of solutions to \cref{KdV5c}. First, we construct the primary pulse solution $q(x)$for $c > 1/4$ using parameter continuation. We then use that solution to construct multi-pulses, and we analyze their spectrum numerically. We perform time-stepping to see what the spectrum implies for the stability of multi-pulse solutions. Finally, we repeat these analyses for multi-pulses on periodic domains. We do this for periodic multi-pulses where the two pulse distances are close in size and for periodic multi-pulses on very large periodic domains.
 
 \section{Construction of single pulse}
 
@@ -154,7 +154,9 @@ Since there is no essential spectrum in the way, it may be easier to find the in
 
 \section{Time stepping}
 
-In this section, we perform time-stepping of the PDE \eqref{KdV5c} starting with initial conditions which are near to the double pulse equilibrium solutions we constructed earlier. For spatial discretization we use Chebyshev spectral methods. This avoids the small-amplitude oscillatory modes which come from the purely imaginary essential spectrum in the case of periodic boundary conditions. For time-stepping, we use a Crank-Nicolson/Adams-Bashforth 2 (CNAB) IMEX scheme. To obtain an initial condition near a double pulse, we ``pull apart'' the two pulses by inserting a small flat segment at the origin (which is exactly half way between the two pulses). We do this for many initial conditions near the first four double pulses. For each point in time, we compute the peak distance and its derivative, which we will call the pulse relative velocity. Trajectories of this two-dimensional system are plotted in the left panel of \cref{fig:KdV5timestep}. 
+In this section, we discuss the effects of the interaction eigenvalues on the dynamics of multi-pulse structures. In particular, how do perturbations of these multi-pulses evolve in time? To do this, we perform time-stepping of the PDE \eqref{KdV5c} starting with initial conditions which are close to the double pulse equilibrium solutions we constructed earlier. For spatial discretization we use Chebyshev spectral methods. This avoids the small-amplitude oscillatory modes which come from the purely imaginary essential spectrum in the case of periodic boundary conditions. For time-stepping, we use a Crank-Nicolson/Adams-Bashforth 2 (CNAB) IMEX scheme. 
+
+To obtain an initial condition near a double pulse, we ``pull apart'' the two pulses by inserting a small flat segment at the origin (which is exactly half way between the two pulses). We do this for many initial conditions near the first four double pulses. For each point in time, we compute the peak distance and its derivative, which we will call the pulse relative velocity. Trajectories of this two-dimensional system are plotted in the left panel of \cref{fig:KdV5timestep}. 
 \begin{figure}
 \begin{center}
 \begin{tabular}{cc}
@@ -166,14 +168,14 @@ In this section, we perform time-stepping of the PDE \eqref{KdV5c} starting with
 \label{fig:KdV5timestep}
 \end{center}
 \end{figure}
-This phase portrait consists of alternating saddles and centers and resembles a harmonic oscillator with spatially varying restoring force. In fact, we can construct a such an oscillator with the following planar system
+This phase portrait consists of alternating saddles and centers. The saddles correspond to the unstable double pulses with a pair of real interaction eigenvalues, and the centers correspond to the neutrally stable double pulses with a pair of imaginary eigenvalues. The phase portrait resembles a harmonic oscillator with spatially varying restoring force. In fact, we can construct a such an oscillator using the following planar system
 \begin{equation}\label{harmonicvary}
 \begin{aligned}
 \dot{x} &= y \\
 \dot{y} &= C e^{-\alpha_0 x} \sin \beta_0 x
 \end{aligned}
 \end{equation}
-where we recall that $\pm \alpha_0 \pm \beta_0 i$ are the nonzero eigenvalues of the rest state. The phase portrait for this system is plotted in the right panel of \cref{fig:KdV5timestep}. We note the similarity between the two phase portraits.
+where we recall that $\pm \alpha_0 \pm \beta_0 i$ are the nonzero eigenvalues of the rest state. The phase portrait for this system is plotted in the right panel of \cref{fig:KdV5timestep}. We note the similarity between the two phase portraits. In addition, we remark that the system \cref{harmonicvary} was constructed empirically by observing similarities between the left panel of \cref{fig:KdV5timestep} and the phase portrait of a simple pendulum. A more rigorous derivation of \cref{harmonicvary} should be possible by following the center manifold reduction procedure in \cite[Section 10]{Zelik2009}.
 
 \section{Periodic multi-pulses}
 
@@ -207,7 +209,7 @@ At each of the pitchfork bifurcation points in \cref{fig:periodicpitchfork}, an 
 \begin{center}
 \includegraphics[width=10cm]{images/kdv5numerics/2periodiceigpattern.eps}
 \end{center}
-\caption[Interaction eigenvalue pattern for periodic double pulses in KdV5]{Interaction eigenvalue pattern for periodic double pulses. Blue lines represent periodic double pulses with a pair of real interaction eigenvalues. Red lines represent periodic double pulses with a pair of purely imaginary interaction eigenvalues. Hamiltonian-Hopf bifurcations take place in the interaction eigenvalues at the black dots.}
+\caption[Interaction eigenvalue pattern for periodic double pulses in KdV5]{Interaction eigenvalue pattern for periodic double pulses. Blue lines represent periodic double pulses with a pair of real interaction eigenvalues. Red lines represent periodic double pulses with a pair of purely imaginary interaction eigenvalues. Bifurcations take place in the interaction eigenvalues at the black dots.}
 \label{fig:2periodiceigpattern}
 \end{figure}
 

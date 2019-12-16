@@ -367,7 +367,11 @@ As in the conjugation lemma, we will only consider the case on $\R^-$. By differ
 \begin{equation}\label{Pprimeinv}
 [P_-^{-1}]' = -P_-^{-1} P_-' P_-^{-1}.
 \end{equation}
-Substitute $Y(x) = S(x) P^{-1}(x, \Lambda)$ into \cref{adjY}, which is equivalent to substituting $W(x) = [P^{-1}(x, \Lambda)]^* Z(x)$ into \cref{conjadjW}.
+Substitute $Y(x) = S(x) P^{-1}(x, \Lambda)$ into \cref{adjY}, which is equivalent to substituting 
+\[
+W(x) = [P^{-1}(x, \Lambda)]^* Z(x)
+\] 
+into \cref{conjadjW}.
 \begin{align*}
 S'(x) P_-^{-1}(x, \Lambda) + S(x) P_-^{-1}(x, \Lambda)'
 &= -S(x) P_-^{-1}(x, \Lambda) A(x, \Lambda)
@@ -379,7 +383,7 @@ S'(x) P_-^{-1}(x, \Lambda) - S(x) P_-^{-1}(x, \Lambda) P_-'(x, \Lambda) P_-^{-1}
 \end{align*}
 Using \cref{Pprimecriterion} from the conjugation lemma, 
 \begin{align*}
-S'(x) P_-^{-1}(x, \Lambda) - S(x) P_-^{-1}(x, \Lambda) \left(A(x; \Lambda)P_-(x, \Lambda) - P_-(x, \Lambda) A_-(\Lambda)\right) P_-^{-1}(x, \Lambda)
+S'(x) &P_-^{-1}(x, \Lambda) - S(x) P_-^{-1}(x, \Lambda) \left(A(x; \Lambda)P_-(x, \Lambda) - P_-(x, \Lambda) A_-(\Lambda)\right) P_-^{-1}(x, \Lambda) \\
 &= -S(x) P_-^{-1}(x, \Lambda) A(x, \Lambda)
 \end{align*}
 which simplifies to
@@ -1026,8 +1030,8 @@ Since the eigenfunction $U(x)$ must be continuous, the $2n$ pieces $U_i^\pm(x)$ 
 \begin{aligned}
 (W_i^-)'(x) &= A(Q(x); \lambda) W_i^-(x) + G_i^-(x) W_i^-(x) + c_{i-1} e^{\nu(\lambda)X_{i-1}} G_i^-(x)V^-(x; \lambda) + d_i \lambda^2 \tilde{H}_i^-(x) \\
 (W_i^+)'(x) &= A(Q(x); \lambda) W_i^+(x) + G_i^+(x) W_i^+(x) + c_i e^{-\nu(\lambda)X_i } G_i^+(x)V^+(x; \lambda) + d_i \lambda^2 \tilde{H}_i^+(x) \\
-W_i^+(X_i) - W_{i+1}^-(-X_i) &= D_i d + C_i c \\
-W_i^+(0) - W_i^+(0) &+ c_i e^{-\nu(\lambda)X_i}V^+(0; \lambda) - c_{i-1} e^{\nu(\lambda)X_i} V^-(0; \lambda) = 0
+W_i^+(X_i) &- W_{i+1}^-(-X_i) = D_i d + C_i c \\
+W_i^+(0) &- W_i^+(0) + c_i e^{-\nu(\lambda)X_i}V^+(0; \lambda) - c_{i-1} e^{\nu(\lambda)X_i} V^-(0; \lambda) = 0
 \end{aligned}
 \end{equation}
 for $i = 0, \dots, n-1$, where
@@ -1044,9 +1048,9 @@ As in \cite{Sandstede1998}, we will not be able to find a solution to this syste
 \begin{aligned}
 (W_i^-)'(x) &= A(Q(x); \lambda) W_i^-(x) + G_i^-(x) W_i^-(x) + c_{i-1} e^{\nu(\lambda)X_{i-1}} G_i^-(x)V^-(x; \lambda) + d_i \lambda^2 \tilde{H}_i^-(x) \\
 (W_i^+)'(x) &= A(Q(x); \lambda) W_i^+(x) + G_i^+(x) W_i^+(x) + c_i e^{-\nu(\lambda)X_i } G_i^+(x)V^+(x; \lambda) + d_i \lambda^2 \tilde{H}_i^+(x) \\
-W_i^+(X_i) - W_{i+1}^-(-X_i) &= D_i d + C_i c \\
+W_i^+(X_i) &- W_{i+1}^-(-X_i) = D_i d + C_i c \\
 W_i^\pm(0) &\in \R \Psi(0) \oplus \R \Psi^c(0) \oplus Y^+ \oplus Y^- \\
-W_i^+(0) - W_i^-(0) &\in \R \Psi(0) \oplus \R \Psi^c(0) 
+W_i^+(0) &- W_i^-(0) \in \R \Psi(0) \oplus \R \Psi^c(0) 
 \end{aligned}
 \end{equation}
 for $i = 0, \dots, n-1$, where the fourth equation in \cref{eigsystem0} is relaxed to the requirement that the jumps $W_i^+(0) - W_i^-(0)$ can only be in the directions of $\Psi^c(0)$ and $\Psi(0)$. A solution to \eqref{eigsystem} solves the \cref{eigsystem} if and only if the $n$ jumps conditions at $x = 0$ in the direction of $\Psi(0) \oplus \R \Psi^c(0)$ are satisfied, i.e.  

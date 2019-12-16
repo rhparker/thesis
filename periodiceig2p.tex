@@ -35,7 +35,8 @@ For $\tilde{a}_1(r, s_1)$, we have
 \end{align*}
 From Lemma \ref{lemma:ajparam}, the proof of Lemma \ref{armpersists}, and the bound on $\theta^*(\theta, m)$ from Lemma \ref{thetaparamlemma}, we have for $\tilde{a}_0(r, m_0, s_1)$
 \begin{align*}
-\tilde{a}_0(r, m_0, s_1) &= -p_0 e^{\alpha_0 \phi/\beta_0} e^{-\frac{1}{\rho}m_0} \left( \beta \cos\left(m_0 \pi + \mathcal{O}\left(e^{-\frac{1}{\rho}s_1} \right) \right) - \alpha \sin \left(m_0 \pi + \mathcal{O}\left(e^{-\frac{1}{\rho}s_1} \right) \right) \right) + \mathcal{O}\left(r^{\gamma/2\alpha_0} + e^{-\frac{1}{\rho}s_1} \right) \\
+\tilde{a}_0&(r, m_0, s_1) \\
+&= -p_0 e^{\alpha_0 \phi/\beta_0} e^{-\frac{1}{\rho}m_0} \left( \beta \cos\left(m_0 \pi + \mathcal{O}\left(e^{-\frac{1}{\rho}s_1} \right) \right) - \alpha \sin \left(m_0 \pi + \mathcal{O}\left(e^{-\frac{1}{\rho}s_1} \right) \right) \right) + \mathcal{O}\left(r^{\gamma/2\alpha_0} + e^{-\frac{1}{\rho}s_1} \right) \\
 &= -(-1)^{m_0} p_0 \beta_0 e^{\alpha_0 \phi/\beta_0} e^{-\frac{1}{\rho}m_0} + \mathcal{O}\left(r^{\gamma/2\alpha_0} + e^{-\frac{1}{\rho}s_1} \right) \\
 &= \tilde{a}^*(m_0) + \mathcal{O}\left(r^{\gamma/2\alpha_0} + e^{-\frac{1}{\rho}s_1} \right) \\
 \end{align*}
@@ -140,7 +141,7 @@ G_m(h, r) &= \left(m \pi i + h - \tilde{\mu}_*(r) r^{1/2} X\right)\left(m \pi i 
 \end{aligned}
 \end{equation}
 Since $X = X(r) = \mathcal{O}(1/|\log r|)$, this becomes
-\begin{equation}\label{Bess4}
+\begin{equation}\label{Bess5}
 \begin{aligned}
 G_m(h, r) &= \left( m \pi i + h + \mathcal{O}(r^{1/2}|\log r|) \right)\left(m \pi i + h + + \mathcal{O}(r^{1/2}|\log r|) \right) \left( h + \mathcal{O}(h^3) \right) + \mathcal{O}\left( \frac{1}{|\log r|} \right)
 \end{aligned}
@@ -350,7 +351,7 @@ Since the coefficient of $h$ is a constant, we can write this as
 \tilde{a}(p^* + h, 0) = C_1 h + \mathcal{O}(|h|^2) 
 \]
 where $C_1 \neq 0$. Substituting this into \cref{Gsymm1}, we wish to solve the equation the equation $G(\tilde{\mu}, h, r) = 0$, where
-\begin{equation}\label{Gsymm1}
+\begin{equation}\label{Gsymm2}
 G(\tilde{\mu}, h, r) = \tilde{\mu}^2 + \frac{2C_1}{M c^2}h + \mathcal{O}\left( |h|^2 + \frac{1}{|\log r|} + r |\log r|^2 + r^{\gamma/2\alpha_0} \right).
 \end{equation}
 When $r = 0$ and $h = 0$, $G(\tilde{\mu}, h, r)$ has a double root at $\tilde{\mu} = 0$. We wish to show that this double root at $\tilde{\mu} = 0$ persists for small $r$.

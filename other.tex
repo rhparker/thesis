@@ -48,7 +48,7 @@ Using a spatial dynamics framework, we write \cref{suspeq} as the first-order Ha
 \begin{equation}\label{suspA0}
 \calA_0(U_n) = \partial_x^4 + c^2 \partial_x^2 + \rme^{U_n}
 \end{equation}
-of \cref{suspeq} about $U_n$ contains $n$ eigenvalues $\{\mu_1, \dots, \mu_{n-1}, 0\}$ which are close to 0. Let $S$ the space spanned by the corresponding eigenfunctions. Numerical results showing the primary pulse solution and double pulse solutions are shown in \cref{fig:chen1}.
+of \cref{suspeq} about $U_n$ contains $n$ eigenvalues $\{\mu_1, \dots, \mu_{n-1}, 0\}$ which are close to 0. Let $S$ be the space spanned by the corresponding eigenfunctions. Numerical results showing the primary pulse solution and double pulse solutions are shown in \cref{fig:chen1}.
 
 \begin{figure}
 \centering
@@ -64,7 +64,7 @@ of \cref{suspeq} about $U_n$ contains $n$ eigenvalues $\{\mu_1, \dots, \mu_{n-1}
 
 We turn now to the spectral stability of multi-pulse solutions. Linearization of the PDE \cref{suspc} about a multi-pulse solution $U_n$ is the quadratic eigenvalue problem
 \begin{equation}\label{quadeig}
-\calI \lambda^2 - 2 c \partial_x \lambda + \calA_0(U_n) = 0,
+\calP_2(\lambda; U_n) = \calI \lambda^2 - 2 c \partial_x \lambda + \calA_0(U_n) = 0,
 \end{equation}
 where $\calA_0(U_n)$ is defined in \cref{suspA0}. The essential spectrum of \cref{quadeig} is given by
 \begin{equation}\label{quadess}
@@ -86,7 +86,7 @@ To determine the point spectrum, we can adapt the method in \cite{Sandstede1998}
 In \cite[Theorem 6.8]{kapitula2019}, we prove that for an $n$-pulse solution $U_n$, the Krein matrix associated with \cref{quadeig} is diagonally dominant, thus we can determine the interaction eigenvalues from the diagonal entries of the Krein matrix. In addition, we use the Hamiltonian-Krein index, a tool which counts the potentially unstable eigenvalues, to conclude that this method locates all of the potentially unstable eigenvalues. The main result is summarized in the following theorem, which adapts \cite[Corollary 6.9]{kapitula2019} to the notation used in previous chapters.
 
 \begin{theorem}\label{chenstab}
-Assume Hypothesis \cref{chenhyp}. For $c \in (0, \sqrt{2})$, let $U(x)$ be the primary pulse solution, and let $d''(c)$ be defined as in \cref{dcc}. Let $(m_1, \dots, m_{n-1})$ be a homoclinic parameterization, and let $r_*$ be as in Theorem \ref{multipulseexistR}. For $r \in \mathcal{R}$ with $r \leq r_*$, let $U_n(x)$ be an $n-$pulse solution to \cref{suspeq}. Let $\{\mu_1, \dots, \mu_{n-1}, 0\}$ be eigenvalues of $\calA_0(U_n)$ which are close to 0. Then there are $(n-1)$ pairs of interaction eigenvalues of \cref{quadeig} which are close to 0. These are described as follows. For each $j=1,2,\dots,n-1$,
+Assume \cref{chenhyp}. For $c \in (0, \sqrt{2})$, let $U(x)$ be the primary pulse solution, and let $d''(c)$ be defined as in \cref{dcc}. Let $(m_1, \dots, m_{n-1})$ be a homoclinic parameterization, and let $r_*$ be as in Theorem \ref{multipulseexistR}. For $r \in \mathcal{R}$ with $r \leq r_*$, let $U_n(x)$ be an $n-$pulse solution to \cref{suspeq}. Let $\{\mu_1, \dots, \mu_{n-1}, 0\}$ be eigenvalues of $\calA_0(U_n)$ which are close to 0. Then there are $(n-1)$ pairs of interaction eigenvalues of \cref{quadeig} which are close to 0. These are described as follows. For each $j=1,2,\dots,n-1$,
 \begin{enumerate}
   \item if $m_j$ is odd (equivalently, $\mu_j<0$), there is a corresponding pair of purely imaginary interaction eigenvalues,
   \begin{equation}\label{npulseKreineigs}
@@ -106,7 +106,7 @@ In addition, there is a geometrically simple eigenvalue at $\lambda=0$ with corr
 If all the small, nonzero eigenvalues $\{ \mu_1, \dots, \mu_{n-1} \}$ of $\calA_0(U_n)$ are negative, and if the individual pulses are sufficiently well-separated, then the $n$-pulse is spectrally stable; otherwise, it is unstable.
 \end{remark}
 
-Numerical analysis supporting the results of \cref{chenstab} is shown in \cref{fig:quadeigdouble}. Note that the essential spectrum is bounded away from 0, which provides ``empty space'' for the interaction eigenvalues to occupy. The essential spectrum consists of discrete points due to the discretization of the differential operators.
+Numerical analysis supporting the results of \cref{chenstab} is shown in \cref{fig:quadeigdouble}. Note that the essential spectrum is bounded away from 0, which provides ``empty space'' for the interaction eigenvalues to occupy. The essential spectrum consists of discrete points due to the discretization of the differential operators. Finally, although we have characterized the spectrum of multi-pulse solutions to Chen-McKenna, we would like to know what this implies for nonlinear stability of these solutions. In particular, what does this imply physically for traveling waves on a suspension bridge? This is discussed briefly in \cref{sec:concChen}.
 \begin{figure}
 \centering
 \begin{tabular}{cc}
@@ -116,8 +116,6 @@ Numerical analysis supporting the results of \cref{chenstab} is shown in \cref{f
 \caption[Eigenvalues for double pulses in Chen-McKenna]{Eigenvalues of \cref{quadeig} for double pulses 0 (left) and 1 (right) for $c=1.2$. The edge of the essential spectrum is marked with a (red) cross. For the right panel the two purely imaginary polynomial eigenvalues nearest the origin have negative Krein signature. Finite difference methods with $N = 512$ and periodic boundary conditions.}
 \label{fig:quadeigdouble}
 \end{figure}
-
-
 
 \section{Discrete nonlinear Schr{\"o}dinger equation}\label{sec:DNLS}
 
@@ -152,7 +150,7 @@ If $\phi_n$ is a solution to \cref{DNLSequilib}, then by rotational symmetry it 
 
 Before we state our results, we will briefly summarize what is already known about multi-pulse solutions. Many more details can be found in \cite{Kevrekidis2009,pelinovsky_2011}. At the anti-continuum limit ($d = 0$), equation \cref{DNLSequilib} reduces to a system of decoupled algebraic equations. Any $u_n$ with $u_n \in \{ 0, \pm \sqrt{\omega}\}$ is a solution. For sufficiently small $d$, $m$-pulse solutions exist to equation \cref{DNLSequilib} for any pulse distances as long as the phase differences satisfy $\Delta \theta_i \in \{0, \pi\}$ \cite[Proposition 2.1]{Pelinovsky2005}. For sufficiently small $d$, this $m-$pulse is spectrally unstable unless all of the phase differences $\Delta \theta_i$ are $\pi$; in that case there are $m-1$ pairs of purely imaginary eigenvalues with negative Krein signature \cite[Theorem 3.6]{Pelinovsky2005}. This means that these eigendirections, although neutrally stable, are prone to instabilities when parameters (such as $d$) are varied upon collision with other eigenvalues. For any $d$ for which the $m-$pulse exists, if one or more phase differences $\Delta \theta_i$ is 0, it follows from Sturm-Liouville theory that there is at least one positive, real eigenvalue \cite{Kapitula2001a}.
 
-We use Lin's method to extend these results to regimes further from the anti-continuum limit. In effect, we are replacing the condition that $d$ is sufficiently small with the condition that the individual pulses are well separated. We have the following theorem regarding the existence of $m-$pulse solutions. For notational simplicity, we will write solutions to \cref{DNLSequilib} as $u(n)$ rather than $u_n$ as is traditional in the literature.
+We use Lin's method to extend these results to regimes further from the anti-continuum limit. In effect, we are replacing the condition that $d$ is sufficiently small with the condition that the individual pulses are well separated. We have the following theorem regarding the existence of $m-$pulse solutions. For notational simplicity, we will write solutions to \cref{DNLSequilib} as $u(n)$ rather than $u_n$ as is traditional in the literature. Specifically, the primary pulse solution will be written as $q(n)$.
 
 \begin{theorem}\label{DNLSexisttheorem}
 There exists a positive integer $N_0$ (which depends on $\omega$ and $d$), with the following property. For any $m \geq 2$, pulse distances $N_i \geq N_0$, and phase differences $\Delta\theta_i \in \{0, \pi\}$, there exists a unique $m-$pulse solution $q_m(n)$ to \cref{DNLSequilib} which resembles $m$ consecutive copies of the on-site pulse $q(n)$. No other phase differences are possible.
@@ -163,7 +161,7 @@ The linearization about $q_m(n)$ has a kernel with algebraic multiplicity 2 and 
 \begin{theorem}\label{DNLSeigtheorem}
 Let $q_m(n)$ be an $m-$pulse solution to \cref{DNLSequilib} with pulse distances $N_i$ and phase differences $\Delta\theta_i$. Assume that $M > 0$, where
 \[
-M = \sum_{n=-\infty}^\infty q_n \partial_\omega q_n = \partial_\omega \left( \frac{1}{2} \sum_{n=-\infty}^\infty q_n^2 \right).
+M = \sum_{n=-\infty}^\infty q(n) \partial_\omega q(n) = \partial_\omega \left( \frac{1}{2} \sum_{n=-\infty}^\infty q(n)^2 \right).
 \]
 Let $N = \frac{1}{2} \min\{ N_1, \dots, N_{m-1}\}$. Then for $N$ sufficiently large, there exist $m-1$ pairs of interaction eigenvalues $\{\pm \lambda_1, \dots, \pm \lambda_{m-1}\}$, which can be grouped as follows. There are $k_\pi$ pairs of purely imaginary eigenvalues and $k_0$ pairs of real eigenvalues, where $k_\pi$ is the number of phase differences $\Delta\theta_i$ which are $\pi$, and $k_0$ is the number of phase differences $\Delta\theta_i$ which are $0$. The $\lambda_j$ are close to 0 and are given by the following formula
 \begin{align}\label{eigsDNLS}

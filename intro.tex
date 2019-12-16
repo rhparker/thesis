@@ -22,17 +22,17 @@ Although Russell published his results in 1845 \cite{russell1845}, his research 
 
 The Korteweg-de Vries (KdV) equation is a prototypical model of an equation which admits solitary wave solutions. The equation derived by Korteweg and de Vries \cite{KdVoriginal} to describe wave propagation in a rectangular canal is  
 \[
-\frac{d \eta}{dt} = \frac{3}{2} \sqrt{\frac{g}{l}}
+\frac{\partial \eta}{\partial t} = \frac{3}{2} \sqrt{\frac{g}{l}}
 \frac{\partial}{\partial x}
 \left( \frac{1}{2} \eta^2 + \frac{2}{3} \alpha \eta + \frac{1}{3} \sigma \frac{\partial^2 \eta}{\partial x^2}\right),
 \]
-where $\eta$ is the displacement above the surface, and remaning quantities are physical constants. It can be derived from the Euler equation for nonviscous, incompressible fluids, together with the appropriate boundary conditions and the assumption of irrotational flow \cite{SolitonPhysics}. With an appropriate change of variables, the KdV equation can be put into the more tractable form
+where $\eta$ is the displacement above the surface, and remaining quantities are physical constants. It can be derived from the Euler equation for nonviscous, incompressible fluids, together with the appropriate boundary conditions and the assumption of irrotational flow \cite{SolitonPhysics}. With an appropriate change of variables, the KdV equation can be put into the more tractable form
 \begin{equation}\label{KdV3}
 \partial_t \phi + \partial_x^3 \phi - 6 \phi \partial_x \phi = 0
 \end{equation}
 This equation has been extensively studied since its introduction \cite{miles1981,drazin1989solitons,SolitonPhysics}, and many variants have been proposed. For wavespeed $c > 0$, an exact solitary wave solution to the KdV equation can be obtained by an inverse scattering transform.
 \[
-\phi (x,t)=-{\frac {c}{2}}\,\mathrm {sech} ^{2}\left({{\sqrt {c}} \over 2}(x-c\,t-a)\right),
+\phi (x,t)=-{\frac {c}{2}}\,\mathrm {sech} ^{2}\left( \frac{\sqrt {c}}{2}(x-c\,t-a)\right),
 \]
 where $a$ is an arbitrary constant. The KdV equation also has another class of exact solutions which are periodic in nature. There are termed cnoidal waves, since they are expressed in terms of the Jacobi elliptic function $cn$ \cite{drazin1989solitons}. The cnoidal waves have sharper peaks and flatter troughs than ordinary sine waves. Both classes of solutions for water waves have been observed in nature, as shown in \cref{fig:waterwave}.
 \begin{figure}
@@ -46,7 +46,7 @@ where $a$ is an arbitrary constant. The KdV equation also has another class of e
 \end{center}
 \end{figure}
 
-Since solitary waves maintain their shape as they propagate at a constant velocity, they are equilibrium solutions to an approprate nonlinear PDE when written in a co-moving frame. For KdV, for example, a solitary wave with wavespeed $c$ is a solution to the third order ODE 
+Since solitary waves maintain their shape as they propagate at a constant velocity, they are equilibrium solutions to an appropriate nonlinear PDE when written in a co-moving frame. For KdV, for example, a solitary wave with wavespeed $c$ is a solution to the third order ODE 
 \begin{equation}\label{KdV3equilib}
 \partial_x^3 \phi - c \partial_x \phi - 6 \phi \partial_x \phi = 0.
 \end{equation}
@@ -107,35 +107,21 @@ Heuristically, for a double pulse to occur, a solution must ``jump'' from the st
 \label{fig:wswu}
 \end{center}
 \end{figure}
-Suppose for simplicity that $U \in \R^4$ and the eigenvalues of $DF(0)$ are a quartet $\pm \alpha \pm \beta i$. Then the stable and unstable manifolds are both two-dimensional. Furthermore, the stable and unstable manifolds ``twist'' as they approach the equilibrium at 0, and the frequency of these twists is $2 \pi / \beta$. If equation \cref{introgenODE} is derived from an ODE such as \cref{introKdV5eq}, these ``twists'' are manifested as oscillations in the exponentially decaying tail of the solitary wave. A solution can only ``jump'' from the stable manifold at $x = L$ to the unstable manifold at $x = -L$ if the two manifolds have the proper alignment, which is determined by these ``twists''. Specifically, write the tangent space to the unstable manifold as $T_{Q(x)}W^u(0) = \R Q'(x) \oplus Y^-(x)$, where $Y^-(x)$ is one-dimensional. For the ``jump'' to take place, $Q'(L)$ must be perpendicular to $Y^-(-L)$ \cite{Sandstede1993,Sandstede2002}. This is shown in \cref{fig:manifoldslineup}.
+Suppose for simplicity that $U \in \R^4$ and the eigenvalues of $DF(0)$ are a quartet $\pm \alpha \pm \beta i$. Then the stable and unstable manifolds are both two-dimensional. Furthermore, the stable and unstable manifolds ``twist'' as they approach the equilibrium at 0, and the frequency of these twists is $2 \pi / \beta$. If equation \cref{introgenODE} is derived from an ODE such as \cref{introKdV5eq}, these ``twists'' are manifested as oscillations in the exponentially decaying tail of the solitary wave. A solution can only ``jump'' from the stable manifold at $x = L$ to the unstable manifold at $x = -L$ if the two manifolds have the proper alignment, which is determined by these ``twists''. Specifically, the necessary alignment is that $Q(L)$ is perpendicular to $\Psi(-L)$, i.e. $\langle Q(L), \Psi(-L) \rangle = 0$. This is shown in \cref{fig:manifoldslineup}. A double pulse solution is illustrated by the purple line the right panel of \cref{fig:wswu}; in particular, note how it ``jumps'' from the stable manifold back to the unstable manifold near $x = L$. The vectors $Q(L)$ and $\Psi(-L)$ rotate in opposite directions with frequency $2 \pi/\beta$ as $L$ is varied, this the required alignment occurs every quarter period. Thus double pulse solutions in general do not exist for all values of $L$ but only for a countable set of lengths $L$ indexed by an integer $m$ which represents the number of half-twists made by the stable and unstable manifolds \cite{SandstedeStrut}. 
 \begin{figure}
 \begin{center}
 \includegraphics[width=8cm]{images/intro/manifoldslineup}
 \caption[Alignment of manifolds necessary for a double pulse]{Alignment necessary for a double pulse to exist. Primary homoclinic orbit is shown in red.}
 \label{fig:manifoldslineup}
 \end{center}
-\end{figure}
-Since $\Psi(-L)$ is perpendicular to $Y^-(-L)$, a double pulse solution exists when $Q'(L)$ is parallel to $\Psi(-L)$. A double pulse solution is illustrated by the purple line the right panel of \cref{fig:wswu}; in particular, note how it ``jumps'' from the stable manifold back to the unstable manifold near $x = L$.
-
-The vectors $Q'(L)$ and $\Psi(-L)$ rotate in opposite directions with frequency $2 \pi/\beta$ as $L$ is varied, as shown in the left panel of \cref{fig:psiqrotate}. If $Q'(x)$ and $\Psi(-x)$ are parallel at $x = L$, then they will be parallel every quarter period, which is shown in the right panel of \cref{fig:psiqrotate}.
-\begin{figure}
-\begin{center}
-\begin{tabular}{cc}
-\includegraphics[width=8cm]{images/intro/psiqrotate} &
-\includegraphics[width=8cm]{images/intro/psiqoneperiod}
-\end{tabular}
-\caption[Alignment of vectors necessary for a double pulse]{Rotation of $Q'(L)$ and $\Psi(-L)$ in opposite directions (left panel) Alignments of $Q'(x)$ and $\Psi(-x)$ every quarter period (right panel).}
-\label{fig:psiqrotate}
-\end{center}
-\end{figure}
-In half of the cases, $Q'(x)$ and $\Psi(-x)$ will be in the same direction, so that $\langle Q'(x), \Psi(-x) \rangle > 0$. In the other half of the cases, $Q'(x)$ and $\Psi(-x)$ will be in the opposite direction, so that $\langle Q'(x), \Psi(-x) \rangle < 0$. This suggests that there may be two distinct classes of double pulse solutions. Since specific alignments of $Q'(L)$ and $\Psi(-L)$ are necessary for a double pulse to exist, double pulse solutions in general do not exist for all values of $L$ but only for a countable set of lengths $L$ indexed by an integer $m$ which represents the number of half-twists made by the stable and unstable manifolds \cite{SandstedeStrut}.  
+\end{figure} 
 
 To construct a multi-pulse, we will use a mathematical technique known as Lin's method, which is a Lyapunov-Schmidt reduction that allows us to find solutions near a known homoclinic orbit. This technique was introduced in \cite{Lin1990} and was used in \cite{Sandstede1993,SandstedeStrut} to construct multi-pulse solutions and \cite{Sandstede1998} to determine their spectral stability. Briefly, the method works as follows. For simplicity, we will state the procedure for a double pulse. We start with a known homoclinic orbit $Q(x)$ on $\R$. We then break the homoclinic orbit, either by varying a parameter in the system or by varying the initial conditions at $x = 0$. This yields a function $Q^-(x)$ on $\R^-$ which is contained in the unstable manifold and a function $Q^+(x)$ on $\R^+$ which is contained in the stable manifold. To construct a double pulse, we will ``reconnect'' these pieces using small remainder functions. Specifically, we will look for a double pulse solution as a piecewise function consisting of the four pieces
 \begin{align*}
 U_1^-(x) &= Q^-(x) + W_1^-(x) && x \in (-\infty, 0] \\
 U_1^+(x) &= Q^+(x) + W_1^+(x) && x \in [0, L] \\
 U_2^-(x) &= Q^-(x) + W_2^-(x) && x \in [-L, 0] \\
-U_1^+(x) &= Q^+(x) + W_1^+(x) && x \in [L, \infty)
+U_2^+(x) &= Q^+(x) + W_2^+(x) && x \in [L, \infty)
 \end{align*}
 which are spliced together end-to-end. These pieces must satisfy a matching condition at the pulse tails
 \begin{equation}\label{introLin1}
@@ -160,7 +146,7 @@ A double pulse solution exists if and only if these two jump conditions are both
 
 \section{Outline of thesis}
 
-In \cref{chapter:KdV5}, we introduce the fifth order KdV equation (KdV5) and discuss prior results. In \cref{chapter:KdV5numerics} we present results from numerical simulations concerning existence and spectral stability of multi-pulse solutions to KdV5. From here, we turn to analysis. In most cases, proofs of results are deferred to appendices. In \cref{chapter:kdv5general}, we formulate a generalization of the problem of interest, for which KdV5 is a specific case. In \cref{chapter:kdv5homoclinic}, we discuss the existence and spectral stability of multi-pulse solutions to KdV5. In \cref{chapter:kdv5periodic}, we perform a similar analysis for multi-pulse solutions on a periodic domain. In \cref{chapter:other}, we summarize work we have done on multi-pulses in other systems. After a brief concluding chapter on future directions, the remainding proofs are presented in appendices.
+In \cref{chapter:KdV5}, we introduce the fifth order KdV equation (KdV5) and discuss prior results. In \cref{chapter:KdV5numerics} we present results from numerical simulations concerning existence and spectral stability of multi-pulse solutions to KdV5. From here, we turn to analysis. In most cases, proofs of results are deferred to appendices. In \cref{chapter:kdv5general}, we formulate a generalization of the problem of interest, for which KdV5 is a specific case. In \cref{chapter:kdv5homoclinic}, we discuss the existence and spectral stability of multi-pulse solutions to KdV5. In \cref{chapter:kdv5periodic}, we perform a similar analysis for multi-pulse solutions on a periodic domain. In \cref{chapter:other}, we summarize work we have done on multi-pulses in other systems. After a brief concluding chapter on future directions, the remaining proofs are presented in appendices.
 
 \iffulldocument\else
 	\bibliographystyle{amsalpha}
