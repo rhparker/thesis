@@ -1,6 +1,6 @@
 \documentclass[11pt,reqno,oneside]{report}
 % \usepackage[pdfborder={0 0 0.5 [3 2]}]{hyperref}%
-\usepackage[left=1in,right=1in,top=1in,bottom=1.5in]{geometry}%
+\usepackage[left=1in,right=1in,top=1in,bottom=1.25in]{geometry}%
 
 % brown university thesis style
 \usepackage{setspace}
@@ -97,7 +97,7 @@
     M.D., University of Pennsylvania School of Medicine; Philadelphia, PA, 2009\\
     M.A., CUNY Hunter College; New York, NY, 2013 \\
     M.Sc., Brown University; Providence, RI, 2015} 
-\thesismonth{December} \thesisyear{2019}
+\thesismonth{February} \thesisyear{2020}
 
 \begin{document}
 
@@ -123,20 +123,20 @@
   \input{vita}
 \end{vita}
 
-% \begin{dedication}\label{thesis:dedication}
-%   \input{content/dedication}
-% \end{dedication}
+\begin{dedication}\label{thesis:dedication}
+  \input{dedication}
+\end{dedication}
 
-% \begin{acknowledgments}\label{thesis:acknowledgments}
-%   \input{content/acknowledgments}
-% \end{acknowledgments}
+\begin{acknowledgments}\label{thesis:acknowledgments}
+  \input{acknowledgments}
+\end{acknowledgments}
 
-% % Comment out the abstract for final submitted version of the dissertation
-% \begin{abstract}\label{thesis:abstract}
-%   \thispagestyle{empty}
-%   \input{content/abstract}
-%   \thispagestyle{empty}
-% \end{abstract}
+% Comment out the abstract for final submitted version of the dissertation
+\begin{abstract}\label{thesis:abstract}
+  \thispagestyle{empty}
+  \subfile{abstract}
+  \thispagestyle{empty}
+\end{abstract}
 
 \begin{spacing}{1} % single-spacing for these
   \tableofcontents
@@ -186,7 +186,7 @@
 
 \appendix
 
-\chapter{Proof of existence results for periodic multi-pulss}\label{perexistproof}
+\chapter{Proof of existence results for periodic multi-pulses}\label{perexistproof}
 \subfile{periodicexist}
 
 \chapter{Proof of Theorem \ref{blockmatrixtheorem}}\label{blockmatrixproof}
@@ -201,8 +201,10 @@
 
 %    Bibliographies can be prepared with BibTeX using amsplain,
 %    amsalpha, or (for "historical" overviews) natbib style.
+\begin{spacing}{1} 
 \bibliographystyle{amsalpha}
 \bibliography{thesis.bib}
+\end{spacing}
 % \printbibliography
 
 %    See note above about multiple indexes.

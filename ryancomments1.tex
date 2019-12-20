@@ -1,0 +1,73 @@
+\documentclass[11pt]{letter}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumerate}
+
+\begin{document}
+
+Comments from Ryan Goh
+
+\begin{enumerate}
+\item \emph{ Pg. 7 - Typo in fourth expression from top, shouldn't this be $U_2^+$ instead of $U_1^+$? }
+
+Fixed. Also $W_2^+$.
+
+\item \emph{Pg. 11 - It might be useful in this subsection (2.3) to differentiate your results from the previous ones you cite (i.e. different parameter regime, or that Lin's method gives a better characterization/asyptotics). I believe you do this later on, but it might be useful to mention it here as well.}
+
+I added a few sentences about how Lin's method allows us to get better asymptotics.
+
+\item \emph{Pg. 39, Eqn (4.46) - Notation: $M$ is used for different quantities in the same section. I know it's hard in a document of this size,  (and especially when combining different results), but having $M$ represent different things (in particular both the manifold and the Melnikov integral) becomes confusing.}
+
+I renamed the manifold $K(c)$ to avoid confusion with $M$ in this chapter. The notation $K$ is still used for other things in other chapters, but at least this chapter now has less ambiguous notation.
+
+\item \emph{Pg. 54 Can you comment on how such eigenvalues can be tracked when your result is inconclusive? Can you comment more on the phenomenologically on the effect of the neutral mode coming from the conserved quantity?  Also, if you have the time/room, and assuming I haven't missed something in my reading, can you comment how your approach/results are different than previous ones, and what new/different information they give?}
+
+This result does extends the result of Chugunova and Pelinovsky (2007) Theorem 2.3(iii) to arbitrary multi-pulses. (They only consider 2-pulses). It also gives a formula for computing the interaction eigenvalues (to leading order, with bounds on the remainder terms), which the other methods do not. The neutral mode (which is ordinarily part of the essential spectrum but comes into play for the periodic case) is discussed in the conclusions section. I am not sure what the questions means regarding tracking the eigenvalues in the case of an inconclusive result.
+
+\item \emph{Pg. 31 Can you comment on where Hamiltonian conserved quantities in the spatial dynamics typically come from? or at least where it comes from in KdV or another example you consider?}
+
+I now mention in Chapter 1 how we get this for KdV5. Essentially, multiply the equilibrium equation by $u_x$ and integrate once.
+
+\item \emph{Pg. 39.  A figure, depicting $M(c_0)$ as a graph over the relevant subspace, as well as $W^{s/u}(0) \cap \Sigma$ and how they vary with c, might be useful here (totally optional, just a thought from me)}
+
+This would be awesome, but with my limited artistic skills, I have no idea how to draw it, since the $M(c_0)$ is the graph of (at minumum) a 3-dimensional surface.  
+
+\item \emph{ Pg. 75 Definition of $d(c)$: I know this is annoying, but since it is in the Hypothesis of one of your results, it might be useful to include this quantity for completeness.}
+
+I chose not to do this, essentially for brevity, as this chapter is meant to be a summary of other results I have obtained. For this problem, defining $d(c)$ would be rather lengthy, as I would have to recast Chen-McKenna in Hamiltonian form to match (1) in Grillakis (1987), then define another conserved quantity (the $L^2$ norm), etc. 
+
+\item \emph{Pg. 75 Where is $\mathcal{P}_2$ defined?  Couldn't find it, and forgot what it is in previous sections.}
+
+Fixed. It's the quadratic eigenvalue problem (7.8).
+
+\item \emph{Pg. 78 Discussion below remark 7.3: If possible and applicable, it would be great if you could comment on how your result gives new information or a new viewpoint to the physical application the mathematical model is considering.  I.e. can you say anything about the stability of the bridge!  No worries if not, just a thought as I was reading through.} 
+
+This is mentioned briefly in the conclusions section. I added a comment to that effect after remark 7.3. In particular, I cite a 2019 paper which presents numerical results.
+
+\item \emph{Pg. 80:  Throughout the text, you discuss and focus on interaction eigenvalues. It may be useful somewhere to discuss what effect unstable interaction eigenvalues have on the dynamics of the multi-pulses.  (i.e. discuss how one can derive of ODE's for the position of the pulses, etc...) Namely, if a certain pulse (discrete or continuous) goes spectrally unstable, what happens for an initial condition nearby this equilibrium? Of course I might have missed this discussion somewhere... Time and space permitting, it might be useful to plot a few space-time plots of direct numerical simulations (maybe one in the discrete case and one in the continuous case).}
+
+I discuss this in section 3.4. I have added text indicating that the goal in doing the time-stepping is to figure out what the interaction eigenvalues imply for the dynamics of the multi-pulses. I note that I derived the ODEs empirically, but that we should be able to derive them rigorously following the center manifold reduction technique in Section 10 of Zelik and Mielke (2009).
+
+\item \emph{Pg. 81: Notation in expression of $M$: should $q_n$ instead be $q_m(n)$ here?}
+
+It should really be $q(n)$ to be consistent with the notation I am using. This is now fixed.
+
+\end{enumerate}
+
+Also, while not exhaustive, here's a few typos I noticed, which you've probably already fixed (I swear I wasn't reading for only typos and I know this is just a draft, just wanted to mention them since I saw them):
+
+\begin{enumerate}
+\item Pg. 11 - Typo "unstable manifolds necessary". Fixed
+\item Pg. 12 - Typo "inedx". Fixed.
+\item Pg 13 - Typo "with is either". Fixed.
+\item Pg 45. Typo "and note that $\lambda_k \neq0$. Fixed
+\item Pg. 52 Typo "Next, we use spatial dynamics approach". Fixed
+\item Pg. 55 Typo "pieces $Q_i^(x)$". Fixed.
+\item Pg. 58 Typo - Second to last line of text, missing item parenthesis. Fixed.
+\item Pg. 75 Typo - "Let $S$ the space". Fixed.
+\item Pg. 77 "Theorem 7.2: Assume Hypothesis Hypothesis 7.1". Fixed.
+\item Pg. 88 "collides with and". Fixed.
+\end{enumerate}
+
+\end{document}
