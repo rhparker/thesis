@@ -889,7 +889,7 @@ The jumps in the direction of $\Psi(0)$ are given by
 \begin{equation}\label{jumpPsi0}
 \begin{aligned}
 \xi_i = \langle \Psi&(X_i), Q'(-X_i) \rangle (d_{i+1} - d_i ) + \langle \Psi(-X_{i-1}), Q'(X_{i-1}) \rangle (d_i - d_{i-1} ) \\
-&-\frac{1}{2}M^c\left( e^{-\nu(\lambda)X_i}c_i + e^{\nu(\lambda)X_i}c_{i-1}\right)
+&-\frac{1}{2}\lambda M^c\left( e^{-\nu(\lambda)X_i}c_i + e^{\nu(\lambda)X_i}c_{i-1}\right)
 - \lambda^2 d_i M + R_i(\lambda)(c, d)
 \end{aligned}
 \end{equation}
@@ -944,7 +944,7 @@ We want to solve the decaying adjoint jump condition, which we recall is given b
 \]
 From \cref{lemma:VpmPsiIP},
 \begin{align}\label{PsiVpmjump}
-\langle \Psi^c(0), c_i e^{-\nu(\lambda)X_i}V^+(0; \lambda) - c_{i-1} e^{\nu(\lambda)X_i} V^-(0; \lambda)  \rangle &= -\frac{1}{2}M^c\left( e^{-\nu(\lambda)X_i}c_i + e^{\nu(\lambda)X_i}c_{i-1}\right) + \mathcal{O}(|\lambda|^2 |c| ),
+\langle \Psi^c(0), c_i e^{-\nu(\lambda)X_i}V^+(0; \lambda) - c_{i-1} e^{\nu(\lambda)X_i} V^-(0; \lambda)  \rangle &= -\frac{1}{2}\lambda M^c\left( e^{-\nu(\lambda)X_i}c_i + e^{\nu(\lambda)X_i}c_{i-1}\right) + \mathcal{O}(|\lambda|^2 |c| ),
 \end{align}
 where we used Lemma \ref{lemma:expnubound} to bound $e^{\pm\nu(\lambda)X_i}$ in the remainder term by a constant. The terms $P_\pm(0; \lambda) Z_i^\pm(0)$ are given by
 \begin{align*}
@@ -1083,7 +1083,7 @@ The other integral is similar. The bound on the noncenter integral term involvin
 Putting this all together, we have the jump expressions
 \begin{align*}
 \xi_i = \langle \Psi&(X_i), Q'(-X_i) \rangle (d_{i+1} - d_i ) + \langle \Psi(-X_{i-1}), Q'(X_{i-1}) \rangle (d_i - d_{i-1} ) \\
-&-\frac{1}{2}M^c\left( e^{-\nu(\lambda)X_i}c_i + e^{\nu(\lambda)X_i}c_{i-1}\right)
+&-\frac{1}{2}\lambda M^c\left( e^{-\nu(\lambda)X_i}c_i + e^{\nu(\lambda)X_i}c_{i-1}\right)
 - \lambda^2 d_i M + R_i(\lambda)(c, d)
 \end{align*}
 where $M$ is the higher order Melnikov integral
