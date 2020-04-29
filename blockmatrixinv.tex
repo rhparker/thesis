@@ -279,28 +279,39 @@ Next, we derive expressions for $a_i^\pm$ and $a_i^c$ which we will use in evalu
 For the initial conditions $a_i^\pm$, we have the expressions
 \begin{equation}\label{aipmexp1}
 \begin{aligned}
-a_i^+ &= Q'(-X_i) (d_{i+1} - d_i ) + A_2(\lambda)_i^+(b, c, d)\\
-a_i^- &= -Q'(X_i) (d_{i+1} - d_i ) + A_2(\lambda)_i^-(b, c, d)
+a_i^+ &= P^u(0) D_i d + P^u(0) A_2(\lambda)_i^+(b, c, d)  \\
+a_i^- &= -P^s(0) D_i d + P^s(0) A_2(\lambda)_i^-(b, c, d).
 \end{aligned}
 \end{equation}
-$A_2$ is linear in $(b, c, d)$, $A_2(\lambda)_i^\pm(b, c, d) \in E^s(0) \oplus E^u(0)$, and $A_2$ has bound
+$A_2$ is linear in $(b, c, d)$ and has bound
 \begin{align}
 |A_2(\lambda)(b, c, d)|
 &\leq C \left(e^{-\tilde{\alpha} X^*}|b| + e^{-\alpha X^*}|c| + e^{-\alpha X^*}(e^{-\alpha X^*} + |\lambda|)|d| ) \right) \label{A2bound}
 \end{align}
+\begin{equation}\label{aipmexp1}
+\begin{aligned}
+a_i^+ &= Q'(-X_i) (d_{i+1} - d_i ) + P^u(0) A_2(\lambda)_i^+(b, c, d) + \mathcal{O}( e^{-\alpha X_i} (e^{-\alpha X^*} + |\lambda| )|d|) .\\
+a_i^- &= -Q'(X_i) (d_{i+1} - d_i ) + P^s(0) A_2(\lambda)_i^-(b, c, d) + \mathcal{O}( e^{-\alpha X_i} (e^{-\alpha X^*} + |\lambda| )|d|) .
+\end{aligned}
+\end{equation}
 
 \begin{proof}
 We apply the projections $P_0^{s/u}(0)$ on the eigenspaces $E^{s/u}(0)$ to \eqref{Dideq1} to obtain the expressions
 \begin{equation}\label{aipm1}
 \begin{aligned}
 a_i^+ &= P^u(0) D_i d + P^u(0) \left( L_3(\lambda)_i(a, b, c, d) +  C_i c \right) \\
-a_i^- &= -P^s(0) D_i d + P^s(0) \left( L_3(\lambda)_i(a, b, c, d) + C_i c \right)
+a_i^- &= -P^s(0) D_i d + P^s(0) \left( L_3(\lambda)_i(a, b, c, d) + C_i c \right).
 \end{aligned}
 \end{equation}
-Using the expression for $D_i d$ from \cref{stabestimateslemma}, 
+Using the bound $C_i c = \mathcal{O}(e^{-\alpha X^*}|c|)$, substituting $A_1$ from \cref{Zinv1} for $a$ in $L_3(\lambda)_i(a, b, c, d)$, and simplifying, we obtain the expressions \cref{aipmexp1}, where $A_2$ comprises the remainder terms in \cref{aipm1} and has bound
+\begin{align*}
+|A_2&(\lambda)_i(b, c, d)| \leq C \left(e^{-\tilde{\alpha} X^*}|b| + e^{-\alpha X^*}|c| + e^{-\alpha X^*}(e^{-\alpha X^*} + |\lambda|)|d| ) \right)
+\end{align*}
+
+Next, we apply the projection $P^u(0)$ to the expression for $D_i d$ from \cref{stabestimateslemma} to get
 \begin{align*}
 P^u(0) D_i d = 
-P^u(0) \left( ( Q'(X_i) + Q'(-X_i))(d_{i+1} - d_i ) + \mathcal{O}( e^{-\alpha X_i} (e^{-\alpha X^*} + |\lambda| )|d|) \right)
+P^u(0) ( Q'(X_i) + Q'(-X_i))(d_{i+1} - d_i ) + \mathcal{O}( e^{-\alpha X_i} (e^{-\alpha X^*} + |\lambda| )|d|) .
 \end{align*}
 By \cref{trichotomyprojunconj}, 
 \begin{equation*}
@@ -320,17 +331,7 @@ P_-(-X_i; 0) P^u(0) Q'(-X_i) &= \tilde{P}^u_-(-X_i)( I + \mathcal{O}(e^{-\alpha 
 ( I + \mathcal{O}(e^{-\alpha X_i})) P^u(0) Q'(-X_i) &= \tilde{P}^u_-(X_i) Q'(X_i) + \mathcal{O}(e^{-2\alpha X_i}) \\
 P^u(0) Q'(-X_i) &= Q'(-X_i) + \mathcal{O}(e^{-2\alpha X_i}),
 \end{align*}
-where the remainder term is in $E^s(0) \oplus E^u(0)$ since $Q'(-X_i) \in E^s(0) \oplus E^u(0)$. We have similar expressions for $P^s(0) Q'(X_i)$ and $P^u(0) Q'(X_i)$. Substituting these into \cref{aipm1}, we have 
-\begin{equation}\label{aipm2}
-\begin{aligned}
-a_i^+ &= Q'(-X_i) (d_{i+1} - d_i ) + P^u(0) \left( L_3(\lambda)_i(a, b, c, d) + C_i c  \right) + \mathcal{O}( e^{-\alpha X_i} (e^{-\alpha X^*} + |\lambda| )|d|) \\
-a_i^- &= -Q'(X_i) (d_{i+1} - d_i ) + P^s(0) \left( L_3(\lambda)_i(a, b, c, d) + C_i c  \right) + \mathcal{O}( e^{-\alpha X_i} (e^{-\alpha X^*} + |\lambda| )|d|),
-\end{aligned}
-\end{equation}
-where the remainder terms are in $E^s(0) \oplus E^u(0)$. Using the bound $C_i c = \mathcal{O}(e^{-\alpha X^*}|c|)$, substituting $A_1$ from \cref{Zinv1} for $a$ in $L_3(\lambda)_i(a, b, c, d)$, and simplifying, we obtain the expressions \cref{aipmexp1}, where $A_2$ comprises the remainder terms in \cref{aipm2} and has bound
-\begin{align*}
-|A_2&(\lambda)_i(b, c, d)| \leq C \left(e^{-\tilde{\alpha} X^*}|b| + e^{-\alpha X^*}|c| + e^{-\alpha X^*}(e^{-\alpha X^*} + |\lambda|)|d| ) \right)
-\end{align*} 
+We have similar expressions for $P^s(0) Q'(X_i)$ and $P^u(0) Q'(X_i)$. Substituting these into \cref{aipmexp1}, we obtain the expressions \cref{aipmexp2}.
 \end{proof}
 \end{lemma}
 
@@ -422,17 +423,13 @@ Finally, we evaluate $\langle W_0, L_3(\lambda)_i(a,b,c,d)$. First, we look at t
 \[
 P^c(\lambda) V_0 = (P^c(0) + \mathcal{O}(|\lambda|)) V_0 = V_0 + \mathcal{O}(|\lambda|)
 \]
-Since $P^c(\lambda) V_0 \in V_0(\lambda)$ and $V_0(\lambda) = V_0 + \lambda V_0'(0) + \mathcal{O}(|\lambda|^2)$ by \cref{nulambdalemma}, 
-\begin{equation}\label{PclambdaV0}
-P^c(\lambda) V_0 = V_0 + \lambda k(\lambda) V_0'(0) + \mathcal{O}(|\lambda|^2)
-\end{equation}
-for some constant $k(\lambda)$. Using \cref{W0projlemma}(iii) and \cref{PclambdaV0} with the $a_i^c$ term, we have
+Since $P^c(\lambda) V_0 \in V_0(\lambda)$ and $V_0(\lambda) = V_0 + \lambda V_0'(0) + \mathcal{O}(|\lambda|^2)$ by \cref{nulambdalemma}, it follows that $P^c(\lambda) V_0 = V_0(\lambda)$. Using \cref{W0projlemma}(iii) and \cref{PclambdaV0} with the $a_i^c$ term, we have
 \begin{align*}
 \langle W_0, &(P_+(X_i; \lambda) +  P_-(-X_i; \lambda)) P^c(\lambda) a_i^c V_0 \rangle \\
 &= a_i^c \langle W_0, (P_+(X_i; 0) + P_-(X_i; 0) + \mathcal{O}(|\lambda|e^{-\alpha X_i}))P^c(\lambda)V_0  \rangle \\
-&= a_i^c \langle W_0, (P_+(X_i; 0) + P_-(X_i; 0))P^c(\lambda)V_0  \rangle + \mathcal{O}(|\lambda|e^{-\alpha X_i}|a|) \\
-&= a_i^c \langle W_0, (P_+(X_i; 0) + P_-(X_i; 0))(V_0 + \lambda k(\lambda) V_0'(0) + \mathcal{O}(|\lambda|^2))  \rangle + \mathcal{O}(|\lambda|e^{-\alpha X_i}|a|) \\
-&= a_i^c \langle W_0, (P_+(X_i; 0) + P_-(X_i; 0))(V_0 + \lambda k(\lambda) V_0'(0) )  \rangle + \mathcal{O}(|\lambda|(|\lambda| + e^{-\alpha X_i})|a|)
+&= a_i^c \langle W_0, (P_+(X_i; 0) + P_-(X_i; 0))V_0(\lambda)  \rangle + \mathcal{O}(|\lambda|e^{-\alpha X_i}|a|) \\
+&= a_i^c \langle W_0, (P_+(X_i; 0) + P_-(X_i; 0))(V_0 + \lambda V_0'(0) + \mathcal{O}(|\lambda|^2))  \rangle + \mathcal{O}(|\lambda|e^{-\alpha X_i}|a|) \\
+&= a_i^c \langle W_0, (P_+(X_i; 0) + P_-(X_i; 0))(V_0 + \lambda V_0'(0) )  \rangle + \mathcal{O}(|\lambda|(|\lambda| + e^{-\alpha X_i})|a|)
 \end{align*}
 For the leading order term, 
 \begin{align*}
@@ -441,9 +438,9 @@ For the leading order term,
 \end{align*}
 since $\langle W_0, V^(c)\rangle = 1$ for all $x$. For the second term,
 \begin{align*}
-\langle W_0, &(P_+(X_i; 0) + P_-(X_i; 0)) \lambda k(\lambda) V_0'(0) = 
-\lambda k(\lambda) \langle W_0, (P_+(X_i; 0) + R P_+(X_i; 0) R ) V_0'(0)\rangle \\
-&= \lambda k(\lambda) \left( \langle W_0, P_+(X_i; 0) V_0'(0) \rangle - \langle W_0, P_+(X_i; 0) V_0'(0) \rangle \right) = 0,
+\langle W_0, &(P_+(X_i; 0) + P_-(X_i; 0)) \lambda V_0'(0) = 
+\lambda \langle W_0, (P_+(X_i; 0) + R P_+(X_i; 0) R ) V_0'(0)\rangle \\
+&= \lambda \left( \langle W_0, P_+(X_i; 0) V_0'(0) \rangle - \langle W_0, P_+(X_i; 0) V_0'(0) \rangle \right) = 0,
 \end{align*}
 since $R V_0'(0) = -V_0'(0)$ and $R W_0 = W_0$ by \cref{nulambdalemma}. Thus we are left with 
 \begin{equation}\label{eqforaic}
@@ -454,37 +451,37 @@ since $R V_0'(0) = -V_0'(0)$ and $R W_0 = W_0$ by \cref{nulambdalemma}. Thus we 
 For the terms involving $a_i^\pm$, we substitute the expressions from \cref{lemma:aipm} to get
 \begin{align*}
 \langle W_0, &P_+(X_i; \lambda)P^u(\lambda) a_i^+ - P_-(-X_i; \lambda)P^s(\lambda) a_i^- \rangle \\
-&= \langle W_0, (P_+(X_i; \lambda)P^u(\lambda) Q'(-X_i) + P_-(-X_i; \lambda)P^s(\lambda) Q'(X_i)) (d_{i+1} - d_i ) \rangle \\
-&\qquad+\langle W_0, P_+(X_i; \lambda)P^u(\lambda) A_2(\lambda)_i^+(b, c, d) + P_-(-X_i; \lambda)P^s(\lambda) A_2(\lambda)_i^-(b, c, d) \rangle 
+&= \langle W_0, P_+(X_i; \lambda)P^u(\lambda) P^u(0) D_i d + P_-(-X_i; \lambda)P^s(\lambda) P^s(0) D_i d \rangle \\
+&\qquad+\langle W_0, P_+(X_i; \lambda)P^u(\lambda) P^u(0) A_2(\lambda)_i^+(b, c, d) - P_-(-X_i; \lambda)P^s(\lambda) P^s(0) A_2(\lambda)_i^-(b, c, d) \rangle 
 \end{align*}
-For the second term on the RHS, we use the bounds for $A_2$ from \cref{lemma:aipm}, \cref{W0projlemma}(iv), and the fact that $A_2(\lambda)_i^-(b, c, d) \in E^s(0) \oplus E^u(0)$ to get
+
+For the second term on the RHS, we expand the projections $P^{s/u}(\lambda)$ about $\lambda = 0$ and use \cref{W0projlemma}(iv) with the bounds for $A_2$ from \cref{lemma:aipm} to get
 \begin{align*}
-\langle W_0, &P_+(X_i; \lambda)P^u(\lambda) A_2(\lambda)_i^+(b, c, d) + P_-(-X_i; \lambda)P^s(\lambda) A_2(\lambda)_i^-(b, c, d) \rangle \\
-&\leq C |\lambda|e^{-\alpha X_i } \left(e^{-\tilde{\alpha} X^*}|b| + e^{-\alpha X^*}|c| + e^{-\alpha X^*}(e^{-\alpha X^*} + |\lambda|)|d| ) \right) \label{A2bound}
+\langle W_0, &P_+(X_i; \lambda)P^u(\lambda) A_2(\lambda)_i^+(b, c, d) - P_-(-X_i; \lambda)P^s(\lambda) A_2(\lambda)_i^-(b, c, d) \rangle \\
+&=\langle W_0, P_+(X_i; \lambda)(P^u(0) + \mathcal{O}(|\lambda|))A_2(\lambda)_i^+(b, c, d)\rangle + \langle W_0, P_-(-X_i; \lambda)(P^s(0) + \mathcal{O}(|\lambda|)) A_2(\lambda)_i^-(b, c, d) \rangle \\
+&\leq C |\lambda| \left(e^{-\tilde{\alpha} X^*}|b| + e^{-\alpha X^*}|c| + e^{-\alpha X^*}(e^{-\alpha X^*} + |\lambda|)|d| ) \right) \label{A2bound} \\
 \end{align*}
 For the first term on the RHS, we have
 \begin{align*}
-\langle W_0, &P_+(X_i; \lambda)P^u(\lambda) a_i^+
+\langle W_0, &P_+(X_i; \lambda)P^u(\lambda) P^u(0) D_i d + P_-(-X_i; \lambda)P^s(\lambda) P^s(0) D_i d \rangle \\
+&= \langle W_0, P_+(X_i; \lambda)(I - P^s(\lambda) - P^c(\lambda) ) P^u(0) D_i d \rangle + \langle W_0, P_-(-X_i; \lambda)(I - P^u(\lambda) - P^c(\lambda) ) P^s(0) D_i d \rangle 
 \end{align*}
-
-*** STOP HERE ***
+For the first term, we have
 \begin{align*}
-a_i^+ &= Q'(X_i) d + P^u(0) A_2(\lambda)_i^+(b, c, d)\\
-a_i^- &= -Q'(-X_i) d + P^s(0) A_2(\lambda)_i^-(b, c, d)
+\langle W_0, P_+(X_i; \lambda) P^u(0) D_i d \rangle = \langle W_0, \tilde{P}^u_+(X_i) D_i d \rangle = 0,
 \end{align*}
-
-
-\begin{equation}\label{aipmexp1}
-\begin{aligned}
-a_i^+ &= Q'(-X_i) (d_{i+1} - d_i ) + A_2(\lambda)_i^+(b, c, d)\\
-a_i^- &= -Q'(X_i) (d_{i+1} - d_i ) + A_2(\lambda)_i^-(b, c, d)
-\end{aligned}
-\end{equation}
-$A_2$ is linear in $(b, c, d)$, $A_2(\lambda)_i^\pm(b, c, d) \in E^s(0) \oplus E^u(0)$, and $A_2$ has bound
-\begin{align}
-|A_2(\lambda)(b, c, d)|
-&\leq 
-\end{align}
+\begin{align*}
+\langle W_0, &P_+(X_i; \lambda) P^s(\lambda) P^u(0)  D_i d \rangle 
+= \langle W_0, P_+(X_i; 0) P^s(\lambda)( (P^u(0) - P^u(\lambda)) + P^u(\lambda)) D_i d \rangle + \mathcal{O}(|\lambda|e^{-2\alpha X_i}) \\
+&= \langle W_0, P_+(X_i; 0) (P^s(0) + \mathcal{O}(|\lambda|))(P^u(0) - P^u(\lambda)) D_i d \rangle + \mathcal{O}(|\lambda|e^{-2\alpha X_i}) \\
+&= \langle W_0, P_+(X_i; 0) P^s(0) (P^u(0) - P^u(\lambda)) D_i d \rangle + \mathcal{O}(|\lambda|e^{\alpha X_i}(|\lambda| + e^{\alpha X_i})) \\
+&= \langle W_0, \tilde{P}^s_+(X_i) (P^u(0) - P^u(\lambda)) D_i d \rangle + \mathcal{O}(|\lambda|e^{\alpha X_i}(|\lambda| + e^{\alpha X_i})) \\
+&= \mathcal{O}(|\lambda|e^{\alpha X_i}(|\lambda| + e^{\alpha X_i})),
+\end{align*}
+and
+\begin{align*}
+\langle W_0, &P_+(X_i; \lambda) P^c(\lambda) P^u(0) D_i d \rangle =  
+\end{align*}
 
 
 
