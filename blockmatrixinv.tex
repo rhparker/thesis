@@ -365,11 +365,11 @@ a_i^c &= \lambda q(X_i) (d_{i+1} - d_i ) + \tilde{A}_2(\lambda)_i(b, c, d)
 \end{align}
 $\tilde{A}_2$ is linear in $(b, c, d)$ and has bound
 \begin{align}\label{tildeA2bound}
-|\tilde{A}_2(\lambda)(b, c, d) \leq C \left( |\lambda| e^{-\alpha X^*} |b| + |\lambda| e^{-\alpha X^*} (|\lambda| + e^{-\alpha X^*}) |d| + (|\lambda| + e^{-\alpha X^*})|c| \right)
+|\tilde{A}_2(\lambda)(b, c, d) \leq C |\lambda| ( e^{-\alpha X^*} + |\lambda|) \left( e^{-\alpha X^*}  |b| + |c| + e^{-\alpha X^*} |d| \right)
 \end{align}
 
 \begin{proof}
-Apply the projection $P^c(\lambda)$ on $E^c(\lambda)$ to the matching condition $P_i^+(X_i; \lambda) Z_i^+(X_i) - P_{i+1}^-(-X_i; \lambda) Z_{i+1}^-(-X_i) = D_i d + C_i c$ to get
+Apply the projection $P^c(\lambda)$ to the matching condition $P_i^+(X_i; \lambda) Z_i^+(X_i) - P_{i+1}^-(-X_i; \lambda) Z_{i+1}^-(-X_i) = D_i d + C_i c$ to get
 \begin{equation}\label{Dideq0c}
 \begin{aligned}
 P^c(&\lambda)(D_i d + C_i c) = P^c(\lambda)( P_+(X_i; \lambda) a_i^c V_0(\lambda) + P_-(-X_i; \lambda)a_i^c V_0(\lambda)) + P^c(\lambda) \tilde{L}_3(\lambda)_i(a,b,c,d),
@@ -442,25 +442,27 @@ P^c(&\lambda)( P_+(X_i; \lambda) a_i^c V_0(\lambda) + P_-(-X_i; \lambda)a_i^c V_
 &= 2 a_i^c + \mathcal{O}\left(|\lambda|(e^{-\alpha X_i } + |\lambda|)\left(e^{-\tilde{\alpha} X^*}|b| + e^{-\alpha X^*}(|c| + |\lambda|^2|d| + |D_i||d|) \right)\right) 
 \end{align*}
 
-*****
-
-Next, we evaluate $P_c(\lambda) C_i c$ and $P^c(\lambda)D_i d$. From Lemma \ref{stabestimateslemma}, $|C_i c| \leq C e^{-\alpha X^*}$. 
-
-Finally, we evaluate the LHS of \cref{PcDid}. Expanding the conjugation operators, $W_0(\lambda)$, and $V_0(\lambda)$ in a Taylor series about $\lambda = 0$, we have
+Finally, we evaluate $P^c(\lambda)\tilde{L}_3(\lambda)_i(a,b,c,d)$. To do this, we use \cref{W0projlemma}(viii) together with the bounds we obtained for the terms of $L_3(\lambda)_i(a,b,c,d)$ from \cref{Zinv1} to get 
+\begin{equation*}
+|P^c(\lambda)\tilde{L}_3(\lambda)_i(a,b,c,d)| \leq C |\lambda|( e^{-\alpha X_i} + |\lambda|) \left( |a| + e^{-\alpha X^*} (|c| + |\lambda|^2 |d|) + e^{-\tilde{\alpha} X^*} |b| \right)
+\end{equation*}
+Substituting in the bound for $A_1$ from \cref{Zinv1} and simplifying, 
+\begin{equation*}
+|P^c(\lambda)\tilde{L}_3(\lambda)_i(a,b,c,d)| \leq C |\lambda| e^{-\alpha X^*} ( e^{-\alpha X_i} + |\lambda|) \left( |b| + |c| + |d| \right)
+\end{equation*}
+Combining all of these and dividing by 2, we get 
+\begin{equation*}
+a_i^c &= -\lambda q(X_i) (d_{i+1} - d_i ) + \tilde{A}_2(\lambda)_i(b, c, d)
+\end{equation*}
+where we have bound
 \begin{align*}
-P^c(\lambda) &(P_+(X_i; \lambda) + P_-(-X_i; \lambda))a_i^c 
-= \langle W_0 + \mathcal{O}(\lambda), (P_+(X_i; 0) + P_-(-X_i; 0) + \mathcal{O}(\lambda))(V_0 + \mathcal{O}(\lambda))a_i^c) \rangle \\
-&= \left( \langle W_0, P^+(X_i, 0)V_0 \rangle + \langle W_0, P^-(-X_i, 0)V_0 \rangle \right)a_i^c + \mathcal{O}(|\lambda||a_i^c|) \\
-&= \left( \langle W_0, V^c(X_i) \rangle + \langle W_0, V^c(-X_i) \rangle \right)a_i^c + \mathcal{O}(|\lambda||a_i^c|) \\
-&= 2 a_i^c + \mathcal{O}(|\lambda||a_i^c|)
+|\tilde{A}_2(\lambda)(b, c, d) \leq C |\lambda| ( e^{-\alpha X^*} + |\lambda|) \left( e^{-\alpha X^*}  |b| + |c| + e^{-\alpha X^*} |d| \right)
 \end{align*}
-since $\langle W_0, V^c(x) \rangle = \langle W_0, V_0 \rangle = 1$ for all $x$. Combining all of these, using the preliminary bound \cref{tildecbound1} for $a_i^c$, and dividing by 2, we get
-\begin{align}\label{ciexp1}
-a_i^c &= \lambda q(X_i) (d_{i+1} - d_i ) + \tilde{A}_2(\lambda)_i(b, c, d)
-\end{align}
-where $\tilde{A}_2$ has the bound \cref{tildeA2bound}.
+
 \end{proof}
 \end{lemma}
+
+***STOPPED HERE***
 
 In the next lemma, we solve for the conditions at $x = 0$, which are
 \begin{equation}\label{centercond}

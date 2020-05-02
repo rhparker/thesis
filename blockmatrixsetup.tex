@@ -668,6 +668,7 @@ For all $U \in \R^{2m+1}$, we have the following.
 	\item $\langle W_0, P_\pm(x, \lambda) P^{s/u}(0) U \rangle = \mathcal{O}(|\lambda|e^{-\alpha|x|}|U|)$
 	\item $\langle W_0, P_\pm(0; \lambda) P^{s/u}(0) U \rangle = \mathcal{O}(|\lambda||U|)$
 	\item $P^c(0) G_i^\pm(x) U = \langle W_0, G_i^\pm(x) U\rangle = 0$
+	\item $P^c(\lambda) P_\pm(x, \lambda) P^{s/u}(\lambda) U = \mathcal{O}(|\lambda|( e^{-\alpha |x|} + |\lambda|)|U|)$
 \end{enumerate}
 where $P_\pm(x; \lambda) = I + \Theta_\pm(x, \lambda)$ are the conjugation operators and $P^{s/u}(\lambda)$ are the eigenprojections for $E^{s/u}(\lambda)$.
 \begin{proof}
@@ -684,7 +685,17 @@ P_\pm(x, \lambda) &= I + \Theta_\pm(x, \lambda) \\
 &= I + \Theta_\pm(x, 0) + \lambda \partial_\lambda \Theta_\pm(x, 0) + \mathcal{O}(|\lambda|^2 e^{-\alpha |x|} ) \\
 &= P_\pm(x, 0) + \mathcal{O}(|\lambda|e^{-\alpha|x|}).
 \end{align*}
-For (iv), we combine (i) and (iii). Part (v) is the special case of (iv) when $x = 0$. For (vi), since the bottom row of $G_i^\pm(x)$ is all zeros, the last component of $G_i^\pm(x) U$ is 0 for all $U$. It follows that $\langle W_0, G_i^\pm(x) U\rangle = 0$. 
+For (iv), we combine (i) and (iii). Part (v) is the special case of (iv) when $x = 0$. For (vi), since the bottom row of $G_i^\pm(x)$ is all zeros, the last component of $G_i^\pm(x) U$ is 0 for all $U$. It follows that $\langle W_0, G_i^\pm(x) U\rangle = 0$. For (vii), using \cref{nulambdalemma},
+\begin{align*}
+P^c(&\lambda) P_\pm(x, \lambda) P^{s/u}(\lambda) U 
+= P^c(\lambda)(I + \Theta_\pm(x, \lambda) ) P^{s/u}(\lambda) U \\
+&= P^c(\lambda) \Theta_\pm(x, \lambda) P^{s/u}(\lambda) U \\
+&= \langle W_0(\lambda), \Theta_\pm(x, \lambda) P^{s/u}(\lambda) U \rangle + \mathcal{O}(|\lambda|^2 |U| ) \\
+&= \langle W_0 + \mathcal{O}(\overline{\lambda}), (\Theta_\pm(x, 0) + \mathcal{O}(e^{-\alpha |x|}|\lambda|)) (P^{s/u}(0) + \mathcal{O}(|\lambda|)) U \rangle + \mathcal{O}(|\lambda|^2 |U| ) \\
+&= \langle W_0, \Theta_\pm(x, 0) P^{s/u}(0) U \rangle + \mathcal{O}(|\lambda|(e^{-\alpha |x|} + |\lambda|) |U| ) \\
+&= \mathcal{O}(|\lambda|(e^{-\alpha |x|} + |\lambda|) |U| ),
+\end{align*}
+where we used part (ii) in the last line.
 \end{proof}
 \end{lemma}
 
