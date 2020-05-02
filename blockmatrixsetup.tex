@@ -46,8 +46,14 @@ where
 \begin{equation}\label{W0prime}
 W_0'(0) = \frac{1}{c} \left( 0, -c_3, 0, -c_5, 0, \dots, 0, -c_{2m-1}, 0, 1, 0\right)^T
 \end{equation}
-and symmetry property $W_0(-\overline{\lambda}) = R W_0(\overline{\lambda})$.
-
+and symmetry property $W_0(-\overline{\lambda}) = R W_0(\overline{\lambda})$. Finally, the projection $P_{\nu(\lambda)}$ on the eigenspace $E_{\nu(\lambda)}$ corresponding to eigenvalue $\nu(\lambda)$ is given by
+\begin{equation}\label{Pnulambda}
+P_{\nu(\lambda)} = \frac{ \langle W_0(\lambda), \cdot \rangle }{\langle W_0(\lambda), V_0(\lambda) \rangle } V_0(\lambda),
+\end{equation}
+which is well-defined since $\langle W_0(\lambda), V_0(\lambda) \rangle \neq 0$, and we have the expression
+\begin{equation}\label{Pnulambda1}
+P_{\nu(\lambda)} = \left( \langle W_0(\lambda), \cdot \rangle + \mathcal{O}(|\lambda|^2) \right)  V_0(\lambda).
+\end{equation}
 \begin{proof}
 
 Using \eqref{defAphi} and \eqref{fpartials0},
@@ -113,6 +119,20 @@ which has a solution
 W_0'(0) = \frac{1}{c} \left( 0, -c_3, 0, -c_5, 0, \dots, 0, -c_{2m-1}, 0, 1, 0\right)^T
 \]
 that is orthogonal to $W_0$.
+
+Finally, equation \cref{Pnulambda} follows directly from \cref{eigprojlemma}. To get \cref{Pnulambda1},
+\begin{align*}
+\langle W_0(\lambda), V_0(\lambda) \rangle
+&= \langle W_0 + \overline{\lambda} W_0'(0) + \mathcal{O}(|\lambda|^2),
+V_0 + \lambda V'(0) + \mathcal{O}(|\lambda|^2) \rangle \\
+&= \langle W_0, V_0 \rangle + \lambda \langle W_0'(0), V_0 \rangle + \lambda \langle W_0, V_0'(0) \rangle + \mathcal{O}(|\lambda|^2) \\
+&= 1 + \mathcal{O}(|\lambda|^2),
+\end{align*}
+where the last line follows by using the expressions for $V_0'(0)$ and $W_0'(0)$ we derived above. Expanding in a Taylor series about $\lambda = 0$,
+\begin{align*}
+\frac{1}{\langle W_0(\lambda), V_0(\lambda) \rangle} = \frac{1}{1 + \mathcal{O}(|\lambda|^2)} = 1 + \mathcal{O}(|\lambda|^2).
+\end{align*}
+Substitute this into \cref{Pnulambda} to get \cref{Pnulambda1}.
 
 \end{proof}
 \end{lemma}

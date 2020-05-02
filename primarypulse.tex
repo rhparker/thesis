@@ -242,38 +242,37 @@ from which (iii) follows.
 
 Before we prove Lemma \ref{eigA0lemma}, we will prove a general result from finite dimensional linear algebra.
 
-\begin{lemma}\label{kernelprojlemma}
-Let $A$ be an $n \times n$ diagonalizable matrix with simple kernel spanned by $v$, and let $\ker A^* = \text{span}(w)$. Then 
+\begin{lemma}\label{eigprojlemma}
+Let $A$ be an $n \times n$ diagonalizable matrix, and let $\lambda$ be a simple eigenvalue with corresponding eigenvector $v$. Furthermore, assume that all eigenvalues of $A$ other than $\lambda$ are nonzero. Let $w$ be the eigenvector of $A^*$ corresponding to the simple eigenvalue $\overline{\lambda}$.
 \begin{enumerate}[(i)]
 \item $\langle v, w \rangle \neq 0$.
-\item Having chosen the scaling in part (i), the projection on the kernel of $A$ is given by
-\begin{equation}\label{PkerA}
-P_{\ker A} = \frac{ \langle w, \cdot \rangle v }{\langle w, v \rangle }
+\item $P_\lambda$, the projection on the one-dimensional eigenspace $E_\lambda$ corresponding to $\lambda$, is given by
+\begin{equation}\label{Plambda}
+P_{\lambda} = \frac{ \langle w, \cdot \rangle }{\langle w, v \rangle } v
 \end{equation}
 \end{enumerate}
 \begin{proof}
-For part (i), if $\langle v, w \rangle = 0$, then $v \perp \ker A^*$, thus by the Fredholm alternative we can solve $A u = v$. This is not possible since $A$ has simple kernel.
+For part (i), since $\lambda$ is a simple eigenvalue, $\ker(A^* - \overline{\lambda}I) = \spn{w}$. If $\langle v, w \rangle = 0$, then $v \perp \ker(A^* - \overline{\lambda}I) = \ker (A - \lambda I)^*$, thus by the Fredholm alternative, we can solve the equation $(A - \lambda I)z = v$ for $z$, which is impossible since $A$ is diagonalizable. Thus the expression for $P_\lambda$ is well-defined.
 
-For part (ii), Let $0, \lambda_2, \dots, \lambda_n$ be the eigenvalues (with multiplicity) of $A$ with corresponding eigenvectors $v, v_2, \dots, v_n$. Let $P$ be defined by the RHS of \eqref{PkerA}.
-
-First, let $u \in \ker A$. Then $u = \alpha v$ for $\alpha \in \R$, thus 
-\[
-P u = \frac{ \langle w, \alpha v \rangle v }{\langle w, v \rangle } = \frac{ \alpha \langle w, v \rangle v}{\langle w, v \rangle } = \alpha v = u
-\]
-
-Next, let $u \in R^n$. Since $A$ is diagonalizable, the eigenfunctions form a basis for $\R^n$, write $u$ in the eigenbasis as
-\[
-u = \alpha v + \sum_{k=2}^n \alpha_k v_k
-\]
-Choose $k \in 2, \dots, n$ and note that $\lambda_k \neq 0$ since the kernel of $A$ is simple and $A v_k = \lambda_k v_k$. Then we have
+For part (ii), if $z = \alpha v$, then
 \begin{align*}
-\langle w, v_k \rangle &= \langle w, \frac{1}{\lambda_k}\lambda_k v_k \rangle \\
-&= \langle w, \frac{1}{\lambda_k} A v_k \rangle \\
-&= \langle w, A \frac{1}{\lambda_k} v_k \rangle \\
-&= \langle A^* w, \frac{1}{\lambda_k} v_k \rangle \\
-&= 0
+P_{\lambda}(\alpha v) = \frac{ \langle w, \alpha v \rangle }{\langle w, v \rangle } v = 
+ \alpha  \frac{ \langle w, v \rangle }{\langle w, v \rangle } v = \alpha v,
 \end{align*}
-Thus we have $P u = \alpha v$.
+thus $P_\lambda$ acts as the identity on $E_\lambda$. Finally, we show that $P_\lambda z = 0$ for all eigenvectors $z$ of $A$ corresponding to eigenvalues other than $\lambda$. Let $z$ be an eigenvector of $A$ corresponding to eigenvalue $\mu \neq \lambda$. By assumption, $\mu \neq 0$. Then we have
+\begin{align*}
+\langle w, z \rangle &= \langle w, \frac{1}{\mu} \mu z\rangle \\
+&= \frac{1}{\mu}\langle w, A z \rangle \\
+&= \frac{1}{\mu}\langle A^* w, z \rangle \\
+&= \frac{1}{\mu}\langle \overline{\lambda} w, z \rangle \\
+&= \frac{\lambda}{\mu}\langle w, z \rangle,
+\end{align*}
+which rearranges to 
+\[
+\left( 1 - \frac{\lambda}{\mu} \right) \langle w, z \rangle = 0.
+\]
+Since $\lambda \neq \mu$ and $\mu \neq 0$, it follows that $\langle w, z \rangle = 0$. Since all eigenvectors of $A$ corresponding to eigenvalues $\mu \neq \lambda$ are in the kernel of $P_\lambda$, we conclude that $P_\lambda$ is in fact the projection on $E_\lambda$.
+
 \end{proof}
 \end{lemma}
 
@@ -297,7 +296,7 @@ For part (ii) we can verify directly from the form of $A(0)$ that
 V_0 &= (1/c, 0, \dots, 0, 1)^T \\
 W_0 &= (0, 0, \dots, 0, 1)^T
 \end{align*}
-are eigenvectors of $A(0)$ and $-A(0)^*$ (respectively) corresponding to eigenvalue 0; these have been scaled $V_0$ so that $\langle V_0, W_0 \rangle = 1$. The expression for the projection on the kernel of $A(0)$ in part (iii) comes from Lemma \ref{kernelprojlemma}, since the kernel of $A(0)$ is simple and $\langle W_0, V_0 \rangle = 1$.
+are eigenvectors of $A(0)$ and $-A(0)^*$ (respectively) corresponding to eigenvalue 0; these have been scaled $V_0$ so that $\langle V_0, W_0 \rangle = 1$. The expression for the projection on the kernel of $A(0)$ in part (iii) comes taking $\lambda = 0$ in Lemma \ref{eigprojlemma}, since the kernel of $A(0)$ is simple and $\langle W_0, V_0 \rangle = 1$.
 
 \section{Proof of Lemma \ref{nondegenlemma}}
 Since $Q(x)$ is a homoclinic orbit in the intersection of $W^u(0)$ and $W^s(0)$, $\R Q'(0) \subset T_{Q(0)}W^s(0) \cap T_{Q(0)}W^u(0)$. If the intersection were more than one-dimensional, there would exist another exponentially localized solution $V(x) = (v_1, \dots, v_{2m}, v_{2m+1})^T$ to \eqref{vareq2}. It follows that $\tilde{V}(x) = (v_1, \dots, v_{2m})^T$ would be an exponentially localized solution to \eqref{vareq1}, which contradicts \eqref{nondegencond}.

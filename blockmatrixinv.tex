@@ -419,15 +419,16 @@ Taking the inner product with $W_0$,
 \end{align*}
 since $R$ is self-adjoint, $RW_0 = W_0$, and $RV_0 = V_0$. 
 
-Finally, we evaluate $\langle W_0, L_3(\lambda)_i(a,b,c,d)$. First, we look at the term involving $a_i^c$. We note that 
-\[
-P^c(\lambda) V_0 = (P^c(0) + \mathcal{O}(|\lambda|)) V_0 = V_0 + \mathcal{O}(|\lambda|)
-\]
-Since $P^c(\lambda) V_0 \in V_0(\lambda)$ and $V_0(\lambda) = V_0 + \lambda V_0'(0) + \mathcal{O}(|\lambda|^2)$ by \cref{nulambdalemma}, it follows that $P^c(\lambda) V_0 = V_0(\lambda)$. Using \cref{W0projlemma}(iii) and \cref{PclambdaV0} with the $a_i^c$ term, we have
+Finally, we evaluate $\langle W_0, L_3(\lambda)_i(a,b,c,d)$. First, we look at the term involving $a_i^c$. Using \cref{Pnulambda1} from \cref{nulambdalemma},
+\begin{align*}
+P^c(\lambda) V_0 &= \left( \langle W_0(\lambda), V_0 \rangle + \mathcal{O}(|\lambda|^2) \right)  V_0(\lambda) \\
+&= \langle W_0 + \overline{\lambda}W_0'(0) + \mathcal{O}(|\lambda|^2), V_0 \rangle (V_0 + \lambda V'(0) + \mathcal{O}(|\lambda|^2)) \\
+&= V_0 + \lambda V'(0) + \mathcal{O}(|\lambda|^2)).
+\end{align*}
+Using \cref{W0projlemma}(iii) and \cref{PclambdaV0} with the $a_i^c$ term, we have
 \begin{align*}
 \langle W_0, &(P_+(X_i; \lambda) +  P_-(-X_i; \lambda)) P^c(\lambda) a_i^c V_0 \rangle \\
 &= a_i^c \langle W_0, (P_+(X_i; 0) + P_-(X_i; 0) + \mathcal{O}(|\lambda|e^{-\alpha X_i}))P^c(\lambda)V_0  \rangle \\
-&= a_i^c \langle W_0, (P_+(X_i; 0) + P_-(X_i; 0))V_0(\lambda)  \rangle + \mathcal{O}(|\lambda|e^{-\alpha X_i}|a|) \\
 &= a_i^c \langle W_0, (P_+(X_i; 0) + P_-(X_i; 0))(V_0 + \lambda V_0'(0) + \mathcal{O}(|\lambda|^2))  \rangle + \mathcal{O}(|\lambda|e^{-\alpha X_i}|a|) \\
 &= a_i^c \langle W_0, (P_+(X_i; 0) + P_-(X_i; 0))(V_0 + \lambda V_0'(0) )  \rangle + \mathcal{O}(|\lambda|(|\lambda| + e^{-\alpha X_i})|a|)
 \end{align*}
