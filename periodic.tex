@@ -193,7 +193,7 @@ $S(\lambda)$ is the $(2n \times 2n)$ block matrix
 \begin{equation}\label{blockeq}
 S(\lambda) = 
 \begin{pmatrix}
-K(\lambda) + C_1 & \lambda K_2(\lambda) - \lambda^2 \tilde{M}^c I + D_1 \\
+K(\lambda) -\frac{1}{2} \tilde{M} K_1(\lambda) + C_1 & -\lambda A_1 - \lambda^2 \tilde{M}^c I + D_1 \\
 -\frac{1}{2} \lambda M^c K_1(\lambda) + C_2 & A - \lambda^2 MI + D_2
 \end{pmatrix}
 \end{equation}
@@ -209,11 +209,21 @@ e^{-\nu(\lambda)X_1} & & & & & -e^{\nu(\lambda)X_0} \\
 & -e^{\nu(\lambda)X_2} & e^{-\nu(\lambda)X_3} \\
   & & \ddots & && \\
 & & & & -e^{\nu(\lambda)X_{n-1}} & e^{-\nu(\lambda)X_0}
-\end{pmatrix}
+\end{pmatrix}.
 \end{align*}
 where $\nu(\lambda)$ is defined in Lemma \ref{nulambdalemmasimple}.
 
-\item $K_1(\lambda)$ is the same matrix as $K(\lambda)$ with all terms positive.
+\item $K_1(\lambda)$ is the same matrix as $K(\lambda)$ with all terms positive, i.e. 
+\begin{align*}
+K_1(\lambda) =  
+\begin{pmatrix}
+e^{-\nu(\lambda)X_1} & & & & & e^{\nu(\lambda)X_0} \\
+e^{\nu(\lambda)X_1} & e^{-\nu(\lambda)X_2} \\
+& e^{\nu(\lambda)X_2} & e^{-\nu(\lambda)X_3} \\
+ & & \ddots & &&   \\
+& & & & e^{\nu(\lambda)X_{n-1}} & e^{\nu(\lambda)X_0}
+\end{pmatrix}.
+\end{align*}
 
 \item $A$ is the symmetric banded matrix
 \begin{align}\label{Asymm}
@@ -223,27 +233,22 @@ a_0 & -a_0 - a_1 &  a_1 \\
 & a_1 & -a_1 - a_2 &  a_2 \\
 & \ddots & \ddots & \ddots \\
 a_{n-1} & & & & a_{n-2} & -a_{n-2} - a_{n-1} \\
-\end{pmatrix}
+\end{pmatrix},
 \end{align}
 where
 \begin{align*}
 a_i &= \langle \Psi(X_i), Q'(-X_i) \rangle
 \end{align*}
 
-\item $K_2(\lambda)$ is the matrix
+\item $A_1$ is the matrix
 \begin{align*}
-K_2(\lambda) &= \begin{pmatrix}
-k_0^+ - k_1^- & k_1^- &&& -k_0^+ \\
--k_1^+ & k_1^+ - k_2^- & k_2^- \\
-& -k_2^+ & k_2^+ - k_3^- & k_3^- \\ && \ddots \\
+A_1 &= \begin{pmatrix}
+q(X_0) - q(X_1) & q(X_1) &&& -q(X_0) \\
+-q(X_1) & q(X_1) - q(X_2) & q(X_2) \\
+& -q(X_2) & q(X_2) - q(X_3) & q(X_3) \\ && \ddots \\
 \\
-k_0^- &&& -k_{n-1}^+ & k_{n-1}^+ - k_0^- 
-\end{pmatrix}
-\end{align*}
-with entries
-\begin{align*}
-k_i^- &= e^{-\nu(\lambda)X_i} q(X_i)\\
-k_i^+ &= e^{\nu(\lambda)X_i} q(X_i),
+q(X_0) &&& -q(X_{n-1}) & q(X_{n-1}) - q(X_0) 
+\end{pmatrix},
 \end{align*}
 where $q(x)$ is the first component of the primary pulse solution $Q(x)$. 
 
@@ -251,13 +256,13 @@ where $q(x)$ is the first component of the primary pulse solution $Q(x)$.
 \begin{align*}
 M &= \int_{-\infty}^\infty q(y) \partial_c q(y) dy \\
 M^c &= \int_{-\infty}^\infty q(y) v^c(y) dy \\
+\tilde{M} &= \int_{-\infty}^{\infty} \left(v^c(y) - \frac{1}{c}\right) dy \\
 \tilde{M}^c &= \int_{-\infty}^\infty \partial_c q(y) dy
 \end{align*}
 where $v^c(y)$ is the first component of $V^c(y)$, which is defined in \cref{varadjsolutions}.
 
 \item The remainder matrices and $K_2(\lambda)$ are analytic in $\lambda$ and have uniform bounds
 \begin{align*}
-|K_2(\lambda)| &\leq C r^{1/2} \\
 |C_1| &\leq C |\lambda|(|\lambda| + r^{1/2}) \\
 |D_1| &\leq C |\lambda|(|\lambda| + r^{1/2})^2 \\
 |C_2| &\leq C (|\lambda| + r^{1/2})^2 \\
