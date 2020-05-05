@@ -361,7 +361,7 @@ In the next lemma, we derive an expression for $a_i^c$.
 \begin{lemma}\label{lemma:ac1}
 For the center initial conditions $a_i^c \in \C$, we have the expression
 \begin{align}\label{tildeciexp1}
-a_i^c &= -\frac{1}{2} \lambda q(X_i) (d_{i+1} - d_i ) + \tilde{A}_2(\lambda)_i(b, c, d)
+a_i^c &= -2 \lambda q(X_i) (d_{i+1} - d_i ) + \tilde{A}_2(\lambda)_i(b, c, d)
 \end{align}
 $\tilde{A}_2$ is linear in $(b, c, d)$ and has bound
 \begin{align}\label{tildeA2bound}
@@ -450,9 +450,9 @@ Substituting in the bound for $A_1$ from \cref{Zinv1} and simplifying,
 \begin{equation*}
 |P^c(\lambda)\tilde{L}_3(\lambda)_i(a,b,c,d)| \leq C |\lambda| e^{-\alpha X^*} ( e^{-\alpha X_i} + |\lambda|) \left( |b| + |c| + |d| \right)
 \end{equation*}
-Combining all of these and dividing by 2, we get 
+Combining all of these, we get 
 \begin{equation*}
-a_i^c = -\frac{1}{2}\lambda q(X_i) (d_{i+1} - d_i ) + \tilde{A}_2(\lambda)_i(b, c, d)
+a_i^c = -2 \lambda q(X_i) (d_{i+1} - d_i ) + \tilde{A}_2(\lambda)_i(b, c, d)
 \end{equation*}
 where we have bound
 \begin{align*}
@@ -500,7 +500,7 @@ In addition, we can write
 \begin{align*}
 a_i^+ &= P_i^+(X_i; \lambda)^{-1} \left( P_0^u(\lambda) D_i d + A_4(\lambda)_i^+(c, d) \right) \\
 a_i^- &= -P_-(-X_i; \lambda)^{-1} \left( P_0^s(\lambda) D_i d + A_4(\lambda)_i^-(c, d) \right) \\
-a_i^c &= -\frac{1}{2} \lambda q(X_i)(d_{i+1} - d_i ) + \tilde{A}_4(\lambda)_i(c, d) 
+a_i^c &= -2 \lambda q(X_i)(d_{i+1} - d_i ) + \tilde{A}_4(\lambda)_i(c, d) 
 \end{align*}
 where $A_4$ and $\tilde{A}_4$ are linear in $(c, d)$, and have bounds
 \begin{align}
@@ -685,8 +685,8 @@ Up to this point, we have solved uniquely for $Z$, $a$, $b$, and $g$. We will no
 The jumps in the direction of $\Psi^c(0)$ are given by
 \begin{equation}\label{xic}
 \begin{aligned}
-\xi^c_i &= e^{-\nu(\lambda)X_i} c_i - e^{\nu(\lambda)X_i} c_{i-1} - \frac{1}{2}\lambda \tilde{M} \left( e^{-\nu(\lambda)X_i}c_i + e^{\nu(\lambda)X_i}c_{i-1}\right)\\
-&- \lambda q(X_i) (d_{i+1} - d_i ) - \lambda^2 \tilde{M}^c d_i + R^c(\lambda)_i(c, d)
+\xi^c_i &= e^{-\nu(\lambda)X_i} c_i - e^{\nu(\lambda)X_i} c_{i-1} - \frac{1}{2}\lambda \tilde{M} \left( e^{-\nu(\lambda)X_i}c_i + e^{\nu(\lambda)X_i}c_{i-1}\right) \\
+&- 2 \lambda q(X_i) (d_{i+1} - d_i ) - \lambda^2 \tilde{M}^c d_i + R^c(\lambda)_i(c, d)
 \end{aligned}
 \end{equation}
 where
@@ -696,7 +696,7 @@ where
 \end{align*}
 The remainder term $R^c_i(c, d)$ is analytic in $\lambda$ and linear in $(c, d)$ and has bound \cref{centerR} given below in the proof. The jump conditions can be written in matrix form as
 \begin{equation}\label{matrixjumpc}
-\left( K(\lambda) -\frac{1}{2} \lambda \tilde{M} K_1(\lambda) + C_1 \right) c + \left(- \frac{1}{2} \lambda A_1 - \lambda^2 \tilde{M}^c I + D_1\right) d = 0.
+\left( K(\lambda) -\frac{1}{2} \lambda \tilde{M} K_1(\lambda) + C_1 \right) c + \left(- 2 \lambda A_1 - \lambda^2 \tilde{M}^c I + D_1\right) d = 0.
 \end{equation}
 
 $K(\lambda)$ is the matrix
@@ -774,7 +774,7 @@ The leading order terms involve $a_i^c$ and the center integral.
 \item For the term involving $a_i^c$, using the expression from Lemma \ref{lemma:ac1}, \cref{lemma:VpmPsiIP}, and \cref{lemma:expnubound} we have
 \begin{align*}
 \langle W_0, &P_+(0; \lambda) e^{-\nu(\lambda)X_i} a_i^c V_0(\lambda) \rangle = -e^{-\nu(\lambda)X_i} a_i^c \langle W_0, V^+(0; \lambda) \rangle \\
-&= e^{-\nu(\lambda)X_i} \frac{1}{2} \lambda q(X_i) (d_{i+1} - d_i ) + \mathcal{O}\left( |\lambda| (|\lambda| + e^{-\alpha X^*})|c| + |\lambda| e^{-\alpha X^*}(|\lambda| + e^{-\alpha X^*}) |d|) \right)
+&= e^{-\nu(\lambda)X_i} 2 \lambda q(X_i) (d_{i+1} - d_i ) + \mathcal{O}\left( |\lambda| (|\lambda| + e^{-\alpha X^*})|c| + |\lambda| e^{-\alpha X^*}(|\lambda| + e^{-\alpha X^*}) |d|) \right)
 \end{align*}
 Expanding the exponential in a Taylor series,
 \begin{align*}
@@ -786,7 +786,7 @@ e^{-\nu(\lambda)X_i}
 since $X_i \leq X = \mathcal{O}(|\log r|)$. Substituting this in,
 \begin{align*}
 \langle W_0, &P_+(0; \lambda) e^{-\nu(\lambda)X_i} a_i^c V_0(\lambda) \rangle 
-= -\frac{1}{2}\lambda q(X_i) (d_{i+1} - d_i ) + \mathcal{O}\left( |\lambda| (|\lambda| + e^{-\alpha X^*})|c| + |\lambda| e^{-\alpha X^*}(|\lambda| + e^{-\alpha X^*}) |d|) \right)
+= -2 \lambda q(X_i) (d_{i+1} - d_i ) + \mathcal{O}\left( |\lambda| (|\lambda| + e^{-\alpha X^*})|c| + |\lambda| e^{-\alpha X^*}(|\lambda| + e^{-\alpha X^*}) |d|) \right)
 \end{align*}
 
 \item For the center integral involving $\tilde{H}_i^\pm$, 
@@ -922,7 +922,7 @@ e^{\nu(\lambda)X_1} & e^{-\nu(\lambda)X_2} \\
 \end{align*}
 and $c = (c_1, \dots, c_{n-1}, c_0)^T$. The 
 
-For the leading order terms involving $d$, the term involving $\tilde{M}^c$ is $-\lambda^2 \tilde{M}^c I$. The other terms involving $d$ are given by $-\frac{1}{2} \lambda A_1 d$, where $d = (d_1, \dots, d_{n-1}, d_0)^T$ and 
+For the leading order terms involving $d$, the term involving $\tilde{M}^c$ is $-\lambda^2 \tilde{M}^c I$. The other terms involving $d$ are given by $-2 \lambda A_1 d$, where $d = (d_1, \dots, d_{n-1}, d_0)^T$ and 
 \begin{align*}
 A_1 &= \begin{pmatrix}
 -q(X_1) & q(X_1) &&& \\
