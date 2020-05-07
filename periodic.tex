@@ -193,7 +193,7 @@ $S(\lambda)$ is the $(2n \times 2n)$ block matrix
 \begin{equation}\label{blockeq}
 S(\lambda) = 
 \begin{pmatrix}
-K(\lambda) -\frac{1}{2} \tilde{M} K_1(\lambda) + C_1 & -2 \lambda A_1 - \lambda^2 \tilde{M}^c I + D_1 \\
+K(\lambda) -\frac{1}{2} \tilde{M} K_1(\lambda) + C_1 & -\lambda A_1 - \lambda^2 \tilde{M}^c I + D_1 \\
 -\frac{1}{2} \lambda M^c K_1(\lambda) + C_2 & A - \lambda^2 MI + D_2
 \end{pmatrix}
 \end{equation}
@@ -243,11 +243,11 @@ a_i &= \langle \Psi(X_i), Q'(-X_i) \rangle
 \item $A_1$ is the matrix
 \begin{align*}
 A_1 &= \begin{pmatrix}
--q(X_1) & q(X_1) &&& \\
- & -q(X_2) & q(X_2) \\
-& & -q(X_3) & q(X_3) \\ && \ddots \\
+q(X_0) - q(X_1) & q(X_1) &&& -q(X_0) \\
+-q(X_1) & q(X_1) - q(X_2) & q(X_2) \\
+& -q(X_2) & q(X_2) - q(X_3) & q(X_3) \\ && \ddots \\
 \\
-q(X_0) &&&  & -q(X_0)  
+q(X_0) &&& -q(X_{n-1}) & q(X_{n-1}) - q(X_0) 
 \end{pmatrix},
 \end{align*}
 where $q(x)$ is the first component of the primary pulse solution $Q(x)$. 
