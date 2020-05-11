@@ -290,6 +290,49 @@ For any positive integer $N$ we choose, it follows from \cref{Xdomain} that for 
 Thus the restriction $\delta(r,N) < N/|\log r|$ in \cref{blockmatrixtheorem} will not hinder a search for the first $N$ essential spectrum eigenvalues.
 \end{remark}
 
+\section{Spectrum of periodic single pulse}\label{sec:per1peig}
+
+The simplest case is the periodic single pulse. There is a only single length parameter $X_0$, which is the same as the domain length $X$. The block matrix $S(\lambda)$ is a $2\times 2$ matrix, the form of which is given in the following lemma.
+
+\begin{lemma}\label{lemma:1blockmatrix}
+For a periodic single pulse, the block matrix $S(\lambda)$ from \cref{blockmatrixtheorem} is 
+\begin{align}\label{1pblockmatrix}
+S(\lambda) &= 
+\begin{pmatrix}
+-2 \sinh(\nu(\lambda) X) - \tilde{M}\lambda \cosh(\nu(\lambda) X) & -\tilde{M}^c \lambda^2 \\
+-M^c \lambda \cosh(\nu(\lambda)X) & - M \lambda^2
+\end{pmatrix} +
+\begin{pmatrix}
+C_1 & D_1 \\ C_2 & D_2
+\end{pmatrix},
+\end{align}
+where
+\begin{align*}
+|C_1|, |C_2| &\leq C |\lambda|(|\lambda|^2 + r^{1/2}) \\
+|D_1|, |D_2| &\leq C |\lambda|^2(|\lambda|^2 + r^{1/2})
+\end{align*}
+In addition,
+\begin{equation}\label{1pblockmatrixdet}
+\det S(\lambda, r) = \lambda^2 \left( 2 M \sinh(\nu(\lambda)X)(1 + \mathcal{O}(|\lambda|^2 + r^{1/2})) + \lambda(M \tilde{M} - M_c \tilde{M}_c)\cosh(\nu(\lambda)X) + \mathcal{O}(|\lambda|(|\lambda|^2 + r^{1/2}) \right),
+\end{equation}
+and $\det S(-\lambda) = -\det S(\lambda)$.
+\end{lemma}
+
+Using this, we can compute the nonzero essential spectrum eigenvalues for the periodic single pulse. 
+
+\begin{theorem}\label{theorem:1pess}
+Assume Hypotheses \ref{Ehyp}, \ref{Hhyp}, \ref{hypeqhyp}, \ref{Qexistshyp}, \ref{H0transversehyp}, \ref{Melnikov2hyp}, and \ref{Hoverlaphyp}. Let $r_*$ be as in \cref{2pulsebifurcation}. Choose any integer $N > 0$, and let $\delta(N,r)$ be as in Theorem \ref{blockmatrixtheorem}. Then there exists $r_1 \leq r_*$ such that for any $r \in \mathcal{R}$ with $r \leq r_1$, the following holds regarding the nonzero essential spectrum eigenvalues. 
+
+Let $N_1 \leq N$ be the largest positive integer such that $N_1/|\log r| < \delta(N,r)$. Then there are $2N_1$ nonzero essential spectrum eigenvalues $\lambda = \{ \pm \lambda_m^{\text{ess}} : m = 1, \dots, N_1 \}$, where
+\[
+\lambda_m^{\text{ess}}(r) = c \frac{m \pi i}{X + c \frac{M\tilde{M} - M_c\tilde{M_c}}{2 M}} +  \mathcal{O}\left( \frac{1}{|\log r|^3} \right)
+\]
+is on the imaginary axis. In terms of $m$ and $X$,
+\[
+\lambda_m^{\text{ess}}(X) = c \frac{m \pi i}{X + c \frac{M\tilde{M} - M_c\tilde{M_c}}{2 M}} +  \mathcal{O}\left( \left(\frac{m}{X}\right)^3 \right).
+\]
+\end{theorem}
+
 \section{Spectrum of periodic 2-pulse}\label{sec:per2peig}
 
 We will apply \cref{blockmatrixtheorem} to the simplest case, which is the periodic 2-pulse. All proofs from this section are in \cref{per2pproof}. The block matrix $S(\lambda)$ is a $4\times 4$ matrix, the form of which is given in the next corollary, which follows immediately from \cref{blockmatrixtheorem}.
