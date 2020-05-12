@@ -44,8 +44,8 @@ W^+(0; c, d, -\lambda) - W^-(0; -c, d, -\lambda) = RW^+(0; -c, d, \lambda) - RW^
 \]
 Since $R \Psi^c(0) = \Psi^c(0)$ and $R \Psi(0) = \Psi(0)$,
 \begin{align*}
-\langle \Psi^c(0), W^+(0; c, d, -\lambda) - W^-(0; -c, d, -\lambda) \rangle &= \langle \Psi^c(0), W^+(0; -c, d, \lambda) - W^-(0; c, d, \lambda) \rangle \\
-\langle \Psi(0), W^+(0; c, d, -\lambda) - W^-(0; -c, d, -\lambda) \rangle &= \langle \Psi(0), W^+(0; -c, d, \lambda) - W^-(0; c, d, \lambda) \rangle 
+\langle \Psi^c(0), W^+(0; c, d, -\lambda) - W^-(0; c, d, -\lambda) \rangle &= \langle \Psi^c(0), W^+(0; -c, d, \lambda) - W^-(0; -c, d, \lambda) \rangle \\
+\langle \Psi(0), W^+(0; c, d, -\lambda) - W^-(0; c, d, -\lambda) \rangle &= \langle \Psi(0), W^+(0; -c, d, \lambda) - W^-(0; -c, d, \lambda) \rangle 
 \end{align*}
 Since $W(x; c, d; \lambda)$ is linear in $(c, d)$ by \cref{Zinv2}, 
 \begin{align}\label{1pdetSneg}
@@ -124,6 +124,49 @@ In terms, of $X$, this is given by
 \[
 \lambda_m^{\text{ess}}(X) = c  \frac{m \pi i}{X + c \frac{K}{2 M}} + \mathcal{O}\left( \left(\frac{m}{X}\right)^3\right).
 \]
+
+\section{Proof of \cref{lemma:2blockmatrix} }
+
+First, we note that the periodic 2-pulse is symmetric, i.e. $Q_i^-(x) = R Q_{i-1}^+(-x)$, where the subscript $i$ is taken $\Mod 2$. Using the same procedure as in \cref{AQxsymmetrylemma}, $G_i^-(x) = -R G_{i-1}^+(-x)R$. Following what we did in the proof of \cref{lemma:2blockmatrix}, we multiply the first two equations of \cref{eigsystem} by $R$ on the right, simplify, and make the change of variables $x \mapsto -x$ to get
+\begin{align*}
+[-R W_i^-(-x)]' &= A(Q(x); -\lambda)[-R W_i^-(-x)] + G_{i-1}^+(x) [-R W_i^-(-x)] \\
+&\qquad -c_{i-1} e^{-\nu(\lambda)X_{i-1}} G_{i-1}^+(x) V^+(x; -\lambda) + d_i \lambda^2 \tilde{H}_{i-1}^+(x) \\
+[-R W_i^+(-x)]' &= A(Q(x); -\lambda)[-R W_i^+(-x)] + G_{i-1}^-(x)[-R W_i^+(-x)] \\
+&\qquad -c_i e^{\nu(\lambda)X_i } G_{i-1}^-(x)V^-(x; -\lambda) + d_i \lambda^2 \tilde{H}_{i-1}^-(x),
+\end{align*}
+which we reindex to get
+\begin{align*}
+[-R W_{i-1}^+(-x)]' &= A(Q(x); -\lambda)[-R W_{i-1}^+(-x)] + G_i^-(x)[-R W_{i-1}^+(-x)] \\
+&\qquad - c_{i-1} e^{\nu(\lambda)X_{i-1}} G_i^-(x)V^-(x; -\lambda) + d_{i-1} \lambda^2 \tilde{H}_i^-(x) \\
+[-R W_{i-1}^-(-x)]' &= A(Q(x); -\lambda)[-R W_{i-1}^-(-x)] + G_i^+(x) [-R W_{i-1}^-(-x)] \\
+&\qquad -c_i e^{-\nu(\lambda)X_i} G_i^+(x) V^+(x; -\lambda) + d_{i-1} \lambda^2 \tilde{H}_i^+(x)
+\end{align*}
+Multiplying $C_i c$ and $D_i d$ by $R$, we get
+\begin{align*}
+R C_i c &= -c_i \left( e^{\nu(-\lambda) X_i} V^-(-X_i; -\lambda) - e^{-\nu(-\lambda) X_i} V^+(X_i; -\lambda) \right) \\
+R D_i d &= d_i [ \partial_x Q_{i+1}^-(-X_i) + (-\lambda) \partial_c Q_{i+1}^-(-X_i) ] - d_{i+1}[\partial_x Q_i^+(X_i) + (-\lambda) \partial_c Q_i^+(X_i)]
+\end{align*}
+Since $Y^+ = R Y^-$, $R \Psi(0) = \Psi(0)$, and $R \Psi^c(0) = \Psi^c(0)$, the system of equations \cref{eigsystemper1p} is satisfied by $(-R W_1^+(-x), -R W_1^-(-x), -R W_0^+(-x), -R W_1^-(-x))$ when $(c_1, c_0, d_1, d_0, \lambda) \mapsto (-c_1, -c_0, d_0, d_1, -\lambda)$. Since the solution $(W^+(x), W^-(x))$ is unique for a given $(c, d, \lambda)$, 
+\begin{align*}
+\left(W_0^-&(x; c, d, -\lambda), W_0^+(x; c, d, -\lambda), W_1^-(x; c, d, -\lambda), W_1^+(x; c, d, -\lambda) \right) \\
+&= -\left(R W_1^+(-x; -c, T d, -\lambda), R W_1^-(-x; -c, T d, -\lambda), R W_0^+(-x; -c, T d, -\lambda), R W_0^-(-x; -c, T d, -\lambda) \right) .
+\end{align*}
+where 
+\[
+T = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}
+\]
+Since $R \Psi^c(0) = \Psi^c(0)$ and $R \Psi(0) = \Psi(0)$,
+\begin{align*}
+\langle \Psi^c(0), W_i^+(0; c, d, -\lambda) - W_i^-(0; c, d, -\lambda) \rangle &= \langle \Psi^c(0), W_{i-1}^+(0; -c, T d, \lambda) - W_{i-1}^-(0; -c, T d, \lambda) \rangle \\
+\langle \Psi(0), W_i^+(0; c, d, -\lambda) - W_i^-(0; c, d, -\lambda) \rangle &= \langle \Psi(0), W_{i-1}^+(0; -c, T d, \lambda) - W_{i-1}^-(0; -c, T d, \lambda) \rangle 
+\end{align*}
+Thus we have $S(-\lambda) = K_1 S(\lambda) K_2$, where
+\begin{align*}
+K_1 = \begin{pmatrix}T & 0 \\ 0 & T \end{pmatrix}, 
+K_2 = \begin{pmatrix}-I & 0 \\ 0 & T \end{pmatrix}.
+\end{align*}
+It follows that $\det S(-\lambda) = -\det S(\lambda)$. Computing the determinant of $S(\lambda)$ with the aid of Mathematica,
+
 
 \section{Proof of \cref{lemma:chara} }
 

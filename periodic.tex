@@ -309,9 +309,9 @@ C_1 & D_1 \\ C_2 & D_2
 where
 \begin{align*}
 |C_1|, |C_2| &\leq C |\lambda|(|\lambda|^2 + r^{1/2}) \\
-|D_1|, |D_2| &\leq C |\lambda|^2(|\lambda|^2 + r^{1/2})
+|D_1|, |D_2| &\leq C |\lambda|^2(|\lambda|^2 + r^{1/2}),
 \end{align*}
-In addition,
+and the rest of the terms are defined in \cref{blockmatrixtheorem}. In addition,
 \begin{equation}\label{1pblockmatrixdet}
 \det S(\lambda, r) = \lambda^2 \left( 2 M \sinh(\nu(\lambda)X)(1 + \mathcal{O}(|\lambda|^2 + r^{1/2})) + \lambda(M \tilde{M} - M_c \tilde{M}_c)\cosh(\nu(\lambda)X) + \mathcal{O}(|\lambda|(|\lambda|^2 + r^{1/2}) \right),
 \end{equation}
@@ -335,29 +335,35 @@ is on the imaginary axis. In terms of $m$ and $X$,
 
 \section{Spectrum of periodic 2-pulse}\label{sec:per2peig}
 
-We will apply \cref{blockmatrixtheorem} to the simplest case, which is the periodic 2-pulse. All proofs from this section are in \cref{per2pproof}. The block matrix $S(\lambda)$ is a $4\times 4$ matrix, the form of which is given in the next corollary, which follows immediately from \cref{blockmatrixtheorem}.
+The next simplest case is the periodic 2-pulse. The block matrix $S(\lambda)$ is a $4\times 4$ matrix, the form of which is given in the next lemma.
 
-\begin{corollary}\label{corr:2blockmatrix}
+\begin{lemma}\label{lemma:2blockmatrix}
 For a periodic 2-pulse, the block matrix \cref{blockeq} from \cref{blockmatrixtheorem} can be written as $S(\lambda) = S_1(\lambda) + S_2(\lambda)$. $S_1(\lambda)$ is the $4 \times 4$ matrix
 \begin{align}
-S&_1(\lambda) = \\
-&\begin{pmatrix}
-e^{-\nu(\lambda)X_1} & -e^{\nu(\lambda)X_0} & k_0^+ - k_1^- -\tilde{M}^c \lambda^2 & -k_0^+ + k_1^- \\
--e^{\nu(\lambda)X_1} & e^{-\nu(\lambda)X_0} & k_0^- - k_1^+ & -k_0^- + k_1^+-\tilde{M}^c \lambda^2 \\
--\frac{1}{2}\lambda M^c e^{-\nu(\lambda)X_1} & -\frac{1}{2}\lambda M^ce^{\nu(\lambda)X_0} &-a-\lambda^2 M_2 & a \\
+S&_1(\lambda) = \begin{pmatrix}
+e^{-\nu(\lambda)X_1} -\frac{1}{2}\lambda \tilde{M} e^{-\nu(\lambda)X_1} &
+-e^{\nu(\lambda)X_0} -\frac{1}{2}\lambda \tilde{M} e^{\nu(\lambda)X_0} & 
+b \lambda -\tilde{M}^c \lambda^2 &
+-b \lambda \\
+-e^{\nu(\lambda)X_1} -\frac{1}{2}\lambda \tilde{M} e^{\nu(\lambda)X_1} &
+e^{-\nu(\lambda)X_0} -\frac{1}{2}\lambda \tilde{M} e^{-\nu(\lambda)X_0} &
+b \lambda &
+-b \lambda -\tilde{M}^c \lambda^2 \\
+-\frac{1}{2}\lambda M^c e^{-\nu(\lambda)X_1} & -\frac{1}{2}\lambda M^c e^{\nu(\lambda)X_0} &-a-\lambda^2 M_2 & a \\
 -\frac{1}{2}\lambda M^c e^{\nu(\lambda)X_1} & -\frac{1}{2}\lambda M^c e^{-\nu(\lambda)X_0}  & a & -a-\lambda^2 M_2 \\
 \end{pmatrix}
 \end{align}
 where
-\begin{equation}\label{2pa}
-a = \langle \Psi(X_0), Q'(-X_0) \rangle + \langle \Psi(X_1), Q'(-X_1) \rangle
-\end{equation}
+\begin{align}
+a & = \langle \Psi(X_0), Q'(-X_0) \rangle + \langle \Psi(X_1), Q'(-X_1) \rangle \label{2pa} \\
+b &= q(X_0) - q(X_1)
+\end{align}
 and the rest of the terms are defined in \cref{blockmatrixtheorem}. $S_2(\lambda)$ is the remainder matrix
 \[
 S_2(\lambda) = \begin{pmatrix} C_1 & D_1 \\ C_2 & D_2 \end{pmatrix}.
 \]
 The remainder terms have the same bounds as in \cref{blockmatrixtheorem}.
-\end{corollary}
+\end{lemma}
 
 With the aid of Mathematica, the determinant of the block matrix for the periodic 2-pulse is a straightforward computation.
 
