@@ -57,9 +57,13 @@ M^c \lambda \cosh(\nu(\lambda)X) & - M \lambda^2
 \begin{pmatrix}
 -C_1 & D_1 \\ -C_2 & D_2
 \end{pmatrix}
-= S(\lambda)\begin{pmatrix}-1 & 0 \\ 0 & 1 \end{pmatrix}.
+= S(\lambda) K,
 \end{align}
-Thus the $C_i$ are odd functions of $\lambda$ and the $D_i$ are even functions of $\lambda$. Using this together with the fact that since $D_i d = 0$, the parameter $d$ only appears as $\lambda^2 d$ in \cref{eigsystemper1p}, we obtain the bounds for $C_i$, $D_i$ in the statement of the theorem. It follows from \cref{1pdetSneg} that $\det S(-\lambda) = -\det S(\lambda)$. To obtain \cref{1pblockmatrixdet}, we compute the determinant and use the fact that $S(\lambda)$ is odd in $\lambda$ together with the bounds on $C_i$ and $D_i$ to obtain the order of the remainder terms.
+where 
+\[
+K = \begin{pmatrix}-1 & 0 \\ 0 & 1 \end{pmatrix}
+\]
+Since $\det K = -1$, $\det S(-\lambda) = -\det S(\lambda)$. The bounds on $C_i$ are the same as in \cref{blockmatrixtheorem}. The bounds on $D_i$ follow from \cref{blockmatrixtheorem} and noting that $D_i d = 0$ for the periodic single pulse, thus the the parameter $d$ only appears as $\lambda^2 d$ in \cref{eigsystemper1p}. We then compute $\det S(\lambda)$ directly, using the bounds for the $C_i$ and $D_i$.
 
 \section{Proof of \cref{theorem:1pess} }
 
@@ -69,44 +73,44 @@ First, we make a change of variables to simplify the problem. Since $\nu'(0) = 1
 \end{equation}
 Substituting this into \cref{1pblockmatrixdet} and simplifying, we obtain the equation
 \begin{equation}\label{1pdetmu}
-\det S(\mu, r) = c^2 \mu^2 \left( 2 M \sinh(\mu X)(1 + \mathcal{O}(|\mu|^2 + r^{1/2})) + c \mu (M \tilde{M} - M_c \tilde{M}_c)\cosh(\mu X) + \mathcal{O}(|\mu|(|\mu|^2 + r^{1/2}) \right)
+\det S(\mu, r) = c^2 \mu^2 \left( 2 M \sinh(\mu X)(1 + \mathcal{O}(|\mu| + r^{1/2})) + c \mu (M \tilde{M} - M_c \tilde{M}_c)\cosh(\mu X) + \mathcal{O}(|\mu|(|\mu| + r^{1/2}) \right)
 \end{equation}
 For convenience, let $K = M \tilde{M} - M_c \tilde{M}_c$. Since we are looking for the nonzero essential spectrum eigenvalues, and we know there is an eigenvalue with algebraic multiplicity 2 at 0, we divide by $c \mu^2$ to get the equation
 \begin{equation}\label{1pdetmu2}
-E(\mu, r) = 2 M \sinh(\mu X)(1 + \mathcal{O}(|\mu|^2 + r^{1/2})) + c K \mu \cosh(\mu X) + \mathcal{O}(|\mu|(|\mu|^2 + r^{1/2})
+E(\mu, r) = 2 M \sinh(\mu X)(1 + \mathcal{O}(|\mu| + r^{1/2})) + c K \mu \cosh(\mu X) + \mathcal{O}(|\mu|(|\mu| + r^{1/2})
 \end{equation}
 Choose positive integer $m \leq N_1$. For our ansatz, we take
 \begin{equation}\label{singlemu}
-\mu = \frac{m \pi i}{X + c \frac{K}{2 M}} + h \frac{m}{X}
+\mu = \frac{m \pi i}{X + c \frac{K}{2 M}} + \frac{h}{X}
 \end{equation}
 Factoring out an $X$ in the denominator, and expanding the denominator in a Taylor series, which we can do for sufficiently large $X$,
 \begin{align*}
-\mu &= \frac{m \pi i}{X\left(1  + c \frac{K}{2 M X} \right) } + h \frac{m}{X}\\
-&= \frac{m \pi i}{X}\left( 1 - c \frac{K}{2 M X} + c^2 \frac{K^2}{4 M^2 X^2} + \mathcal{O}\left(\frac{1}{X^3}\right) \right) + h \frac{m}{X}
+\mu &= \frac{m \pi i}{X\left(1  + c \frac{K}{2 M X} \right) } + \frac{h}{X} \\
+&= \frac{m \pi i}{X}\left( 1 - c \frac{K}{2 M X} + c^2 \frac{K^2}{4 M^2 X^2} + \mathcal{O}\left(\frac{1}{X^3}\right) \right) + \frac{h}{X}
 \end{align*}
 Substituting this into \cref{1pdetmu2} and expanding the $\sinh$ and $\cosh$ terms in a Taylor series about $m \pi i$,
 \begin{align*}
-E(h, r) &= 2 M (-1)^m \left( -\frac{m \pi c K i}{2 M X} + \frac{m \pi c^2 K^2 i}{4 M^2 X^2} + h\frac{m}{X} + \mathcal{O}\left(\frac{m}{X^3}\right) \right) \left(1 + \mathcal{O}\left( \frac{m^2}{X^2} + r^{1/2} \right) \right) \\
-&\qquad+ c K (-1)^m \left( \frac{m \pi i}{X} - c \frac{m \pi K i}{2 M X^2} + h \frac{m}{X} + \mathcal{O}\left(\frac{m}{X^3}\right) \right) \left( 1 + \mathcal{O}\left(\frac{m}{X^2}\right) \right) \\
-&\qquad+ \mathcal{O}\left( \frac{m}{X} \left( \frac{m^2}{X^2} + r^{1/2} \right) \right) \\
-&= (-1)^m\left( 2M + cK \right)h \frac{m}{X} + \mathcal{O}\left( \frac{m}{X} \left( \frac{m^2}{X^2} + r^{1/2} \right) \right)
+E(h, r) &= 2 M (-1)^m \left( -\frac{m \pi c K i}{2 M X} + \frac{m \pi c^2 K^2 i}{4 M^2 X^2} + h + \mathcal{O}\left(\frac{1}{X^3}\right) \right) \left(1 + \mathcal{O}\left( \frac{1}{X} + r^{1/2} \right) \right) \\
+&\qquad+ c K (-1)^m \left( \frac{m \pi i}{X} - c \frac{m \pi K i}{2 M X^2} + \frac{h}{X} + \mathcal{O}\left(\frac{1}{X^3}\right) \right) \left( 1 + \mathcal{O}\left(\frac{1}{X^2}\right) \right) \\
+&\qquad+ \mathcal{O}\left( \frac{1}{X} \left( \frac{1}{X^2} + r^{1/2} \right) \right) \\
+&= (-1)^m\left( 2M + \frac{cK}{X} \right) h + \mathcal{O}\left( \frac{1}{X} \left( \frac{1}{X} + r^{1/2} \right) \right)
 \end{align*}
-Dividing by $m/X$ and $(-1)^m$, we wish to solve 
+Dividing by $(-1)^m$, we wish to solve 
 \begin{align*}
-G_m(h, r) = \left( 2M + cK \right)h + \mathcal{O}\left( \frac{m^2}{X^2} + r^{1/2} \right)
+G_m(h, r) = \left( 2M + \frac{cK}{X} \right)h + \mathcal{O}\left( \frac{1}{X} \left( \frac{1}{X} + r^{1/2} \right) \right)
 \end{align*}
-Since $X = X(r) = \mathcal{O}(1/|\log r|)$, this becomes
+Since $X = X(r) = \mathcal{O}(|\log r|)$, this becomes
 \begin{align*}
-G_m(h, r) = \left( 2M + cK \right)h + \mathcal{O}\left( \frac{1}{|\log r|^2} \right),
+G_m(h, r) = \left( 2M + \mathcal{O}\left( \frac{1}{|\log r|} \right)\right) h + \mathcal{O}\left( \frac{1}{|\log r|^2} \right),
 \end{align*}
 where we subsumed the faster decaying $\mathcal{O}(r^{1/2})$ term into the slower decaying $1/|\log r|^2$ remainder term. Since
 \begin{align*}
 G_m(0,0) &= 0 \\
-\partial_h G_m(0,0) &= 2M + cK \neq 0,
+\partial_h G_m(0,0) &= 2M \neq 0,
 \end{align*}
 we can use the implicit function theorem to solve for $h$ in terms of $r$ near $(h,r) = (0,0)$. Specifically, there exists $r_1^m \leq r_0$ and a unique smooth function $h_m(r)$ with $h_m(0) = 0$ such that for all $r \leq r_1^m$, $G_m(h_m(r),r) = 0$. Expanding $h_m$ in a Taylor series about $r = 0$,
 \[
-h_m(r) = \mathcal{O}\left( \frac{1}{|\log r|^2} \right) = \mathcal{O}\left( \left(\frac{m}{X}\right)^2 \right)
+h_m(r) = \mathcal{O}\left( \frac{1}{|\log r|^2} \right)
 \]
 Let $r_1 = \min\{ r_1^1, \dots, r_1^{N_1} \}$. Substituting $h_m(r)$ into \cref{singlemu} for $m = 1, \dots, N_1$, there are essential spectrum eigenvalues located at
 \[
@@ -119,10 +123,6 @@ Changing variables back to $\lambda$, these are located at
 By Hamiltonian symmetry, eigenvalues must come in quartets. Since there is nothing else above the real axis with similar magnitude, $\lambda_m(r)$ is pure imaginary and there is another essential spectrum eigenvalue $\lambda_{-m}(r) = -\lambda_m(r)$. We conclude that the nonzero essential spectrum eigenvalues are given by $\lambda = \pm \lambda_m^{\text{ess}}(r)$ for $m = 1, \dots, N_1$, where
 \[
 \lambda_m^{\text{ess}}(r) = c  \frac{m \pi i}{X + c \frac{K}{2 M}} + \mathcal{O}\left( \frac{1}{|\log r|^3} \right).
-\]
-In terms, of $X$, this is given by
-\[
-\lambda_m^{\text{ess}}(X) = c  \frac{m \pi i}{X + c \frac{K}{2 M}} + \mathcal{O}\left( \left(\frac{m}{X}\right)^3\right).
 \]
 
 \section{Proof of \cref{lemma:2blockmatrix} }
@@ -147,10 +147,10 @@ R C_i c &= -c_i \left( e^{\nu(-\lambda) X_i} V^-(-X_i; -\lambda) - e^{-\nu(-\lam
 R D_i d &= d_i [ \partial_x Q_{i+1}^-(-X_i) + (-\lambda) \partial_c Q_{i+1}^-(-X_i) ] - d_{i+1}[\partial_x Q_i^+(X_i) + (-\lambda) \partial_c Q_i^+(X_i)]
 \end{align*}
 Since $Y^+ = R Y^-$, $R \Psi(0) = \Psi(0)$, and $R \Psi^c(0) = \Psi^c(0)$, the system of equations \cref{eigsystemper1p} is satisfied by $(-R W_1^+(-x), -R W_1^-(-x), -R W_0^+(-x), -R W_1^-(-x))$ when $(c_1, c_0, d_1, d_0, \lambda) \mapsto (-c_1, -c_0, d_0, d_1, -\lambda)$. Since the solution $(W^+(x), W^-(x))$ is unique for a given $(c, d, \lambda)$, 
-\begin{align*}
-\left(W_0^-&(x; c, d, -\lambda), W_0^+(x; c, d, -\lambda), W_1^-(x; c, d, -\lambda), W_1^+(x; c, d, -\lambda) \right) \\
-&= -\left(R W_1^+(-x; -c, T d, -\lambda), R W_1^-(-x; -c, T d, -\lambda), R W_0^+(-x; -c, T d, -\lambda), R W_0^-(-x; -c, T d, -\lambda) \right) .
-\end{align*}
+% \begin{align*}
+% \left( W_0^-&(x; c, d, -\lambda), W_0^+(x; c, d, -\lambda), W_1^-(x; c, d, -\lambda), W_1^+(x; c, d, -\lambda) \right) \\
+% &= -\left( R W_1^+(-x; -c, T d, -\lambda), R W_1^-(-x; -c, T d, -\lambda), R W_0^+(-x; -c, T d, -\lambda), R W_0^-(-x; -c, T d, -\lambda) \right) .
+% \end{align*}
 where 
 \[
 T = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}

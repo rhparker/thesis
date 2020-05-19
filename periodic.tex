@@ -308,12 +308,12 @@ C_1 & D_1 \\ C_2 & D_2
 \end{align}
 where
 \begin{align*}
-|C_1|, |C_2| &\leq C |\lambda|(|\lambda|^2 + r^{1/2}) \\
-|D_1|, |D_2| &\leq C |\lambda|^2(|\lambda|^2 + r^{1/2}),
+|C_1|, |C_2| &\leq C |\lambda|(|\lambda| + r^{1/2}) \\
+|D_1|, |D_2| &\leq C |\lambda|^2(|\lambda| + r^{1/2}),
 \end{align*}
 and the rest of the terms are defined in \cref{blockmatrixtheorem}. In addition,
 \begin{equation}\label{1pblockmatrixdet}
-\det S(\lambda, r) = \lambda^2 \left( 2 M \sinh(\nu(\lambda)X)(1 + \mathcal{O}(|\lambda|^2 + r^{1/2})) + \lambda(M \tilde{M} - M_c \tilde{M}_c)\cosh(\nu(\lambda)X) + \mathcal{O}(|\lambda|(|\lambda|^2 + r^{1/2}) \right),
+\det S(\lambda, r) = \lambda^2 \left( 2 M \sinh(\nu(\lambda)X)(1 + \mathcal{O}(|\lambda| + r^{1/2})) + \lambda(M \tilde{M} - M_c \tilde{M}_c)\cosh(\nu(\lambda)X) + \mathcal{O}(|\lambda|(|\lambda| + r^{1/2}) \right),
 \end{equation}
 and $\det S(-\lambda) = -\det S(\lambda)$.
 \end{lemma}
@@ -327,10 +327,7 @@ Let $N_1 \leq N$ be the largest positive integer such that $N_1/|\log r| < \delt
 \[
 \lambda_m^{\text{ess}}(r) = c \frac{m \pi i}{X + c \frac{M\tilde{M} - M_c\tilde{M_c}}{2 M}} +  \mathcal{O}\left( \frac{1}{|\log r|^3} \right)
 \]
-is on the imaginary axis. In terms of $m$ and $X$,
-\[
-\lambda_m^{\text{ess}}(X) = c \frac{m \pi i}{X + c \frac{M\tilde{M} - M_c\tilde{M_c}}{2 M}} +  \mathcal{O}\left( \left(\frac{m}{X}\right)^3 \right).
-\]
+is on the imaginary axis.
 \end{theorem}
 
 \section{Spectrum of periodic 2-pulse}\label{sec:per2peig}
@@ -365,7 +362,6 @@ S_2(\lambda) = \begin{pmatrix} C_1 & D_1 \\ C_2 & D_2 \end{pmatrix}.
 The remainder terms have the same bounds as in \cref{blockmatrixtheorem}.
 \end{lemma}
 
-With the aid of Mathematica, the determinant of the block matrix for the periodic 2-pulse is a straightforward computation.
 
 \begin{corollary}\label{corr:2perDet1}
 For a periodic 2-pulse, the determinant of the block matrix $S(\lambda)$ is given by
