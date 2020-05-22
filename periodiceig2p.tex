@@ -170,6 +170,41 @@ It follows that $\det S(-\lambda) = -\det S(\lambda)$. Computing the determinant
 
 \section{Proof of \cref{lemma:chara} }
 
+First, we prove the following lemma. 
+
+\begin{lemma}\label{lemma:Hoverlaplemma}
+Define the functions $H: \R^+ \times \R^+ \rightarrow \R$ and $H_1: \R^+ \times \R^+ \rightarrow \R$ by 
+\begin{align}
+H(b_0, b_1) &= b_0 \sin \left( -\rho \log b_0 \right) - b_1 \sin \left( -\rho \log b_1 \right) \label{perdefH} \\
+H_1(b_0, b_1) &= b_0 \left[ \rho \cos \left( -\rho \log b_0 \right) - \sin \left( -\rho \log b_0 \right) \right] + b_1 \left[ \rho \cos \left( -\rho \log b_1 \right) - \sin \left( -\rho \log b_1 \right) \right]  \label{perdefH1} \\
+\end{align}
+Then the zero sets of $H(b_0, b_1)$ and $H_1(b_0, b_1)$ intersect only at the discrete set of points
+\begin{align}\label{bisbk}
+(b_0, b_1) &= (b_k^*, b_k^*) && k \in \Z
+\end{align}
+where 
+\begin{equation*}
+b^*_k = e^{-\frac{1}{\rho} (k \pi + p^*) }
+\end{equation*}
+These are the same as the pitchfork bifurcation points from \cref{2pulsebifurcation}.
+\begin{proof}
+Define
+\[
+f(x) = x \sin \left( -\rho \log x \right)
+\]
+Then
+\begin{align*}
+H(b_0, b_1) &= f(b_0) - f(b_1) \\
+H_1(b_0, b_1) &= -b_0 f'(b_0) - b_1 f'(b_1)
+\end{align*}
+If $H(b_0, b_1) = 0$ then $f'(b_0) = f'(b_1)$, thus since $H_1(b_0, b_1) = 0$,
+\[
+(b_0 + b_1) f'(b_0) = 0
+\]
+There are two possibilities. If $f'(b_0) = 0$, then by \cref{pitchforkH}, $b_0 = b_k^*$. If $H(b_0, b_1) = 0$ and $b_0 = b_k^*$, then $b_1 = b_k^*$ as well, thus \cref{bisbk} holds. Otherwise, $b_0 = -b_1$, which is not possible since $b_0, b_1 > 0$.
+\end{proof}
+\end{lemma}
+
 For part (i), from \cref{lemma:ajparam}, Theorem \cref{2pulsebifurcation}, and the definition of $a(r)$ in \cref{2pa}, we have $a = r \tilde{a}(r; m_0, s_0)$, where
 \begin{align*}
 \tilde{a}(r; m_0, s_0) &= -2 p_0 e^{\alpha \phi/\beta_0} e^{-\frac{1}{\rho}(m_0 \pi + s_0)} \left( \beta \cos\left(m_0 \pi + s_0 \right) - \alpha \sin \left(m_0 \pi + s_0 \right) \right) + \mathcal{O}(r^{\gamma/2\alpha}) \\
@@ -184,7 +219,7 @@ For part (ii), it again follows from \cref{lemma:ajparam}, Theorem \cref{2pulseb
 &= -p_0 e^{\alpha \phi/\beta_0} H_1( b_0(m_0, s_1), b_1(s_1) ) + \mathcal{O}(r^{\gamma/2\alpha}),
 \end{align*}
 where $H_1(b_0, b_1)$ is defined in \cref{perdefH1}.
-$b_1(s_1) = e^{-\frac{1}{\rho}s_1}$, and for each $m_0 \in \{ 0, 1 \}$, $b_0(m_0, s_1)$ is a continuous function which of $s_1$. The exact form of $b_0(m_0, s_1)$ is given in the proof of Lemma \ref{armpersists}. All that matters here is that $(b_0(m_0, s_1), b_1(s_1))$ is contained entirely within the zero set of $H(b_0, b_1)$, where $H(b_0, b_1)$ is defined in \cref{perdefH}. By Hypothesis \ref{Hoverlaphyp}, the two zero sets overlap only at the pitchfork bifurcation points, thus $\tilde{a}(r; m_0, s_1) = 0$ if and only if $s_1 = p^*$. By continuity in $s_1$, $\tilde{a}(r; m_0, s_1)$ must have the same sign for all $s_1 > p^*$. It only remains to determine that sign.
+$b_1(s_1) = e^{-\frac{1}{\rho}s_1}$, and for each $m_0 \in \{ 0, 1 \}$, $b_0(m_0, s_1)$ is a continuous function which of $s_1$. The exact form of $b_0(m_0, s_1)$ is given in the proof of Lemma \ref{armpersists}. All that matters here is that $(b_0(m_0, s_1), b_1(s_1))$ is contained entirely within the zero set of $H(b_0, b_1)$, where $H(b_0, b_1)$ is defined in \cref{perdefH}. By \cref{lemma:Hoverlaplemma}, the two zero sets overlap only at the pitchfork bifurcation points, thus $\tilde{a}(r; m_0, s_1) = 0$ if and only if $s_1 = p^*$. By continuity in $s_1$, $\tilde{a}(r; m_0, s_1)$ must have the same sign for all $s_1 > p^*$. It only remains to determine that sign.
 
 From Lemma \ref{lemma:ajparam} and the proof of Lemma \ref{armpersists}, we can write $\tilde{a}(r; m_0, s_1)$ as 
 \[

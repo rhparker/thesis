@@ -376,39 +376,7 @@ where the remainder term have bounds
 \end{align*}
 \end{corollary}
 
-The interaction eigenvalue pattern will be determined by the quantity $a$ in \cref{2pa}. In order to characterize this, we will need to make one technical hypothesis. Define the functions $H: \R^+ \times \R^+ \rightarrow \R$ and $K: \R^+ \times \R^+ \rightarrow \R$ by 
-\begin{align}
-H(b_0, b_1) &= b_0 \sin \left( -\rho \log b_0 \right) - b_1 \sin \left( -\rho \log b_1 \right) \label{perdefH} \\
-H_1(b_0, b_1) &= b_0 \left[ \rho \cos \left( -\rho \log b_0 \right) - \sin \left( -\rho \log b_0 \right) \right] + b_1 \left[ \rho \cos \left( -\rho \log b_1 \right) - \sin \left( -\rho \log b_1 \right) \right]  \label{perdefH1} \\
-\end{align}
-Roughly speaking, the permissible pulse distances for periodic 2-pulses are determined by the zero set of $H(b_0, b_1)$. See \cref{section:bifH} for details. The value of $a$ is determined by $H_1(b_0, b_1)$ evaluated on the zero set of $H(b_0, b_1)$. We hypothesize that the zero sets of these two functions overlap only at a discrete set of points corresponding the pitchfork bifurcation points in \cref{2pulsebifurcation}.
-
-\begin{hypothesis}\label{Hoverlaphyp}
-The zero sets of $H(b_0, b_1)$ and $H_1(b_0, b_1)$ intersect only at the discrete set of points
-\begin{align*}
-(b_0, b_1) &= (b_k^*, b_k^*) && k \in \Z
-\end{align*}
-where 
-\begin{equation*}
-b^*_k = e^{-\frac{1}{\rho} (k \pi + p^*) }
-\end{equation*}
-These are the same as the pitchfork bifurcation points from \cref{2pulsebifurcation}.
-\end{hypothesis}
-
-\begin{remark}There is strong numerical evidence that \cref{Hoverlaphyp} is true. See \cref{fig:HH1overlap} for a plot of two zero sets. Although it is likely that \cref{Hoverlaphyp} can be proved, the functions involved, while smooth, are not well-behaved, making the analysis very difficult.
-\end{remark}
-
-\begin{figure}
-\begin{center}
-\begin{tabular}{cc}
-\includegraphics[width=10cm]{images/periodic/zeroHoverlap.eps} 
-\end{tabular}
-\end{center}
-\caption[Intersection of zero sets of $H$ and $H_1$]{ Intersection of zero sets of $H(b_0, b_1)$ (blue) and $H_1(b_0, b_1)$ (orange). }
-\label{fig:HH1overlap}
-\end{figure}
-
-We can now characterize the quantity $a$ in \cref{2pa} from \cref{corr:2blockmatrix}.
+The interaction eigenvalue pattern will be determined by the quantity $a$ in \cref{2pa}, which we characterize in the next lemma.
 
 \begin{lemma}\label{lemma:chara}
 Let $r_*$ be as in Theorem \ref{2pulsebifurcation}. Then for any $r \in \mathcal{R}$ with $r \leq r_*$:
