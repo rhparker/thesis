@@ -572,9 +572,9 @@ Next, we set up an exponential trichotomy for this system. Let
 \Phi(x, y; \lambda) = e^{A(\lambda)(x-y)}
 \end{equation}
 be the evolution of the constant-coefficient ODE
-\[
+\begin{equation}\label{constcoeffZ}
 Z' = A(\lambda) Z
-\]
+\end{equation}
 and let $\Phi^{u/s/c}(x, y; \lambda) = \Phi(x, y; \lambda)P^{u/s/c}(\lambda)$ be the evolutions on the respective eigenspaces. For $|\lambda| < \delta$, $|\nu(\lambda)| < \eta$, and we have 
 \begin{equation}\label{Zevolbounds}
 \begin{aligned}
@@ -588,39 +588,53 @@ This is an exponential trichotomy on $\R$. Since $E^c(\lambda)$ is one-dimension
 \Phi^c(x, y; \lambda) V &= e^{\nu(\lambda)(x - y)} P^c(\lambda)V
 \end{align}
 
-We relate the evolution of the conjugated system to that of the original system in the following way. Recall that the variational equation is the linearization about the primary pulse $Q(x)$:
-\begin{align}\label{vareqstab}
-V'(x) &= A(Q(x); 0) V(x)
-\end{align}
-Let $\tilde{\Phi}(y, x)$ be the evolution operator for the variational equation. The conjugation lemma gives the following relationship between $\tilde{\Phi}(y, x)$ and $\Phi(y, x; 0)$.
+The evolution of the original, unconjugated system $U'(x) = A(Q(x); \lambda) U'(x)$ is given by
+\begin{equation}
+\begin{aligned}
+\tilde{\Phi}_-(x, y; \lambda) &= P_+(y; \lambda) \Phi(y, x; \lambda) P_+(x; \lambda)^{-1} && x, y \geq 0  \\
+\tilde{\Phi}_+(x, y; \lambda) &= P_-(y; \lambda) \Phi(y, x; \lambda) P_-(x; \lambda)^{-1} && x, y \leq 0
+\end{aligned}
+\end{equation}
+The exponential trichotomy for \cref{constcoeffZ} induces exponential trichotomies for the unconjugated system on $\R^\pm$. Since there is some freedom in choosing the subspaces for this trichotomy, we will define the exponential trichotomies for the unconjugated system in the following way. For the trichotomies on $\R^+$, choose any $i = 0, \dots, n-1$, and define the stable and center projections at $X_i$ by
 \begin{align*}
-\tilde{\Phi}(y, x) &= P_+(y; 0) \Phi(y, x; 0) P_+(x; 0)^{-1} && x, y \geq 0 \\
-\tilde{\Phi}(y, x) &= P_-(y; 0) \Phi(y, x; 0) P_-(x; 0)^{-1} && x, y \leq 0
+\tilde{P}_{i,+}^s(X_i; \lambda) &= P_+(X_i; \lambda) P^s(\lambda) P_+(X_i; \lambda)^{-1} \\
+\tilde{P}_{i,+}^c(X_i; \lambda) &= P_+(X_i; \lambda) P^c(\lambda) P_+(X_i; \lambda)^{-1}
+\end{align*} 
+For the range of the unstable projection $\tilde{P}_{i,+}^u(X_i; \lambda)$, we are free to choose any complement of $\ran \tilde{P}_{i,+}^s(X_i; \lambda) \oplus \ran \tilde{P}_{i,+}^c(X_i; \lambda)$. For sufficiently small $\lambda$, since the eigenvectors of $A(\lambda)$ are smooth in $\lambda$, $E^u(0)$ is a complement of $E^s(\lambda)\oplus E^c(\lambda)$. Since $P_+(X_i; \lambda) = I + \mathcal{O}(e^{-\alpha X_i})$ and $X_i \geq X_*$, for sufficiently small $\lambda$ and sufficiently large $X_*$, $E^u(0)$ is a complement of $\ran \tilde{P}_{i,+}^s(X_i; \lambda) \oplus \ran \tilde{P}_{i,+}^c(X_i; \lambda)$. Thus we can choose the unstable projection $\tilde{P}_{i,+}^u(X_i; \lambda)$ to have range $E^u(0)$. We can then define the corresponding stable, unstable, and center evolutions on $\R^+$ by
+\begin{align*}
+\tilde{\Phi}_{+, i}^{s/u/c}(x, y; \lambda) = \tilde{\Phi}_+(x,X_i;\lambda) \tilde{P}_{i,+}^{s/u/c}(X_i; \lambda)\tilde{\Phi}_+(X_i,y;\lambda) 
 \end{align*}
 
-Using the exponential trichotomy for the conjugated system, the conjugation operator induces exponential trichotomies on $\R^\pm$ for the variational equation. The stable, unstable, and center projections for this trichotomy are given by
+Similarly, for the exponential trichotomy on $\R^-$, we can define the unstable and center projections at $-X_{i-1}$ by 
+\begin{align*}
+\tilde{P}_{i,-}^s(-X_{i-1}; \lambda) &= P_-(-X_{i-1}; \lambda) P^s(\lambda) P_-(-X_{i-1}; \lambda)^{-1} \\
+\tilde{P}_{i,-}^s(-X_{i-1}; \lambda) &= P_-(-X_{i-1}; \lambda) P^s(\lambda) P_-(-X_{i-1}; \lambda)^{-1}
+\end{align*} 
+For sufficiently small $\lambda$ and sufficiently large $X_*$, we can choose the stable projection $\tilde{P}_{i,-}^s(-X_{i-1}; \lambda)$ to have range $E^s(0)$, and we can similarly define the corresponding stable, unstable, and center evolutions on $\R^-$.
+
+For $\lambda = 0$, the trichotomy projections are given by
 \begin{equation}\label{trichotomyprojunconj}
-\tilde{P}^{s/u/c}_\pm(x) = P_\pm(x; 0) P^{s/u/c}(0) P_\pm(x, 0)^{-1}
+\tilde{P}^{s/u/c}_\pm(x; 0) = P_\pm(x; 0) P^{s/u/c}(0) P_\pm(x, 0)^{-1}.
 \end{equation}
 The center subspaces on $\R^+$ and $\R^-$ are both one-dimensional and are given by $\C V^c(x)$. 
 
-In the next section, we will derive an expression for the center projections $\tilde{P}^c_\pm(x)$. From \cref{trichotomyprojunconj},
+In the next section, we will derive an expression for the center projections $\tilde{P}^c_\pm(x; 0)$. From \cref{trichotomyprojunconj},
 \begin{align*}
-\tilde{P}^c_\pm(x) u &= P_\pm(x; 0) P^c(0) P_\pm(x, 0)^{-1} u \\
+\tilde{P}^c_\pm(x; 0) u &= P_\pm(x; 0) P^c(0) P_\pm(x, 0)^{-1} u \\
 &= P_\pm(x; 0) \langle W_0, P_\pm(x, 0)^{-1} u \rangle V_0 \\
 &= \langle W_0, P_\pm(x, 0)^{-1} u \rangle P_\pm(x; 0) V_0,
 \end{align*}
 thus we have
 \begin{align}\label{centerproj1}
-\tilde{P}^c_\pm(x) u 
+\tilde{P}^c_\pm(x; 0) u 
 &= \langle W_0, P_\pm(x, 0)^{-1} u \rangle V^c(x)
 \end{align}
 Since $\Psi^c(x) = W_0$ is a constant solution to the adjoint variational equation, we have a simpler form for the center projection for the variational equation. 
 
 \begin{lemma}\label{centerprojlemma}
-For the trichotomies of \cref{vareqstab} on $\R^\pm$, the center projection is given by 
+When $\lambda = 0$, the center projection for the trichotomies of \cref{vareqstab} on $\R^\pm$ is given by 
 \begin{align}\label{centerproj}
-\tilde{P}^c_\pm(x) U &= \langle W_0, U \rangle V^c(x)
+\tilde{P}^c_\pm(x; 0) U &= \langle W_0, U \rangle V^c(x)
 \end{align}
 \begin{proof}
 From \cref{corr:adjconj}, $[P_\pm(x, 0)^{-1}]^*$ is the conjugation operator for the adjoint variational equation. In particular, this implies that $[P_\pm(x, 0)^{-1}]^* W_0$ is a solution to the adjoint variational equation. Since $[P_\pm(x, 0)^{-1}]^* \rightarrow I$ as $x \rightarrow \pm \infty$, 
@@ -629,7 +643,7 @@ From \cref{corr:adjconj}, $[P_\pm(x, 0)^{-1}]^*$ is the conjugation operator for
 \]
 By \cref{varadjsolutions}, the constant solution $\Psi^c(x) = W_0$ is the unique bounded solution to the adjoint variational equation which decays to $W_0$ (constant multiples will decay to something else). Thus we conclude that $[P_\pm(x, 0)^{-1}]^* W_0 = W_0$. Using this with \cref{centerproj1},
 \begin{align*}
-\tilde{P}^c_\pm(x) u 
+\tilde{P}^c_\pm(x; 0) u 
 &= \langle W_0, P_\pm(x, 0)^{-1} u \rangle V^c(x) \\
 &= \langle [P_\pm(x, 0)^{-1}]^*W_0, u \rangle V^c(x) \\
 &= \langle W_0, u \rangle V^c(x) 
@@ -640,20 +654,20 @@ By \cref{varadjsolutions}, the constant solution $\Psi^c(x) = W_0$ is the unique
 In the next lemma, we derive a useful result concerning the adjoint of the trichotomy projections at $x = 0$.
 
 \begin{lemma}\label{lemma:trichadjoint}
-For the trichotomy projections $\tilde{P}_+^u(0)$ and $\tilde{P}_-^s(0)$, we have
+For the trichotomy projections $\tilde{P}_+^u(0; 0)$ and $\tilde{P}_-^s(0; 0)$, we have
 \begin{equation}
 \begin{aligned}
-\tilde{P}_+^u(0)^* \Psi(0) &= \Psi(0) \\
-\tilde{P}_-^s(0)^* \Psi(0) &= \Psi(0)
+\tilde{P}_+^u(0; 0)^* \Psi(0) &= \Psi(0) \\
+\tilde{P}_-^s(0; 0)^* \Psi(0) &= \Psi(0)
 \end{aligned}
 \end{equation}
 \begin{proof}
 Since
 \begin{align*}
-\ker \tilde{P}_+^u(0)^* &\perp \ran \tilde{P}_+^u(0) \\
-\ran \tilde{P}_+^u(0)^* &\perp \ker \tilde{P}_+^u(0)
+\ker \tilde{P}_+^u(0; 0)^* &\perp \ran \tilde{P}_+^u(0; 0) \\
+\ran \tilde{P}_+^u(0; 0)^* &\perp \ker \tilde{P}_+^u(0; 0)
 \end{align*}
-and $\ker \tilde{P}_+^u(0) = T_{Q(0)} W^s(0) \oplus T_{Q(0)} W^c(0)$, $\tilde{P}_+^u(0)^*$ acts as the identity on $(T_{Q(0)} W^s(0) \oplus T_{Q(0)} W^c(0))^\perp$. Since $\Psi(0) \perp T_{Q(0)} W^s(0)$, $\Psi(0) \in \ran \tilde{P}_+^u(0)^*$, $\tilde{P}_+^u(0)^* \Psi(0) = \Psi(0)$. The result for $\tilde{P}_-^s(0)^*$ is similar.
+and $\ker \tilde{P}_+^u(0; 0) = T_{Q(0)} W^s(0) \oplus T_{Q(0)} W^c(0)$, $\tilde{P}_+^u(0; 0)^*$ acts as the identity on $(T_{Q(0)} W^s(0) \oplus T_{Q(0)} W^c(0))^\perp$. Since $\Psi(0) \perp T_{Q(0)} W^s(0)$, $\Psi(0) \in \ran \tilde{P}_+^u(0; 0)^*$, $\tilde{P}_+^u(0; 0)^* \Psi(0) = \Psi(0)$. The result for $\tilde{P}_-^s(0; 0)^*$ is similar.
 \end{proof}
 \end{lemma}
 
@@ -672,7 +686,7 @@ For all $U \in \R^{2m+1}$, we have the following.
 \end{enumerate}
 where $P_\pm(x; \lambda) = I + \Theta_\pm(x, \lambda)$ are the conjugation operators and $P^{s/u}(\lambda)$ are the eigenprojections for $E^{s/u}(\lambda)$.
 \begin{proof}
-By Lemma \ref{centerprojlemma}, $\tilde{P}_\pm^c(x)U = \langle W_0, U \rangle V^c(x)$, thus $\langle W_0, U \rangle = 0$ for all $U$ in the range of the stable and unstable projections of the trichotomy for \cref{vareqstab}. These ranges are given by $P_\pm(x, 0) E^{s/u}(0)$. This proves (i). For (ii), 
+By Lemma \ref{centerprojlemma}, $\tilde{P}_\pm^c(x; 0)U = \langle W_0, U \rangle V^c(x)$, thus $\langle W_0, U \rangle = 0$ for all $U$ in the range of the stable and unstable projections of the trichotomy for \cref{vareqstab}. These ranges are given by $P_\pm(x, 0) E^{s/u}(0)$. This proves (i). For (ii), 
 \begin{align*}
 \langle W_0, \Theta_\pm(x, 0) P^{s/u}(0) U\rangle &=
 \langle W_0, (I - P_\pm(x, 0)) P^{s/u}(0) U\rangle \\
