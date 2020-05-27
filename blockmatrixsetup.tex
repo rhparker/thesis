@@ -571,12 +571,12 @@ and let
 \begin{equation}\label{Zevoltri}
 \Phi^{u/s/c}(x, y; \lambda) = \Phi(x, y; \lambda)P^{u/s/c}(\lambda)
 \end{equation}
-be the evolutions on the respective eigenspaces. For $|\lambda| < \delta$, $|\nu(\lambda)| < \delta$, and we have for $x \leq y$
+be the evolutions on the respective eigenspaces. For $|\lambda| < \delta$, $|\nu(\lambda)| < \tilde{\alpha}$, and we have for $x \leq y$
 \begin{equation}\label{Zevolbounds}
 \begin{aligned}
-|\Phi^s(x, y; \lambda)| &\leq C e^{-\alpha(x - y)} \\
-|\Phi^u(x, y; \lambda)| &\leq C e^{-\alpha(y - x)} \\
-|\Phi^c(x, y; \lambda)| &\leq C e^{\delta|x - y|} 
+|\Phi^s(x, y; \lambda)| &\leq C e^{-\tilde{\alpha}(x - y)} \\
+|\Phi^u(x, y; \lambda)| &\leq C e^{-\tilde{\alpha}(y - x)} \\
+|\Phi^c(x, y; \lambda)| &\leq C e^{\tilde{\alpha}|x - y|} 
 \end{aligned}
 \end{equation}
 This is an exponential trichotomy on $\R$. Since $E^c(\lambda)$ is one-dimensional, the center evolution $\Phi^c(x, y; \lambda)$ is given by
@@ -1180,7 +1180,7 @@ Let $\Delta H_i^\pm(x) = \tilde{H}_i^\pm(x) - H(x)$. Then we have the following 
 \item $|\Delta H_i^+(x)| \leq C e^{-\alpha X_i} e^{-\alpha(X_i - x) } + e^{-2 \alpha X_{i-1}} e^{-\alpha x}$
 \item $\|\Delta H_i^\pm\| \leq C(e^{-\alpha X_i} + e^{-\alpha X_{i-1}} )$
 \item $|G_i^-(x)| \leq C e^{-\alpha X_{i-1}} e^{-\alpha(X_{i-1} + x) } + e^{-2 \alpha X_i} e^{\alpha x}$
-\item $|G_i^+(x)| \leq C e^{-\alpha X_i} e^{-\alpha_0(X_i - x) } + e^{-2 \alpha X_{i-1}} e^{-\alpha x}$
+\item $|G_i^+(x)| \leq C e^{-\alpha X_i} e^{-\alpha(X_i - x) } + e^{-2 \alpha X_{i-1}} e^{-\alpha x}$
 \item $\|G\| \leq C e^{-\alpha X^*}$
 \item $D_i d = ( Q'(X_i) + Q'(-X_i))(d_{i+1} - d_i ) + \mathcal{O} ( e^{-\alpha X_i} (e^{-\alpha X^*} + |\lambda| )$
 \item $|C_i c| \leq C e^{-\alpha X_i} |c|$
