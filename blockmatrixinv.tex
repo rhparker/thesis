@@ -135,124 +135,32 @@ Using the bounds on $L_3$, $A_1$ has bound given by \cref{A1bound}.
 Next, we derive expressions for $a_i^\pm$ and $a_i^c$ which we will use in evaluating the jump conditions.
 
 \begin{lemma}\label{lemma:aipm}
-For the initial conditions $a_i^\pm$, we have the expressions
+For the initial conditions $a_i^\pm$ and $a_i^c$, we have the expressions
 \begin{equation}\label{aipmexp1}
 \begin{aligned}
 a_i^+ &= P_+(X_i; \lambda)^{-1} \left( P_0^u(\lambda) D_i d + A_2(\lambda)_i^+(b, c, d) \right) \\
-a_i^- &= -P_-(-X_i; \lambda)^{-1} \left( P_0^s(\lambda) D_i d + A_2(\lambda)_i^-(b, c, d) \right)
+a_i^- &= -P_-(-X_i; \lambda)^{-1} \left( P_0^s(\lambda) D_i d + A_2(\lambda)_i^-(b, c, d) \right) \\
+a_i^c &= \tilde{A}_2(\lambda)_i(b, c, d).
 \end{aligned}
 \end{equation}
-$A_2$ is linear in $(b, c, d)$, and has bound
+$A_2$ and $\tilde{A}^2$ are linear in $(b, c, d)$, and have bounds
 \begin{align}
 |A_2(\lambda)_i(b, c, d)|
-&\leq C \left(e^{-\tilde{\alpha} X^*}|b| + e^{-\alpha X^*}(|c| + |\lambda|^2|d| + |D_i||d|) \right) \label{A2bound}
+&\leq C \left(e^{-\tilde{\alpha} X^*}|b| + e^{-\alpha X^*}|c| + |\lambda|^2|d| \right) \label{A2bound} \\
+|\tilde{A}_2(\lambda)(b, c, d) &\leq C |\lambda| e^{-\alpha X^*} \left( e^{-\tilde{\alpha} X^*}  |b| + |c| +|\lambda|^2 |d| \right) \label{tildeA2bound}
 \end{align}
 
 \begin{proof}
-First, we apply the projections $P_0^{s/u}(0)$ on the eigenspaces $E^{s/u}(0)$ to \eqref{Dideq1}. Using the bound $|C_i c| \leq e^{-\alpha X^*}|c|$ from Lemma \ref{stabestimateslemma}, we obtain the expressions
+First, we apply the projections $P^{s/u}(0)$ on the eigenspaces $E^{s/u}(0)$ to \eqref{Dideq1}. Using the bound $|C_i c| \leq e^{-\alpha X^*}|c|$ from Lemma \ref{stabestimateslemma} and the bound for $L_3$ from \cref{Zinv1}, we obtain the expressions
 \begin{align*}
-a_i^+ &= P_0^u(\lambda) D_i d + A_2(\lambda)_i^+(b, c, d) \\
-a_i^- &= -P_0^s(\lambda) D_i d + A_2(\lambda)_i^-(b, c, d) \\
+a_i^+ &= P_0^u(0) D_i d + A_2(\lambda)_i^+(b, c, d) \\
+a_i^- &= -P_0^s(0) D_i d + A_2(\lambda)_i^-(b, c, d),
 \end{align*}
-The bound on the remainder term $A_2(\lambda)(b, c, d)$ is found by substituting the bound for $A_1$ into the bound for $L_3$ and simplifying to get
+where 
 \begin{align*}
-|A_2&(\lambda)_i(b, c, d)| \leq C \left(e^{-\tilde{\alpha} X^*}|b| + e^{-\alpha X^*}(|c| + |\lambda|^2|d| + |D_i||d|) \right)
+|A_2&(\lambda)_i(b, c, d)| \leq C \left(e^{-\tilde{\alpha} X^*}|b| + e^{-\alpha X^*}|c| + |\lambda|^2|d| \right)
 \end{align*} 
-
-
-\end{proof}
-\end{lemma}
-
-Before we derive an expression for $a_i^c$, we will evaluate an inner product term which will appear in that expression.
-
-\begin{lemma}\label{lemma:WprimeIP}
-For the following inner product, we have
-\begin{equation}\label{WprimeIP}
-\langle W_0'(0), Q'(X_j) \rangle = -q(X_j) + \mathcal{O}(e^{-2\alpha X_j})
-\end{equation}
-where $q(x)$ is the first component of the primary pulse $Q(x)$ and $W_0'(0)$ is defined in \cref{nulambdalemma}.
-\begin{proof}
-Using the expression \cref{W0prime} for $W_0'(0)$ from \cref{nulambdalemma} and $Q'(x) = (\partial_x q(x), \partial_x^2 q(x), \dots, \partial_x^{2m}(x), 0)^T$, we can compute
-\begin{align}\label{WprimeIP1}
-\langle W_0'(0), Q'(X_j) \rangle = 
-\frac{1}{c} \left( -c_3 \partial_x^2 q(X_j) -c_5 \partial_x^4 q(X_j) -\dots -c_{2m-1} \partial_x^{2m-2} q(X_j) + \partial_x^{2m} q(X_j) \right)
-\end{align}
-where the coefficients $c_j$ are defined in \cref{fpartials0}. Using \cref{Eprimeuform}, an equilibrium solution $u(x)$ to \cref{eqODE} satisfies the equation
-\[
-\partial_x^{2m} u- f(u, \partial_x u, \dots, \partial_x^{2m-1}u ) + cu = 0
-\]
-Expanding this in a Taylor series about the zero solution $u = 0$, we extract the linear part of $f$  to get
-\[
-\partial_x^{2m} u - \sum_{k=1}^{2m} f_{u_k}(0) \partial_x^{k-1} + cu + g(u, \partial_x u, \dots, \partial_x^{2m-1}u ) = 0
-\]
-where $g$ is at least quadratic in all of its arguments. Substituting the coefficients $c_j$ from \cref{fpartials0}, this becomes
-\begin{equation*}
-\partial_x^{2m} u - c_3 \partial_x^2 u - c_5 \partial_x^4 u - \dots - c_{2m-1} \partial_x^{2m-2}u + cu + g(u, \partial_x u, \dots, \partial_x^{2m-1}u ) = 0
-\end{equation*}
-which we rearrange to get 
-\begin{equation}\label{lineqODE1}
-\partial_x^{2m} u - c_3 \partial_x^2 u - c_5 \partial_x^4 u - \dots - c_{2m-1} \partial_x^{2m-2}u = -cu - g(u, \partial_x u, \dots, \partial_x^{2m-1}u )
-\end{equation}
-Since $q(x)$ solves \cref{lineqODE1}, equation \cref{WprimeIP1} becomes
-\begin{align*}
-\langle W_0'(0), Q'(X_j) \rangle &= 
-\frac{1}{c} \left( -cq(X_j) - g(q(X_j), \partial_x q(X_j), \dots, \partial_x^{2m-1}q(X_j) \right) \\
-&= -q(X_j) + \mathcal{O}(e^{-2\alpha X_j})
-\end{align*}
-since $g$ is as least quadratic in all of its and $q(x)$ and all of its derivatives are exponentially localized.
-\end{proof}
-\end{lemma}
-
-In the next lemma, we derive an expression for $a_i^c$.
-
-\begin{lemma}\label{lemma:ac1}
-For the center initial conditions $a_i^c \in \C$, we have the expression
-\begin{align}\label{tildeciexp1}
-a_i^c &= \lambda q(X_i) (d_{i+1} - d_i ) + \tilde{A}_2(\lambda)_i(b, c, d)
-\end{align}
-$\tilde{A}_2$ is linear in $(b, c, d)$ and has bound
-\begin{align}\label{tildeA2bound}
-|\tilde{A}_2(\lambda)(b, c, d) \leq C |\lambda| ( e^{-\alpha X^*} + |\lambda|) \left( e^{-\alpha X^*}  |b| + |c| + e^{-\alpha X^*} |d| \right)
-\end{align}
-
-\begin{proof}
-First, we look at the stable projection $\tilde{P}^s_+(X_i; \lambda) = P_+(X_i; \lambda) \Phi^s_+(X_i, X_i; \lambda) P_+^{-1}(X_i; \lambda)$. Since the range of the complement projection is not uniquely determined, we are free to choose any complement of $\ran \tilde{P}^s_+(X_i; \lambda)$. In particular, since for sufficiently small $\lambda$, $\R^{2m+1} = E^s(\lambda) \oplus E^u(0) \oplus E^c(0)$, we can choose the range of the complement projection to be $P_+(X_i; \lambda)$
-
-
-
-Apply the projection $P^c(\lambda)$ to the matching condition $P_i^+(X_i; \lambda) Z_i^+(X_i) - P_{i+1}^-(-X_i; \lambda) Z_{i+1}^-(-X_i) = D_i d + C_i c$ to get
-\begin{equation}\label{Dideq0c}
-\begin{aligned}
-P^c(&\lambda)(D_i d + C_i c) = P^c(\lambda)( P_+(X_i; \lambda) a_i^c V_0(\lambda) + P_-(-X_i; \lambda)a_i^c V_0(\lambda)) + P^c(\lambda) \tilde{L}_3(\lambda)_i(a,b,c,d),
-\end{aligned}
-\end{equation}
-where
-\begin{equation}\label{tildeL3}
-\begin{aligned}
-\tilde{L}_3(&\lambda)_i(a,b,c,d) = P_+(X_i; \lambda)a_i^+ + P_+(X_i; \lambda)\Phi^s(X_i, 0; \lambda) b_i^+ \\
-&+ P_+(X_i; \lambda) \int_0^{X_i} \Phi^s(X_i, y; \lambda) P_+(y; \lambda)^{-1}\big[ G_i^+(y) P_+(y; \lambda) Z_i^+(y) \\
-&\qquad+ c_i e^{-\nu(\lambda)X_i} G_i^-(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)\big] dy \\
-&- P_-(-X_i; \lambda)a_i^-  - P_-(-X_i; \lambda)\Phi^u(-X_i, 0; \lambda) b_{i+1}^- \\ 
-&- P_-(-X_i; \lambda) \int_0^{-X_i} \Phi^u(-X_i, y; \lambda) P_-(y; \lambda)^{-1}\big[ G_{i+1}^-(y) P_-(y; \lambda)Z_{i+1}^-(y) \\
-&\qquad+ c_i e^{\nu(\lambda)X_i} G_{i+1}^-(y) V^-(y; \lambda) + \lambda^2 d_{i+1} \tilde{H}_{i+1}^-(y)\big] dy
-\end{aligned}
-\end{equation}
-To evaluate $P^c(\lambda)D_i d$, we use the expression for $P^c(\lambda)$ and the Taylor expansion of $W_0(\lambda)$ from \cref{nulambdalemma}. Since $\langle W_0, D_i d \rangle = 0$,
-\begin{align*}
-P^c(&\lambda)D_i d = \langle W_0(\lambda), D_i d \rangle + \mathcal{O}(e^{-\alpha X_i} |\lambda|^2 |d| ) \\
-&= \langle W_0 + \overline{\lambda} W_0'(0) + \mathcal{O}(\overline{\lambda}^2), D_i d \rangle + \mathcal{O}(e^{-\alpha X_i} |\lambda|^2 |d| ) \\
-&= \langle W_0, D_i d \rangle + \lambda \langle W_0'(0), (Q'(X_i) + Q'(-X_i))(d_{i+1} - d_i ) \rangle + \mathcal{O}(e^{-\alpha X_i} |\lambda|(e^{\alpha X_i} + |\lambda|)|d|) \\
-&= \lambda \langle W_0'(0), Q'(X_i) + Q'(-X_i) \rangle (d_{i+1} - d_i ) + \mathcal{O}(e^{-\alpha X_i} |\lambda|(e^{\alpha X^*} + |\lambda|)|d|) \\
-&= \lambda ( \langle W_0'(0), Q'(X_i) \rangle + \langle W_0'(0), -R Q'(X_i)\rangle )(d_{i+1} - d_i ) \rangle + \mathcal{O}(e^{-\alpha X_i} |\lambda|(e^{\alpha X^*} + |\lambda|)|d|)\\
-&= \lambda \left( \langle W_0'(0), Q'(X_i) \rangle + \langle -R W_0'(0), Q'(X_i)\rangle \right)(d_{i+1} - d_i ) \rangle + \mathcal{O}(e^{-\alpha X_i} |\lambda|(e^{\alpha X^*} + |\lambda|)|d|) \\
-&= 2 \lambda \langle W_0'(0), Q'(X_i) \rangle (d_{i+1} - d_i ) \rangle + \mathcal{O}(e^{-\alpha X^*} |\lambda|(e^{\alpha X^*} + |\lambda|)|d|)
-\end{align*}
-where in the last line we used the symmetry relation $W'(0) = -R W'(0)$ from Lemma \ref{nulambdalemma}. Using Lemma \ref{lemma:WprimeIP} to evaluate the inner product, this becomes
-\begin{equation}\label{PcDid2}
-P^c(\lambda)D_i d = -2 \lambda q(X_i) (d_{i+1} - d_i ) + \mathcal{O}(e^{-\alpha X^*} |\lambda|(e^{\alpha X^*} + |\lambda|)|d|)
-\end{equation}
-
-For $P^c(\lambda)C_i c$, we first expand $C_i c$ using the expressions for $V^\pm(\pm x; \lambda)$ from \cref{lemma:Vpm} and the expansions of the conjugation operators from the conjugation lemma to get
+For $a_i^c$, we apply the center projection $P^c(0) = \langle W_0, \cdot \rangle$ to \eqref{Dideq1}. $\langle W_0, D_i d\rangle = 0$, and for $P^c(0) C_i c$, we write $C_i c$ as 
 \begin{align*}
 C_i c &= c_i \left( e^{\nu(\lambda) X_i} V^-(-X_i; \lambda) - e^{-\nu(\lambda) X_i} V^+(X_i; \lambda) \right) \\
 &= c_i \left( e^{\nu(\lambda) X_i} e^{\nu(\lambda)X_i} P_-(-X_i; \lambda) V_0(\lambda) - e^{-\nu(\lambda) X_i} e^{\nu(\lambda)X_i} P_+(X_i; \lambda)V_0(\lambda) \right) \\
@@ -262,52 +170,25 @@ C_i c &= c_i \left( e^{\nu(\lambda) X_i} V^-(-X_i; \lambda) - e^{-\nu(\lambda) X
 where in the last line we used \cref{defPminus} and the expansion \cref{conjlemmaP} for the conjugation operator. Expanding $\Theta_+(X_i; \lambda)$ and $V_0(\lambda)$ in a Taylor series about $\lambda = 0$, this becomes
 \begin{align*}
 C_i c &= c_i \left( R \Theta_+(X_i; 0) R - \Theta_+(X_i; 0) + \mathcal{O}(|\lambda|e^{-\alpha X^*}) \right) (V_0 + \mathcal{O}(|\lambda|)) \\
-&= c_i \left( R \Theta_+(X_i; 0) R - \Theta_+(X_i; 0) \right) V_0 + \mathcal{O}(|\lambda|e^{-\alpha X^*})
+&= c_i \left( R \Theta_+(X_i; 0) R - \Theta_+(X_i; 0) \right) V_0 + \mathcal{O}(|\lambda|e^{-\alpha X^*}|c|)
 \end{align*}
-Applying the expression for $P^c(\lambda)$ from \cref{nulambdalemma} to this,
+Taking the inner product with $W_0$, this becomes
 \begin{align*}
-P^c(\lambda)&C_i c = \langle W_0(\lambda), C_i c \rangle + \mathcal{O}(|\lambda|^2 |c| ) \\
-&= c_i \langle W_0 + \mathcal{O}(|\overline{\lambda}|),(R \Theta_+(X_i; 0) R - \Theta_+(X_i; 0) )( V_0 + \mathcal{O}(|\lambda|)) \rangle + \mathcal{O}(|\lambda|(e^{-\alpha X^*} + |\lambda|)|c|) \\
-&= c_i \left( \langle R W_0, \Theta_+(X_i; 0) R V_0 \rangle - \langle W_0, \Theta_+(X_i; 0), V_0 \rangle \right) + \mathcal{O}(|\lambda|(e^{-\alpha X^*} + |\lambda|)|c|) \\
-&= \mathcal{O}(|\lambda|(e^{-\alpha X^*} + |\lambda|)|c|) 
+\langle W_0, C_i c \rangle &=  c_i \langle W_0, \left( R \Theta_+(X_i; 0) R - \Theta_+(X_i; 0) \right) V_0 \rangle + \mathcal{O}(|\lambda|e^{-\alpha X^*}|c| ) \\
+&= c_i \left( \langle R W_0, \Theta_+(X_i; 0) R V_0 \rangle - \langle W_0, \Theta_+(X_i; 0), V_0 \rangle \right) + \mathcal{O}(|\lambda|e^{-\alpha X^*}|c| ) \\
+&= \mathcal{O}(|\lambda|e^{-\alpha X^*}|c| )
 \end{align*}
-since $R W_0 = W_0$ and $RV_0 = V_0$.
-
-For the terms involving $a_i^c$, we use \cref{W0projlemma}(iii) to get
-\begin{align*}
-P_+(X_i; \lambda) a_i^c V_0(\lambda) + P_-(-X_i; \lambda)a_i^c V_0(\lambda) 
-&= a_i^c( P_+(X_i, 0) + P_-(-X_i, 0) ) V_0(\lambda) + \mathcal{O}(|\lambda|e^{-\alpha|x|})
-\end{align*}
-Applying the expression for $P^c(\lambda)$ from \cref{nulambdalemma} and expanding both $W_0(\lambda)$ and $V_0(\lambda)$ in a Taylor series,
-\begin{align*}
-P^c(&\lambda)( P_+(X_i; \lambda) a_i^c V_0(\lambda) + P_-(-X_i; \lambda)a_i^c V_0(\lambda) ) \\
-&= a_i^c\langle W_0 + \overline{\lambda}W_0'(0) + \mathcal{O}(|\overline{\lambda}|^2), ( P_+(X_i, 0) + R P_+(-X_i, 0) R )(V_0 + \lambda V_0'(0) + \mathcal{O}(|\lambda|^2)) \rangle + \mathcal{O}(|\lambda|e^{-\alpha X_i }|a|) \\
-&= a_i^c\langle W_0 + \overline{\lambda}W_0'(0) + \mathcal{O}(|\overline{\lambda}|^2), ( 2 I + \mathcal{O}(e^{-\alpha X_i}) )(V_0 + \lambda V_0'(0) + \mathcal{O}(|\lambda|^2)) \rangle + \mathcal{O}(|\lambda|e^{-\alpha X_i }|a|) \\
-&= 2 a_i^c \left( \langle W_0, V_0 \rangle + \lambda \langle W_0'(0), V_0 \rangle 
-+ \lambda \langle W_0, V_0'(0) \rangle \right) + \mathcal{O}(|\lambda|(e^{-\alpha X_i } + |\lambda|)|a|) \\
-&= 2 a_i^c + \mathcal{O}(|\lambda|(e^{-\alpha X_i } + |\lambda|)|a|) 
-\end{align*}
-Substituting the bound $A_1$ from \cref{Zinv1}, we have
-\begin{align*}
-P^c(&\lambda)( P_+(X_i; \lambda) a_i^c V_0(\lambda) + P_-(-X_i; \lambda)a_i^c V_0(\lambda) ) \\
-&= 2 a_i^c + \mathcal{O}\left(|\lambda|(e^{-\alpha X_i } + |\lambda|)\left(e^{-\tilde{\alpha} X^*}|b| + e^{-\alpha X^*}(|c| + |\lambda|^2|d| + |D_i||d|) \right)\right) 
-\end{align*}
-
-Finally, we evaluate $P^c(\lambda)\tilde{L}_3(\lambda)_i(a,b,c,d)$. To do this, we use \cref{W0projlemma}(viii) together with the bounds we obtained for the terms of $L_3(\lambda)_i(a,b,c,d)$ from \cref{Zinv1} to get 
+since $R W_0 = W_0$ and $RV_0 = V_0$. Finally, we evaluate $P^c(0)L_3(\lambda)_i(b,c,d)$ by using \cref{W0projlemma}(iv) together with the bounds we obtained for the terms of $L_3(\lambda)_i(b,c,d)$ from \cref{Zinv1} to get 
 \begin{equation*}
-|P^c(\lambda)\tilde{L}_3(\lambda)_i(a,b,c,d)| \leq C |\lambda|( e^{-\alpha X_i} + |\lambda|) \left( |a| + e^{-\alpha X^*} (|c| + |\lambda|^2 |d|) + e^{-\tilde{\alpha} X^*} |b| \right)
+|P^c(\lambda)\tilde{L}_3(\lambda)_i(a,b,c,d)| \leq C |\lambda| e^{-\alpha X_i} \left( e^{-\tilde{\alpha} X^*} |b| + e^{-\alpha X^*} |c| + |\lambda|^2 |d| \right)
 \end{equation*}
-Substituting in the bound for $A_1$ from \cref{Zinv1} and simplifying, 
+Combining everything and dividing by 2, we have 
 \begin{equation*}
-|P^c(\lambda)\tilde{L}_3(\lambda)_i(a,b,c,d)| \leq C |\lambda| e^{-\alpha X^*} ( e^{-\alpha X_i} + |\lambda|) \left( |b| + |c| + |d| \right)
-\end{equation*}
-Combining all of these and dividing by 2, we get 
-\begin{equation*}
-a_i^c = -\lambda q(X_i) (d_{i+1} - d_i ) + \tilde{A}_2(\lambda)_i(b, c, d)
+a_i^c = \tilde{A}_2(\lambda)(b, c, d),
 \end{equation*}
 where we have bound
 \begin{align*}
-|\tilde{A}_2(\lambda)(b, c, d) \leq C |\lambda| ( e^{-\alpha X^*} + |\lambda|) \left( e^{-\alpha X^*}  |b| + |c| + e^{-\alpha X^*} |d| \right)
+|\tilde{A}_2(\lambda)(b, c, d) \leq C |\lambda| e^{-\alpha X^*} \left( e^{-\tilde{\alpha} X^*}  |b| + |c| +|\lambda|^2 |d| \right)
 \end{align*}
 \end{proof}
 \end{lemma}

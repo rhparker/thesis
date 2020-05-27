@@ -928,6 +928,37 @@ since $q(y)$ is the last component of $\Psi(y)$. Since $v^c(y)$ and $q(y)$ are b
 \end{proof}
 \end{lemma}
 
+To conclude this section, as a corollary, we use the previous lemma to evaluate some important inner products.
+
+\begin{corollary}\label{lemma:VpmPsiIP}
+\begin{equation}\label{VpmIPs}
+\begin{aligned}
+\langle \Psi^c(0), V^\pm(0; \lambda) \rangle &= 1 \mp \frac{1}{2} \tilde{M}\lambda + \mathcal{O}(|\lambda|^2) \\
+\langle \Psi(0), V^\pm(0; \lambda) \rangle &= \mp \frac{1}{2} M^c \lambda + \mathcal{O}(|\lambda|^2)
+\end{aligned}
+\end{equation}
+\begin{proof}
+Using Lemma \ref{lemma:Vpm} and Lemma \ref{varadjsolutions}, we can expand $V^+(0; \lambda)$ in a Taylor series about $\lambda = 0$ to get
+\begin{align*}
+V^+(0; \lambda) &= V^c(0) + \partial_\lambda V^+(0; 0) \lambda + \mathcal{O}(|\lambda|^2) \\
+&= V^c(0) + \partial_\lambda \tilde{V}^+(0; 0) \lambda + \mathcal{O}(|\lambda|^2), 
+\end{align*}
+since $\partial_\lambda V^+(0; 0) = \partial_\lambda \tilde{V}^+(0; 0)$. For the inner product with $\Psi^c(0)$, we use \cref{lemma:VderivIPs} to get
+\begin{align*}
+\langle \Psi^c(0), V^+(0; \lambda) \rangle &= 
+\langle W_0, V^c(0) \rangle + \langle W_0, \partial_\lambda \tilde{V}^+(0; 0) \rangle + \mathcal{O}(|\lambda|^2) \\
+&= 1 - \frac{1}{2} \tilde{M}\lambda + \mathcal{O}(|\lambda|^2)
+\end{align*}
+The result for $\langle \Psi^c(0), V^-(0; \lambda) \rangle$ follows from the symmetry relations $\partial_\lambda \tilde{V}^-(0; 0)= -R \partial_\lambda \tilde{V}^+(0; 0)$ and $W_0 = R W_0$. For the inner product $\langle \Psi(0), V^+(0; \lambda) \rangle$, we use \cref{lemma:VderivIPs} and \cref{VtildeVderiv} to get
+\begin{align*}
+\langle \Psi(0), V^+(0; \lambda) \rangle 
+&= \langle \Psi(0), V^c(0) \rangle + \langle \Psi(0), \partial_\lambda \tilde{V}^+(0; 0) \rangle \lambda  + \mathcal{O}(|\lambda|^2) \\
+&= -\frac{1}{2} M^c \lambda + \mathcal{O}(|\lambda|^2)
+\end{align*}
+The result for $\langle \Psi(0), V^-(0; \lambda) \rangle$ follows from symmetry as above.
+\end{proof}
+\end{corollary}
+
 \section{Piecewise formulation}\label{sec:perpiece}
 
 With all of these preliminaries taken care of, we will write the eigenvalue problem \cref{PDEeigsystemper4} in a piecewise form similar to \cite{Sandstede1998}. Let $Q_n(x)$ be a periodic $n$-pulse solution to \eqref{genODE} constructed according to Theorem \ref{perexist}. From Theorem \ref{perexist} and Lemma \ref{solvewithjumps}, we can write $Q_n(x)$ piecewise as
@@ -1170,7 +1201,7 @@ which is bounded for all $r \leq r_*$. We conclude that there exists a constant 
 \end{proof}
 \end{lemma}
 
-To conclude this section, we will collect estimates on the terms involved in the conjugated system in the following lemma.
+To conclude this section, we will collect some important estimates in the following two lemmas. First, we have estimates on terms involved in the conjugated system.
 
 \begin{lemma}\label{stabestimateslemma}
 Let $\Delta H_i^\pm(x) = \tilde{H}_i^\pm(x) - H(x)$. Then we have the following estimates
@@ -1224,6 +1255,37 @@ Using these, it follows that
 \[
 |C_i c| \leq C e^{-\alpha X_i} |c|
 \]
+\end{proof}
+\end{lemma}
+
+Next, we estimate some useful inner products.
+
+\begin{lemma}\label{W0projlemma}
+For all $U \in \R^{2m+1}$, we have the following.
+\begin{enumerate}[(i)]
+	\item $\langle W_0, P^i_\pm(x, 0) P^{s/u}(0) U \rangle = 0$
+	\item $\langle W_0, \Theta_\pm(x, 0) P^{s/u}(0) U \rangle = 0$
+	\item $P_\pm(x, \lambda) = P^i_\pm(x, 0) + \mathcal{O}(|\lambda|e^{-\alpha|x|})$
+	\item $\langle W_0, P^i_\pm(x, \lambda) P^{s/u}(0) U \rangle = \mathcal{O}(|\lambda|e^{-\alpha|x|}|U|)$
+	\item $\langle W_0, P^i_\pm(0; \lambda) P^{s/u}(0) U \rangle = \mathcal{O}(|\lambda||U|)$
+	\item $P^c(0) G_i^\pm(x) U = \langle W_0, G_i^\pm(x) U\rangle = 0$
+\end{enumerate}
+where $P^i_\pm(x; \lambda) = I + \Theta^i_\pm(x, \lambda)$ are the conjugation operators and $P^{s/u}(\lambda)$ are the eigenprojections for $E^{s/u}(\lambda)$.
+\begin{proof}
+By Lemma \ref{centerprojlemma}, $\tilde{P}_\pm^c(x; 0)U = \langle W_0, U \rangle V^c(x)$, thus $\langle W_0, U \rangle = 0$ for all $U$ in the range of the stable and unstable projections of the trichotomy when $\lambda = 0$. These ranges are given by $P_\pm(x, 0) E^{s/u}(0)$. This proves (i). For (ii), 
+\begin{align*}
+\langle W_0, \Theta_\pm(x, 0) P^{s/u}(0) U\rangle &=
+\langle W_0, (I - P^i_\pm(x, 0)) P^{s/u}(0) U\rangle \\
+&= \langle W_0, P^{s/u}(0) U \rangle - \langle P^i_\pm(x, 0)P^{s/u}(0) U \rangle \\
+&= 0
+\end{align*}
+by part (i) and the fact that $\langle W_0, \cdot \rangle$ is the projection on $E^c(0)$. For (iii), we use \cref{projTheta} and \cref{Thetadecay} and expand $\Theta^i_\pm(x, \lambda)$ in a Taylor series about $\lambda = 0$ to get
+\begin{align*}
+P^i_\pm(x, \lambda) &= I + \Theta^i_\pm(x, \lambda) \\
+&= I + \Theta^i_\pm(x, 0) + \lambda \partial_\lambda \Theta^i_\pm(x, 0) + \mathcal{O}(|\lambda|^2 e^{-\alpha |x|} ) \\
+&= P^i_\pm(x, 0) + \mathcal{O}(|\lambda|e^{-\alpha|x|}).
+\end{align*}
+For (iv), we combine (i) and (iii). Part (v) is the special case of (iv) when $x = 0$. For (vi), since the bottom row of $G_i^\pm(x)$ is all zeros, the last component of $G_i^\pm(x) U$ is 0 for all $U$. It follows that $\langle W_0, G_i^\pm(x) U\rangle = 0$. 
 \end{proof}
 \end{lemma}
 
