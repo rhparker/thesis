@@ -602,7 +602,15 @@ The exponential trichotomy for \cref{constcoeffZ} induces exponential trichotomi
 \end{align*} 
 For the range of the unstable projection $\tilde{P}_{i,+}^u(X_i; \lambda)$, we are free to choose any complement of $\ran \tilde{P}_{i,+}^s(X_i; \lambda) \oplus \ran \tilde{P}_{i,+}^c(X_i; \lambda)$. For sufficiently small $\lambda$, since the eigenvectors of $A(\lambda)$ are smooth in $\lambda$, $E^u(0)$ is a complement of $E^s(\lambda)\oplus E^c(\lambda)$. Since $P_+(X_i; \lambda) = I + \mathcal{O}(e^{-\alpha X_i})$ and $X_i \geq X_*$, for sufficiently small $\lambda$ and sufficiently large $X_*$, $E^u(0)$ is a complement of $\ran \tilde{P}_{i,+}^s(X_i; \lambda) \oplus \ran \tilde{P}_{i,+}^c(X_i; \lambda)$. Thus we can choose the unstable projection $\tilde{P}_{i,+}^u(X_i; \lambda)$ to have range $E^u(0)$. We can then define the corresponding stable, unstable, and center evolutions on $\R^+$ by
 \begin{align*}
-\tilde{\Phi}_{+, i}^{s/u/c}(x, y; \lambda) = \tilde{\Phi}_+(x,X_i;\lambda) \tilde{P}_{i,+}^{s/u/c}(X_i; \lambda)\tilde{\Phi}_+(X_i,y;\lambda) 
+\tilde{\Phi}_{i,+}^{s/u/c}(x, y; \lambda) = \tilde{\Phi}_+(x,X_i;\lambda) \tilde{P}_{i,+}^{s/u/c}(X_i; \lambda)\tilde{\Phi}_+(X_i,y;\lambda) 
+\end{align*}
+The stable and center evolutions do not depend on $i$, and we have for them
+\begin{align*}
+\tilde{\Phi}_{i,+}^{s/c}(x, y; \lambda) &= P_+(x; \lambda) \Phi(x, y; \lambda)P^{s/c}(\lambda)P_+(y; \lambda)^{-1}
+\end{align*}
+Thus, for the exponential trichotomy on $\R^+$ for the constant-coefficient system \cref{constcoeffZ}, we can decompose the evolution $\Phi(x, y; \lambda)$ into the three components $\Phi^s(x, y; \lambda)$, $\Phi^c(x, y; \lambda)$, and $\Phi^u_{i,+}(x, y; \lambda)$, where 
+\begin{align*}
+\Phi^u_{i,+}(x, y; \lambda) = P_+(x, \lambda)^{-1} \tilde{\Phi}^u_{i,+}(x,y,\lambda)P^+(y,\lambda)
 \end{align*}
 
 Similarly, for the exponential trichotomy on $\R^-$, we can define the unstable and center projections at $-X_{i-1}$ by 

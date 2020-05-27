@@ -11,7 +11,7 @@
 We will now solve the system \cref{eigsystem}. The proof follows the outline of \cite[Theorem 2]{Sandstede1998}, with the main differences being the presence of a center subspace and the fact that we are on a periodic domain. Define the spaces
 \begin{align*}
 V_Z &= \bigoplus_{i=0}^{n-1} C_b([-X_{i-1},0]:\C^{2m+1}) \oplus C_b([0,X_i]:\C^{2m+1})  \\
-V_a &= \bigoplus_{i=0}^{n-1} E^u(\lambda) \oplus E^s(\lambda) \oplus E^c(\lambda) \\
+V_a &= \bigoplus_{i=0}^{n-1} E^u(0) \oplus E^s(0) \oplus E^c(\lambda) \\
 V_b &= \bigoplus_{i=0}^{n-1} E^u(0) \oplus E^s(0) \\
 V_c &= \bigoplus_{i=0}^{n-1} \C \\
 V_d &= \bigoplus_{i=0}^{n-1} \C \\
@@ -35,7 +35,7 @@ Z&_i^+(x) = \Phi^u(x, X_i; \lambda) a_i^+ + \Phi^s(x, 0; \lambda) b_i^+ + \Phi^c
 &+ \int_{X_i}^x \Phi^c(x, y; \lambda) P_+(y; \lambda)^{-1} [ G_i^+(y) P_+(y; \lambda) Z_i^+(y) + c_i e^{-\nu(\lambda)X_i} G_i^-(y)V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)] dy \\
 \end{aligned}
 \end{equation}
-where $i = 0, \dots, n-1$. Since the center subspace is the span of the single vector $V_0(\lambda)$, $a_i^c \in \C$. As in \cite{Sandstede1998}, we will solve the eigenvalue problem in a series of inversion steps. First, we will solve \cref{systemZ} for $Z_i^\pm$. To do this, we rewrite \eqref{Zfpeq} as
+where $i = 0, \dots, n-1$. Since the center subspace is the span of the single vector $V_0(\lambda)$, $a_i^c \in \C$. Note that $a_i^+ \in E^u(0)$ and $a_i^- \in E^s(0)$, which are the eigenspaces corresponding to $\lambda = 0$. As in \cite{Sandstede1998}, we will solve the eigenvalue problem in a series of inversion steps. First, we will solve \cref{systemZ} for $Z_i^\pm$. To do this, we rewrite \eqref{Zfpeq} as
 \begin{equation}\label{L1L2eq}
 [I - L_1(\lambda)]Z = L_2(\lambda)(a,b,c,d)Z
 \end{equation}
@@ -174,14 +174,14 @@ and
 \begin{proof}
 At $\pm X_i$, the fixed point equations \eqref{Zfpeq} are
 \begin{align*}
-Z_{i+1}^-&(-X_i) = a_i^- + \Phi^u(-X_i, 0; \lambda) b_{i+1}^- - a_i^c V_0(\lambda) \\ 
+Z_{i+1}^-&(-X_i) = \Phi^s(-X_i, -X_i; \lambda) a_{i-1}^- + \Phi^u(-X_i, 0; \lambda) b_{i+1}^- - a_i^c V_0(\lambda) \\ 
 &+ \int_0^{-X_i} \Phi^u(-X_i, y; \lambda) P_-(y; \lambda)^{-1} \big[ G_{i+1}^-(y) P_-(y; \lambda)Z_{i+1}^-(y) \\
 &\qquad+ c_i e^{\nu(\lambda)X_i} G_{i+1}^-(y) V^-(x; \lambda) + \lambda^2 d_{i+1} \tilde{H}_{i+1}^-(y)\big] dy \\
-Z_i^+&(X_i) = a_i^+ + \Phi^s(X_i, 0; \lambda) b_i^+ + a_i^c V_0(\lambda) \\
+Z_i^+&(X_i) = \Phi^u(X_i, X_i; \lambda) a_i^+ + \Phi^s(X_i, 0; \lambda) b_i^+ + a_i^c V_0(\lambda) \\
 &+ \int_0^{X_i} \Phi^s(X_i, y; \lambda) P_+(y; \lambda)^{-1} \big[ G_i^+(y) P_+(y; \lambda) Z_i^+(y) \\
 &\qquad+ c_i e^{-\nu(\lambda)X_i} G_i^-(y) V^+(y; \lambda) + \lambda^2 d_i \tilde{H}_i^+(y)\big] dy
 \end{align*}
-where we used, for example, the fact that $a_i^- \in E^s(\lambda)$ and $\Phi^s(-X_{i-1}, -X_{i-1}; \lambda)$ is the identity on $E^s(\lambda)$. Applying the appropriate conjugation operators, subtracting, and using equation \eqref{projTheta}, we obtain the equation 
+Applying the appropriate conjugation operators, subtracting, and using equation \eqref{projTheta}, we obtain the equation 
 \begin{equation}\label{Dideq0}
 \begin{aligned}
 D_i &d + C_i c = (I + \Theta_+(X_i; \lambda))a_i^+ + (I + \Theta_+(X_i; \lambda))a_i^c V_0(\lambda) + P_+(X_i; \lambda)\Phi^s(X_i, 0; \lambda) b_i^+ \\
@@ -195,7 +195,7 @@ D_i &d + C_i c = (I + \Theta_+(X_i; \lambda))a_i^+ + (I + \Theta_+(X_i; \lambda)
 which simplifies to
 \begin{equation}\label{Didexpansion}
 \begin{aligned}
-D_i &d + C_i c= a_i^+ - a_i^- + 2 a_i^c V_0(\lambda) \\
+D_i &d + C_i c = a_i^+ - a_i^- + 2 a_i^c V_0(\lambda) \\
 &+ \Theta_+(X_i; \lambda)a_i^+ - \Theta_-(-X_i; \lambda)a_i^- + (\Theta_+(X_i; \lambda) + \Theta_-(-X_i; \lambda)) a_i^c V_0(\lambda)\\
 &+ P_+(X_i; \lambda)\Phi^s(X_i, 0; \lambda) b_i^+ - P_-(-X_i; \lambda)\Phi^u(-X_i, 0; \lambda) b_{i+1}^- \\
 &+ P_+(X_i; \lambda) \int_0^{X_i} \Phi^s(X_i, y; \lambda) P_+(y; \lambda)^{-1}\big[ G_i^+(y) P_+(y; \lambda) Z_i^+(y) \\
