@@ -591,16 +591,20 @@ This is an exponential trichotomy on $\R$. Since $E^c(\lambda)$ is one-dimension
 \begin{align}\label{centerevol}
 \Phi^c(x, y; \lambda) V &= e^{\nu(\lambda)(x - y)} P^c(\lambda)V
 \end{align}
-For our purposes, it will be useful to modify this to define exponential trichotomies on $\R^\pm$. Since there is some freedom in choosing the subspaces for the trichotomy on $\R^\pm$, this modification will allow us to better perform one of the matches involved in Lin's method. For the range of the unstable projection at $X_i$, we are free to choose any complement of $E^s(\lambda) \oplus E^c(\lambda)$. For sufficiently small $\lambda$, since the eigenvectors of $A(\lambda)$ are smooth in $\lambda$, $E^u(0)$ is a complement of $E^s(\lambda)\oplus E^c(\lambda)$. Since $P_+(X_i; \lambda) = I + \mathcal{O}(e^{-\alpha X_i})$ and $X_i \geq X_*$, for sufficiently small $\lambda$ and sufficiently large $X_*$, $P_+(X_i, \lambda)^{-1} E^u(0) P_+(X_i, \lambda)$ is a complement of $E^s(\lambda) \oplus E^c(\lambda)$. A similar result holds for the stable projection at $-X_{i-1}$. Using these ideas, for $i = 0, \dots, n-1$, we define
+For our purposes, it will be useful to modify this to define exponential trichotomies on $\R^\pm$. Since there is some freedom in choosing the subspaces for the trichotomy on $\R^\pm$, this modification will allow us to better perform one of the matches involved in Lin's method. For the complement of the range of the stable projection at $X_i$, we are free to choose any complement of $E^s(\lambda)$. For sufficiently small $\lambda$, since the eigenvectors of $A(\lambda)$ are smooth in $\lambda$, $E^u(0)\oplus E^c(0)$ is a complement of $E^s(\lambda)$. Since $P_+(X_i; \lambda) = I + \mathcal{O}(e^{-\alpha X_i})$ and $X_i \geq X_*$, for sufficiently small $\lambda$ and sufficiently large $X_*$, $P_+(X_i, \lambda)^{-1} ( E^u(0)\oplus E^c(0) ) P_+(X_i, \lambda)$ is a complement of $E^s(\lambda)$. A similar result holds for the complement of the unstable projection at $-X_{i-1}$. For $i = 0, \dots, n-1$, we define
 \begin{equation}\label{Zevolmod}
 \begin{aligned}
 \Phi^u_{i,+}(x, y; \lambda) &= \Phi(x, X_i; \lambda) P_+(X_i, \lambda)^{-1}
 P^u(0) P_+(X_i, \lambda) \Phi(X_i, x; \lambda) && 0 \leq y \leq x \\
+\Phi^c_{i,+}(x, y; \lambda) &= \Phi(x, X_i; \lambda) P_+(X_i, \lambda)^{-1}
+P^c(0) P_+(X_i, \lambda) \Phi(X_i, x; \lambda) && 0 \leq y \leq x \\
 \Phi^s_{i,-}(x, y; \lambda) &= \Phi(x, -X_{i-1}; \lambda) P_-(-X_{i-1}, \lambda)^{-1}
-P^s(0) P_-(-X_{i-1}, \lambda) \Phi(-X_{i-1}, x; \lambda) && y \leq x \leq 0
+P^s(0) P_-(-X_{i-1}, \lambda) \Phi(-X_{i-1}, x; \lambda) && y \leq x \leq 0 \\
+\Phi^c_{i,-}(x, y; \lambda) &= \Phi(x, -X_{i-1}; \lambda) P_-(-X_{i-1}, \lambda)^{-1}
+P^c(0) P_-(-X_{i-1}, \lambda) \Phi(-X_{i-1}, x; \lambda) && y \leq x \leq 0 \\
 \end{aligned}
 \end{equation}
-Since $|\lambda| < \delta$ and the $X_i$ are fixed, estimates for these are the same as for the corresponding evolution in \cref{Zevolbounds}, although the constant $C$ may be larger.
+Since $|\lambda| < \delta$ and the $X_i$ are fixed, estimates for these are the same as for the corresponding evolutions in \cref{Zevolbounds}, although the constant $C$ may be larger.
 
 The evolution of the original, unconjugated system $U'(x) = A(Q(x); \lambda) U'(x)$ is given by
 \begin{equation}
@@ -609,12 +613,12 @@ The evolution of the original, unconjugated system $U'(x) = A(Q(x); \lambda) U'(
 \tilde{\Phi}_+(x, y; \lambda) &= P_-(y; \lambda) \Phi(y, x; \lambda) P_-(x; \lambda)^{-1} && x, y \leq 0
 \end{aligned}
 \end{equation}
-For $i = -, \dots, n-1$, the exponential trichotomies for \cref{constcoeffZ} induce exponential trichotomies for the unconjugated system on $\R^\pm$ via the equations
+For $i = 0, \dots, n-1$, the exponential trichotomies for \cref{constcoeffZ} induce exponential trichotomies for the unconjugated system on $\R^\pm$ via the equations
 \begin{equation}\label{trichunconjplus}
 \begin{aligned}
 \tilde{\Phi}_+^{s}(x, y; \lambda) &= P_+(y; \lambda) \Phi^{s}(y, x; \lambda) P_+(x; \lambda)^{-1} \\
 \tilde{\Phi}_{i,+}^{u}(x, y; \lambda) &= P_+(y; \lambda) \tilde{\Phi}_{i,+}^{u}(x, y; \lambda) P_+(x; \lambda)^{-1} \\
-\tilde{\Phi}_+^{c}(x, y; \lambda) &= P_+(y; \lambda) \Phi^{c}(y, x; \lambda) P_+(x; \lambda)^{-1}
+\tilde{\Phi}_{i,+}^{c}(x, y; \lambda) &= P_+(y; \lambda) \Phi{i,+}^{c}(y, x; \lambda) P_+(x; \lambda)^{-1}
 \end{aligned}
 \end{equation}
 and
@@ -622,7 +626,7 @@ and
 \begin{aligned}
 \tilde{\Phi}_{i,-}^{s}(x, y; \lambda) &= P_-(y; \lambda) \tilde{\Phi}_{i,-}^{s}(x, y; \lambda) P_-(x; \lambda)^{-1} \\
 \tilde{\Phi}_-^{u}(x, y; \lambda) &= P_-(y; \lambda) \Phi^{u}(y, x; \lambda) P_-(x; \lambda)^{-1} \\
-\tilde{\Phi}_-^{c}(x, y; \lambda) &= P_-(y; \lambda) \Phi^{c}(y, x; \lambda) P_-(x; \lambda)^{-1}
+\tilde{\Phi}_{i,-}^{c}(x, y; \lambda) &= P_-(y; \lambda) \Phi_{i,-}^{c}(y, x; \lambda) P_-(x; \lambda)^{-1}
 \end{aligned}
 \end{equation}
 
@@ -633,9 +637,14 @@ As a consequence of this choice for the exponential trichotomy, we have for the 
 P^u(0) P_+(X_i, \lambda) \Phi(X_i, X_i; \lambda) P_+(X_i; \lambda)^{-1} \\
 &= P^u(0),
 \end{align*}
-which the unstable eigenprojection for $A(0)$ and is independent of $\lambda$. Similarly, for the stable projection on $\R^-$,
+which the unstable eigenprojection for $A(0)$ and is independent of $\lambda$. Similarly, for the center projection on $\R^+$, we have
 \begin{align*}
-\tilde{\Phi}_{i,-}^{s}&(-X_{i-1}, X_{i-1} ; \lambda) = P^s(0).
+\tilde{\Phi}_{i,+}^{c}&(X_i, X_i ; \lambda) = P^c(0)
+\end{align*}
+For the stable and center projections on $\R^-$,
+\begin{align*}
+\tilde{\Phi}_{i,-}^{s}&(-X_{i-1}, X_{i-1} ; \lambda) = P^s(0) \\
+\tilde{\Phi}_{i,-}^{c}&(-X_{i-1}, X_{i-1} ; \lambda) = P^c(0)
 \end{align*}
 
 For $\lambda = 0$, the trichotomy projections for the unconjugated equation have the much simpler form
