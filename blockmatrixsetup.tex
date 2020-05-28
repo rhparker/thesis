@@ -424,7 +424,7 @@ Z'(x) = -A_-(\Lambda)^* Z(x)
 
 \section{Conjugation of variational equation}\label{sec:conjvareq}
 
-Since $Q_n(x)$ is a piecewise perturbation of the primary pulse $Q(x)$, we will first apply the conjugation lemma to the variational equation
+We will first apply the conjugation lemma to the variational equation
 \begin{equation}\label{vareqlambda}
 U'(x) = A(Q(x); \lambda) U'(x).
 \end{equation}
@@ -433,11 +433,11 @@ For all $\lambda$, $A(Q(x); \lambda)$ decays exponentially to the constant-coeff
 |A(Q(x); \lambda) - A(\lambda)| \leq C e^{-\alpha_0 |x|}
 \]
 
-Let $\alpha$ be as chosen in \cref{sec:existdichot}, and recall that $\alpha$ is slightly less than $\alpha_0$. Using the conjugation lemma on $\R^+$ with $\Lambda = \lambda$ and $\Lambda_0 = 0$, there exists $\delta_2 > 0$ and an invertible linear transformation 
+Choose $\alpha > 0$ with $\alpha_0/2 < \alpha < \alpha_0$, and let $\eta = \alpha_0 - \alpha$. Using the conjugation lemma on $\R^+$ with $\Lambda = \lambda$, there exists $\delta_1 > 0$ and an invertible linear transformation 
 \[
 P_+(x; \lambda) = I + \Theta_+(x; \Lambda)
 \]
-such that for all $|\lambda| < \delta_2$, the change of coordinates $U = P_+(x; \lambda) Z$ conjugates \eqref{vareqlambda} into the equation
+such that for all $|\lambda| < \delta_1$, the change of coordinates $U = P_+(x; \lambda) Z$ conjugates \eqref{vareqlambda} into the equation
 \begin{align*}\label{Zplus1}
 (Z_i^+)'(x) &= A(\lambda) Z(x) && x \in \R^+.
 \end{align*}
@@ -555,7 +555,15 @@ which is the equation we want.
 \end{proof}
 \end{lemma}
 
-Since $A(\lambda)$ is a constant coefficient matrix, we know exactly how solutions $Z'(x) = A(\lambda)Z(x)$ evolve. Let $E^{u/s/c}(0)$ be the stable, unstable, and center eigenspaces of $A(0)$. $E^s(0)$ and $E^u(0)$ are $m$-dimensional, and $E^c(0)$ is 1-dimensional. For $|\lambda| < \delta$, let $E^{u/s/c}(\lambda)$ be the corresponding eigenspaces of $A(\lambda)$, which have the same dimensions as $E^{u/s/c}(0)$ since $\lambda$ is small. In particular, 
+Since $A(\lambda)$ is a constant coefficient matrix, we know exactly how solutions $Z'(x) = A(\lambda)Z(x)$ evolve. Let $E^{u/s/c}(0)$ be the stable, unstable, and center eigenspaces of $A(0)$. $E^s(0)$ and $E^u(0)$ are $m$-dimensional, and $E^c(0)$ is 1-dimensional. Choose $\delta \leq \min\{\delta_0, \delta_1\}$ so that for all $|\lambda| < \delta$,
+\begin{enumerate}
+	\item $|\nu(\lambda)| < \eta$, where $\nu(\lambda)$ defined in Lemma \ref{nulambdalemma}.
+
+	\item The real part of any other eigenvalue of $A(\lambda)$ lies strictly outside the interval $[-\alpha, \alpha]$. This is possible since the eigenvalues of $A(\lambda)$ are smooth in $\lambda$.
+\end{enumerate}
+As we proceed we may need to decrease $\delta$. 
+
+For $|\lambda| < \delta$, let $E^{u/s/c}(\lambda)$ be the corresponding eigenspaces of $A(\lambda)$, which have the same dimensions as $E^{u/s/c}(0)$ since $\lambda$ is small. In particular, 
 \[
 E^c(\lambda) = \spn\{ V_0(\lambda) \},
 \]
@@ -574,9 +582,9 @@ and let
 be the evolutions on the respective eigenspaces. For $|\lambda| < \delta$, $|\nu(\lambda)| < \tilde{\alpha}$, and we have for $x \leq y$
 \begin{equation}\label{Zevolbounds}
 \begin{aligned}
-|\Phi^s(x, y; \lambda)| &\leq C e^{-\tilde{\alpha}(x - y)} \\
-|\Phi^u(x, y; \lambda)| &\leq C e^{-\tilde{\alpha}(y - x)} \\
-|\Phi^c(x, y; \lambda)| &\leq C e^{\tilde{\alpha}|x - y|} 
+|\Phi^s(x, y; \lambda)| &\leq C e^{-\alpha(x - y)} \\
+|\Phi^u(x, y; \lambda)| &\leq C e^{-\alpha(y - x)} \\
+|\Phi^c(x, y; \lambda)| &\leq C e^{\eta|x - y|} 
 \end{aligned}
 \end{equation}
 This is an exponential trichotomy on $\R$. Since $E^c(\lambda)$ is one-dimensional, the center evolution $\Phi^c(x, y; \lambda)$ is given by
@@ -1083,13 +1091,13 @@ We will now define exponential trichotomies on $\R^\pm$ for the conjugated syste
 \begin{equation}\label{Zevolmod}
 \begin{aligned}
 \Phi^u_{i,+}(x, y; \lambda) &= \Phi(x, X_i; \lambda) P^i_+(X_i, \lambda)^{-1}
-P^u(0) P^i_+(X_i, \lambda) \Phi(X_i, x; \lambda) && 0 \leq y \leq x \\
+P^u(0) P^i_+(X_i, \lambda) \Phi(X_i, y; \lambda) && 0 \leq y \leq x \\
 \Phi^c_{i,+}(x, y; \lambda) &= \Phi(x, X_i; \lambda) P^i_+(X_i, \lambda)^{-1}
-P^c(0) P^i_+(X_i, \lambda) \Phi(X_i, x; \lambda) && 0 \leq y \leq x \\
+P^c(0) P^i_+(X_i, \lambda) \Phi(X_i, y; \lambda) && 0 \leq y \leq x \\
 \Phi^s_{i,-}(x, y; \lambda) &= \Phi(x, -X_{i-1}; \lambda) P^i_-(-X_{i-1}, \lambda)^{-1}
-P^s(0) P^i_-(-X_{i-1}, \lambda) \Phi(-X_{i-1}, x; \lambda) && y \leq x \leq 0 \\
+P^s(0) P^i_-(-X_{i-1}, \lambda) \Phi(-X_{i-1}, y; \lambda) && y \leq x \leq 0 \\
 \Phi^c_{i,-}(x, y; \lambda) &= \Phi(x, -X_{i-1}; \lambda) P^i_-(-X_{i-1}, \lambda)^{-1}
-P^c(0) P^i_-(-X_{i-1}, \lambda) \Phi(-X_{i-1}, x; \lambda) && y \leq x \leq 0 \\
+P^c(0) P^i_-(-X_{i-1}, \lambda) \Phi(-X_{i-1}, y; \lambda) && y \leq x \leq 0 \\
 \end{aligned}
 \end{equation}
 Since $|\lambda| < \delta$ and the $X_i$ are fixed, estimates for these are the same as for the corresponding evolutions in \cref{Zevolbounds}, although the constant $C$ may be different. The remaining evolutions (which do not depend on $i$ and $X_i$) are given by
@@ -1141,34 +1149,14 @@ For the stable and center projections on $\R^-$,
 \tilde{\Phi}_{i,-}^{c}&(-X_{i-1}, X_{i-1} ; \lambda) = P^c(0)
 \end{align*}
 
-\section{Constants and estimates}
+\section{Estimates}
 
-In this section, we will define constants which we will use throughout the rest of the analysis. We will also provide estimates on terms which will arise when we solve \cref{eigsystem}.
+In this section, provide estimates on terms which will arise when we solve \cref{eigsystem}. Choose $r_0 \leq r_*$ such that $r_0^{1/2} \leq \delta$. If we decrease $\delta$, $r_0$ will also decrease so that this is still satisfied. As in \cref{sec:rescale}, define
+\begin{equation}\label{Xstarstab}
+X^* = -\frac{1}{2\alpha}\log r - \frac{\phi}{2\beta_0}
+\end{equation}Note that $X_i \geq X^*$ for all $i = 0, \dots, n-1$.
 
-Recall from Lemma \ref{eigA0lemma} that $A(0)$ has a simple eigenvalue at 0, a quartet of eigenvalues $\pm \alpha_0 \pm \beta_0 i$, and for all other eigenvalues $\nu$ of $A(0)$, $|\Re \nu| > \alpha_0$. Let $(b_0, \dots, b_{n-1}, \theta)$ be any periodic parameterization, and let $r_* = r_*(b_0, \dots, b_{n-1}, \theta)$ be as in Theorem \ref{perexist}. 
-
-\begin{enumerate}
-	\item Let $\alpha$ be as chosen in \cref{sec:existdichot}, and recall that $\alpha$	is slightly less than $\alpha_0$. Let $\tilde{\alpha} = \alpha/2$.
-
-	\item Choose $\delta \leq \min\{\delta_1, \delta_2\}$ sufficiently small so that for all $|\lambda| < \delta$
-	\begin{enumerate}
-		\item $|\nu(\lambda)| < \delta$, where $\nu(\lambda)$ defined in Lemma \ref{nulambdalemma}.
-
-		\item The real part of any other eigenvalue of $A(\lambda)$ lies strictly outside the interval $[-\tilde{\alpha}, \tilde{\alpha}]$. This is possible since the eigenvalues of $A(\lambda)$ are smooth in $\lambda$.
-	\end{enumerate}
-	As we proceed we may need to decrease $\delta$. 
-
-	\item Choose $r_0 \leq r_*$ such that $r_0^{1/2} \leq \delta$. If we decrease $\delta$, $r_0$ will also decrease so that this is still satisfied.
-
-	\item As in \cref{sec:rescale}, define
-	\begin{equation}\label{Xstarstab}
-	X^* = -\frac{1}{2\alpha}\log r - \frac{\phi}{2\beta_0}
-	\end{equation}
-	Note that $X_j \geq X^*$ for all $j = 0, \dots, n-1$.
-
-\end{enumerate}
-
-In the next lemma, we give an estimate for terms of the form $e^{\pm \nu(\lambda) X_j}$, which will show up in our analysis. In order to get a uniform estimate, we will place an upper bound on the magnitude of $\lambda$. Although we can perform our analysis without doing this, this additional condition allows the form of the block matrix in \cref{blockmatrixtheorem} to be relatively simple. 
+In the first lemma, we give an estimate for terms of the form $e^{\pm \nu(\lambda) X_j}$, which will show up in our analysis. In order to get a uniform estimate, we will place an upper bound on the magnitude of $\lambda$. Although we can perform our analysis without doing this, this additional condition allows the form of the block matrix in \cref{blockmatrixtheorem} to be relatively simple. 
 
 \begin{lemma}\label{lemma:expnubound}
 Choose any $N > 0$ and $\delta > 0$. Then there exists a constant $R_N = R(N, \delta)$ such that if $|\lambda| < \delta$ and $|\lambda| < N/|\log r|$,
