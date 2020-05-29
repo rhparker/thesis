@@ -137,6 +137,37 @@ Substitute this into \cref{Pnulambda} to get \cref{Pnulambda1}.
 \end{proof}
 \end{lemma}
 
+The next lemma collects some useful facts about the matrix $A(\lambda)$.
+
+\begin{lemma}\label{lemma:Afacts}
+We have the following concerning the matrix $A(\lambda)$.
+\begin{enumerate}
+	\item $A(-\lambda) = -R A(\lambda)R$, where $R$ is the standard reversor operator. In particular, $A(0) = -R A(0)R$.
+	\item If $V$ is an eigenvector of $A(0)$ corresponding to eigenvalue $\mu$, then $RV$ is an eigenvector of $A(0)$ corresponding to eigenvalue $-\mu$, and $\overline{V}$ is an eigenvector of $A(0)$ corresponding to eigenvalue $\overline{\mu}$. 
+	\item Let $P^{c,*}(0)$ be the center eigenprojection of $-A(0)^*$. Then $P^{c,*}(0) = [P^c(0)]^*$. 
+	\item Let $P^{s,*}(0)$ and $P^{u,*}$ be the stable and unstable eigenprojections of $-A(0)^*$. Then $P^{s,*}(0) = [P^u(0)]^*$ and $P^{u,*}(0) = [P^s(0)]^*$
+\end{enumerate}	
+\begin{proof}
+Part (i) can be verified by multiplying out $R A(\lambda)R$. For part (ii), $A(0)V = \mu V$ implies $A(0)\overline{V} = \overline{\mu}\overline{V}$ since $A(0)$ is real. In addition, using part (i) we have $-R A(0) R V = \mu V$, which we rearrange to $A(0) (RV) = -\mu(RV)$. 
+
+For part (iii), $\ker [P^c(0)]^* = (\ran P^c(0))^\perp = (V_0)^\perp$  and $\ran [P^c(0)]^* = (\ker P^c(0))^\perp$. For any eigenvector $W$ of $-A(0)^*$ with nonzero eigenvalue $\mu$,
+\begin{align*}
+\langle W, V_0 \rangle = \frac{1}{\overline{\mu}} \langle \mu W, V_0 \rangle
+= \frac{1}{\overline{\mu}}\langle -A(0)^* W, V_0 \rangle = -\frac{1}{\overline{\mu}}\langle W, A(0) V_0 \rangle = 0,
+\end{align*}
+thus $\ker [P^c(0)]^*$ is the direct sum of the stable and unstable eigenspaces of $-A(0)^*$. Similarly, for any eigenvector $V$ of $A(0)$ with nonzero eigenvalue $\mu$, $\langle W_0, V \rangle = 0$, thus $\ran [P^c(0)]^* = \spn\{W_0\}$, which proves (iii).
+
+For part (iv), let $W$ be an eigenvector of $-A(0)^*$ with nonzero eigenvalue $\mu$. Then for all eigenvectors of $A(0)$ with eigenvalue $\tilde{\mu}$, we have 
+\begin{align*}
+\langle W, V \rangle = \frac{1}{\overline{\mu}} \langle \mu W, V \rangle
+= \frac{1}{\overline{\mu}}\langle -A(0)^* W, V \rangle = -\frac{1}{\overline{\mu}}\langle W, A(0) V \rangle = -\frac{1}{\overline{\mu}}\langle W, \tilde{\mu} V_0 \rangle = -\frac{\tilde{\mu}}{\overline{\mu}}\langle W, V \rangle,
+\end{align*}
+thus $\langle W, V \rangle = 0$ unless $\tilde{\mu} = -\overline{\mu}$. For the stable eigenprojection, $\ker [P^s(0)]^* = (\ran P^s(0))^\perp$ and $\ran [P^s(0)]^* = (\ker P^s(0))^\perp = (E^u(0) \oplus E^c(0))^\perp$. 
+
+Let $W$ be in the unstable eigenspace of $-A(0)^*$, and let $\mu$ be the corresponding eigenvector with $\Re \mu > 0$. Then by what we showed above, $W$ is perpendicular to all eigenvectors in $E^c(0) \oplus E^u(0)$, thus $W \in \ran [P^s(0)]^*$. Similarly, if $W$ is in the unstable or center eigenspace of $-A(0)^*$, then $W \in \ker [P^s(0)]^*$. This proves (iv) for the unstable eigenprojection $P^{u,*}(0)$. The result for the stable eigenprojection $P^{s,*}(0)$ is similar.
+\end{proof}
+\end{lemma}
+
 \section{Gap and conjugation Lemmas}
 
 In this section, we state and prove the gap and conjugation lemmas. We will use the conjugation lemma to simplify the system of equations \cref{PDEeigsystemper4} by converting $A(Q(x); \lambda)$ in to a constant coefficient matrix. The statements and notation of these lemmas are similar to those in \cite{Zumbrun2009}, except we allow the parameter vector $\Lambda$ to live in an arbitrary Banach space rather than in a subset of $\C^m$. The proofs follow those in \cite{Zumbrun2009}, but are given in much more detail. In addition, the proof of the conjugation lemma is used to prove a corollary. First, we state and prove the gap lemma.
@@ -1201,7 +1232,7 @@ Let $\Delta H_i^\pm(x) = \tilde{H}_i^\pm(x) - H(x)$. Then we have the following 
 \item $|G_i^-(x)| \leq C e^{-\alpha X_{i-1}} e^{-\alpha(X_{i-1} + x) } + e^{-2 \alpha X_i} e^{\alpha x}$
 \item $|G_i^+(x)| \leq C e^{-\alpha X_i} e^{-\alpha(X_i - x) } + e^{-2 \alpha X_{i-1}} e^{-\alpha x}$
 \item $\|G\| \leq C e^{-\alpha X^*}$
-\item $D_i d = ( Q'(X_i) + Q'(-X_i))(d_{i+1} - d_i ) + \mathcal{O} ( e^{-\alpha X_i} (e^{-\alpha X^*} + |\lambda| )$
+\item $D_i d = ( Q'(X_i) + Q'(-X_i))(d_{i+1} - d_i ) + \mathcal{O} ( e^{-\alpha X_i} (e^{-\alpha X^*} + |\lambda| )|d|)$
 \item $|C_i c| \leq C e^{-\alpha X_i} |c|$
 \end{enumerate}
 \begin{proof}
