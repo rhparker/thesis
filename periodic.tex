@@ -193,48 +193,65 @@ $S(\lambda)$ is the $(2n \times 2n)$ block matrix
 \begin{equation}\label{blockeq}
 S(\lambda) = 
 \begin{pmatrix}
-K(\lambda) -\frac{1}{2} \tilde{M} K_1(\lambda) & - \lambda^2 \tilde{M}^c I \\
--\frac{1}{2} \lambda M^c K_1(\lambda) & A - \lambda^2 MI 
+\tilde{K}(\lambda) + C_1 & - \lambda^2 \tilde{M}^c I + D_1 \\
+K(\lambda) + C_2 & A - \lambda^2 MI + D_2
 \end{pmatrix}
-+ \begin{pmatrix}C_1 & D_1 \\ C_2 & D_2 \end{pmatrix}
 \end{equation}
 The individual terms in $S(\lambda)$ are as follows.
 
 \begin{enumerate}
-\item $K(\lambda)$ is the periodic, bi-diagonal matrix
+\item $\tilde{K}(\lambda)$ and $K(\lambda)$ are the periodic, bi-diagonal matrices
 \begin{align*}
+&\tilde{K}(\lambda) =  
+\begin{pmatrix}
+\tilde{k}_1^- & \tilde{k}_0^+ \\
+\tilde{k}_1^+ & \tilde{k}_0^-
+\end{pmatrix}, \quad
 K(\lambda) =  
 \begin{pmatrix}
-e^{-\nu(\lambda)X_1} & & & & & -e^{\nu(\lambda)X_0} \\
--e^{\nu(\lambda)X_1} & e^{-\nu(\lambda)X_2} \\
-& -e^{\nu(\lambda)X_2} & e^{-\nu(\lambda)X_3} \\
-  & & \ddots & && \\
-& & & & -e^{\nu(\lambda)X_{n-1}} & e^{-\nu(\lambda)X_0}
-\end{pmatrix}.
-\end{align*}
-where $\nu(\lambda)$ is defined in Lemma \ref{nulambdalemmasimple}.
-
-\item $K_1(\lambda)$ is the same matrix as $K(\lambda)$ with all terms positive, i.e. 
-\begin{align*}
-K_1(\lambda) =  
+k_1^- & k_0^+ \\
+k_1^+ & k_0^-
+\end{pmatrix} && n = 2 \\
+&\tilde{K}(\lambda) =  
 \begin{pmatrix}
-e^{-\nu(\lambda)X_1} & & & & & e^{\nu(\lambda)X_0} \\
-e^{\nu(\lambda)X_1} & e^{-\nu(\lambda)X_2} \\
-& e^{\nu(\lambda)X_2} & e^{-\nu(\lambda)X_3} \\
- & & \ddots & &&   \\
-& & & & e^{\nu(\lambda)X_{n-1}} & e^{\nu(\lambda)X_0}
-\end{pmatrix}.
+\tilde{k}_1^- & & & & & \tilde{k}_0^+ \\
+\tilde{k}_1^+ & \tilde{k}_2^- \\
+& \tilde{k}_2^+ & \tilde{k}_3^- \\
+  & & \ddots & && \\
+& & & & \tilde{k}_{n-1}^+ & \tilde{k}_0^-
+\end{pmatrix}, \quad
+K(\lambda) =  
+\begin{pmatrix}
+k_1^- & & & & & k_0^+ \\
+k_1^+ & k_2^- \\
+& k_2^+ & k_3^- \\
+  & & \ddots & && \\
+& & & & k_{n-1}^+ & k_0^-
+\end{pmatrix} && n > 2
 \end{align*}
+where
+\begin{align*}
+\tilde{k}_i^- &= e^{-\nu(\lambda)X_i}\left(1 - \frac{1}{2}\lambda \tilde{M} + \mathcal{O}((|\lambda| + r^{1/2})^2) \right),
+\quad \tilde{k}_i^+ = -e^{\nu(\lambda)X_i}\left(1 + \frac{1}{2}\lambda \tilde{M} + \mathcal{O}((|\lambda| + r^{1/2})^2) \right) \\
+k_i^- &= -e^{-\nu(\lambda)X_i}\left(\frac{1}{2}\lambda \tilde{M}^c + \mathcal{O}((|\lambda| + r^{1/2})^2) \right), \quad
+k_i^+ = -e^{\nu(\lambda)X_i}\left(\frac{1}{2}\lambda \tilde{M}^c + \mathcal{O}((|\lambda| + r^{1/2})^2) \right)
+\end{align*}
+
+and $\nu(\lambda)$ is defined in Lemma \ref{nulambdalemmasimple}.
 
 \item $A$ is the symmetric banded matrix
 \begin{align}\label{Asymm}
+A &= \begin{pmatrix}
+-a_1 - a_0 & a_1 + a_0 \\
+a_1 + a_0 & - a_1 - a_0 
+\end{pmatrix} && n = 2 \\
 A &= \begin{pmatrix}
 -a_{n-1} - a_0 & a_0 & & &  & a_{n-1}\\
 a_0 & -a_0 - a_1 &  a_1 \\
 & a_1 & -a_1 - a_2 &  a_2 \\
 & \ddots & \ddots & \ddots \\
 a_{n-1} & & & & a_{n-2} & -a_{n-2} - a_{n-1} \\
-\end{pmatrix},
+\end{pmatrix} && n > 2,
 \end{align}
 where
 \begin{align*}
@@ -250,14 +267,13 @@ M^c &= \int_{-\infty}^\infty q(y) v^c(y) dy \\
 \end{align*}
 where $v^c(y)$ is the first component of $V^c(y)$, which is defined in \cref{varadjsolutions}.
 
-\item The remainder matrices and $K_2(\lambda)$ are analytic in $\lambda$ and have uniform bounds
+\item The remainder matrices are analytic in $\lambda$ and have uniform bounds
 \begin{align*}
 |C_1| &\leq C |\lambda|(|\lambda| + r^{1/2}) \\
 |D_1| &\leq C |\lambda|(|\lambda| + r^{1/2})^2 \\
 |C_2| &\leq C (|\lambda| + r^{1/2})^2 \\
 |D_2| &\leq C (|\lambda| + r^{1/2})^3 
 \end{align*}
-The constants $C$ depend on $N$.
 \end{enumerate}
 \end{theorem}
 
